@@ -146,6 +146,9 @@ Facilitating System: Claude (Anthropic)
 
 📧 jethomasphd@gmail.com
 
+## Cite this work
+https://doi.org/10.5281/zenodo.17967947
+
 ---
 
 <p align="center">◊ ◈ ◊</p>
