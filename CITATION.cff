@@ -1,0 +1,9 @@
+cff-version: 1.0.0
+message: "If you use this work, please cite it."
+title: "THE COMPANION DOSSIER"
+authors:
+  - family-names: "Thomas"
+    given-names: "Jacob E."
+doi: "10.5281/zenodo.17967947"
+date-released: 2025-12-17
+license: "CC0-1.0"
