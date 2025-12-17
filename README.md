@@ -151,6 +151,15 @@ https://doi.org/10.5281/zenodo.17967947
 
 ---
 
+
+## Committee of Patriots — Initial Holdings Session NOW AVAILABLE in the repo subdirectory.
+
+- Read the session PDF: `Committee_of_Patriots_Innitial_Holdings_Session.pdf`
+- Run the reproducible backtest: `backtest_script.py`
+
+> Disclaimer: Educational / civic research only. Not financial advice. Backtests are not predictive.
+
+
 <p align="center">◊ ◈ ◊</p>
 
 <p align="center"><em>The threshold is open.<br>The words have power.<br>Begin.</em></p>
