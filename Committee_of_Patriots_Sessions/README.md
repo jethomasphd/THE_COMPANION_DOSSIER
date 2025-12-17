@@ -13,5 +13,5 @@ It also contains the original founding white paper for the Republic Portfolio (p
 - **backtest_script.py**  
   Python script to replicate the historical performance backtest described in the session.
 
-  - **The_Republic_Portfolio_2020-12.pdfy**  
+  - **The_Republic_Portfolio_2025-12.pdfy**  
   Original white paper
