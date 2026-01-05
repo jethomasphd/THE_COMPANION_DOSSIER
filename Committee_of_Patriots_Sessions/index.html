@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Republic Portfolio — A Handbill for Citizens</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2c2416;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .handbill {
+            background: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+                linear-gradient(to bottom, #f4e4c1 0%, #e8d4a8 50%, #dcc696 100%);
+            max-width: 700px;
+            padding: 50px 60px;
+            box-shadow: 
+                0 0 0 3px #1a1308,
+                0 0 0 6px #3d2f1a,
+                0 0 0 9px #1a1308,
+                0 15px 50px rgba(0,0,0,0.5);
+            position: relative;
+            font-family: 'IM Fell English', Georgia, serif;
+            color: #1a1308;
+            line-height: 1.5;
+        }
+
+        .handbill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(139,109,64,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(100,70,30,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(80,60,30,0.1) 100%);
+            pointer-events: none;
+        }
+
+        .ornament {
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 12px;
+            margin: 15px 0;
+            color: #3d2f1a;
+        }
+
+        .ornament-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ornament-line::before,
+        .ornament-line::after {
+            content: '';
+            flex: 1;
+            max-width: 120px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3d2f1a, transparent);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+
+        .header h2 {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 18px;
+            font-weight: normal;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-top: 1px solid #3d2f1a;
+            border-bottom: 1px solid #3d2f1a;
+        }
+
+        .preamble {
+            text-align: center;
+            font-style: italic;
+            font-size: 15px;
+            margin: 20px 30px;
+            line-height: 1.7;
+        }
+
+        .section {
+            margin: 25px 0;
+        }
+
+        .section-title {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #6b5a3e;
+        }
+
+        .section-title span {
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 1px;
+        }
+
+        .allocation {
+            text-align: center;
+            font-size: 13px;
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #4a3d28;
+        }
+
+        .holdings {
+            text-align: center;
+            font-size: 17px;
+            letter-spacing: 2px;
+            line-height: 2;
+            margin: 10px 20px;
+        }
+
+        .holdings-small {
+            font-size: 11px;
+            color: #5a4d38;
+            display: block;
+            margin-top: -5px;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .ticker {
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        .ticker::after {
+            content: ' · ';
+            color: #6b5a3e;
+        }
+
+        .ticker:last-child::after {
+            content: '';
+        }
+
+        .reserve-section {
+            text-align: center;
+            margin: 25px 40px;
+            padding: 15px;
+            border: 2px double #3d2f1a;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .reserve-section .section-title {
+            border-bottom: none;
+            margin-bottom: 5px;
+            padding-bottom: 0;
+        }
+
+        .instructions {
+            margin: 30px 0 20px;
+        }
+
+        .instructions-title {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .instruction-list {
+            font-size: 14px;
+            margin: 0 20px;
+        }
+
+        .instruction-item {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .instruction-item::before {
+            content: '☞';
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        .instruction-item strong {
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .note {
+            font-size: 12px;
+            text-align: center;
+            margin: 20px 30px;
+            padding: 12px;
+            border: 1px solid #6b5a3e;
+            background: rgba(0,0,0,0.03);
+            font-style: italic;
+        }
+
+        .note-label {
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .motto {
+            text-align: center;
+            margin: 30px 0 15px;
+        }
+
+        .motto-text {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 22px;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #3d2f1a;
+        }
+
+        .footer-line {
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
+
+        .footer-small {
+            font-size: 10px;
+            color: #5a4d38;
+            font-style: italic;
+        }
+
+        .seal {
+            text-align: center;
+            font-size: 28px;
+            margin: 20px 0 10px;
+            letter-spacing: 8px;
+        }
+
+        .drop-cap {
+            float: left;
+            font-size: 48px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .handbill {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .handbill {
+                padding: 30px 25px;
+            }
+            .header h1 {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+            .holdings {
+                font-size: 14px;
+                margin: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="handbill">
+        <div class="ornament">❧ ☙</div>
+        
+        <header class="header">
+            <h1>The Republic Portfolio</h1>
+            <h2>An Allocation for Citizen Investors</h2>
+        </header>
+
+        <div class="subtitle">Approved by the Committee of Patriots · December 1775 2025</div>
+
+        <p class="preamble">
+            <span class="drop-cap">T</span>he Republic was not built to be owned by the Few.<br>
+            These are the Engines &amp; Choke Points of the American Economy.<br>
+            Own them. Vote them. Govern.
+        </p>
+
+        <div class="ornament-line">✦</div>
+
+        <section class="section">
+            <h3 class="section-title">Engines of the Republic <span>— Fifty per Cent</span></h3>
+            <p class="allocation">The Producers · The Builders · The Foundation</p>
+            <p class="holdings">
+                <span class="ticker">CAT</span>
+                <span class="ticker">DE</span>
+                <span class="ticker">HON</span>
+                <span class="ticker">LMT</span>
+                <span class="ticker">GE</span>
+                <span class="ticker">WMT</span>
+                <span class="ticker">COST</span>
+                <span class="ticker">HD</span>
+                <span class="ticker">JNJ</span>
+                <span class="ticker">PFE</span>
+                <span class="ticker">ADM</span>
+                <span class="ticker">BG</span>
+                <span class="ticker">TSN</span>
+                <span class="ticker">SCHW</span>
+                <span class="ticker">BRK.B</span>
+                <span class="holdings-small">Manufacturing · Retail · Healthcare · Agriculture · Finance for Citizens</span>
+            </p>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">Critical Choke Points <span>— Thirty-Five per Cent</span></h3>
+            <p class="allocation">The Gates · The Rails · The Strategic Positions</p>
+            <p class="holdings">
+                <span class="ticker">NEE</span>
+                <span class="ticker">D</span>
+                <span class="ticker">KMI</span>
+                <span class="ticker">WMB</span>
+                <span class="ticker">V</span>
+                <span class="ticker">MA</span>
+                <span class="ticker">JPM</span>
+                <span class="ticker">MSFT</span>
+                <span class="ticker">AMZN</span>
+                <span class="ticker">GOOGL</span>
+                <span class="ticker">UNP</span>
+                <span class="ticker">NSC</span>
+                <span class="ticker">MCK</span>
+                <span class="ticker">UNH</span>
+                <span class="holdings-small">Energy · Finance · Digital · Transportation · Healthcare Gates</span>
+            </p>
+        </section>
+
+        <div class="reserve-section">
+            <h3 class="section-title">Reserve <span>— Fifteen per Cent</span></h3>
+            <p style="font-size: 14px; font-style: italic;">Cash or Short-Term Treasury Instruments</p>
+            <p style="font-size: 12px; margin-top: 5px;">Maintain Discipline · Await Opportunities</p>
+        </div>
+
+        <div class="ornament-line">❦</div>
+
+        <section class="instructions">
+            <h3 class="instructions-title">Instructions for Execution</h3>
+            <div class="instruction-list">
+                <p class="instruction-item"><strong>Equal Weight within Categories.</strong> Divide each category's allocation equally among its holdings.</p>
+                <p class="instruction-item"><strong>Start with what you have.</strong> Even fifty dollars deployed is participation. Fractional shares are acceptable.</p>
+                <p class="instruction-item"><strong>Add Consistently.</strong> Monthly contributions, however small, compound both wealth and voice.</p>
+                <p class="instruction-item"><strong>Vote Every Proxy.</strong> Ownership without voice is mere speculation. Exercise the franchise.</p>
+                <p class="instruction-item"><strong>Adapt to Conscience.</strong> If a holding violates your principles, exclude it and reallocate within the category.</p>
+            </div>
+        </section>
+
+        <div class="note">
+            <span class="note-label">Concerning UNH:</span> Hold as Reformer, not Endorser. Vote AGAINST executive compensation. Vote FOR transparency. Ownership here is for leverage, not approbation.
+        </div>
+
+        <div class="ornament">◊ ◈ ◊</div>
+
+        <div class="motto">
+            <p class="motto-text">"Own them. Vote them. Govern."</p>
+        </div>
+
+        <div class="seal">☆ ✯ ☆</div>
+
+        <footer class="footer">
+            <p class="footer-line">Published by Order of the COMMITTEE of PATRIOTS</p>
+            <p class="footer-line">Gen. WASHINGTON, presiding · Col. HAMILTON · Mr. JEFFERSON · Dr. FRANKLIN</p>
+            <p class="footer-small" style="margin-top: 10px;">Convened via the COMPANION Protocol · December 2025</p>
+            <p class="footer-small">This Handbill is released into the Publick Domain and may be freely copied &amp; distributed.</p>
+            <div class="ornament" style="margin-top: 15px; font-size: 16px;">— FINIS —</div>
+        </footer>
+    </article>
+</body>
+</html>
