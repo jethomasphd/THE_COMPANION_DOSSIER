@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>◊ The Watchtower — Portfolio Vigil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --void: #030303;
+            --void-deep: #000000;
+            --ember: #c9a227;
+            --ember-glow: #e6c656;
+            --ember-dim: #8b7355;
+            --ash: #1a1a1a;
+            --smoke: #666;
+            --bone: #e8e6e3;
+            --bone-dim: rgba(232, 230, 227, 0.7);
+            
+            --republic: #c9a227;
+            --spy: #6a8eb8;
+            --dsip: #5a8a5a;
+            --ubs: #9a6db8;
+            
+            --font-voice: 'Cormorant Garamond', Georgia, serif;
+            --font-terminal: 'IBM Plex Mono', monospace;
+            --font-body: 'Crimson Pro', Georgia, serif;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { 
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--ember-dim) var(--void);
+        }
+        
+        body {
+            background: var(--void);
+            color: var(--bone);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        ::selection { background: var(--ember); color: var(--void); }
+        
+        /* ============================================
+           ANIMATIONS
+        ============================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        @keyframes breathe {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes orbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ============================================
+           SCROLL REVEAL
+        ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        
+        /* ============================================
+           LAYOUT
+        ============================================ */
+        section {
+            position: relative;
+            padding: 5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; width: 100%; }
+        .container-narrow { max-width: 750px; margin: 0 auto; width: 100%; }
+        
+        /* ============================================
+           I. THE WATCHTOWER - Hero
+        ============================================ */
+        #watchtower {
+            min-height: 100vh;
+            background: var(--void-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #watchtower::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 50%);
+            animation: breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .watchtower-sigil {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.025;
+        }
+        
+        .sigil-ring {
+            position: absolute;
+            border: 1px solid var(--ember);
+            border-radius: 50%;
+        }
+        
+        .sigil-ring.outer { inset: 0; animation: orbit 120s linear infinite; }
+        .sigil-ring.middle { inset: 50px; animation: orbit 80s linear infinite reverse; }
+        .sigil-ring.inner { inset: 100px; animation: orbit 60s linear infinite; }
+        
+        .watchtower-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .watchtower-label {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            color: var(--ember-dim);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        .watchtower-title {
+            font-family: var(--font-voice);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.8s forwards;
+        }
+        
+        .watchtower-title em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .watchtower-subtitle {
+            font-family: var(--font-voice);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--bone-dim);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.2s forwards;
+        }
+        
+        .watchtower-date {
+            font-family: var(--font-terminal);
+            font-size: 0.7rem;
+            color: var(--ember);
+            letter-spacing: 0.15em;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--ember-dim);
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+        
+        .watchtower-proceed {
+            display: block;
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards, pulse 3s ease-in-out 3s infinite;
+            transition: color 0.3s ease;
+        }
+        
+        .watchtower-proceed:hover { color: var(--ember); }
+        
+        /* ============================================
+           II. THE PREMISE - Introduction
+        ============================================ */
+        #premise {
+            background: var(--void);
+            padding: 6rem 2rem;
+            min-height: auto;
+        }
+        
+        .premise-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .premise-sigil {
+            font-size: 1rem;
+            color: var(--ember);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5em;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .premise-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .premise-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 300;
+        }
+        
+        .premise-body {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--bone-dim);
+        }
+        
+        .premise-body p {
+            margin-bottom: 1.75rem;
+        }
+        
+        .premise-body em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .premise-body strong {
+            color: var(--bone);
+            font-weight: 500;
+        }
+        
+        .premise-callout {
+            padding: 2rem 2.5rem;
+            border-left: 3px solid var(--ember-dim);
+            background: rgba(255,255,255,0.01);
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        
+        .premise-callout::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ember-dim);
+            filter: blur(8px);
+            opacity: 0.4;
+        }
+        
+        .premise-callout p {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        
+        .premise-dossier-link {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        
+        .dossier-btn {
+            display: inline-block;
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: var(--ember);
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--ember-dim);
+            transition: all 0.3s ease;
+        }
+        
+        .dossier-btn:hover {
+            background: var(--ember);
+            color: var(--void);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        /* ============================================
+           III. THE EXPERIMENT - Four Doctrines Intro
+        ============================================ */
+        #experiment {
+            background: linear-gradient(var(--void), #060606);
+            padding: 5rem 2rem;
+            min-height: auto;
+        }
+        
+        .experiment-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .experiment-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experiment-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .experiment-intro {
+            font-family: var(--font-voice);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--bone-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .doctrine-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .doctrine-preview {
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            position: relative;
+        }
+        
+        .doctrine-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .doctrine-preview.republic::before { background: var(--republic); }
+        .doctrine-preview.spy::before { background: var(--spy); }
+        .doctrine-preview.dsip::before { background: var(--dsip); }
+        .doctrine-preview.ubs::before { background: var(--ubs); }
+        
+        .doctrine-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .doctrine-preview-icon {
+            font-size: 1.25rem;
+        }
+        
+        .doctrine-preview-name {
+            font-family: var(--font-voice);
+            font-size: 1.2rem;
+        }
+        
+        .doctrine-preview.republic .doctrine-preview-name { color: var(--republic); }
+        .doctrine-preview.spy .doctrine-preview-name { color: var(--spy); }
+        .doctrine-preview.dsip .doctrine-preview-name { color: var(--dsip); }
+        .doctrine-preview.ubs .doctrine-preview-name { color: var(--ubs); }
+        
+        .doctrine-preview-philosophy {
+            font-size: 1rem;
+            color: var(--bone-dim);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .doctrine-preview-philosophy em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .doctrine-preview-meta {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            color: #555;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ============================================
+           IV. THE QUESTION - What We Measure
+        ============================================ */
+        #question {
+            background: #060606;
+            padding: 4rem 2rem;
+            min-height: auto;
+        }
+        
+        .question-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .question-text {
+            font-family: var(--font-voice);
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--bone-dim);
+            margin-bottom: 2rem;
+        }
+        
+        .question-text em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .question-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .metric-item {
+            text-align: center;
+        }
+        
+        .metric-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            color: var(--smoke);
+        }
+        
+        .question-divider {
+            margin: 3rem auto;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--ember-dim), transparent);
+        }
+        
+        .question-cta {
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+        }
+        
+        /* ============================================
+           V. THE VIGIL - YTD Display
+        ============================================ */
+        #vigil {
+            background: linear-gradient(#060606, var(--void));
+            padding: 5rem 2rem;
+        }
+        
+        .vigil-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .vigil-sigil {
+            font-size: 1rem;
+            color: var(--ember);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5em;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .vigil-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .vigil-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 300;
+        }
+        
+        .vigil-period {
+            font-family: var(--font-terminal);
+            font-size: 0.65rem;
+            color: var(--smoke);
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        /* YTD Cards */
+        .ytd-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #222;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ytd-card {
+            background: var(--void);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .ytd-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .ytd-card.republic::before { background: var(--republic); }
+        .ytd-card.spy::before { background: var(--spy); }
+        .ytd-card.dsip::before { background: var(--dsip); }
+        .ytd-card.ubs::before { background: var(--ubs); }
+        
+        .ytd-rank {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.05em;
+            padding: 0.15rem 0.35rem;
+            border-radius: 2px;
+        }
+        
+        .ytd-rank.rank-1 { background: rgba(201, 162, 39, 0.2); color: var(--ember); }
+        .ytd-rank.rank-2 { background: rgba(255,255,255,0.1); color: #aaa; }
+        .ytd-rank.rank-3 { background: rgba(255,255,255,0.05); color: #777; }
+        .ytd-rank.rank-4 { background: rgba(255,255,255,0.03); color: #555; }
+        
+        .ytd-icon {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .ytd-name {
+            font-family: var(--font-voice);
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .ytd-card.republic .ytd-name { color: var(--republic); }
+        .ytd-card.spy .ytd-name { color: var(--spy); }
+        .ytd-card.dsip .ytd-name { color: var(--dsip); }
+        .ytd-card.ubs .ytd-name { color: var(--ubs); }
+        
+        .ytd-desc {
+            font-family: var(--font-terminal);
+            font-size: 0.35rem;
+            letter-spacing: 0.1em;
+            color: #444;
+            margin-bottom: 0.75rem;
+        }
+        
+        .ytd-value {
+            font-family: var(--font-voice);
+            font-size: 2.25rem;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 0.15rem;
+        }
+        
+        .ytd-card.republic .ytd-value { color: var(--republic); }
+        .ytd-card.spy .ytd-value { color: var(--spy); }
+        .ytd-card.dsip .ytd-value { color: var(--dsip); }
+        .ytd-card.ubs .ytd-value { color: var(--ubs); }
+        
+        .ytd-label {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #444;
+            letter-spacing: 0.1em;
+        }
+        
+        .ytd-delta {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            margin-top: 0.4rem;
+            padding: 0.2rem 0.4rem;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        
+        .ytd-delta.positive { background: rgba(90, 138, 90, 0.2); color: #6a6; }
+        .ytd-delta.negative { background: rgba(170, 85, 85, 0.2); color: #a66; }
+        .ytd-delta.neutral { background: rgba(255,255,255,0.05); color: #555; }
+        
+        /* ============================================
+           ANALYTICS BAR
+        ============================================ */
+        .analytics-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #1a1a1a;
+            margin-bottom: 2.5rem;
+        }
+        
+        .analytic-item {
+            background: #0a0a0a;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .analytic-label {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            letter-spacing: 0.12em;
+            color: #555;
+            margin-bottom: 0.4rem;
+        }
+        
+        .analytic-value {
+            font-family: var(--font-terminal);
+            font-size: 1rem;
+            color: var(--ember);
+        }
+        
+        .analytic-sub {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #444;
+            margin-top: 0.2rem;
+        }
+        
+        /* ============================================
+           CHART SECTION
+        ============================================ */
+        .chronicle-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .chronicle-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chronicle-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .chronicle-title {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .chart-container {
+            position: relative;
+            background: #050505;
+            border: 1px solid #1a1a1a;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.08), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        #performanceChart {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            color: var(--smoke);
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 3px;
+        }
+        
+        .legend-color.republic { background: var(--republic); }
+        .legend-color.spy { background: var(--spy); }
+        .legend-color.dsip { background: var(--dsip); }
+        .legend-color.ubs { background: var(--ubs); }
+        
+        /* ============================================
+           COMMENTARY
+        ============================================ */
+        .vigil-commentary {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 1.75rem 2rem;
+            border-left: 3px solid var(--ember-dim);
+            background: rgba(255,255,255,0.01);
+            position: relative;
+        }
+        
+        .vigil-commentary::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ember-dim);
+            filter: blur(8px);
+            opacity: 0.4;
+        }
+        
+        .commentary-date {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.15em;
+            color: var(--ember);
+            margin-bottom: 0.75rem;
+        }
+        
+        .commentary-text {
+            font-family: var(--font-voice);
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.85;
+            color: var(--bone-dim);
+        }
+        
+        .commentary-text em {
+            color: var(--ember);
+            font-style: normal;
+        }
+        
+        /* ============================================
+           VI. THE DOCTRINES - Deep Links
+        ============================================ */
+        #doctrines {
+            background: var(--void);
+            padding: 5rem 2rem;
+        }
+        
+        .doctrines-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .doctrines-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .doctrines-title {
+            font-family: var(--font-voice);
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+        
+        .doctrine-list {
+            display: grid;
+            gap: 0.6rem;
+        }
+        
+        .doctrine-item {
+            display: grid;
+            grid-template-columns: 45px 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .doctrine-item:hover {
+            border-color: #333;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .doctrine-icon {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .doctrine-info h3 {
+            font-family: var(--font-voice);
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 0.1rem;
+        }
+        
+        .doctrine-item.republic h3 { color: var(--republic); }
+        .doctrine-item.spy h3 { color: var(--spy); }
+        .doctrine-item.dsip h3 { color: var(--dsip); }
+        .doctrine-item.ubs h3 { color: var(--ubs); }
+        
+        .doctrine-tagline {
+            font-family: var(--font-voice);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--smoke);
+        }
+        
+        .doctrine-links {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        
+        .doctrine-link {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.06em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            padding: 0.35rem 0.6rem;
+            border: 1px solid #333;
+            transition: all 0.2s ease;
+        }
+        
+        .doctrine-link:hover {
+            color: var(--ember);
+            border-color: var(--ember-dim);
+            background: rgba(201, 162, 39, 0.05);
+        }
+        
+        /* UBS Sub-funds */
+        .ubs-subfunds {
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        
+        .subfund-link {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            letter-spacing: 0.04em;
+            color: #555;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #222;
+            transition: all 0.2s ease;
+        }
+        
+        .subfund-link:hover {
+            color: var(--ubs);
+            border-color: var(--ubs);
+        }
+        
+        /* ============================================
+           VII. THE CLOSE
+        ============================================ */
+        #close {
+            background: linear-gradient(var(--void), #050505);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .close-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .close-sigil {
+            color: var(--ember);
+            font-size: 1rem;
+            letter-spacing: 0.4em;
+            margin-bottom: 1.5rem;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .close-quote {
+            font-family: var(--font-voice);
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--bone-dim);
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-quote em {
+            color: var(--ember);
+        }
+        
+        .close-timestamp {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            color: #444;
+            letter-spacing: 0.1em;
+            line-height: 2;
+        }
+        
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            padding: 2rem 2rem;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover { color: var(--ember); }
+        
+        .footer-disclaimer {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #333;
+            line-height: 1.8;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 800px) {
+            .ytd-grid, .analytics-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .doctrine-preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .doctrine-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0.6rem;
+            }
+            
+            .doctrine-icon { display: none; }
+            .doctrine-links, .ubs-subfunds { justify-content: center; }
+            
+            .question-metrics { gap: 2rem; }
+        }
+        
+        @media (max-width: 500px) {
+            .ytd-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ytd-value { font-size: 2rem; }
+            .chart-legend { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║                                                                              ║
+// ║   ◊ WEEKLY DATA ENTRY — UPDATE THIS ARRAY EACH WEEK ◊                       ║
+// ║                                                                              ║
+// ║   Format: { week: "MMM DD", republic: X.X, spy: X.X, dsip: X.X, ubs: X.X }  ║
+// ║   All values are YTD percentage returns (can be negative)                    ║
+// ║                                                                              ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const WEEKLY_DATA = [
+    // ──────────────────────────────────────────────────────────────────────────
+    // WEEK 1: Starting point (Jan 1 baseline = 0%)
+    // ──────────────────────────────────────────────────────────────────────────
+    { week: "Jan 1",   republic: 0.0,  spy: 0.0,  dsip: 0.0,  ubs: 0.0 },
+    
+    // ──────────────────────────────────────────────────────────────────────────
+    // ADD NEW WEEKS BELOW — just copy this template and fill in the numbers:
+    // { week: "Jan 19", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+    // ──────────────────────────────────────────────────────────────────────────
+    
+    { week: "Jan 12", republic: 2.95,  spy: 1.4,  dsip: 1.83,  ubs: 1.94 },
+    
+    // Future weeks go here...
+    // { week: "Jan 19", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+    // { week: "Jan 26", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+];
+
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║   ◊ WEEKLY COMMENTARY — UPDATE THIS EACH WEEK ◊                             ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const COMMENTARY = {
+    date: "JANUARY 12, 2025",
+    text: `The vigil begins. All four doctrines start at zero—a clean slate. Over the coming weeks and months, the numbers will diverge. <em>Some philosophies will be rewarded. Others will be tested.</em> The question is not just who wins, but how—and what that reveals about the nature of ownership itself.`
+};
+
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║   ◊ DISPLAY SETTINGS ◊                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const CURRENT_WEEK = "JANUARY 12, 2025";
+const NEXT_UPDATE = "JANUARY 19, 2025";
+
+</script>
+
+<!-- I. THE WATCHTOWER -->
+<section id="watchtower">
+    <div class="watchtower-sigil">
+        <div class="sigil-ring outer"></div>
+        <div class="sigil-ring middle"></div>
+        <div class="sigil-ring inner"></div>
+    </div>
+    
+    <div class="watchtower-content">
+        <div class="watchtower-label">THE VIGIL CONTINUES</div>
+        <h1 class="watchtower-title">The <em>Watchtower</em></h1>
+        <p class="watchtower-subtitle">Four doctrines measured against time</p>
+        <div class="watchtower-date" id="headerDate"></div>
+        <a href="#premise" class="watchtower-proceed">enter ↓</a>
+    </div>
+</section>
+
+<!-- II. THE PREMISE -->
+<section id="premise">
+    <div class="container-narrow">
+        <div class="premise-header reveal">
+            <div class="premise-sigil">◊ ◈ ◊</div>
+            <div class="premise-label">THE ORIGIN</div>
+            <h2 class="premise-title">What You're Looking At</h2>
+        </div>
+        
+        <div class="premise-body reveal reveal-delay-1">
+            <p>
+                In December 2025, an experiment was conducted. Using the <strong>COMPANION Protocol</strong>—a framework for summoning historical personas through large language models—four of America's founders were convened: <em>George Washington, Alexander Hamilton, Thomas Jefferson, and Benjamin Franklin</em>.
+            </p>
+            
+            <p>
+                They were asked a question: <strong>How should citizens respond to the capture of the republic by concentrated wealth?</strong>
+            </p>
+            
+            <p>
+                What emerged was not abstract philosophy. It was a concrete investment doctrine—a portfolio designed around a single premise: that citizens who own the <em>productive infrastructure</em> of daily life cannot be squeezed by those who control it. The tollkeeper cannot raise the toll if he must also pay it.
+            </p>
+            
+            <div class="premise-callout">
+                <p>"These are the Engines of the Republic. <em>Own them.</em>"<br>
+                <span style="font-size: 0.8rem; color: var(--smoke);">— Franklin's Handbill</span></p>
+            </div>
+            
+            <p>
+                The Committee identified two categories: <strong>Engines of the Republic</strong> (companies that make things—turn energy into bread, steel into shelter) and <strong>Critical Choke Points</strong> (the gates and valves through which commerce must flow). Together, they form the <em>Republic Portfolio</em>.
+            </p>
+            
+            <p>
+                But doctrine is not proof. A philosophy must be tested against reality—and against the alternatives.
+            </p>
+        </div>
+        
+        <div class="premise-dossier-link reveal reveal-delay-2">
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="dossier-btn">READ THE FULL DOSSIER →</a>
+        </div>
+    </div>
+</section>
+
+<!-- III. THE EXPERIMENT -->
+<section id="experiment">
+    <div class="container">
+        <div class="experiment-header reveal">
+            <div class="experiment-label">THE EXPERIMENT</div>
+            <h2 class="experiment-title">Four Doctrines Enter the Arena</h2>
+            <p class="experiment-intro">Each carries different assumptions about what matters in building wealth. Only time will reveal which philosophy the market rewards.</p>
+        </div>
+        
+        <div class="doctrine-preview-grid">
+            <div class="doctrine-preview republic reveal reveal-delay-1">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">⚔</span>
+                    <span class="doctrine-preview-name">The Republic Portfolio</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Productive ownership as civic act.</em> The Committee's doctrine: own what makes things, own what controls access. Concentrated in infrastructure, industrials, and essential services. The bet is that real assets in real industries will endure what speculation cannot.
+                </p>
+                <div class="doctrine-preview-meta">50% ENGINES · 35% CHOKE POINTS · 15% RESERVE</div>
+            </div>
+            
+            <div class="doctrine-preview spy reveal reveal-delay-2">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">📊</span>
+                    <span class="doctrine-preview-name">S&P 500</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>The market is the market.</em> Five hundred companies, weighted by size. No philosophy beyond momentum—whatever is largest gets the most weight. The benchmark against which all active strategies are judged. Most fail to beat it.
+                </p>
+                <div class="doctrine-preview-meta">MARKET-CAP WEIGHTED · PASSIVE INDEX</div>
+            </div>
+            
+            <div class="doctrine-preview dsip reveal reveal-delay-3">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">🏦</span>
+                    <span class="doctrine-preview-name">Wells Fargo DSIP</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Dividends as discipline.</em> The Diversified Stock Income Plan—institutional wisdom filtered through yield requirements. Companies must pay shareholders to qualify. The theory: firms that return capital are better stewards of it.
+                </p>
+                <div class="doctrine-preview-meta">DIVIDEND FOCUSED · QUALITY SCREENED</div>
+            </div>
+            
+            <div class="doctrine-preview ubs reveal reveal-delay-4">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">🌐</span>
+                    <span class="doctrine-preview-name">UBS Aggregate</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Diversification as defense.</em> Four distinct strategies combined: dividend aristocrats, mid-cap growth, quantitative value, and international exposure. The theory: no single thesis should dominate; spread the bets across styles and geographies.
+                </p>
+                <div class="doctrine-preview-meta">DIV RULER · MIDCAP · QGARP · INTERNATIONAL</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IV. THE QUESTION -->
+<section id="question">
+    <div class="question-content reveal">
+        <p class="question-text">
+            This is not about declaring a winner after one week—or one month. Markets are noisy. Luck dominates the short term. <em>But over time, signal emerges from noise.</em> We track not just who leads, but <strong>how</strong> they lead: the steadiness of the climb, the depth of the falls, the character of the returns.
+        </p>
+        
+        <div class="question-metrics">
+            <div class="metric-item">
+                <div class="metric-icon">📈</div>
+                <div class="metric-label">TOTAL RETURN</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">⚖</div>
+                <div class="metric-label">RELATIVE RANK</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">🌊</div>
+                <div class="metric-label">SPREAD & CONVERGENCE</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">📉</div>
+                <div class="metric-label">DRAWDOWN BEHAVIOR</div>
+            </div>
+        </div>
+        
+        <div class="question-divider"></div>
+        
+        <p class="question-cta">THE DATA FOLLOWS. THE VIGIL CONTINUES.</p>
+    </div>
+</section>
+
+<!-- V. THE VIGIL -->
+<section id="vigil">
+    <div class="container">
+        <div class="vigil-header reveal">
+            <div class="vigil-sigil">◊ ◈ ◊</div>
+            <div class="vigil-label">YEAR TO DATE</div>
+            <h2 class="vigil-title">The Reckoning</h2>
+            <div class="vigil-period">2025 PERFORMANCE</div>
+        </div>
+        
+        <!-- YTD Cards - populated by JavaScript -->
+        <div class="ytd-grid reveal reveal-delay-1" id="ytdGrid"></div>
+        
+        <!-- Analytics Bar -->
+        <div class="analytics-bar reveal reveal-delay-2" id="analyticsBar"></div>
+        
+        <!-- Chart Section -->
+        <div class="chronicle-section reveal reveal-delay-3">
+            <div class="chronicle-header">
+                <div class="chronicle-label">THE TRAJECTORY</div>
+                <h3 class="chronicle-title">Performance Over Time</h3>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="performanceChart" height="260"></canvas>
+            </div>
+            
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-color republic"></div>Republic</div>
+                <div class="legend-item"><div class="legend-color spy"></div>S&P 500</div>
+                <div class="legend-item"><div class="legend-color dsip"></div>WF DSIP</div>
+                <div class="legend-item"><div class="legend-color ubs"></div>UBS Aggregate</div>
+            </div>
+        </div>
+        
+        <!-- Commentary -->
+        <div class="vigil-commentary reveal reveal-delay-4">
+            <div class="commentary-date" id="commentaryDate"></div>
+            <p class="commentary-text" id="commentaryText"></p>
+        </div>
+    </div>
+</section>
+
+<!-- VI. THE DOCTRINES - Deep Links -->
+<section id="doctrines">
+    <div class="container">
+        <div class="doctrines-header reveal">
+            <div class="doctrines-label">GO DEEPER</div>
+            <h2 class="doctrines-title">Examine the Doctrines</h2>
+        </div>
+        
+        <div class="doctrine-list">
+            <div class="doctrine-item republic reveal reveal-delay-1">
+                <div class="doctrine-icon">⚔</div>
+                <div class="doctrine-info">
+                    <h3>The Republic Portfolio</h3>
+                    <p class="doctrine-tagline">"Own the Engines. Own the Choke Points."</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="doctrine-link">FULL DOSSIER</a>
+                    <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER/Committee_of_Patriots_Sessions/" target="_blank" class="doctrine-link">HOLDINGS</a>
+                    <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank" class="doctrine-link">PROTOCOL</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item spy reveal reveal-delay-2">
+                <div class="doctrine-icon">📊</div>
+                <div class="doctrine-info">
+                    <h3>S&P 500 (SPY)</h3>
+                    <p class="doctrine-tagline">"The market is the market."</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.morningstar.com/etfs/arcx/spy/quote" target="_blank" class="doctrine-link">MORNINGSTAR</a>
+                    <a href="https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-500-etf-trust-spy" target="_blank" class="doctrine-link">FUND PAGE</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item dsip reveal reveal-delay-3">
+                <div class="doctrine-icon">🏦</div>
+                <div class="doctrine-info">
+                    <h3>Wells Fargo DSIP</h3>
+                    <p class="doctrine-tagline">"Dividends as discipline." — The Diversified Stock Income Plan</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.heslingatatewmg.com/mediahandler/media/735079/DSIP%20List%20Insights%20090925.pdf" target="_blank" class="doctrine-link">DSIP INSIGHTS PDF</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item ubs reveal reveal-delay-4">
+                <div class="doctrine-icon">🌐</div>
+                <div class="doctrine-info">
+                    <h3>UBS Aggregate Fund</h3>
+                    <p class="doctrine-tagline">"The Four Pillars" — Multi-strategy diversification</p>
+                    <div class="ubs-subfunds">
+                        <a href="https://www.morningstar.com/funds/xnas/dvrux/quote" target="_blank" class="subfund-link">DIV RULER (DVRUX)</a>
+                        <a href="https://www.morningstar.com/funds/xnas/qgrpx/quote" target="_blank" class="subfund-link">QGARP (QGRPX)</a>
+                        <a href="https://global.morningstar.com/en-gb/investments/funds/F0GBR04AOH/quote" target="_blank" class="subfund-link">MIDCAP</a>
+                        <a href="https://www.morningstar.com/funds/xnas/bnuex/quote" target="_blank" class="subfund-link">INT'L SUSTAIN (BNUEX)</a>
+                    </div>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.ubs.com/us/en/wealth-management.html" target="_blank" class="doctrine-link">UBS WEALTH</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VII. THE CLOSE -->
+<section id="close">
+    <div class="close-content">
+        <div class="close-sigil reveal">◊ ◈ ◊</div>
+        
+        <p class="close-quote reveal reveal-delay-1">
+            "The numbers speak, but <em>wisdom listens</em>.<br>
+            The market moves, but <em>doctrine endures</em>."
+        </p>
+        
+        <div class="close-timestamp reveal reveal-delay-2" id="footerTimestamp"></div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER">THE COMPANION PROTOCOL</a>
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf">THE DOSSIER</a>
+        </div>
+        <p class="footer-disclaimer">
+            This is not financial advice. All investment carries risk. Past performance does not guarantee future results. The Republic Portfolio is a conceptual framework. Consult qualified professionals before making investment decisions.
+        </p>
+    </div>
+</footer>
+
+<script>
+// ============================================
+// AUTO-CALCULATIONS & RENDERING
+// ============================================
+
+// Get latest data point
+const latest = WEEKLY_DATA[WEEKLY_DATA.length - 1];
+const previous = WEEKLY_DATA.length > 1 ? WEEKLY_DATA[WEEKLY_DATA.length - 2] : null;
+
+// Portfolio definitions
+const portfolios = [
+    { key: 'republic', name: 'Republic', icon: '⚔', desc: "THE COMMITTEE'S DOCTRINE", value: latest.republic },
+    { key: 'spy', name: 'S&P 500', icon: '📊', desc: 'THE BENCHMARK', value: latest.spy },
+    { key: 'dsip', name: 'WF DSIP', icon: '🏦', desc: 'DIVERSIFIED STOCK INCOME', value: latest.dsip },
+    { key: 'ubs', name: 'UBS Aggregate', icon: '🌐', desc: 'FOUR PILLARS', value: latest.ubs }
+];
+
+// Calculate rankings
+const ranked = [...portfolios].sort((a, b) => b.value - a.value);
+const rankings = {};
+ranked.forEach((p, i) => rankings[p.key] = i + 1);
+
+// Calculate week-over-week deltas
+const deltas = {};
+if (previous) {
+    portfolios.forEach(p => {
+        deltas[p.key] = (latest[p.key] - previous[p.key]).toFixed(2);
+    });
+}
+
+// Calculate analytics
+const values = portfolios.map(p => p.value);
+const spread = (Math.max(...values) - Math.min(...values)).toFixed(2);
+const leader = ranked[0];
+const laggard = ranked[ranked.length - 1];
+const avgReturn = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2);
+const weeksTracked = WEEKLY_DATA.length;
+
+// Format value with sign
+function formatValue(v) {
+    const num = parseFloat(v);
+    return (num >= 0 ? '+' : '') + num.toFixed(1) + '%';
+}
+
+// Populate header date
+document.getElementById('headerDate').textContent = `WEEK OF ${CURRENT_WEEK}`;
+
+// Populate YTD cards
+const ytdGrid = document.getElementById('ytdGrid');
+ytdGrid.innerHTML = portfolios.map(p => {
+    const delta = deltas[p.key];
+    let deltaClass = 'neutral';
+    let deltaText = '—';
+    if (delta !== undefined) {
+        const d = parseFloat(delta);
+        if (d !== 0) {
+            deltaClass = d > 0 ? 'positive' : 'negative';
+            deltaText = (d >= 0 ? '↑' : '↓') + ' ' + Math.abs(d).toFixed(2) + '%';
+        }
+    }
+    
+    return `
+        <div class="ytd-card ${p.key}">
+            <span class="ytd-rank rank-${rankings[p.key]}">#${rankings[p.key]}</span>
+            <div class="ytd-icon">${p.icon}</div>
+            <div class="ytd-name">${p.name}</div>
+            <div class="ytd-desc">${p.desc}</div>
+            <div class="ytd-value">${formatValue(p.value)}</div>
+            <div class="ytd-label">YTD RETURN</div>
+            <div class="ytd-delta ${deltaClass}">${deltaText}</div>
+        </div>
+    `;
+}).join('');
+
+// Populate analytics bar
+const analyticsBar = document.getElementById('analyticsBar');
+analyticsBar.innerHTML = `
+    <div class="analytic-item">
+        <div class="analytic-label">CURRENT LEADER</div>
+        <div class="analytic-value">${leader.name}</div>
+        <div class="analytic-sub">${formatValue(leader.value)}</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">SPREAD (TOP–BOTTOM)</div>
+        <div class="analytic-value">${spread}%</div>
+        <div class="analytic-sub">${leader.name} vs ${laggard.name}</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">FIELD AVERAGE</div>
+        <div class="analytic-value">${formatValue(avgReturn)}</div>
+        <div class="analytic-sub">all four doctrines</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">WEEKS TRACKED</div>
+        <div class="analytic-value">${weeksTracked}</div>
+        <div class="analytic-sub">data points</div>
+    </div>
+`;
+
+// Populate commentary
+document.getElementById('commentaryDate').textContent = COMMENTARY.date;
+document.getElementById('commentaryText').innerHTML = COMMENTARY.text;
+
+// Populate footer
+document.getElementById('footerTimestamp').innerHTML = `
+    LAST UPDATED: ${CURRENT_WEEK}<br>
+    NEXT VIGIL: ${NEXT_UPDATE}
+`;
+
+// ============================================
+// CHART RENDERING
+// ============================================
+
+const ctx = document.getElementById('performanceChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: WEEKLY_DATA.map(d => d.week),
+        datasets: [
+            {
+                label: 'Republic',
+                data: WEEKLY_DATA.map(d => d.republic),
+                borderColor: '#c9a227',
+                backgroundColor: 'rgba(201, 162, 39, 0.1)',
+                borderWidth: 2.5,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'S&P 500',
+                data: WEEKLY_DATA.map(d => d.spy),
+                borderColor: '#6a8eb8',
+                backgroundColor: 'rgba(106, 142, 184, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'WF DSIP',
+                data: WEEKLY_DATA.map(d => d.dsip),
+                borderColor: '#5a8a5a',
+                backgroundColor: 'rgba(90, 138, 90, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'UBS Aggregate',
+                data: WEEKLY_DATA.map(d => d.ubs),
+                borderColor: '#9a6db8',
+                backgroundColor: 'rgba(154, 109, 184, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: '#0a0a0a',
+                titleColor: '#c9a227',
+                bodyColor: '#e8e6e3',
+                borderColor: '#333',
+                borderWidth: 1,
+                padding: 12,
+                titleFont: {
+                    family: "'IBM Plex Mono', monospace",
+                    size: 11
+                },
+                bodyFont: {
+                    family: "'IBM Plex Mono', monospace",
+                    size: 11
+                },
+                callbacks: {
+                    label: function(context) {
+                        const value = context.parsed.y;
+                        return context.dataset.label + ': ' + (value >= 0 ? '+' : '') + value.toFixed(2) + '%';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    color: '#1a1a1a',
+                    drawBorder: false
+                },
+                ticks: {
+                    color: '#555',
+                    font: {
+                        family: "'IBM Plex Mono', monospace",
+                        size: 10
+                    }
+                }
+            },
+            y: {
+                grid: {
+                    color: '#1a1a1a',
+                    drawBorder: false
+                },
+                ticks: {
+                    color: '#555',
+                    font: {
+                        family: "'IBM Plex Mono', monospace",
+                        size: 10
+                    },
+                    callback: function(value) {
+                        return (value >= 0 ? '+' : '') + value + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// ============================================
+// SCROLL REVEAL
+// ============================================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
+</body>
+</html>
