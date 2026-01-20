@@ -210,6 +210,16 @@
             animation: fadeIn 1s ease 1.5s forwards;
         }
         
+        .watchtower-nav {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+        }
+        
         .watchtower-proceed {
             display: block;
             font-family: var(--font-terminal);
@@ -217,13 +227,32 @@
             letter-spacing: 0.2em;
             color: var(--ember-dim);
             text-decoration: none;
-            margin-top: 3rem;
-            opacity: 0;
-            animation: fadeIn 1s ease 2s forwards, pulse 3s ease-in-out 3s infinite;
             transition: color 0.3s ease;
         }
         
         .watchtower-proceed:hover { color: var(--ember); }
+        
+        .watchtower-proceed.primary {
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--ember);
+            color: var(--ember);
+            animation: pulse 3s ease-in-out 3s infinite;
+        }
+        
+        .watchtower-proceed.primary:hover {
+            background: var(--ember);
+            color: var(--void);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        .watchtower-proceed.secondary {
+            color: var(--smoke);
+            font-size: 0.5rem;
+        }
+        
+        .watchtower-proceed.secondary:hover {
+            color: var(--bone-dim);
+        }
         
         /* ============================================
            II. THE PREMISE - Introduction
@@ -762,27 +791,68 @@
         .legend-color.ubs { background: var(--ubs); }
         
         /* ============================================
-           COMMENTARY
+           COMMENTARY - BLOG STYLE
         ============================================ */
-        .vigil-commentary {
-            max-width: 650px;
+        .vigil-commentary-section {
+            max-width: 700px;
             margin: 0 auto;
+        }
+        
+        .commentary-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .commentary-header-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .commentary-header-title {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .commentary-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .vigil-commentary {
             padding: 1.75rem 2rem;
             border-left: 3px solid var(--ember-dim);
             background: rgba(255,255,255,0.01);
             position: relative;
+            transition: all 0.3s ease;
         }
         
-        .vigil-commentary::before {
+        .vigil-commentary:first-child {
+            border-left-color: var(--ember);
+        }
+        
+        .vigil-commentary:first-child::before {
             content: '';
             position: absolute;
             left: -3px;
             top: 0;
             bottom: 0;
             width: 3px;
-            background: var(--ember-dim);
+            background: var(--ember);
             filter: blur(8px);
             opacity: 0.4;
+        }
+        
+        .vigil-commentary:not(:first-child) {
+            opacity: 0.7;
+        }
+        
+        .vigil-commentary:not(:first-child):hover {
+            opacity: 1;
         }
         
         .commentary-date {
@@ -791,6 +861,20 @@
             letter-spacing: 0.15em;
             color: var(--ember);
             margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .commentary-date .week-badge {
+            background: rgba(201, 162, 39, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+        }
+        
+        .vigil-commentary:first-child .week-badge {
+            background: var(--ember);
+            color: var(--void);
         }
         
         .commentary-text {
@@ -1044,6 +1128,10 @@
             
             .ytd-value { font-size: 2rem; }
             .chart-legend { gap: 1rem; }
+            
+            .watchtower-nav {
+                gap: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -1067,31 +1155,47 @@ const WEEKLY_DATA = [
     
     // ──────────────────────────────────────────────────────────────────────────
     // ADD NEW WEEKS BELOW — just copy this template and fill in the numbers:
-    // { week: "Jan 19", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+    // { week: "Jan 26", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
     // ──────────────────────────────────────────────────────────────────────────
     
     { week: "Jan 12", republic: 2.95,  spy: 1.4,  dsip: 1.83,  ubs: 1.94 },
+    { week: "Jan 19", republic: 4.18,  spy: 1.24,  dsip: 2.33,  ubs: 2.37 },
     
     // Future weeks go here...
-    // { week: "Jan 19", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
     // { week: "Jan 26", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
 ];
 
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║   ◊ WEEKLY COMMENTARY — UPDATE THIS EACH WEEK ◊                             ║
+// ║   ◊ WEEKLY COMMENTARY — ADD NEW ENTRIES AT THE TOP ◊                        ║
+// ║   Entries display newest-first (blog style)                                  ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
-const COMMENTARY = {
-    date: "JANUARY 12, 2025",
-    text: `The vigil begins. All four doctrines start at zero—a clean slate. Over the coming weeks and months, the numbers will diverge. <em>Some philosophies will be rewarded. Others will be tested.</em> The question is not just who wins, but how—and what that reveals about the nature of ownership itself.`
-};
+const COMMENTARY = [
+    // ──────────────────────────────────────────────────────────────────────────
+    // NEWEST ENTRY FIRST — Add new weeks at the top of this array
+    // ──────────────────────────────────────────────────────────────────────────
+    {
+        week: 3,
+        date: "JANUARY 19, 2026",
+        text: `Week two delivers the first divergence worth noting. While the benchmark stumbled—SPY slipping from +1.4% to +1.24%—<em>the Republic Portfolio surged ahead</em>, climbing to +4.18%. The doctrine's emphasis on productive infrastructure and essential choke points appears to be finding favor in early January's rotation. DSIP and UBS continue their steady climb, tracking each other closely. Three weeks in, the spread between first and last has widened to nearly 3 percentage points. <em>Early returns are not destiny—but they are the first words of a longer story.</em>`
+    },
+    {
+        week: 2,
+        date: "JANUARY 12, 2026",
+        text: `The vigil begins. All four doctrines start at zero—a clean slate. Over the coming weeks and months, the numbers will diverge. <em>Some philosophies will be rewarded. Others will be tested.</em> The question is not just who wins, but how—and what that reveals about the nature of ownership itself.`
+    },
+    
+    // ──────────────────────────────────────────────────────────────────────────
+    // OLDER ENTRIES BELOW...
+    // ──────────────────────────────────────────────────────────────────────────
+];
 
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║   ◊ DISPLAY SETTINGS ◊                                                      ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
-const CURRENT_WEEK = "JANUARY 12, 2025";
-const NEXT_UPDATE = "JANUARY 19, 2025";
+const CURRENT_WEEK = "JANUARY 19, 2026";
+const NEXT_UPDATE = "JANUARY 26, 2026";
 
 </script>
 
@@ -1108,7 +1212,11 @@ const NEXT_UPDATE = "JANUARY 19, 2025";
         <h1 class="watchtower-title">The <em>Watchtower</em></h1>
         <p class="watchtower-subtitle">Four doctrines measured against time</p>
         <div class="watchtower-date" id="headerDate"></div>
-        <a href="#premise" class="watchtower-proceed">enter ↓</a>
+        
+        <div class="watchtower-nav">
+            <a href="#vigil" class="watchtower-proceed primary">SKIP TO THE NUMBERS →</a>
+            <a href="#premise" class="watchtower-proceed secondary">read the full story ↓</a>
+        </div>
     </div>
 </section>
 
@@ -1250,7 +1358,7 @@ const NEXT_UPDATE = "JANUARY 19, 2025";
             <div class="vigil-sigil">◊ ◈ ◊</div>
             <div class="vigil-label">YEAR TO DATE</div>
             <h2 class="vigil-title">The Reckoning</h2>
-            <div class="vigil-period">2025 PERFORMANCE</div>
+            <div class="vigil-period">2026 PERFORMANCE</div>
         </div>
         
         <!-- YTD Cards - populated by JavaScript -->
@@ -1278,10 +1386,13 @@ const NEXT_UPDATE = "JANUARY 19, 2025";
             </div>
         </div>
         
-        <!-- Commentary -->
-        <div class="vigil-commentary reveal reveal-delay-4">
-            <div class="commentary-date" id="commentaryDate"></div>
-            <p class="commentary-text" id="commentaryText"></p>
+        <!-- Commentary Section - Blog Style -->
+        <div class="vigil-commentary-section reveal reveal-delay-4">
+            <div class="commentary-header">
+                <div class="commentary-header-label">THE CHRONICLE</div>
+                <h3 class="commentary-header-title">Weekly Observations</h3>
+            </div>
+            <div class="commentary-stack" id="commentaryStack"></div>
         </div>
     </div>
 </section>
@@ -1476,9 +1587,17 @@ analyticsBar.innerHTML = `
     </div>
 `;
 
-// Populate commentary
-document.getElementById('commentaryDate').textContent = COMMENTARY.date;
-document.getElementById('commentaryText').innerHTML = COMMENTARY.text;
+// Populate commentary stack (blog style - newest first)
+const commentaryStack = document.getElementById('commentaryStack');
+commentaryStack.innerHTML = COMMENTARY.map((entry, index) => `
+    <div class="vigil-commentary">
+        <div class="commentary-date">
+            <span class="week-badge">WEEK ${entry.week}</span>
+            <span>${entry.date}</span>
+        </div>
+        <p class="commentary-text">${entry.text}</p>
+    </div>
+`).join('');
 
 // Populate footer
 document.getElementById('footerTimestamp').innerHTML = `
