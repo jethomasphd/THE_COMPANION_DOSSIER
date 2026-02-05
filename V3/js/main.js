@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — Application Orchestration
+   COMMITTEE OF PATRIOTS — Application Orchestration
    Binds all modules: Protocol, API, Hologram, Voice, UI.
-   Manages session state, ambient audio, and ritual flow.
+   Manages session state, ambient audio, and committee flow.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -16,9 +16,40 @@ COMPANION.App = (function () {
   var ambientAudioCtx = null;
   var ambientGain = null;
 
+  // Committee patriot colors
+  var PATRIOT_COLORS = {
+    'George Washington': '#c9a54e',
+    'Alexander Hamilton': '#4a90d9',
+    'Thomas Jefferson': '#c94e4e',
+    'Benjamin Franklin': '#d4b85c'
+  };
+
   // ── Safe event binding ──
   function on(el, event, handler) {
     if (el) el.addEventListener(event, handler);
+  }
+
+  // ── Resolve patriot name (fuzzy match to full name) ──
+  function resolvePatriotName(name) {
+    var lower = name.toLowerCase().trim();
+    var patriots = {
+      'washington': 'George Washington',
+      'george washington': 'George Washington',
+      'hamilton': 'Alexander Hamilton',
+      'alexander hamilton': 'Alexander Hamilton',
+      'jefferson': 'Thomas Jefferson',
+      'thomas jefferson': 'Thomas Jefferson',
+      'franklin': 'Benjamin Franklin',
+      'benjamin franklin': 'Benjamin Franklin',
+      'ben franklin': 'Benjamin Franklin'
+    };
+    return patriots[lower] || name;
+  }
+
+  // ── Get patriot color ──
+  function getPatriotColor(name) {
+    var fullName = resolvePatriotName(name);
+    return PATRIOT_COLORS[fullName] || '#c9a54e';
   }
 
 
@@ -55,15 +86,40 @@ COMPANION.App = (function () {
         els.elevenlabsKeyInput.value = COMPANION.Voice.getElevenLabsKey();
       }
 
-      // Auto-enable voice if ElevenLabs key or Web Speech available
+      // Auto-enable voice if available
       if (COMPANION.Voice.isAvailable()) {
         COMPANION.Voice.setEnabled(true);
         COMPANION.UI.setVoiceToggleState(true);
       }
 
       COMPANION.UI.updateHint(0);
+
+      // Create floating embers on void screen
+      createEmbers();
+
     } catch (e) {
       console.error('COMPANION init error:', e);
+    }
+  }
+
+
+  // ── Floating Embers (Void Screen) ──
+
+  function createEmbers() {
+    var field = document.getElementById('ember-field');
+    if (!field) return;
+    for (var i = 0; i < 25; i++) {
+      var ember = document.createElement('div');
+      ember.className = 'ember';
+      ember.style.left = Math.random() * 100 + '%';
+      ember.style.animationDelay = Math.random() * 10 + 's';
+      ember.style.animationDuration = (8 + Math.random() * 8) + 's';
+      ember.style.opacity = (0.3 + Math.random() * 0.5).toString();
+      // Vary ember size
+      var size = 2 + Math.random() * 3;
+      ember.style.width = size + 'px';
+      ember.style.height = size + 'px';
+      field.appendChild(ember);
     }
   }
 
@@ -171,13 +227,13 @@ COMPANION.App = (function () {
 
     if (!chamberInitialized) {
       try {
-        var holoStage = document.getElementById('hologram-stage');
-        if (holoStage) {
-          COMPANION.Hologram.init(holoStage);
+        var stage = document.getElementById('portrait-stage');
+        if (stage) {
+          COMPANION.Hologram.init(stage);
         }
         chamberInitialized = true;
       } catch (e) {
-        console.error('Hologram init error:', e);
+        console.error('Portrait stage init error:', e);
         chamberInitialized = true;
       }
     }
@@ -192,6 +248,7 @@ COMPANION.App = (function () {
 
 
   // ── Ambient Audio (Web Audio API) ──
+  // Deep hearthfire ambience — low crackling warmth
 
   function startAmbientAudio() {
     if (ambientAudioCtx) return;
@@ -202,20 +259,20 @@ COMPANION.App = (function () {
 
       ambientAudioCtx = new AudioContext();
 
-      // Low drone
+      // Low drone — like a fireplace
       var osc1 = ambientAudioCtx.createOscillator();
       osc1.type = 'sine';
-      osc1.frequency.value = 42;
+      osc1.frequency.value = 55; // A1 — warm bass
 
       var osc2 = ambientAudioCtx.createOscillator();
       osc2.type = 'sine';
-      osc2.frequency.value = 63;
+      osc2.frequency.value = 82.5; // E2 — fifth above
 
-      // LFO modulation
+      // LFO modulation — flickering fire
       var lfo = ambientAudioCtx.createOscillator();
-      lfo.frequency.value = 0.06;
+      lfo.frequency.value = 0.08;
       var lfoGain = ambientAudioCtx.createGain();
-      lfoGain.gain.value = 1.5;
+      lfoGain.gain.value = 1.2;
       lfo.connect(lfoGain);
       lfoGain.connect(osc1.frequency);
 
@@ -224,9 +281,9 @@ COMPANION.App = (function () {
       ambientGain.gain.value = 0;
 
       var gain1 = ambientAudioCtx.createGain();
-      gain1.gain.value = 0.018;
+      gain1.gain.value = 0.012;
       var gain2 = ambientAudioCtx.createGain();
-      gain2.gain.value = 0.008;
+      gain2.gain.value = 0.006;
 
       osc1.connect(gain1);
       osc2.connect(gain2);
@@ -239,9 +296,9 @@ COMPANION.App = (function () {
       lfo.start();
 
       // Fade in slowly
-      ambientGain.gain.linearRampToValueAtTime(1, ambientAudioCtx.currentTime + 3);
+      ambientGain.gain.linearRampToValueAtTime(1, ambientAudioCtx.currentTime + 4);
     } catch (e) {
-      // Audio not available, that's OK
+      // Audio not available — that's fine
     }
   }
 
@@ -255,16 +312,16 @@ COMPANION.App = (function () {
       chamber.classList.add('summoning');
       setTimeout(function () {
         chamber.classList.remove('summoning');
-      }, 500);
+      }, 600);
     }
 
-    // Flash overlay
+    // Golden flash
     var flash = document.createElement('div');
     flash.className = 'summon-flash';
     document.body.appendChild(flash);
     setTimeout(function () {
       flash.remove();
-    }, 500);
+    }, 600);
   }
 
 
@@ -300,8 +357,8 @@ COMPANION.App = (function () {
         break;
 
       case 'summon_add':
-        if (activePersonas.length >= 5) {
-          COMPANION.UI.addSystemMessage('The symposium cannot hold more than five voices.');
+        if (activePersonas.length >= 4) {
+          COMPANION.UI.addSystemMessage('The full Committee is already convened.');
           COMPANION.UI.setInputEnabled(true);
           return;
         }
@@ -312,19 +369,19 @@ COMPANION.App = (function () {
         releasePersona(incantation.release);
         if (activePersonas.length > 0) {
           COMPANION.UI.addSystemMessage(
-            incantation.release + ' has departed. ' +
+            incantation.release + ' has withdrawn. ' +
             activePersonas.map(function (p) { return p.name; }).join(', ') +
             (activePersonas.length === 1 ? ' remains.' : ' remain.')
           );
         } else {
-          COMPANION.UI.addSystemMessage('The chamber is empty. The threshold awaits.');
+          COMPANION.UI.addSystemMessage('The Committee has adjourned. The threshold awaits.');
         }
         COMPANION.UI.setInputEnabled(true);
         break;
 
       case 'release_all':
         releaseAllPersonas();
-        COMPANION.UI.addSystemMessage('All voices have departed. The work remains.');
+        COMPANION.UI.addSystemMessage('The Committee has adjourned. The work remains.');
         COMPANION.UI.setInputEnabled(true);
         break;
     }
@@ -334,38 +391,40 @@ COMPANION.App = (function () {
   // ── Persona Summoning ──
 
   function summonPersona(name, contextText) {
+    var fullName = resolvePatriotName(name);
+    var color = getPatriotColor(fullName);
     var catInfo = COMPANION.Protocol.getPersonaCategory(name);
 
     var existing = activePersonas.find(function (p) {
-      return p.name.toLowerCase() === name.toLowerCase();
+      return p.name.toLowerCase() === fullName.toLowerCase();
     });
     if (existing) {
-      COMPANION.UI.addSystemMessage(name + ' is already present.');
+      COMPANION.UI.addSystemMessage(fullName + ' is already present.');
       COMPANION.UI.setInputEnabled(true);
       return;
     }
 
     var persona = {
-      name: name,
-      color: catInfo.color,
+      name: fullName,
+      color: color,
       category: catInfo.category
     };
     activePersonas.push(persona);
 
-    // Visual effects
+    // Effects
     triggerSummonEffect();
 
-    // Hologram
-    COMPANION.Hologram.summon(name, catInfo.color);
+    // Portrait activation
+    COMPANION.Hologram.summon(fullName, color);
 
     // Badge
-    COMPANION.UI.addPersonaBadge(name, catInfo.color, function (dismissName) {
+    COMPANION.UI.addPersonaBadge(fullName, color, function (dismissName) {
       releasePersona(dismissName);
-      COMPANION.UI.addSystemMessage(dismissName + ' has departed.');
+      COMPANION.UI.addSystemMessage(dismissName + ' has withdrawn from the Committee.');
     });
 
     COMPANION.UI.updateHint(activePersonas.length);
-    COMPANION.UI.addSystemMessage('Summoning ' + name + '...');
+    COMPANION.UI.addSystemMessage('Summoning ' + fullName + '...');
 
     // Send to API
     sendToAPI(contextText);
@@ -375,8 +434,9 @@ COMPANION.App = (function () {
   // ── Persona Release ──
 
   function releasePersona(name) {
+    var fullName = resolvePatriotName(name);
     var index = activePersonas.findIndex(function (p) {
-      return p.name.toLowerCase() === name.toLowerCase();
+      return p.name.toLowerCase() === fullName.toLowerCase();
     });
 
     if (index === -1) {
@@ -414,14 +474,14 @@ COMPANION.App = (function () {
   function sendToAPI(userText) {
     isStreaming = true;
 
-    var displayName = 'The Chamber';
+    var displayName = 'The Committee';
     var displayColor = '#c9a54e';
 
     if (activePersonas.length === 1) {
       displayName = activePersonas[0].name;
       displayColor = activePersonas[0].color;
     } else if (activePersonas.length > 1) {
-      displayName = 'Symposium';
+      displayName = 'The Committee';
       displayColor = '#c9a54e';
     }
 
@@ -459,7 +519,8 @@ COMPANION.App = (function () {
               activePersonas[0].name
             );
           } else if (activePersonas.length > 1) {
-            COMPANION.Voice.speak(fullText, 'philosophical', 'Symposium');
+            // For symposium, use Washington's voice as default
+            COMPANION.Voice.speak(fullText, 'strategic', 'George Washington');
           }
         }
       },

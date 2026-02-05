@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — UI State Management
+   COMMITTEE OF PATRIOTS — UI State Management
    Handles screen transitions, dialogue rendering, persona badges,
    and all user-facing state.
    ═══════════════════════════════════════════════════════════════ */
@@ -9,8 +9,8 @@ var COMPANION = window.COMPANION || {};
 COMPANION.UI = (function () {
 
   // ── DOM References ──
-  let screens = {};
-  let elements = {};
+  var screens = {};
+  var elements = {};
 
   function cacheElements() {
     screens = {
@@ -22,9 +22,9 @@ COMPANION.UI = (function () {
     elements = {
       // Void
       enterBtn: document.getElementById('enter-btn'),
-      voidParticles: document.getElementById('void-particles'),
+      emberField: document.getElementById('ember-field'),
 
-      // Config
+      // Binding (Config)
       apiKeyInput: document.getElementById('api-key-input'),
       modelSelect: document.getElementById('model-select'),
       saveKeyBtn: document.getElementById('save-key-btn'),
@@ -63,29 +63,8 @@ COMPANION.UI = (function () {
   }
 
 
-  // ── Void Screen Particles ──
-
-  function initVoidParticles() {
-    const container = elements.voidParticles;
-    if (!container) return;
-
-    for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'void-particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = 40 + Math.random() * 50 + '%';
-      particle.style.animationDelay = Math.random() * 8 + 's';
-      particle.style.animationDuration = 6 + Math.random() * 6 + 's';
-      container.appendChild(particle);
-    }
-  }
-
-
   // ── Dialogue Management ──
 
-  /**
-   * Add a seeker (user) message to the dialogue.
-   */
   function addSeekerMessage(text) {
     if (!elements.dialogueMessages) return null;
     var msg = document.createElement('div');
@@ -96,10 +75,6 @@ COMPANION.UI = (function () {
     return msg;
   }
 
-  /**
-   * Add a persona message to the dialogue.
-   * Returns an object with update() and finish() methods for streaming.
-   */
   function addPersonaMessage(personaName, color) {
     var msg = document.createElement('div');
     msg.className = 'message message-persona';
@@ -107,7 +82,7 @@ COMPANION.UI = (function () {
     var header = document.createElement('div');
     header.className = 'message-header';
     header.style.color = color;
-    header.textContent = personaName || 'The Chamber';
+    header.textContent = personaName || 'The Committee';
     msg.appendChild(header);
 
     var body = document.createElement('div');
@@ -127,36 +102,22 @@ COMPANION.UI = (function () {
     var rawText = '';
 
     return {
-      /**
-       * Append streaming text chunk.
-       */
       update: function (chunk) {
         rawText += chunk;
-        // Render markdown-light
         body.innerHTML = renderMarkdownLight(rawText);
-        // Re-add cursor
         body.appendChild(cursor);
         scrollToBottom();
       },
 
-      /**
-       * Finalize the message (remove cursor).
-       */
       finish: function () {
         body.innerHTML = renderMarkdownLight(rawText);
         scrollToBottom();
       },
 
-      /**
-       * Get the raw response text.
-       */
       getText: function () {
         return rawText;
       },
 
-      /**
-       * Update the header (useful for symposium where speaker changes).
-       */
       setHeader: function (name, clr) {
         header.textContent = name;
         header.style.color = clr;
@@ -165,9 +126,6 @@ COMPANION.UI = (function () {
     };
   }
 
-  /**
-   * Add a system message (italic, centered).
-   */
   function addSystemMessage(text) {
     if (!elements.dialogueMessages) return;
     var msg = document.createElement('div');
@@ -189,7 +147,7 @@ COMPANION.UI = (function () {
     badge.dataset.persona = name;
 
     badge.innerHTML = '<span class="badge-name">' + escapeHtml(name) + '</span>' +
-                      '<span class="badge-dismiss" title="Release">&times;</span>';
+                      '<span class="badge-dismiss" title="Dismiss">&times;</span>';
 
     badge.querySelector('.badge-dismiss').addEventListener('click', function () {
       if (onDismiss) onDismiss(name);
@@ -206,7 +164,6 @@ COMPANION.UI = (function () {
       badge.style.transform = 'scale(0.8)';
       setTimeout(function () { badge.remove(); }, 300);
     }
-
   }
 
   function clearPersonaBadges() {
@@ -260,13 +217,16 @@ COMPANION.UI = (function () {
     if (!elements.inputHint) return;
     if (activePersonaCount === 0) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">Say <code>Using this matter, summon [Name].</code> to begin.</span>';
+        '<span class="hint-text">Say <code>Using this matter, summon Washington.</code> to convene.</span>';
     } else if (activePersonaCount === 1) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">Speak freely, or <code>Now summon [Name] to join this conversation.</code></span>';
+        '<span class="hint-text">Address the patriot, or <code>Now summon Hamilton to join.</code></span>';
+    } else if (activePersonaCount < 4) {
+      elements.inputHint.innerHTML =
+        '<span class="hint-text">Address the Committee. <code>Now summon Jefferson to join.</code> or <code>Release Hamilton.</code></span>';
     } else {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">Address the symposium. <code>Release [Name]</code> to dismiss a voice.</span>';
+        '<span class="hint-text">The full Committee is convened. Address them freely.</span>';
     }
   }
 
@@ -299,19 +259,15 @@ COMPANION.UI = (function () {
   }
 
   function escapeHtml(text) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
   }
 
-  /**
-   * Lightweight markdown renderer for persona responses.
-   * Handles: bold, italic, blockquotes, paragraphs, headers, code.
-   */
   function renderMarkdownLight(text) {
     if (!text) return '';
 
-    let html = text;
+    var html = text;
 
     // Escape HTML entities first
     html = html
@@ -319,10 +275,8 @@ COMPANION.UI = (function () {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    // Restore blockquote markers (we escaped the >)
+    // Restore blockquote markers
     html = html.replace(/^&gt;\s?(.*)$/gm, '<blockquote>$1</blockquote>');
-
-    // Merge adjacent blockquotes
     html = html.replace(/<\/blockquote>\n<blockquote>/g, '\n');
 
     // Headers
@@ -330,7 +284,8 @@ COMPANION.UI = (function () {
     html = html.replace(/^## (.+)$/gm, '<strong>$1</strong>');
     html = html.replace(/^# (.+)$/gm, '<strong>$1</strong>');
 
-    // Bold
+    // Bold — also detect speaker headers like **[Gen. Washington]:**
+    html = html.replace(/\*\*\[([^\]]+)\]:\*\*/g, '<span class="speaker-header">$1:</span>');
     html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
     // Italic
@@ -339,7 +294,7 @@ COMPANION.UI = (function () {
     // Inline code
     html = html.replace(/`(.+?)`/g, '<code>$1</code>');
 
-    // Paragraphs (double newline)
+    // Paragraphs
     html = html.replace(/\n\n+/g, '</p><p>');
 
     // Single newlines to <br>
@@ -359,7 +314,6 @@ COMPANION.UI = (function () {
 
   function init() {
     cacheElements();
-    initVoidParticles();
 
     // Auto-resize textarea
     if (elements.userInput) {
@@ -370,23 +324,23 @@ COMPANION.UI = (function () {
 
   // ── Public API ──
   return {
-    init,
-    showScreen,
-    addSeekerMessage,
-    addPersonaMessage,
-    addSystemMessage,
-    addPersonaBadge,
-    removePersonaBadge,
-    clearPersonaBadges,
-    setPersonaBadgeSpeaking,
-    getInputText,
-    clearInput,
-    setInputEnabled,
-    updateHint,
-    toggleSettings,
-    hideSettings,
-    setVoiceToggleState,
-    autoResizeInput,
+    init: init,
+    showScreen: showScreen,
+    addSeekerMessage: addSeekerMessage,
+    addPersonaMessage: addPersonaMessage,
+    addSystemMessage: addSystemMessage,
+    addPersonaBadge: addPersonaBadge,
+    removePersonaBadge: removePersonaBadge,
+    clearPersonaBadges: clearPersonaBadges,
+    setPersonaBadgeSpeaking: setPersonaBadgeSpeaking,
+    getInputText: getInputText,
+    clearInput: clearInput,
+    setInputEnabled: setInputEnabled,
+    updateHint: updateHint,
+    toggleSettings: toggleSettings,
+    hideSettings: hideSettings,
+    setVoiceToggleState: setVoiceToggleState,
+    autoResizeInput: autoResizeInput,
     elements: function () { return elements; }
   };
 
