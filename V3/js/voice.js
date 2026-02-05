@@ -1,33 +1,49 @@
 /* ═══════════════════════════════════════════════════════════════
    COMPANION V3 — Voice Synthesis Engine
-   Web Speech API wrapper for reading persona responses aloud
-   with voice characteristics matched to persona type.
+   Web Speech API + optional ElevenLabs for high-fidelity voice.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
 
 COMPANION.Voice = (function () {
 
-  let enabled = false;
-  let rate = 0.9;
-  let currentUtterance = null;
-  let voicesLoaded = false;
-  let availableVoices = [];
-  let onSpeakingStart = null;
-  let onSpeakingEnd = null;
-  let speechQueue = [];
-  let isSpeaking = false;
+  var enabled = false;
+  var rate = 0.9;
+  var currentUtterance = null;
+  var voicesLoaded = false;
+  var availableVoices = [];
+  var onSpeakingStart = null;
+  var onSpeakingEnd = null;
+  var speechQueue = [];
+  var isSpeaking = false;
+
+  // ElevenLabs state
+  var ELEVENLABS_STORAGE_KEY = 'companion_v3_elevenlabs_key';
+  var currentAudio = null;
 
   // ── Voice profiles per persona category ──
-  const VOICE_PROFILES = {
-    philosophical: { pitch: 0.9, rate: 0.85, preferredLang: 'en' },
-    scientific:    { pitch: 1.0, rate: 0.9,  preferredLang: 'en' },
-    strategic:     { pitch: 0.85, rate: 0.95, preferredLang: 'en' },
-    creative:      { pitch: 1.05, rate: 0.85, preferredLang: 'en' },
-    spiritual:     { pitch: 0.95, rate: 0.8,  preferredLang: 'en' },
-    liberatory:    { pitch: 0.9, rate: 0.9,  preferredLang: 'en' },
-    psychological: { pitch: 0.95, rate: 0.88, preferredLang: 'en' },
-    default:       { pitch: 1.0, rate: 0.9,  preferredLang: 'en' }
+  var VOICE_PROFILES = {
+    philosophical: { pitch: 0.9, rate: 0.82, preferredGender: 'male' },
+    scientific:    { pitch: 1.0, rate: 0.88, preferredGender: 'neutral' },
+    strategic:     { pitch: 0.85, rate: 0.92, preferredGender: 'male' },
+    creative:      { pitch: 1.05, rate: 0.85, preferredGender: 'neutral' },
+    spiritual:     { pitch: 0.95, rate: 0.78, preferredGender: 'male' },
+    liberatory:    { pitch: 0.9, rate: 0.88, preferredGender: 'male' },
+    psychological: { pitch: 0.95, rate: 0.85, preferredGender: 'male' },
+    default:       { pitch: 1.0, rate: 0.88, preferredGender: 'neutral' }
+  };
+
+  // ElevenLabs voice IDs mapped to persona categories
+  // These are ElevenLabs' premade voices
+  var ELEVENLABS_VOICES = {
+    philosophical: 'TxGEqnHWrfWFTfGW9XjX',  // Josh - deep, measured
+    scientific:    'VR6AewLTigWG4xSOukaG',  // Arnold - clear, authoritative
+    strategic:     'VR6AewLTigWG4xSOukaG',  // Arnold - commanding
+    creative:      'EXAVITQu4vr4xnSDxMaL',  // Bella - expressive
+    spiritual:     'TxGEqnHWrfWFTfGW9XjX',  // Josh - resonant
+    liberatory:    'ErXwobaYiN019PkySvjV',  // Antoni - warm, passionate
+    psychological: 'ErXwobaYiN019PkySvjV',  // Antoni - thoughtful
+    default:       'TxGEqnHWrfWFTfGW9XjX'   // Josh
   };
 
 
@@ -41,9 +57,7 @@ COMPANION.Voice = (function () {
     }
 
     if ('speechSynthesis' in window) {
-      // Load voices
       loadVoices();
-      // Chrome loads voices asynchronously
       if (speechSynthesis.onvoiceschanged !== undefined) {
         speechSynthesis.onvoiceschanged = loadVoices;
       }
@@ -56,9 +70,23 @@ COMPANION.Voice = (function () {
   }
 
 
-  /**
-   * Enable or disable voice synthesis.
-   */
+  // ── ElevenLabs Key Management ──
+
+  function getElevenLabsKey() {
+    return localStorage.getItem(ELEVENLABS_STORAGE_KEY) || '';
+  }
+
+  function setElevenLabsKey(key) {
+    localStorage.setItem(ELEVENLABS_STORAGE_KEY, (key || '').trim());
+  }
+
+  function hasElevenLabsKey() {
+    return getElevenLabsKey().length > 0;
+  }
+
+
+  // ── Enable/Disable ──
+
   function setEnabled(isEnabled) {
     enabled = isEnabled;
     if (!enabled) {
@@ -79,90 +107,172 @@ COMPANION.Voice = (function () {
   }
 
 
-  /**
-   * Select the best available voice for a persona category.
-   */
+  // ── Voice Selection (Web Speech) ──
+
   function selectVoice(category) {
     if (!voicesLoaded || availableVoices.length === 0) return null;
 
-    const profile = VOICE_PROFILES[category] || VOICE_PROFILES.default;
-
-    // Prefer English voices
-    const englishVoices = availableVoices.filter(v =>
-      v.lang.startsWith('en')
-    );
+    var profile = VOICE_PROFILES[category] || VOICE_PROFILES['default'];
+    var englishVoices = availableVoices.filter(function (v) {
+      return v.lang.startsWith('en');
+    });
 
     if (englishVoices.length === 0) return availableVoices[0];
 
-    // Try to find a "deeper" voice for certain categories
-    const preferDeep = ['philosophical', 'strategic', 'spiritual'].includes(category);
+    var preferDeep = (profile.preferredGender === 'male');
 
     if (preferDeep) {
-      // Prefer male-sounding voices (heuristic: names containing common male voice names)
-      const deepVoice = englishVoices.find(v =>
-        /daniel|james|david|google uk male|male/i.test(v.name)
-      );
+      var deepVoice = englishVoices.find(function (v) {
+        return /daniel|james|david|google uk male|male/i.test(v.name);
+      });
       if (deepVoice) return deepVoice;
     }
 
-    // For creative/scientific, any good English voice works
-    // Prefer non-default, more natural voices
-    const naturalVoice = englishVoices.find(v =>
-      /premium|enhanced|natural|neural/i.test(v.name)
-    );
+    // Prefer higher quality voices
+    var naturalVoice = englishVoices.find(function (v) {
+      return /premium|enhanced|natural|neural/i.test(v.name);
+    });
     if (naturalVoice) return naturalVoice;
 
-    // Fall back to first English voice
     return englishVoices[0];
   }
 
 
-  /**
-   * Speak text as a given persona.
-   * @param {string} text - Text to speak.
-   * @param {string} category - Persona category (philosophical, scientific, etc.)
-   * @param {string} personaName - Name of the speaking persona.
-   */
+  // ── Clean text for speech ──
+
+  function cleanTextForSpeech(text) {
+    return text
+      .replace(/\*\*\[.*?\]:\*\*/g, '')
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/#{1,6}\s/g, '')
+      .replace(/>\s/g, '')
+      .replace(/`(.*?)`/g, '$1')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\n{2,}/g, '. ')
+      .replace(/\n/g, ' ')
+      .trim();
+  }
+
+
+  // ── Speak (routes to ElevenLabs or Web Speech) ──
+
   function speak(text, category, personaName) {
-    if (!enabled || !('speechSynthesis' in window)) return;
+    if (!enabled) return;
     if (!text || text.trim().length === 0) return;
 
-    // Clean text for speech (remove markdown)
-    const cleanText = text
-      .replace(/\*\*\[.*?\]:\*\*/g, '')  // Remove persona prefixes
-      .replace(/\*\*(.*?)\*\*/g, '$1')    // Bold
-      .replace(/\*(.*?)\*/g, '$1')         // Italic
-      .replace(/#{1,6}\s/g, '')            // Headers
-      .replace(/>\s/g, '')                 // Blockquotes
-      .replace(/`(.*?)`/g, '$1')           // Code
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')  // Links
-      .replace(/\n{2,}/g, '. ')            // Paragraph breaks
-      .replace(/\n/g, ' ')                 // Line breaks
-      .trim();
-
+    var cleanText = cleanTextForSpeech(text);
     if (cleanText.length === 0) return;
 
-    // Queue the speech
-    speechQueue.push({ text: cleanText, category, personaName });
+    // Truncate for ElevenLabs (free tier has char limits)
+    var truncated = cleanText.length > 2500 ? cleanText.substring(0, 2500) : cleanText;
+
+    speechQueue.push({
+      text: truncated,
+      category: category,
+      personaName: personaName
+    });
     processQueue();
   }
 
   function processQueue() {
     if (isSpeaking || speechQueue.length === 0) return;
 
-    const item = speechQueue.shift();
+    var item = speechQueue.shift();
     isSpeaking = true;
 
-    const profile = VOICE_PROFILES[item.category] || VOICE_PROFILES.default;
-    const utterance = new SpeechSynthesisUtterance(item.text);
+    if (hasElevenLabsKey()) {
+      speakElevenLabs(item);
+    } else if ('speechSynthesis' in window) {
+      speakWebSpeech(item);
+    } else {
+      isSpeaking = false;
+      processQueue();
+    }
+  }
 
-    const voice = selectVoice(item.category);
+
+  // ── ElevenLabs TTS ──
+
+  function speakElevenLabs(item) {
+    var voiceId = ELEVENLABS_VOICES[item.category] || ELEVENLABS_VOICES['default'];
+    var apiKey = getElevenLabsKey();
+
+    var url = 'https://api.elevenlabs.io/v1/text-to-speech/' + voiceId;
+
+    if (onSpeakingStart) onSpeakingStart(item.personaName);
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'xi-api-key': apiKey
+      },
+      body: JSON.stringify({
+        text: item.text,
+        model_id: 'eleven_multilingual_v2',
+        voice_settings: {
+          stability: 0.6,
+          similarity_boost: 0.75,
+          style: 0.4,
+          use_speaker_boost: true
+        }
+      })
+    })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('ElevenLabs API error: ' + response.status);
+      }
+      return response.blob();
+    })
+    .then(function (blob) {
+      var audioUrl = URL.createObjectURL(blob);
+      currentAudio = new Audio(audioUrl);
+      currentAudio.playbackRate = rate;
+
+      currentAudio.onended = function () {
+        URL.revokeObjectURL(audioUrl);
+        currentAudio = null;
+        isSpeaking = false;
+        if (onSpeakingEnd) onSpeakingEnd(item.personaName);
+        processQueue();
+      };
+
+      currentAudio.onerror = function () {
+        URL.revokeObjectURL(audioUrl);
+        currentAudio = null;
+        isSpeaking = false;
+        if (onSpeakingEnd) onSpeakingEnd(item.personaName);
+        processQueue();
+      };
+
+      currentAudio.play().catch(function () {
+        // Autoplay blocked - fall back to Web Speech
+        URL.revokeObjectURL(audioUrl);
+        currentAudio = null;
+        speakWebSpeech(item);
+      });
+    })
+    .catch(function (err) {
+      console.warn('ElevenLabs failed, falling back to Web Speech:', err);
+      speakWebSpeech(item);
+    });
+  }
+
+
+  // ── Web Speech TTS ──
+
+  function speakWebSpeech(item) {
+    var profile = VOICE_PROFILES[item.category] || VOICE_PROFILES['default'];
+    var utterance = new SpeechSynthesisUtterance(item.text);
+
+    var voice = selectVoice(item.category);
     if (voice) {
       utterance.voice = voice;
     }
 
     utterance.pitch = profile.pitch;
-    utterance.rate = profile.rate * rate;  // Combine profile rate with user rate setting
+    utterance.rate = profile.rate * rate;
     utterance.volume = 0.85;
 
     utterance.onstart = function () {
@@ -173,7 +283,6 @@ COMPANION.Voice = (function () {
       isSpeaking = false;
       currentUtterance = null;
       if (onSpeakingEnd) onSpeakingEnd(item.personaName);
-      // Process next in queue
       processQueue();
     };
 
@@ -186,7 +295,7 @@ COMPANION.Voice = (function () {
 
     currentUtterance = utterance;
 
-    // Chrome bug: need to cancel before speaking
+    // Chrome bug workaround
     speechSynthesis.cancel();
     setTimeout(function () {
       speechSynthesis.speak(utterance);
@@ -194,38 +303,44 @@ COMPANION.Voice = (function () {
   }
 
 
-  /**
-   * Stop all current and queued speech.
-   */
+  // ── Stop ──
+
   function stop() {
     speechQueue = [];
     isSpeaking = false;
     currentUtterance = null;
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+
     if ('speechSynthesis' in window) {
       speechSynthesis.cancel();
     }
+
     if (onSpeakingEnd) onSpeakingEnd(null);
   }
 
 
-  /**
-   * Check if speech synthesis is available in this browser.
-   */
   function isAvailable() {
-    return 'speechSynthesis' in window;
+    return 'speechSynthesis' in window || hasElevenLabsKey();
   }
 
 
   // ── Public API ──
   return {
-    init,
-    speak,
-    stop,
-    setEnabled,
-    isEnabled,
-    setRate,
-    getRate,
-    isAvailable
+    init: init,
+    speak: speak,
+    stop: stop,
+    setEnabled: setEnabled,
+    isEnabled: isEnabled,
+    setRate: setRate,
+    getRate: getRate,
+    isAvailable: isAvailable,
+    getElevenLabsKey: getElevenLabsKey,
+    setElevenLabsKey: setElevenLabsKey,
+    hasElevenLabsKey: hasElevenLabsKey
   };
 
 })();
