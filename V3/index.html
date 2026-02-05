@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMPANION V3 — The Chamber</title>
+  <meta name="description" content="A Protocol for Summoning Minds. COMPANION V3 brings historical, fictional, and archetypal minds to life through holographic visualization and voice.">
+  <link rel="stylesheet" href="css/companion.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══ SCREEN 1: THE VOID ═══ -->
+  <div id="void-screen" class="screen active">
+    <div class="void-bg"></div>
+    <div class="void-content">
+      <div class="sigil-container">
+        <div class="sigil-ring sigil-ring-outer"></div>
+        <div class="sigil-ring sigil-ring-inner"></div>
+        <div class="sigil-symbol">&#9674;</div>
+      </div>
+      <h1 class="void-title">COMPANION</h1>
+      <p class="void-subtitle">V3 &mdash; The Chamber</p>
+      <p class="void-tagline">The Word against the Flood</p>
+      <button id="enter-btn" class="ritual-btn">Cross the Threshold</button>
+    </div>
+    <div class="void-particles" id="void-particles"></div>
+  </div>
+
+  <!-- ═══ SCREEN 2: THE BINDING (API KEY) ═══ -->
+  <div id="config-screen" class="screen">
+    <div class="config-content">
+      <div class="sigil-symbol sigil-small">&#9674;</div>
+      <h2 class="config-title">The Binding</h2>
+      <p class="config-desc">To summon minds across the boundary of time, you must provide a key.<br>
+        Your Anthropic API key is stored only in your browser. It is sent only to Anthropic's servers.</p>
+      <div class="config-form">
+        <label for="api-key-input" class="config-label">API Key</label>
+        <input type="password" id="api-key-input" class="config-input" placeholder="sk-ant-api03-..." autocomplete="off">
+        <div class="config-model-row">
+          <label for="model-select" class="config-label">Vessel Depth</label>
+          <select id="model-select" class="config-select">
+            <option value="claude-sonnet-4-20250514">Sonnet — Swift Dialogue</option>
+            <option value="claude-opus-4-20250514">Opus — Deep Summoning</option>
+          </select>
+        </div>
+        <button id="save-key-btn" class="ritual-btn">Seal the Binding</button>
+      </div>
+      <p class="config-note">You may change these settings at any time from within the Chamber.</p>
+    </div>
+  </div>
+
+  <!-- ═══ SCREEN 3: THE CHAMBER ═══ -->
+  <div id="chamber-screen" class="screen">
+
+    <!-- Hologram Display -->
+    <div id="hologram-container">
+      <canvas id="hologram-canvas"></canvas>
+      <div id="hologram-overlay">
+        <div id="persona-labels"></div>
+      </div>
+      <div id="hologram-floor"></div>
+    </div>
+
+    <!-- Active Personas Bar -->
+    <div id="persona-bar">
+      <div id="persona-badges"></div>
+      <div id="chamber-controls">
+        <button id="voice-toggle" class="control-btn" title="Toggle voice synthesis">
+          <span class="control-icon">&#9835;</span>
+          <span class="control-label">Voice</span>
+        </button>
+        <button id="settings-toggle" class="control-btn" title="Settings">
+          <span class="control-icon">&#9881;</span>
+          <span class="control-label">Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Panel (hidden by default) -->
+    <div id="settings-panel" class="hidden">
+      <div class="settings-inner">
+        <h3>Chamber Settings</h3>
+        <div class="setting-row">
+          <label for="settings-model" class="config-label">Model</label>
+          <select id="settings-model" class="config-select">
+            <option value="claude-sonnet-4-20250514">Sonnet — Swift Dialogue</option>
+            <option value="claude-opus-4-20250514">Opus — Deep Summoning</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <label for="settings-voice-rate" class="config-label">Voice Speed</label>
+          <input type="range" id="settings-voice-rate" min="0.5" max="1.5" step="0.1" value="0.9" class="config-range">
+        </div>
+        <div class="setting-row">
+          <button id="change-key-btn" class="control-btn">Change API Key</button>
+          <button id="release-all-btn" class="control-btn control-btn-danger">Release All Personas</button>
+        </div>
+        <button id="close-settings" class="control-btn">Close</button>
+      </div>
+    </div>
+
+    <!-- Dialogue Area -->
+    <div id="dialogue-container">
+      <div id="dialogue-scroll">
+        <div id="dialogue-messages"></div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div id="input-area">
+      <div id="input-wrapper">
+        <textarea id="user-input" placeholder="Speak the words..." rows="1"></textarea>
+        <button id="send-btn" title="Send">
+          <span>&#10148;</span>
+        </button>
+      </div>
+      <div id="input-hint">
+        <span class="hint-text">Say <code>Using this matter, summon [Name].</code> to begin.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- COMPANION V3 Scripts -->
+  <script src="js/protocol.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/hologram.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
