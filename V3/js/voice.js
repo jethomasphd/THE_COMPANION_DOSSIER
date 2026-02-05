@@ -221,7 +221,10 @@ COMPANION.Voice = (function () {
     })
     .then(function (response) {
       if (!response.ok) {
-        throw new Error('ElevenLabs API error: ' + response.status);
+        return response.text().then(function (body) {
+          console.warn('ElevenLabs error body:', body);
+          throw new Error('ElevenLabs API error: ' + response.status);
+        });
       }
       return response.blob();
     })
@@ -264,42 +267,65 @@ COMPANION.Voice = (function () {
 
   function speakWebSpeech(item) {
     var profile = VOICE_PROFILES[item.category] || VOICE_PROFILES['default'];
-    var utterance = new SpeechSynthesisUtterance(item.text);
 
-    var voice = selectVoice(item.category);
-    if (voice) {
-      utterance.voice = voice;
+    // Chrome kills utterances >~15s. Split into sentences for reliability.
+    var sentences = item.text.match(/[^.!?]+[.!?]+/g) || [item.text];
+    // Recombine into chunks of ~200 chars max
+    var chunks = [];
+    var current = '';
+    for (var s = 0; s < sentences.length; s++) {
+      if (current.length + sentences[s].length > 200 && current.length > 0) {
+        chunks.push(current.trim());
+        current = '';
+      }
+      current += sentences[s];
+    }
+    if (current.trim().length > 0) chunks.push(current.trim());
+    if (chunks.length === 0) {
+      isSpeaking = false;
+      processQueue();
+      return;
     }
 
-    utterance.pitch = profile.pitch;
-    utterance.rate = profile.rate * rate;
-    utterance.volume = 0.85;
+    if (onSpeakingStart) onSpeakingStart(item.personaName);
 
-    utterance.onstart = function () {
-      if (onSpeakingStart) onSpeakingStart(item.personaName);
-    };
+    var chunkIndex = 0;
 
-    utterance.onend = function () {
-      isSpeaking = false;
-      currentUtterance = null;
-      if (onSpeakingEnd) onSpeakingEnd(item.personaName);
-      processQueue();
-    };
+    function speakNextChunk() {
+      if (chunkIndex >= chunks.length) {
+        isSpeaking = false;
+        currentUtterance = null;
+        if (onSpeakingEnd) onSpeakingEnd(item.personaName);
+        processQueue();
+        return;
+      }
 
-    utterance.onerror = function () {
-      isSpeaking = false;
-      currentUtterance = null;
-      if (onSpeakingEnd) onSpeakingEnd(item.personaName);
-      processQueue();
-    };
+      var utterance = new SpeechSynthesisUtterance(chunks[chunkIndex]);
+      var voice = selectVoice(item.category);
+      if (voice) utterance.voice = voice;
 
-    currentUtterance = utterance;
+      utterance.pitch = profile.pitch;
+      utterance.rate = profile.rate * rate;
+      utterance.volume = 0.85;
 
-    // Chrome bug workaround
-    speechSynthesis.cancel();
-    setTimeout(function () {
+      utterance.onend = function () {
+        chunkIndex++;
+        speakNextChunk();
+      };
+
+      utterance.onerror = function () {
+        isSpeaking = false;
+        currentUtterance = null;
+        if (onSpeakingEnd) onSpeakingEnd(item.personaName);
+        processQueue();
+      };
+
+      currentUtterance = utterance;
+      speechSynthesis.cancel();
       speechSynthesis.speak(utterance);
-    }, 50);
+    }
+
+    speakNextChunk();
   }
 
 
