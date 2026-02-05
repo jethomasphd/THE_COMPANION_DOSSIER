@@ -55,6 +55,12 @@ COMPANION.App = (function () {
         els.elevenlabsKeyInput.value = COMPANION.Voice.getElevenLabsKey();
       }
 
+      // Auto-enable voice if ElevenLabs key or Web Speech available
+      if (COMPANION.Voice.isAvailable()) {
+        COMPANION.Voice.setEnabled(true);
+        COMPANION.UI.setVoiceToggleState(true);
+      }
+
       COMPANION.UI.updateHint(0);
     } catch (e) {
       console.error('COMPANION init error:', e);
@@ -148,6 +154,10 @@ COMPANION.App = (function () {
     if (els.elevenlabsKeyInput) {
       var elKey = els.elevenlabsKeyInput.value.trim();
       COMPANION.Voice.setElevenLabsKey(elKey);
+      if (elKey) {
+        COMPANION.Voice.setEnabled(true);
+        COMPANION.UI.setVoiceToggleState(true);
+      }
     }
 
     enterChamber();

@@ -338,21 +338,24 @@ html, body {
   justify-content: center;
   background: radial-gradient(ellipse at center bottom, rgba(201, 165, 78, 0.02) 0%, transparent 60%);
   border-bottom: 1px solid rgba(201, 165, 78, 0.08);
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ─── Hologram Gallery ─── */
 .hologram-gallery {
   display: flex;
-  gap: 48px;
+  gap: 32px;
   align-items: flex-end;
   justify-content: center;
-  padding: 24px 40px 16px;
+  padding: 24px 20px 16px;
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 /* Idle State */
@@ -392,6 +395,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 0 1 200px;
+  min-width: 120px;
   opacity: 0;
   animation: holoCardAppear 0.6s ease forwards;
 }
@@ -403,8 +408,9 @@ html, body {
 
 .hologram-frame {
   position: relative;
-  width: 200px;
-  height: 280px;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 5 / 7;
   overflow: hidden;
   border: 1px solid rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.15);
   background: rgba(0, 0, 0, 0.6);
@@ -990,8 +996,7 @@ html, body {
   }
 
   .hologram-frame {
-    width: 140px;
-    height: 196px;
+    max-width: 140px;
   }
 
   #dialogue-scroll {
