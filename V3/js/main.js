@@ -12,47 +12,55 @@ COMPANION.App = (function () {
   let activePersonas = [];  // [{ name, color, category }]
   let isStreaming = false;
   let currentStreamMessage = null;
+  let chamberInitialized = false;
+
+
+  // ── Safe event binding helper ──
+  function on(el, event, handler) {
+    if (el) {
+      el.addEventListener(event, handler);
+    }
+  }
 
 
   // ── Initialization ──
 
   function init() {
-    // Initialize UI
-    COMPANION.UI.init();
+    try {
+      // Initialize UI
+      COMPANION.UI.init();
 
-    // Initialize Voice
-    COMPANION.Voice.init({
-      onSpeakingStart: function (personaName) {
-        COMPANION.Hologram.setSpeaking(personaName, true);
-        COMPANION.UI.setPersonaBadgeSpeaking(personaName, true);
-      },
-      onSpeakingEnd: function (personaName) {
-        COMPANION.Hologram.clearSpeaking();
-        COMPANION.UI.setPersonaBadgeSpeaking(personaName, false);
+      // Initialize Voice
+      COMPANION.Voice.init({
+        onSpeakingStart: function (personaName) {
+          COMPANION.Hologram.setSpeaking(personaName, true);
+          COMPANION.UI.setPersonaBadgeSpeaking(personaName, true);
+        },
+        onSpeakingEnd: function (personaName) {
+          COMPANION.Hologram.clearSpeaking();
+          COMPANION.UI.setPersonaBadgeSpeaking(personaName, false);
+        }
+      });
+
+      // Bind events
+      bindEvents();
+
+      // Always start at the void
+      COMPANION.UI.showScreen('void');
+
+      // Set initial model in settings
+      var els = COMPANION.UI.elements();
+      if (els.settingsModel) {
+        els.settingsModel.value = COMPANION.API.getModel();
       }
-    });
+      if (els.modelSelect) {
+        els.modelSelect.value = COMPANION.API.getModel();
+      }
 
-    // Bind events
-    bindEvents();
-
-    // Check if API key already exists
-    if (COMPANION.API.hasApiKey()) {
-      // Show void screen briefly, then allow entry to chamber
-      COMPANION.UI.showScreen('void');
-    } else {
-      COMPANION.UI.showScreen('void');
+      COMPANION.UI.updateHint(0);
+    } catch (e) {
+      console.error('COMPANION init error:', e);
     }
-
-    // Set initial model in settings
-    var els = COMPANION.UI.elements();
-    if (els.settingsModel) {
-      els.settingsModel.value = COMPANION.API.getModel();
-    }
-    if (els.modelSelect) {
-      els.modelSelect.value = COMPANION.API.getModel();
-    }
-
-    COMPANION.UI.updateHint(0);
   }
 
 
@@ -62,7 +70,7 @@ COMPANION.App = (function () {
     var els = COMPANION.UI.elements();
 
     // Void → Enter
-    els.enterBtn.addEventListener('click', function () {
+    on(els.enterBtn, 'click', function () {
       if (COMPANION.API.hasApiKey()) {
         enterChamber();
       } else {
@@ -71,17 +79,33 @@ COMPANION.App = (function () {
     });
 
     // Config → Save key
-    els.saveKeyBtn.addEventListener('click', function () {
+    on(els.saveKeyBtn, 'click', function () {
       var key = els.apiKeyInput.value.trim();
       if (!key) return;
       COMPANION.API.setApiKey(key);
-      COMPANION.API.setModel(els.modelSelect.value);
+      if (els.modelSelect) {
+        COMPANION.API.setModel(els.modelSelect.value);
+      }
       enterChamber();
     });
 
+    // Also allow Enter key in the API key input
+    on(els.apiKeyInput, 'keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        var key = els.apiKeyInput.value.trim();
+        if (!key) return;
+        COMPANION.API.setApiKey(key);
+        if (els.modelSelect) {
+          COMPANION.API.setModel(els.modelSelect.value);
+        }
+        enterChamber();
+      }
+    });
+
     // Send message
-    els.sendBtn.addEventListener('click', handleSend);
-    els.userInput.addEventListener('keydown', function (e) {
+    on(els.sendBtn, 'click', handleSend);
+    on(els.userInput, 'keydown', function (e) {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         handleSend();
@@ -89,35 +113,35 @@ COMPANION.App = (function () {
     });
 
     // Voice toggle
-    els.voiceToggle.addEventListener('click', function () {
+    on(els.voiceToggle, 'click', function () {
       var newState = !COMPANION.Voice.isEnabled();
       COMPANION.Voice.setEnabled(newState);
       COMPANION.UI.setVoiceToggleState(newState);
     });
 
     // Settings
-    els.settingsToggle.addEventListener('click', function () {
+    on(els.settingsToggle, 'click', function () {
       COMPANION.UI.toggleSettings();
     });
 
-    els.closeSettings.addEventListener('click', function () {
+    on(els.closeSettings, 'click', function () {
       COMPANION.UI.hideSettings();
     });
 
-    els.settingsModel.addEventListener('change', function () {
+    on(els.settingsModel, 'change', function () {
       COMPANION.API.setModel(els.settingsModel.value);
     });
 
-    els.settingsVoiceRate.addEventListener('input', function () {
+    on(els.settingsVoiceRate, 'input', function () {
       COMPANION.Voice.setRate(parseFloat(els.settingsVoiceRate.value));
     });
 
-    els.changeKeyBtn.addEventListener('click', function () {
+    on(els.changeKeyBtn, 'click', function () {
       COMPANION.UI.hideSettings();
       COMPANION.UI.showScreen('config');
     });
 
-    els.releaseAllBtn.addEventListener('click', function () {
+    on(els.releaseAllBtn, 'click', function () {
       releaseAllPersonas();
       COMPANION.UI.hideSettings();
     });
@@ -129,9 +153,19 @@ COMPANION.App = (function () {
   function enterChamber() {
     COMPANION.UI.showScreen('chamber');
 
-    // Initialize hologram renderer
-    var holoContainer = document.getElementById('hologram-container');
-    COMPANION.Hologram.init(holoContainer);
+    // Initialize hologram renderer (only once)
+    if (!chamberInitialized) {
+      try {
+        var holoContainer = document.getElementById('hologram-container');
+        if (holoContainer) {
+          COMPANION.Hologram.init(holoContainer);
+        }
+        chamberInitialized = true;
+      } catch (e) {
+        console.error('Hologram init error:', e);
+        chamberInitialized = true; // Don't retry on error
+      }
+    }
 
     // Focus input
     setTimeout(function () {
