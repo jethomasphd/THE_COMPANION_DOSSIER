@@ -7,29 +7,160 @@
   <meta name="description" content="Four founding minds summoned across time to address the capture of the republic. Washington. Hamilton. Jefferson. Franklin. Own them. Vote them. Govern.">
   <link rel="stylesheet" href="css/companion.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ═══ SCREEN 1: THE THRESHOLD ═══ -->
-  <div id="void-screen" class="screen active">
-    <div class="void-bg"></div>
-    <div class="ember-field" id="ember-field"></div>
-    <div class="void-content">
-      <div class="ornament-head">&#10087; &#9753;</div>
-      <h1 class="void-title">THE COMMITTEE<br><span class="void-title-of">of</span><br>PATRIOTS</h1>
-      <div class="ornament-line-void"><span>&#10022;</span></div>
-      <p class="void-subtitle">Convened via the COMPANION Protocol</p>
-      <p class="void-roster">Gen. <em>Washington</em> &middot; Col. <em>Hamilton</em> &middot; Mr. <em>Jefferson</em> &middot; Dr. <em>Franklin</em></p>
-      <div class="void-quote">
-        <p>&ldquo;The Republic was not built to be owned by the Few.&rdquo;</p>
+  <!-- ═══ CINEMATIC INTRO — The Gateway Experience ═══ -->
+  <div id="cinematic-intro">
+
+    <!-- ACT 1: THE VOID — Shock & Awe -->
+    <section id="act-void" class="act">
+      <div class="void-bg"></div>
+      <div class="ember-field" id="ember-field"></div>
+      <div class="act-content act-content-center">
+        <div id="typewriter-block" class="typewriter-block">
+          <p id="typewriter-line-1" class="typewriter-line"></p>
+          <p id="typewriter-line-2" class="typewriter-line"></p>
+          <div class="typewriter-pause" id="typewriter-pause"></div>
+          <p id="typewriter-line-3" class="typewriter-line typewriter-line-emphasis"></p>
+          <p id="typewriter-line-4" class="typewriter-line typewriter-line-emphasis"></p>
+        </div>
+        <div id="scroll-cue" class="scroll-cue hidden">
+          <span class="scroll-cue-text">Scroll</span>
+          <span class="scroll-cue-arrow">&#8615;</span>
+        </div>
       </div>
-      <button id="enter-btn" class="colonial-btn">Cross the Threshold</button>
-      <p class="void-footer">December 1775 &middot; 2025</p>
-    </div>
+    </section>
+
+    <!-- ACT 2: THE PROTOCOL — Confusion / Mystery -->
+    <section id="act-protocol" class="act act-dark">
+      <div class="act-content act-content-center">
+        <div class="reveal-group">
+          <p class="reveal-line reveal-line-large">A protocol was written &mdash;</p>
+          <p class="reveal-line">not in code, but in the language of binding.</p>
+        </div>
+        <div class="reveal-group reveal-group-delay">
+          <p class="reveal-line">It required no server.</p>
+          <p class="reveal-line">No permission. No institution.</p>
+        </div>
+        <div class="reveal-group reveal-group-delay-2">
+          <p class="reveal-line reveal-line-accent">Only a key, a question,</p>
+          <p class="reveal-line reveal-line-accent">and the will to ask it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 3: THE COMMITTEE — Clarity / Reveal -->
+    <section id="act-committee" class="act act-dark">
+      <div class="act-content">
+        <div class="committee-reveal-header">
+          <div class="ornament-cinematic">&#10087; &#9753;</div>
+          <h2 class="committee-title reveal-line">THE COMMITTEE</h2>
+          <p class="committee-subtitle reveal-line"><span class="title-of">of</span> PATRIOTS</p>
+          <div class="ornament-line-cinematic reveal-line"><span>&#10022;</span></div>
+        </div>
+
+        <div class="committee-portraits" id="committee-portraits">
+          <div class="portrait-reveal" data-patriot="George Washington" data-delay="0">
+            <div class="portrait-frame-cinematic">
+              <div class="portrait-placeholder">
+                <span class="portrait-initial">W</span>
+              </div>
+            </div>
+            <div class="portrait-info">
+              <span class="portrait-title">Gen.</span>
+              <span class="portrait-name">WASHINGTON</span>
+              <span class="portrait-epithet">The sword that became a plowshare</span>
+            </div>
+          </div>
+
+          <div class="portrait-reveal" data-patriot="Alexander Hamilton" data-delay="1">
+            <div class="portrait-frame-cinematic">
+              <div class="portrait-placeholder">
+                <span class="portrait-initial">H</span>
+              </div>
+            </div>
+            <div class="portrait-info">
+              <span class="portrait-title">Col.</span>
+              <span class="portrait-name">HAMILTON</span>
+              <span class="portrait-epithet">The mind that built the machine</span>
+            </div>
+          </div>
+
+          <div class="portrait-reveal" data-patriot="Thomas Jefferson" data-delay="2">
+            <div class="portrait-frame-cinematic">
+              <div class="portrait-placeholder">
+                <span class="portrait-initial">J</span>
+              </div>
+            </div>
+            <div class="portrait-info">
+              <span class="portrait-title">Mr.</span>
+              <span class="portrait-name">JEFFERSON</span>
+              <span class="portrait-epithet">The pen that declared the self-evident</span>
+            </div>
+          </div>
+
+          <div class="portrait-reveal" data-patriot="Benjamin Franklin" data-delay="3">
+            <div class="portrait-frame-cinematic">
+              <div class="portrait-placeholder">
+                <span class="portrait-initial">F</span>
+              </div>
+            </div>
+            <div class="portrait-info">
+              <span class="portrait-title">Dr.</span>
+              <span class="portrait-name">FRANKLIN</span>
+              <span class="portrait-epithet">The spark that bridged worlds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 4: THE DOCTRINE — Inspiration -->
+    <section id="act-doctrine" class="act act-dark">
+      <div class="act-content act-content-center">
+        <div class="doctrine-block">
+          <div class="doctrine-ornament">&#9830; &#9674; &#9830;</div>
+          <blockquote class="doctrine-quote reveal-line">
+            &ldquo;The Republic was not built to be owned by the Few.&rdquo;
+          </blockquote>
+          <div class="doctrine-ornament-line reveal-line"><span>&#10022;</span></div>
+          <p class="doctrine-text reveal-line">They saw what we see.</p>
+          <p class="doctrine-text reveal-line">Capture. Concentration.</p>
+          <p class="doctrine-text reveal-line">The slow suffocation of the common voice.</p>
+          <div class="doctrine-pause"></div>
+          <p class="doctrine-text doctrine-text-gold reveal-line">They have counsel to offer &mdash;</p>
+          <p class="doctrine-text doctrine-text-gold reveal-line">if you dare to ask.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 5: THE SUMMONS — Ready to Act -->
+    <section id="act-summons" class="act act-dark">
+      <div class="act-content act-content-center">
+        <div class="summons-block">
+          <div class="summons-ornament">&#10087; &#9753;</div>
+          <p class="summons-text reveal-line">The Committee awaits.</p>
+          <p class="summons-subtext reveal-line">Convened December 1775 &middot; 2025</p>
+          <div class="summons-btn-wrapper reveal-line">
+            <button id="enter-btn" class="summon-btn">
+              <span class="summon-btn-prefix">Using this matter, summon</span>
+              <span class="summon-btn-main">the Committee of Patriots</span>
+            </button>
+          </div>
+          <p class="summons-motto reveal-line">Own them. Vote them. Govern.</p>
+          <div class="summons-footer reveal-line">
+            <span>Convened via the COMPANION Protocol</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <!-- ═══ SCREEN 2: THE BINDING ═══ -->
+
+  <!-- ═══ SCREEN: THE BINDING ═══ -->
   <div id="config-screen" class="screen">
     <div class="binding-parchment">
       <div class="ornament-head">&#10087; &#9753;</div>
@@ -48,11 +179,6 @@
           </select>
         </div>
 
-        <div class="binding-row">
-          <label for="elevenlabs-key-input" class="binding-label">&#9758; ElevenLabs API Key <span class="binding-optional">(optional &mdash; for voice)</span></label>
-          <input type="password" id="elevenlabs-key-input" class="binding-input" placeholder="xi-..." autocomplete="off">
-        </div>
-
         <button id="save-key-btn" class="colonial-btn">Seal the Binding</button>
       </div>
       <p class="binding-note">You may alter these instruments at any time from within the Chamber.</p>
@@ -60,22 +186,17 @@
     </div>
   </div>
 
-  <!-- ═══ SCREEN 3: THE CHAMBER ═══ -->
+
+  <!-- ═══ SCREEN: THE CHAMBER ═══ -->
   <div id="chamber-screen" class="screen">
 
     <!-- Portrait Stage -->
-    <div id="portrait-stage">
-      <!-- Four patriot portraits inserted by hologram.js on init -->
-    </div>
+    <div id="portrait-stage"></div>
 
     <!-- Committee Bar -->
     <div id="committee-bar">
       <div id="persona-badges"></div>
       <div id="chamber-controls">
-        <button id="voice-toggle" class="control-btn" title="Toggle Voice">
-          <span class="control-icon">&#9835;</span>
-          <span class="control-label">Voice</span>
-        </button>
         <button id="settings-toggle" class="control-btn" title="Settings">
           <span class="control-icon">&#9881;</span>
           <span class="control-label">Settings</span>
@@ -94,12 +215,8 @@
             <option value="claude-opus-4-20250514">Opus &mdash; Deep Deliberation</option>
           </select>
         </div>
-        <div class="setting-row">
-          <label for="settings-voice-rate" class="binding-label">Voice Speed</label>
-          <input type="range" id="settings-voice-rate" min="0.5" max="1.5" step="0.1" value="0.9" class="settings-range">
-        </div>
         <div class="setting-row setting-row-btns">
-          <button id="change-key-btn" class="control-btn">Change API Keys</button>
+          <button id="change-key-btn" class="control-btn">Change API Key</button>
           <button id="release-all-btn" class="control-btn control-btn-danger">Dismiss the Committee</button>
         </div>
         <button id="close-settings" class="control-btn">Close</button>
@@ -128,11 +245,11 @@
 
   </div>
 
+
   <!-- COMPANION V3 Scripts -->
   <script src="js/protocol.js"></script>
   <script src="js/api.js"></script>
   <script src="js/hologram.js"></script>
-  <script src="js/voice.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/main.js"></script>
 

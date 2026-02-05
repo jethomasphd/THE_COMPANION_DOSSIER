@@ -1,6 +1,6 @@
 /* ===================================================================
    THE COMMITTEE OF PATRIOTS — companion.css
-   A Colonial Print-Shop Aesthetic for the COMPANION Protocol
+   Cinematic Gateway Edition
    "Own them. Vote them. Govern."
    =================================================================== */
 
@@ -22,6 +22,12 @@
   --gold-bright: #d4b85c;
   --gold-dim: #8a7340;
 
+  /* Patriot colors */
+  --washington: #c9a54e;
+  --hamilton: #4a90d9;
+  --jefferson: #c94e4e;
+  --franklin: #d4b85c;
+
   /* Wood */
   --wood-dark: #2c2416;
   --wood-medium: #3d2f1a;
@@ -33,6 +39,7 @@
   --font-display: 'IM Fell Great Primer', Georgia, serif;
   --font-body: 'IM Fell English', Georgia, serif;
   --font-accent: 'IM Fell DW Pica', Georgia, serif;
+  --font-voice: 'Cormorant Garamond', Georgia, serif;
 
   /* Spacing */
   --space-xs: 4px;
@@ -59,10 +66,14 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   height: 100%;
-  overflow: hidden;
-  background: var(--wood-dark);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  background: #0a0806;
   color: var(--parchment);
   font-family: var(--font-body);
   font-size: 17px;
@@ -72,17 +83,17 @@ html, body {
 
 
 /* ===================================================================
-   SCROLLBAR — wood & parchment
+   SCROLLBAR
    =================================================================== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--wood-dark);
+  background: #0a0806;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--ink-light);
-  border: 1px solid var(--wood-medium);
+  border: 1px solid #0a0806;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dim);
@@ -90,7 +101,710 @@ html, body {
 
 
 /* ===================================================================
-   SCREENS — display:none / display:flex system
+   CINEMATIC INTRO — Full-page scrolling experience
+   =================================================================== */
+#cinematic-intro {
+  position: relative;
+  z-index: 20;
+}
+
+#cinematic-intro.hidden {
+  display: none;
+}
+
+
+/* ===================================================================
+   ACTS — Each act is a full-viewport section
+   =================================================================== */
+.act {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.act-dark {
+  background: #0a0806;
+}
+
+.act-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  padding: var(--space-xl);
+}
+
+.act-content-center {
+  text-align: center;
+}
+
+
+/* ===================================================================
+   ACT 1: THE VOID — Typewriter opening
+   =================================================================== */
+#act-void {
+  background: #0a0806;
+}
+
+.void-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(201, 165, 78, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 180, 80, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at center, #0d0a06 0%, #0a0806 60%, #050403 100%);
+}
+
+/* --- Ember Particles --- */
+.ember-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ember {
+  position: absolute;
+  bottom: 15%;
+  width: 3px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(255, 180, 60, 0.5);
+  animation: emberFloat 10s ease-in-out infinite;
+}
+
+@keyframes emberFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(-10px) translateX(2px) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-80px) translateX(-5px) scale(0.8);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translateY(-140px) translateX(4px) scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) translateX(-2px) scale(0);
+  }
+}
+
+
+/* --- Typewriter --- */
+.typewriter-block {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.typewriter-line {
+  font-family: var(--font-voice);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--parchment);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  min-height: 1.6em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.typewriter-line.visible {
+  opacity: 1;
+}
+
+.typewriter-line-emphasis {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.typewriter-pause {
+  height: 20px;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursorBlink 0.8s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* --- Scroll Cue --- */
+.scroll-cue {
+  margin-top: var(--space-xxl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: scrollCuePulse 2s ease-in-out infinite;
+}
+
+.scroll-cue.visible {
+  opacity: 1;
+}
+
+.scroll-cue.hidden {
+  opacity: 0;
+}
+
+.scroll-cue-text {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.scroll-cue-arrow {
+  font-size: 1.2rem;
+  color: var(--gold-dim);
+}
+
+@keyframes scrollCuePulse {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+
+/* ===================================================================
+   REVEAL LINES — Scroll-triggered fade-in animation
+   =================================================================== */
+.reveal-line {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-line.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-group {
+  margin-bottom: var(--space-xl);
+}
+
+.reveal-group .reveal-line {
+  transition-delay: 0s;
+}
+
+/* Staggered delays within groups */
+.reveal-group .reveal-line:nth-child(2) { transition-delay: 0.15s; }
+.reveal-group .reveal-line:nth-child(3) { transition-delay: 0.3s; }
+.reveal-group .reveal-line:nth-child(4) { transition-delay: 0.45s; }
+
+.reveal-group-delay .reveal-line { transition-delay: 0.1s; }
+.reveal-group-delay .reveal-line:nth-child(2) { transition-delay: 0.25s; }
+
+.reveal-group-delay-2 .reveal-line { transition-delay: 0.2s; }
+.reveal-group-delay-2 .reveal-line:nth-child(2) { transition-delay: 0.35s; }
+
+
+/* ===================================================================
+   ACT 2: THE PROTOCOL — Mystery text
+   =================================================================== */
+#act-protocol {
+  background:
+    radial-gradient(ellipse at center, rgba(201, 165, 78, 0.02) 0%, transparent 50%),
+    #0a0806;
+}
+
+#act-protocol .reveal-line {
+  font-family: var(--font-voice);
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--parchment-dark);
+  letter-spacing: 0.03em;
+  line-height: 1.8;
+}
+
+.reveal-line-large {
+  font-size: 1.6rem !important;
+  color: var(--parchment) !important;
+}
+
+.reveal-line-accent {
+  color: var(--gold) !important;
+  font-style: italic;
+}
+
+
+/* ===================================================================
+   ACT 3: THE COMMITTEE — Portrait Reveal
+   =================================================================== */
+#act-committee {
+  min-height: 100vh;
+  padding: var(--space-xxl) 0;
+  background:
+    radial-gradient(ellipse at center bottom, rgba(201, 165, 78, 0.04) 0%, transparent 50%),
+    #0a0806;
+}
+
+.committee-reveal-header {
+  text-align: center;
+  margin-bottom: var(--space-xxl);
+}
+
+.ornament-cinematic {
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-dim);
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.ornament-cinematic.revealed {
+  opacity: 1;
+}
+
+.committee-title {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: normal;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(201, 165, 78, 0.2);
+  margin-bottom: 0;
+}
+
+.committee-subtitle {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0;
+}
+
+.title-of {
+  font-family: var(--font-accent);
+  font-size: 0.5em;
+  font-style: italic;
+  letter-spacing: 0.15em;
+  color: var(--parchment-dark);
+  text-transform: lowercase;
+}
+
+.ornament-line-cinematic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: var(--space-md) auto;
+  max-width: 300px;
+  color: var(--gold-dim);
+  font-size: 1rem;
+}
+
+.ornament-line-cinematic::before,
+.ornament-line-cinematic::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+
+
+/* --- Committee Portraits Grid --- */
+.committee-portraits {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 0 var(--space-lg);
+}
+
+.portrait-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.portrait-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger portrait reveals */
+.portrait-reveal[data-delay="0"] { transition-delay: 0s; }
+.portrait-reveal[data-delay="1"] { transition-delay: 0.25s; }
+.portrait-reveal[data-delay="2"] { transition-delay: 0.5s; }
+.portrait-reveal[data-delay="3"] { transition-delay: 0.75s; }
+
+
+/* --- Cinematic Portrait Frame --- */
+.portrait-frame-cinematic {
+  width: 140px;
+  height: 196px;  /* 5:7 */
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--gold-dim);
+  outline: 1px solid rgba(26, 19, 8, 0.8);
+  outline-offset: 2px;
+  box-shadow:
+    inset 0 0 0 2px rgba(26, 19, 8, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(201, 165, 78, 0.05);
+  position: relative;
+}
+
+.portrait-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse, rgba(201, 165, 78, 0.05) 0%, transparent 70%);
+}
+
+.portrait-initial {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--gold-dim);
+  opacity: 0.3;
+  text-shadow: 0 0 30px rgba(201, 165, 78, 0.2);
+}
+
+/* Portrait image (loaded via JS) */
+.portrait-frame-cinematic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: sepia(0.3) brightness(0.8) contrast(1.1);
+  transition: opacity 1.5s ease;
+}
+
+.portrait-frame-cinematic img.loaded {
+  opacity: 1;
+}
+
+/* Washington gets gold glow */
+.portrait-reveal[data-patriot="George Washington"] .portrait-frame-cinematic {
+  border-color: var(--washington);
+  box-shadow:
+    inset 0 0 0 2px rgba(26, 19, 8, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(201, 165, 78, 0.1);
+}
+
+.portrait-reveal[data-patriot="Alexander Hamilton"] .portrait-frame-cinematic {
+  border-color: var(--hamilton);
+  box-shadow:
+    inset 0 0 0 2px rgba(26, 19, 8, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(74, 144, 217, 0.08);
+}
+
+.portrait-reveal[data-patriot="Thomas Jefferson"] .portrait-frame-cinematic {
+  border-color: var(--jefferson);
+  box-shadow:
+    inset 0 0 0 2px rgba(26, 19, 8, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(201, 78, 78, 0.08);
+}
+
+.portrait-reveal[data-patriot="Benjamin Franklin"] .portrait-frame-cinematic {
+  border-color: var(--franklin);
+  box-shadow:
+    inset 0 0 0 2px rgba(26, 19, 8, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(212, 184, 92, 0.08);
+}
+
+
+/* --- Portrait Info --- */
+.portrait-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.portrait-title {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--parchment-dark);
+  font-style: italic;
+}
+
+.portrait-name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2px;
+}
+
+.portrait-epithet {
+  font-family: var(--font-voice);
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-light);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Patriot-specific name colors */
+.portrait-reveal[data-patriot="George Washington"] .portrait-name { color: var(--washington); }
+.portrait-reveal[data-patriot="Alexander Hamilton"] .portrait-name { color: var(--hamilton); }
+.portrait-reveal[data-patriot="Thomas Jefferson"] .portrait-name { color: var(--jefferson); }
+.portrait-reveal[data-patriot="Benjamin Franklin"] .portrait-name { color: var(--franklin); }
+
+
+/* ===================================================================
+   ACT 4: THE DOCTRINE — Inspirational reveal
+   =================================================================== */
+#act-doctrine {
+  background:
+    radial-gradient(ellipse at center, rgba(201, 165, 78, 0.03) 0%, transparent 60%),
+    #0a0806;
+}
+
+.doctrine-block {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.doctrine-ornament {
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.doctrine-ornament.revealed {
+  opacity: 1;
+}
+
+.doctrine-quote {
+  font-family: var(--font-voice);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1.6;
+  padding: var(--space-lg) 0;
+  border: none;
+  text-shadow: 0 0 40px rgba(201, 165, 78, 0.15);
+}
+
+.doctrine-ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: var(--space-lg) auto;
+  max-width: 200px;
+  color: var(--gold-dim);
+}
+
+.doctrine-ornament-line::before,
+.doctrine-ornament-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+
+.doctrine-text {
+  font-family: var(--font-voice);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--parchment-dark);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+}
+
+.doctrine-text-gold {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.doctrine-pause {
+  height: var(--space-lg);
+}
+
+
+/* ===================================================================
+   ACT 5: THE SUMMONS — Call to action
+   =================================================================== */
+#act-summons {
+  background:
+    radial-gradient(ellipse at center bottom, rgba(201, 165, 78, 0.05) 0%, transparent 50%),
+    #0a0806;
+}
+
+.summons-block {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.summons-ornament {
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-dim);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.summons-ornament.revealed {
+  opacity: 1;
+}
+
+.summons-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(201, 165, 78, 0.15);
+  margin-bottom: var(--space-sm);
+}
+
+.summons-subtext {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  margin-bottom: var(--space-xxl);
+}
+
+
+/* --- Summon Button --- */
+.summon-btn-wrapper {
+  margin-bottom: var(--space-xxl);
+}
+
+.summon-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 56px;
+  background: transparent;
+  border: 2px solid var(--gold-dim);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.summon-btn::before,
+.summon-btn::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--gold-dim);
+  transition: background 0.5s ease;
+}
+
+.summon-btn::before { left: 5px; }
+.summon-btn::after  { right: 5px; }
+
+.summon-btn-prefix {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--parchment-dark);
+}
+
+.summon-btn-main {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.summon-btn:hover {
+  background: rgba(201, 165, 78, 0.08);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 30px rgba(201, 165, 78, 0.15),
+    inset 0 0 30px rgba(201, 165, 78, 0.05);
+}
+
+.summon-btn:hover::before,
+.summon-btn:hover::after {
+  background: var(--gold);
+}
+
+.summon-btn:hover .summon-btn-main {
+  color: var(--gold-bright);
+  text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
+}
+
+.summon-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* --- Motto --- */
+.summons-motto {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--gold-dim);
+  font-style: italic;
+  margin-bottom: var(--space-xl);
+}
+
+.summons-footer {
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+
+/* ===================================================================
+   SCREENS — Fixed overlay system (binding + chamber)
    =================================================================== */
 .screen {
   position: fixed;
@@ -107,15 +821,14 @@ html, body {
 .screen.active {
   display: flex;
   opacity: 1;
-  z-index: 10;
+  z-index: 30;
   pointer-events: auto;
-  animation: parchmentReveal 0.8s ease forwards;
+  animation: screenReveal 0.8s ease forwards;
 }
 
-@keyframes parchmentReveal {
+@keyframes screenReveal {
   0% {
     opacity: 0;
-    transform: scale(0.98);
     filter: brightness(0.3);
   }
   60% {
@@ -123,265 +836,7 @@ html, body {
   }
   100% {
     opacity: 1;
-    transform: scale(1);
     filter: brightness(1);
-  }
-}
-
-
-/* ===================================================================
-   SCREEN 1: THE VOID — Dark Colonial Landing
-   =================================================================== */
-.void-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(201, 165, 78, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(255, 180, 80, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at center, #1a150d 0%, var(--wood-dark) 60%, #0d0a06 100%);
-}
-
-.void-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 640px;
-  padding: var(--space-xl);
-}
-
-/* --- Sigil (colonial seal ornament) --- */
-.sigil-container {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  margin: 0 auto var(--space-xl);
-}
-
-.sigil-ring {
-  position: absolute;
-  border: 1px solid var(--gold-dim);
-  border-radius: 50%;
-  animation: sigil-rotate 25s linear infinite;
-}
-
-.sigil-ring-outer {
-  inset: 0;
-  border-style: dashed;
-  border-color: var(--ink-light);
-}
-
-.sigil-ring-inner {
-  inset: 20px;
-  animation-direction: reverse;
-  animation-duration: 18s;
-  border-color: var(--gold-dim);
-}
-
-.sigil-symbol {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  color: var(--gold);
-  text-shadow: 0 0 30px rgba(201, 165, 78, 0.4);
-  animation: sigil-pulse 4s ease-in-out infinite;
-}
-
-.sigil-small {
-  font-size: 32px;
-  color: var(--gold);
-  text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
-  margin-bottom: var(--space-lg);
-}
-
-.config-sigil {
-  font-size: 32px;
-  color: var(--gold);
-  text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
-  margin-bottom: var(--space-lg);
-}
-
-@keyframes sigil-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes sigil-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50%      { opacity: 1; transform: scale(1.05); }
-}
-
-/* --- Void Title --- */
-.void-title {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: normal;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-shadow:
-    0 0 40px rgba(201, 165, 78, 0.25),
-    2px 2px 0 rgba(0, 0, 0, 0.3);
-  margin-bottom: var(--space-sm);
-}
-
-.void-subtitle {
-  font-family: var(--font-accent);
-  font-size: 1rem;
-  letter-spacing: 0.15em;
-  color: var(--parchment-dark);
-  font-style: italic;
-  margin-bottom: var(--space-xs);
-}
-
-.void-tagline {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--ink-light);
-  margin-bottom: var(--space-xl);
-}
-
-/* --- Void title "of" --- */
-.void-title-of {
-  font-size: 1.2rem;
-  font-style: italic;
-  letter-spacing: 0.15em;
-  color: var(--parchment-dark);
-  font-family: var(--font-accent);
-}
-
-/* --- Ornaments --- */
-.ornament-head {
-  font-size: 1.5rem;
-  letter-spacing: 0.5em;
-  color: var(--gold-dim);
-  margin-bottom: var(--space-md);
-}
-
-.ornament-line-void,
-.ornament-line-binding {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: var(--space-md) 0;
-  color: var(--gold-dim);
-  font-size: 1rem;
-}
-
-.ornament-line-void::before,
-.ornament-line-void::after,
-.ornament-line-binding::before,
-.ornament-line-binding::after {
-  content: '';
-  flex: 1;
-  max-width: 100px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
-}
-
-.ornament-foot {
-  margin-top: var(--space-lg);
-  font-size: 1rem;
-  letter-spacing: 0.3em;
-  color: var(--ink-light);
-}
-
-/* --- Void roster --- */
-.void-roster {
-  font-family: var(--font-accent);
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  color: var(--parchment-dark);
-  margin-bottom: var(--space-lg);
-}
-
-.void-roster em {
-  font-style: italic;
-  color: var(--gold);
-}
-
-/* --- Void quote --- */
-.void-quote {
-  margin: var(--space-lg) auto;
-  max-width: 400px;
-  padding: var(--space-md) var(--space-lg);
-  border-top: 1px solid var(--gold-dim);
-  border-bottom: 1px solid var(--gold-dim);
-}
-
-.void-quote p {
-  font-family: var(--font-accent);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--gold);
-  line-height: 1.7;
-}
-
-/* --- Void footer --- */
-.void-footer {
-  margin-top: var(--space-lg);
-  font-family: var(--font-accent);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--ink-light);
-  font-style: italic;
-}
-
-/* --- Ember / Firelight Particles --- */
-.ember-field,
-.void-particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.ember {
-  position: absolute;
-  bottom: 20%;
-  width: 3px;
-  height: 3px;
-  background: var(--gold);
-  border-radius: 50%;
-  box-shadow: 0 0 6px 2px rgba(255, 180, 60, 0.5);
-  animation: emberFloat 10s ease-in-out infinite;
-}
-
-.void-particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: var(--gold);
-  border-radius: 50%;
-  opacity: 0;
-  box-shadow: 0 0 6px 2px rgba(255, 180, 60, 0.5);
-  animation: emberFloat 7s ease-in-out infinite;
-}
-
-@keyframes emberFloat {
-  0% {
-    opacity: 0;
-    transform: translateY(0) translateX(0) scale(0);
-  }
-  10% {
-    opacity: 0.8;
-    transform: translateY(-10px) translateX(2px) scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateY(-60px) translateX(-5px) scale(0.8);
-  }
-  80% {
-    opacity: 0.2;
-    transform: translateY(-110px) translateX(4px) scale(0.4);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-150px) translateX(-2px) scale(0);
   }
 }
 
@@ -437,7 +892,7 @@ html, body {
 
 
 /* ===================================================================
-   SCREEN 2: THE BINDING — Colonial Contract on Parchment
+   THE BINDING — Config Screen
    =================================================================== */
 #config-screen {
   background:
@@ -450,14 +905,10 @@ html, body {
   padding: 50px 55px;
   position: relative;
   z-index: 2;
-
-  /* Parchment surface */
   background:
     var(--parchment-texture),
     var(--parchment-bg);
   color: var(--ink);
-
-  /* Triple border: ink / gap / ink — like a colonial legal document */
   box-shadow:
     0 0 0 2px var(--ink),
     0 0 0 5px var(--parchment-dark),
@@ -465,7 +916,6 @@ html, body {
     0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Parchment aging overlay */
 .binding-parchment::before {
   content: '';
   position: absolute;
@@ -490,7 +940,39 @@ html, body {
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: var(--space-sm);
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.ornament-head {
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-dim);
+  margin-bottom: var(--space-md);
+}
+
+.ornament-line-binding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: var(--space-md) 0;
+  color: var(--gold-dim);
+  font-size: 1rem;
+}
+
+.ornament-line-binding::before,
+.ornament-line-binding::after {
+  content: '';
+  flex: 1;
+  max-width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+
+.ornament-foot {
+  margin-top: var(--space-lg);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-light);
 }
 
 .binding-preamble {
@@ -500,16 +982,16 @@ html, body {
   line-height: 1.8;
   margin-bottom: var(--space-xl);
   font-style: italic;
+  text-align: left;
 }
 
-/* Drop-cap for the first letter of the description */
-.binding-preamble::first-letter {
-  font-family: var(--font-display);
-  font-size: 2.4em;
+.drop-cap {
   float: left;
+  font-family: var(--font-display);
+  font-size: 3em;
   line-height: 0.8;
-  padding-right: 6px;
-  padding-top: 4px;
+  padding-right: 8px;
+  padding-top: 5px;
   color: var(--ink);
   font-style: normal;
 }
@@ -577,32 +1059,14 @@ html, body {
   opacity: 0.5;
 }
 
-/* Drop cap */
-.drop-cap {
-  float: left;
-  font-family: var(--font-display);
-  font-size: 3em;
-  line-height: 0.8;
-  padding-right: 8px;
-  padding-top: 5px;
-  color: var(--ink);
-  font-style: normal;
-}
-
-.binding-preamble {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--ink-medium);
-  line-height: 1.8;
-  margin-bottom: var(--space-xl);
-  font-style: italic;
-  text-align: left;
-}
-
 
 /* ===================================================================
-   SCREEN 3: THE CHAMBER
+   THE CHAMBER
    =================================================================== */
+#chamber-screen {
+  overflow: hidden;
+}
+
 #chamber-screen.active {
   display: flex;
   flex-direction: column;
@@ -612,11 +1076,8 @@ html, body {
 }
 
 
-/* -------------------------------------------------------------------
-   PORTRAIT STAGE — Colonial Gallery
-   ------------------------------------------------------------------- */
-#portrait-stage,
-#hologram-stage {
+/* --- Portrait Stage --- */
+#portrait-stage {
   position: relative;
   flex: 0 0 auto;
   min-height: 300px;
@@ -625,20 +1086,13 @@ html, body {
   align-items: center;
   justify-content: center;
   overflow: visible;
-
-  /* Dark wood backdrop with warm candlelight from below */
   background:
     radial-gradient(ellipse at center bottom, var(--candlelight) 0%, transparent 55%),
     linear-gradient(to bottom, #1f1a10 0%, var(--wood-dark) 100%);
   border-bottom: 3px double var(--ink-medium);
 }
 
-
-/* -------------------------------------------------------------------
-   PORTRAIT GALLERY — Flex row of Patriots
-   ------------------------------------------------------------------- */
-.portrait-gallery,
-.hologram-gallery {
+.portrait-gallery {
   display: flex;
   gap: 32px;
   align-items: flex-end;
@@ -654,49 +1108,8 @@ html, body {
 }
 
 
-/* -------------------------------------------------------------------
-   IDLE STATE — Before any patriot is summoned
-   ------------------------------------------------------------------- */
-.hologram-idle {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 1;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
-  animation: sigil-pulse 4s ease-in-out infinite;
-}
-
-.hologram-idle.hidden {
-  opacity: 0;
-}
-
-.hologram-idle-sigil {
-  font-size: 56px;
-  color: var(--gold);
-  text-shadow: 0 0 40px rgba(201, 165, 78, 0.3);
-  opacity: 0.4;
-}
-
-.hologram-idle-text {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--ink-light);
-  margin-top: 16px;
-  text-transform: uppercase;
-}
-
-
-/* -------------------------------------------------------------------
-   PATRIOT CARD — Full container (frame + nameplate + glow)
-   ------------------------------------------------------------------- */
-.patriot-card,
-.hologram-card {
+/* --- Patriot Card --- */
+.patriot-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -712,38 +1125,27 @@ html, body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Idle: dimmed, desaturated --- */
-.patriot-card.idle,
-.hologram-card:not(.active):not(.speaking):not(.materializing) {
+.patriot-card.idle {
   filter: saturate(0.3) brightness(0.5);
 }
 
-/* --- Active: warm glow, visible --- */
-.patriot-card.active,
-.hologram-card.active {
+.patriot-card.active {
   filter: saturate(0.85) brightness(0.9);
 }
 
-/* --- Speaking: full brightness, warmer glow --- */
-.patriot-card.speaking,
-.hologram-card.speaking {
+.patriot-card.speaking {
   filter: saturate(1) brightness(1.05);
 }
 
 
-/* -------------------------------------------------------------------
-   PATRIOT FRAME — Colonial Gilt Frame
-   ------------------------------------------------------------------- */
-.patriot-frame,
-.hologram-frame {
+/* --- Patriot Frame --- */
+.patriot-frame {
   position: relative;
   width: 100%;
   max-width: 200px;
   aspect-ratio: 5 / 7;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.7);
-
-  /* Triple gilt frame: gold / dark / gold */
   border: 3px solid var(--gold-dim);
   outline: 2px solid var(--ink);
   outline-offset: 2px;
@@ -751,13 +1153,10 @@ html, body {
     inset 0 0 0 2px var(--ink-medium),
     inset 0 0 0 4px var(--gold-dim),
     0 4px 16px rgba(0, 0, 0, 0.4);
-
   transition: box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-/* Speaking: frame glows warmer, golden light */
-.patriot-card.speaking .patriot-frame,
-.hologram-card.speaking .hologram-frame {
+.patriot-card.speaking .patriot-frame {
   border-color: var(--gold-bright);
   box-shadow:
     inset 0 0 0 2px var(--ink-medium),
@@ -767,9 +1166,7 @@ html, body {
     0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Active: subtle warm shadow */
-.patriot-card.active .patriot-frame,
-.hologram-card.active .hologram-frame {
+.patriot-card.active .patriot-frame {
   border-color: var(--gold-dim);
   box-shadow:
     inset 0 0 0 2px var(--ink-medium),
@@ -779,11 +1176,8 @@ html, body {
 }
 
 
-/* -------------------------------------------------------------------
-   PATRIOT PORTRAIT — The image inside the frame
-   ------------------------------------------------------------------- */
-.patriot-portrait,
-.hologram-base-img {
+/* --- Patriot Portrait --- */
+.patriot-portrait {
   display: block;
   width: 100%;
   height: 100%;
@@ -793,20 +1187,16 @@ html, body {
   transition: opacity 1s ease, filter 0.6s ease;
 }
 
-.hologram-frame.active .hologram-base-img,
 .patriot-card.active .patriot-portrait {
   opacity: 0.7;
   filter: saturate(0.6) brightness(0.75) sepia(0.15);
 }
 
-.patriot-card.speaking .patriot-portrait,
-.hologram-card.speaking .hologram-base-img {
+.patriot-card.speaking .patriot-portrait {
   opacity: 1;
   filter: saturate(0.85) brightness(1) sepia(0.1);
 }
 
-/* Edge / Etching overlay */
-.hologram-edge-img,
 .patriot-etching {
   position: absolute;
   inset: 0;
@@ -818,7 +1208,6 @@ html, body {
   transition: opacity 1s ease;
 }
 
-.hologram-frame.active .hologram-edge-img,
 .patriot-card.active .patriot-etching {
   opacity: 0.5;
   animation: holoEdgePulse 3.5s ease-in-out infinite;
@@ -833,8 +1222,6 @@ html, body {
   50%      { opacity: 0.7; filter: brightness(1.15); }
 }
 
-/* Scan lines (subtle, like aged print grain) */
-.hologram-scanlines,
 .patriot-scanlines {
   position: absolute;
   inset: 0;
@@ -849,20 +1236,6 @@ html, body {
   z-index: 5;
 }
 
-/* Noise canvas */
-.hologram-noise {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 6;
-  mix-blend-mode: multiply;
-}
-
-/* Flicker overlay (candlelight flicker) */
-.hologram-flicker,
 .patriot-candlelight {
   position: absolute;
   inset: 0;
@@ -886,11 +1259,8 @@ html, body {
 }
 
 
-/* -------------------------------------------------------------------
-   PATRIOT NAMEPLATE — Engraved name below frame
-   ------------------------------------------------------------------- */
-.patriot-nameplate,
-.hologram-nameplate {
+/* --- Patriot Nameplate --- */
+.patriot-nameplate {
   margin-top: 10px;
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -900,15 +1270,12 @@ html, body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 4px 16px;
-
-  /* Engraved brass nameplate */
   background: linear-gradient(to bottom, var(--ink-medium), var(--ink));
   border: 1px solid var(--gold-dim);
   border-top: none;
 }
 
-.patriot-card.speaking .patriot-nameplate,
-.hologram-card.speaking .hologram-nameplate {
+.patriot-card.speaking .patriot-nameplate {
   color: var(--gold-bright);
   text-shadow:
     0 0 15px rgba(201, 165, 78, 0.5),
@@ -917,11 +1284,8 @@ html, body {
 }
 
 
-/* -------------------------------------------------------------------
-   PATRIOT GLOW — Candlelight from below
-   ------------------------------------------------------------------- */
-.patriot-glow,
-.hologram-base-light {
+/* --- Patriot Glow --- */
+.patriot-glow {
   width: 130%;
   height: 18px;
   background: radial-gradient(
@@ -941,8 +1305,7 @@ html, body {
   85%      { opacity: 0.95; }
 }
 
-.patriot-card.speaking .patriot-glow,
-.hologram-card.speaking .hologram-base-light {
+.patriot-card.speaking .patriot-glow {
   height: 30px;
   background: radial-gradient(
     ellipse,
@@ -951,69 +1314,8 @@ html, body {
   );
 }
 
-/* Speaking edge animation */
-.hologram-card.speaking .hologram-edge-img {
-  animation: holoSpeakPulse 0.7s ease-in-out infinite !important;
-}
 
-@keyframes holoSpeakPulse {
-  0%, 100% { opacity: 0.6; filter: brightness(1); }
-  50%      { opacity: 1; filter: brightness(1.3); }
-}
-
-
-/* -------------------------------------------------------------------
-   MATERIALIZATION / DEMATERIALIZATION
-   ------------------------------------------------------------------- */
-.hologram-frame.materializing .hologram-base-img,
-.hologram-frame.materializing .hologram-edge-img {
-  opacity: 1;
-}
-
-.hologram-frame.materializing {
-  animation: holoMaterialize 2.5s ease-out forwards;
-}
-
-@keyframes holoMaterialize {
-  0%   { clip-path: inset(100% 0 0 0); filter: brightness(2.5) saturate(0); }
-  30%  { filter: brightness(1.8) saturate(0.3); }
-  70%  { filter: brightness(1.2) saturate(0.7); }
-  100% { clip-path: inset(0); filter: brightness(1) saturate(1); }
-}
-
-.hologram-frame.dematerializing {
-  animation: holoDematerialize 1.5s ease-in forwards;
-}
-
-@keyframes holoDematerialize {
-  0%   { clip-path: inset(0); filter: brightness(1); opacity: 1; }
-  40%  { filter: brightness(2); }
-  100% { clip-path: inset(0 0 100% 0); filter: brightness(3); opacity: 0; }
-}
-
-/* Loading shimmer */
-.hologram-frame.loading::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 30%,
-    rgba(201, 165, 78, 0.06) 50%,
-    transparent 70%
-  );
-  animation: holoLoadShimmer 1.5s ease-in-out infinite;
-}
-
-@keyframes holoLoadShimmer {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(100%); }
-}
-
-
-/* -------------------------------------------------------------------
-   SUMMONING EFFECTS
-   ------------------------------------------------------------------- */
+/* --- Summoning Effects --- */
 #chamber-screen.summoning {
   animation: chamberShake 0.5s ease-out;
 }
@@ -1031,7 +1333,6 @@ html, body {
   90%      { transform: translate(-1px, 0px); }
 }
 
-/* Golden warm summon flash (not white) */
 .summon-flash {
   position: fixed;
   inset: 0;
@@ -1053,17 +1354,14 @@ html, body {
 
 
 /* ===================================================================
-   PERSONA BAR — Active Patriot Indicators
+   COMMITTEE BAR
    =================================================================== */
-#persona-bar,
 #committee-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
   min-height: 44px;
-
-  /* Dark parchment strip */
   background:
     var(--parchment-texture),
     linear-gradient(to bottom, var(--parchment-deep), var(--parchment-dark));
@@ -1077,7 +1375,6 @@ html, body {
   flex-wrap: wrap;
 }
 
-/* --- Persona Badge: colonial tag with ornamental border --- */
 .persona-badge {
   display: inline-flex;
   align-items: center;
@@ -1090,7 +1387,6 @@ html, body {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid var(--ink-light);
-  border-radius: 0;
   animation: badge-appear 0.4s ease forwards;
 }
 
@@ -1118,8 +1414,6 @@ html, body {
   box-shadow: 0 0 10px rgba(201, 165, 78, 0.2);
 }
 
-
-/* --- Chamber Controls --- */
 #chamber-controls {
   display: flex;
   gap: var(--space-sm);
@@ -1173,7 +1467,7 @@ html, body {
 
 
 /* ===================================================================
-   SETTINGS PANEL — Parchment Overlay
+   SETTINGS PANEL
    =================================================================== */
 #settings-panel {
   position: absolute;
@@ -1184,8 +1478,6 @@ html, body {
   z-index: 100;
   padding: var(--space-xl);
   overflow-y: auto;
-
-  /* Parchment overlay */
   background:
     var(--parchment-texture),
     var(--parchment-bg);
@@ -1198,8 +1490,7 @@ html, body {
   display: none;
 }
 
-.settings-title,
-.settings-inner h3 {
+.settings-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
   letter-spacing: 0.12em;
@@ -1224,7 +1515,6 @@ html, body {
   gap: var(--space-sm);
 }
 
-/* Settings-specific overrides for inputs on parchment */
 #settings-panel .binding-label {
   color: var(--ink-light);
 }
@@ -1245,35 +1535,14 @@ html, body {
   background: rgba(0, 0, 0, 0.05);
 }
 
-.settings-range {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 4px;
-  background: var(--parchment-deep);
-  border: 1px solid var(--ink-light);
-  border-radius: 0;
-  outline: none;
-}
-
-.settings-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  background: var(--gold);
-  border: 1px solid var(--ink-medium);
-  border-radius: 0;
-  cursor: pointer;
-}
-
 
 /* ===================================================================
-   DIALOGUE AREA — Colonial Broadsheet / Newspaper Column
+   DIALOGUE AREA
    =================================================================== */
 #dialogue-container {
   flex: 1;
   overflow: hidden;
   position: relative;
-  /* Warm dark wood background for the dialogue area */
   background:
     radial-gradient(ellipse at center, rgba(255, 200, 100, 0.02) 0%, transparent 60%),
     var(--wood-dark);
@@ -1295,9 +1564,7 @@ html, body {
 }
 
 
-/* ===================================================================
-   MESSAGES
-   =================================================================== */
+/* --- Messages --- */
 .message {
   animation: message-appear 0.4s ease forwards;
   opacity: 0;
@@ -1306,11 +1573,6 @@ html, body {
 @keyframes message-appear {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Persona Messages: typeset broadsheet style --- */
-.message-persona {
-  padding-left: 0;
 }
 
 .message-persona .message-header {
@@ -1360,7 +1622,6 @@ html, body {
   background: rgba(201, 165, 78, 0.03);
 }
 
-/* --- Seeker Messages: right-aligned darker bubble --- */
 .message-seeker {
   text-align: right;
 }
@@ -1377,7 +1638,6 @@ html, body {
   line-height: 1.7;
 }
 
-/* --- System Messages: centered italic with ornamental separators --- */
 .message-system {
   text-align: center;
 }
@@ -1390,7 +1650,6 @@ html, body {
   letter-spacing: 0.03em;
 }
 
-/* Ornamental dashes around system text */
 .message-system .message-body::before {
   content: '--- ';
   color: var(--gold-dim);
@@ -1403,7 +1662,6 @@ html, body {
   letter-spacing: 0.2em;
 }
 
-/* --- Speaker Header (symposium mode) --- */
 .speaker-header {
   display: block;
   font-family: var(--font-display);
@@ -1422,7 +1680,6 @@ html, body {
   margin-top: 0;
 }
 
-/* --- Streaming Cursor: quill-pen blink --- */
 .streaming-cursor {
   display: inline-block;
   width: 2px;
@@ -1441,13 +1698,11 @@ html, body {
 
 
 /* ===================================================================
-   INPUT AREA — Parchment with Quill Styling
+   INPUT AREA
    =================================================================== */
 #input-area {
   padding: var(--space-md) var(--space-xl) var(--space-lg);
   border-top: 3px double var(--ink-medium);
-
-  /* Parchment input strip */
   background:
     var(--parchment-texture),
     linear-gradient(to bottom, var(--parchment-dark), var(--parchment-deep));
@@ -1486,7 +1741,6 @@ html, body {
   font-style: italic;
 }
 
-/* --- Send Button: styled as a seal/stamp --- */
 #send-btn {
   width: 46px;
   height: 46px;
@@ -1497,8 +1751,6 @@ html, body {
   flex-shrink: 0;
   transition: all 0.3s;
   font-size: 1rem;
-
-  /* Wax seal appearance */
   background: radial-gradient(circle, #8b3030 30%, #6b2020 100%);
   color: var(--gold);
   border: 2px solid var(--gold-dim);
@@ -1527,7 +1779,6 @@ html, body {
   transform: scale(0.93);
 }
 
-/* --- Input Hint --- */
 #input-hint {
   max-width: 780px;
   margin: var(--space-sm) auto 0;
@@ -1559,42 +1810,66 @@ html, body {
 
 
 /* ===================================================================
-   RESPONSIVE — 768px breakpoint
+   RESPONSIVE
    =================================================================== */
 @media (max-width: 768px) {
-  .void-title {
+  .typewriter-line {
+    font-size: 1.2rem;
+  }
+
+  #act-protocol .reveal-line {
+    font-size: 1.1rem;
+  }
+
+  .committee-title {
     font-size: 2rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
   }
 
-  .void-subtitle {
-    font-size: 0.85rem;
+  .committee-subtitle {
+    font-size: 1.4rem;
   }
 
-  .sigil-container {
+  .committee-portraits {
+    gap: 24px;
+  }
+
+  .portrait-reveal {
+    width: 130px;
+  }
+
+  .portrait-frame-cinematic {
     width: 120px;
-    height: 120px;
+    height: 168px;
   }
 
-  #portrait-stage,
-  #hologram-stage {
+  .doctrine-quote {
+    font-size: 1.4rem;
+  }
+
+  .summon-btn {
+    padding: 18px 32px;
+  }
+
+  .summon-btn-main {
+    font-size: 0.9rem;
+  }
+
+  #portrait-stage {
     min-height: 200px;
     max-height: 40vh;
   }
 
-  .portrait-gallery,
-  .hologram-gallery {
+  .portrait-gallery {
     gap: 16px;
     padding: 12px 12px 16px;
   }
 
-  .patriot-frame,
-  .hologram-frame {
+  .patriot-frame {
     max-width: 130px;
   }
 
-  .patriot-nameplate,
-  .hologram-nameplate {
+  .patriot-nameplate {
     font-size: 0.58rem;
     padding: 3px 10px;
   }
@@ -1602,10 +1877,6 @@ html, body {
   .binding-parchment {
     padding: 30px 25px;
     margin: 0 12px;
-  }
-
-  .binding-title {
-    font-size: 1.4rem;
   }
 
   #dialogue-scroll {
@@ -1624,8 +1895,7 @@ html, body {
     width: 100%;
   }
 
-  #persona-bar,
-#committee-bar {
+  #committee-bar {
     flex-wrap: wrap;
     gap: var(--space-xs);
   }
@@ -1637,81 +1907,72 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  .portrait-gallery,
-  .hologram-gallery {
+  .committee-portraits {
+    gap: 16px;
+  }
+
+  .portrait-reveal {
+    width: 100px;
+  }
+
+  .portrait-frame-cinematic {
+    width: 90px;
+    height: 126px;
+  }
+
+  .portrait-initial {
+    font-size: 2.5rem;
+  }
+
+  .portrait-name {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  .portrait-epithet {
+    font-size: 0.65rem;
+  }
+
+  .portrait-gallery {
     gap: 10px;
     padding: 8px 8px 12px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .patriot-frame,
-  .hologram-frame {
+  .patriot-frame {
     max-width: 100px;
   }
 
-  #portrait-stage,
-  #hologram-stage {
+  #portrait-stage {
     max-height: 55vh;
   }
 
-  .void-title {
-    font-size: 1.6rem;
-    letter-spacing: 0.1em;
+  .typewriter-line {
+    font-size: 1rem;
+  }
+
+  .committee-title {
+    font-size: 1.5rem;
+  }
+
+  .committee-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .summon-btn {
+    padding: 16px 24px;
+  }
+
+  .summon-btn-prefix {
+    font-size: 0.7rem;
+  }
+
+  .summon-btn-main {
+    font-size: 0.8rem;
   }
 }
 
-
-/* ===================================================================
-   ADDITIONAL ANIMATIONS
-   =================================================================== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(201, 165, 78, 0.1); }
-  50%      { box-shadow: 0 0 25px rgba(201, 165, 78, 0.25); }
-}
-
-/* --- Drop Cap utility (for use in JS-rendered content) --- */
-.drop-cap {
-  float: left;
-  font-size: 48px;
-  line-height: 0.8;
-  padding-right: 8px;
-  padding-top: 4px;
-  font-family: var(--font-display);
-  color: var(--ink);
-}
-
-/* --- Ornament utility --- */
-.ornament {
-  text-align: center;
-  font-size: 20px;
-  letter-spacing: 10px;
-  color: var(--gold-dim);
-}
-
-.ornament-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: 16px 0;
-}
-
-.ornament-line::before,
-.ornament-line::after {
-  content: '';
-  flex: 1;
-  max-width: 120px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--ink-medium), transparent);
-}
-
-/* --- Print (for parchment exports) --- */
 @media print {
   body {
     background: none;
@@ -1720,5 +1981,8 @@ html, body {
     position: static;
     display: block !important;
     opacity: 1 !important;
+  }
+  #cinematic-intro {
+    display: none;
   }
 }
