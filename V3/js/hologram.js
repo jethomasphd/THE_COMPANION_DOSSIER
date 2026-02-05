@@ -269,7 +269,7 @@ COMPANION.Hologram = (function () {
     // Geometry
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(currentPositions, 3));
-    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
     // Material
     const material = new THREE.PointsMaterial({
