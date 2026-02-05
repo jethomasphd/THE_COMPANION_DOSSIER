@@ -28,7 +28,6 @@ COMPANION.UI = (function () {
       apiKeyInput: document.getElementById('api-key-input'),
       modelSelect: document.getElementById('model-select'),
       saveKeyBtn: document.getElementById('save-key-btn'),
-      elevenlabsKeyInput: document.getElementById('elevenlabs-key-input'),
 
       // Chamber
       personaBadges: document.getElementById('persona-badges'),
@@ -39,11 +38,9 @@ COMPANION.UI = (function () {
       inputHint: document.getElementById('input-hint'),
 
       // Controls
-      voiceToggle: document.getElementById('voice-toggle'),
       settingsToggle: document.getElementById('settings-toggle'),
       settingsPanel: document.getElementById('settings-panel'),
       settingsModel: document.getElementById('settings-model'),
-      settingsVoiceRate: document.getElementById('settings-voice-rate'),
       changeKeyBtn: document.getElementById('change-key-btn'),
       releaseAllBtn: document.getElementById('release-all-btn'),
       closeSettings: document.getElementById('close-settings')
@@ -242,13 +239,6 @@ COMPANION.UI = (function () {
   }
 
 
-  // ── Voice Toggle ──
-
-  function setVoiceToggleState(isActive) {
-    if (elements.voiceToggle) elements.voiceToggle.classList.toggle('active', isActive);
-  }
-
-
   // ── Utilities ──
 
   function scrollToBottom() {
@@ -339,7 +329,6 @@ COMPANION.UI = (function () {
     updateHint: updateHint,
     toggleSettings: toggleSettings,
     hideSettings: hideSettings,
-    setVoiceToggleState: setVoiceToggleState,
     autoResizeInput: autoResizeInput,
     elements: function () { return elements; }
   };
