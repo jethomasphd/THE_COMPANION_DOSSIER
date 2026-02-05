@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    COMPANION V3 — Application Orchestration
-   Binds all modules together: Protocol, API, Hologram, Voice, UI.
-   Manages session state and the ritual flow.
+   Binds all modules: Protocol, API, Hologram, Voice, UI.
+   Manages session state, ambient audio, and ritual flow.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -9,17 +9,16 @@ var COMPANION = window.COMPANION || {};
 COMPANION.App = (function () {
 
   // ── Session State ──
-  let activePersonas = [];  // [{ name, color, category }]
-  let isStreaming = false;
-  let currentStreamMessage = null;
-  let chamberInitialized = false;
+  var activePersonas = [];
+  var isStreaming = false;
+  var currentStreamMessage = null;
+  var chamberInitialized = false;
+  var ambientAudioCtx = null;
+  var ambientGain = null;
 
-
-  // ── Safe event binding helper ──
+  // ── Safe event binding ──
   function on(el, event, handler) {
-    if (el) {
-      el.addEventListener(event, handler);
-    }
+    if (el) el.addEventListener(event, handler);
   }
 
 
@@ -27,10 +26,8 @@ COMPANION.App = (function () {
 
   function init() {
     try {
-      // Initialize UI
       COMPANION.UI.init();
 
-      // Initialize Voice
       COMPANION.Voice.init({
         onSpeakingStart: function (personaName) {
           COMPANION.Hologram.setSpeaking(personaName, true);
@@ -42,19 +39,20 @@ COMPANION.App = (function () {
         }
       });
 
-      // Bind events
       bindEvents();
-
-      // Always start at the void
       COMPANION.UI.showScreen('void');
 
-      // Set initial model in settings
       var els = COMPANION.UI.elements();
       if (els.settingsModel) {
         els.settingsModel.value = COMPANION.API.getModel();
       }
       if (els.modelSelect) {
         els.modelSelect.value = COMPANION.API.getModel();
+      }
+
+      // Restore ElevenLabs key if present
+      if (els.elevenlabsKeyInput && COMPANION.Voice.hasElevenLabsKey()) {
+        els.elevenlabsKeyInput.value = COMPANION.Voice.getElevenLabsKey();
       }
 
       COMPANION.UI.updateHint(0);
@@ -78,28 +76,13 @@ COMPANION.App = (function () {
       }
     });
 
-    // Config → Save key
-    on(els.saveKeyBtn, 'click', function () {
-      var key = els.apiKeyInput.value.trim();
-      if (!key) return;
-      COMPANION.API.setApiKey(key);
-      if (els.modelSelect) {
-        COMPANION.API.setModel(els.modelSelect.value);
-      }
-      enterChamber();
-    });
+    // Config → Save keys
+    on(els.saveKeyBtn, 'click', saveKeysAndEnter);
 
-    // Also allow Enter key in the API key input
     on(els.apiKeyInput, 'keydown', function (e) {
       if (e.key === 'Enter') {
         e.preventDefault();
-        var key = els.apiKeyInput.value.trim();
-        if (!key) return;
-        COMPANION.API.setApiKey(key);
-        if (els.modelSelect) {
-          COMPANION.API.setModel(els.modelSelect.value);
-        }
-        enterChamber();
+        saveKeysAndEnter();
       }
     });
 
@@ -148,28 +131,129 @@ COMPANION.App = (function () {
   }
 
 
+  // ── Save Keys ──
+
+  function saveKeysAndEnter() {
+    var els = COMPANION.UI.elements();
+    var key = els.apiKeyInput ? els.apiKeyInput.value.trim() : '';
+    if (!key) return;
+
+    COMPANION.API.setApiKey(key);
+
+    if (els.modelSelect) {
+      COMPANION.API.setModel(els.modelSelect.value);
+    }
+
+    // Save ElevenLabs key if provided
+    if (els.elevenlabsKeyInput) {
+      var elKey = els.elevenlabsKeyInput.value.trim();
+      COMPANION.Voice.setElevenLabsKey(elKey);
+    }
+
+    enterChamber();
+  }
+
+
   // ── Chamber Entry ──
 
   function enterChamber() {
     COMPANION.UI.showScreen('chamber');
 
-    // Initialize hologram renderer (only once)
     if (!chamberInitialized) {
       try {
-        var holoContainer = document.getElementById('hologram-container');
-        if (holoContainer) {
-          COMPANION.Hologram.init(holoContainer);
+        var holoStage = document.getElementById('hologram-stage');
+        if (holoStage) {
+          COMPANION.Hologram.init(holoStage);
         }
         chamberInitialized = true;
       } catch (e) {
         console.error('Hologram init error:', e);
-        chamberInitialized = true; // Don't retry on error
+        chamberInitialized = true;
       }
     }
 
-    // Focus input
+    // Start ambient audio on first user interaction
+    startAmbientAudio();
+
     setTimeout(function () {
       COMPANION.UI.setInputEnabled(true);
+    }, 500);
+  }
+
+
+  // ── Ambient Audio (Web Audio API) ──
+
+  function startAmbientAudio() {
+    if (ambientAudioCtx) return;
+
+    try {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+
+      ambientAudioCtx = new AudioContext();
+
+      // Low drone
+      var osc1 = ambientAudioCtx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.value = 42;
+
+      var osc2 = ambientAudioCtx.createOscillator();
+      osc2.type = 'sine';
+      osc2.frequency.value = 63;
+
+      // LFO modulation
+      var lfo = ambientAudioCtx.createOscillator();
+      lfo.frequency.value = 0.06;
+      var lfoGain = ambientAudioCtx.createGain();
+      lfoGain.gain.value = 1.5;
+      lfo.connect(lfoGain);
+      lfoGain.connect(osc1.frequency);
+
+      // Master gain
+      ambientGain = ambientAudioCtx.createGain();
+      ambientGain.gain.value = 0;
+
+      var gain1 = ambientAudioCtx.createGain();
+      gain1.gain.value = 0.018;
+      var gain2 = ambientAudioCtx.createGain();
+      gain2.gain.value = 0.008;
+
+      osc1.connect(gain1);
+      osc2.connect(gain2);
+      gain1.connect(ambientGain);
+      gain2.connect(ambientGain);
+      ambientGain.connect(ambientAudioCtx.destination);
+
+      osc1.start();
+      osc2.start();
+      lfo.start();
+
+      // Fade in slowly
+      ambientGain.gain.linearRampToValueAtTime(1, ambientAudioCtx.currentTime + 3);
+    } catch (e) {
+      // Audio not available, that's OK
+    }
+  }
+
+
+  // ── Summon Effects ──
+
+  function triggerSummonEffect() {
+    // Screen shake
+    var chamber = document.getElementById('chamber-screen');
+    if (chamber) {
+      chamber.classList.add('summoning');
+      setTimeout(function () {
+        chamber.classList.remove('summoning');
+      }, 500);
+    }
+
+    // Flash overlay
+    var flash = document.createElement('div');
+    flash.className = 'summon-flash';
+    document.body.appendChild(flash);
+    setTimeout(function () {
+      flash.remove();
     }, 500);
   }
 
@@ -182,18 +266,15 @@ COMPANION.App = (function () {
     var text = COMPANION.UI.getInputText();
     if (!text) return;
 
-    // Add seeker message to UI
     COMPANION.UI.addSeekerMessage(text);
     COMPANION.UI.clearInput();
     COMPANION.UI.setInputEnabled(false);
 
-    // Check for incantations
     var incantation = COMPANION.Protocol.parseIncantation(text);
 
     if (incantation) {
       handleIncantation(incantation, text);
     } else {
-      // Regular message
       sendToAPI(text);
     }
   }
@@ -243,10 +324,8 @@ COMPANION.App = (function () {
   // ── Persona Summoning ──
 
   function summonPersona(name, contextText) {
-    // Determine category and color
     var catInfo = COMPANION.Protocol.getPersonaCategory(name);
 
-    // Check if already summoned
     var existing = activePersonas.find(function (p) {
       return p.name.toLowerCase() === name.toLowerCase();
     });
@@ -256,7 +335,6 @@ COMPANION.App = (function () {
       return;
     }
 
-    // Add to active personas
     var persona = {
       name: name,
       color: catInfo.color,
@@ -264,22 +342,22 @@ COMPANION.App = (function () {
     };
     activePersonas.push(persona);
 
-    // Visual: summon hologram
+    // Visual effects
+    triggerSummonEffect();
+
+    // Hologram
     COMPANION.Hologram.summon(name, catInfo.color);
 
-    // UI: add badge
+    // Badge
     COMPANION.UI.addPersonaBadge(name, catInfo.color, function (dismissName) {
       releasePersona(dismissName);
       COMPANION.UI.addSystemMessage(dismissName + ' has departed.');
     });
 
-    // Update hint
     COMPANION.UI.updateHint(activePersonas.length);
-
-    // System message
     COMPANION.UI.addSystemMessage('Summoning ' + name + '...');
 
-    // Send to API for the persona's arrival response
+    // Send to API
     sendToAPI(contextText);
   }
 
@@ -292,10 +370,9 @@ COMPANION.App = (function () {
     });
 
     if (index === -1) {
-      // Try fuzzy match
       index = activePersonas.findIndex(function (p) {
-        return p.name.toLowerCase().includes(name.toLowerCase()) ||
-               name.toLowerCase().includes(p.name.toLowerCase());
+        return p.name.toLowerCase().indexOf(name.toLowerCase()) !== -1 ||
+               name.toLowerCase().indexOf(p.name.toLowerCase()) !== -1;
       });
     }
 
@@ -327,7 +404,6 @@ COMPANION.App = (function () {
   function sendToAPI(userText) {
     isStreaming = true;
 
-    // Determine which persona name/color to use for the message
     var displayName = 'The Chamber';
     var displayColor = '#c9a54e';
 
@@ -339,15 +415,10 @@ COMPANION.App = (function () {
       displayColor = '#c9a54e';
     }
 
-    // Create streaming message container
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
-    // Build system prompt with active persona names
     var personaNames = activePersonas.map(function (p) { return p.name; });
     var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames);
-
-    // Track response for voice
-    var responseChunks = [];
 
     COMPANION.API.sendMessage(
       userText,
@@ -356,9 +427,7 @@ COMPANION.App = (function () {
       // onChunk
       function (chunk) {
         currentStreamMessage.update(chunk);
-        responseChunks.push(chunk);
 
-        // Set speaking hologram for single persona
         if (activePersonas.length === 1) {
           COMPANION.Hologram.setSpeaking(activePersonas[0].name, true);
         }
@@ -372,7 +441,6 @@ COMPANION.App = (function () {
         COMPANION.UI.setInputEnabled(true);
         COMPANION.Hologram.clearSpeaking();
 
-        // Voice synthesis
         if (fullText && COMPANION.Voice.isEnabled()) {
           if (activePersonas.length === 1) {
             COMPANION.Voice.speak(
@@ -381,7 +449,6 @@ COMPANION.App = (function () {
               activePersonas[0].name
             );
           } else if (activePersonas.length > 1) {
-            // For symposium, speak the whole thing with default voice
             COMPANION.Voice.speak(fullText, 'philosophical', 'Symposium');
           }
         }
@@ -402,10 +469,7 @@ COMPANION.App = (function () {
   }
 
 
-  // ── Public API ──
-  return {
-    init: init
-  };
+  return { init: init };
 
 })();
 

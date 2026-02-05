@@ -1,595 +1,749 @@
 /* ═══════════════════════════════════════════════════════════════
    COMPANION V3 — Holographic Visualization Engine
-   Three.js particle-based humanoid hologram that materializes
-   when personas are summoned.
+   Wikipedia portrait-based holographic rendering system.
+   Uses Canvas 2D for image processing and CSS for animation.
+   No Three.js dependency.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
 
 COMPANION.Hologram = (function () {
 
-  // ── Configuration ──
-  const PARTICLE_COUNT = 4000;
-  const MATERIALIZE_DURATION = 2.5;  // seconds
-  const DEMATERIALIZE_DURATION = 1.5;
-  const IDLE_FLOAT_SPEED = 0.3;
-  const IDLE_FLOAT_AMOUNT = 0.02;
-  const SPEAK_JITTER = 0.015;
-  const BREATHE_SPEED = 1.2;
-  const BREATHE_AMOUNT = 0.008;
+  // ── State ──
+  var container = null;
+  var gallery = null;
+  var idleEl = null;
+  var personas = {};       // name -> { card, frame, noiseCanvas, noiseCtx, phase }
+  var noiseInterval = null;
+  var styleInjected = false;
+  var isInitialized = false;
 
-  let scene, camera, renderer, clock;
-  let container;
-  let personas = {};  // name -> persona object
-  let animationFrameId;
-  let isInitialized = false;
+  // ── Constants ──
+  var IMG_MAX_W = 200;
+  var IMG_MAX_H = 300;
+  var IMG_DEFAULT_W = 200;
+  var IMG_DEFAULT_H = 280;
+  var NOISE_INTERVAL_MS = 120;
+  var MATERIALIZE_MS = 2500;
+  var DEMATERIALIZE_MS = 1500;
+  var NOISE_DENSITY = 0.03;
 
-  // ── Humanoid Point Cloud Generation ──
+  // Styles are handled by companion.css — no injection needed
+  function injectStyles() {}
 
-  /**
-   * Generate points distributed on a humanoid silhouette.
-   * Returns Float32Array of [x, y, z, ...] positions.
-   */
-  function generateHumanoidPoints(count) {
-    const positions = new Float32Array(count * 3);
 
-    // Body part probabilities and geometry
-    const parts = [
-      { name: 'head',       weight: 0.14, gen: genHead },
-      { name: 'neck',       weight: 0.03, gen: genNeck },
-      { name: 'torso',      weight: 0.28, gen: genTorso },
-      { name: 'leftArm',    weight: 0.11, gen: genLeftArm },
-      { name: 'rightArm',   weight: 0.11, gen: genRightArm },
-      { name: 'leftLeg',    weight: 0.16, gen: genLeftLeg },
-      { name: 'rightLeg',   weight: 0.16, gen: genRightLeg },
-      { name: 'aura',       weight: 0.01, gen: genAura }
-    ];
+  // ═══════════════════════════════════════════════════════════════
+  //  Utility Functions
+  // ═══════════════════════════════════════════════════════════════
 
-    // Build cumulative weights
-    let cumulative = 0;
-    const ranges = parts.map(p => {
-      cumulative += p.weight;
-      return { ...p, cumMax: cumulative };
-    });
-
-    for (let i = 0; i < count; i++) {
-      const r = Math.random();
-      let point = [0, 0, 0];
-
-      for (const range of ranges) {
-        if (r <= range.cumMax) {
-          point = range.gen();
-          break;
-        }
-      }
-
-      positions[i * 3]     = point[0];
-      positions[i * 3 + 1] = point[1];
-      positions[i * 3 + 2] = point[2];
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result) {
+      return { r: 201, g: 165, b: 78 }; // fallback gold
     }
-
-    return positions;
-  }
-
-  // Body part generators - return [x, y, z]
-  // Figure centered at origin, head at ~y=1.7, feet at ~y=0
-
-  function genHead() {
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
-    const r = 0.11 * (0.85 + Math.random() * 0.15);
-    return [
-      r * Math.sin(phi) * Math.cos(theta),
-      1.68 + r * Math.cos(phi),
-      r * Math.sin(phi) * Math.sin(theta)
-    ];
-  }
-
-  function genNeck() {
-    const theta = Math.random() * Math.PI * 2;
-    const r = 0.04 * (0.8 + Math.random() * 0.2);
-    const y = 1.52 + Math.random() * 0.06;
-    return [r * Math.cos(theta), y, r * Math.sin(theta)];
-  }
-
-  function genTorso() {
-    const y = 1.0 + Math.random() * 0.52;
-    const t = (y - 1.0) / 0.52; // 0 at waist, 1 at shoulders
-    const widthX = 0.12 + t * 0.1; // wider at shoulders
-    const widthZ = 0.08 + t * 0.04;
-    const x = (Math.random() - 0.5) * 2 * widthX;
-    const z = (Math.random() - 0.5) * 2 * widthZ;
-    // Surface bias
-    const dist = Math.sqrt((x / widthX) ** 2 + (z / widthZ) ** 2);
-    if (dist < 0.6 && Math.random() > 0.3) {
-      const scale = (0.6 + Math.random() * 0.4) / Math.max(dist, 0.01);
-      return [x * scale, y, z * scale];
-    }
-    return [x, y, z];
-  }
-
-  function genLeftArm() {
-    const t = Math.random();
-    const y = 1.48 - t * 0.55;
-    const baseX = -(0.22 + t * 0.08);
-    const r = 0.035 * (0.8 + Math.random() * 0.2);
-    const theta = Math.random() * Math.PI * 2;
-    return [baseX + r * Math.cos(theta), y, r * Math.sin(theta)];
-  }
-
-  function genRightArm() {
-    const t = Math.random();
-    const y = 1.48 - t * 0.55;
-    const baseX = 0.22 + t * 0.08;
-    const r = 0.035 * (0.8 + Math.random() * 0.2);
-    const theta = Math.random() * Math.PI * 2;
-    return [baseX + r * Math.cos(theta), y, r * Math.sin(theta)];
-  }
-
-  function genLeftLeg() {
-    const t = Math.random();
-    const y = 1.0 - t * 0.95;
-    const baseX = -(0.08 + (1 - t) * 0.02);
-    const r = 0.045 * (0.8 + Math.random() * 0.2);
-    const theta = Math.random() * Math.PI * 2;
-    return [baseX + r * Math.cos(theta), y + 0.05, r * Math.sin(theta)];
-  }
-
-  function genRightLeg() {
-    const t = Math.random();
-    const y = 1.0 - t * 0.95;
-    const baseX = 0.08 + (1 - t) * 0.02;
-    const r = 0.045 * (0.8 + Math.random() * 0.2);
-    const theta = Math.random() * Math.PI * 2;
-    return [baseX + r * Math.cos(theta), y + 0.05, r * Math.sin(theta)];
-  }
-
-  function genAura() {
-    // Floating particles around the figure
-    const theta = Math.random() * Math.PI * 2;
-    const y = Math.random() * 1.8;
-    const r = 0.35 + Math.random() * 0.2;
-    return [r * Math.cos(theta), y, r * Math.sin(theta)];
-  }
-
-
-  // ── Scene Setup ──
-
-  function init(containerElement) {
-    if (isInitialized) return;
-    container = containerElement;
-
-    // Scene
-    scene = new THREE.Scene();
-
-    // Camera
-    const aspect = container.clientWidth / container.clientHeight;
-    camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
-    camera.position.set(0, 1.0, 3.0);
-    camera.lookAt(0, 0.9, 0);
-
-    // Renderer
-    renderer = new THREE.WebGLRenderer({
-      canvas: document.getElementById('hologram-canvas'),
-      antialias: true,
-      alpha: true
-    });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
-
-    // Clock
-    clock = new THREE.Clock();
-
-    // Ambient particle field (background atmosphere)
-    createAmbientField();
-
-    // Handle resize
-    window.addEventListener('resize', onResize);
-
-    isInitialized = true;
-
-    // Start render loop
-    animate();
-  }
-
-  function onResize() {
-    if (!container || !camera || !renderer) return;
-    const w = container.clientWidth;
-    const h = container.clientHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-  }
-
-  function createAmbientField() {
-    const count = 300;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-
-    for (let i = 0; i < count; i++) {
-      positions[i * 3]     = (Math.random() - 0.5) * 6;
-      positions[i * 3 + 1] = Math.random() * 3;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 0.008,
-      color: 0xc9a54e,
-      transparent: true,
-      opacity: 0.15,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-
-    const points = new THREE.Points(geometry, material);
-    points.userData.isAmbient = true;
-    scene.add(points);
-  }
-
-
-  // ── Persona Management ──
-
-  /**
-   * Summon a new holographic persona.
-   * @param {string} name - The persona's name.
-   * @param {string} color - Hex color string.
-   */
-  function summon(name, color) {
-    if (personas[name]) return; // Already exists
-
-    const colorObj = new THREE.Color(color);
-    const particleCount = PARTICLE_COUNT;
-
-    // Target positions (humanoid shape)
-    const targetPositions = generateHumanoidPoints(particleCount);
-
-    // Initial positions (scattered randomly)
-    const initialPositions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI;
-      const r = 1.5 + Math.random() * 2;
-      initialPositions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
-      initialPositions[i * 3 + 1] = Math.random() * 3;
-      initialPositions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
-    }
-
-    // Current positions start at initial
-    const currentPositions = new Float32Array(initialPositions);
-
-    // Per-particle sizes (slight variation)
-    const sizes = new Float32Array(particleCount);
-    for (let i = 0; i < particleCount; i++) {
-      sizes[i] = 0.012 + Math.random() * 0.012;
-    }
-
-    // Geometry
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(currentPositions, 3));
-    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-    // Material
-    const material = new THREE.PointsMaterial({
-      size: 0.018,
-      color: colorObj,
-      transparent: true,
-      opacity: 0,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      sizeAttenuation: true
-    });
-
-    const points = new THREE.Points(geometry, material);
-
-    // Offset for multiple personas (side by side)
-    const personaCount = Object.keys(personas).length;
-    const xOffset = getPersonaOffset(personaCount, Object.keys(personas).length + 1);
-
-    // Reposition existing personas
-    repositionPersonas(Object.keys(personas).length + 1);
-
-    points.position.x = xOffset;
-    scene.add(points);
-
-    personas[name] = {
-      points,
-      geometry,
-      material,
-      targetPositions,
-      initialPositions,
-      currentPositions,
-      color: colorObj,
-      state: 'materializing',  // materializing, idle, speaking, dematerializing
-      stateTime: 0,
-      speaking: false,
-      xOffset
+    return {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
     };
   }
 
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(text));
+    return div.innerHTML;
+  }
+
+  function personaCount() {
+    var count = 0;
+    for (var key in personas) {
+      if (personas.hasOwnProperty(key)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Wikipedia Portrait Fetching
+  // ═══════════════════════════════════════════════════════════════
+
+  function fetchPortrait(name) {
+    var slug = name.replace(/\s+/g, '_');
+    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(slug);
+
+    return fetch(url)
+      .then(function (response) {
+        if (!response.ok) return null;
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data) return null;
+        // Prefer thumbnail for faster loading, fall back to original
+        if (data.thumbnail && data.thumbnail.source) {
+          return data.thumbnail.source;
+        }
+        if (data.originalimage && data.originalimage.source) {
+          return data.originalimage.source;
+        }
+        return null;
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Image Loading
+  // ═══════════════════════════════════════════════════════════════
+
+  function loadImage(url) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+
+      img.onload = function () {
+        resolve(img);
+      };
+
+      img.onerror = function () {
+        // Retry without CORS — we may not be able to read pixels,
+        // but we'll catch that later and fall back
+        var img2 = new Image();
+        img2.onload = function () {
+          resolve(img2);
+        };
+        img2.onerror = function () {
+          reject(new Error('Failed to load image: ' + url));
+        };
+        img2.src = url;
+      };
+
+      img.src = url;
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Image Processing — Sobel Edge Detection & Holographic Tint
+  // ═══════════════════════════════════════════════════════════════
+
   /**
-   * Calculate x-offset for persona positioning.
+   * Returns the grayscale luminance at (x, y) from an ImageData buffer.
+   * Clamps coordinates to image bounds.
    */
-  function getPersonaOffset(index, total) {
-    if (total <= 1) return 0;
-    const spacing = Math.min(1.2, 2.4 / total);
-    const totalWidth = (total - 1) * spacing;
-    return -totalWidth / 2 + index * spacing;
+  function grayAt(data, width, x, y, height) {
+    // Clamp
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+    if (x >= width) x = width - 1;
+    if (y >= height) y = height - 1;
+
+    var idx = (y * width + x) * 4;
+    var r = data[idx];
+    var g = data[idx + 1];
+    var b = data[idx + 2];
+    // Standard luminance formula
+    return 0.299 * r + 0.587 * g + 0.114 * b;
   }
 
   /**
-   * Reposition all existing personas when a new one joins or one leaves.
+   * Processes a loaded image into two holographic layers.
+   * Returns { baseDataUrl, edgeDataUrl }
    */
-  function repositionPersonas(newTotal) {
-    const names = Object.keys(personas);
-    names.forEach((name, i) => {
-      const offset = getPersonaOffset(i, newTotal);
-      personas[name].xOffset = offset;
-      // Smooth transition handled in animate()
+  function processImage(img, color, targetWidth, targetHeight) {
+    var rgb = hexToRgb(color);
+
+    // ── Draw source image to canvas ──
+    var srcCanvas = document.createElement('canvas');
+    srcCanvas.width = targetWidth;
+    srcCanvas.height = targetHeight;
+    var srcCtx = srcCanvas.getContext('2d');
+
+    // Center the image in the canvas
+    var scale = Math.min(targetWidth / img.width, targetHeight / img.height);
+    var drawW = img.width * scale;
+    var drawH = img.height * scale;
+    var offsetX = (targetWidth - drawW) / 2;
+    var offsetY = (targetHeight - drawH) / 2;
+
+    srcCtx.fillStyle = '#000000';
+    srcCtx.fillRect(0, 0, targetWidth, targetHeight);
+    srcCtx.drawImage(img, offsetX, offsetY, drawW, drawH);
+
+    var imageData;
+    try {
+      imageData = srcCtx.getImageData(0, 0, targetWidth, targetHeight);
+    } catch (e) {
+      // CORS tainted canvas — return null so caller uses fallback
+      return null;
+    }
+    var srcData = imageData.data;
+
+    // ── Base Layer: desaturated + tinted ──
+    var baseCanvas = document.createElement('canvas');
+    baseCanvas.width = targetWidth;
+    baseCanvas.height = targetHeight;
+    var baseCtx = baseCanvas.getContext('2d');
+    var baseImageData = baseCtx.createImageData(targetWidth, targetHeight);
+    var baseData = baseImageData.data;
+
+    var i, gray;
+    for (i = 0; i < srcData.length; i += 4) {
+      gray = 0.299 * srcData[i] + 0.587 * srcData[i + 1] + 0.114 * srcData[i + 2];
+      baseData[i]     = Math.min(255, gray * 0.4 + rgb.r * 0.15); // R
+      baseData[i + 1] = Math.min(255, gray * 0.4 + rgb.g * 0.15); // G
+      baseData[i + 2] = Math.min(255, gray * 0.4 + rgb.b * 0.15); // B
+      baseData[i + 3] = 180;                                        // A
+    }
+
+    baseCtx.putImageData(baseImageData, 0, 0);
+
+    // ── Edge Layer: Sobel filter, colorized ──
+    var edgeCanvas = document.createElement('canvas');
+    edgeCanvas.width = targetWidth;
+    edgeCanvas.height = targetHeight;
+    var edgeCtx = edgeCanvas.getContext('2d');
+    var edgeImageData = edgeCtx.createImageData(targetWidth, targetHeight);
+    var edgeData = edgeImageData.data;
+
+    var x, y, gx, gy, mag, idx;
+    var w = targetWidth;
+    var h = targetHeight;
+
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        // Sobel 3x3 kernels
+        // Gx = [-1 0 1; -2 0 2; -1 0 1]
+        gx = -grayAt(srcData, w, x - 1, y - 1, h)
+             + grayAt(srcData, w, x + 1, y - 1, h)
+             - 2 * grayAt(srcData, w, x - 1, y, h)
+             + 2 * grayAt(srcData, w, x + 1, y, h)
+             - grayAt(srcData, w, x - 1, y + 1, h)
+             + grayAt(srcData, w, x + 1, y + 1, h);
+
+        // Gy = [-1 -2 -1; 0 0 0; 1 2 1]
+        gy = -grayAt(srcData, w, x - 1, y - 1, h)
+             - 2 * grayAt(srcData, w, x, y - 1, h)
+             - grayAt(srcData, w, x + 1, y - 1, h)
+             + grayAt(srcData, w, x - 1, y + 1, h)
+             + 2 * grayAt(srcData, w, x, y + 1, h)
+             + grayAt(srcData, w, x + 1, y + 1, h);
+
+        mag = Math.min(255, Math.sqrt(gx * gx + gy * gy));
+
+        idx = (y * w + x) * 4;
+        edgeData[idx]     = mag * (rgb.r / 255);
+        edgeData[idx + 1] = mag * (rgb.g / 255);
+        edgeData[idx + 2] = mag * (rgb.b / 255);
+        edgeData[idx + 3] = mag > 20 ? mag * 0.9 : 0;
+      }
+    }
+
+    edgeCtx.putImageData(edgeImageData, 0, 0);
+
+    return {
+      baseDataUrl: baseCanvas.toDataURL(),
+      edgeDataUrl: edgeCanvas.toDataURL()
+    };
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Fallback Image — stylized initial letter when no portrait
+  // ═══════════════════════════════════════════════════════════════
+
+  function createFallbackImage(name, color, width, height) {
+    var rgb = hexToRgb(color);
+    var initial = (name && name.length > 0) ? name.charAt(0).toUpperCase() : '?';
+
+    // ── Base fallback ──
+    var baseCanvas = document.createElement('canvas');
+    baseCanvas.width = width;
+    baseCanvas.height = height;
+    var baseCtx = baseCanvas.getContext('2d');
+
+    // Dark background
+    baseCtx.fillStyle = '#080808';
+    baseCtx.fillRect(0, 0, width, height);
+
+    // Large initial letter
+    var fontSize = Math.min(width, height) * 0.45;
+    baseCtx.font = fontSize + 'px Georgia, "Times New Roman", serif';
+    baseCtx.textAlign = 'center';
+    baseCtx.textBaseline = 'middle';
+    baseCtx.fillStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.4)';
+    baseCtx.fillText(initial, width / 2, height / 2);
+
+    // Circle stroke
+    var radius = Math.min(width, height) * 0.35;
+    baseCtx.beginPath();
+    baseCtx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+    baseCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.3)';
+    baseCtx.lineWidth = 1.5;
+    baseCtx.stroke();
+
+    // ── Edge fallback ──
+    var edgeCanvas = document.createElement('canvas');
+    edgeCanvas.width = width;
+    edgeCanvas.height = height;
+    var edgeCtx = edgeCanvas.getContext('2d');
+
+    // Draw the same initial as edge outline
+    edgeCtx.font = fontSize + 'px Georgia, "Times New Roman", serif';
+    edgeCtx.textAlign = 'center';
+    edgeCtx.textBaseline = 'middle';
+    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.6)';
+    edgeCtx.lineWidth = 1;
+    edgeCtx.strokeText(initial, width / 2, height / 2);
+
+    // Circle edge
+    edgeCtx.beginPath();
+    edgeCtx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.5)';
+    edgeCtx.lineWidth = 1;
+    edgeCtx.stroke();
+
+    // Inner decorative circle
+    edgeCtx.beginPath();
+    edgeCtx.arc(width / 2, height / 2, radius * 0.85, 0, Math.PI * 2);
+    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.2)';
+    edgeCtx.lineWidth = 0.5;
+    edgeCtx.stroke();
+
+    return {
+      baseDataUrl: baseCanvas.toDataURL(),
+      edgeDataUrl: edgeCanvas.toDataURL()
+    };
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  DOM — Card Creation
+  // ═══════════════════════════════════════════════════════════════
+
+  function createCard(name, color) {
+    var rgb = hexToRgb(color);
+    var safeName = escapeHtml(name);
+
+    // ── Outer card ──
+    var card = document.createElement('div');
+    card.className = 'hologram-card';
+    card.setAttribute('data-persona', name);
+    card.style.setProperty('--holo-color', color);
+    card.style.setProperty('--holo-r', String(rgb.r));
+    card.style.setProperty('--holo-g', String(rgb.g));
+    card.style.setProperty('--holo-b', String(rgb.b));
+
+    // ── Frame ──
+    var frame = document.createElement('div');
+    frame.className = 'hologram-frame loading';
+
+    var baseImg = document.createElement('img');
+    baseImg.className = 'hologram-base-img';
+    baseImg.alt = '';
+
+    var edgeImg = document.createElement('img');
+    edgeImg.className = 'hologram-edge-img';
+    edgeImg.alt = '';
+
+    var scanlines = document.createElement('div');
+    scanlines.className = 'hologram-scanlines';
+
+    var noiseCanvas = document.createElement('canvas');
+    noiseCanvas.className = 'hologram-noise';
+    noiseCanvas.width = IMG_DEFAULT_W;
+    noiseCanvas.height = IMG_DEFAULT_H;
+
+    var flicker = document.createElement('div');
+    flicker.className = 'hologram-flicker';
+
+    frame.appendChild(baseImg);
+    frame.appendChild(edgeImg);
+    frame.appendChild(scanlines);
+    frame.appendChild(noiseCanvas);
+    frame.appendChild(flicker);
+
+    // ── Nameplate ──
+    var nameplate = document.createElement('div');
+    nameplate.className = 'hologram-nameplate';
+    nameplate.textContent = name.toUpperCase();
+
+    // ── Base light ──
+    var baseLight = document.createElement('div');
+    baseLight.className = 'hologram-base-light';
+
+    card.appendChild(frame);
+    card.appendChild(nameplate);
+    card.appendChild(baseLight);
+
+    return {
+      card: card,
+      frame: frame,
+      baseImg: baseImg,
+      edgeImg: edgeImg,
+      noiseCanvas: noiseCanvas,
+      noiseCtx: noiseCanvas.getContext('2d')
+    };
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Noise Update Loop
+  // ═══════════════════════════════════════════════════════════════
+
+  function updateNoise() {
+    var key, p, ctx, w, h, imgData, data, total, i, idx;
+
+    for (key in personas) {
+      if (!personas.hasOwnProperty(key)) continue;
+      p = personas[key];
+      if (!p.noiseCtx) continue;
+
+      ctx = p.noiseCtx;
+      w = p.noiseCanvas.width;
+      h = p.noiseCanvas.height;
+
+      imgData = ctx.createImageData(w, h);
+      data = imgData.data;
+      total = w * h;
+
+      for (i = 0; i < total; i++) {
+        if (Math.random() < NOISE_DENSITY) {
+          idx = i * 4;
+          data[idx]     = 255;
+          data[idx + 1] = 255;
+          data[idx + 2] = 255;
+          data[idx + 3] = Math.floor(Math.random() * 120 + 40);
+        }
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Idle State Management
+  // ═══════════════════════════════════════════════════════════════
+
+  function showIdle() {
+    if (!idleEl) return;
+    idleEl.classList.remove('hidden');
+  }
+
+  function hideIdle() {
+    if (!idleEl) return;
+    idleEl.classList.add('hidden');
+  }
+
+  function createIdleElement() {
+    var el = document.createElement('div');
+    el.className = 'hologram-idle';
+
+    var sigil = document.createElement('div');
+    sigil.className = 'hologram-idle-sigil';
+    sigil.textContent = '\u25C7'; // ◇
+
+    var text = document.createElement('div');
+    text.className = 'hologram-idle-text';
+    text.textContent = 'Speak the words to summon.';
+
+    el.appendChild(sigil);
+    el.appendChild(text);
+
+    return el;
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Materialize / Dematerialize Flows
+  // ═══════════════════════════════════════════════════════════════
+
+  function materializeCard(persona) {
+    var frame = persona.frame;
+    var card = persona.card;
+
+    // Remove loading, start materialization
+    frame.classList.remove('loading');
+    frame.classList.add('materializing');
+    card.classList.add('materializing');
+
+    persona.phase = 'materializing';
+
+    setTimeout(function () {
+      // Guard: persona may have been released during materialize
+      if (!personas[persona.name]) return;
+
+      frame.classList.remove('materializing');
+      frame.classList.add('active');
+      card.classList.remove('materializing');
+      card.classList.add('active');
+      persona.phase = 'active';
+    }, MATERIALIZE_MS);
+  }
+
+  function dematerializeCard(name) {
+    var persona = personas[name];
+    if (!persona) return;
+
+    var frame = persona.frame;
+    var card = persona.card;
+
+    // Clear any existing state classes
+    frame.classList.remove('loading', 'materializing', 'active');
+    card.classList.remove('materializing', 'active', 'speaking');
+
+    frame.classList.add('dematerializing');
+    card.classList.add('dematerializing');
+    persona.phase = 'dematerializing';
+
+    setTimeout(function () {
+      if (card.parentNode) {
+        card.parentNode.removeChild(card);
+      }
+      delete personas[name];
+
+      // Show idle if gallery is empty
+      if (personaCount() === 0) {
+        showIdle();
+      }
+    }, DEMATERIALIZE_MS);
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Public API
+  // ═══════════════════════════════════════════════════════════════
+
+  /**
+   * Initialize the hologram gallery inside the given container element.
+   */
+  function init(containerElement) {
+    if (isInitialized) return;
+
+    container = containerElement;
+    if (!container) {
+      console.warn('[Hologram] init: no container element provided.');
+      return;
+    }
+
+    injectStyles();
+
+    // Create gallery wrapper
+    gallery = document.createElement('div');
+    gallery.className = 'hologram-gallery';
+    container.appendChild(gallery);
+
+    // Create idle element
+    idleEl = createIdleElement();
+    gallery.appendChild(idleEl);
+
+    // Start noise refresh loop
+    noiseInterval = setInterval(updateNoise, NOISE_INTERVAL_MS);
+
+    isInitialized = true;
+  }
+
+  /**
+   * Summon a hologram for the given persona name and color.
+   */
+  function summon(name, color) {
+    if (!isInitialized) return;
+    if (personas[name]) return; // already summoned
+
+    color = color || '#C9A54E';
+
+    // Hide idle state on first summon
+    hideIdle();
+
+    // 1. Create card in loading state
+    var elements = createCard(name, color);
+    var card = elements.card;
+    var frame = elements.frame;
+
+    var persona = {
+      name: name,
+      color: color,
+      card: card,
+      frame: frame,
+      baseImg: elements.baseImg,
+      edgeImg: elements.edgeImg,
+      noiseCanvas: elements.noiseCanvas,
+      noiseCtx: elements.noiseCtx,
+      phase: 'loading'
+    };
+
+    personas[name] = persona;
+    gallery.appendChild(card);
+
+    // 2. Fetch portrait async
+    fetchPortrait(name).then(function (imageUrl) {
+      // Guard: persona may have been released during fetch
+      if (!personas[name]) return;
+
+      if (imageUrl) {
+        // 3a. Image found — load and process
+        loadImage(imageUrl).then(function (img) {
+          if (!personas[name]) return;
+
+          // Calculate proportional dimensions
+          var w = IMG_DEFAULT_W;
+          var h = IMG_DEFAULT_H;
+          var aspect = img.width / img.height;
+          if (aspect > w / h) {
+            h = Math.round(w / aspect);
+          } else {
+            w = Math.round(h * aspect);
+          }
+          w = Math.min(w, IMG_MAX_W);
+          h = Math.min(h, IMG_MAX_H);
+
+          var result = processImage(img, color, w, h);
+
+          if (result) {
+            persona.baseImg.src = result.baseDataUrl;
+            persona.edgeImg.src = result.edgeDataUrl;
+          } else {
+            // Canvas was tainted, use fallback
+            var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
+            persona.baseImg.src = fallback.baseDataUrl;
+            persona.edgeImg.src = fallback.edgeDataUrl;
+          }
+
+          materializeCard(persona);
+
+        }).catch(function () {
+          // Image load failed — use fallback
+          if (!personas[name]) return;
+          var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
+          persona.baseImg.src = fallback.baseDataUrl;
+          persona.edgeImg.src = fallback.edgeDataUrl;
+          materializeCard(persona);
+        });
+
+      } else {
+        // 3b. No image on Wikipedia — use fallback
+        var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
+        persona.baseImg.src = fallback.baseDataUrl;
+        persona.edgeImg.src = fallback.edgeDataUrl;
+        materializeCard(persona);
+      }
     });
   }
 
   /**
-   * Release (dematerialize) a persona.
+   * Release (dematerialize) a hologram by persona name.
    */
   function release(name) {
-    const persona = personas[name];
-    if (!persona) return;
-
-    persona.state = 'dematerializing';
-    persona.stateTime = 0;
+    if (!personas[name]) return;
+    dematerializeCard(name);
   }
 
   /**
-   * Release all personas.
+   * Release all active personas.
    */
   function releaseAll() {
-    Object.keys(personas).forEach(name => release(name));
+    var names = [];
+    for (var key in personas) {
+      if (personas.hasOwnProperty(key)) {
+        names.push(key);
+      }
+    }
+    for (var i = 0; i < names.length; i++) {
+      dematerializeCard(names[i]);
+    }
   }
 
   /**
-   * Set whether a persona is currently speaking.
+   * Toggle speaking state on a persona's hologram card.
    */
   function setSpeaking(name, isSpeaking) {
-    const persona = personas[name];
+    var persona = personas[name];
     if (!persona) return;
-    if (persona.state === 'idle' || persona.state === 'speaking') {
-      persona.state = isSpeaking ? 'speaking' : 'idle';
-      persona.speaking = isSpeaking;
+
+    if (isSpeaking) {
+      persona.card.classList.add('speaking');
+    } else {
+      persona.card.classList.remove('speaking');
     }
   }
 
   /**
-   * Set all personas to not speaking.
+   * Remove speaking state from all persona hologram cards.
    */
   function clearSpeaking() {
-    Object.values(personas).forEach(p => {
-      if (p.state === 'speaking') {
-        p.state = 'idle';
-        p.speaking = false;
-      }
-    });
-  }
-
-
-  // ── Animation Loop ──
-
-  function animate() {
-    animationFrameId = requestAnimationFrame(animate);
-
-    const delta = clock.getDelta();
-    const elapsed = clock.getElapsedTime();
-
-    // Update each persona
-    for (const [name, persona] of Object.entries(personas)) {
-      persona.stateTime += delta;
-      updatePersona(persona, name, delta, elapsed);
-    }
-
-    // Update ambient field
-    updateAmbientField(elapsed);
-
-    // Render
-    if (renderer && scene && camera) {
-      renderer.render(scene, camera);
-    }
-  }
-
-  function updatePersona(persona, name, delta, elapsed) {
-    const positions = persona.currentPositions;
-    const targets = persona.targetPositions;
-    const initials = persona.initialPositions;
-    const count = positions.length / 3;
-
-    switch (persona.state) {
-
-      case 'materializing': {
-        const progress = Math.min(persona.stateTime / MATERIALIZE_DURATION, 1);
-        const eased = easeOutCubic(progress);
-
-        // Opacity ramp
-        persona.material.opacity = eased * 0.75;
-
-        // Lerp positions from initial to target
-        for (let i = 0; i < count; i++) {
-          const i3 = i * 3;
-          // Stagger: particles higher up materialize slightly later
-          const particleDelay = (targets[i3 + 1] / 2.0) * 0.3;
-          const particleProgress = Math.max(0, Math.min(1, (progress - particleDelay) / (1 - particleDelay)));
-          const pe = easeOutCubic(particleProgress);
-
-          positions[i3]     = initials[i3]     + (targets[i3]     - initials[i3])     * pe;
-          positions[i3 + 1] = initials[i3 + 1] + (targets[i3 + 1] - initials[i3 + 1]) * pe;
-          positions[i3 + 2] = initials[i3 + 2] + (targets[i3 + 2] - initials[i3 + 2]) * pe;
-        }
-
-        if (progress >= 1) {
-          persona.state = 'idle';
-          persona.stateTime = 0;
-        }
-        break;
-      }
-
-      case 'idle': {
-        persona.material.opacity = 0.65 + Math.sin(elapsed * BREATHE_SPEED) * 0.1;
-
-        for (let i = 0; i < count; i++) {
-          const i3 = i * 3;
-          const floatOffset = Math.sin(elapsed * IDLE_FLOAT_SPEED + i * 0.01) * IDLE_FLOAT_AMOUNT;
-          const breatheOffset = Math.sin(elapsed * BREATHE_SPEED) * BREATHE_AMOUNT;
-
-          positions[i3]     = targets[i3]     + Math.sin(elapsed * 0.5 + i) * 0.002;
-          positions[i3 + 1] = targets[i3 + 1] + floatOffset + breatheOffset;
-          positions[i3 + 2] = targets[i3 + 2] + Math.cos(elapsed * 0.5 + i) * 0.002;
-        }
-        break;
-      }
-
-      case 'speaking': {
-        persona.material.opacity = 0.75 + Math.sin(elapsed * 3) * 0.1;
-
-        for (let i = 0; i < count; i++) {
-          const i3 = i * 3;
-          const jitter = SPEAK_JITTER;
-          const floatOffset = Math.sin(elapsed * IDLE_FLOAT_SPEED + i * 0.01) * IDLE_FLOAT_AMOUNT;
-
-          // Head area has more movement when speaking
-          const isHead = targets[i3 + 1] > 1.55;
-          const speakMult = isHead ? 2.5 : 1.0;
-
-          positions[i3]     = targets[i3]     + (Math.random() - 0.5) * jitter * speakMult;
-          positions[i3 + 1] = targets[i3 + 1] + floatOffset + (Math.random() - 0.5) * jitter * speakMult;
-          positions[i3 + 2] = targets[i3 + 2] + (Math.random() - 0.5) * jitter * speakMult;
-        }
-
-        // Pulsing glow effect via size
-        persona.material.size = 0.018 + Math.sin(elapsed * 4) * 0.004;
-        break;
-      }
-
-      case 'dematerializing': {
-        const progress = Math.min(persona.stateTime / DEMATERIALIZE_DURATION, 1);
-        const eased = easeInCubic(progress);
-
-        persona.material.opacity = (1 - eased) * 0.75;
-
-        // Scatter outward
-        for (let i = 0; i < count; i++) {
-          const i3 = i * 3;
-          const dx = positions[i3] - 0;
-          const dy = positions[i3 + 1] - 0.85;
-          const dz = positions[i3 + 2] - 0;
-          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.01;
-
-          positions[i3]     += (dx / dist) * eased * delta * 2;
-          positions[i3 + 1] += (dy / dist) * eased * delta * 2 + delta * eased;
-          positions[i3 + 2] += (dz / dist) * eased * delta * 2;
-        }
-
-        if (progress >= 1) {
-          // Remove from scene
-          scene.remove(persona.points);
-          persona.geometry.dispose();
-          persona.material.dispose();
-          delete personas[name];
-
-          // Reposition remaining
-          repositionPersonas(Object.keys(personas).length);
-        }
-        break;
+    for (var key in personas) {
+      if (personas.hasOwnProperty(key)) {
+        personas[key].card.classList.remove('speaking');
       }
     }
-
-    // Update geometry
-    if (persona.geometry) {
-      persona.geometry.attributes.position.needsUpdate = true;
-    }
-
-    // Smooth position offset transition
-    if (persona.points) {
-      persona.points.position.x += (persona.xOffset - persona.points.position.x) * 0.05;
-    }
   }
 
-  function updateAmbientField(elapsed) {
-    scene.children.forEach(child => {
-      if (child.userData.isAmbient) {
-        const positions = child.geometry.attributes.position.array;
-        const count = positions.length / 3;
-        for (let i = 0; i < count; i++) {
-          positions[i * 3 + 1] += Math.sin(elapsed * 0.2 + i) * 0.0003;
-        }
-        child.geometry.attributes.position.needsUpdate = true;
+  /**
+   * Check if a persona is currently summoned (not dematerializing).
+   */
+  function hasPersona(name) {
+    return !!personas[name] && personas[name].phase !== 'dematerializing';
+  }
 
-        // Brighten ambient when personas are present
-        const hasPersonas = Object.keys(personas).length > 0;
-        const targetOpacity = hasPersonas ? 0.25 : 0.15;
-        child.material.opacity += (targetOpacity - child.material.opacity) * 0.02;
+  /**
+   * Get list of active persona names.
+   */
+  function getActivePersonas() {
+    var names = [];
+    for (var key in personas) {
+      if (personas.hasOwnProperty(key) && personas[key].phase !== 'dematerializing') {
+        names.push(key);
       }
-    });
+    }
+    return names;
   }
 
-
-  // ── Easing Functions ──
-
-  function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
-
-  function easeInCubic(t) {
-    return t * t * t;
-  }
-
-
-  // ── Cleanup ──
-
+  /**
+   * Full cleanup — remove all DOM, stop intervals.
+   */
   function destroy() {
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
+    if (noiseInterval) {
+      clearInterval(noiseInterval);
+      noiseInterval = null;
     }
-    window.removeEventListener('resize', onResize);
 
-    Object.values(personas).forEach(p => {
-      scene.remove(p.points);
-      p.geometry.dispose();
-      p.material.dispose();
-    });
+    // Remove all cards
+    for (var key in personas) {
+      if (personas.hasOwnProperty(key)) {
+        var card = personas[key].card;
+        if (card && card.parentNode) {
+          card.parentNode.removeChild(card);
+        }
+      }
+    }
     personas = {};
 
-    if (renderer) {
-      renderer.dispose();
+    // Remove gallery
+    if (gallery && gallery.parentNode) {
+      gallery.parentNode.removeChild(gallery);
     }
-
+    gallery = null;
+    idleEl = null;
+    container = null;
     isInitialized = false;
-  }
-
-
-  // ── Query ──
-
-  function getActivePersonas() {
-    return Object.keys(personas).filter(
-      name => personas[name].state !== 'dematerializing'
-    );
-  }
-
-  function hasPersona(name) {
-    return !!personas[name] && personas[name].state !== 'dematerializing';
   }
 
 
   // ── Public API ──
   return {
-    init,
-    summon,
-    release,
-    releaseAll,
-    setSpeaking,
-    clearSpeaking,
-    getActivePersonas,
-    hasPersona,
-    destroy
+    init: init,
+    summon: summon,
+    release: release,
+    releaseAll: releaseAll,
+    setSpeaking: setSpeaking,
+    clearSpeaking: clearSpeaking,
+    hasPersona: hasPersona,
+    getActivePersonas: getActivePersonas,
+    destroy: destroy
   };
 
 })();

@@ -34,16 +34,20 @@
       <div class="config-sigil">&#9674;</div>
       <h2 class="config-title">The Binding</h2>
       <p class="config-desc">To summon minds across the boundary of time, you must provide a key.<br>
-        Your Anthropic API key is stored only in your browser. It is sent only to Anthropic's servers.</p>
+        Your keys are stored only in your browser. They are sent only to their respective services.</p>
       <div class="config-form">
-        <label for="api-key-input" class="config-label">API Key</label>
+        <label for="api-key-input" class="config-label">Anthropic API Key</label>
         <input type="password" id="api-key-input" class="config-input" placeholder="sk-ant-api03-..." autocomplete="off">
         <div class="config-model-row">
           <label for="model-select" class="config-label">Vessel Depth</label>
           <select id="model-select" class="config-select">
-            <option value="claude-sonnet-4-20250514">Sonnet — Swift Dialogue</option>
-            <option value="claude-opus-4-20250514">Opus — Deep Summoning</option>
+            <option value="claude-sonnet-4-20250514">Sonnet &mdash; Swift Dialogue</option>
+            <option value="claude-opus-4-20250514">Opus &mdash; Deep Summoning</option>
           </select>
+        </div>
+        <div class="config-model-row">
+          <label for="elevenlabs-key-input" class="config-label">ElevenLabs API Key <span style="opacity:0.5">(optional &mdash; for voice)</span></label>
+          <input type="password" id="elevenlabs-key-input" class="config-input" placeholder="xi-..." autocomplete="off">
         </div>
         <button id="save-key-btn" class="ritual-btn">Seal the Binding</button>
       </div>
@@ -54,13 +58,9 @@
   <!-- ═══ SCREEN 3: THE CHAMBER ═══ -->
   <div id="chamber-screen" class="screen">
 
-    <!-- Hologram Display -->
-    <div id="hologram-container">
-      <canvas id="hologram-canvas"></canvas>
-      <div id="hologram-overlay">
-        <div id="persona-labels"></div>
-      </div>
-      <div id="hologram-floor"></div>
+    <!-- Hologram Stage -->
+    <div id="hologram-stage">
+      <!-- Gallery and idle state inserted by hologram.js -->
     </div>
 
     <!-- Active Personas Bar -->
@@ -85,8 +85,8 @@
         <div class="setting-row">
           <label for="settings-model" class="config-label">Model</label>
           <select id="settings-model" class="config-select">
-            <option value="claude-sonnet-4-20250514">Sonnet — Swift Dialogue</option>
-            <option value="claude-opus-4-20250514">Opus — Deep Summoning</option>
+            <option value="claude-sonnet-4-20250514">Sonnet &mdash; Swift Dialogue</option>
+            <option value="claude-opus-4-20250514">Opus &mdash; Deep Summoning</option>
           </select>
         </div>
         <div class="setting-row">
@@ -94,7 +94,7 @@
           <input type="range" id="settings-voice-rate" min="0.5" max="1.5" step="0.1" value="0.9" class="config-range">
         </div>
         <div class="setting-row">
-          <button id="change-key-btn" class="control-btn">Change API Key</button>
+          <button id="change-key-btn" class="control-btn">Change API Keys</button>
           <button id="release-all-btn" class="control-btn control-btn-danger">Release All Personas</button>
         </div>
         <button id="close-settings" class="control-btn">Close</button>
@@ -123,8 +123,7 @@
 
   </div>
 
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- NO Three.js — hologram.js uses Canvas 2D + CSS -->
 
   <!-- COMPANION V3 Scripts -->
   <script src="js/protocol.js"></script>

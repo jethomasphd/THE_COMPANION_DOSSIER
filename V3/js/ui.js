@@ -28,10 +28,10 @@ COMPANION.UI = (function () {
       apiKeyInput: document.getElementById('api-key-input'),
       modelSelect: document.getElementById('model-select'),
       saveKeyBtn: document.getElementById('save-key-btn'),
+      elevenlabsKeyInput: document.getElementById('elevenlabs-key-input'),
 
       // Chamber
       personaBadges: document.getElementById('persona-badges'),
-      personaLabels: document.getElementById('persona-labels'),
       dialogueMessages: document.getElementById('dialogue-messages'),
       dialogueScroll: document.getElementById('dialogue-scroll'),
       userInput: document.getElementById('user-input'),
@@ -196,9 +196,6 @@ COMPANION.UI = (function () {
     });
 
     elements.personaBadges.appendChild(badge);
-
-    // Add hologram label
-    addPersonaLabel(name, color);
   }
 
   function removePersonaBadge(name) {
@@ -210,12 +207,10 @@ COMPANION.UI = (function () {
       setTimeout(function () { badge.remove(); }, 300);
     }
 
-    removePersonaLabel(name);
   }
 
   function clearPersonaBadges() {
     if (elements.personaBadges) elements.personaBadges.innerHTML = '';
-    if (elements.personaLabels) elements.personaLabels.innerHTML = '';
   }
 
   function setPersonaBadgeSpeaking(name, isSpeaking) {
@@ -228,33 +223,6 @@ COMPANION.UI = (function () {
         badge.classList.remove('speaking');
       }
     });
-  }
-
-
-  // ── Hologram Labels ──
-
-  function addPersonaLabel(name, color) {
-    if (!elements.personaLabels) return;
-    var label = document.createElement('div');
-    label.className = 'persona-label';
-    label.style.color = color;
-    label.textContent = name;
-    label.dataset.persona = name;
-    elements.personaLabels.appendChild(label);
-
-    // Trigger appearance
-    requestAnimationFrame(function () {
-      label.classList.add('visible');
-    });
-  }
-
-  function removePersonaLabel(name) {
-    if (!elements.personaLabels) return;
-    var label = elements.personaLabels.querySelector('[data-persona="' + name + '"]');
-    if (label) {
-      label.classList.remove('visible');
-      setTimeout(function () { label.remove(); }, 600);
-    }
   }
 
 
