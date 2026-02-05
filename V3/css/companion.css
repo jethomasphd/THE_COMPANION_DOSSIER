@@ -159,6 +159,13 @@ html, body {
   margin-bottom: var(--space-lg);
 }
 
+.config-sigil {
+  font-size: 32px;
+  color: var(--ember);
+  text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
+  margin-bottom: var(--space-lg);
+}
+
 @keyframes sigil-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -54,7 +54,9 @@ COMPANION.UI = (function () {
   // ── Screen Transitions ──
 
   function showScreen(screenName) {
-    Object.values(screens).forEach(s => s.classList.remove('active'));
+    Object.values(screens).forEach(function (s) {
+      if (s) s.classList.remove('active');
+    });
     if (screens[screenName]) {
       screens[screenName].classList.add('active');
     }
@@ -85,7 +87,8 @@ COMPANION.UI = (function () {
    * Add a seeker (user) message to the dialogue.
    */
   function addSeekerMessage(text) {
-    const msg = document.createElement('div');
+    if (!elements.dialogueMessages) return null;
+    var msg = document.createElement('div');
     msg.className = 'message message-seeker';
     msg.innerHTML = '<div class="message-bubble">' + escapeHtml(text) + '</div>';
     elements.dialogueMessages.appendChild(msg);
@@ -98,28 +101,30 @@ COMPANION.UI = (function () {
    * Returns an object with update() and finish() methods for streaming.
    */
   function addPersonaMessage(personaName, color) {
-    const msg = document.createElement('div');
+    var msg = document.createElement('div');
     msg.className = 'message message-persona';
 
-    const header = document.createElement('div');
+    var header = document.createElement('div');
     header.className = 'message-header';
     header.style.color = color;
     header.textContent = personaName || 'The Chamber';
     msg.appendChild(header);
 
-    const body = document.createElement('div');
+    var body = document.createElement('div');
     body.className = 'message-body';
     body.style.borderLeftColor = color;
     msg.appendChild(body);
 
-    const cursor = document.createElement('span');
+    var cursor = document.createElement('span');
     cursor.className = 'streaming-cursor';
     body.appendChild(cursor);
 
-    elements.dialogueMessages.appendChild(msg);
+    if (elements.dialogueMessages) {
+      elements.dialogueMessages.appendChild(msg);
+    }
     scrollToBottom();
 
-    let rawText = '';
+    var rawText = '';
 
     return {
       /**
@@ -164,7 +169,8 @@ COMPANION.UI = (function () {
    * Add a system message (italic, centered).
    */
   function addSystemMessage(text) {
-    const msg = document.createElement('div');
+    if (!elements.dialogueMessages) return;
+    var msg = document.createElement('div');
     msg.className = 'message message-system';
     msg.innerHTML = '<div class="message-body">' + escapeHtml(text) + '</div>';
     elements.dialogueMessages.appendChild(msg);
@@ -175,7 +181,8 @@ COMPANION.UI = (function () {
   // ── Persona Badges ──
 
   function addPersonaBadge(name, color, onDismiss) {
-    const badge = document.createElement('div');
+    if (!elements.personaBadges) return;
+    var badge = document.createElement('div');
     badge.className = 'persona-badge';
     badge.style.color = color;
     badge.style.borderColor = color;
@@ -195,7 +202,8 @@ COMPANION.UI = (function () {
   }
 
   function removePersonaBadge(name) {
-    const badge = elements.personaBadges.querySelector('[data-persona="' + name + '"]');
+    if (!elements.personaBadges) return;
+    var badge = elements.personaBadges.querySelector('[data-persona="' + name + '"]');
     if (badge) {
       badge.style.opacity = '0';
       badge.style.transform = 'scale(0.8)';
@@ -206,12 +214,13 @@ COMPANION.UI = (function () {
   }
 
   function clearPersonaBadges() {
-    elements.personaBadges.innerHTML = '';
-    elements.personaLabels.innerHTML = '';
+    if (elements.personaBadges) elements.personaBadges.innerHTML = '';
+    if (elements.personaLabels) elements.personaLabels.innerHTML = '';
   }
 
   function setPersonaBadgeSpeaking(name, isSpeaking) {
-    const badges = elements.personaBadges.querySelectorAll('.persona-badge');
+    if (!elements.personaBadges) return;
+    var badges = elements.personaBadges.querySelectorAll('.persona-badge');
     badges.forEach(function (badge) {
       if (badge.dataset.persona === name) {
         badge.classList.toggle('speaking', isSpeaking);
@@ -225,7 +234,8 @@ COMPANION.UI = (function () {
   // ── Hologram Labels ──
 
   function addPersonaLabel(name, color) {
-    const label = document.createElement('div');
+    if (!elements.personaLabels) return;
+    var label = document.createElement('div');
     label.className = 'persona-label';
     label.style.color = color;
     label.textContent = name;
@@ -239,7 +249,8 @@ COMPANION.UI = (function () {
   }
 
   function removePersonaLabel(name) {
-    const label = elements.personaLabels.querySelector('[data-persona="' + name + '"]');
+    if (!elements.personaLabels) return;
+    var label = elements.personaLabels.querySelector('[data-persona="' + name + '"]');
     if (label) {
       label.classList.remove('visible');
       setTimeout(function () { label.remove(); }, 600);
@@ -250,29 +261,35 @@ COMPANION.UI = (function () {
   // ── Input Management ──
 
   function getInputText() {
-    return elements.userInput.value.trim();
+    return elements.userInput ? elements.userInput.value.trim() : '';
   }
 
   function clearInput() {
-    elements.userInput.value = '';
-    autoResizeInput();
+    if (elements.userInput) {
+      elements.userInput.value = '';
+      autoResizeInput();
+    }
   }
 
   function setInputEnabled(isEnabled) {
-    elements.userInput.disabled = !isEnabled;
-    elements.sendBtn.disabled = !isEnabled;
-    if (isEnabled) {
-      elements.userInput.focus();
+    if (elements.userInput) {
+      elements.userInput.disabled = !isEnabled;
+      if (isEnabled) elements.userInput.focus();
+    }
+    if (elements.sendBtn) {
+      elements.sendBtn.disabled = !isEnabled;
     }
   }
 
   function autoResizeInput() {
-    const input = elements.userInput;
+    var input = elements.userInput;
+    if (!input) return;
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 150) + 'px';
   }
 
   function updateHint(activePersonaCount) {
+    if (!elements.inputHint) return;
     if (activePersonaCount === 0) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">Say <code>Using this matter, summon [Name].</code> to begin.</span>';
@@ -289,24 +306,25 @@ COMPANION.UI = (function () {
   // ── Settings Panel ──
 
   function toggleSettings() {
-    elements.settingsPanel.classList.toggle('hidden');
+    if (elements.settingsPanel) elements.settingsPanel.classList.toggle('hidden');
   }
 
   function hideSettings() {
-    elements.settingsPanel.classList.add('hidden');
+    if (elements.settingsPanel) elements.settingsPanel.classList.add('hidden');
   }
 
 
   // ── Voice Toggle ──
 
   function setVoiceToggleState(isActive) {
-    elements.voiceToggle.classList.toggle('active', isActive);
+    if (elements.voiceToggle) elements.voiceToggle.classList.toggle('active', isActive);
   }
 
 
   // ── Utilities ──
 
   function scrollToBottom() {
+    if (!elements.dialogueScroll) return;
     requestAnimationFrame(function () {
       elements.dialogueScroll.scrollTop = elements.dialogueScroll.scrollHeight;
     });
