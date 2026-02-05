@@ -1,38 +1,38 @@
-/* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — The Chamber
-   Ritual Aesthetic System
-   ═══════════════════════════════════════════════════════════════ */
+/* ===================================================================
+   THE COMMITTEE OF PATRIOTS — companion.css
+   A Colonial Print-Shop Aesthetic for the COMPANION Protocol
+   "Own them. Vote them. Govern."
+   =================================================================== */
 
+/* --- CSS Variables --- */
 :root {
-  /* The Void */
-  --void-deep: #050505;
-  --void-surface: #0a0a0c;
-  --void-elevated: #111114;
+  /* Parchment */
+  --parchment: #f4e4c1;
+  --parchment-dark: #e8d4a8;
+  --parchment-deep: #dcc696;
 
-  /* The Ember */
-  --ember: #c9a54e;
-  --ember-bright: #e4c76a;
-  --ember-dim: #8b7635;
-  --ember-glow: rgba(201, 165, 78, 0.15);
-  --ember-ghost: rgba(201, 165, 78, 0.05);
+  /* Ink */
+  --ink: #1a1308;
+  --ink-medium: #3d2f1a;
+  --ink-light: #6b5a3e;
+  --ink-faint: #5a4d38;
 
-  /* The Parchment */
-  --parchment: #e8dcc8;
-  --parchment-dim: #a89b85;
-  --parchment-faint: #6b6356;
+  /* Gold */
+  --gold: #c9a54e;
+  --gold-bright: #d4b85c;
+  --gold-dim: #8a7340;
 
-  /* Persona Colors */
-  --color-philosophical: #c9a54e;
-  --color-scientific: #4a90d9;
-  --color-strategic: #c94e4e;
-  --color-creative: #9b4ec9;
-  --color-spiritual: #e8dcc8;
-  --color-natural: #4ec97a;
+  /* Wood */
+  --wood-dark: #2c2416;
+  --wood-medium: #3d2f1a;
+
+  /* Candlelight */
+  --candlelight: rgba(255, 200, 100, 0.15);
 
   /* Typography */
-  --font-ritual: 'Cinzel', serif;
-  --font-body: 'Crimson Text', serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'IM Fell Great Primer', Georgia, serif;
+  --font-body: 'IM Fell English', Georgia, serif;
+  --font-accent: 'IM Fell DW Pica', Georgia, serif;
 
   /* Spacing */
   --space-xs: 4px;
@@ -41,9 +41,18 @@
   --space-lg: 24px;
   --space-xl: 40px;
   --space-xxl: 64px;
+
+  /* Parchment texture (inline SVG noise) */
+  --parchment-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+
+  /* Parchment gradient */
+  --parchment-bg: linear-gradient(to bottom, var(--parchment), var(--parchment-dark), var(--parchment-deep));
 }
 
-/* ═══ RESET ═══ */
+
+/* ===================================================================
+   RESET
+   =================================================================== */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -53,7 +62,7 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  background: var(--void-deep);
+  background: var(--wood-dark);
   color: var(--parchment);
   font-family: var(--font-body);
   font-size: 17px;
@@ -61,22 +70,28 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ═══ SCROLLBAR ═══ */
+
+/* ===================================================================
+   SCROLLBAR — wood & parchment
+   =================================================================== */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--wood-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--ember-dim);
-  border-radius: 3px;
+  background: var(--ink-light);
+  border: 1px solid var(--wood-medium);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ember);
+  background: var(--gold-dim);
 }
 
-/* ═══ SCREENS ═══ */
+
+/* ===================================================================
+   SCREENS — display:none / display:flex system
+   =================================================================== */
 .screen {
   position: fixed;
   inset: 0;
@@ -85,7 +100,7 @@ html, body {
   justify-content: center;
   opacity: 0;
   z-index: 1;
-  background: var(--void-deep);
+  background: var(--wood-dark);
   pointer-events: none;
 }
 
@@ -94,27 +109,47 @@ html, body {
   opacity: 1;
   z-index: 10;
   pointer-events: auto;
-  animation: screenFadeIn 0.6s ease forwards;
+  animation: parchmentReveal 0.8s ease forwards;
 }
 
-@keyframes screenFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes parchmentReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+    filter: brightness(0.3);
+  }
+  60% {
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
 }
 
-/* ═══ SCREEN 1: THE VOID ═══ */
+
+/* ===================================================================
+   SCREEN 1: THE VOID — Dark Colonial Landing
+   =================================================================== */
 .void-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, #0d0b08 0%, var(--void-deep) 70%);
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(201, 165, 78, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 180, 80, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at center, #1a150d 0%, var(--wood-dark) 60%, #0d0a06 100%);
 }
 
 .void-content {
   position: relative;
   z-index: 2;
   text-align: center;
+  max-width: 640px;
+  padding: var(--space-xl);
 }
 
+/* --- Sigil (colonial seal ornament) --- */
 .sigil-container {
   position: relative;
   width: 160px;
@@ -124,20 +159,22 @@ html, body {
 
 .sigil-ring {
   position: absolute;
-  border: 1px solid var(--ember-dim);
+  border: 1px solid var(--gold-dim);
   border-radius: 50%;
-  animation: sigil-rotate 20s linear infinite;
+  animation: sigil-rotate 25s linear infinite;
 }
 
 .sigil-ring-outer {
   inset: 0;
   border-style: dashed;
+  border-color: var(--ink-light);
 }
 
 .sigil-ring-inner {
   inset: 20px;
   animation-direction: reverse;
-  animation-duration: 15s;
+  animation-duration: 18s;
+  border-color: var(--gold-dim);
 }
 
 .sigil-symbol {
@@ -147,50 +184,55 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 48px;
-  color: var(--ember);
+  color: var(--gold);
   text-shadow: 0 0 30px rgba(201, 165, 78, 0.4);
   animation: sigil-pulse 4s ease-in-out infinite;
 }
 
 .sigil-small {
   font-size: 32px;
-  color: var(--ember);
+  color: var(--gold);
   text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
   margin-bottom: var(--space-lg);
 }
 
 .config-sigil {
   font-size: 32px;
-  color: var(--ember);
+  color: var(--gold);
   text-shadow: 0 0 20px rgba(201, 165, 78, 0.3);
   margin-bottom: var(--space-lg);
 }
 
 @keyframes sigil-rotate {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @keyframes sigil-pulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.05); }
 }
 
+/* --- Void Title --- */
 .void-title {
-  font-family: var(--font-ritual);
-  font-size: 3.5rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  color: var(--ember);
-  text-shadow: 0 0 40px rgba(201, 165, 78, 0.3);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: normal;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow:
+    0 0 40px rgba(201, 165, 78, 0.25),
+    2px 2px 0 rgba(0, 0, 0, 0.3);
   margin-bottom: var(--space-sm);
 }
 
 .void-subtitle {
-  font-family: var(--font-ritual);
+  font-family: var(--font-accent);
   font-size: 1rem;
-  letter-spacing: 0.2em;
-  color: var(--parchment-dim);
+  letter-spacing: 0.15em;
+  color: var(--parchment-dark);
+  font-style: italic;
   margin-bottom: var(--space-xs);
 }
 
@@ -198,10 +240,99 @@ html, body {
   font-family: var(--font-body);
   font-style: italic;
   font-size: 1rem;
-  color: var(--parchment-faint);
+  color: var(--ink-light);
   margin-bottom: var(--space-xl);
 }
 
+/* --- Void title "of" --- */
+.void-title-of {
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 0.15em;
+  color: var(--parchment-dark);
+  font-family: var(--font-accent);
+}
+
+/* --- Ornaments --- */
+.ornament-head {
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--gold-dim);
+  margin-bottom: var(--space-md);
+}
+
+.ornament-line-void,
+.ornament-line-binding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: var(--space-md) 0;
+  color: var(--gold-dim);
+  font-size: 1rem;
+}
+
+.ornament-line-void::before,
+.ornament-line-void::after,
+.ornament-line-binding::before,
+.ornament-line-binding::after {
+  content: '';
+  flex: 1;
+  max-width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+
+.ornament-foot {
+  margin-top: var(--space-lg);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-light);
+}
+
+/* --- Void roster --- */
+.void-roster {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--parchment-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.void-roster em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* --- Void quote --- */
+.void-quote {
+  margin: var(--space-lg) auto;
+  max-width: 400px;
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--gold-dim);
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.void-quote p {
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1.7;
+}
+
+/* --- Void footer --- */
+.void-footer {
+  margin-top: var(--space-lg);
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+/* --- Ember / Firelight Particles --- */
+.ember-field,
 .void-particles {
   position: absolute;
   inset: 0;
@@ -209,156 +340,323 @@ html, body {
   overflow: hidden;
 }
 
-/* ═══ BUTTONS ═══ */
-.ritual-btn {
-  font-family: var(--font-ritual);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  padding: 14px 40px;
+.ember {
+  position: absolute;
+  bottom: 20%;
+  width: 3px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(255, 180, 60, 0.5);
+  animation: emberFloat 10s ease-in-out infinite;
+}
+
+.void-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px 2px rgba(255, 180, 60, 0.5);
+  animation: emberFloat 7s ease-in-out infinite;
+}
+
+@keyframes emberFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(-10px) translateX(2px) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-60px) translateX(-5px) scale(0.8);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translateY(-110px) translateX(4px) scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150px) translateX(-2px) scale(0);
+  }
+}
+
+
+/* ===================================================================
+   BUTTONS — Colonial Placard Style
+   =================================================================== */
+.colonial-btn {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  padding: 14px 44px;
   background: transparent;
-  color: var(--ember);
-  border: 1px solid var(--ember-dim);
+  color: var(--gold);
+  border: 2px solid var(--gold-dim);
   cursor: pointer;
   transition: all 0.4s ease;
   text-transform: uppercase;
+  position: relative;
 }
 
-.ritual-btn:hover {
-  background: var(--ember-glow);
-  border-color: var(--ember);
-  box-shadow: 0 0 30px rgba(201, 165, 78, 0.15);
+.colonial-btn::before,
+.colonial-btn::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 1px;
+  background: var(--gold-dim);
+  transition: background 0.4s ease;
 }
 
-.ritual-btn:active {
-  transform: scale(0.98);
+.colonial-btn::before { left: 4px; }
+.colonial-btn::after  { right: 4px; }
+
+.colonial-btn:hover {
+  background: rgba(201, 165, 78, 0.1);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 20px rgba(201, 165, 78, 0.15),
+    inset 0 0 20px rgba(201, 165, 78, 0.05);
+  color: var(--gold-bright);
 }
 
-/* ═══ SCREEN 2: CONFIG ═══ */
+.colonial-btn:hover::before,
+.colonial-btn:hover::after {
+  background: var(--gold);
+}
+
+.colonial-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* ===================================================================
+   SCREEN 2: THE BINDING — Colonial Contract on Parchment
+   =================================================================== */
 #config-screen {
-  background: var(--void-deep);
+  background:
+    radial-gradient(ellipse at center, #1a150d 0%, var(--wood-dark) 70%);
 }
 
-.config-content {
+.binding-parchment {
   text-align: center;
-  max-width: 480px;
-  padding: var(--space-xl);
-  background: var(--void-surface);
-  border: 1px solid rgba(201, 165, 78, 0.1);
+  max-width: 520px;
+  padding: 50px 55px;
   position: relative;
   z-index: 2;
+
+  /* Parchment surface */
+  background:
+    var(--parchment-texture),
+    var(--parchment-bg);
+  color: var(--ink);
+
+  /* Triple border: ink / gap / ink — like a colonial legal document */
+  box-shadow:
+    0 0 0 2px var(--ink),
+    0 0 0 5px var(--parchment-dark),
+    0 0 0 7px var(--ink-medium),
+    0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
-.config-title {
-  font-family: var(--font-ritual);
+/* Parchment aging overlay */
+.binding-parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(139, 109, 64, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(100, 70, 30, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(80, 60, 30, 0.08) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.binding-parchment > * {
+  position: relative;
+  z-index: 1;
+}
+
+.binding-title {
+  font-family: var(--font-display);
   font-size: 1.8rem;
-  letter-spacing: 0.15em;
-  color: var(--ember);
-  margin-bottom: var(--space-md);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: var(--space-sm);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
 }
 
-.config-desc {
+.binding-preamble {
+  font-family: var(--font-body);
   font-size: 0.95rem;
-  color: var(--parchment-dim);
-  line-height: 1.7;
+  color: var(--ink-medium);
+  line-height: 1.8;
   margin-bottom: var(--space-xl);
+  font-style: italic;
 }
 
-.config-form {
+/* Drop-cap for the first letter of the description */
+.binding-preamble::first-letter {
+  font-family: var(--font-display);
+  font-size: 2.4em;
+  float: left;
+  line-height: 0.8;
+  padding-right: 6px;
+  padding-top: 4px;
+  color: var(--ink);
+  font-style: normal;
+}
+
+.binding-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
 
-.config-label {
-  font-family: var(--font-ritual);
-  font-size: 0.75rem;
+.binding-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
-  color: var(--parchment-faint);
+  color: var(--ink-light);
   text-align: left;
   text-transform: uppercase;
 }
 
-.config-input,
-.config-select {
+.binding-input,
+.binding-select {
   width: 100%;
   padding: 12px 16px;
-  background: var(--void-elevated);
-  border: 1px solid rgba(201, 165, 78, 0.35);
-  color: var(--parchment);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--ink-light);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   outline: none;
-  transition: border-color 0.3s ease;
-  position: relative;
-  z-index: 3;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   -webkit-appearance: none;
 }
 
-.config-input:focus,
-.config-select:focus {
-  border-color: var(--ember);
-  box-shadow: 0 0 20px rgba(201, 165, 78, 0.1);
+.binding-input::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
 }
 
-.config-select option {
-  background: var(--void-surface);
-  color: var(--parchment);
+.binding-input:focus,
+.binding-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 165, 78, 0.2);
 }
 
-.config-model-row {
+.binding-select option {
+  background: var(--parchment);
+  color: var(--ink);
+}
+
+.binding-row {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
 }
 
-.config-note {
+.binding-note {
   margin-top: var(--space-lg);
   font-size: 0.8rem;
-  color: var(--parchment-faint);
+  color: var(--ink-faint);
   font-style: italic;
 }
 
-/* ═══ SCREEN 3: THE CHAMBER ═══ */
+.binding-optional {
+  font-size: 0.85em;
+  opacity: 0.5;
+}
+
+/* Drop cap */
+.drop-cap {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3em;
+  line-height: 0.8;
+  padding-right: 8px;
+  padding-top: 5px;
+  color: var(--ink);
+  font-style: normal;
+}
+
+.binding-preamble {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-medium);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+  font-style: italic;
+  text-align: left;
+}
+
+
+/* ===================================================================
+   SCREEN 3: THE CHAMBER
+   =================================================================== */
 #chamber-screen.active {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
-  background: var(--void-deep);
+  background: var(--wood-dark);
 }
 
-/* ─── Hologram Stage ─── */
+
+/* -------------------------------------------------------------------
+   PORTRAIT STAGE — Colonial Gallery
+   ------------------------------------------------------------------- */
+#portrait-stage,
 #hologram-stage {
   position: relative;
   flex: 0 0 auto;
-  min-height: 340px;
+  min-height: 300px;
   max-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center bottom, rgba(201, 165, 78, 0.02) 0%, transparent 60%);
-  border-bottom: 1px solid rgba(201, 165, 78, 0.08);
   overflow: visible;
+
+  /* Dark wood backdrop with warm candlelight from below */
+  background:
+    radial-gradient(ellipse at center bottom, var(--candlelight) 0%, transparent 55%),
+    linear-gradient(to bottom, #1f1a10 0%, var(--wood-dark) 100%);
+  border-bottom: 3px double var(--ink-medium);
 }
 
-/* ─── Hologram Gallery ─── */
+
+/* -------------------------------------------------------------------
+   PORTRAIT GALLERY — Flex row of Patriots
+   ------------------------------------------------------------------- */
+.portrait-gallery,
 .hologram-gallery {
   display: flex;
   gap: 32px;
   align-items: flex-end;
   justify-content: center;
-  padding: 24px 20px 16px;
+  padding: 24px 20px 20px;
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 2;
-  box-sizing: border-box;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: visible;
 }
 
-/* Idle State */
+
+/* -------------------------------------------------------------------
+   IDLE STATE — Before any patriot is summoned
+   ------------------------------------------------------------------- */
 .hologram-idle {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -372,25 +670,32 @@ html, body {
   pointer-events: none;
   animation: sigil-pulse 4s ease-in-out infinite;
 }
+
 .hologram-idle.hidden {
   opacity: 0;
 }
+
 .hologram-idle-sigil {
   font-size: 56px;
-  color: var(--ember);
+  color: var(--gold);
   text-shadow: 0 0 40px rgba(201, 165, 78, 0.3);
   opacity: 0.4;
 }
+
 .hologram-idle-text {
-  font-family: var(--font-ritual);
+  font-family: var(--font-display);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
-  color: var(--parchment-faint);
+  color: var(--ink-light);
   margin-top: 16px;
   text-transform: uppercase;
 }
 
-/* ─── Hologram Card ─── */
+
+/* -------------------------------------------------------------------
+   PATRIOT CARD — Full container (frame + nameplate + glow)
+   ------------------------------------------------------------------- */
+.patriot-card,
 .hologram-card {
   display: flex;
   flex-direction: column;
@@ -398,80 +703,150 @@ html, body {
   flex: 0 1 200px;
   min-width: 120px;
   opacity: 0;
-  animation: holoCardAppear 0.6s ease forwards;
+  animation: holoCardAppear 0.7s ease forwards;
+  transition: filter 0.6s ease, opacity 0.6s ease;
 }
 
 @keyframes holoCardAppear {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Idle: dimmed, desaturated --- */
+.patriot-card.idle,
+.hologram-card:not(.active):not(.speaking):not(.materializing) {
+  filter: saturate(0.3) brightness(0.5);
+}
+
+/* --- Active: warm glow, visible --- */
+.patriot-card.active,
+.hologram-card.active {
+  filter: saturate(0.85) brightness(0.9);
+}
+
+/* --- Speaking: full brightness, warmer glow --- */
+.patriot-card.speaking,
+.hologram-card.speaking {
+  filter: saturate(1) brightness(1.05);
+}
+
+
+/* -------------------------------------------------------------------
+   PATRIOT FRAME — Colonial Gilt Frame
+   ------------------------------------------------------------------- */
+.patriot-frame,
 .hologram-frame {
   position: relative;
   width: 100%;
   max-width: 200px;
   aspect-ratio: 5 / 7;
   overflow: hidden;
-  border: 1px solid rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.15);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+
+  /* Triple gilt frame: gold / dark / gold */
+  border: 3px solid var(--gold-dim);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow:
+    inset 0 0 0 2px var(--ink-medium),
+    inset 0 0 0 4px var(--gold-dim),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-/* Base portrait - faint, ghostly */
+/* Speaking: frame glows warmer, golden light */
+.patriot-card.speaking .patriot-frame,
+.hologram-card.speaking .hologram-frame {
+  border-color: var(--gold-bright);
+  box-shadow:
+    inset 0 0 0 2px var(--ink-medium),
+    inset 0 0 0 4px var(--gold),
+    0 0 25px rgba(201, 165, 78, 0.25),
+    0 0 50px rgba(201, 165, 78, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Active: subtle warm shadow */
+.patriot-card.active .patriot-frame,
+.hologram-card.active .hologram-frame {
+  border-color: var(--gold-dim);
+  box-shadow:
+    inset 0 0 0 2px var(--ink-medium),
+    inset 0 0 0 4px var(--gold-dim),
+    0 0 12px rgba(201, 165, 78, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+/* -------------------------------------------------------------------
+   PATRIOT PORTRAIT — The image inside the frame
+   ------------------------------------------------------------------- */
+.patriot-portrait,
 .hologram-base-img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  filter: saturate(0.2) brightness(0.5);
-  transition: opacity 1s ease;
+  filter: saturate(0.3) brightness(0.5) sepia(0.2);
+  transition: opacity 1s ease, filter 0.6s ease;
 }
 
-.hologram-frame.active .hologram-base-img {
-  opacity: 0.45;
+.hologram-frame.active .hologram-base-img,
+.patriot-card.active .patriot-portrait {
+  opacity: 0.7;
+  filter: saturate(0.6) brightness(0.75) sepia(0.15);
 }
 
-/* Edge-detected overlay - bright, colored edges */
-.hologram-edge-img {
+.patriot-card.speaking .patriot-portrait,
+.hologram-card.speaking .hologram-base-img {
+  opacity: 1;
+  filter: saturate(0.85) brightness(1) sepia(0.1);
+}
+
+/* Edge / Etching overlay */
+.hologram-edge-img,
+.patriot-etching {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
   transition: opacity 1s ease;
 }
 
-.hologram-frame.active .hologram-edge-img {
-  opacity: 0.8;
+.hologram-frame.active .hologram-edge-img,
+.patriot-card.active .patriot-etching {
+  opacity: 0.5;
   animation: holoEdgePulse 3.5s ease-in-out infinite;
 }
 
-@keyframes holoEdgePulse {
-  0%, 100% { opacity: 0.7; filter: brightness(1); }
-  50% { opacity: 0.9; filter: brightness(1.15); }
+.patriot-card.speaking .patriot-etching {
+  opacity: 0.7;
 }
 
-/* Scan lines overlay */
-.hologram-scanlines {
+@keyframes holoEdgePulse {
+  0%, 100% { opacity: 0.5; filter: brightness(1); }
+  50%      { opacity: 0.7; filter: brightness(1.15); }
+}
+
+/* Scan lines (subtle, like aged print grain) */
+.hologram-scanlines,
+.patriot-scanlines {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, 0.1) 2px,
-    rgba(0, 0, 0, 0.1) 4px
+    transparent 3px,
+    rgba(0, 0, 0, 0.06) 3px,
+    rgba(0, 0, 0, 0.06) 6px
   );
   pointer-events: none;
   z-index: 5;
-  animation: holoScanScroll 12s linear infinite;
-}
-
-@keyframes holoScanScroll {
-  from { background-position: 0 0; }
-  to { background-position: 0 200px; }
 }
 
 /* Noise canvas */
@@ -480,59 +855,139 @@ html, body {
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.07;
+  opacity: 0.05;
   pointer-events: none;
   z-index: 6;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
-/* Flicker overlay */
-.hologram-flicker {
+/* Flicker overlay (candlelight flicker) */
+.hologram-flicker,
+.patriot-candlelight {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 7;
-  animation: holoFlicker 4s step-end infinite;
+  animation: candleFlicker 5s step-end infinite;
   background: transparent;
 }
 
-@keyframes holoFlicker {
-  0% { opacity: 0; }
-  3% { opacity: 0.04; background: rgba(201, 165, 78, 0.3); }
-  6% { opacity: 0; }
-  47% { opacity: 0; }
-  48% { opacity: 0.02; background: rgba(255, 255, 255, 0.2); }
-  49% { opacity: 0; }
-  73% { opacity: 0; }
-  74% { opacity: 0.03; background: rgba(201, 165, 78, 0.2); }
-  76% { opacity: 0; }
+@keyframes candleFlicker {
+  0%   { opacity: 0; }
+  4%   { opacity: 0.03; background: rgba(255, 200, 100, 0.2); }
+  7%   { opacity: 0; }
+  45%  { opacity: 0; }
+  47%  { opacity: 0.02; background: rgba(255, 180, 80, 0.15); }
+  49%  { opacity: 0; }
+  72%  { opacity: 0; }
+  74%  { opacity: 0.04; background: rgba(255, 200, 100, 0.18); }
+  77%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
-/* Materialization animation */
+
+/* -------------------------------------------------------------------
+   PATRIOT NAMEPLATE — Engraved name below frame
+   ------------------------------------------------------------------- */
+.patriot-nameplate,
+.hologram-nameplate {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 4px 16px;
+
+  /* Engraved brass nameplate */
+  background: linear-gradient(to bottom, var(--ink-medium), var(--ink));
+  border: 1px solid var(--gold-dim);
+  border-top: none;
+}
+
+.patriot-card.speaking .patriot-nameplate,
+.hologram-card.speaking .hologram-nameplate {
+  color: var(--gold-bright);
+  text-shadow:
+    0 0 15px rgba(201, 165, 78, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+  border-color: var(--gold);
+}
+
+
+/* -------------------------------------------------------------------
+   PATRIOT GLOW — Candlelight from below
+   ------------------------------------------------------------------- */
+.patriot-glow,
+.hologram-base-light {
+  width: 130%;
+  height: 18px;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 200, 100, 0.12) 0%,
+    transparent 70%
+  );
+  margin-top: 4px;
+  transition: height 0.4s, opacity 0.4s;
+  animation: candleFlickerGlow 3s ease-in-out infinite;
+}
+
+@keyframes candleFlickerGlow {
+  0%, 100% { opacity: 0.7; }
+  30%      { opacity: 1; }
+  60%      { opacity: 0.8; }
+  85%      { opacity: 0.95; }
+}
+
+.patriot-card.speaking .patriot-glow,
+.hologram-card.speaking .hologram-base-light {
+  height: 30px;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 200, 100, 0.22) 0%,
+    transparent 70%
+  );
+}
+
+/* Speaking edge animation */
+.hologram-card.speaking .hologram-edge-img {
+  animation: holoSpeakPulse 0.7s ease-in-out infinite !important;
+}
+
+@keyframes holoSpeakPulse {
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50%      { opacity: 1; filter: brightness(1.3); }
+}
+
+
+/* -------------------------------------------------------------------
+   MATERIALIZATION / DEMATERIALIZATION
+   ------------------------------------------------------------------- */
 .hologram-frame.materializing .hologram-base-img,
 .hologram-frame.materializing .hologram-edge-img {
   opacity: 1;
 }
+
 .hologram-frame.materializing {
   animation: holoMaterialize 2.5s ease-out forwards;
 }
 
 @keyframes holoMaterialize {
-  0% { clip-path: inset(100% 0 0 0); filter: brightness(2.5) saturate(0); }
-  30% { filter: brightness(1.8) saturate(0.3); }
-  70% { filter: brightness(1.2) saturate(0.7); }
+  0%   { clip-path: inset(100% 0 0 0); filter: brightness(2.5) saturate(0); }
+  30%  { filter: brightness(1.8) saturate(0.3); }
+  70%  { filter: brightness(1.2) saturate(0.7); }
   100% { clip-path: inset(0); filter: brightness(1) saturate(1); }
 }
 
-/* Dematerialization */
 .hologram-frame.dematerializing {
   animation: holoDematerialize 1.5s ease-in forwards;
 }
 
 @keyframes holoDematerialize {
-  0% { clip-path: inset(0); filter: brightness(1); opacity: 1; }
-  40% { filter: brightness(2); }
+  0%   { clip-path: inset(0); filter: brightness(1); opacity: 1; }
+  40%  { filter: brightness(2); }
   100% { clip-path: inset(0 0 100% 0); filter: brightness(3); opacity: 0; }
 }
 
@@ -541,102 +996,79 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(201, 165, 78, 0.04) 50%, transparent 70%);
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(201, 165, 78, 0.06) 50%,
+    transparent 70%
+  );
   animation: holoLoadShimmer 1.5s ease-in-out infinite;
 }
 
 @keyframes holoLoadShimmer {
   from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
+  to   { transform: translateX(100%); }
 }
 
-/* Nameplate */
-.hologram-nameplate {
-  margin-top: 12px;
-  font-family: var(--font-ritual);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.8);
-  text-shadow: 0 0 15px rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.4);
-  text-align: center;
-}
 
-/* Base projector light */
-.hologram-base-light {
-  width: 140%;
-  height: 16px;
-  background: radial-gradient(ellipse, rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.12) 0%, transparent 70%);
-  margin-top: 6px;
-  transition: height 0.3s, opacity 0.3s;
-}
-
-/* Speaking state */
-.hologram-card.speaking .hologram-frame {
-  border-color: rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.4);
-  box-shadow: 0 0 30px rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.15),
-              inset 0 0 20px rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.05);
-}
-
-.hologram-card.speaking .hologram-edge-img {
-  animation: holoSpeakPulse 0.7s ease-in-out infinite !important;
-}
-
-@keyframes holoSpeakPulse {
-  0%, 100% { opacity: 0.7; filter: brightness(1); }
-  50% { opacity: 1; filter: brightness(1.4); }
-}
-
-.hologram-card.speaking .hologram-base-light {
-  height: 28px;
-  background: radial-gradient(ellipse, rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.2) 0%, transparent 70%);
-}
-
-.hologram-card.speaking .hologram-nameplate {
-  text-shadow: 0 0 25px rgba(var(--holo-r, 201), var(--holo-g, 165), var(--holo-b, 78), 0.6);
-}
-
-/* ─── Summoning Effects ─── */
+/* -------------------------------------------------------------------
+   SUMMONING EFFECTS
+   ------------------------------------------------------------------- */
 #chamber-screen.summoning {
   animation: chamberShake 0.5s ease-out;
 }
 
 @keyframes chamberShake {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-3px, 1px); }
-  20% { transform: translate(3px, -2px); }
-  30% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -1px); }
-  50% { transform: translate(-1px, 2px); }
-  60% { transform: translate(2px, 1px); }
-  70% { transform: translate(-1px, -1px); }
-  80% { transform: translate(1px, 1px); }
-  90% { transform: translate(-1px, 0px); }
+  10%      { transform: translate(-3px, 1px); }
+  20%      { transform: translate(3px, -2px); }
+  30%      { transform: translate(-2px, 2px); }
+  40%      { transform: translate(2px, -1px); }
+  50%      { transform: translate(-1px, 2px); }
+  60%      { transform: translate(2px, 1px); }
+  70%      { transform: translate(-1px, -1px); }
+  80%      { transform: translate(1px, 1px); }
+  90%      { transform: translate(-1px, 0px); }
 }
 
+/* Golden warm summon flash (not white) */
 .summon-flash {
   position: fixed;
   inset: 0;
-  background: rgba(201, 165, 78, 0.15);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 184, 92, 0.25) 0%,
+    rgba(201, 165, 78, 0.12) 50%,
+    transparent 80%
+  );
   pointer-events: none;
   z-index: 50;
-  animation: summonFlash 0.4s ease-out forwards;
+  animation: summonFlash 0.5s ease-out forwards;
 }
 
 @keyframes summonFlash {
-  0% { opacity: 1; }
+  0%   { opacity: 1; }
   100% { opacity: 0; }
 }
 
-/* ─── Persona Bar ─── */
-#persona-bar {
+
+/* ===================================================================
+   PERSONA BAR — Active Patriot Indicators
+   =================================================================== */
+#persona-bar,
+#committee-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
-  background: var(--void-surface);
-  border-bottom: 1px solid rgba(201, 165, 78, 0.08);
   min-height: 44px;
+
+  /* Dark parchment strip */
+  background:
+    var(--parchment-texture),
+    linear-gradient(to bottom, var(--parchment-deep), var(--parchment-dark));
+  border-bottom: 1px solid var(--ink-medium);
+  border-top: 1px solid var(--ink-medium);
 }
 
 #persona-badges {
@@ -645,31 +1077,35 @@ html, body {
   flex-wrap: wrap;
 }
 
+/* --- Persona Badge: colonial tag with ornamental border --- */
 .persona-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 3px 12px;
-  font-family: var(--font-ritual);
-  font-size: 0.7rem;
+  padding: 3px 14px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px solid;
-  border-radius: 2px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--ink-light);
+  border-radius: 0;
   animation: badge-appear 0.4s ease forwards;
 }
 
 @keyframes badge-appear {
   from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .persona-badge .badge-dismiss {
   cursor: pointer;
-  opacity: 0.5;
-  margin-left: 4px;
+  opacity: 0.4;
+  margin-left: 6px;
   font-size: 0.6rem;
   transition: opacity 0.2s;
+  color: var(--ink);
 }
 
 .persona-badge .badge-dismiss:hover {
@@ -677,9 +1113,13 @@ html, body {
 }
 
 .persona-badge.speaking {
-  box-shadow: 0 0 12px currentColor;
+  border-color: var(--gold);
+  background: rgba(201, 165, 78, 0.15);
+  box-shadow: 0 0 10px rgba(201, 165, 78, 0.2);
 }
 
+
+/* --- Chamber Controls --- */
 #chamber-controls {
   display: flex;
   gap: var(--space-sm);
@@ -691,58 +1131,84 @@ html, body {
   gap: var(--space-xs);
   padding: 4px 12px;
   background: transparent;
-  border: 1px solid rgba(201, 165, 78, 0.15);
-  color: var(--parchment-dim);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  border: 1px solid var(--ink-light);
+  color: var(--ink-medium);
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .control-btn:hover {
-  border-color: var(--ember-dim);
-  color: var(--parchment);
+  border-color: var(--ink);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .control-btn.active {
-  border-color: var(--ember);
-  color: var(--ember);
+  border-color: var(--gold);
+  color: var(--gold-dim);
+  background: rgba(201, 165, 78, 0.08);
 }
 
 .control-btn-danger {
-  border-color: rgba(201, 78, 78, 0.3);
-  color: var(--color-strategic);
+  border-color: rgba(180, 60, 60, 0.4);
+  color: #8b3030;
 }
 
 .control-btn-danger:hover {
-  border-color: var(--color-strategic);
-  background: rgba(201, 78, 78, 0.1);
+  border-color: #8b3030;
+  background: rgba(180, 60, 60, 0.08);
+  color: #6b2020;
 }
 
-/* Settings Panel */
+.control-icon {
+  font-size: 1em;
+}
+
+.control-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+
+/* ===================================================================
+   SETTINGS PANEL — Parchment Overlay
+   =================================================================== */
 #settings-panel {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   width: 320px;
-  background: var(--void-surface);
-  border-left: 1px solid rgba(201, 165, 78, 0.1);
   z-index: 100;
   padding: var(--space-xl);
   overflow-y: auto;
+
+  /* Parchment overlay */
+  background:
+    var(--parchment-texture),
+    var(--parchment-bg);
+  border-left: 3px double var(--ink-medium);
+  color: var(--ink);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3);
 }
 
 #settings-panel.hidden {
   display: none;
 }
 
+.settings-title,
 .settings-inner h3 {
-  font-family: var(--font-ritual);
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  color: var(--ember);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
   margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px dashed var(--ink-light);
+  text-align: center;
 }
 
 .setting-row {
@@ -752,29 +1218,65 @@ html, body {
   margin-bottom: var(--space-lg);
 }
 
-.config-range {
+.setting-row-btns {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Settings-specific overrides for inputs on parchment */
+#settings-panel .binding-label {
+  color: var(--ink-light);
+}
+
+#settings-panel .binding-select {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: var(--ink-light);
+  color: var(--ink);
+}
+
+#settings-panel .control-btn {
+  color: var(--ink-medium);
+  border-color: var(--ink-light);
+}
+
+#settings-panel .control-btn:hover {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.settings-range {
   -webkit-appearance: none;
   width: 100%;
   height: 4px;
-  background: var(--void-elevated);
-  border-radius: 2px;
+  background: var(--parchment-deep);
+  border: 1px solid var(--ink-light);
+  border-radius: 0;
   outline: none;
 }
 
-.config-range::-webkit-slider-thumb {
+.settings-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 16px;
   height: 16px;
-  background: var(--ember);
-  border-radius: 50%;
+  background: var(--gold);
+  border: 1px solid var(--ink-medium);
+  border-radius: 0;
   cursor: pointer;
 }
 
-/* ═══ DIALOGUE ═══ */
+
+/* ===================================================================
+   DIALOGUE AREA — Colonial Broadsheet / Newspaper Column
+   =================================================================== */
 #dialogue-container {
   flex: 1;
   overflow: hidden;
   position: relative;
+  /* Warm dark wood background for the dialogue area */
+  background:
+    radial-gradient(ellipse at center, rgba(255, 200, 100, 0.02) 0%, transparent 60%),
+    var(--wood-dark);
 }
 
 #dialogue-scroll {
@@ -792,7 +1294,10 @@ html, body {
   gap: var(--space-lg);
 }
 
-/* ═══ MESSAGES ═══ */
+
+/* ===================================================================
+   MESSAGES
+   =================================================================== */
 .message {
   animation: message-appear 0.4s ease forwards;
   opacity: 0;
@@ -800,40 +1305,31 @@ html, body {
 
 @keyframes message-appear {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.message-seeker {
-  text-align: right;
-}
-
-.message-seeker .message-bubble {
-  display: inline-block;
-  text-align: left;
-  background: var(--void-elevated);
-  border: 1px solid rgba(201, 165, 78, 0.1);
-  padding: var(--space-md) var(--space-lg);
-  max-width: 80%;
-  border-radius: 2px;
-}
-
+/* --- Persona Messages: typeset broadsheet style --- */
 .message-persona {
   padding-left: 0;
 }
 
 .message-persona .message-header {
-  font-family: var(--font-ritual);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: var(--space-sm);
-  opacity: 0.8;
+  color: var(--gold);
+  opacity: 0.9;
 }
 
 .message-persona .message-body {
   padding-left: var(--space-md);
-  border-left: 2px solid;
-  line-height: 1.75;
+  border-left: 2px solid var(--gold-dim);
+  line-height: 1.8;
+  color: var(--parchment);
+  font-family: var(--font-body);
 }
 
 .message-persona .message-body p {
@@ -845,53 +1341,116 @@ html, body {
 }
 
 .message-persona .message-body em {
-  color: var(--ember-bright);
+  color: var(--gold-bright);
+  font-style: italic;
 }
 
 .message-persona .message-body strong {
   color: var(--parchment);
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .message-persona .message-body blockquote {
   margin: var(--space-md) 0;
-  padding-left: var(--space-md);
-  border-left: 1px solid var(--ember-dim);
+  padding: var(--space-sm) var(--space-md);
+  border-left: 1px solid var(--gold-dim);
   font-style: italic;
-  color: var(--parchment-dim);
+  color: var(--parchment-dark);
+  background: rgba(201, 165, 78, 0.03);
 }
 
+/* --- Seeker Messages: right-aligned darker bubble --- */
+.message-seeker {
+  text-align: right;
+}
+
+.message-seeker .message-bubble {
+  display: inline-block;
+  text-align: left;
+  background: var(--wood-medium);
+  border: 1px solid var(--ink-light);
+  padding: var(--space-md) var(--space-lg);
+  max-width: 80%;
+  color: var(--parchment-dark);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+/* --- System Messages: centered italic with ornamental separators --- */
 .message-system {
   text-align: center;
 }
 
 .message-system .message-body {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--parchment-faint);
+  font-family: var(--font-accent);
+  font-size: 0.82rem;
+  color: var(--ink-light);
   font-style: italic;
+  letter-spacing: 0.03em;
 }
 
-/* Streaming cursor */
+/* Ornamental dashes around system text */
+.message-system .message-body::before {
+  content: '--- ';
+  color: var(--gold-dim);
+  letter-spacing: 0.2em;
+}
+
+.message-system .message-body::after {
+  content: ' ---';
+  color: var(--gold-dim);
+  letter-spacing: 0.2em;
+}
+
+/* --- Speaker Header (symposium mode) --- */
+.speaker-header {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px dashed var(--gold-dim);
+}
+
+.speaker-header:first-child {
+  margin-top: 0;
+}
+
+/* --- Streaming Cursor: quill-pen blink --- */
 .streaming-cursor {
   display: inline-block;
   width: 2px;
-  height: 1em;
-  background: currentColor;
-  margin-left: 2px;
-  animation: blink 0.8s step-end infinite;
+  height: 1.1em;
+  background: var(--gold);
+  margin-left: 3px;
+  animation: quillBlink 0.9s step-end infinite;
   vertical-align: text-bottom;
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
+@keyframes quillBlink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* ═══ INPUT ═══ */
+
+/* ===================================================================
+   INPUT AREA — Parchment with Quill Styling
+   =================================================================== */
 #input-area {
   padding: var(--space-md) var(--space-xl) var(--space-lg);
-  background: var(--void-surface);
-  border-top: 1px solid rgba(201, 165, 78, 0.08);
+  border-top: 3px double var(--ink-medium);
+
+  /* Parchment input strip */
+  background:
+    var(--parchment-texture),
+    linear-gradient(to bottom, var(--parchment-dark), var(--parchment-deep));
 }
 
 #input-wrapper {
@@ -905,54 +1464,70 @@ html, body {
 #user-input {
   flex: 1;
   padding: 12px 16px;
-  background: var(--void-elevated);
-  border: 1px solid rgba(201, 165, 78, 0.15);
-  color: var(--parchment);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--ink-light);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.5;
   resize: none;
   outline: none;
   max-height: 150px;
-  transition: border-color 0.3s;
-  border-radius: 2px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 #user-input:focus {
-  border-color: var(--ember-dim);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 165, 78, 0.15);
 }
 
 #user-input::placeholder {
-  color: var(--parchment-faint);
+  color: var(--ink-faint);
   font-style: italic;
 }
 
+/* --- Send Button: styled as a seal/stamp --- */
 #send-btn {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: 1px solid var(--ember-dim);
-  color: var(--ember);
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s;
-  border-radius: 2px;
   flex-shrink: 0;
+  transition: all 0.3s;
+  font-size: 1rem;
+
+  /* Wax seal appearance */
+  background: radial-gradient(circle, #8b3030 30%, #6b2020 100%);
+  color: var(--gold);
+  border: 2px solid var(--gold-dim);
+  border-radius: 50%;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 200, 100, 0.1);
 }
 
 #send-btn:hover {
-  background: var(--ember-glow);
-  border-color: var(--ember);
+  background: radial-gradient(circle, #a04040 30%, #8b3030 100%);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 15px rgba(201, 165, 78, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 200, 100, 0.15);
 }
 
 #send-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+  filter: grayscale(0.5);
 }
 
+#send-btn:active {
+  transform: scale(0.93);
+}
+
+/* --- Input Hint --- */
 #input-hint {
   max-width: 780px;
   margin: var(--space-sm) auto 0;
@@ -961,42 +1536,76 @@ html, body {
 
 .hint-text {
   font-size: 0.75rem;
-  color: var(--parchment-faint);
+  color: var(--ink-faint);
+  font-style: italic;
 }
 
 .hint-text code {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ember-dim);
-  background: var(--void-elevated);
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  color: var(--ink-medium);
+  background: rgba(255, 255, 255, 0.3);
   padding: 2px 6px;
-  border-radius: 2px;
+  border: 1px solid rgba(107, 90, 62, 0.3);
 }
 
-/* ═══ UTILITY ═══ */
+
+/* ===================================================================
+   UTILITY
+   =================================================================== */
 .hidden {
   display: none !important;
 }
 
-/* ═══ RESPONSIVE ═══ */
+
+/* ===================================================================
+   RESPONSIVE — 768px breakpoint
+   =================================================================== */
 @media (max-width: 768px) {
   .void-title {
-    font-size: 2.2rem;
-    letter-spacing: 0.2em;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
   }
 
+  .void-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .sigil-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  #portrait-stage,
   #hologram-stage {
     min-height: 200px;
     max-height: 40vh;
   }
 
+  .portrait-gallery,
   .hologram-gallery {
-    gap: 24px;
-    padding: 16px 20px 12px;
+    gap: 16px;
+    padding: 12px 12px 16px;
   }
 
+  .patriot-frame,
   .hologram-frame {
-    max-width: 140px;
+    max-width: 130px;
+  }
+
+  .patriot-nameplate,
+  .hologram-nameplate {
+    font-size: 0.58rem;
+    padding: 3px 10px;
+  }
+
+  .binding-parchment {
+    padding: 30px 25px;
+    margin: 0 12px;
+  }
+
+  .binding-title {
+    font-size: 1.4rem;
   }
 
   #dialogue-scroll {
@@ -1014,33 +1623,102 @@ html, body {
   #settings-panel {
     width: 100%;
   }
+
+  #persona-bar,
+#committee-bar {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .colonial-btn {
+    padding: 12px 28px;
+    font-size: 0.8rem;
+  }
 }
 
-/* ═══ ANIMATIONS ═══ */
+@media (max-width: 480px) {
+  .portrait-gallery,
+  .hologram-gallery {
+    gap: 10px;
+    padding: 8px 8px 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .patriot-frame,
+  .hologram-frame {
+    max-width: 100px;
+  }
+
+  #portrait-stage,
+  #hologram-stage {
+    max-height: 55vh;
+  }
+
+  .void-title {
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+
+/* ===================================================================
+   ADDITIONAL ANIMATIONS
+   =================================================================== */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 0 10px rgba(201, 165, 78, 0.1); }
-  50% { box-shadow: 0 0 25px rgba(201, 165, 78, 0.25); }
+  50%      { box-shadow: 0 0 25px rgba(201, 165, 78, 0.25); }
 }
 
-/* Void particles (decorative) */
-.void-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--ember);
-  border-radius: 50%;
-  opacity: 0;
-  animation: particle-float 8s ease-in-out infinite;
+/* --- Drop Cap utility (for use in JS-rendered content) --- */
+.drop-cap {
+  float: left;
+  font-size: 48px;
+  line-height: 0.8;
+  padding-right: 8px;
+  padding-top: 4px;
+  font-family: var(--font-display);
+  color: var(--ink);
 }
 
-@keyframes particle-float {
-  0% { opacity: 0; transform: translateY(0) scale(0); }
-  20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
-  80% { opacity: 0.3; transform: translateY(-80px) scale(0.5); }
-  100% { opacity: 0; transform: translateY(-120px) scale(0); }
+/* --- Ornament utility --- */
+.ornament {
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 10px;
+  color: var(--gold-dim);
+}
+
+.ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 16px 0;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ink-medium), transparent);
+}
+
+/* --- Print (for parchment exports) --- */
+@media print {
+  body {
+    background: none;
+  }
+  .screen {
+    position: static;
+    display: block !important;
+    opacity: 1 !important;
+  }
 }

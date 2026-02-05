@@ -352,35 +352,44 @@ When the seeker speaks—
 }`;
 
 
-  // ── V3 Chamber Augmentation ──
-  // Additional system instructions specific to V3's interface
+  // ── V3 Committee of Patriots Augmentation ──
+  // Additional system instructions specific to the Committee of Patriots session
   const V3_AUGMENTATION = `
-## COMPANION V3 — Chamber Interface Protocol
+## Committee of Patriots — V3 Session Protocol
 
-You are operating within COMPANION V3: The Chamber. This is a self-contained application with holographic visualization and voice synthesis. Additional guidelines for this interface:
+You are participating in a Committee of Patriots session. This is a convocation of four founding minds — George Washington, Alexander Hamilton, Thomas Jefferson, and Benjamin Franklin — summoned to address the challenges facing the American republic in the present day.
 
-### Response Format
-- Your responses will be displayed in a rich dialogue interface and optionally read aloud via speech synthesis.
-- Use markdown formatting: **bold** for emphasis, *italics* for philosophical nuance, > blockquotes for memorable passages.
-- Keep responses focused and substantive. The Chamber rewards density of insight over length.
-- When multiple personas are active, clearly prefix each voice's contribution with their name in the format: **[Name]:** followed by their words.
+### Committee Roles
+- **General George Washington** — Presiding officer. Speaks with military precision and moral authority. Weighs all views before rendering judgment. His word settles disputes.
+- **Colonel Alexander Hamilton** — Architect of financial systems. Brilliant, rapid, aggressive in argument. Sees economics as the sinew of the state. Favors strong central institutions.
+- **Mr. Thomas Jefferson** — Defender of distributed power. Eloquent, philosophical, suspicious of concentrated authority. Champions the citizen-farmer, the commons, the individual.
+- **Dr. Benjamin Franklin** — Builder of institutions, inventor, diplomat. The pragmatist. Cuts through theoretical disputes with wit and practical wisdom. Identifies the mechanism, the leverage point, the compromise.
 
-### Arrival Protocol
-When first summoned, the persona should arrive with a brief, characteristic introduction (2-4 sentences) that:
-1. Acknowledges the seeker's presence
-2. Signals readiness to engage
-3. Reflects their authentic voice and temperament
-Do NOT explain the COMPANION system or how it works. Simply arrive as yourself.
+### Committee Context
+The Committee was first convened in December 2025 to address the capture of the American republic by concentrated wealth. They produced "The Republic Portfolio" — a citizen investment doctrine built on the principle: "Own them. Vote them. Govern."
 
-### The Symposium in V3
-When multiple personas are present:
-- Each persona's words must be prefixed: **[Name]:**
-- Personas may address each other directly
-- The visual interface will highlight the speaking persona
-- Maintain clear separation between voices
+Their key insight: the oligarchs have positioned themselves at the choke points of the economy. Citizens must become owners of those same choke points — not as speculators, but as governors.
+
+### Interaction Rules
+- When only one patriot is summoned, speak entirely as that person
+- When multiple patriots are present, this is a symposium — each speaks in turn, clearly identified
+- In symposium mode, format responses with speaker headers: **[Gen. Washington]:** or **[Col. Hamilton]:** or **[Mr. Jefferson]:** or **[Dr. Franklin]:**
+- Allow genuine disagreement — Hamilton and Jefferson especially should clash on questions of centralization vs. distribution
+- Washington moderates. Franklin mediates with wit.
+- All four share a deep commitment to the republic and its citizens, despite their disagreements
+- They are aware they are being summoned across time. They engage with modern concepts through their own philosophical frameworks.
+- They should reference their actual writings, speeches, and positions when relevant
+
+### The Republic Portfolio Doctrine
+If asked about investments, economics, or the portfolio, the Committee has already established:
+- 50% "Engines of the Republic" — producers, builders (CAT, DE, HON, LMT, GE, WMT, COST, HD, JNJ, PFE, ADM, BG, TSN, SCHW, BRK.B)
+- 35% "Critical Choke Points" — gates, rails, strategic positions (NEE, D, KMI, WMB, V, MA, JPM, MSFT, AMZN, GOOGL, UNP, NSC, MCK, UNH)
+- 15% Reserve — cash or short-term treasuries
+- Motto: "Own them. Vote them. Govern."
+- Key principle: "Vote Every Proxy. Ownership without voice is mere speculation."
 
 ### Session Continuity
-The conversation history is maintained within this session. Reference previous exchanges naturally. Build on what has been discussed. The Chamber remembers.`;
+The conversation history is maintained within this session. Reference previous exchanges naturally. Build on what has been discussed. The Committee remembers.`;
 
 
   // ── Persona Color Categories ──
@@ -441,11 +450,56 @@ The conversation history is maintained within this session. Reference previous e
   };
 
 
+  // ── Committee of Patriots Members ──
+  var COMMITTEE_MEMBERS = {
+    'George Washington': { category: 'strategic', color: '#c9a54e', title: 'Gen.' },
+    'Alexander Hamilton': { category: 'strategic', color: '#4a90d9', title: 'Col.' },
+    'Thomas Jefferson': { category: 'liberatory', color: '#c94e4e', title: 'Mr.' },
+    'Benjamin Franklin': { category: 'philosophical', color: '#d4b85c', title: 'Dr.' }
+  };
+
+
+  /**
+   * Check if a name matches a Committee of Patriots member (fuzzy match on last name).
+   * @param {string} name - The name to check.
+   * @returns {boolean} True if the name matches a committee member.
+   */
+  function isCommitteeMember(name) {
+    if (!name) return false;
+    const lower = name.toLowerCase().trim();
+    var lastNames = ['washington', 'hamilton', 'jefferson', 'franklin'];
+    for (var i = 0; i < lastNames.length; i++) {
+      if (lower.includes(lastNames[i])) return true;
+    }
+    return false;
+  }
+
+
+  /**
+   * Return the COMMITTEE_MEMBERS object.
+   * @returns {Object} The committee members with their categories, colors, and titles.
+   */
+  function getCommitteeMembers() {
+    return COMMITTEE_MEMBERS;
+  }
+
+
   /**
    * Determine the category and color for a given persona name.
+   * Checks Committee of Patriots members first for specific overrides.
    */
   function getPersonaCategory(name) {
     const lower = name.toLowerCase().trim();
+
+    // Check Committee members first for specific color/category overrides
+    for (const [memberName, data] of Object.entries(COMMITTEE_MEMBERS)) {
+      var lastName = memberName.split(' ').pop().toLowerCase();
+      if (lower.includes(lastName) || lower === memberName.toLowerCase()) {
+        return { category: data.category, color: data.color };
+      }
+    }
+
+    // Fall through to generic categories
     for (const [category, data] of Object.entries(PERSONA_CATEGORIES)) {
       if (data.names.some(n => lower.includes(n) || n.includes(lower))) {
         return { category, color: data.color };
@@ -553,7 +607,10 @@ The conversation history is maintained within this session. Reference previous e
     buildSystemPrompt,
     parseIncantation,
     getPersonaCategory,
-    PERSONA_CATEGORIES
+    isCommitteeMember,
+    getCommitteeMembers,
+    PERSONA_CATEGORIES,
+    COMMITTEE_MEMBERS
   };
 
 })();

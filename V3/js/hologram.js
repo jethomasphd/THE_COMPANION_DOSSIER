@@ -1,46 +1,64 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — Holographic Visualization Engine
-   Wikipedia portrait-based holographic rendering system.
-   Uses Canvas 2D for image processing and CSS for animation.
-   No Three.js dependency.
+   COMPANION V3 — The Committee of Patriots
+   Four-patriot portrait gallery with colonial engraving effect.
+   Portraits sourced from Wikipedia, processed through canvas
+   with sepia tint and Sobel edge-detection etching overlay.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
 
 COMPANION.Hologram = (function () {
 
-  // ── State ──
+  // ── The Four Patriots ──
+
+  var PATRIOTS = {
+    'George Washington': {
+      title: 'Gen.',
+      role: 'Presiding',
+      article: 'George_Washington',
+      color: '#c9a54e'
+    },
+    'Alexander Hamilton': {
+      title: 'Col.',
+      role: 'Treasury',
+      article: 'Alexander_Hamilton',
+      color: '#4a90d9'
+    },
+    'Thomas Jefferson': {
+      title: 'Mr.',
+      role: 'Liberty',
+      article: 'Thomas_Jefferson',
+      color: '#c94e4e'
+    },
+    'Benjamin Franklin': {
+      title: 'Dr.',
+      role: 'Wisdom',
+      article: 'Benjamin_Franklin',
+      color: '#d4b85c'
+    }
+  };
+
+
+  // ── Internal State ──
+
   var container = null;
-  var gallery = null;
-  var idleEl = null;
-  var personas = {};       // name -> { card, frame, noiseCanvas, noiseCtx, phase }
-  var noiseInterval = null;
-  var styleInjected = false;
+  var galleryEl = null;
+  var cards = {};          // fullName -> { card, frame, portraitImg, etchingImg, nameplate, glow }
   var isInitialized = false;
 
   // ── Constants ──
-  var IMG_MAX_W = 200;
-  var IMG_MAX_H = 300;
-  var IMG_DEFAULT_W = 200;
-  var IMG_DEFAULT_H = 280;
-  var NOISE_INTERVAL_MS = 120;
-  var MATERIALIZE_MS = 2500;
-  var DEMATERIALIZE_MS = 1500;
-  var NOISE_DENSITY = 0.03;
 
-  // Styles are handled by companion.css — no injection needed
-  function injectStyles() {}
+  var PORTRAIT_W = 400;
+  var PORTRAIT_H = 560;    // 5:7 ratio
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  Utility Functions
+  //  Utility — hex color to {r,g,b}
   // ═══════════════════════════════════════════════════════════════
 
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (!result) {
-      return { r: 201, g: 165, b: 78 }; // fallback gold
-    }
+    if (!result) return { r: 201, g: 165, b: 78 };
     return {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
@@ -48,20 +66,43 @@ COMPANION.Hologram = (function () {
     };
   }
 
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(text));
-    return div.innerHTML;
-  }
 
-  function personaCount() {
-    var count = 0;
-    for (var key in personas) {
-      if (personas.hasOwnProperty(key)) {
-        count++;
+  // ═══════════════════════════════════════════════════════════════
+  //  Name Matching — fuzzy on last name
+  // ═══════════════════════════════════════════════════════════════
+
+  function resolvePatriotName(input) {
+    if (!input) return null;
+    var needle = input.trim().toLowerCase();
+
+    // Exact full-name match first
+    for (var fullName in PATRIOTS) {
+      if (PATRIOTS.hasOwnProperty(fullName)) {
+        if (fullName.toLowerCase() === needle) return fullName;
       }
     }
-    return count;
+
+    // Last-name match
+    for (var fullName2 in PATRIOTS) {
+      if (PATRIOTS.hasOwnProperty(fullName2)) {
+        var parts = fullName2.split(' ');
+        var lastName = parts[parts.length - 1].toLowerCase();
+        if (needle === lastName || needle.indexOf(lastName) !== -1 || lastName.indexOf(needle) !== -1) {
+          return fullName2;
+        }
+      }
+    }
+
+    // Partial match anywhere in full name
+    for (var fullName3 in PATRIOTS) {
+      if (PATRIOTS.hasOwnProperty(fullName3)) {
+        if (fullName3.toLowerCase().indexOf(needle) !== -1) {
+          return fullName3;
+        }
+      }
+    }
+
+    return null;
   }
 
 
@@ -69,9 +110,8 @@ COMPANION.Hologram = (function () {
   //  Wikipedia Portrait Fetching
   // ═══════════════════════════════════════════════════════════════
 
-  function fetchPortrait(name) {
-    var slug = name.replace(/\s+/g, '_');
-    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(slug);
+  function fetchPortraitUrl(article) {
+    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
 
     return fetch(url)
       .then(function (response) {
@@ -80,14 +120,17 @@ COMPANION.Hologram = (function () {
       })
       .then(function (data) {
         if (!data) return null;
-        // Prefer thumbnail for faster loading, fall back to original
+        var src = null;
         if (data.thumbnail && data.thumbnail.source) {
-          return data.thumbnail.source;
+          src = data.thumbnail.source;
+        } else if (data.originalimage && data.originalimage.source) {
+          src = data.originalimage.source;
         }
-        if (data.originalimage && data.originalimage.source) {
-          return data.originalimage.source;
+        if (src) {
+          // Upscale to 400px width for quality
+          src = src.replace(/\/\d+px-/, '/400px-');
         }
-        return null;
+        return src;
       })
       .catch(function () {
         return null;
@@ -103,142 +146,136 @@ COMPANION.Hologram = (function () {
     return new Promise(function (resolve, reject) {
       var img = new Image();
       img.crossOrigin = 'anonymous';
-
-      img.onload = function () {
-        resolve(img);
-      };
-
+      img.onload = function () { resolve(img); };
       img.onerror = function () {
-        // Retry without CORS — we may not be able to read pixels,
-        // but we'll catch that later and fall back
+        // Retry without CORS header — canvas may be tainted but
+        // we handle that gracefully in processImage
         var img2 = new Image();
-        img2.onload = function () {
-          resolve(img2);
-        };
-        img2.onerror = function () {
-          reject(new Error('Failed to load image: ' + url));
-        };
+        img2.onload = function () { resolve(img2); };
+        img2.onerror = function () { reject(new Error('Image load failed: ' + url)); };
         img2.src = url;
       };
-
       img.src = url;
     });
   }
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  Image Processing — Sobel Edge Detection & Holographic Tint
+  //  Image Processing — Sepia Tint + Sobel Etching
   // ═══════════════════════════════════════════════════════════════
 
   /**
-   * Returns the grayscale luminance at (x, y) from an ImageData buffer.
-   * Clamps coordinates to image bounds.
+   * Grayscale luminance at pixel (x, y) from raw ImageData buffer.
+   * Clamps to image bounds.
    */
-  function grayAt(data, width, x, y, height) {
-    // Clamp
+  function grayAt(data, w, h, x, y) {
     if (x < 0) x = 0;
     if (y < 0) y = 0;
-    if (x >= width) x = width - 1;
-    if (y >= height) y = height - 1;
-
-    var idx = (y * width + x) * 4;
-    var r = data[idx];
-    var g = data[idx + 1];
-    var b = data[idx + 2];
-    // Standard luminance formula
-    return 0.299 * r + 0.587 * g + 0.114 * b;
+    if (x >= w) x = w - 1;
+    if (y >= h) y = h - 1;
+    var idx = (y * w + x) * 4;
+    return 0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2];
   }
 
   /**
-   * Processes a loaded image into two holographic layers.
-   * Returns { baseDataUrl, edgeDataUrl }
+   * Process a loaded image into two layers:
+   *   1. Sepia/parchment-tinted portrait  (baseDataUrl)
+   *   2. Sobel edge-detection etching      (edgeDataUrl)
+   *
+   * Returns { baseDataUrl, edgeDataUrl } or null on tainted canvas.
    */
-  function processImage(img, color, targetWidth, targetHeight) {
-    var rgb = hexToRgb(color);
-
-    // ── Draw source image to canvas ──
+  function processImage(img) {
+    // ── Draw source to canvas at portrait dimensions ──
     var srcCanvas = document.createElement('canvas');
-    srcCanvas.width = targetWidth;
-    srcCanvas.height = targetHeight;
+    srcCanvas.width = PORTRAIT_W;
+    srcCanvas.height = PORTRAIT_H;
     var srcCtx = srcCanvas.getContext('2d');
 
-    // Center the image in the canvas
-    var scale = Math.min(targetWidth / img.width, targetHeight / img.height);
+    // Fill black, then draw image centered & scaled to cover
+    srcCtx.fillStyle = '#000';
+    srcCtx.fillRect(0, 0, PORTRAIT_W, PORTRAIT_H);
+
+    var scale = Math.max(PORTRAIT_W / img.width, PORTRAIT_H / img.height);
     var drawW = img.width * scale;
     var drawH = img.height * scale;
-    var offsetX = (targetWidth - drawW) / 2;
-    var offsetY = (targetHeight - drawH) / 2;
-
-    srcCtx.fillStyle = '#000000';
-    srcCtx.fillRect(0, 0, targetWidth, targetHeight);
+    var offsetX = (PORTRAIT_W - drawW) / 2;
+    var offsetY = (PORTRAIT_H - drawH) / 2;
     srcCtx.drawImage(img, offsetX, offsetY, drawW, drawH);
 
     var imageData;
     try {
-      imageData = srcCtx.getImageData(0, 0, targetWidth, targetHeight);
+      imageData = srcCtx.getImageData(0, 0, PORTRAIT_W, PORTRAIT_H);
     } catch (e) {
-      // CORS tainted canvas — return null so caller uses fallback
-      return null;
+      return null; // tainted canvas
     }
     var srcData = imageData.data;
+    var w = PORTRAIT_W;
+    var h = PORTRAIT_H;
 
-    // ── Base Layer: desaturated + tinted ──
+    // ── Layer 1: Sepia / parchment tint ──
+    // Desaturate to grayscale then blend with warm tone rgba(201,165,78,0.15)
     var baseCanvas = document.createElement('canvas');
-    baseCanvas.width = targetWidth;
-    baseCanvas.height = targetHeight;
+    baseCanvas.width = w;
+    baseCanvas.height = h;
     var baseCtx = baseCanvas.getContext('2d');
-    var baseImageData = baseCtx.createImageData(targetWidth, targetHeight);
+    var baseImageData = baseCtx.createImageData(w, h);
     var baseData = baseImageData.data;
 
-    var i, gray;
+    var tintR = 201, tintG = 165, tintB = 78;
+    var tintAlpha = 0.15;
+    var baseAlpha = 1.0 - tintAlpha;
+
+    var i, gray, r, g, b;
     for (i = 0; i < srcData.length; i += 4) {
       gray = 0.299 * srcData[i] + 0.587 * srcData[i + 1] + 0.114 * srcData[i + 2];
-      baseData[i]     = Math.min(255, gray * 0.4 + rgb.r * 0.15); // R
-      baseData[i + 1] = Math.min(255, gray * 0.4 + rgb.g * 0.15); // G
-      baseData[i + 2] = Math.min(255, gray * 0.4 + rgb.b * 0.15); // B
-      baseData[i + 3] = 180;                                        // A
+      // Blend desaturated gray with warm parchment tint
+      r = gray * baseAlpha + tintR * tintAlpha;
+      g = gray * baseAlpha + tintG * tintAlpha;
+      b = gray * baseAlpha + tintB * tintAlpha;
+      baseData[i]     = Math.min(255, Math.round(r));
+      baseData[i + 1] = Math.min(255, Math.round(g));
+      baseData[i + 2] = Math.min(255, Math.round(b));
+      baseData[i + 3] = 200; // medium opacity for the base layer
     }
 
     baseCtx.putImageData(baseImageData, 0, 0);
 
-    // ── Edge Layer: Sobel filter, colorized ──
+    // ── Layer 2: Sobel edge detection — etching / woodcut lines ──
     var edgeCanvas = document.createElement('canvas');
-    edgeCanvas.width = targetWidth;
-    edgeCanvas.height = targetHeight;
+    edgeCanvas.width = w;
+    edgeCanvas.height = h;
     var edgeCtx = edgeCanvas.getContext('2d');
-    var edgeImageData = edgeCtx.createImageData(targetWidth, targetHeight);
+    var edgeImageData = edgeCtx.createImageData(w, h);
     var edgeData = edgeImageData.data;
 
     var x, y, gx, gy, mag, idx;
-    var w = targetWidth;
-    var h = targetHeight;
-
     for (y = 0; y < h; y++) {
       for (x = 0; x < w; x++) {
-        // Sobel 3x3 kernels
-        // Gx = [-1 0 1; -2 0 2; -1 0 1]
-        gx = -grayAt(srcData, w, x - 1, y - 1, h)
-             + grayAt(srcData, w, x + 1, y - 1, h)
-             - 2 * grayAt(srcData, w, x - 1, y, h)
-             + 2 * grayAt(srcData, w, x + 1, y, h)
-             - grayAt(srcData, w, x - 1, y + 1, h)
-             + grayAt(srcData, w, x + 1, y + 1, h);
+        // Sobel Gx kernel: [-1 0 1; -2 0 2; -1 0 1]
+        gx = -grayAt(srcData, w, h, x - 1, y - 1)
+             + grayAt(srcData, w, h, x + 1, y - 1)
+             - 2 * grayAt(srcData, w, h, x - 1, y)
+             + 2 * grayAt(srcData, w, h, x + 1, y)
+             - grayAt(srcData, w, h, x - 1, y + 1)
+             + grayAt(srcData, w, h, x + 1, y + 1);
 
-        // Gy = [-1 -2 -1; 0 0 0; 1 2 1]
-        gy = -grayAt(srcData, w, x - 1, y - 1, h)
-             - 2 * grayAt(srcData, w, x, y - 1, h)
-             - grayAt(srcData, w, x + 1, y - 1, h)
-             + grayAt(srcData, w, x - 1, y + 1, h)
-             + 2 * grayAt(srcData, w, x, y + 1, h)
-             + grayAt(srcData, w, x + 1, y + 1, h);
+        // Sobel Gy kernel: [-1 -2 -1; 0 0 0; 1 2 1]
+        gy = -grayAt(srcData, w, h, x - 1, y - 1)
+             - 2 * grayAt(srcData, w, h, x, y - 1)
+             - grayAt(srcData, w, h, x + 1, y - 1)
+             + grayAt(srcData, w, h, x - 1, y + 1)
+             + 2 * grayAt(srcData, w, h, x, y + 1)
+             + grayAt(srcData, w, h, x + 1, y + 1);
 
         mag = Math.min(255, Math.sqrt(gx * gx + gy * gy));
 
         idx = (y * w + x) * 4;
-        edgeData[idx]     = mag * (rgb.r / 255);
-        edgeData[idx + 1] = mag * (rgb.g / 255);
-        edgeData[idx + 2] = mag * (rgb.b / 255);
-        edgeData[idx + 3] = mag > 20 ? mag * 0.9 : 0;
+        // Dark lines on light background for engraving effect — multiply blend
+        // Store edge as dark values (inverted) so mix-blend-mode:multiply darkens the base
+        edgeData[idx]     = 255 - mag;
+        edgeData[idx + 1] = 255 - mag;
+        edgeData[idx + 2] = 255 - mag;
+        edgeData[idx + 3] = mag > 15 ? 255 : 0;
       }
     }
 
@@ -252,65 +289,53 @@ COMPANION.Hologram = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  Fallback Image — stylized initial letter when no portrait
+  //  Fallback — Stylized initial when Wikipedia image is unavailable
   // ═══════════════════════════════════════════════════════════════
 
-  function createFallbackImage(name, color, width, height) {
+  function createFallbackImage(name, color) {
     var rgb = hexToRgb(color);
-    var initial = (name && name.length > 0) ? name.charAt(0).toUpperCase() : '?';
+    var initial = name ? name.charAt(0).toUpperCase() : '?';
+    var w = PORTRAIT_W;
+    var h = PORTRAIT_H;
 
-    // ── Base fallback ──
+    // Base layer
     var baseCanvas = document.createElement('canvas');
-    baseCanvas.width = width;
-    baseCanvas.height = height;
+    baseCanvas.width = w;
+    baseCanvas.height = h;
     var baseCtx = baseCanvas.getContext('2d');
+    baseCtx.fillStyle = '#0a0a08';
+    baseCtx.fillRect(0, 0, w, h);
 
-    // Dark background
-    baseCtx.fillStyle = '#080808';
-    baseCtx.fillRect(0, 0, width, height);
-
-    // Large initial letter
-    var fontSize = Math.min(width, height) * 0.45;
+    var fontSize = Math.min(w, h) * 0.45;
     baseCtx.font = fontSize + 'px Georgia, "Times New Roman", serif';
     baseCtx.textAlign = 'center';
     baseCtx.textBaseline = 'middle';
-    baseCtx.fillStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.4)';
-    baseCtx.fillText(initial, width / 2, height / 2);
+    baseCtx.fillStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.35)';
+    baseCtx.fillText(initial, w / 2, h / 2);
 
-    // Circle stroke
-    var radius = Math.min(width, height) * 0.35;
+    var radius = Math.min(w, h) * 0.35;
     baseCtx.beginPath();
-    baseCtx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
-    baseCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.3)';
-    baseCtx.lineWidth = 1.5;
+    baseCtx.arc(w / 2, h / 2, radius, 0, Math.PI * 2);
+    baseCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.25)';
+    baseCtx.lineWidth = 2;
     baseCtx.stroke();
 
-    // ── Edge fallback ──
+    // Edge layer
     var edgeCanvas = document.createElement('canvas');
-    edgeCanvas.width = width;
-    edgeCanvas.height = height;
+    edgeCanvas.width = w;
+    edgeCanvas.height = h;
     var edgeCtx = edgeCanvas.getContext('2d');
-
-    // Draw the same initial as edge outline
     edgeCtx.font = fontSize + 'px Georgia, "Times New Roman", serif';
     edgeCtx.textAlign = 'center';
     edgeCtx.textBaseline = 'middle';
-    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.6)';
-    edgeCtx.lineWidth = 1;
-    edgeCtx.strokeText(initial, width / 2, height / 2);
-
-    // Circle edge
-    edgeCtx.beginPath();
-    edgeCtx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
     edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.5)';
     edgeCtx.lineWidth = 1;
-    edgeCtx.stroke();
+    edgeCtx.strokeText(initial, w / 2, h / 2);
 
-    // Inner decorative circle
     edgeCtx.beginPath();
-    edgeCtx.arc(width / 2, height / 2, radius * 0.85, 0, Math.PI * 2);
-    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.2)';
-    edgeCtx.lineWidth = 0.5;
+    edgeCtx.arc(w / 2, h / 2, radius, 0, Math.PI * 2);
+    edgeCtx.strokeStyle = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.4)';
+    edgeCtx.lineWidth = 1;
     edgeCtx.stroke();
 
     return {
@@ -321,196 +346,136 @@ COMPANION.Hologram = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  DOM — Card Creation
+  //  DOM — Patriot Card Creation
   // ═══════════════════════════════════════════════════════════════
 
-  function createCard(name, color) {
-    var rgb = hexToRgb(color);
-    var safeName = escapeHtml(name);
+  /**
+   * Extracts the last name from a full patriot name, uppercased.
+   * "George Washington" -> "WASHINGTON"
+   */
+  function formatNameplate(fullName) {
+    var patriot = PATRIOTS[fullName];
+    if (!patriot) return fullName.toUpperCase();
+    var parts = fullName.split(' ');
+    var lastName = parts[parts.length - 1].toUpperCase();
+    return patriot.title + ' ' + lastName;
+  }
 
-    // ── Outer card ──
+  /**
+   * Creates the full DOM subtree for a single patriot card.
+   *
+   * Structure:
+   *   .patriot-card[data-patriot="George Washington"]
+   *     .patriot-frame
+   *       img.patriot-portrait
+   *       img.patriot-etching         (mix-blend-mode: multiply)
+   *       .patriot-scanlines
+   *       .patriot-candlelight
+   *     .patriot-nameplate
+   *     .patriot-glow
+   */
+  function createPatriotCard(fullName) {
+    var patriot = PATRIOTS[fullName];
+    var color = patriot.color;
+    var rgb = hexToRgb(color);
+
+    // ── Card wrapper ──
     var card = document.createElement('div');
-    card.className = 'hologram-card';
-    card.setAttribute('data-persona', name);
-    card.style.setProperty('--holo-color', color);
-    card.style.setProperty('--holo-r', String(rgb.r));
-    card.style.setProperty('--holo-g', String(rgb.g));
-    card.style.setProperty('--holo-b', String(rgb.b));
+    card.className = 'patriot-card idle';
+    card.setAttribute('data-patriot', fullName);
+    card.style.setProperty('--patriot-color', color);
+    card.style.setProperty('--patriot-r', String(rgb.r));
+    card.style.setProperty('--patriot-g', String(rgb.g));
+    card.style.setProperty('--patriot-b', String(rgb.b));
 
     // ── Frame ──
     var frame = document.createElement('div');
-    frame.className = 'hologram-frame loading';
+    frame.className = 'patriot-frame';
 
-    var baseImg = document.createElement('img');
-    baseImg.className = 'hologram-base-img';
-    baseImg.alt = '';
+    var portraitImg = document.createElement('img');
+    portraitImg.className = 'patriot-portrait';
+    portraitImg.alt = fullName + ' portrait';
+    portraitImg.draggable = false;
 
-    var edgeImg = document.createElement('img');
-    edgeImg.className = 'hologram-edge-img';
-    edgeImg.alt = '';
+    var etchingImg = document.createElement('img');
+    etchingImg.className = 'patriot-etching';
+    etchingImg.alt = '';
+    etchingImg.draggable = false;
+    etchingImg.style.mixBlendMode = 'multiply';
 
     var scanlines = document.createElement('div');
-    scanlines.className = 'hologram-scanlines';
+    scanlines.className = 'patriot-scanlines';
 
-    var noiseCanvas = document.createElement('canvas');
-    noiseCanvas.className = 'hologram-noise';
-    noiseCanvas.width = IMG_DEFAULT_W;
-    noiseCanvas.height = IMG_DEFAULT_H;
+    var candlelight = document.createElement('div');
+    candlelight.className = 'patriot-candlelight';
 
-    var flicker = document.createElement('div');
-    flicker.className = 'hologram-flicker';
-
-    frame.appendChild(baseImg);
-    frame.appendChild(edgeImg);
+    frame.appendChild(portraitImg);
+    frame.appendChild(etchingImg);
     frame.appendChild(scanlines);
-    frame.appendChild(noiseCanvas);
-    frame.appendChild(flicker);
+    frame.appendChild(candlelight);
 
     // ── Nameplate ──
     var nameplate = document.createElement('div');
-    nameplate.className = 'hologram-nameplate';
-    nameplate.textContent = name.toUpperCase();
+    nameplate.className = 'patriot-nameplate';
+    nameplate.textContent = formatNameplate(fullName);
 
-    // ── Base light ──
-    var baseLight = document.createElement('div');
-    baseLight.className = 'hologram-base-light';
+    // ── Glow ──
+    var glow = document.createElement('div');
+    glow.className = 'patriot-glow';
 
+    // ── Assemble ──
     card.appendChild(frame);
     card.appendChild(nameplate);
-    card.appendChild(baseLight);
+    card.appendChild(glow);
 
     return {
       card: card,
       frame: frame,
-      baseImg: baseImg,
-      edgeImg: edgeImg,
-      noiseCanvas: noiseCanvas,
-      noiseCtx: noiseCanvas.getContext('2d')
+      portraitImg: portraitImg,
+      etchingImg: etchingImg,
+      nameplate: nameplate,
+      glow: glow
     };
   }
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  Noise Update Loop
+  //  Portrait Loading Pipeline
   // ═══════════════════════════════════════════════════════════════
 
-  function updateNoise() {
-    var key, p, ctx, w, h, imgData, data, total, i, idx;
+  /**
+   * Fetch, load, process, and apply portrait imagery for one patriot.
+   */
+  function loadPatriotPortrait(fullName) {
+    var patriot = PATRIOTS[fullName];
+    var cardData = cards[fullName];
+    if (!patriot || !cardData) return;
 
-    for (key in personas) {
-      if (!personas.hasOwnProperty(key)) continue;
-      p = personas[key];
-      if (!p.noiseCtx) continue;
-
-      ctx = p.noiseCtx;
-      w = p.noiseCanvas.width;
-      h = p.noiseCanvas.height;
-
-      imgData = ctx.createImageData(w, h);
-      data = imgData.data;
-      total = w * h;
-
-      for (i = 0; i < total; i++) {
-        if (Math.random() < NOISE_DENSITY) {
-          idx = i * 4;
-          data[idx]     = 255;
-          data[idx + 1] = 255;
-          data[idx + 2] = 255;
-          data[idx + 3] = Math.floor(Math.random() * 120 + 40);
+    fetchPortraitUrl(patriot.article)
+      .then(function (imageUrl) {
+        if (!imageUrl) throw new Error('No image URL for ' + fullName);
+        return loadImage(imageUrl);
+      })
+      .then(function (img) {
+        var result = processImage(img);
+        if (result) {
+          cardData.portraitImg.src = result.baseDataUrl;
+          cardData.etchingImg.src = result.edgeDataUrl;
+        } else {
+          // Tainted canvas — use fallback
+          var fb = createFallbackImage(fullName, patriot.color);
+          cardData.portraitImg.src = fb.baseDataUrl;
+          cardData.etchingImg.src = fb.edgeDataUrl;
         }
-      }
-
-      ctx.putImageData(imgData, 0, 0);
-    }
-  }
-
-
-  // ═══════════════════════════════════════════════════════════════
-  //  Idle State Management
-  // ═══════════════════════════════════════════════════════════════
-
-  function showIdle() {
-    if (!idleEl) return;
-    idleEl.classList.remove('hidden');
-  }
-
-  function hideIdle() {
-    if (!idleEl) return;
-    idleEl.classList.add('hidden');
-  }
-
-  function createIdleElement() {
-    var el = document.createElement('div');
-    el.className = 'hologram-idle';
-
-    var sigil = document.createElement('div');
-    sigil.className = 'hologram-idle-sigil';
-    sigil.textContent = '\u25C7'; // ◇
-
-    var text = document.createElement('div');
-    text.className = 'hologram-idle-text';
-    text.textContent = 'Speak the words to summon.';
-
-    el.appendChild(sigil);
-    el.appendChild(text);
-
-    return el;
-  }
-
-
-  // ═══════════════════════════════════════════════════════════════
-  //  Materialize / Dematerialize Flows
-  // ═══════════════════════════════════════════════════════════════
-
-  function materializeCard(persona) {
-    var frame = persona.frame;
-    var card = persona.card;
-
-    // Remove loading, start materialization
-    frame.classList.remove('loading');
-    frame.classList.add('materializing');
-    card.classList.add('materializing');
-
-    persona.phase = 'materializing';
-
-    setTimeout(function () {
-      // Guard: persona may have been released during materialize
-      if (!personas[persona.name]) return;
-
-      frame.classList.remove('materializing');
-      frame.classList.add('active');
-      card.classList.remove('materializing');
-      card.classList.add('active');
-      persona.phase = 'active';
-    }, MATERIALIZE_MS);
-  }
-
-  function dematerializeCard(name) {
-    var persona = personas[name];
-    if (!persona) return;
-
-    var frame = persona.frame;
-    var card = persona.card;
-
-    // Clear any existing state classes
-    frame.classList.remove('loading', 'materializing', 'active');
-    card.classList.remove('materializing', 'active', 'speaking');
-
-    frame.classList.add('dematerializing');
-    card.classList.add('dematerializing');
-    persona.phase = 'dematerializing';
-
-    setTimeout(function () {
-      if (card.parentNode) {
-        card.parentNode.removeChild(card);
-      }
-      delete personas[name];
-
-      // Show idle if gallery is empty
-      if (personaCount() === 0) {
-        showIdle();
-      }
-    }, DEMATERIALIZE_MS);
+        cardData.frame.classList.add('loaded');
+      })
+      .catch(function (err) {
+        console.warn('[Hologram] Portrait fallback for ' + fullName + ':', err.message || err);
+        var fb = createFallbackImage(fullName, patriot.color);
+        cardData.portraitImg.src = fb.baseDataUrl;
+        cardData.etchingImg.src = fb.edgeDataUrl;
+        cardData.frame.classList.add('loaded');
+      });
   }
 
 
@@ -519,7 +484,8 @@ COMPANION.Hologram = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   /**
-   * Initialize the hologram gallery inside the given container element.
+   * Initialize the portrait gallery inside the given container.
+   * Creates all four patriot cards immediately; all begin in .idle state.
    */
   function init(containerElement) {
     if (isInitialized) return;
@@ -530,220 +496,103 @@ COMPANION.Hologram = (function () {
       return;
     }
 
-    injectStyles();
+    // ── Gallery wrapper ──
+    galleryEl = document.createElement('div');
+    galleryEl.className = 'portrait-gallery';
+    container.appendChild(galleryEl);
 
-    // Create gallery wrapper
-    gallery = document.createElement('div');
-    gallery.className = 'hologram-gallery';
-    container.appendChild(gallery);
+    // ── Create all four patriot cards ──
+    var patriotNames = Object.keys(PATRIOTS);
+    for (var i = 0; i < patriotNames.length; i++) {
+      var fullName = patriotNames[i];
+      var cardData = createPatriotCard(fullName);
+      cards[fullName] = cardData;
+      galleryEl.appendChild(cardData.card);
 
-    // Create idle element
-    idleEl = createIdleElement();
-    gallery.appendChild(idleEl);
-
-    // Start noise refresh loop
-    noiseInterval = setInterval(updateNoise, NOISE_INTERVAL_MS);
+      // Begin loading portrait immediately
+      loadPatriotPortrait(fullName);
+    }
 
     isInitialized = true;
   }
 
   /**
-   * Summon a hologram for the given persona name and color.
+   * Summon a patriot — transition from .idle to .active.
+   * Accepts fuzzy name matching (last name, partial, case-insensitive).
    */
-  function summon(name, color) {
+  function summon(name) {
     if (!isInitialized) return;
-    if (personas[name]) return; // already summoned
 
-    color = color || '#C9A54E';
+    var fullName = resolvePatriotName(name);
+    if (!fullName || !cards[fullName]) return;
 
-    // Hide idle state on first summon
-    hideIdle();
-
-    // 1. Create card in loading state
-    var elements = createCard(name, color);
-    var card = elements.card;
-    var frame = elements.frame;
-
-    var persona = {
-      name: name,
-      color: color,
-      card: card,
-      frame: frame,
-      baseImg: elements.baseImg,
-      edgeImg: elements.edgeImg,
-      noiseCanvas: elements.noiseCanvas,
-      noiseCtx: elements.noiseCtx,
-      phase: 'loading'
-    };
-
-    personas[name] = persona;
-    gallery.appendChild(card);
-
-    // 2. Fetch portrait async
-    fetchPortrait(name).then(function (imageUrl) {
-      // Guard: persona may have been released during fetch
-      if (!personas[name]) return;
-
-      if (imageUrl) {
-        // 3a. Image found — load and process
-        loadImage(imageUrl).then(function (img) {
-          if (!personas[name]) return;
-
-          // Calculate proportional dimensions
-          var w = IMG_DEFAULT_W;
-          var h = IMG_DEFAULT_H;
-          var aspect = img.width / img.height;
-          if (aspect > w / h) {
-            h = Math.round(w / aspect);
-          } else {
-            w = Math.round(h * aspect);
-          }
-          w = Math.min(w, IMG_MAX_W);
-          h = Math.min(h, IMG_MAX_H);
-
-          var result = processImage(img, color, w, h);
-
-          if (result) {
-            persona.baseImg.src = result.baseDataUrl;
-            persona.edgeImg.src = result.edgeDataUrl;
-          } else {
-            // Canvas was tainted, use fallback
-            var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
-            persona.baseImg.src = fallback.baseDataUrl;
-            persona.edgeImg.src = fallback.edgeDataUrl;
-          }
-
-          materializeCard(persona);
-
-        }).catch(function () {
-          // Image load failed — use fallback
-          if (!personas[name]) return;
-          var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
-          persona.baseImg.src = fallback.baseDataUrl;
-          persona.edgeImg.src = fallback.edgeDataUrl;
-          materializeCard(persona);
-        });
-
-      } else {
-        // 3b. No image on Wikipedia — use fallback
-        var fallback = createFallbackImage(name, color, IMG_DEFAULT_W, IMG_DEFAULT_H);
-        persona.baseImg.src = fallback.baseDataUrl;
-        persona.edgeImg.src = fallback.edgeDataUrl;
-        materializeCard(persona);
-      }
-    });
+    var card = cards[fullName].card;
+    card.classList.remove('idle');
+    card.classList.add('active');
   }
 
   /**
-   * Release (dematerialize) a hologram by persona name.
+   * Release a patriot — back to .idle state.
    */
   function release(name) {
-    if (!personas[name]) return;
-    dematerializeCard(name);
+    if (!isInitialized) return;
+
+    var fullName = resolvePatriotName(name);
+    if (!fullName || !cards[fullName]) return;
+
+    var card = cards[fullName].card;
+    card.classList.remove('active', 'speaking');
+    card.classList.add('idle');
   }
 
   /**
-   * Release all active personas.
-   */
-  function releaseAll() {
-    var names = [];
-    for (var key in personas) {
-      if (personas.hasOwnProperty(key)) {
-        names.push(key);
-      }
-    }
-    for (var i = 0; i < names.length; i++) {
-      dematerializeCard(names[i]);
-    }
-  }
-
-  /**
-   * Toggle speaking state on a persona's hologram card.
+   * Toggle the .speaking class on a patriot's card.
    */
   function setSpeaking(name, isSpeaking) {
-    var persona = personas[name];
-    if (!persona) return;
+    if (!isInitialized) return;
 
+    var fullName = resolvePatriotName(name);
+    if (!fullName || !cards[fullName]) return;
+
+    var card = cards[fullName].card;
     if (isSpeaking) {
-      persona.card.classList.add('speaking');
+      card.classList.add('speaking');
     } else {
-      persona.card.classList.remove('speaking');
+      card.classList.remove('speaking');
     }
   }
 
   /**
-   * Remove speaking state from all persona hologram cards.
+   * Remove .speaking from all patriot cards.
    */
   function clearSpeaking() {
-    for (var key in personas) {
-      if (personas.hasOwnProperty(key)) {
-        personas[key].card.classList.remove('speaking');
+    for (var fullName in cards) {
+      if (cards.hasOwnProperty(fullName)) {
+        cards[fullName].card.classList.remove('speaking');
       }
     }
   }
 
   /**
-   * Check if a persona is currently summoned (not dematerializing).
+   * Return the PATRIOTS data entry for a name (fuzzy matched).
    */
-  function hasPersona(name) {
-    return !!personas[name] && personas[name].phase !== 'dematerializing';
-  }
-
-  /**
-   * Get list of active persona names.
-   */
-  function getActivePersonas() {
-    var names = [];
-    for (var key in personas) {
-      if (personas.hasOwnProperty(key) && personas[key].phase !== 'dematerializing') {
-        names.push(key);
-      }
-    }
-    return names;
-  }
-
-  /**
-   * Full cleanup — remove all DOM, stop intervals.
-   */
-  function destroy() {
-    if (noiseInterval) {
-      clearInterval(noiseInterval);
-      noiseInterval = null;
-    }
-
-    // Remove all cards
-    for (var key in personas) {
-      if (personas.hasOwnProperty(key)) {
-        var card = personas[key].card;
-        if (card && card.parentNode) {
-          card.parentNode.removeChild(card);
-        }
-      }
-    }
-    personas = {};
-
-    // Remove gallery
-    if (gallery && gallery.parentNode) {
-      gallery.parentNode.removeChild(gallery);
-    }
-    gallery = null;
-    idleEl = null;
-    container = null;
-    isInitialized = false;
+  function getPatriotData(name) {
+    var fullName = resolvePatriotName(name);
+    if (!fullName) return null;
+    return PATRIOTS[fullName];
   }
 
 
-  // ── Public API ──
+  // ── Public Interface ──
+
   return {
     init: init,
     summon: summon,
     release: release,
-    releaseAll: releaseAll,
     setSpeaking: setSpeaking,
     clearSpeaking: clearSpeaking,
-    hasPersona: hasPersona,
-    getActivePersonas: getActivePersonas,
-    destroy: destroy
+    getPatriotData: getPatriotData,
+    PATRIOTS: PATRIOTS
   };
 
 })();
