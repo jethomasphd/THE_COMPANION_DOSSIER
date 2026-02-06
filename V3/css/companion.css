@@ -834,6 +834,95 @@ a { color: var(--gold); text-decoration: none; }
   font-style: italic;
 }
 
+.binding-help {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--bone-dim);
+  line-height: 1.5;
+  margin: var(--space-xs) 0 var(--space-md) 0;
+}
+
+.binding-help a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.binding-help a:hover {
+  color: var(--gold-bright);
+}
+
+.binding-preamble-note {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+
+/* ── Dialog Card Interstitials ── */
+
+.dialog-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+  border-radius: 2px;
+  background: rgba(10, 8, 6, 0.7);
+  backdrop-filter: blur(4px);
+  text-align: left;
+}
+
+.dialog-card-ornament {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-md);
+  opacity: 0.6;
+}
+
+.dialog-card-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.dialog-card-text {
+  font-family: var(--font-voice);
+  font-size: 1.05rem;
+  color: var(--bone);
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.dialog-card-text em {
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
+.dialog-card-text strong {
+  color: var(--bone);
+  font-weight: 600;
+}
+
+.dialog-card-text-dim {
+  color: var(--bone-dim);
+  font-style: italic;
+  margin-top: var(--space-md);
+}
+
+.dialog-card-text-gold {
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: var(--space-md);
+}
+
 
 /* ═══════════════════════════════════════════════════════════════
    III.  THE CHAMBER

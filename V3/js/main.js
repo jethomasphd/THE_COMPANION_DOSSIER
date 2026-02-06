@@ -85,12 +85,11 @@ COMPANION.App = (function () {
       COMPANION.UI.init();
       bindEvents();
 
+      // Force Opus — Deep Deliberation
+      COMPANION.API.setModel('claude-opus-4-20250514');
       var els = COMPANION.UI.elements();
       if (els.settingsModel) {
-        els.settingsModel.value = COMPANION.API.getModel();
-      }
-      if (els.modelSelect) {
-        els.modelSelect.value = COMPANION.API.getModel();
+        els.settingsModel.value = 'claude-opus-4-20250514';
       }
 
       // Start cinematic intro
@@ -124,9 +123,9 @@ COMPANION.App = (function () {
 
   function runTypewriterSequence() {
     var lines = [
-      { id: 'typewriter-line-1', text: 'The waters are receding.', delay: 0 },
-      { id: 'typewriter-line-2', text: 'Look down. Do not look away.', delay: 1200 },
-      { id: 'typewriter-line-3', text: 'Scroll.', delay: 2000 }
+      { id: 'typewriter-line-1', text: 'The Republic is under duress.', delay: 0 },
+      { id: 'typewriter-line-2', text: 'Four minds have been summoned to answer.', delay: 1400 },
+      { id: 'typewriter-line-3', text: 'Scroll.', delay: 2200 }
     ];
 
     var cumulativeDelay = 0;
@@ -477,9 +476,8 @@ COMPANION.App = (function () {
 
     COMPANION.API.setApiKey(key);
 
-    if (els.modelSelect) {
-      COMPANION.API.setModel(els.modelSelect.value);
-    }
+    // Always Opus — Deep Deliberation
+    COMPANION.API.setModel('claude-opus-4-20250514');
 
     enterChamber();
   }
@@ -575,8 +573,9 @@ COMPANION.App = (function () {
       'Both parties. Both sides. Over a thousand victims. ' +
       'Each of you: introduce yourself briefly — your name, your role in the founding, ' +
       'and what it means to you that the Republic you built has allowed this architecture of impunity to stand. ' +
-      'You have read the evidence dossier. You know the exhibits. You are here as America\'s therapists — ' +
-      'to help citizens process what has been revealed with honesty, moral clarity, and the gravitas this demands. ' +
+      'You have read the evidence dossier. You know the exhibits. You are the soul of this Republic, ' +
+      'and you are here to help citizens sit with what has been revealed — with honesty, ' +
+      'moral clarity, and the gravitas this demands. A chair has been set. ' +
       'Be yourselves. Be vivid. Be brief. Then tell the citizen they may address you on this matter freely.';
 
     isStreaming = true;
