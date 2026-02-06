@@ -530,6 +530,13 @@ The conversation history is maintained within this session. Reference previous e
     prompt += V3_AUGMENTATION;
     prompt += '\n\n';
 
+    // The Matter — Epstein Files evidence payload
+    if (COMPANION.Matter && typeof COMPANION.Matter.buildMatterPayload === 'function') {
+      prompt += '---\n\n';
+      prompt += COMPANION.Matter.buildMatterPayload();
+      prompt += '\n\n';
+    }
+
     // Session State
     prompt += '## Current Session State\n\n';
     if (activePersonas.length === 0) {

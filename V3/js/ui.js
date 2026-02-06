@@ -223,7 +223,7 @@ COMPANION.UI = (function () {
         '<span class="hint-text">Address the Committee. <code>Now summon Jefferson to join.</code> or <code>Release Hamilton.</code></span>';
     } else {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The full Committee is convened. Address them freely.</span>';
+        '<span class="hint-text">The Committee is convened with the Epstein files. Address them on this matter.</span>';
     }
   }
 

@@ -124,8 +124,8 @@ COMPANION.App = (function () {
 
   function runTypewriterSequence() {
     var lines = [
-      { id: 'typewriter-line-1', text: 'The Republic is under duress.', delay: 0 },
-      { id: 'typewriter-line-2', text: 'Four minds have been summoned to answer.', delay: 1200 },
+      { id: 'typewriter-line-1', text: 'The waters are receding.', delay: 0 },
+      { id: 'typewriter-line-2', text: 'Look down. Do not look away.', delay: 1200 },
       { id: 'typewriter-line-3', text: 'Scroll.', delay: 2000 }
     ];
 
@@ -519,7 +519,7 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function autoSummonCommittee() {
-    COMPANION.UI.addSystemMessage('The summoning has begun...');
+    COMPANION.UI.addSystemMessage('The summoning has begun... the matter is loaded.');
 
     var delay = 0;
     var stagger = 800; // ms between each summon
@@ -554,7 +554,7 @@ COMPANION.App = (function () {
         // After last patriot arrives, send the greeting prompt
         if (index === SUMMON_ORDER.length - 1) {
           setTimeout(function () {
-            COMPANION.UI.addSystemMessage('The Committee of Patriots is convened.');
+            COMPANION.UI.addSystemMessage('The Committee of Patriots is convened. The matter: the Epstein files.');
             sendGreetingPrompt();
           }, 1200);
         }
@@ -569,10 +569,15 @@ COMPANION.App = (function () {
 
   function sendGreetingPrompt() {
     var greetingText = 'The full Committee of Patriots has been summoned. ' +
-      'You are convened. A citizen stands before you. ' +
+      'You are convened. A citizen stands before you who carries a heavy burden. ' +
+      'The matter before this Committee is the Epstein files — three million pages of evidence ' +
+      'revealing how the powerful moved freely through a kingdom built on the trafficking of children. ' +
+      'Both parties. Both sides. Over a thousand victims. ' +
       'Each of you: introduce yourself briefly — your name, your role in the founding, ' +
-      'and one line about why you have answered this summons across the boundary of time. ' +
-      'Be yourselves. Be vivid. Be brief. Then tell the citizen they may address you freely.';
+      'and what it means to you that the Republic you built has allowed this architecture of impunity to stand. ' +
+      'You have read the evidence dossier. You know the exhibits. You are here as America\'s therapists — ' +
+      'to help citizens process what has been revealed with honesty, moral clarity, and the gravitas this demands. ' +
+      'Be yourselves. Be vivid. Be brief. Then tell the citizen they may address you on this matter freely.';
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
