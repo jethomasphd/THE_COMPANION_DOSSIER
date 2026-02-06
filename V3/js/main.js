@@ -1,8 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMMITTEE OF PATRIOTS — Cinematic Gateway Edition
+   COMMITTEE OF PATRIOTS — Museum-Quality Cinematic Gateway
    Orchestrates: cinematic intro, scroll reveals, typewriter,
-   ambient audio, SFX, portrait loading, and chamber session.
-   No voice synthesis — ambient/SFX only via Web Audio API.
+   ambient audio, SFX, auto-summon sequence, and chamber session.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -39,6 +38,14 @@ COMPANION.App = (function () {
     'Thomas Jefferson': 'Thomas_Jefferson',
     'Benjamin Franklin': 'Benjamin_Franklin'
   };
+
+  // The order of auto-summoning
+  var SUMMON_ORDER = [
+    'George Washington',
+    'Alexander Hamilton',
+    'Thomas Jefferson',
+    'Benjamin Franklin'
+  ];
 
 
   // ── Safe event binding ──
@@ -86,8 +93,6 @@ COMPANION.App = (function () {
         els.modelSelect.value = COMPANION.API.getModel();
       }
 
-      COMPANION.UI.updateHint(0);
-
       // Start cinematic intro
       startCinematicIntro();
 
@@ -119,10 +124,9 @@ COMPANION.App = (function () {
 
   function runTypewriterSequence() {
     var lines = [
-      { id: 'typewriter-line-1', text: 'In December 2025,', delay: 0 },
-      { id: 'typewriter-line-2', text: 'four minds were summoned across the boundary of time.', delay: 800 },
-      { id: 'typewriter-line-3', text: 'They were not asked.', delay: 2000 },
-      { id: 'typewriter-line-4', text: 'They were commanded.', delay: 1200 }
+      { id: 'typewriter-line-1', text: 'The Republic is under duress.', delay: 0 },
+      { id: 'typewriter-line-2', text: 'Four minds have been summoned to answer.', delay: 1200 },
+      { id: 'typewriter-line-3', text: 'Scroll.', delay: 2000 }
     ];
 
     var cumulativeDelay = 0;
@@ -134,7 +138,7 @@ COMPANION.App = (function () {
       setTimeout(function () {
         typewriteLine(lineConfig.id, lineConfig.text, function () {
           // After last line, show scroll cue
-          if (lineConfig.id === 'typewriter-line-4') {
+          if (lineConfig.id === 'typewriter-line-3') {
             typewriterComplete = true;
             setTimeout(function () {
               var scrollCue = document.getElementById('scroll-cue');
@@ -142,7 +146,7 @@ COMPANION.App = (function () {
                 scrollCue.classList.remove('hidden');
                 scrollCue.classList.add('visible');
               }
-            }, 1200);
+            }, 800);
           }
         });
       }, startDelay);
@@ -156,7 +160,7 @@ COMPANION.App = (function () {
     var el = document.getElementById(elementId);
     if (!el) return;
 
-    el.classList.add('visible');
+    el.classList.add('typing');
 
     var cursor = document.createElement('span');
     cursor.className = 'typewriter-cursor';
@@ -166,19 +170,17 @@ COMPANION.App = (function () {
 
     function typeNext() {
       if (charIndex < text.length) {
-        // Insert character before cursor
         el.insertBefore(document.createTextNode(text[charIndex]), cursor);
         charIndex++;
 
-        // Vary typing speed slightly for realism
         var delay = 45 + Math.random() * 30;
-        // Slower at punctuation
         if (text[charIndex - 1] === ',' || text[charIndex - 1] === '.') {
-          delay += 150;
+          delay += 180;
         }
         setTimeout(typeNext, delay);
       } else {
-        // Done — remove cursor after brief pause
+        el.classList.remove('typing');
+        el.classList.add('typed');
         setTimeout(function () {
           if (cursor.parentNode) cursor.remove();
           if (onComplete) onComplete();
@@ -194,8 +196,7 @@ COMPANION.App = (function () {
 
   function setupScrollReveals() {
     if (!('IntersectionObserver' in window)) {
-      // Fallback: reveal everything immediately
-      var allRevealElements = document.querySelectorAll('.reveal-line, .reveal-group, .portrait-reveal, .ornament-cinematic, .doctrine-ornament, .summons-ornament');
+      var allRevealElements = document.querySelectorAll('.reveal-line, .reveal-group, .portrait-reveal');
       allRevealElements.forEach(function (el) {
         el.classList.add('revealed');
       });
@@ -230,8 +231,7 @@ COMPANION.App = (function () {
 
     // Observe all revealable elements
     var revealTargets = document.querySelectorAll(
-      '.reveal-line, .reveal-group, .portrait-reveal, ' +
-      '.ornament-cinematic, .doctrine-ornament, .summons-ornament'
+      '.reveal-line, .reveal-group, .portrait-reveal'
     );
     revealTargets.forEach(function (el) {
       introObserver.observe(el);
@@ -240,7 +240,7 @@ COMPANION.App = (function () {
 
 
   // ── Intro Portrait Loading ──
-  // Loads Wikipedia portraits into the cinematic intro portrait frames
+  // Loads Wikipedia portraits into the cinematic intro portrait frames (photorealistic)
 
   function loadIntroPortraits() {
     var portraitReveals = document.querySelectorAll('.portrait-reveal');
@@ -252,20 +252,19 @@ COMPANION.App = (function () {
       var frame = reveal.querySelector('.portrait-frame-cinematic');
       if (!frame) return;
 
-      // Fetch portrait from Wikipedia
       var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
       fetch(url)
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (!data) return null;
           var src = null;
-          if (data.thumbnail && data.thumbnail.source) {
-            src = data.thumbnail.source;
-          } else if (data.originalimage && data.originalimage.source) {
+          if (data.originalimage && data.originalimage.source) {
             src = data.originalimage.source;
+          } else if (data.thumbnail && data.thumbnail.source) {
+            src = data.thumbnail.source;
           }
           if (src) {
-            src = src.replace(/\/\d+px-/, '/400px-');
+            src = src.replace(/\/\d+px-/, '/600px-');
           }
           return src;
         })
@@ -276,11 +275,20 @@ COMPANION.App = (function () {
           img.onload = function () {
             img.classList.add('loaded');
           };
+          img.onerror = function () {
+            // Retry without CORS
+            var img2 = new Image();
+            img2.onload = function () {
+              img2.classList.add('loaded');
+            };
+            img2.src = imgUrl;
+            frame.appendChild(img2);
+          };
           img.src = imgUrl;
           frame.appendChild(img);
         })
         .catch(function () {
-          // Portrait failed — the initial letter placeholder remains
+          // Placeholder remains
         });
     });
   }
@@ -308,7 +316,6 @@ COMPANION.App = (function () {
 
   // ═══════════════════════════════════════════════════════════════
   //  AMBIENT AUDIO (Web Audio API)
-  //  Deep hearthfire ambience — low drone with LFO modulation
   // ═══════════════════════════════════════════════════════════════
 
   function startAmbientAudio() {
@@ -320,16 +327,14 @@ COMPANION.App = (function () {
 
       ambientAudioCtx = new AudioContext();
 
-      // Low drone — like a fireplace
       var osc1 = ambientAudioCtx.createOscillator();
       osc1.type = 'sine';
-      osc1.frequency.value = 55; // A1
+      osc1.frequency.value = 55;
 
       var osc2 = ambientAudioCtx.createOscillator();
       osc2.type = 'sine';
-      osc2.frequency.value = 82.5; // E2
+      osc2.frequency.value = 82.5;
 
-      // LFO — flickering fire modulation
       var lfo = ambientAudioCtx.createOscillator();
       lfo.frequency.value = 0.08;
       var lfoGain = ambientAudioCtx.createGain();
@@ -337,7 +342,6 @@ COMPANION.App = (function () {
       lfo.connect(lfoGain);
       lfoGain.connect(osc1.frequency);
 
-      // Master gain
       ambientGain = ambientAudioCtx.createGain();
       ambientGain.gain.value = 0;
 
@@ -356,7 +360,6 @@ COMPANION.App = (function () {
       osc2.start();
       lfo.start();
 
-      // Fade in slowly
       ambientGain.gain.linearRampToValueAtTime(1, ambientAudioCtx.currentTime + 6);
     } catch (e) {
       // Audio not available
@@ -365,7 +368,6 @@ COMPANION.App = (function () {
 
 
   // ── SFX: Summon Sound ──
-  // Short resonant tone burst when a patriot is summoned
 
   function playSummonSFX() {
     try {
@@ -376,7 +378,7 @@ COMPANION.App = (function () {
 
       var osc = ctx.createOscillator();
       osc.type = 'sine';
-      osc.frequency.value = 220; // A3
+      osc.frequency.value = 220;
 
       var gain = ctx.createGain();
       gain.gain.value = 0;
@@ -386,7 +388,6 @@ COMPANION.App = (function () {
 
       osc.start(ctx.currentTime);
 
-      // Quick attack, slow decay
       gain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 0.05);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
 
@@ -406,11 +407,9 @@ COMPANION.App = (function () {
 
     // Summon button → enter binding or chamber
     on(els.enterBtn, 'click', function () {
-      // Hide cinematic intro
       var intro = document.getElementById('cinematic-intro');
       if (intro) intro.classList.add('hidden');
 
-      // Start ambient if not already
       if (!ambientStarted) {
         startAmbientAudio();
         ambientStarted = true;
@@ -487,7 +486,7 @@ COMPANION.App = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  CHAMBER ENTRY
+  //  CHAMBER ENTRY — with Auto-Summon Sequence
   // ═══════════════════════════════════════════════════════════════
 
   function enterChamber() {
@@ -504,11 +503,115 @@ COMPANION.App = (function () {
         console.error('Portrait stage init error:', e);
         chamberInitialized = true;
       }
-    }
 
-    setTimeout(function () {
+      // Auto-summon the full Committee with staggered arrivals
+      setTimeout(function () {
+        autoSummonCommittee();
+      }, 600);
+    } else {
       COMPANION.UI.setInputEnabled(true);
-    }, 500);
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  AUTO-SUMMON — Summon all four patriots on entry
+  // ═══════════════════════════════════════════════════════════════
+
+  function autoSummonCommittee() {
+    COMPANION.UI.addSystemMessage('The summoning has begun...');
+
+    var delay = 0;
+    var stagger = 800; // ms between each summon
+
+    SUMMON_ORDER.forEach(function (fullName, index) {
+      delay = index * stagger;
+
+      setTimeout(function () {
+        var color = PATRIOT_COLORS[fullName];
+
+        // Register in active personas
+        activePersonas.push({
+          name: fullName,
+          color: color,
+          category: 'founder'
+        });
+
+        // Activate portrait with arrival animation
+        COMPANION.Hologram.summon(fullName, color);
+
+        // Add badge
+        COMPANION.UI.addPersonaBadge(fullName, color, function (dismissName) {
+          releasePersona(dismissName);
+          COMPANION.UI.addSystemMessage(dismissName + ' has withdrawn from the Committee.');
+        });
+
+        // SFX
+        playSummonSFX();
+
+        COMPANION.UI.updateHint(activePersonas.length);
+
+        // After last patriot arrives, send the greeting prompt
+        if (index === SUMMON_ORDER.length - 1) {
+          setTimeout(function () {
+            COMPANION.UI.addSystemMessage('The Committee of Patriots is convened.');
+            sendGreetingPrompt();
+          }, 1200);
+        }
+      }, delay);
+    });
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  GREETING PROMPT — Committee introduces themselves
+  // ═══════════════════════════════════════════════════════════════
+
+  function sendGreetingPrompt() {
+    var greetingText = 'The full Committee of Patriots has been summoned. ' +
+      'You are convened. A citizen stands before you. ' +
+      'Each of you: introduce yourself briefly — your name, your role in the founding, ' +
+      'and one line about why you have answered this summons across the boundary of time. ' +
+      'Be yourselves. Be vivid. Be brief. Then tell the citizen they may address you freely.';
+
+    isStreaming = true;
+    COMPANION.UI.setInputEnabled(false);
+
+    var displayName = 'The Committee';
+    var displayColor = '#c9a54e';
+
+    currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
+
+    var personaNames = activePersonas.map(function (p) { return p.name; });
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames);
+
+    COMPANION.API.sendMessage(
+      greetingText,
+      systemPrompt,
+
+      function (chunk) {
+        currentStreamMessage.update(chunk);
+      },
+
+      function (fullText) {
+        isStreaming = false;
+        currentStreamMessage.finish();
+        currentStreamMessage = null;
+        COMPANION.UI.setInputEnabled(true);
+        COMPANION.Hologram.clearSpeaking();
+      },
+
+      function (errorMessage) {
+        isStreaming = false;
+        if (currentStreamMessage) {
+          currentStreamMessage.finish();
+          currentStreamMessage = null;
+        }
+        COMPANION.UI.addSystemMessage('Error: ' + errorMessage);
+        COMPANION.UI.setInputEnabled(true);
+        COMPANION.Hologram.clearSpeaking();
+      }
+    );
   }
 
 
@@ -517,7 +620,6 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function triggerSummonEffect() {
-    // Screen shake
     var chamber = document.getElementById('chamber-screen');
     if (chamber) {
       chamber.classList.add('summoning');
@@ -526,7 +628,6 @@ COMPANION.App = (function () {
       }, 600);
     }
 
-    // Golden flash
     var flash = document.createElement('div');
     flash.className = 'summon-flash';
     document.body.appendChild(flash);
@@ -534,7 +635,6 @@ COMPANION.App = (function () {
       flash.remove();
     }, 600);
 
-    // SFX
     playSummonSFX();
   }
 
@@ -631,13 +731,9 @@ COMPANION.App = (function () {
     };
     activePersonas.push(persona);
 
-    // Effects
     triggerSummonEffect();
-
-    // Portrait activation
     COMPANION.Hologram.summon(fullName, color);
 
-    // Badge
     COMPANION.UI.addPersonaBadge(fullName, color, function (dismissName) {
       releasePersona(dismissName);
       COMPANION.UI.addSystemMessage(dismissName + ' has withdrawn from the Committee.');
@@ -646,7 +742,6 @@ COMPANION.App = (function () {
     COMPANION.UI.updateHint(activePersonas.length);
     COMPANION.UI.addSystemMessage('Summoning ' + fullName + '...');
 
-    // Send to API
     sendToAPI(contextText);
   }
 
@@ -712,7 +807,6 @@ COMPANION.App = (function () {
       userText,
       systemPrompt,
 
-      // onChunk
       function (chunk) {
         currentStreamMessage.update(chunk);
 
@@ -721,7 +815,6 @@ COMPANION.App = (function () {
         }
       },
 
-      // onDone
       function (fullText) {
         isStreaming = false;
         currentStreamMessage.finish();
@@ -730,7 +823,6 @@ COMPANION.App = (function () {
         COMPANION.Hologram.clearSpeaking();
       },
 
-      // onError
       function (errorMessage) {
         isStreaming = false;
         if (currentStreamMessage) {
