@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — Claude API Integration
+   COMPANION — The Chair: Claude API Integration
    Handles streaming communication with Anthropic's Claude API
    directly from the browser.
    ═══════════════════════════════════════════════════════════════ */

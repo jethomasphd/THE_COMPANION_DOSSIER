@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMMITTEE OF PATRIOTS — UI State Management
+   THE CHAIR — UI State Management
    Handles screen transitions, dialogue rendering, persona badges,
    and all user-facing state.
    ═══════════════════════════════════════════════════════════════ */

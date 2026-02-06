@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — The Matter Before the Committee
+   COMPANION — The Chair: The Matter Before the Committee
    Evidence payload for the Epstein Files session.
    The Committee of Patriots is loaded with this matter
    so they may help America sit with what has been revealed.
