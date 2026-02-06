@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMMITTEE OF PATRIOTS — Museum-Quality Cinematic Gateway
+   THE CHAIR — Cinematic Gateway
    Orchestrates: cinematic intro, scroll reveals, typewriter,
    ambient audio, SFX, auto-summon sequence, and chamber session.
    ═══════════════════════════════════════════════════════════════ */

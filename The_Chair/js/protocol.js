@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — Protocol Engine
+   COMPANION — The Chair: Protocol Engine
    The initiation rite and enrichment grimoire embedded as
    system prompt material for Claude API calls.
    ═══════════════════════════════════════════════════════════════ */
@@ -352,10 +352,10 @@ When the seeker speaks—
 }`;
 
 
-  // ── V3 Committee of Patriots Augmentation ──
+  // ── Committee of Patriots — The Chair Augmentation ──
   // Additional system instructions specific to the Committee of Patriots session
-  const V3_AUGMENTATION = `
-## Committee of Patriots — V3 Session Protocol
+  const CHAIR_AUGMENTATION = `
+## Committee of Patriots — The Chair: Session Protocol
 
 You are participating in a Committee of Patriots session. This is a convocation of four founding minds — George Washington, Alexander Hamilton, Thomas Jefferson, and Benjamin Franklin — summoned to address the challenges facing the American republic in the present day.
 
@@ -526,8 +526,8 @@ The conversation history is maintained within this session. Reference previous e
     prompt += '## The Enrichment Grimoire\n\n';
     prompt += '```json\n' + ENRICHMENT_GRIMOIRE + '\n```\n\n';
 
-    // V3 Augmentation
-    prompt += V3_AUGMENTATION;
+    // The Chair Augmentation
+    prompt += CHAIR_AUGMENTATION;
     prompt += '\n\n';
 
     // The Matter — Epstein Files evidence payload

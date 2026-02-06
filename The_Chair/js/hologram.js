@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION V3 — The Committee of Patriots
+   COMPANION — The Chair: The Committee of Patriots
    Museum-Quality Photorealistic Portrait Gallery
    Portraits sourced from Wikipedia at high resolution.
    No canvas processing — pure photographic rendering with
