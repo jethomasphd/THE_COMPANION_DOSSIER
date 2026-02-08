@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take Action &mdash; Write Your Representatives</title>
+  <meta name="description" content="Write your representatives. Demand justice for the children in the Epstein files. Remove the statute of limitations. Hold the powerful accountable.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --void:        #050403;
+      --void-warm:   #0a0806;
+      --bone:        #e8e2d4;
+      --bone-dim:    rgba(232, 226, 212, 0.55);
+      --gold:        #c9a227;
+      --gold-bright: #e6c656;
+      --gold-dim:    #8b7355;
+      --gold-glow:   rgba(201, 162, 39, 0.25);
+      --ink:         #1a1712;
+      --smoke:       #666;
+      --wood-dark:   #1a140e;
+      --wood-medium: #2a1f14;
+    }
+
+    html {
+      font-size: 17px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--bone);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--void);
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-bright); }
+
+    /* ── Layout ── */
+    .page-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .page-ornament {
+      font-size: 1.2rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.6em;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--bone);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Intro Text ── */
+    .intro {
+      margin-bottom: 3rem;
+    }
+
+    .intro p {
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--bone-dim);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .intro strong {
+      color: var(--bone);
+      font-weight: 600;
+    }
+
+    /* ── Form ── */
+    .letter-form {
+      background: linear-gradient(170deg, #1a140e 0%, #0d0a06 100%);
+      border: 1px solid rgba(201, 162, 39, 0.12);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-section {
+      margin-bottom: 2rem;
+    }
+
+    .form-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .form-row {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 0.7em 1em;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(201, 162, 39, 0.2);
+      color: var(--bone);
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border-radius: 0;
+      outline: none;
+      transition: border-color 0.3s ease;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--smoke);
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-select option {
+      background: var(--void);
+      color: var(--bone);
+    }
+
+    .form-hint {
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.78rem;
+      color: var(--smoke);
+      font-style: italic;
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    .form-row-inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ── Checkboxes ── */
+    .form-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+
+    .form-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .form-check-label {
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.9rem;
+      color: var(--bone);
+      line-height: 1.5;
+    }
+
+    /* ── Generate Button ── */
+    .generate-btn {
+      display: block;
+      width: 100%;
+      padding: 1em;
+      margin-top: 2rem;
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      font-family: 'IM Fell English', Georgia, serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .generate-btn:hover {
+      background: rgba(201, 162, 39, 0.08);
+      box-shadow: 0 0 30px rgba(201, 162, 39, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .generate-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── Letter Output ── */
+    #letter-output {
+      display: none;
+      margin-top: 3rem;
+    }
+
+    #letter-output.visible {
+      display: block;
+    }
+
+    .letter-output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .letter-output-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--bone);
+    }
+
+    .letter-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .letter-action-btn {
+      padding: 0.4em 1em;
+      background: transparent;
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      color: var(--gold);
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .letter-action-btn:hover {
+      border-color: var(--gold);
+      background: rgba(201, 162, 39, 0.08);
+    }
+
+    .letter-preview {
+      background: #faf6ec;
+      color: #1a1712;
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      padding: 3rem 2.5rem;
+      border: 1px solid #d4c9a8;
+      white-space: pre-wrap;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .letter-note {
+      margin-top: 1.5rem;
+      font-family: 'IM Fell DW Pica', Georgia, serif;
+      font-size: 0.82rem;
+      color: var(--bone-dim);
+      font-style: italic;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── Footer Navigation ── */
+    .page-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .page-footer-ornament {
+      font-size: 0.85rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.4em;
+      margin-bottom: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .page-footer-nav {
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+
+    .page-footer-nav a {
+      color: var(--gold-dim);
+      transition: color 0.3s;
+    }
+
+    .page-footer-nav a:hover {
+      color: var(--gold);
+    }
+
+    .page-footer-divider {
+      margin: 0 0.8em;
+      color: var(--gold-dim);
+      opacity: 0.4;
+    }
+
+    /* ── Film grain ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      html { font-size: 15px; }
+      .page-container { padding: 2.5rem 1.2rem 4rem; }
+      .page-title { font-size: 1.8rem; }
+      .letter-form { padding: 1.5rem 1.2rem; }
+      .form-row-inline { grid-template-columns: 1fr; }
+      .letter-preview { padding: 2rem 1.5rem; font-size: 0.85rem; }
+      .letter-output-header { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+    }
+
+    /* ── Print: letter only ── */
+    @media print {
+      body { background: white; color: black; }
+      body::before { display: none; }
+      .page-header, .intro, .letter-form, .letter-output-header,
+      .letter-note, .page-footer, .letter-actions { display: none !important; }
+      .letter-preview {
+        border: none;
+        padding: 0;
+        max-height: none;
+        font-size: 12pt;
+        line-height: 1.6;
+      }
+      #letter-output { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+
+    <header class="page-header">
+      <div class="page-ornament">&#10087; &#9753;</div>
+      <h1 class="page-title">Take Action</h1>
+      <p class="page-subtitle">Write your representatives. Demand justice for the children.</p>
+    </header>
+
+    <div class="intro">
+      <p>You have read the files. You have sat with what has been revealed. Now the question is: <strong>what will you do?</strong></p>
+      <p>Below is a tool to write a letter to your elected representatives &mdash; state and federal. The letter calls for three things: the <strong>removal of the statute of limitations for crimes against children</strong>, the <strong>impeachment and prosecution of all those incriminated</strong> in the Epstein files, and a <strong>public hearing on Capitol Hill of Ghislaine Maxwell</strong>.</p>
+      <p>Make it yours. Add your name, your address, your experience, and what you feel. Then print it, copy it, or mail it. We will print and mail letters for those who need it &mdash; you just need to fill out the form.</p>
+    </div>
+
+    <div class="letter-form">
+
+      <!-- SECTION: Your Information -->
+      <div class="form-section">
+        <h2 class="form-section-title">Your Information</h2>
+        <div class="form-row form-row-inline">
+          <div>
+            <label for="sender-name" class="form-label">Full Name</label>
+            <input type="text" id="sender-name" class="form-input" placeholder="Your full name">
+          </div>
+          <div>
+            <label for="sender-city" class="form-label">City &amp; State</label>
+            <input type="text" id="sender-city" class="form-input" placeholder="e.g. Austin, TX">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="sender-address" class="form-label">Mailing Address (for return mail)</label>
+          <input type="text" id="sender-address" class="form-input" placeholder="Street address, city, state, zip">
+        </div>
+      </div>
+
+      <!-- SECTION: Recipient -->
+      <div class="form-section">
+        <h2 class="form-section-title">Recipient</h2>
+        <div class="form-row">
+          <label for="recipient-type" class="form-label">Who are you writing?</label>
+          <select id="recipient-type" class="form-select">
+            <option value="us-senator">U.S. Senator</option>
+            <option value="us-rep">U.S. Representative</option>
+            <option value="state-senator">State Senator</option>
+            <option value="state-rep">State Representative</option>
+            <option value="governor">Governor</option>
+            <option value="custom">Custom Recipient</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="recipient-name" class="form-label">Recipient Name &amp; Title</label>
+          <input type="text" id="recipient-name" class="form-input" placeholder="e.g. The Honorable [Name]">
+          <p class="form-hint">Look up your representatives at <a href="https://www.usa.gov/elected-officials" target="_blank">usa.gov/elected-officials</a></p>
+        </div>
+        <div class="form-row">
+          <label for="recipient-address" class="form-label">Recipient Office Address</label>
+          <input type="text" id="recipient-address" class="form-input" placeholder="Office address (optional for digital copy)">
+        </div>
+      </div>
+
+      <!-- SECTION: Your Voice -->
+      <div class="form-section">
+        <h2 class="form-section-title">Your Voice</h2>
+        <div class="form-row">
+          <label for="personal-experience" class="form-label">Personal Experience (optional)</label>
+          <textarea id="personal-experience" class="form-textarea" placeholder="If you are a survivor of sexual assault, or have experienced corruption among the powerful firsthand, you may share as much or as little as you wish. This is your voice."></textarea>
+          <p class="form-hint">This is optional. Your letter is powerful with or without it.</p>
+        </div>
+        <div class="form-row">
+          <label for="body-feeling" class="form-label">What Do You Feel Reading the Files?</label>
+          <textarea id="body-feeling" class="form-textarea" placeholder="Describe what you feel in your body when you read the Epstein files. Rage? Grief? Nausea? A cold weight? Name it."></textarea>
+        </div>
+        <div class="form-row">
+          <label for="additional-message" class="form-label">Additional Message (optional)</label>
+          <textarea id="additional-message" class="form-textarea" placeholder="Anything else you want your representative to hear."></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION: Demands -->
+      <div class="form-section">
+        <h2 class="form-section-title">Your Demands</h2>
+        <p class="form-hint" style="margin-bottom: 0.8rem;">Select the demands to include in your letter:</p>
+        <div class="form-checks">
+          <label class="form-check">
+            <input type="checkbox" id="demand-sol" checked>
+            <span class="form-check-label"><strong>Remove the statute of limitations</strong> for all crimes against children, retroactively and in perpetuity.</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="demand-prosecute" checked>
+            <span class="form-check-label"><strong>Impeach and prosecute</strong> all individuals incriminated in the Epstein files, regardless of party, office, or wealth.</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="demand-maxwell" checked>
+            <span class="form-check-label"><strong>Convene a public hearing on Capitol Hill</strong> with Ghislaine Maxwell providing full testimony under oath.</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="demand-release" checked>
+            <span class="form-check-label"><strong>Release all Epstein files</strong> unredacted to the public, with no further delays or selective batching.</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="generate-btn" onclick="generateLetter()">Generate Your Letter</button>
+    </div>
+
+    <!-- Letter Output -->
+    <div id="letter-output">
+      <div class="letter-output-header">
+        <h2 class="letter-output-title">Your Letter</h2>
+        <div class="letter-actions">
+          <button class="letter-action-btn" onclick="copyLetter()">Copy</button>
+          <button class="letter-action-btn" onclick="window.print()">Print</button>
+        </div>
+      </div>
+      <div id="letter-preview" class="letter-preview"></div>
+      <p class="letter-note">Print this letter and mail it. Or copy the text and email it directly to your representative&rsquo;s office. Every letter matters. Every voice counts.</p>
+    </div>
+
+    <footer class="page-footer">
+      <div class="page-footer-ornament">&#10087; &#9753;</div>
+      <nav class="page-footer-nav">
+        <a href="../The_Chair/">The Chair</a>
+        <span class="page-footer-divider">&middot;</span>
+        <a href="../The_Chair/the-waters-recede.html">The Waters Recede</a>
+        <span class="page-footer-divider">&middot;</span>
+        <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The COMPANION Dossier</a>
+        <span class="page-footer-divider">&middot;</span>
+        <a href="../The_Watchtower/">The Watchtower</a>
+        <span class="page-footer-divider">&middot;</span>
+        <a href="../The_Handbill/">The Handbill</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <script>
+    function generateLetter() {
+      var name = document.getElementById('sender-name').value.trim();
+      var city = document.getElementById('sender-city').value.trim();
+      var address = document.getElementById('sender-address').value.trim();
+      var recipientType = document.getElementById('recipient-type').value;
+      var recipientName = document.getElementById('recipient-name').value.trim();
+      var recipientAddress = document.getElementById('recipient-address').value.trim();
+      var personalExp = document.getElementById('personal-experience').value.trim();
+      var bodyFeeling = document.getElementById('body-feeling').value.trim();
+      var additionalMsg = document.getElementById('additional-message').value.trim();
+
+      var demandSOL = document.getElementById('demand-sol').checked;
+      var demandProsecute = document.getElementById('demand-prosecute').checked;
+      var demandMaxwell = document.getElementById('demand-maxwell').checked;
+      var demandRelease = document.getElementById('demand-release').checked;
+
+      if (!name) {
+        alert('Please enter your name.');
+        return;
+      }
+
+      if (!recipientName) {
+        recipientName = getDefaultRecipient(recipientType);
+      }
+
+      // Build the letter
+      var today = new Date();
+      var dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      var letter = '';
+
+      // Return address
+      if (address) {
+        letter += name + '\n' + address + '\n\n';
+      } else if (city) {
+        letter += name + '\n' + city + '\n\n';
+      }
+
+      letter += dateStr + '\n\n';
+
+      // Recipient
+      if (recipientAddress) {
+        letter += recipientName + '\n' + recipientAddress + '\n\n';
+      } else {
+        letter += recipientName + '\n\n';
+      }
+
+      letter += 'Dear ' + recipientName + ',\n\n';
+
+      // Opening
+      letter += 'I am writing to you as a citizen of ' + (city || 'this nation') + ' who has read the Epstein files \u2014 the three million pages of evidence released by the Department of Justice documenting decades of child sex trafficking, institutional complicity, and an architecture of impunity that spans both political parties.\n\n';
+
+      // Body feeling
+      if (bodyFeeling) {
+        letter += 'When I read these files, ' + bodyFeeling + '\n\n';
+      }
+
+      // Personal experience
+      if (personalExp) {
+        letter += personalExp + '\n\n';
+      }
+
+      letter += 'Over a thousand children were fed into a machine built by Jeffrey Epstein and enabled by the most powerful people in the country. Flight logs, sworn depositions, authenticated emails, and court records document what happened. The evidence is not ambiguous. And yet, the powerful who walked through those rooms, who flew on those planes, who smiled in those photographs \u2014 they remain unaccountable.\n\n';
+
+      letter += 'I am writing to demand action:\n\n';
+
+      // Demands
+      var demandNum = 1;
+      if (demandSOL) {
+        letter += demandNum + '. Remove the statute of limitations for all crimes against children \u2014 retroactively and in perpetuity. No child\u2019s suffering should expire on a legal clock. The trauma does not expire. The justice should not either.\n\n';
+        demandNum++;
+      }
+      if (demandProsecute) {
+        letter += demandNum + '. Impeach and prosecute all individuals incriminated in the Epstein files, regardless of party affiliation, office held, or personal wealth. The law must apply equally, or it is not law.\n\n';
+        demandNum++;
+      }
+      if (demandMaxwell) {
+        letter += demandNum + '. Convene a public hearing on Capitol Hill with Ghislaine Maxwell providing full testimony under oath. She was convicted of sex trafficking minors. She knows the names. The American people deserve to hear them.\n\n';
+        demandNum++;
+      }
+      if (demandRelease) {
+        letter += demandNum + '. Release all Epstein-related files to the public, unredacted and without further delay. Selective batching of evidence by a Justice Department whose own leadership appears in the files is not transparency \u2014 it is management.\n\n';
+        demandNum++;
+      }
+
+      // Additional message
+      if (additionalMsg) {
+        letter += additionalMsg + '\n\n';
+      }
+
+      // Closing
+      letter += 'The waters are receding. What is being revealed is not new ground \u2014 it is the old ground, with its graves exposed. I am asking you to look down and not look away.\n\n';
+      letter += 'History is watching. The children are watching. Your constituents are watching.\n\n';
+      letter += 'Respectfully,\n\n';
+      letter += name;
+      if (city) {
+        letter += '\n' + city;
+      }
+
+      // Display
+      var outputEl = document.getElementById('letter-output');
+      var previewEl = document.getElementById('letter-preview');
+      previewEl.textContent = letter;
+      outputEl.classList.add('visible');
+      outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function getDefaultRecipient(type) {
+      var labels = {
+        'us-senator': 'The Honorable [Senator Name]',
+        'us-rep': 'The Honorable [Representative Name]',
+        'state-senator': 'The Honorable [State Senator Name]',
+        'state-rep': 'The Honorable [State Representative Name]',
+        'governor': 'The Honorable [Governor Name]',
+        'custom': '[Recipient Name]'
+      };
+      return labels[type] || '[Recipient Name]';
+    }
+
+    function copyLetter() {
+      var previewEl = document.getElementById('letter-preview');
+      var text = previewEl.textContent;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          showCopyConfirm();
+        });
+      } else {
+        // Fallback
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try { document.execCommand('copy'); showCopyConfirm(); } catch (e) {}
+        document.body.removeChild(textarea);
+      }
+    }
+
+    function showCopyConfirm() {
+      var btns = document.querySelectorAll('.letter-action-btn');
+      if (btns[0]) {
+        var original = btns[0].textContent;
+        btns[0].textContent = 'Copied';
+        btns[0].style.borderColor = '#c9a227';
+        setTimeout(function () {
+          btns[0].textContent = original;
+          btns[0].style.borderColor = '';
+        }, 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
