@@ -68,7 +68,7 @@ COMPANION.UI = (function () {
     msg.className = 'message message-seeker';
     msg.innerHTML = '<div class="message-bubble">' + escapeHtml(text) + '</div>';
     elements.dialogueMessages.appendChild(msg);
-    scrollToBottom();
+    smartScroll();
     return msg;
   }
 
@@ -94,7 +94,7 @@ COMPANION.UI = (function () {
     if (elements.dialogueMessages) {
       elements.dialogueMessages.appendChild(msg);
     }
-    scrollToBottom();
+    smartScroll();
 
     var rawText = '';
 
@@ -103,12 +103,12 @@ COMPANION.UI = (function () {
         rawText += chunk;
         body.innerHTML = renderMarkdownLight(rawText);
         body.appendChild(cursor);
-        scrollToBottom();
+        smartScroll();
       },
 
       finish: function () {
         body.innerHTML = renderMarkdownLight(rawText);
-        scrollToBottom();
+        smartScroll();
       },
 
       getText: function () {
@@ -129,7 +129,7 @@ COMPANION.UI = (function () {
     msg.className = 'message message-system';
     msg.innerHTML = '<div class="message-body">' + escapeHtml(text) + '</div>';
     elements.dialogueMessages.appendChild(msg);
-    scrollToBottom();
+    smartScroll();
   }
 
 
@@ -239,13 +239,58 @@ COMPANION.UI = (function () {
   }
 
 
-  // ── Utilities ──
+  // ── Smart Autoscroll ──
+  // Only auto-scroll when the user is at/near the bottom.
+  // If user scrolls away, freeze position and show "Jump to latest" button.
+
+  var scrollPinned = true;          // true = user is at bottom, auto-scroll active
+  var BOTTOM_THRESHOLD = 48;        // px from bottom considered "at bottom"
+  var jumpBtn = null;               // cached reference to jump-to-latest button
+
+  function initSmartScroll() {
+    if (!elements.dialogueScroll) return;
+
+    jumpBtn = document.getElementById('jump-to-latest');
+
+    elements.dialogueScroll.addEventListener('scroll', function () {
+      var el = elements.dialogueScroll;
+      var distFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+      var wasPinned = scrollPinned;
+      scrollPinned = distFromBottom <= BOTTOM_THRESHOLD;
+
+      // Show/hide jump button
+      if (jumpBtn) {
+        if (!scrollPinned) {
+          jumpBtn.classList.add('visible');
+        } else {
+          jumpBtn.classList.remove('visible');
+        }
+      }
+    });
+
+    // Jump-to-latest click handler
+    if (jumpBtn) {
+      jumpBtn.addEventListener('click', function () {
+        scrollPinned = true;
+        scrollToBottom();
+        jumpBtn.classList.remove('visible');
+      });
+    }
+  }
 
   function scrollToBottom() {
     if (!elements.dialogueScroll) return;
     requestAnimationFrame(function () {
       elements.dialogueScroll.scrollTop = elements.dialogueScroll.scrollHeight;
     });
+  }
+
+  function smartScroll() {
+    if (scrollPinned) {
+      scrollToBottom();
+    } else if (jumpBtn) {
+      jumpBtn.classList.add('visible');
+    }
   }
 
   function escapeHtml(text) {
@@ -309,6 +354,9 @@ COMPANION.UI = (function () {
     if (elements.userInput) {
       elements.userInput.addEventListener('input', autoResizeInput);
     }
+
+    // Smart autoscroll (after DOM is ready)
+    initSmartScroll();
   }
 
 
