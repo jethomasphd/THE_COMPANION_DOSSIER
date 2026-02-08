@@ -3,252 +3,454 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Take Action &mdash; Write Your Representatives</title>
-  <meta name="description" content="Write your representatives. Demand justice for the children in the Epstein files.">
+  <title>Help Us Bear This &mdash; The Committee of Patriots</title>
+  <meta name="description" content="You sat in the chair. Now stand and act. Write your representatives. Demand justice for the children.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════════════════
+       RESET & ROOT — The same void as The Chair
+       ═══════════════════════════════════════════════════════ */
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--void:#050403;--bone:#e8e2d4;--bone-dim:rgba(232,226,212,0.55);--gold:#c9a227;--gold-bright:#e6c656;--gold-dim:#8b7355;--gold-glow:rgba(201,162,39,0.25);--smoke:#666;--wood-dark:#1a140e}
+    :root{
+      --void:#050403;
+      --bone:#e8e2d4;
+      --bone-dim:rgba(232,226,212,0.55);
+      --bone-ghost:rgba(232,226,212,0.3);
+      --gold:#c9a227;
+      --gold-bright:#e6c656;
+      --gold-dim:#8b7355;
+      --gold-glow:rgba(201,162,39,0.25);
+      --gold-ember:rgba(201,162,39,0.08);
+      --smoke:#666;
+      --wood-dark:#1a140e;
+      --wood-panel:#120e08;
+      --blood-dim:rgba(140,40,40,0.15);
+    }
     html{font-size:17px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
     body{background:var(--void);color:var(--bone);font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
     ::selection{background:var(--gold);color:var(--void)}
-    a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-bright)}
+    a{color:var(--gold);text-decoration:none;transition:color .3s}
+    a:hover{color:var(--gold-bright)}
 
-    .page{max-width:700px;margin:0 auto;padding:3.5rem 2rem 5rem}
+    /* Film grain — same as The Chair */
+    body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;
+      background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay}
 
-    /* Header */
-    .hdr{text-align:center;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(201,162,39,0.15)}
-    .hdr-orn{font-size:1.1rem;color:var(--gold-dim);letter-spacing:.6em;margin-bottom:1.2rem;opacity:.6}
-    .hdr h1{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:.04em;line-height:1.2;margin-bottom:.5rem}
-    .hdr p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:300;font-style:italic;color:var(--gold)}
+    .page{max-width:720px;margin:0 auto;padding:3.5rem 2rem 5rem}
 
-    /* Intro */
-    .intro{margin-bottom:2.5rem}
-    .intro p{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.92rem;color:var(--bone-dim);line-height:1.85;margin-bottom:.8rem}
-    .intro strong{color:var(--bone);font-weight:600}
-    .intro .em{color:var(--gold);font-style:italic}
+    /* ═══════════════════════════════════════════════════════
+       HEADER — The threshold between The Chair and action
+       ═══════════════════════════════════════════════════════ */
+    .threshold{text-align:center;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(201,162,39,0.12)}
+    .threshold-orn{font-size:1rem;color:var(--gold-dim);letter-spacing:.8em;margin-bottom:1.5rem;opacity:.5}
+    .threshold h1{font-family:'Playfair Display',Georgia,serif;font-size:2.4rem;font-weight:600;letter-spacing:.04em;line-height:1.2;margin-bottom:.6rem}
+    .threshold-sub{font-family:'IM Fell English',Georgia,serif;font-size:1.05rem;font-style:italic;color:var(--gold);line-height:1.6}
 
-    /* Form panels */
-    .panel{background:linear-gradient(170deg,#1a140e 0%,#0d0a06 100%);border:1px solid rgba(201,162,39,0.12);padding:2rem 1.8rem;margin-bottom:1.2rem}
-    .panel-title{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:500;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem}
-    .panel-desc{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.82rem;color:var(--bone-dim);font-style:italic;line-height:1.5;margin-bottom:1rem}
-    .row{margin-bottom:.8rem}
-    .row:last-child{margin-bottom:0}
-    .lbl{display:block;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.25rem}
-    .inp,.sel,.ta{width:100%;padding:.65em .9em;background:rgba(0,0,0,.4);border:1px solid rgba(201,162,39,.2);color:var(--bone);font-family:'IM Fell DW Pica',Georgia,serif;font-size:.93rem;line-height:1.5;border-radius:0;outline:none;transition:border-color .3s;-webkit-appearance:none}
+    /* ═══════════════════════════════════════════════════════
+       INVOCATION — The opening words
+       ═══════════════════════════════════════════════════════ */
+    .invocation{margin-bottom:2.8rem}
+    .invocation p{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.95rem;color:var(--bone-dim);line-height:1.9;margin-bottom:1rem}
+    .invocation p:first-child::first-letter{
+      float:left;font-family:'Playfair Display',Georgia,serif;font-size:3.2rem;font-weight:600;
+      color:var(--gold);line-height:.85;margin-right:.15em;margin-top:.08em}
+    .invocation strong{color:var(--bone);font-weight:600}
+    .invocation em{color:var(--gold);font-style:italic}
+    .invocation .weight{
+      display:block;margin-top:1.4rem;padding:1.2rem 1.5rem;
+      border-left:2px solid var(--gold-dim);
+      font-family:'IM Fell English',Georgia,serif;font-size:.9rem;
+      color:var(--bone);font-style:italic;line-height:1.8;
+      background:linear-gradient(90deg,rgba(201,162,39,.03) 0%,transparent 100%)}
+
+    /* ═══════════════════════════════════════════════════════
+       PANELS — The dark-wood chambers of the form
+       ═══════════════════════════════════════════════════════ */
+    .chamber{
+      background:linear-gradient(170deg,var(--wood-dark) 0%,var(--wood-panel) 100%);
+      border:1px solid rgba(201,162,39,0.1);
+      padding:2.2rem 2rem;margin-bottom:1.4rem;
+      position:relative}
+    .chamber::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(201,162,39,0.15),transparent)}
+    .chamber-title{
+      font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:500;
+      color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem}
+    .chamber-desc{
+      font-family:'IM Fell DW Pica',Georgia,serif;font-size:.84rem;
+      color:var(--bone-dim);font-style:italic;line-height:1.6;margin-bottom:1.2rem}
+
+    /* Form elements */
+    .row{margin-bottom:1rem}.row:last-child{margin-bottom:0}
+    .lbl{display:block;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.58rem;
+      letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.3rem}
+    .inp,.sel,.ta{
+      width:100%;padding:.7em 1em;
+      background:rgba(0,0,0,.35);border:1px solid rgba(201,162,39,.15);
+      color:var(--bone);font-family:'IM Fell DW Pica',Georgia,serif;font-size:.95rem;
+      line-height:1.6;border-radius:0;outline:none;transition:border-color .4s;-webkit-appearance:none}
     .inp:focus,.sel:focus,.ta:focus{border-color:var(--gold)}
-    .inp::placeholder,.ta::placeholder{color:var(--smoke);opacity:.5;font-style:italic}
-    .sel option{background:var(--void);color:var(--bone)}
-    .ta{min-height:60px;resize:vertical}
-    .hint{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.75rem;color:var(--smoke);font-style:italic;margin-top:.2rem;line-height:1.4}
+    .inp::placeholder,.ta::placeholder{color:var(--smoke);opacity:.45;font-style:italic}
+    .sel{cursor:pointer}
+    .sel option{background:var(--void);color:var(--bone);font-size:14px;line-height:2;padding:8px}
+    .ta{min-height:70px;resize:vertical}
+    .hint{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.76rem;color:var(--smoke);font-style:italic;margin-top:.25rem;line-height:1.5}
     .hint a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
-    .cols{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 
-    /* Senator cards */
-    .sen-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.6rem}
-    .sen{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border:1px solid rgba(201,162,39,.15);background:rgba(201,162,39,.03);cursor:pointer;transition:all .25s}
-    .sen:hover{border-color:var(--gold-dim)}
-    .sen.on{border-color:var(--gold);background:rgba(201,162,39,.07)}
-    .sen input{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0}
-    .sen-info{flex:1;min-width:0}
-    .sen-name{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;font-weight:500}
-    .sen-meta{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);margin-top:.1rem}
-    .sen-contact{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.5rem;color:var(--gold-dim);text-decoration:none;flex-shrink:0;border:1px solid rgba(201,162,39,.2);padding:.25em .6em;transition:all .25s}
-    .sen-contact:hover{border-color:var(--gold);color:var(--gold)}
-    .no-state{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.88rem;color:var(--bone-dim);font-style:italic;padding:.8rem 0}
-    .add-rep-row{margin-top:.8rem;display:flex;gap:.5rem;align-items:flex-end}
-    .add-rep-row .inp{flex:1}
-    .add-btn{padding:.65em 1em;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:.78rem;cursor:pointer;transition:all .3s;white-space:nowrap;flex-shrink:0}
-    .add-btn:hover{border-color:var(--gold);background:rgba(201,162,39,.06)}
+    /* ═══════════════════════════════════════════════════════
+       REPRESENTATIVE CARDS — Names of the accountable
+       ═══════════════════════════════════════════════════════ */
+    .rep-section{margin-top:.8rem}
+    .rep-section-label{
+      font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;
+      letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);
+      margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(201,162,39,.08)}
+    .rep-list{display:flex;flex-direction:column;gap:.45rem}
+    .rep-card{display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;
+      border:1px solid rgba(201,162,39,.12);background:rgba(201,162,39,.02);
+      cursor:pointer;transition:all .3s}
+    .rep-card:hover{border-color:rgba(201,162,39,.25)}
+    .rep-card.on{border-color:var(--gold);background:rgba(201,162,39,.05)}
+    .rep-card input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+    .rep-info{flex:1;min-width:0}
+    .rep-name{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;font-weight:500}
+    .rep-meta{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.5rem;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);margin-top:.1rem}
+    .rep-contact{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.48rem;
+      color:var(--gold-dim);text-decoration:none;flex-shrink:0;
+      border:1px solid rgba(201,162,39,.18);padding:.3em .65em;transition:all .3s}
+    .rep-contact:hover{border-color:var(--gold);color:var(--gold)}
+    .no-sel{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.9rem;
+      color:var(--bone-dim);font-style:italic;padding:1rem 0}
 
-    /* Custom textarea reveal */
-    .cw{display:none;margin-top:.4rem}.cw.vis{display:block}
+    /* District selector for House */
+    .district-row{margin-top:.8rem}
+    .district-note{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.78rem;
+      color:var(--bone-ghost);font-style:italic;line-height:1.5;margin-top:.3rem}
+    .district-note a{font-size:.78rem}
 
-    /* Checkboxes */
-    .chks{display:flex;flex-direction:column;gap:.6rem}
-    .chk{display:flex;align-items:flex-start;gap:.5rem;cursor:pointer}
-    .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
-    .chk span{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.88rem;line-height:1.5}
-    .chk strong{color:var(--bone);font-weight:600}
+    /* Manual add */
+    .add-row{margin-top:.8rem;display:flex;gap:.5rem;align-items:flex-end}
+    .add-row .inp{flex:1}
+    .add-btn{padding:.65em 1.1em;background:transparent;border:1px solid var(--gold-dim);
+      color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:.8rem;
+      cursor:pointer;transition:all .3s;white-space:nowrap;flex-shrink:0}
+    .add-btn:hover{border-color:var(--gold);background:var(--gold-ember)}
 
-    /* Delivery */
-    .dopt{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem;border:1px solid rgba(201,162,39,.1);background:rgba(0,0,0,.2);cursor:pointer;transition:all .25s;margin-bottom:.5rem}
-    .dopt:hover{border-color:rgba(201,162,39,.3)}
-    .dopt.on{border-color:var(--gold);background:rgba(201,162,39,.04)}
-    .dopt input{width:15px;height:15px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
-    .dopt-t{font-family:'Playfair Display',Georgia,serif;font-size:.9rem;font-weight:500;margin-bottom:.1rem}
-    .dopt-d{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.78rem;color:var(--bone-dim);font-style:italic;line-height:1.4}
-    .email-row{display:none;margin-top:.6rem}.email-row.vis{display:block}
+    /* ═══════════════════════════════════════════════════════
+       CONFESSION — The voice dropdowns (psychological affirmation)
+       ═══════════════════════════════════════════════════════ */
+    .confession-prompt{
+      font-family:'IM Fell English',Georgia,serif;font-size:.88rem;
+      color:var(--bone);font-style:italic;line-height:1.7;margin-bottom:.8rem}
+    .cw{display:none;margin-top:.5rem}.cw.vis{display:block}
 
-    /* Generate */
-    .gen-btn{display:block;width:100%;padding:1.1em;margin-top:1.5rem;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:1.15rem;letter-spacing:.06em;cursor:pointer;transition:all .4s}
-    .gen-btn:hover{background:rgba(201,162,39,.08);box-shadow:0 0 30px rgba(201,162,39,.15);transform:translateY(-1px)}
+    /* ═══════════════════════════════════════════════════════
+       DEMANDS — The non-negotiables
+       ═══════════════════════════════════════════════════════ */
+    .demands{display:flex;flex-direction:column;gap:.7rem}
+    .demand{display:flex;align-items:flex-start;gap:.55rem;cursor:pointer}
+    .demand input{width:16px;height:16px;margin-top:4px;accent-color:var(--gold);flex-shrink:0}
+    .demand span{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.9rem;line-height:1.6}
+    .demand strong{color:var(--bone);font-weight:600}
 
-    /* Output */
-    .out{display:none;margin-top:2.5rem}.out.vis{display:block}
-    .lt-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.5rem}
-    .lt-title{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:500}
-    .lt-acts{display:flex;gap:.4rem;flex-wrap:wrap}
-    .lt-btn{padding:.35em .9em;background:transparent;border:1px solid rgba(201,162,39,.3);color:var(--gold);font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
-    .lt-btn:hover{border-color:var(--gold);background:rgba(201,162,39,.08)}
-    .lt-to{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.5rem}
-    .lt-body{background:#faf6ec;color:#1a1712;font-family:'IM Fell DW Pica',Georgia,serif;font-size:.9rem;line-height:1.8;padding:2.5rem 2rem;border:1px solid #d4c9a8;white-space:pre-wrap;max-height:55vh;overflow-y:auto;margin-bottom:1.2rem}
-    .lt-guide{background:rgba(201,162,39,.03);border:1px solid rgba(201,162,39,.1);padding:1.2rem;margin-bottom:1.5rem}
-    .lt-guide-t{font-family:'Playfair Display',Georgia,serif;font-size:.95rem;font-weight:500;color:var(--gold);margin-bottom:.6rem}
-    .lt-guide-s{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.85rem;color:var(--bone);line-height:1.6;margin-bottom:.4rem;padding-left:1.4em;text-indent:-1.4em}
-    .lt-guide-s strong{color:var(--gold)}
-    .lt-guide a.gl{display:inline-block;margin-top:.6rem;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(201,162,39,.3);padding:.35em .7em;transition:all .3s}
-    .lt-guide a.gl:hover{background:rgba(201,162,39,.08);border-color:var(--gold)}
-    .lt-note{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.85rem;color:var(--bone-dim);font-style:italic;text-align:center;line-height:1.7;margin-top:2rem}
+    /* ═══════════════════════════════════════════════════════
+       DELIVERY — How the weight arrives
+       ═══════════════════════════════════════════════════════ */
+    .delivery-opt{display:flex;align-items:flex-start;gap:.6rem;padding:.9rem 1rem;
+      border:1px solid rgba(201,162,39,.08);background:rgba(0,0,0,.2);
+      cursor:pointer;transition:all .3s;margin-bottom:.5rem}
+    .delivery-opt:hover{border-color:rgba(201,162,39,.2)}
+    .delivery-opt.on{border-color:var(--gold);background:rgba(201,162,39,.03)}
+    .delivery-opt input{width:16px;height:16px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+    .delivery-title{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;font-weight:500;margin-bottom:.15rem}
+    .delivery-desc{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.8rem;color:var(--bone-dim);font-style:italic;line-height:1.5}
+    .email-capture{display:none;margin-top:.6rem}.email-capture.vis{display:block}
 
-    /* Footer */
-    .ftr{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(201,162,39,.15)}
-    .ftr-orn{font-size:.8rem;color:var(--gold-dim);letter-spacing:.4em;margin-bottom:1rem;opacity:.5}
-    .ftr-nav{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.1em}
+    /* ═══════════════════════════════════════════════════════
+       THE BUTTON — The threshold of action
+       ═══════════════════════════════════════════════════════ */
+    .act-btn{
+      display:block;width:100%;padding:1.2em;margin-top:1.8rem;
+      background:transparent;border:2px solid var(--gold);
+      color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:1.2rem;
+      letter-spacing:.06em;cursor:pointer;transition:all .5s;position:relative;overflow:hidden}
+    .act-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-ember),transparent);
+      opacity:0;transition:opacity .5s}
+    .act-btn:hover{box-shadow:0 0 40px rgba(201,162,39,0.12);transform:translateY(-1px)}
+    .act-btn:hover::before{opacity:1}
+    .act-btn span{position:relative;z-index:1}
+
+    /* ═══════════════════════════════════════════════════════
+       OUTPUT — The letters, on parchment
+       ═══════════════════════════════════════════════════════ */
+    .output{display:none;margin-top:3rem}.output.vis{display:block}
+    .output-preamble{
+      text-align:center;margin-bottom:2.5rem;
+      font-family:'IM Fell English',Georgia,serif;font-size:.95rem;
+      font-style:italic;color:var(--bone-dim);line-height:1.8}
+    .output-preamble strong{color:var(--gold);font-weight:400}
+
+    .letter-block{margin-bottom:3rem}
+    .letter-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;flex-wrap:wrap;gap:.5rem}
+    .letter-num{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:500}
+    .letter-acts{display:flex;gap:.4rem;flex-wrap:wrap}
+    .letter-btn{padding:.4em 1em;background:transparent;border:1px solid rgba(201,162,39,.25);
+      color:var(--gold);font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;
+      letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+    .letter-btn:hover{border-color:var(--gold);background:var(--gold-ember)}
+    .letter-to{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.5rem}
+    .letter-body{
+      background:linear-gradient(170deg,#faf6ec,#f0ead6);color:#1a1712;
+      font-family:'IM Fell DW Pica',Georgia,serif;font-size:.92rem;line-height:1.85;
+      padding:2.8rem 2.2rem;border:1px solid #c9b88a;white-space:pre-wrap;
+      max-height:60vh;overflow-y:auto;
+      box-shadow:0 2px 20px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4)}
+    .letter-guide{background:rgba(201,162,39,.03);border:1px solid rgba(201,162,39,.08);padding:1.3rem 1.2rem;margin-top:.8rem}
+    .letter-guide-title{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;font-weight:500;color:var(--gold);margin-bottom:.6rem}
+    .letter-guide-step{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.84rem;
+      color:var(--bone);line-height:1.6;margin-bottom:.35rem;padding-left:1.4em;text-indent:-1.4em}
+    .letter-guide-step strong{color:var(--gold)}
+    .letter-guide a.guide-link{display:inline-block;margin-top:.5rem;font-family:'IBM Plex Mono','Courier New',monospace;
+      font-size:.52rem;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(201,162,39,.25);
+      padding:.35em .75em;transition:all .3s}
+    .letter-guide a.guide-link:hover{background:var(--gold-ember);border-color:var(--gold)}
+
+    /* Closing benediction */
+    .benediction{
+      font-family:'IM Fell English',Georgia,serif;font-size:.88rem;
+      color:var(--bone-dim);font-style:italic;text-align:center;
+      line-height:1.85;margin-top:2.5rem;padding:1.5rem 1rem;
+      border-top:1px solid rgba(201,162,39,.1);border-bottom:1px solid rgba(201,162,39,.1)}
+    .benediction strong{color:var(--bone);font-weight:400}
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER — The return path
+       ═══════════════════════════════════════════════════════ */
+    .ftr{text-align:center;margin-top:3.5rem;padding-top:2rem;border-top:1px solid rgba(201,162,39,.1)}
+    .ftr-orn{font-size:.8rem;color:var(--gold-dim);letter-spacing:.5em;margin-bottom:1rem;opacity:.45}
+    .ftr-nav{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;letter-spacing:.1em}
     .ftr-nav a{color:var(--gold-dim);transition:color .3s}.ftr-nav a:hover{color:var(--gold)}
-    .ftr-d{margin:0 .6em;color:var(--gold-dim);opacity:.4}
+    .ftr-d{margin:0 .6em;color:var(--gold-dim);opacity:.35}
 
-    /* Film grain */
-    body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
-
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE — Compact on mobile, never cramped
+       ═══════════════════════════════════════════════════════ */
     @media(max-width:600px){
-      html{font-size:15px}.page{padding:2rem 1.1rem 3.5rem}.hdr h1{font-size:1.7rem}.panel{padding:1.3rem 1.1rem}.cols{grid-template-columns:1fr}.lt-body{padding:1.5rem 1.2rem;font-size:.84rem}.lt-hdr{flex-direction:column;align-items:flex-start}.add-rep-row{flex-direction:column}
+      html{font-size:15px}
+      .page{padding:2rem 1.1rem 3.5rem}
+      .threshold h1{font-size:1.8rem}
+      .chamber{padding:1.4rem 1.2rem}
+      .cols{grid-template-columns:1fr}
+      .letter-body{padding:1.8rem 1.3rem;font-size:.86rem}
+      .letter-hdr{flex-direction:column;align-items:flex-start}
+      .add-row{flex-direction:column}
+      .inp,.sel,.ta{font-size:16px}
     }
 
+    /* ═══════════════════════════════════════════════════════
+       PRINT — Clean, dignified output
+       ═══════════════════════════════════════════════════════ */
     @media print{
       body{background:#fff;color:#000}body::before{display:none}
-      .hdr,.intro,.panel,.gen-btn,.lt-hdr,.lt-to,.lt-guide,.lt-note,.ftr,.lt-acts,.email-row{display:none!important}
-      .lt-body{border:none;padding:0;max-height:none;font-size:12pt;line-height:1.6}
-      .out{display:block!important}
+      .threshold,.invocation,.chamber,.act-btn,.letter-hdr,.letter-to,.letter-guide,.benediction,.ftr,.letter-acts,.email-capture{display:none!important}
+      .letter-body{border:none;padding:0;max-height:none;font-size:12pt;line-height:1.6;box-shadow:none;background:#fff}
+      .output{display:block!important}.output-preamble{display:none!important}
     }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <header class="hdr">
-    <div class="hdr-orn">&#10087; &#9753;</div>
+  <!-- ═══════════════════════════════════════════════════════
+       THRESHOLD — You have come from The Chair
+       ═══════════════════════════════════════════════════════ -->
+  <header class="threshold">
+    <div class="threshold-orn">&#10087; &#9753; &#10087;</div>
     <h1>Help Us Bear This</h1>
-    <p>You sat in the chair. Now stand up and act.</p>
+    <p class="threshold-sub">You sat in the chair. Now stand up and act.</p>
   </header>
 
-  <div class="intro">
-    <p>You have just come from something heavy. If your hands are shaking, that is the right response.</p>
-    <p class="em">You do not have to carry this alone. But you do have to do something with it.</p>
-    <p>This tool writes letters to your elected representatives <strong>in your name, in your voice</strong>. Select your state, tell us what you feel, and click one button. We handle the rest &mdash; including <strong>printing and mailing at no charge</strong> if you need us to.</p>
+  <!-- ═══════════════════════════════════════════════════════
+       INVOCATION — The opening word
+       ═══════════════════════════════════════════════════════ -->
+  <div class="invocation">
+    <p>You have just come from something heavy. If your hands are shaking, that is the right response. If you feel sick, that is the body recognizing what the mind already knows. If you are angry&mdash;good. Anger is the immune system of a republic.</p>
+    <p>You did not read every file. You did not have to. <em>You sat in the room with what they contain.</em> The Committee of Patriots walked you through evidence that three million pages of court records, flight logs, sworn depositions, and authenticated correspondence have made undeniable. You know what you know now. And <strong>you cannot unknow it</strong>.</p>
+    <p>This is not a petition. This is not a form letter. This is a <strong>personally addressed demand from a constituent</strong> to the people who swore an oath to protect you and your children. The tool below writes that letter <em>in your voice</em>, to <em>your</em> representatives, and puts it in their hands.</p>
+    <div class="weight">The children in those files did not have a voice. You do. What you do with it in the next three minutes will be counted.</div>
   </div>
 
-  <!-- ═══ PANEL 1: YOU ═══ -->
-  <div class="panel">
-    <div class="panel-title">You</div>
-    <div class="panel-desc">Your name goes on the letter. Your address goes on the envelope.</div>
+  <!-- ═══════════════════════════════════════════════════════
+       CHAMBER 1 — YOUR NAME (The seal on the letter)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="chamber">
+    <div class="chamber-title">Your Name</div>
+    <div class="chamber-desc">Your name goes on the letter. Your address goes on the envelope. This is how a representative knows you are a constituent&mdash;a person they answer to, not a stranger they can ignore.</div>
     <div class="cols">
-      <div class="row"><label class="lbl" for="f-name">Full Name</label><input class="inp" id="f-name" placeholder="Your name"></div>
+      <div class="row"><label class="lbl" for="f-name">Full Name</label><input class="inp" id="f-name" placeholder="Your name, as you would sign it"></div>
       <div class="row"><label class="lbl" for="f-addr">Mailing Address</label><input class="inp" id="f-addr" placeholder="123 Main St, Austin, TX 78701"></div>
     </div>
   </div>
 
-  <!-- ═══ PANEL 2: YOUR REPRESENTATIVES ═══ -->
-  <div class="panel">
-    <div class="panel-title">Your Representatives</div>
-    <div class="panel-desc">Select your state. Your U.S. senators appear instantly. Check the ones you want to write.</div>
+  <!-- ═══════════════════════════════════════════════════════
+       CHAMBER 2 — YOUR REPRESENTATIVES (The accountable)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="chamber">
+    <div class="chamber-title">Your Representatives</div>
+    <div class="chamber-desc">These are the people who swore an oath. Select your state and they appear&mdash;the names, the offices, the direct lines to their desks. Every checked box is a letter that lands.</div>
     <div class="row">
       <label class="lbl" for="f-state">Your State</label>
       <select class="sel" id="f-state" onchange="onStateChange()">
-        <option value="">Select your state...</option>
+        <option value="">Select your state&hellip;</option>
       </select>
     </div>
-    <div id="sen-area">
-      <div class="no-state" id="sen-placeholder">Select your state above to see your senators.</div>
-      <div class="sen-list" id="sen-list" style="display:none"></div>
+
+    <!-- Senators -->
+    <div id="sen-area" class="rep-section" style="display:none">
+      <div class="rep-section-label">U.S. Senators</div>
+      <div class="rep-list" id="sen-list"></div>
     </div>
-    <div style="margin-top:1rem">
-      <div class="panel-desc" style="margin-bottom:.4rem">U.S. House Representative &amp; others <span class="hint">(optional &mdash; <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">look up your rep</a>)</span></div>
+
+    <!-- House Representatives -->
+    <div id="house-area" class="rep-section" style="display:none">
+      <div class="rep-section-label">U.S. House Representatives</div>
+      <div class="district-row" id="district-row" style="display:none">
+        <label class="lbl" for="f-district">Your Congressional District</label>
+        <select class="sel" id="f-district" onchange="onDistrictChange()">
+          <option value="">Select your district&hellip;</option>
+        </select>
+        <div class="district-note">Not sure? <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">Look up your district here</a></div>
+      </div>
+      <div class="rep-list" id="house-list"></div>
+    </div>
+
+    <!-- Placeholder before state selected -->
+    <div class="no-sel" id="rep-placeholder">Select your state above. Your senators and representative appear here&mdash;pre-checked, ready to receive your letter.</div>
+
+    <!-- Manual add for anyone else -->
+    <div style="margin-top:1.2rem">
+      <div class="chamber-desc" style="margin-bottom:.3rem">Additional recipients <span class="hint">(governor, state legislators, or anyone else who should hear this)</span></div>
       <div id="extra-reps"></div>
-      <div class="add-rep-row">
-        <input class="inp" id="f-extra-name" placeholder="e.g. Rep. Lloyd Doggett">
+      <div class="add-row">
+        <input class="inp" id="f-extra-name" placeholder="e.g. Gov. Greg Abbott">
         <button class="add-btn" onclick="addExtraRep()">+ Add</button>
       </div>
     </div>
   </div>
 
-  <!-- ═══ PANEL 3: YOUR VOICE ═══ -->
-  <div class="panel">
-    <div class="panel-title">Your Voice</div>
-    <div class="panel-desc">Choose from below or write your own. These words go into your letter.</div>
+  <!-- ═══════════════════════════════════════════════════════
+       CHAMBER 3 — YOUR VOICE (The confession)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="chamber">
+    <div class="chamber-title">Your Voice</div>
+    <div class="chamber-desc">This is the part that makes your letter different from every other message in their inbox. You are not a lobbyist. You are a human being who just sat with the evidence. Tell them what that did to you.</div>
+
+    <p class="confession-prompt">When you read what was done to those children&mdash;when you saw the names and the flight logs and the silence of the powerful&mdash;something happened inside you. Name it. You do not have to explain it. Just speak it.</p>
 
     <div class="row">
-      <label class="lbl" for="f-exp">Personal Experience</label>
+      <label class="lbl" for="f-exp">Who You Are In This</label>
       <select class="sel" id="f-exp" onchange="togCw('f-exp','cw-exp')">
-        <option value="">I prefer not to share, but I demand accountability.</option>
-        <option value="s1">I am a survivor of sexual assault. I know what it means when the powerful are not held accountable, because I have lived inside that silence.</option>
-        <option value="s2">I am a survivor of childhood sexual abuse. I was a child. I did not have a voice then. I have one now.</option>
-        <option value="s3">Someone I love is a survivor of sexual assault. I have watched what it does to a human being when justice never comes.</option>
-        <option value="s4">Someone I love survived childhood sexual abuse. I have held them while they wept for the child they were. I will not be silent.</option>
-        <option value="s5">I am a parent. I read these files and I think of my own children. The thought that this machine operated openly, protected by the powerful, is unbearable.</option>
-        <option value="s6">I am an ordinary citizen who has never experienced this personally, but I refuse to live in a country where children are disposable and the powerful are untouchable.</option>
-        <option value="s7">I have seen corruption and impunity among the powerful firsthand. The Epstein files confirm what many already knew: the rules do not apply equally.</option>
-        <option value="custom">Let me write my own...</option>
+        <option value="">I stand with the victims. I demand accountability.</option>
+        <option value="s1">I am a survivor of sexual assault. I know what it means when the powerful are never held accountable, because I have lived inside that silence. It ate years of my life. I will not be silent for theirs.</option>
+        <option value="s2">I am a survivor of childhood sexual abuse. I was a child. I did not choose. I did not consent. I did not have a voice then. I have one now, and you will hear it.</option>
+        <option value="s3">Someone I love is a survivor of sexual assault. I have watched what it does to a human being when justice never comes&mdash;the way it hollows out trust, the way it rewrites a person's relationship with safety. I carry this too.</option>
+        <option value="s4">Someone I love survived childhood sexual abuse. I have held them while they wept for the child they were. I have seen the nightmares. I know the cost. I will not be silent about it.</option>
+        <option value="s5">I am a parent. I read these files and I think of my own children&mdash;their faces, their trust, their small hands. The thought that this machine operated openly, protected by the powerful, is unbearable. I cannot unknow this.</option>
+        <option value="s6">I am an ordinary citizen who has never experienced this personally. But I refuse to live in a country where children are disposable and the powerful are untouchable. That is not the country I was promised.</option>
+        <option value="s7">I have seen corruption and impunity among the powerful firsthand. The Epstein files confirm what many already knew: the rules do not apply equally. But these were children. This is where the tolerance ends.</option>
+        <option value="s8">I am a veteran. I swore an oath to defend this country and its people. I did not serve so that elected officials could look the other way while children were trafficked by their donors and dinner companions.</option>
+        <option value="s9">I am a person of faith. What was done to those children is an abomination before God. What was done afterward&mdash;the silence, the protection of the guilty, the burial of evidence&mdash;is a second abomination. I will not participate in a third.</option>
+        <option value="custom">I will speak it in my own words&hellip;</option>
       </select>
-      <div class="cw" id="cw-exp"><textarea class="ta" placeholder="In your own words..."></textarea></div>
+      <div class="cw" id="cw-exp"><textarea class="ta" placeholder="In your own words&hellip; say what you need to say."></textarea></div>
     </div>
 
     <div class="row">
-      <label class="lbl" for="f-feel">What You Feel Reading These Files</label>
+      <label class="lbl" for="f-feel">What This Did to Your Body</label>
       <select class="sel" id="f-feel" onchange="togCw('f-feel','cw-feel')">
-        <option value="f1">I feel rage &mdash; a fury that settles in my chest and does not leave. It is not partisan. It is human.</option>
-        <option value="f2">I feel grief &mdash; a weight I cannot put down. Grief for the children. Grief for the country I thought I lived in.</option>
-        <option value="f3">I feel physically sick. My stomach turns when I read what was done to those children, and how many people knew.</option>
-        <option value="f4">I feel cold &mdash; a dread that seeps into my bones. The slow recognition that the system worked exactly as designed.</option>
-        <option value="f5">I feel betrayed. By both parties. By every institution that was supposed to protect the vulnerable.</option>
-        <option value="f6">I feel all of it &mdash; rage, grief, nausea, and underneath it, a desperate need for justice.</option>
-        <option value="f7">I wept. I sat and wept. Something in these files broke through to a part of me I protect, and it will not let me look away.</option>
-        <option value="custom">Let me describe it myself...</option>
+        <option value="f1">I feel rage&mdash;a fury that settles in my chest and does not leave. It is not partisan. It is not performative. It is the oldest human response to the violation of a child.</option>
+        <option value="f2">I feel grief&mdash;a weight I cannot put down. Grief for the children. Grief for the country I thought I lived in. Grief for every year the files sat sealed while the guilty walked free.</option>
+        <option value="f3">I feel physically sick. My stomach turns when I read what was done to those children, and how many people knew, and how long they knew, and what they chose to do with that knowledge: nothing.</option>
+        <option value="f4">I feel cold. A dread that seeps into my bones. The slow recognition that the system is not broken&mdash;it worked exactly as designed. The powerful were protected. The children were not.</option>
+        <option value="f5">I feel betrayed. By both parties. By every institution that was supposed to protect the vulnerable and chose instead to protect itself. Left. Right. It does not matter. The children were bipartisan casualties.</option>
+        <option value="f6">I feel all of it&mdash;rage, grief, nausea, and underneath it all, a desperate, burning need for justice that I cannot put back in the box.</option>
+        <option value="f7">I wept. I sat and I wept. Something in these files broke through to a part of me I protect, and it will not let me look away. I do not want to look away.</option>
+        <option value="f8">I feel a terrible clarity. The kind that comes when the fog lifts and you see the landscape for what it is. I cannot unsee it. I am writing to you because you must not unsee it either.</option>
+        <option value="custom">Let me describe what I feel&hellip;</option>
       </select>
-      <div class="cw" id="cw-feel"><textarea class="ta" placeholder="Describe what you feel..."></textarea></div>
+      <div class="cw" id="cw-feel"><textarea class="ta" placeholder="What did it do to you? Say it plainly."></textarea></div>
     </div>
 
     <div class="row">
-      <label class="lbl" for="f-extra">Anything Else (optional)</label>
-      <textarea class="ta" id="f-extra" placeholder="Your own words, if you have more to say."></textarea>
+      <label class="lbl" for="f-extra">Anything Else You Need to Say <span style="font-weight:400;opacity:.6">(optional)</span></label>
+      <textarea class="ta" id="f-extra" placeholder="Your own words, if you have more to say. Some things cannot be chosen from a list."></textarea>
     </div>
   </div>
 
-  <!-- ═══ PANEL 4: DEMANDS ═══ -->
-  <div class="panel">
-    <div class="panel-title">Your Demands</div>
-    <div class="panel-desc">All pre-selected. Uncheck any you wish to remove.</div>
-    <div class="chks">
-      <label class="chk"><input type="checkbox" id="d-sol" checked><span><strong>Remove the statute of limitations</strong> for all crimes against children &mdash; retroactively and in perpetuity.</span></label>
-      <label class="chk"><input type="checkbox" id="d-pro" checked><span><strong>Impeach and prosecute</strong> all individuals incriminated in the Epstein files, regardless of party, office, or wealth.</span></label>
-      <label class="chk"><input type="checkbox" id="d-max" checked><span><strong>Public hearing on Capitol Hill</strong> with Ghislaine Maxwell under oath. She was convicted of trafficking minors. She knows the names.</span></label>
-      <label class="chk"><input type="checkbox" id="d-rel" checked><span><strong>Release all Epstein files</strong> unredacted, with no further delays or selective batching.</span></label>
+  <!-- ═══════════════════════════════════════════════════════
+       CHAMBER 4 — YOUR DEMANDS (The non-negotiables)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="chamber">
+    <div class="chamber-title">Your Demands</div>
+    <div class="chamber-desc">These are pre-selected because they are non-negotiable. Uncheck any you wish, but read them first. These are the minimum demands of a citizen who has seen the evidence.</div>
+    <div class="demands">
+      <label class="demand"><input type="checkbox" id="d-sol" checked><span><strong>Remove the statute of limitations</strong> for all crimes against children&mdash;retroactively and in perpetuity. A child's suffering does not expire on a legal clock. The trauma does not expire. The justice must not either.</span></label>
+      <label class="demand"><input type="checkbox" id="d-pro" checked><span><strong>Impeach and prosecute</strong> every individual incriminated in the Epstein files, regardless of party, office, or personal wealth. The law must apply equally, or it is not law&mdash;it is theater.</span></label>
+      <label class="demand"><input type="checkbox" id="d-max" checked><span><strong>Public hearing with Ghislaine Maxwell</strong> testifying under oath before Congress. She was convicted of sex trafficking minors. She knows the names. The American people have a right to hear them spoken aloud.</span></label>
+      <label class="demand"><input type="checkbox" id="d-rel" checked><span><strong>Release all Epstein files</strong> to the public, unredacted and without further delay. Selective batching by a Justice Department whose own leadership appears in the files is not transparency&mdash;it is stage management.</span></label>
     </div>
   </div>
 
-  <!-- ═══ PANEL 5: DELIVERY ═══ -->
-  <div class="panel">
-    <div class="panel-title">Delivery</div>
-    <label class="dopt on" onclick="setDel('self')"><input type="radio" name="del" value="self" checked><div><div class="dopt-t">I will print and mail it myself</div><div class="dopt-d">Print it, sign it, stamp it, mail it.</div></div></label>
-    <label class="dopt" onclick="setDel('us')"><input type="radio" name="del" value="us"><div><div class="dopt-t">Print and mail for me &mdash; no charge</div><div class="dopt-d">We print on quality stock and mail to every representative you selected.</div></div></label>
-    <label class="dopt" onclick="setDel('email')"><input type="radio" name="del" value="email"><div><div class="dopt-t">I will email it to their office</div><div class="dopt-d">We show you exactly where to paste it, with one-click copy.</div></div></label>
-    <div class="email-row" id="email-row">
+  <!-- ═══════════════════════════════════════════════════════
+       CHAMBER 5 — DELIVERY (How the weight arrives)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="chamber">
+    <div class="chamber-title">Delivery</div>
+    <div class="chamber-desc">Physical mail carries more weight than email. Congressional staff tallies it. A signed letter on paper arrives with the weight of a citizen who showed up. But any action is better than silence.</div>
+    <label class="delivery-opt on" onclick="setDel('self')">
+      <input type="radio" name="del" value="self" checked>
+      <div><div class="delivery-title">I will print, sign, and mail it myself</div>
+      <div class="delivery-desc">Print it. Sign it by hand. Stamp it. Mail it. A handwritten signature on paper is a vote that arrives between elections.</div></div>
+    </label>
+    <label class="delivery-opt" onclick="setDel('us')">
+      <input type="radio" name="del" value="us">
+      <div><div class="delivery-title">Print and mail for me&mdash;no charge</div>
+      <div class="delivery-desc">We print on quality stock and mail it to every representative you selected. The children in those files never had anyone do this for them. We do it for you.</div></div>
+    </label>
+    <label class="delivery-opt" onclick="setDel('email')">
+      <input type="radio" name="del" value="email">
+      <div><div class="delivery-title">I will email it directly to their office</div>
+      <div class="delivery-desc">One click copies your letter and opens their contact form. Paste, send, done. Do this now&mdash;while the fire is still in you.</div></div>
+    </label>
+    <div class="email-capture" id="email-capture">
       <label class="lbl" for="f-email">Your Email (for mail confirmation)</label>
       <input class="inp" id="f-email" type="email" placeholder="you@example.com">
     </div>
   </div>
 
-  <button class="gen-btn" onclick="generate()">Generate Your Letters</button>
+  <!-- ═══════════════════════════════════════════════════════
+       THE BUTTON
+       ═══════════════════════════════════════════════════════ -->
+  <button class="act-btn" onclick="generate()"><span>Seal and Generate Your Letters</span></button>
 
-  <!-- ═══ OUTPUT ═══ -->
-  <div class="out" id="output"></div>
+  <!-- ═══════════════════════════════════════════════════════
+       OUTPUT
+       ═══════════════════════════════════════════════════════ -->
+  <div class="output" id="output"></div>
 
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
   <footer class="ftr">
-    <div class="ftr-orn">&#10087; &#9753;</div>
+    <div class="ftr-orn">&#10087; &#9753; &#10087;</div>
     <nav class="ftr-nav">
-      <a href="../The_Chair/">The Chair</a><span class="ftr-d">&middot;</span>
+      <a href="../The_Chair/">Return to The Chair</a><span class="ftr-d">&middot;</span>
       <a href="../The_Chair/the-waters-recede.html">The Waters Recede</a><span class="ftr-d">&middot;</span>
       <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The Dossier</a><span class="ftr-d">&middot;</span>
       <a href="../The_Watchtower/">Watchtower</a><span class="ftr-d">&middot;</span>
@@ -260,10 +462,12 @@
 
 <script src="reps-data.js"></script>
 <script>
-// ═══════════════════════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
+   HELP US BEAR THIS — Script
+   Minimal-friction letter generation with House + Senate lookup.
+   ═══════════════════════════════════════════════════════════════ */
 
+// ── INIT ─────────────────────────────────────────────────────
 (function(){
   var sel = document.getElementById('f-state');
   var codes = Object.keys(STATE_NAMES).sort(function(a,b){return STATE_NAMES[a]<STATE_NAMES[b]?-1:1});
@@ -275,62 +479,154 @@
   setDel('self');
 })();
 
-// ═══════════════════════════════════════════════════════════════
-//  STATE → SENATORS
-// ═══════════════════════════════════════════════════════════════
-
+// ── STATE CHANGE → Populate Senators + House ─────────────────
 function onStateChange(){
   var st = document.getElementById('f-state').value;
-  var list = document.getElementById('sen-list');
-  var ph = document.getElementById('sen-placeholder');
-  list.innerHTML = '';
-  if(!st || !SENATORS[st]){
-    list.style.display='none'; ph.style.display='block'; return;
+  var senArea = document.getElementById('sen-area');
+  var houseArea = document.getElementById('house-area');
+  var ph = document.getElementById('rep-placeholder');
+  var senList = document.getElementById('sen-list');
+  var houseList = document.getElementById('house-list');
+  var districtRow = document.getElementById('district-row');
+
+  senList.innerHTML = '';
+  houseList.innerHTML = '';
+
+  if(!st){
+    senArea.style.display='none';
+    houseArea.style.display='none';
+    ph.style.display='block';
+    districtRow.style.display='none';
+    return;
   }
-  ph.style.display='none'; list.style.display='flex';
-  SENATORS[st].forEach(function(s){
-    var label = document.createElement('label');
-    label.className = 'sen on';
-    label.innerHTML =
-      '<input type="checkbox" checked data-type="senator" data-name="'+esc(s.n)+'" data-web="'+s.w+'" onchange="togSen(this)">' +
-      '<div class="sen-info">' +
-        '<div class="sen-name">Sen. '+esc(s.n)+'</div>' +
-        '<div class="sen-meta">U.S. Senator &middot; '+s.p+'</div>' +
-      '</div>' +
-      '<a class="sen-contact" href="https://www.'+s.w+'.senate.gov/contact" target="_blank" onclick="event.stopPropagation()">Contact</a>';
-    list.appendChild(label);
-  });
+
+  ph.style.display='none';
+
+  // ── Senators ──
+  if(SENATORS[st] && SENATORS[st].length){
+    senArea.style.display='block';
+    SENATORS[st].forEach(function(s){
+      senList.appendChild(buildRepCard({
+        name: s.n,
+        title: 'U.S. Senator',
+        meta: 'U.S. Senate \u00b7 ' + s.p,
+        type: 'senator',
+        web: s.w,
+        contactUrl: 'https://www.' + s.w + '.senate.gov/contact'
+      }));
+    });
+  } else {
+    senArea.style.display='none';
+  }
+
+  // ── House Representatives ──
+  if(typeof REPRESENTATIVES !== 'undefined' && REPRESENTATIVES[st]){
+    houseArea.style.display='block';
+    var reps = REPRESENTATIVES[st];
+    if(reps.length === 1){
+      // At-large: show directly
+      districtRow.style.display='none';
+      reps.forEach(function(r){
+        houseList.appendChild(buildRepCard({
+          name: r.n,
+          title: 'U.S. Representative',
+          meta: 'At-Large \u00b7 ' + r.p,
+          type: 'rep',
+          web: r.w,
+          contactUrl: r.w ? 'https://' + r.w + '.house.gov/contact' : ''
+        }));
+      });
+    } else {
+      // Multiple districts: show district selector
+      districtRow.style.display='block';
+      var distSel = document.getElementById('f-district');
+      distSel.innerHTML = '<option value="">Select your district\u2026</option>';
+      distSel.innerHTML += '<option value="all">I want to write all of them</option>';
+      reps.forEach(function(r){
+        var o = document.createElement('option');
+        o.value = r.d;
+        o.textContent = 'District ' + r.d + ' \u2014 ' + r.n + ' (' + r.p + ')';
+        distSel.appendChild(o);
+      });
+    }
+  } else {
+    houseArea.style.display='block';
+    districtRow.style.display='none';
+    houseList.innerHTML = '<div class="district-note">House representative data loading. You can <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">look up your representative here</a> and add them manually below.</div>';
+  }
 }
 
-function togSen(cb){
-  var card = cb.closest('.sen');
-  card.classList.toggle('on', cb.checked);
+function onDistrictChange(){
+  var st = document.getElementById('f-state').value;
+  var dist = document.getElementById('f-district').value;
+  var houseList = document.getElementById('house-list');
+  houseList.innerHTML = '';
+
+  if(!st || !dist || typeof REPRESENTATIVES === 'undefined' || !REPRESENTATIVES[st]) return;
+
+  var reps = REPRESENTATIVES[st];
+  if(dist === 'all'){
+    reps.forEach(function(r){
+      houseList.appendChild(buildRepCard({
+        name: r.n,
+        title: 'U.S. Representative',
+        meta: 'District ' + r.d + ' \u00b7 ' + r.p,
+        type: 'rep',
+        web: r.w,
+        contactUrl: r.w ? 'https://' + r.w + '.house.gov/contact' : ''
+      }));
+    });
+  } else {
+    reps.forEach(function(r){
+      if(String(r.d) === String(dist)){
+        houseList.appendChild(buildRepCard({
+          name: r.n,
+          title: 'U.S. Representative',
+          meta: 'District ' + r.d + ' \u00b7 ' + r.p,
+          type: 'rep',
+          web: r.w,
+          contactUrl: r.w ? 'https://' + r.w + '.house.gov/contact' : ''
+        }));
+      }
+    });
+  }
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  EXTRA REPS (House, State)
-// ═══════════════════════════════════════════════════════════════
+function buildRepCard(cfg){
+  var label = document.createElement('label');
+  label.className = 'rep-card on';
+  var prefix = cfg.type === 'senator' ? 'Sen. ' : 'Rep. ';
+  label.innerHTML =
+    '<input type="checkbox" checked data-type="'+esc(cfg.type)+'" data-name="'+esc(cfg.name)+'" data-web="'+esc(cfg.web||'')+'" data-contact="'+esc(cfg.contactUrl||'')+'" onchange="togCard(this)">' +
+    '<div class="rep-info">' +
+      '<div class="rep-name">'+prefix+esc(cfg.name)+'</div>' +
+      '<div class="rep-meta">'+esc(cfg.meta)+'</div>' +
+    '</div>' +
+    (cfg.contactUrl ? '<a class="rep-contact" href="'+esc(cfg.contactUrl)+'" target="_blank" onclick="event.stopPropagation()">Contact</a>' : '');
+  return label;
+}
 
+function togCard(cb){
+  cb.closest('.rep-card').classList.toggle('on', cb.checked);
+}
+
+// ── EXTRA REPS ───────────────────────────────────────────────
 function addExtraRep(){
   var inp = document.getElementById('f-extra-name');
   var name = inp.value.trim();
   if(!name) return;
   inp.value = '';
-
   var container = document.getElementById('extra-reps');
   var label = document.createElement('label');
-  label.className = 'sen on';
+  label.className = 'rep-card on';
   label.innerHTML =
-    '<input type="checkbox" checked data-type="rep" data-name="'+esc(name)+'" onchange="togSen(this)">' +
-    '<div class="sen-info"><div class="sen-name">'+esc(name)+'</div><div class="sen-meta">Representative</div></div>' +
-    '<span class="sen-contact" style="cursor:pointer;color:var(--smoke)" onclick="event.stopPropagation();this.closest(\'.sen\').remove()">Remove</span>';
+    '<input type="checkbox" checked data-type="other" data-name="'+esc(name)+'" data-web="" data-contact="" onchange="togCard(this)">' +
+    '<div class="rep-info"><div class="rep-name">'+esc(name)+'</div><div class="rep-meta">Additional Recipient</div></div>' +
+    '<span class="rep-contact" style="cursor:pointer;color:var(--smoke)" onclick="event.stopPropagation();this.closest(\'.rep-card\').remove()">Remove</span>';
   container.appendChild(label);
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  DROPDOWN CUSTOM TEXT
-// ═══════════════════════════════════════════════════════════════
-
+// ── CUSTOM TEXT TOGGLE ───────────────────────────────────────
 function togCw(selId,cwId){
   var s=document.getElementById(selId), cw=document.getElementById(cwId);
   if(s.value==='custom'){cw.classList.add('vis');var t=cw.querySelector('textarea');if(t)t.focus()}
@@ -344,40 +640,37 @@ function getSelText(selId,cwId){
   return s.options[s.selectedIndex].text;
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  DELIVERY
-// ═══════════════════════════════════════════════════════════════
-
+// ── DELIVERY ─────────────────────────────────────────────────
 function setDel(v){
-  document.querySelectorAll('.dopt').forEach(function(d){d.classList.remove('on')});
+  document.querySelectorAll('.delivery-opt').forEach(function(d){d.classList.remove('on')});
   document.querySelectorAll('input[name="del"]').forEach(function(r){
-    if(r.value===v){r.checked=true;r.closest('.dopt').classList.add('on')}
+    if(r.value===v){r.checked=true;r.closest('.delivery-opt').classList.add('on')}
   });
-  document.getElementById('email-row').classList.toggle('vis',v==='us');
+  document.getElementById('email-capture').classList.toggle('vis',v==='us');
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  GENERATE
-// ═══════════════════════════════════════════════════════════════
-
+// ── GENERATE ─────────────────────────────────────────────────
 function generate(){
   var name = document.getElementById('f-name').value.trim();
   var addr = document.getElementById('f-addr').value.trim();
-  if(!name){alert('Please enter your name.');document.getElementById('f-name').focus();return}
+  if(!name){alert('Your name is required. The letter carries your name.');document.getElementById('f-name').focus();return}
 
-  // Collect recipients
+  // Collect all checked recipients
   var recs = [];
-  document.querySelectorAll('#sen-list input:checked, #extra-reps input:checked').forEach(function(cb){
+  document.querySelectorAll('.rep-card input[type="checkbox"]:checked, #extra-reps input[type="checkbox"]:checked').forEach(function(cb){
     var t = cb.getAttribute('data-type');
     var n = cb.getAttribute('data-name');
     var w = cb.getAttribute('data-web') || '';
+    var c = cb.getAttribute('data-contact') || '';
     if(t==='senator'){
-      recs.push({name:'The Honorable '+n, office:'U.S. Senator', address:'United States Senate, Washington, DC 20510', web:w, contact:w?'https://www.'+w+'.senate.gov/contact':''});
+      recs.push({name:'The Honorable '+n, office:'U.S. Senator', address:'United States Senate, Washington, DC 20510', contact:c, web:w});
+    } else if(t==='rep'){
+      recs.push({name:'The Honorable '+n, office:'U.S. Representative', address:'U.S. House of Representatives, Washington, DC 20515', contact:c, web:w});
     } else {
-      recs.push({name:'The Honorable '+n, office:'U.S. Representative', address:'U.S. House of Representatives, Washington, DC 20515', web:'', contact:''});
+      recs.push({name:'The Honorable '+n, office:'Public Official', address:'', contact:'', web:''});
     }
   });
-  if(!recs.length){alert('Please select at least one representative.');return}
+  if(!recs.length){alert('Select at least one representative. They need to hear from you.');return}
 
   var exp = getSelText('f-exp','cw-exp');
   var feel = getSelText('f-feel','cw-feel');
@@ -388,45 +681,46 @@ function generate(){
   var dR=document.getElementById('d-rel').checked;
   var del = document.querySelector('input[name="del"]:checked').value;
   var dateStr = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-
-  // Parse city from address
   var city = addr;
 
   var out = document.getElementById('output');
   out.innerHTML = '';
 
+  // Preamble
+  var preamble = document.createElement('div');
+  preamble.className = 'output-preamble';
+  preamble.innerHTML = recs.length + ' letter' + (recs.length===1?'':'s') + ' sealed.<br><strong>Each one carries your name, your voice, and the weight of what you witnessed.</strong>';
+  out.appendChild(preamble);
+
   recs.forEach(function(r,i){
     var letter = buildLetter(name,city,addr,dateStr,r,exp,feel,extra,dS,dP,dM,dR);
     var block = document.createElement('div');
-    block.style.marginBottom = '2.5rem';
+    block.className = 'letter-block';
 
-    // Header + actions
-    var h = '<div class="lt-hdr"><div class="lt-title">Letter '+(i+1)+' of '+recs.length+'</div>';
-    h += '<div class="lt-acts">';
-    h += '<button class="lt-btn" onclick="copyLt(this)">Copy</button>';
-    if(r.contact) h += '<button class="lt-btn" onclick="copyAndOpen(this,\''+esc(r.contact)+'\')">Copy &amp; Open Contact Form</button>';
-    h += '<button class="lt-btn" onclick="window.print()">Print</button>';
+    var h = '<div class="letter-hdr"><div class="letter-num">Letter '+(i+1)+' of '+recs.length+'</div>';
+    h += '<div class="letter-acts">';
+    h += '<button class="letter-btn" onclick="copyLetter(this)">Copy</button>';
+    if(r.contact) h += '<button class="letter-btn" onclick="copyAndOpen(this,\''+esc(r.contact)+'\')">Copy &amp; Open Contact</button>';
+    h += '<button class="letter-btn" onclick="window.print()">Print</button>';
     h += '</div></div>';
 
-    // To label
-    h += '<div class="lt-to">To: '+esc(r.name)+' &mdash; '+esc(r.office)+'</div>';
+    h += '<div class="letter-to">To: '+esc(r.name)+' \u2014 '+esc(r.office)+'</div>';
+    h += '<div class="letter-body">'+esc(letter)+'</div>';
 
-    // Letter body
-    h += '<div class="lt-body">'+esc(letter)+'</div>';
-
-    // Guide (email mode or always for senators)
+    // Guide
     if(del==='email' || r.contact){
-      h += '<div class="lt-guide">';
-      h += '<div class="lt-guide-t">Send This Letter</div>';
-      h += '<div class="lt-guide-s"><strong>1.</strong> Click "Copy" (or "Copy & Open Contact Form") above.</div>';
+      h += '<div class="letter-guide">';
+      h += '<div class="letter-guide-title">Send This Now</div>';
       if(r.contact){
-        h += '<div class="lt-guide-s"><strong>2.</strong> Paste the letter into the message field on their contact page.</div>';
-        h += '<div class="lt-guide-s"><strong>3.</strong> Subject: "Constituent Letter: Epstein Files &mdash; Demand for Action"</div>';
-        h += '<a class="gl" href="'+esc(r.contact)+'" target="_blank">Open '+esc(r.name)+'\'s Contact Form</a>';
+        h += '<div class="letter-guide-step"><strong>1.</strong> Click \u201cCopy & Open Contact\u201d above. The letter is now on your clipboard.</div>';
+        h += '<div class="letter-guide-step"><strong>2.</strong> Paste into the message field. Subject: \u201cConstituent Demand: Epstein Files \u2014 Justice for the Children.\u201d</div>';
+        h += '<div class="letter-guide-step"><strong>3.</strong> Send. It takes thirty seconds. The children waited years.</div>';
+        h += '<a class="guide-link" href="'+esc(r.contact)+'" target="_blank">Open '+esc(r.name)+'\'s Contact Page</a>';
       } else {
-        h += '<div class="lt-guide-s"><strong>2.</strong> Find '+esc(r.name)+'\'s contact form on their official website.</div>';
-        h += '<div class="lt-guide-s"><strong>3.</strong> Paste the letter and use subject: "Constituent Letter: Epstein Files"</div>';
-        h += '<a class="gl" href="https://www.house.gov/representatives/find-your-representative" target="_blank">Find Representative Contact</a>';
+        h += '<div class="letter-guide-step"><strong>1.</strong> Click \u201cCopy\u201d above.</div>';
+        h += '<div class="letter-guide-step"><strong>2.</strong> Find '+esc(r.name)+'\u2019s official contact form and paste.</div>';
+        h += '<div class="letter-guide-step"><strong>3.</strong> Subject: \u201cConstituent Demand: Epstein Files.\u201d</div>';
+        h += '<a class="guide-link" href="https://www.house.gov/representatives/find-your-representative" target="_blank">Find Representative Contact</a>';
       }
       h += '</div>';
     }
@@ -435,21 +729,24 @@ function generate(){
     out.appendChild(block);
   });
 
-  // Final note
-  var note = document.createElement('div');
-  note.className = 'lt-note';
+  // Benediction
+  var bene = document.createElement('div');
+  bene.className = 'benediction';
   if(del==='us'){
     var email = document.getElementById('f-email').value.trim();
-    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. We will print and mail '+(recs.length===1?'this':'all '+recs.length)+' for you at no charge.'+(email?' Confirmation to <strong>'+esc(email)+'</strong>.':'')+
-    '<br><br>A handwritten signature carries weight. Print a copy for yourself and sign it too.<br><br>Every letter matters. The children are watching.';
+    bene.innerHTML = 'We will print and mail '+(recs.length===1?'this letter':'all '+recs.length+' letters')+' for you, at no charge.'+(email?' Confirmation to <strong>'+esc(email)+'</strong>.':'') +
+    '<br><br>A handwritten signature carries its own weight. If you can, print a copy for yourself and sign it. Two letters are harder to ignore than one.' +
+    '<br><br><strong>The waters are receding. What is revealed must not be reburied.</strong><br>The children are watching. History is watching. You showed up.';
   } else if(del==='email'){
-    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. Use the "Copy & Open Contact Form" button above each letter to send it directly.'+
-    '<br><br>Physical mail carries more weight than email. If you can print and mail, do. But any action is better than silence.<br><br>Every letter matters. The children are watching.';
+    bene.innerHTML = recs.length + ' letter'+(recs.length===1?'':'s')+' ready to send. Use the \u201cCopy & Open Contact\u201d button above each letter. Paste. Send. It takes thirty seconds.' +
+    '<br><br>Physical mail carries more weight than email. If you can do both, do both. But <strong>any action is better than silence</strong>.' +
+    '<br><br><strong>The waters are receding. What is revealed must not be reburied.</strong><br>The children are watching. History is watching. You showed up.';
   } else {
-    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. Print '+(recs.length===1?'it':'each')+', <strong>sign by hand</strong>, and mail to the address on the letter.'+
-    '<br><br>Congressional staff tallies constituent mail. A signed letter on paper arrives with weight. You are being counted.<br><br>Every letter matters. The children are watching.';
+    bene.innerHTML = recs.length + ' letter'+(recs.length===1?'':'s')+' ready to print. Sign each one by hand. Mail to the address on the letter.' +
+    '<br><br>Congressional staff tallies constituent mail. A signed letter on paper arrives with a weight that email cannot carry. You are being counted.' +
+    '<br><br><strong>The waters are receding. What is revealed must not be reburied.</strong><br>The children are watching. History is watching. You showed up.';
   }
-  out.appendChild(note);
+  out.appendChild(bene);
   out.classList.add('vis');
   out.scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -458,16 +755,19 @@ function buildLetter(name,city,addr,date,rec,exp,feel,extra,dS,dP,dM,dR){
   var L = '';
   if(addr){L+=name+'\n'+addr+'\n\n'}else{L+=name+'\n\n'}
   L+=date+'\n\n';
-  L+=rec.name+'\n'+rec.address+'\n\n';
+  L+=rec.name+'\n';
+  if(rec.address) L+=rec.address+'\n';
+  L+='\n';
   L+='Dear '+rec.name+',\n\n';
-  L+='I am writing to you as a constituent'+(city?' in '+city:'')+' who has confronted the Epstein files \u2014 the three million pages of evidence documenting decades of child sex trafficking, institutional complicity, and an architecture of impunity that reaches into both political parties and the highest offices of government.\n\n';
+  L+='I am writing to you as a constituent'+(city?' in '+city:'')+' who has sat with the Epstein files \u2014 the three million pages of evidence documenting decades of child sex trafficking, institutional complicity, and an architecture of impunity that reaches into both political parties and the highest offices of government.\n\n';
+  L+='I did not look away. I am asking you not to look away either.\n\n';
   if(feel) L+=feel+'\n\n';
   if(exp) L+=exp+'\n\n';
-  L+='Over a thousand children were fed into a machine built by Jeffrey Epstein and enabled by people who still hold power, influence, and public trust. Flight logs, sworn depositions, authenticated emails, and court records document what happened. The evidence is not ambiguous. And yet, the powerful who walked through those rooms, who flew on those planes, who smiled in those photographs \u2014 they remain free and unaccountable.\n\n';
+  L+='Over a thousand children were fed into a machine built by Jeffrey Epstein and enabled by people who still hold power, influence, and public trust. Flight logs, sworn depositions, authenticated emails, and court records document what happened. The evidence is not ambiguous. And yet \u2014 the powerful who walked through those rooms, who flew on those planes, who smiled in those photographs \u2014 they remain free and unaccountable.\n\n';
   L+='I am writing to demand action:\n\n';
   var n=1;
-  if(dS){L+=n+'. Remove the statute of limitations for all crimes against children \u2014 retroactively and in perpetuity. No child\u2019s suffering should expire on a legal clock. The trauma does not expire. The justice should not either.\n\n';n++}
-  if(dP){L+=n+'. Pursue the impeachment and prosecution of all individuals incriminated in the Epstein files, regardless of party affiliation, office held, or personal wealth. The law must apply equally, or it is not law.\n\n';n++}
+  if(dS){L+=n+'. Remove the statute of limitations for all crimes against children \u2014 retroactively and in perpetuity. No child\u2019s suffering should expire on a legal clock. The trauma does not expire. The justice must not either.\n\n';n++}
+  if(dP){L+=n+'. Pursue the impeachment and prosecution of every individual incriminated in the Epstein files, regardless of party affiliation, office held, or personal wealth. The law must apply equally, or it is not law.\n\n';n++}
   if(dM){L+=n+'. Convene a public hearing on Capitol Hill with Ghislaine Maxwell providing full testimony under oath. She was convicted of sex trafficking minors. She knows the names. The American people deserve to hear them.\n\n';n++}
   if(dR){L+=n+'. Release all Epstein-related files to the public, unredacted and without further delay. Selective batching by a Justice Department whose own leadership appears in the files is not transparency \u2014 it is management.\n\n';n++}
   if(extra) L+=extra+'\n\n';
@@ -478,31 +778,28 @@ function buildLetter(name,city,addr,date,rec,exp,feel,extra,dS,dP,dM,dR){
   return L;
 }
 
-// ═══════════════════════════════════════════════════════════════
-//  UTILITIES
-// ═══════════════════════════════════════════════════════════════
-
-function copyLt(btn){
-  var block = btn.closest('.lt-hdr').parentElement;
-  var body = block.querySelector('.lt-body');
-  if(!body)return;
+// ── COPY UTILITIES ───────────────────────────────────────────
+function copyLetter(btn){
+  var block = btn.closest('.letter-hdr').parentElement;
+  var body = block.querySelector('.letter-body');
+  if(!body) return;
   navigator.clipboard.writeText(body.textContent).then(function(){
-    btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000);
+    btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2500);
   }).catch(function(){
-    fallbackCopy(body.textContent);btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000);
+    fallbackCopy(body.textContent);btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2500);
   });
 }
 
 function copyAndOpen(btn,url){
-  var block = btn.closest('.lt-hdr').parentElement;
-  var body = block.querySelector('.lt-body');
-  if(!body)return;
+  var block = btn.closest('.letter-hdr').parentElement;
+  var body = block.querySelector('.letter-body');
+  if(!body) return;
   navigator.clipboard.writeText(body.textContent).then(function(){
-    btn.textContent='Copied! Opening...';window.open(url,'_blank');
-    setTimeout(function(){btn.textContent='Copy & Open Contact Form'},3000);
+    btn.textContent='Copied \u2014 Opening\u2026';window.open(url,'_blank');
+    setTimeout(function(){btn.textContent='Copy & Open Contact'},3000);
   }).catch(function(){
     fallbackCopy(body.textContent);window.open(url,'_blank');
-    btn.textContent='Copied! Opening...';setTimeout(function(){btn.textContent='Copy & Open Contact Form'},3000);
+    btn.textContent='Copied \u2014 Opening\u2026';setTimeout(function(){btn.textContent='Copy & Open Contact'},3000);
   });
 }
 
@@ -513,7 +810,7 @@ function fallbackCopy(text){
   document.body.removeChild(ta);
 }
 
-function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function esc(s){if(!s)return '';var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 </script>
 </body>
 </html>
