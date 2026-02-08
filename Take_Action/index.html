@@ -4,1483 +4,516 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Take Action &mdash; Write Your Representatives</title>
-  <meta name="description" content="Write your representatives. Demand justice for the children in the Epstein files. Remove the statute of limitations. Hold the powerful accountable.">
+  <meta name="description" content="Write your representatives. Demand justice for the children in the Epstein files.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & Base ── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--void:#050403;--bone:#e8e2d4;--bone-dim:rgba(232,226,212,0.55);--gold:#c9a227;--gold-bright:#e6c656;--gold-dim:#8b7355;--gold-glow:rgba(201,162,39,0.25);--smoke:#666;--wood-dark:#1a140e}
+    html{font-size:17px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{background:var(--void);color:var(--bone);font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+    ::selection{background:var(--gold);color:var(--void)}
+    a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-bright)}
+
+    .page{max-width:700px;margin:0 auto;padding:3.5rem 2rem 5rem}
+
+    /* Header */
+    .hdr{text-align:center;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(201,162,39,0.15)}
+    .hdr-orn{font-size:1.1rem;color:var(--gold-dim);letter-spacing:.6em;margin-bottom:1.2rem;opacity:.6}
+    .hdr h1{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:600;letter-spacing:.04em;line-height:1.2;margin-bottom:.5rem}
+    .hdr p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:300;font-style:italic;color:var(--gold)}
+
+    /* Intro */
+    .intro{margin-bottom:2.5rem}
+    .intro p{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.92rem;color:var(--bone-dim);line-height:1.85;margin-bottom:.8rem}
+    .intro strong{color:var(--bone);font-weight:600}
+    .intro .em{color:var(--gold);font-style:italic}
+
+    /* Form panels */
+    .panel{background:linear-gradient(170deg,#1a140e 0%,#0d0a06 100%);border:1px solid rgba(201,162,39,0.12);padding:2rem 1.8rem;margin-bottom:1.2rem}
+    .panel-title{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:500;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem}
+    .panel-desc{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.82rem;color:var(--bone-dim);font-style:italic;line-height:1.5;margin-bottom:1rem}
+    .row{margin-bottom:.8rem}
+    .row:last-child{margin-bottom:0}
+    .lbl{display:block;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.25rem}
+    .inp,.sel,.ta{width:100%;padding:.65em .9em;background:rgba(0,0,0,.4);border:1px solid rgba(201,162,39,.2);color:var(--bone);font-family:'IM Fell DW Pica',Georgia,serif;font-size:.93rem;line-height:1.5;border-radius:0;outline:none;transition:border-color .3s;-webkit-appearance:none}
+    .inp:focus,.sel:focus,.ta:focus{border-color:var(--gold)}
+    .inp::placeholder,.ta::placeholder{color:var(--smoke);opacity:.5;font-style:italic}
+    .sel option{background:var(--void);color:var(--bone)}
+    .ta{min-height:60px;resize:vertical}
+    .hint{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.75rem;color:var(--smoke);font-style:italic;margin-top:.2rem;line-height:1.4}
+    .hint a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+
+    /* Senator cards */
+    .sen-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.6rem}
+    .sen{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border:1px solid rgba(201,162,39,.15);background:rgba(201,162,39,.03);cursor:pointer;transition:all .25s}
+    .sen:hover{border-color:var(--gold-dim)}
+    .sen.on{border-color:var(--gold);background:rgba(201,162,39,.07)}
+    .sen input{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0}
+    .sen-info{flex:1;min-width:0}
+    .sen-name{font-family:'Playfair Display',Georgia,serif;font-size:.92rem;font-weight:500}
+    .sen-meta{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);margin-top:.1rem}
+    .sen-contact{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.5rem;color:var(--gold-dim);text-decoration:none;flex-shrink:0;border:1px solid rgba(201,162,39,.2);padding:.25em .6em;transition:all .25s}
+    .sen-contact:hover{border-color:var(--gold);color:var(--gold)}
+    .no-state{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.88rem;color:var(--bone-dim);font-style:italic;padding:.8rem 0}
+    .add-rep-row{margin-top:.8rem;display:flex;gap:.5rem;align-items:flex-end}
+    .add-rep-row .inp{flex:1}
+    .add-btn{padding:.65em 1em;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:.78rem;cursor:pointer;transition:all .3s;white-space:nowrap;flex-shrink:0}
+    .add-btn:hover{border-color:var(--gold);background:rgba(201,162,39,.06)}
+
+    /* Custom textarea reveal */
+    .cw{display:none;margin-top:.4rem}.cw.vis{display:block}
+
+    /* Checkboxes */
+    .chks{display:flex;flex-direction:column;gap:.6rem}
+    .chk{display:flex;align-items:flex-start;gap:.5rem;cursor:pointer}
+    .chk input{width:15px;height:15px;margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+    .chk span{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.88rem;line-height:1.5}
+    .chk strong{color:var(--bone);font-weight:600}
+
+    /* Delivery */
+    .dopt{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem;border:1px solid rgba(201,162,39,.1);background:rgba(0,0,0,.2);cursor:pointer;transition:all .25s;margin-bottom:.5rem}
+    .dopt:hover{border-color:rgba(201,162,39,.3)}
+    .dopt.on{border-color:var(--gold);background:rgba(201,162,39,.04)}
+    .dopt input{width:15px;height:15px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
+    .dopt-t{font-family:'Playfair Display',Georgia,serif;font-size:.9rem;font-weight:500;margin-bottom:.1rem}
+    .dopt-d{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.78rem;color:var(--bone-dim);font-style:italic;line-height:1.4}
+    .email-row{display:none;margin-top:.6rem}.email-row.vis{display:block}
+
+    /* Generate */
+    .gen-btn{display:block;width:100%;padding:1.1em;margin-top:1.5rem;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'IM Fell English',Georgia,serif;font-size:1.15rem;letter-spacing:.06em;cursor:pointer;transition:all .4s}
+    .gen-btn:hover{background:rgba(201,162,39,.08);box-shadow:0 0 30px rgba(201,162,39,.15);transform:translateY(-1px)}
+
+    /* Output */
+    .out{display:none;margin-top:2.5rem}.out.vis{display:block}
+    .lt-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.5rem}
+    .lt-title{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:500}
+    .lt-acts{display:flex;gap:.4rem;flex-wrap:wrap}
+    .lt-btn{padding:.35em .9em;background:transparent;border:1px solid rgba(201,162,39,.3);color:var(--gold);font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+    .lt-btn:hover{border-color:var(--gold);background:rgba(201,162,39,.08)}
+    .lt-to{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.5rem}
+    .lt-body{background:#faf6ec;color:#1a1712;font-family:'IM Fell DW Pica',Georgia,serif;font-size:.9rem;line-height:1.8;padding:2.5rem 2rem;border:1px solid #d4c9a8;white-space:pre-wrap;max-height:55vh;overflow-y:auto;margin-bottom:1.2rem}
+    .lt-guide{background:rgba(201,162,39,.03);border:1px solid rgba(201,162,39,.1);padding:1.2rem;margin-bottom:1.5rem}
+    .lt-guide-t{font-family:'Playfair Display',Georgia,serif;font-size:.95rem;font-weight:500;color:var(--gold);margin-bottom:.6rem}
+    .lt-guide-s{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.85rem;color:var(--bone);line-height:1.6;margin-bottom:.4rem;padding-left:1.4em;text-indent:-1.4em}
+    .lt-guide-s strong{color:var(--gold)}
+    .lt-guide a.gl{display:inline-block;margin-top:.6rem;font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(201,162,39,.3);padding:.35em .7em;transition:all .3s}
+    .lt-guide a.gl:hover{background:rgba(201,162,39,.08);border-color:var(--gold)}
+    .lt-note{font-family:'IM Fell DW Pica',Georgia,serif;font-size:.85rem;color:var(--bone-dim);font-style:italic;text-align:center;line-height:1.7;margin-top:2rem}
+
+    /* Footer */
+    .ftr{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(201,162,39,.15)}
+    .ftr-orn{font-size:.8rem;color:var(--gold-dim);letter-spacing:.4em;margin-bottom:1rem;opacity:.5}
+    .ftr-nav{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.55rem;letter-spacing:.1em}
+    .ftr-nav a{color:var(--gold-dim);transition:color .3s}.ftr-nav a:hover{color:var(--gold)}
+    .ftr-d{margin:0 .6em;color:var(--gold-dim);opacity:.4}
+
+    /* Film grain */
+    body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
 
-    :root {
-      --void:        #050403;
-      --void-warm:   #0a0806;
-      --bone:        #e8e2d4;
-      --bone-dim:    rgba(232, 226, 212, 0.55);
-      --gold:        #c9a227;
-      --gold-bright: #e6c656;
-      --gold-dim:    #8b7355;
-      --gold-glow:   rgba(201, 162, 39, 0.25);
-      --ink:         #1a1712;
-      --smoke:       #666;
-      --red-dim:     #8b4444;
-      --wood-dark:   #1a140e;
-      --wood-medium: #2a1f14;
+    @media(max-width:600px){
+      html{font-size:15px}.page{padding:2rem 1.1rem 3.5rem}.hdr h1{font-size:1.7rem}.panel{padding:1.3rem 1.1rem}.cols{grid-template-columns:1fr}.lt-body{padding:1.5rem 1.2rem;font-size:.84rem}.lt-hdr{flex-direction:column;align-items:flex-start}.add-rep-row{flex-direction:column}
     }
 
-    html {
-      font-size: 17px;
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      background: var(--void);
-      color: var(--bone);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      line-height: 1.8;
-      min-height: 100vh;
-    }
-
-    ::selection {
-      background: var(--gold);
-      color: var(--void);
-    }
-
-    a { color: var(--gold); text-decoration: none; }
-    a:hover { color: var(--gold-bright); }
-
-    /* ── Layout ── */
-    .page-container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
-
-    /* ── Header ── */
-    .page-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
-    }
-
-    .page-ornament {
-      font-size: 1.2rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.6em;
-      margin-bottom: 1.5rem;
-      opacity: 0.6;
-    }
-
-    .page-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2.4rem;
-      font-weight: 600;
-      color: var(--bone);
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-      margin-bottom: 0.6rem;
-    }
-
-    .page-subtitle {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--gold);
-      letter-spacing: 0.03em;
-    }
-
-    /* ── Intro Text ── */
-    .intro {
-      margin-bottom: 3rem;
-    }
-
-    .intro p {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.95rem;
-      color: var(--bone-dim);
-      line-height: 1.85;
-      margin-bottom: 1rem;
-    }
-
-    .intro strong {
-      color: var(--bone);
-      font-weight: 600;
-    }
-
-    .intro-emphasis {
-      color: var(--gold) !important;
-      font-style: italic;
-    }
-
-    /* ── Step Numbers ── */
-    .step-marker {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 0.5rem;
-      opacity: 0.6;
-    }
-
-    /* ── Form ── */
-    .letter-form {
-      background: linear-gradient(170deg, #1a140e 0%, #0d0a06 100%);
-      border: 1px solid rgba(201, 162, 39, 0.12);
-      padding: 2.5rem 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .form-section {
-      margin-bottom: 2.5rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(201, 162, 39, 0.06);
-    }
-
-    .form-section:last-of-type {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .form-section-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-    }
-
-    .form-section-desc {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.85rem;
-      color: var(--bone-dim);
-      font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 1.2rem;
-    }
-
-    .form-row {
-      margin-bottom: 1rem;
-    }
-
-    .form-label {
-      display: block;
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 0.3rem;
-    }
-
-    .form-input,
-    .form-textarea,
-    .form-select {
-      width: 100%;
-      padding: 0.7em 1em;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(201, 162, 39, 0.2);
-      color: var(--bone);
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      border-radius: 0;
-      outline: none;
-      transition: border-color 0.3s ease;
-      -webkit-appearance: none;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus,
-    .form-select:focus {
-      border-color: var(--gold);
-    }
-
-    .form-input::placeholder,
-    .form-textarea::placeholder {
-      color: var(--smoke);
-      opacity: 0.5;
-      font-style: italic;
-    }
-
-    .form-textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .form-textarea-short {
-      min-height: 60px;
-    }
-
-    .form-select option {
-      background: var(--void);
-      color: var(--bone);
-    }
-
-    .form-hint {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.78rem;
-      color: var(--smoke);
-      font-style: italic;
-      margin-top: 0.3rem;
-      line-height: 1.4;
-    }
-
-    .form-row-inline {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    /* ── Custom text area reveal ── */
-    .custom-text-wrapper {
-      display: none;
-      margin-top: 0.6rem;
-    }
-
-    .custom-text-wrapper.visible {
-      display: block;
-    }
-
-    /* ── Rep Lookup Section ── */
-    .lookup-section {
-      background: rgba(201, 162, 39, 0.03);
-      border: 1px solid rgba(201, 162, 39, 0.1);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .lookup-row {
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-end;
-      margin-bottom: 1rem;
-    }
-
-    .lookup-row .form-row {
-      flex: 1;
-      margin-bottom: 0;
-    }
-
-    .lookup-btn {
-      padding: 0.7em 1.2em;
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-family: 'IM Fell English', Georgia, serif;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .lookup-btn:hover {
-      background: rgba(201, 162, 39, 0.08);
-    }
-
-    .lookup-btn:disabled {
-      opacity: 0.4;
-      cursor: wait;
-    }
-
-    .lookup-results {
-      display: none;
-    }
-
-    .lookup-results.visible {
-      display: block;
-    }
-
-    .lookup-status {
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.65rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.08em;
-      margin-bottom: 0.8rem;
-    }
-
-    .lookup-error {
-      color: var(--red-dim);
-    }
-
-    /* Rep cards */
-    .rep-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      padding: 0.8rem;
-      margin-bottom: 0.5rem;
-      border: 1px solid rgba(201, 162, 39, 0.1);
-      background: rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .rep-card:hover {
-      border-color: var(--gold-dim);
-      background: rgba(201, 162, 39, 0.04);
-    }
-
-    .rep-card.selected {
-      border-color: var(--gold);
-      background: rgba(201, 162, 39, 0.06);
-    }
-
-    .rep-card input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      accent-color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .rep-card-info {
-      flex: 1;
-    }
-
-    .rep-card-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--bone);
-    }
-
-    .rep-card-office {
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-top: 0.15rem;
-    }
-
-    .rep-card-party {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.78rem;
-      color: var(--smoke);
-      font-style: italic;
-    }
-
-    /* Manual entry fallback */
-    .manual-entry {
-      margin-top: 1.2rem;
-    }
-
-    .manual-link {
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--gold-dim);
-    }
-
-    .manual-link a {
-      color: var(--gold);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    /* ── Checkboxes ── */
-    .form-checks {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .form-check {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      cursor: pointer;
-    }
-
-    .form-check input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      margin-top: 3px;
-      accent-color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .form-check-label {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.9rem;
-      color: var(--bone);
-      line-height: 1.5;
-    }
-
-    /* ── Delivery Section ── */
-    .delivery-options {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .delivery-option {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      padding: 1rem;
-      border: 1px solid rgba(201, 162, 39, 0.12);
-      background: rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .delivery-option:hover {
-      border-color: rgba(201, 162, 39, 0.3);
-    }
-
-    .delivery-option.selected {
-      border-color: var(--gold);
-      background: rgba(201, 162, 39, 0.04);
-    }
-
-    .delivery-option input[type="radio"] {
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      accent-color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .delivery-option-text {
-      flex: 1;
-    }
-
-    .delivery-option-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--bone);
-      margin-bottom: 0.15rem;
-    }
-
-    .delivery-option-desc {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.8rem;
-      color: var(--bone-dim);
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    .delivery-email-row {
-      display: none;
-      margin-top: 1rem;
-    }
-
-    .delivery-email-row.visible {
-      display: block;
-    }
-
-    /* ── Generate Button ── */
-    .generate-btn {
-      display: block;
-      width: 100%;
-      padding: 1.1em;
-      margin-top: 2rem;
-      background: transparent;
-      border: 2px solid var(--gold);
-      color: var(--gold);
-      font-family: 'IM Fell English', Georgia, serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
-
-    .generate-btn:hover {
-      background: rgba(201, 162, 39, 0.08);
-      box-shadow: 0 0 30px rgba(201, 162, 39, 0.15);
-      transform: translateY(-1px);
-    }
-
-    .generate-btn:active {
-      transform: translateY(0);
-    }
-
-    /* ── Letter Output ── */
-    .letter-output-section {
-      display: none;
-      margin-top: 3rem;
-    }
-
-    .letter-output-section.visible {
-      display: block;
-    }
-
-    .letter-output-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-
-    .letter-output-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--bone);
-    }
-
-    .letter-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .letter-action-btn {
-      padding: 0.4em 1em;
-      background: transparent;
-      border: 1px solid rgba(201, 162, 39, 0.3);
-      color: var(--gold);
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .letter-action-btn:hover {
-      border-color: var(--gold);
-      background: rgba(201, 162, 39, 0.08);
-    }
-
-    .letter-recipient-label {
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 0.6rem;
-    }
-
-    .letter-preview {
-      background: #faf6ec;
-      color: #1a1712;
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.92rem;
-      line-height: 1.8;
-      padding: 3rem 2.5rem;
-      border: 1px solid #d4c9a8;
-      white-space: pre-wrap;
-      max-height: 60vh;
-      overflow-y: auto;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Send Guidance ── */
-    .send-guidance {
-      background: rgba(201, 162, 39, 0.03);
-      border: 1px solid rgba(201, 162, 39, 0.1);
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .send-guidance-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
-
-    .send-guidance-step {
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.88rem;
-      color: var(--bone);
-      line-height: 1.7;
-      margin-bottom: 0.6rem;
-      padding-left: 1.5em;
-      text-indent: -1.5em;
-    }
-
-    .send-guidance-step strong {
-      color: var(--gold);
-    }
-
-    .send-guidance-link {
-      display: inline-block;
-      margin-top: 0.8rem;
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      border: 1px solid rgba(201, 162, 39, 0.3);
-      padding: 0.4em 0.8em;
-      transition: all 0.3s ease;
-    }
-
-    .send-guidance-link:hover {
-      background: rgba(201, 162, 39, 0.08);
-      border-color: var(--gold);
-    }
-
-    .letter-note {
-      margin-top: 2rem;
-      font-family: 'IM Fell DW Pica', Georgia, serif;
-      font-size: 0.85rem;
-      color: var(--bone-dim);
-      font-style: italic;
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    /* ── Footer Navigation ── */
-    .page-footer {
-      text-align: center;
-      margin-top: 4rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(201, 162, 39, 0.15);
-    }
-
-    .page-footer-ornament {
-      font-size: 0.85rem;
-      color: var(--gold-dim);
-      letter-spacing: 0.4em;
-      margin-bottom: 1.5rem;
-      opacity: 0.5;
-    }
-
-    .page-footer-nav {
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-    }
-
-    .page-footer-nav a {
-      color: var(--gold-dim);
-      transition: color 0.3s;
-    }
-
-    .page-footer-nav a:hover {
-      color: var(--gold);
-    }
-
-    .page-footer-divider {
-      margin: 0 0.8em;
-      color: var(--gold-dim);
-      opacity: 0.4;
-    }
-
-    /* ── Film grain ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0.03;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      html { font-size: 15px; }
-      .page-container { padding: 2.5rem 1.2rem 4rem; }
-      .page-title { font-size: 1.8rem; }
-      .letter-form { padding: 1.5rem 1.2rem; }
-      .form-row-inline { grid-template-columns: 1fr; }
-      .lookup-row { flex-direction: column; align-items: stretch; }
-      .lookup-btn { width: 100%; text-align: center; }
-      .letter-preview { padding: 2rem 1.5rem; font-size: 0.85rem; }
-      .letter-output-header { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
-      .lookup-section { padding: 1rem; }
-      .send-guidance { padding: 1rem; }
-    }
-
-    /* ── Print: letter only ── */
-    @media print {
-      body { background: white; color: black; }
-      body::before { display: none; }
-      .page-header, .intro, .letter-form, .letter-output-header,
-      .letter-note, .page-footer, .letter-actions, .send-guidance,
-      .letter-recipient-label { display: none !important; }
-      .letter-preview {
-        border: none;
-        padding: 0;
-        max-height: none;
-        font-size: 12pt;
-        line-height: 1.6;
-      }
-      .letter-output-section { display: block !important; }
+    @media print{
+      body{background:#fff;color:#000}body::before{display:none}
+      .hdr,.intro,.panel,.gen-btn,.lt-hdr,.lt-to,.lt-guide,.lt-note,.ftr,.lt-acts,.email-row{display:none!important}
+      .lt-body{border:none;padding:0;max-height:none;font-size:12pt;line-height:1.6}
+      .out{display:block!important}
     }
   </style>
 </head>
 <body>
+<div class="page">
 
-  <div class="page-container">
+  <header class="hdr">
+    <div class="hdr-orn">&#10087; &#9753;</div>
+    <h1>Help Us Bear This</h1>
+    <p>You sat in the chair. Now stand up and act.</p>
+  </header>
 
-    <header class="page-header">
-      <div class="page-ornament">&#10087; &#9753;</div>
-      <h1 class="page-title">Help Us Bear This</h1>
-      <p class="page-subtitle">You sat in the chair. Now stand up and act.</p>
-    </header>
-
-    <div class="intro">
-      <p>You have just come from something heavy. The founders spoke. The evidence was laid bare. If your hands are shaking, that is the right response.</p>
-      <p class="intro-emphasis">You do not have to carry this alone. But you do have to do something with it.</p>
-      <p>Below is a tool that will write a letter to your elected representatives &mdash; state and federal &mdash; <strong>in your name, in your voice, in your words</strong>. We will walk you through every step. The letter demands three things: the <strong>removal of the statute of limitations for crimes against children</strong>, the <strong>impeachment and prosecution of those incriminated</strong> in the Epstein files, and a <strong>public hearing of Ghislaine Maxwell on Capitol Hill</strong>.</p>
-      <p>You own a voice. Use it. We will print and mail these letters at no charge if you need us to. You just fill out the form.</p>
-    </div>
-
-    <div class="letter-form">
-
-      <!-- ════════════ STEP 1: YOUR INFORMATION ════════════ -->
-      <div class="form-section">
-        <div class="step-marker">Step 1 of 5</div>
-        <h2 class="form-section-title">You</h2>
-        <p class="form-section-desc">Your name and address. The return address goes on the envelope.</p>
-        <div class="form-row form-row-inline">
-          <div>
-            <label for="sender-name" class="form-label">Full Name</label>
-            <input type="text" id="sender-name" class="form-input" placeholder="Your full name">
-          </div>
-          <div>
-            <label for="sender-city" class="form-label">City &amp; State</label>
-            <input type="text" id="sender-city" class="form-input" placeholder="e.g. Austin, TX">
-          </div>
-        </div>
-        <div class="form-row">
-          <label for="sender-address" class="form-label">Full Mailing Address</label>
-          <input type="text" id="sender-address" class="form-input" placeholder="123 Main St, Austin, TX 78701">
-          <p class="form-hint">Required if you want the letter physically mailed.</p>
-        </div>
-      </div>
-
-      <!-- ════════════ STEP 2: FIND YOUR REPRESENTATIVES ════════════ -->
-      <div class="form-section">
-        <div class="step-marker">Step 2 of 5</div>
-        <h2 class="form-section-title">Who Represents You</h2>
-        <p class="form-section-desc">Enter your address and we will look up your representatives. Select everyone you want to write.</p>
-
-        <div class="lookup-section">
-          <div class="lookup-row">
-            <div class="form-row">
-              <label for="lookup-address" class="form-label">Your Street Address &amp; Zip Code</label>
-              <input type="text" id="lookup-address" class="form-input" placeholder="123 Main St, Austin, TX 78701">
-            </div>
-            <button class="lookup-btn" id="lookup-btn" onclick="lookupReps()">Find My Representatives</button>
-          </div>
-
-          <div id="lookup-results" class="lookup-results">
-            <div id="lookup-status" class="lookup-status"></div>
-            <div id="rep-list"></div>
-          </div>
-
-          <div class="manual-entry">
-            <p class="manual-link">
-              Or look them up yourself:
-              <a href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">U.S. Senators</a> &middot;
-              <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">U.S. House</a> &middot;
-              <a href="https://openstates.org/find_your_legislator/" target="_blank">State Legislators</a>
-            </p>
-          </div>
-        </div>
-
-        <div id="manual-reps" style="margin-top: 1rem;">
-          <p class="form-hint" style="margin-bottom: 0.8rem;">Add recipients manually if you know their names, or if the lookup above didn&rsquo;t find everyone:</p>
-          <div id="manual-rep-list"></div>
-          <button class="lookup-btn" style="margin-top: 0.5rem; font-size: 0.75rem;" onclick="addManualRep()">+ Add a recipient</button>
-        </div>
-      </div>
-
-      <!-- ════════════ STEP 3: YOUR VOICE ════════════ -->
-      <div class="form-section">
-        <div class="step-marker">Step 3 of 5</div>
-        <h2 class="form-section-title">Your Voice</h2>
-        <p class="form-section-desc">This is yours. Choose from the options below, or write your own. Whatever you share will be woven into your letter with care.</p>
-
-        <!-- Personal Experience -->
-        <div class="form-row">
-          <label for="experience-select" class="form-label">Personal Experience</label>
-          <select id="experience-select" class="form-select" onchange="handleDropdown('experience-select', 'experience-custom')">
-            <option value="">I prefer not to share, but I demand accountability.</option>
-            <option value="survivor-self">I am a survivor of sexual assault. I know what it means when the powerful are not held accountable, because I have lived inside that silence.</option>
-            <option value="survivor-child">I am a survivor of childhood sexual abuse. I was a child. I did not have a voice then. I have one now.</option>
-            <option value="loved-one">Someone I love is a survivor of sexual assault. I have watched what it does to a human being when justice never comes.</option>
-            <option value="loved-child">Someone I love survived childhood sexual abuse. I have held them while they wept for the child they were. I will not be silent.</option>
-            <option value="parent">I am a parent. I read these files and I think of my own children. The thought that this machine operated openly, protected by the powerful, is unbearable.</option>
-            <option value="citizen">I am an ordinary citizen who has never experienced this personally, but I refuse to live in a country where children are disposable and the powerful are untouchable.</option>
-            <option value="corruption">I have seen corruption and impunity among the powerful firsthand. The Epstein files confirm what many of us already knew: the rules do not apply equally.</option>
-            <option value="custom">Let me write my own...</option>
-          </select>
-          <div id="experience-custom" class="custom-text-wrapper">
-            <textarea class="form-textarea form-textarea-short" placeholder="Write in your own words..."></textarea>
-          </div>
-          <p class="form-hint">This is optional. Your letter is powerful with or without it.</p>
-        </div>
-
-        <!-- What You Feel -->
-        <div class="form-row">
-          <label for="feeling-select" class="form-label">What You Feel in Your Body Reading These Files</label>
-          <select id="feeling-select" class="form-select" onchange="handleDropdown('feeling-select', 'feeling-custom')">
-            <option value="rage">I feel rage &mdash; a fury that settles in my chest and does not leave. It is not partisan. It is human.</option>
-            <option value="grief">I feel grief &mdash; a weight in my body that I cannot put down. Grief for the children. Grief for the country I thought I lived in.</option>
-            <option value="sick">I feel physically sick. My stomach turns when I read what was done to those children, and how many people knew, and how long they looked away.</option>
-            <option value="cold">I feel cold &mdash; a dread that seeps into my bones. Not shock. Something worse. The slow recognition that the system worked exactly as it was designed to.</option>
-            <option value="betrayed">I feel betrayed. By both parties. By every institution that was supposed to protect the vulnerable. By every name on those flight logs who still holds power.</option>
-            <option value="all">I feel all of it at once &mdash; rage, grief, nausea, and underneath it all, a desperate, unshakeable need for justice.</option>
-            <option value="tears">I wept. I sat and wept. I am not ashamed of that. Something in these files broke through to a part of me I protect, and it will not let me look away.</option>
-            <option value="custom">Let me describe it in my own words...</option>
-          </select>
-          <div id="feeling-custom" class="custom-text-wrapper">
-            <textarea class="form-textarea form-textarea-short" placeholder="Describe what you feel..."></textarea>
-          </div>
-        </div>
-
-        <!-- Additional Message -->
-        <div class="form-row">
-          <label for="additional-message" class="form-label">Anything Else You Want Them to Hear (optional)</label>
-          <textarea id="additional-message" class="form-textarea form-textarea-short" placeholder="Your own words, if you have more to say."></textarea>
-        </div>
-      </div>
-
-      <!-- ════════════ STEP 4: YOUR DEMANDS ════════════ -->
-      <div class="form-section">
-        <div class="step-marker">Step 4 of 5</div>
-        <h2 class="form-section-title">Your Demands</h2>
-        <p class="form-section-desc">These are pre-selected. Uncheck any you do not wish to include.</p>
-        <div class="form-checks">
-          <label class="form-check">
-            <input type="checkbox" id="demand-sol" checked>
-            <span class="form-check-label"><strong>Remove the statute of limitations</strong> for all crimes against children &mdash; retroactively and in perpetuity. No child&rsquo;s suffering should expire on a legal clock.</span>
-          </label>
-          <label class="form-check">
-            <input type="checkbox" id="demand-prosecute" checked>
-            <span class="form-check-label"><strong>Impeach and prosecute</strong> all individuals incriminated in the Epstein files, regardless of party, office, or wealth.</span>
-          </label>
-          <label class="form-check">
-            <input type="checkbox" id="demand-maxwell" checked>
-            <span class="form-check-label"><strong>Convene a public hearing on Capitol Hill</strong> with Ghislaine Maxwell providing full testimony under oath. She was convicted of trafficking minors. She knows the names.</span>
-          </label>
-          <label class="form-check">
-            <input type="checkbox" id="demand-release" checked>
-            <span class="form-check-label"><strong>Release all Epstein files</strong> unredacted to the public, with no further delays or selective batching.</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- ════════════ STEP 5: DELIVERY ════════════ -->
-      <div class="form-section">
-        <div class="step-marker">Step 5 of 5</div>
-        <h2 class="form-section-title">How Do You Want to Send It?</h2>
-        <p class="form-section-desc">Choose how you would like your letter delivered.</p>
-
-        <div class="delivery-options">
-          <label class="delivery-option" onclick="selectDelivery('print-self')">
-            <input type="radio" name="delivery" value="print-self" checked>
-            <div class="delivery-option-text">
-              <div class="delivery-option-title">I will print and mail it myself</div>
-              <div class="delivery-option-desc">We will generate your letter. You print it, sign it, stamp it, and mail it.</div>
-            </div>
-          </label>
-          <label class="delivery-option" onclick="selectDelivery('print-us')">
-            <input type="radio" name="delivery" value="print-us">
-            <div class="delivery-option-text">
-              <div class="delivery-option-title">Print and mail it for me &mdash; no charge</div>
-              <div class="delivery-option-desc">We will print your letter on quality stock, stamp it, and mail it to every representative you selected. Provide your email so we can confirm delivery.</div>
-            </div>
-          </label>
-          <label class="delivery-option" onclick="selectDelivery('email')">
-            <input type="radio" name="delivery" value="email">
-            <div class="delivery-option-text">
-              <div class="delivery-option-title">I will email it to their office</div>
-              <div class="delivery-option-desc">We will generate the letter and show you exactly where to send it, with a one-click copy button.</div>
-            </div>
-          </label>
-        </div>
-
-        <div id="delivery-email-row" class="delivery-email-row">
-          <label for="sender-email" class="form-label">Your Email Address</label>
-          <input type="email" id="sender-email" class="form-input" placeholder="you@example.com">
-          <p class="form-hint">So we can confirm your letter has been printed and mailed.</p>
-        </div>
-      </div>
-
-      <button class="generate-btn" onclick="generateLetters()">Generate Your Letters</button>
-    </div>
-
-    <!-- ════════════ LETTER OUTPUT ════════════ -->
-    <div id="letter-output" class="letter-output-section"></div>
-
-    <footer class="page-footer">
-      <div class="page-footer-ornament">&#10087; &#9753;</div>
-      <nav class="page-footer-nav">
-        <a href="../The_Chair/">The Chair</a>
-        <span class="page-footer-divider">&middot;</span>
-        <a href="../The_Chair/the-waters-recede.html">The Waters Recede</a>
-        <span class="page-footer-divider">&middot;</span>
-        <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The COMPANION Dossier</a>
-        <span class="page-footer-divider">&middot;</span>
-        <a href="../The_Watchtower/">The Watchtower</a>
-        <span class="page-footer-divider">&middot;</span>
-        <a href="../The_Handbill/">The Handbill</a>
-      </nav>
-    </footer>
-
+  <div class="intro">
+    <p>You have just come from something heavy. If your hands are shaking, that is the right response.</p>
+    <p class="em">You do not have to carry this alone. But you do have to do something with it.</p>
+    <p>This tool writes letters to your elected representatives <strong>in your name, in your voice</strong>. Select your state, tell us what you feel, and click one button. We handle the rest &mdash; including <strong>printing and mailing at no charge</strong> if you need us to.</p>
   </div>
 
-  <script>
-    // ═══════════════════════════════════════════════════════════════
-    //  STATE
-    // ═══════════════════════════════════════════════════════════════
+  <!-- ═══ PANEL 1: YOU ═══ -->
+  <div class="panel">
+    <div class="panel-title">You</div>
+    <div class="panel-desc">Your name goes on the letter. Your address goes on the envelope.</div>
+    <div class="cols">
+      <div class="row"><label class="lbl" for="f-name">Full Name</label><input class="inp" id="f-name" placeholder="Your name"></div>
+      <div class="row"><label class="lbl" for="f-addr">Mailing Address</label><input class="inp" id="f-addr" placeholder="123 Main St, Austin, TX 78701"></div>
+    </div>
+  </div>
 
-    var foundReps = [];    // from API lookup
-    var manualRepCount = 0;
+  <!-- ═══ PANEL 2: YOUR REPRESENTATIVES ═══ -->
+  <div class="panel">
+    <div class="panel-title">Your Representatives</div>
+    <div class="panel-desc">Select your state. Your U.S. senators appear instantly. Check the ones you want to write.</div>
+    <div class="row">
+      <label class="lbl" for="f-state">Your State</label>
+      <select class="sel" id="f-state" onchange="onStateChange()">
+        <option value="">Select your state...</option>
+      </select>
+    </div>
+    <div id="sen-area">
+      <div class="no-state" id="sen-placeholder">Select your state above to see your senators.</div>
+      <div class="sen-list" id="sen-list" style="display:none"></div>
+    </div>
+    <div style="margin-top:1rem">
+      <div class="panel-desc" style="margin-bottom:.4rem">U.S. House Representative &amp; others <span class="hint">(optional &mdash; <a href="https://www.house.gov/representatives/find-your-representative" target="_blank">look up your rep</a>)</span></div>
+      <div id="extra-reps"></div>
+      <div class="add-rep-row">
+        <input class="inp" id="f-extra-name" placeholder="e.g. Rep. Lloyd Doggett">
+        <button class="add-btn" onclick="addExtraRep()">+ Add</button>
+      </div>
+    </div>
+  </div>
 
-    // Standard office addresses
-    var OFFICE_ADDRESSES = {
-      'us-senator': 'United States Senate\nWashington, DC 20510',
-      'us-rep':     'United States House of Representatives\nWashington, DC 20515',
-      'state':      ''
-    };
+  <!-- ═══ PANEL 3: YOUR VOICE ═══ -->
+  <div class="panel">
+    <div class="panel-title">Your Voice</div>
+    <div class="panel-desc">Choose from below or write your own. These words go into your letter.</div>
 
+    <div class="row">
+      <label class="lbl" for="f-exp">Personal Experience</label>
+      <select class="sel" id="f-exp" onchange="togCw('f-exp','cw-exp')">
+        <option value="">I prefer not to share, but I demand accountability.</option>
+        <option value="s1">I am a survivor of sexual assault. I know what it means when the powerful are not held accountable, because I have lived inside that silence.</option>
+        <option value="s2">I am a survivor of childhood sexual abuse. I was a child. I did not have a voice then. I have one now.</option>
+        <option value="s3">Someone I love is a survivor of sexual assault. I have watched what it does to a human being when justice never comes.</option>
+        <option value="s4">Someone I love survived childhood sexual abuse. I have held them while they wept for the child they were. I will not be silent.</option>
+        <option value="s5">I am a parent. I read these files and I think of my own children. The thought that this machine operated openly, protected by the powerful, is unbearable.</option>
+        <option value="s6">I am an ordinary citizen who has never experienced this personally, but I refuse to live in a country where children are disposable and the powerful are untouchable.</option>
+        <option value="s7">I have seen corruption and impunity among the powerful firsthand. The Epstein files confirm what many already knew: the rules do not apply equally.</option>
+        <option value="custom">Let me write my own...</option>
+      </select>
+      <div class="cw" id="cw-exp"><textarea class="ta" placeholder="In your own words..."></textarea></div>
+    </div>
 
-    // ═══════════════════════════════════════════════════════════════
-    //  DROPDOWN HANDLERS
-    // ═══════════════════════════════════════════════════════════════
+    <div class="row">
+      <label class="lbl" for="f-feel">What You Feel Reading These Files</label>
+      <select class="sel" id="f-feel" onchange="togCw('f-feel','cw-feel')">
+        <option value="f1">I feel rage &mdash; a fury that settles in my chest and does not leave. It is not partisan. It is human.</option>
+        <option value="f2">I feel grief &mdash; a weight I cannot put down. Grief for the children. Grief for the country I thought I lived in.</option>
+        <option value="f3">I feel physically sick. My stomach turns when I read what was done to those children, and how many people knew.</option>
+        <option value="f4">I feel cold &mdash; a dread that seeps into my bones. The slow recognition that the system worked exactly as designed.</option>
+        <option value="f5">I feel betrayed. By both parties. By every institution that was supposed to protect the vulnerable.</option>
+        <option value="f6">I feel all of it &mdash; rage, grief, nausea, and underneath it, a desperate need for justice.</option>
+        <option value="f7">I wept. I sat and wept. Something in these files broke through to a part of me I protect, and it will not let me look away.</option>
+        <option value="custom">Let me describe it myself...</option>
+      </select>
+      <div class="cw" id="cw-feel"><textarea class="ta" placeholder="Describe what you feel..."></textarea></div>
+    </div>
 
-    function handleDropdown(selectId, customId) {
-      var sel = document.getElementById(selectId);
-      var custom = document.getElementById(customId);
-      if (sel.value === 'custom') {
-        custom.classList.add('visible');
-        var ta = custom.querySelector('textarea');
-        if (ta) ta.focus();
+    <div class="row">
+      <label class="lbl" for="f-extra">Anything Else (optional)</label>
+      <textarea class="ta" id="f-extra" placeholder="Your own words, if you have more to say."></textarea>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 4: DEMANDS ═══ -->
+  <div class="panel">
+    <div class="panel-title">Your Demands</div>
+    <div class="panel-desc">All pre-selected. Uncheck any you wish to remove.</div>
+    <div class="chks">
+      <label class="chk"><input type="checkbox" id="d-sol" checked><span><strong>Remove the statute of limitations</strong> for all crimes against children &mdash; retroactively and in perpetuity.</span></label>
+      <label class="chk"><input type="checkbox" id="d-pro" checked><span><strong>Impeach and prosecute</strong> all individuals incriminated in the Epstein files, regardless of party, office, or wealth.</span></label>
+      <label class="chk"><input type="checkbox" id="d-max" checked><span><strong>Public hearing on Capitol Hill</strong> with Ghislaine Maxwell under oath. She was convicted of trafficking minors. She knows the names.</span></label>
+      <label class="chk"><input type="checkbox" id="d-rel" checked><span><strong>Release all Epstein files</strong> unredacted, with no further delays or selective batching.</span></label>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 5: DELIVERY ═══ -->
+  <div class="panel">
+    <div class="panel-title">Delivery</div>
+    <label class="dopt on" onclick="setDel('self')"><input type="radio" name="del" value="self" checked><div><div class="dopt-t">I will print and mail it myself</div><div class="dopt-d">Print it, sign it, stamp it, mail it.</div></div></label>
+    <label class="dopt" onclick="setDel('us')"><input type="radio" name="del" value="us"><div><div class="dopt-t">Print and mail for me &mdash; no charge</div><div class="dopt-d">We print on quality stock and mail to every representative you selected.</div></div></label>
+    <label class="dopt" onclick="setDel('email')"><input type="radio" name="del" value="email"><div><div class="dopt-t">I will email it to their office</div><div class="dopt-d">We show you exactly where to paste it, with one-click copy.</div></div></label>
+    <div class="email-row" id="email-row">
+      <label class="lbl" for="f-email">Your Email (for mail confirmation)</label>
+      <input class="inp" id="f-email" type="email" placeholder="you@example.com">
+    </div>
+  </div>
+
+  <button class="gen-btn" onclick="generate()">Generate Your Letters</button>
+
+  <!-- ═══ OUTPUT ═══ -->
+  <div class="out" id="output"></div>
+
+  <footer class="ftr">
+    <div class="ftr-orn">&#10087; &#9753;</div>
+    <nav class="ftr-nav">
+      <a href="../The_Chair/">The Chair</a><span class="ftr-d">&middot;</span>
+      <a href="../The_Chair/the-waters-recede.html">The Waters Recede</a><span class="ftr-d">&middot;</span>
+      <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The Dossier</a><span class="ftr-d">&middot;</span>
+      <a href="../The_Watchtower/">Watchtower</a><span class="ftr-d">&middot;</span>
+      <a href="../The_Handbill/">Handbill</a>
+    </nav>
+  </footer>
+
+</div>
+
+<script src="reps-data.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════════
+
+(function(){
+  var sel = document.getElementById('f-state');
+  var codes = Object.keys(STATE_NAMES).sort(function(a,b){return STATE_NAMES[a]<STATE_NAMES[b]?-1:1});
+  codes.forEach(function(c){
+    var o = document.createElement('option');
+    o.value = c; o.textContent = STATE_NAMES[c];
+    sel.appendChild(o);
+  });
+  setDel('self');
+})();
+
+// ═══════════════════════════════════════════════════════════════
+//  STATE → SENATORS
+// ═══════════════════════════════════════════════════════════════
+
+function onStateChange(){
+  var st = document.getElementById('f-state').value;
+  var list = document.getElementById('sen-list');
+  var ph = document.getElementById('sen-placeholder');
+  list.innerHTML = '';
+  if(!st || !SENATORS[st]){
+    list.style.display='none'; ph.style.display='block'; return;
+  }
+  ph.style.display='none'; list.style.display='flex';
+  SENATORS[st].forEach(function(s){
+    var label = document.createElement('label');
+    label.className = 'sen on';
+    label.innerHTML =
+      '<input type="checkbox" checked data-type="senator" data-name="'+esc(s.n)+'" data-web="'+s.w+'" onchange="togSen(this)">' +
+      '<div class="sen-info">' +
+        '<div class="sen-name">Sen. '+esc(s.n)+'</div>' +
+        '<div class="sen-meta">U.S. Senator &middot; '+s.p+'</div>' +
+      '</div>' +
+      '<a class="sen-contact" href="https://www.'+s.w+'.senate.gov/contact" target="_blank" onclick="event.stopPropagation()">Contact</a>';
+    list.appendChild(label);
+  });
+}
+
+function togSen(cb){
+  var card = cb.closest('.sen');
+  card.classList.toggle('on', cb.checked);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  EXTRA REPS (House, State)
+// ═══════════════════════════════════════════════════════════════
+
+function addExtraRep(){
+  var inp = document.getElementById('f-extra-name');
+  var name = inp.value.trim();
+  if(!name) return;
+  inp.value = '';
+
+  var container = document.getElementById('extra-reps');
+  var label = document.createElement('label');
+  label.className = 'sen on';
+  label.innerHTML =
+    '<input type="checkbox" checked data-type="rep" data-name="'+esc(name)+'" onchange="togSen(this)">' +
+    '<div class="sen-info"><div class="sen-name">'+esc(name)+'</div><div class="sen-meta">Representative</div></div>' +
+    '<span class="sen-contact" style="cursor:pointer;color:var(--smoke)" onclick="event.stopPropagation();this.closest(\'.sen\').remove()">Remove</span>';
+  container.appendChild(label);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  DROPDOWN CUSTOM TEXT
+// ═══════════════════════════════════════════════════════════════
+
+function togCw(selId,cwId){
+  var s=document.getElementById(selId), cw=document.getElementById(cwId);
+  if(s.value==='custom'){cw.classList.add('vis');var t=cw.querySelector('textarea');if(t)t.focus()}
+  else cw.classList.remove('vis');
+}
+
+function getSelText(selId,cwId){
+  var s=document.getElementById(selId);
+  if(s.value==='custom'){var t=document.getElementById(cwId).querySelector('textarea');return t?t.value.trim():''}
+  if(!s.value) return '';
+  return s.options[s.selectedIndex].text;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  DELIVERY
+// ═══════════════════════════════════════════════════════════════
+
+function setDel(v){
+  document.querySelectorAll('.dopt').forEach(function(d){d.classList.remove('on')});
+  document.querySelectorAll('input[name="del"]').forEach(function(r){
+    if(r.value===v){r.checked=true;r.closest('.dopt').classList.add('on')}
+  });
+  document.getElementById('email-row').classList.toggle('vis',v==='us');
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  GENERATE
+// ═══════════════════════════════════════════════════════════════
+
+function generate(){
+  var name = document.getElementById('f-name').value.trim();
+  var addr = document.getElementById('f-addr').value.trim();
+  if(!name){alert('Please enter your name.');document.getElementById('f-name').focus();return}
+
+  // Collect recipients
+  var recs = [];
+  document.querySelectorAll('#sen-list input:checked, #extra-reps input:checked').forEach(function(cb){
+    var t = cb.getAttribute('data-type');
+    var n = cb.getAttribute('data-name');
+    var w = cb.getAttribute('data-web') || '';
+    if(t==='senator'){
+      recs.push({name:'The Honorable '+n, office:'U.S. Senator', address:'United States Senate, Washington, DC 20510', web:w, contact:w?'https://www.'+w+'.senate.gov/contact':''});
+    } else {
+      recs.push({name:'The Honorable '+n, office:'U.S. Representative', address:'U.S. House of Representatives, Washington, DC 20515', web:'', contact:''});
+    }
+  });
+  if(!recs.length){alert('Please select at least one representative.');return}
+
+  var exp = getSelText('f-exp','cw-exp');
+  var feel = getSelText('f-feel','cw-feel');
+  var extra = document.getElementById('f-extra').value.trim();
+  var dS=document.getElementById('d-sol').checked;
+  var dP=document.getElementById('d-pro').checked;
+  var dM=document.getElementById('d-max').checked;
+  var dR=document.getElementById('d-rel').checked;
+  var del = document.querySelector('input[name="del"]:checked').value;
+  var dateStr = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  // Parse city from address
+  var city = addr;
+
+  var out = document.getElementById('output');
+  out.innerHTML = '';
+
+  recs.forEach(function(r,i){
+    var letter = buildLetter(name,city,addr,dateStr,r,exp,feel,extra,dS,dP,dM,dR);
+    var block = document.createElement('div');
+    block.style.marginBottom = '2.5rem';
+
+    // Header + actions
+    var h = '<div class="lt-hdr"><div class="lt-title">Letter '+(i+1)+' of '+recs.length+'</div>';
+    h += '<div class="lt-acts">';
+    h += '<button class="lt-btn" onclick="copyLt(this)">Copy</button>';
+    if(r.contact) h += '<button class="lt-btn" onclick="copyAndOpen(this,\''+esc(r.contact)+'\')">Copy &amp; Open Contact Form</button>';
+    h += '<button class="lt-btn" onclick="window.print()">Print</button>';
+    h += '</div></div>';
+
+    // To label
+    h += '<div class="lt-to">To: '+esc(r.name)+' &mdash; '+esc(r.office)+'</div>';
+
+    // Letter body
+    h += '<div class="lt-body">'+esc(letter)+'</div>';
+
+    // Guide (email mode or always for senators)
+    if(del==='email' || r.contact){
+      h += '<div class="lt-guide">';
+      h += '<div class="lt-guide-t">Send This Letter</div>';
+      h += '<div class="lt-guide-s"><strong>1.</strong> Click "Copy" (or "Copy & Open Contact Form") above.</div>';
+      if(r.contact){
+        h += '<div class="lt-guide-s"><strong>2.</strong> Paste the letter into the message field on their contact page.</div>';
+        h += '<div class="lt-guide-s"><strong>3.</strong> Subject: "Constituent Letter: Epstein Files &mdash; Demand for Action"</div>';
+        h += '<a class="gl" href="'+esc(r.contact)+'" target="_blank">Open '+esc(r.name)+'\'s Contact Form</a>';
       } else {
-        custom.classList.remove('visible');
+        h += '<div class="lt-guide-s"><strong>2.</strong> Find '+esc(r.name)+'\'s contact form on their official website.</div>';
+        h += '<div class="lt-guide-s"><strong>3.</strong> Paste the letter and use subject: "Constituent Letter: Epstein Files"</div>';
+        h += '<a class="gl" href="https://www.house.gov/representatives/find-your-representative" target="_blank">Find Representative Contact</a>';
       }
+      h += '</div>';
     }
 
-    function getDropdownText(selectId, customId) {
-      var sel = document.getElementById(selectId);
-      if (sel.value === 'custom') {
-        var custom = document.getElementById(customId);
-        var ta = custom.querySelector('textarea');
-        return ta ? ta.value.trim() : '';
-      }
-      if (sel.value === '') return '';
-      // Get the text of the selected option
-      return sel.options[sel.selectedIndex].text;
-    }
-
-
-    // ═══════════════════════════════════════════════════════════════
-    //  REPRESENTATIVE LOOKUP (Google Civic Information API)
-    // ═══════════════════════════════════════════════════════════════
-
-    function lookupReps() {
-      var address = document.getElementById('lookup-address').value.trim();
-      if (!address) {
-        alert('Please enter your address or zip code.');
-        return;
-      }
-
-      var btn = document.getElementById('lookup-btn');
-      var results = document.getElementById('lookup-results');
-      var status = document.getElementById('lookup-status');
-      var list = document.getElementById('rep-list');
-
-      btn.disabled = true;
-      btn.textContent = 'Searching...';
-      results.classList.add('visible');
-      status.className = 'lookup-status';
-      status.textContent = 'Looking up your representatives...';
-      list.innerHTML = '';
-      foundReps = [];
-
-      // Try Google Civic Information API
-      // This is a free, public Google API for civic data.
-      // If it fails (no key, rate limit, CORS), we fall back to manual lookup links.
-      var civicUrl = 'https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=' +
-                     encodeURIComponent(address) +
-                     '&key=AIzaSyBVTz-izuYS3xelDoI3Nyxm2kVdFBuW0BY';
-
-      fetch(civicUrl)
-        .then(function(r) {
-          if (!r.ok) throw new Error('API returned ' + r.status);
-          return r.json();
-        })
-        .then(function(data) {
-          processGoogleCivicData(data);
-          btn.disabled = false;
-          btn.textContent = 'Find My Representatives';
-        })
-        .catch(function(err) {
-          console.log('Civic API unavailable, using manual fallback:', err.message);
-          showLookupFallback(address);
-          btn.disabled = false;
-          btn.textContent = 'Find My Representatives';
-        });
-    }
-
-    function processGoogleCivicData(data) {
-      var status = document.getElementById('lookup-status');
-      var list = document.getElementById('rep-list');
-      foundReps = [];
-
-      if (!data.offices || !data.officials) {
-        status.textContent = 'No representatives found for that address. Try entering your full street address with zip code, or use the manual links below.';
-        status.className = 'lookup-status lookup-error';
-        return;
-      }
-
-      // Build rep list from offices/officials
-      data.offices.forEach(function(office) {
-        // Skip president/VP — we want legislators
-        if (office.name.match(/president|vice president/i) && !office.name.match(/state/i)) return;
-
-        office.officialIndices.forEach(function(idx) {
-          var official = data.officials[idx];
-          if (!official) return;
-
-          var rep = {
-            name: official.name,
-            office: office.name,
-            party: official.party || '',
-            address: '',
-            email: '',
-            phone: ''
-          };
-
-          // Extract address
-          if (official.address && official.address.length > 0) {
-            var a = official.address[0];
-            var parts = [];
-            if (a.line1) parts.push(a.line1);
-            if (a.line2) parts.push(a.line2);
-            if (a.city) parts.push(a.city);
-            if (a.state) parts.push(a.state);
-            if (a.zip) parts.push(a.zip);
-            rep.address = parts.join(', ');
-          }
-
-          // Extract email
-          if (official.emails && official.emails.length > 0) {
-            rep.email = official.emails[0];
-          }
-
-          // Extract phone
-          if (official.phones && official.phones.length > 0) {
-            rep.phone = official.phones[0];
-          }
-
-          foundReps.push(rep);
-        });
-      });
-
-      if (foundReps.length === 0) {
-        status.textContent = 'No legislative representatives found. Try your full street address, or use the manual links below.';
-        status.className = 'lookup-status lookup-error';
-        return;
-      }
-
-      status.textContent = foundReps.length + ' representative' + (foundReps.length === 1 ? '' : 's') + ' found. Select who you want to write:';
-      status.className = 'lookup-status';
-
-      // Render rep cards
-      foundReps.forEach(function(rep, i) {
-        var card = document.createElement('label');
-        card.className = 'rep-card';
-        card.innerHTML =
-          '<input type="checkbox" checked data-rep-index="' + i + '" onchange="toggleRepCard(this)">' +
-          '<div class="rep-card-info">' +
-            '<div class="rep-card-name">The Honorable ' + escapeHtml(rep.name) + '</div>' +
-            '<div class="rep-card-office">' + escapeHtml(rep.office) + '</div>' +
-            (rep.party ? '<div class="rep-card-party">' + escapeHtml(rep.party) + '</div>' : '') +
-          '</div>';
-        card.classList.add('selected');
-        list.appendChild(card);
-      });
-    }
-
-    function toggleRepCard(checkbox) {
-      var card = checkbox.closest('.rep-card');
-      if (checkbox.checked) {
-        card.classList.add('selected');
-      } else {
-        card.classList.remove('selected');
-      }
-    }
-
-    function showLookupFallback(address) {
-      var status = document.getElementById('lookup-status');
-      var list = document.getElementById('rep-list');
-
-      status.innerHTML = 'Automatic lookup unavailable. Use the links below to find your representatives, then add them manually:';
-      status.className = 'lookup-status';
-
-      list.innerHTML =
-        '<div style="margin-top: 0.5rem;">' +
-          '<a class="send-guidance-link" href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Find Your U.S. Senators</a> ' +
-          '<a class="send-guidance-link" href="https://www.house.gov/representatives/find-your-representative" target="_blank">Find Your U.S. Representative</a> ' +
-          '<a class="send-guidance-link" href="https://openstates.org/find_your_legislator/" target="_blank">Find State Legislators</a>' +
-        '</div>';
-    }
-
-
-    // ═══════════════════════════════════════════════════════════════
-    //  MANUAL REP ENTRY
-    // ═══════════════════════════════════════════════════════════════
-
-    function addManualRep() {
-      manualRepCount++;
-      var container = document.getElementById('manual-rep-list');
-      var div = document.createElement('div');
-      div.className = 'manual-rep-entry';
-      div.style.cssText = 'margin-bottom: 1rem; padding: 0.8rem; border: 1px solid rgba(201, 162, 39, 0.08); background: rgba(0,0,0,0.15);';
-      div.innerHTML =
-        '<div class="form-row" style="margin-bottom: 0.5rem;">' +
-          '<label class="form-label">Recipient Type</label>' +
-          '<select class="form-select manual-rep-type" onchange="updateManualAddress(this)">' +
-            '<option value="us-senator">U.S. Senator</option>' +
-            '<option value="us-rep">U.S. Representative</option>' +
-            '<option value="state-senator">State Senator</option>' +
-            '<option value="state-rep">State Representative</option>' +
-            '<option value="governor">Governor</option>' +
-          '</select>' +
-        '</div>' +
-        '<div class="form-row" style="margin-bottom: 0.5rem;">' +
-          '<label class="form-label">Full Name</label>' +
-          '<input type="text" class="form-input manual-rep-name" placeholder="e.g. John Cornyn">' +
-        '</div>' +
-        '<div class="form-row" style="margin-bottom: 0;">' +
-          '<label class="form-label">Office Address</label>' +
-          '<input type="text" class="form-input manual-rep-address" value="United States Senate, Washington, DC 20510">' +
-        '</div>';
-      container.appendChild(div);
-    }
-
-    function updateManualAddress(sel) {
-      var entry = sel.closest('.manual-rep-entry');
-      var addrInput = entry.querySelector('.manual-rep-address');
-      var type = sel.value;
-      if (type === 'us-senator') {
-        addrInput.value = 'United States Senate, Washington, DC 20510';
-      } else if (type === 'us-rep') {
-        addrInput.value = 'United States House of Representatives, Washington, DC 20515';
-      } else {
-        addrInput.value = '';
-        addrInput.placeholder = 'Look up their office address';
-      }
-    }
-
-
-    // ═══════════════════════════════════════════════════════════════
-    //  DELIVERY
-    // ═══════════════════════════════════════════════════════════════
-
-    function selectDelivery(type) {
-      var options = document.querySelectorAll('.delivery-option');
-      options.forEach(function(o) { o.classList.remove('selected'); });
-
-      var radios = document.querySelectorAll('input[name="delivery"]');
-      radios.forEach(function(r) {
-        if (r.value === type) {
-          r.checked = true;
-          r.closest('.delivery-option').classList.add('selected');
-        }
-      });
-
-      var emailRow = document.getElementById('delivery-email-row');
-      if (type === 'print-us') {
-        emailRow.classList.add('visible');
-      } else {
-        emailRow.classList.remove('visible');
-      }
-    }
-
-    // Init first option as selected, and sync address fields
-    document.addEventListener('DOMContentLoaded', function() {
-      selectDelivery('print-self');
-
-      // Auto-fill lookup address from mailing address
-      var senderAddr = document.getElementById('sender-address');
-      var lookupAddr = document.getElementById('lookup-address');
-      if (senderAddr && lookupAddr) {
-        senderAddr.addEventListener('blur', function() {
-          if (!lookupAddr.value && senderAddr.value.trim()) {
-            lookupAddr.value = senderAddr.value.trim();
-          }
-        });
-      }
-    });
-
-
-    // ═══════════════════════════════════════════════════════════════
-    //  LETTER GENERATION
-    // ═══════════════════════════════════════════════════════════════
-
-    function generateLetters() {
-      var name = document.getElementById('sender-name').value.trim();
-      var city = document.getElementById('sender-city').value.trim();
-      var address = document.getElementById('sender-address').value.trim();
-      var experienceText = getDropdownText('experience-select', 'experience-custom');
-      var feelingText = getDropdownText('feeling-select', 'feeling-custom');
-      var additionalMsg = document.getElementById('additional-message').value.trim();
-
-      var demandSOL = document.getElementById('demand-sol').checked;
-      var demandProsecute = document.getElementById('demand-prosecute').checked;
-      var demandMaxwell = document.getElementById('demand-maxwell').checked;
-      var demandRelease = document.getElementById('demand-release').checked;
-
-      var delivery = document.querySelector('input[name="delivery"]:checked').value;
-
-      if (!name) {
-        alert('Please enter your name (Step 1).');
-        document.getElementById('sender-name').focus();
-        return;
-      }
-
-      // Collect all selected recipients
-      var recipients = [];
-
-      // From API lookup
-      var repCheckboxes = document.querySelectorAll('#rep-list input[type="checkbox"]:checked');
-      repCheckboxes.forEach(function(cb) {
-        var idx = parseInt(cb.getAttribute('data-rep-index'));
-        var rep = foundReps[idx];
-        if (rep) {
-          recipients.push({
-            name: 'The Honorable ' + rep.name,
-            office: rep.office,
-            address: rep.address,
-            email: rep.email
-          });
-        }
-      });
-
-      // From manual entries
-      var manualEntries = document.querySelectorAll('.manual-rep-entry');
-      manualEntries.forEach(function(entry) {
-        var repName = entry.querySelector('.manual-rep-name').value.trim();
-        var repAddr = entry.querySelector('.manual-rep-address').value.trim();
-        var repType = entry.querySelector('.manual-rep-type').value;
-        if (repName) {
-          recipients.push({
-            name: 'The Honorable ' + repName,
-            office: repType.replace('us-', 'U.S. ').replace('state-', 'State ').replace('governor', 'Governor'),
-            address: repAddr,
-            email: ''
-          });
-        }
-      });
-
-      if (recipients.length === 0) {
-        alert('Please select or add at least one representative to write to (Step 2).');
-        return;
-      }
-
-      // Build letters
-      var outputEl = document.getElementById('letter-output');
-      outputEl.innerHTML = '';
-
-      var today = new Date();
-      var dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-
-      recipients.forEach(function(recipient, i) {
-        var letter = buildLetter(name, city, address, dateStr, recipient, experienceText, feelingText, additionalMsg, demandSOL, demandProsecute, demandMaxwell, demandRelease);
-
-        var block = document.createElement('div');
-        block.style.marginBottom = '3rem';
-
-        // Header
-        var header = document.createElement('div');
-        header.className = 'letter-output-header';
-        header.innerHTML =
-          '<h3 class="letter-output-title">Letter ' + (i + 1) + ' of ' + recipients.length + '</h3>' +
-          '<div class="letter-actions">' +
-            '<button class="letter-action-btn" onclick="copyLetterText(this)">Copy</button>' +
-            '<button class="letter-action-btn" onclick="window.print()">Print</button>' +
-          '</div>';
-
-        // Recipient label
-        var label = document.createElement('div');
-        label.className = 'letter-recipient-label';
-        label.textContent = 'To: ' + recipient.name + ' — ' + recipient.office;
-
-        // Preview
-        var preview = document.createElement('div');
-        preview.className = 'letter-preview';
-        preview.textContent = letter;
-
-        block.appendChild(header);
-        block.appendChild(label);
-        block.appendChild(preview);
-
-        // Send guidance for email delivery
-        if (delivery === 'email' && recipient.email) {
-          var guidance = document.createElement('div');
-          guidance.className = 'send-guidance';
-          guidance.innerHTML =
-            '<div class="send-guidance-title">Send This Letter by Email</div>' +
-            '<div class="send-guidance-step"><strong>1.</strong> Click &ldquo;Copy&rdquo; above to copy your letter.</div>' +
-            '<div class="send-guidance-step"><strong>2.</strong> Email it to: <strong>' + escapeHtml(recipient.email) + '</strong></div>' +
-            '<div class="send-guidance-step"><strong>3.</strong> Subject line: &ldquo;Constituent Letter: Epstein Files &mdash; Demand for Action&rdquo;</div>' +
-            '<a class="send-guidance-link" href="mailto:' + encodeURIComponent(recipient.email) + '?subject=' + encodeURIComponent('Constituent Letter: Epstein Files — Demand for Action') + '" target="_blank">Open Email Client</a>';
-          block.appendChild(guidance);
-        } else if (delivery === 'email' && !recipient.email) {
-          var guidance2 = document.createElement('div');
-          guidance2.className = 'send-guidance';
-          guidance2.innerHTML =
-            '<div class="send-guidance-title">Send This Letter by Email</div>' +
-            '<div class="send-guidance-step"><strong>1.</strong> Click &ldquo;Copy&rdquo; above to copy your letter.</div>' +
-            '<div class="send-guidance-step"><strong>2.</strong> Find the contact form for <strong>' + escapeHtml(recipient.name) + '</strong> on their official website.</div>' +
-            '<div class="send-guidance-step"><strong>3.</strong> Paste the letter into the message field. Use subject: &ldquo;Constituent Letter: Epstein Files &mdash; Demand for Action&rdquo;</div>' +
-            '<a class="send-guidance-link" href="https://www.senate.gov/senators/senators-contact.htm" target="_blank">Senate Contact Directory</a> ' +
-            '<a class="send-guidance-link" href="https://www.house.gov/representatives/find-your-representative" target="_blank">House Contact Directory</a>';
-          block.appendChild(guidance2);
-        }
-
-        outputEl.appendChild(block);
-      });
-
-      // Final note
-      var note = document.createElement('div');
-      note.className = 'letter-note';
-      if (delivery === 'print-us') {
-        var email = document.getElementById('sender-email').value.trim();
-        note.innerHTML = recipients.length + ' letter' + (recipients.length === 1 ? '' : 's') + ' generated. We will print and mail ' + (recipients.length === 1 ? 'this letter' : 'all ' + recipients.length + ' letters') + ' for you at no charge.' + (email ? ' Confirmation will be sent to <strong>' + escapeHtml(email) + '</strong>.' : ' Please provide your email above so we can confirm delivery.') + '<br><br>Every letter matters. Every voice counts. The children are watching.';
-      } else if (delivery === 'email') {
-        note.innerHTML = recipients.length + ' letter' + (recipients.length === 1 ? '' : 's') + ' generated. Copy each one and send it using the instructions above.<br><br>Physical mail carries more weight than email. If you can print and mail it, do. But any action is better than silence.<br><br>Every letter matters. Every voice counts. The children are watching.';
-      } else {
-        note.innerHTML = recipients.length + ' letter' + (recipients.length === 1 ? '' : 's') + ' generated. Print ' + (recipients.length === 1 ? 'it' : 'each one') + ', sign it by hand, and mail it to the address on the letter.<br><br>A handwritten signature on printed letterhead arrives with weight. They notice. Their staff tallies constituent mail. You are being counted.<br><br>Every letter matters. Every voice counts. The children are watching.';
-      }
-      outputEl.appendChild(note);
-
-      outputEl.classList.add('visible');
-      outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-
-    function buildLetter(name, city, address, dateStr, recipient, experience, feeling, additional, dSOL, dPros, dMax, dRel) {
-      var letter = '';
-
-      // Return address
-      if (address) {
-        letter += name + '\n' + address + '\n\n';
-      } else if (city) {
-        letter += name + '\n' + city + '\n\n';
-      }
-
-      letter += dateStr + '\n\n';
-
-      // Recipient
-      letter += recipient.name + '\n';
-      if (recipient.address) {
-        letter += recipient.address + '\n';
-      }
-      letter += '\n';
-
-      letter += 'Dear ' + recipient.name + ',\n\n';
-
-      // Opening
-      letter += 'I am writing to you as a constituent' + (city ? ' in ' + city : '') + ' who has read the Epstein files \u2014 the three million pages of evidence documenting decades of child sex trafficking, institutional complicity, and an architecture of impunity that reaches into both political parties, the highest offices of government, and the boardrooms of the most powerful people in the country.\n\n';
-
-      // Feeling
-      if (feeling) {
-        letter += feeling + '\n\n';
-      }
-
-      // Experience
-      if (experience) {
-        letter += experience + '\n\n';
-      }
-
-      // Core paragraph
-      letter += 'Over a thousand children were fed into a machine built by Jeffrey Epstein and enabled by people who still hold power, influence, and public trust. Flight logs, sworn depositions, authenticated emails, and court records document what happened. The evidence is not ambiguous. And yet, the powerful who walked through those rooms, who flew on those planes, who attended those dinners and smiled in those photographs \u2014 they remain free, unquestioned, and unaccountable.\n\n';
-
-      letter += 'I am writing to demand action:\n\n';
-
-      // Demands
-      var n = 1;
-      if (dSOL) {
-        letter += n + '. Remove the statute of limitations for all crimes against children \u2014 retroactively and in perpetuity. No child\u2019s suffering should expire on a legal clock. The trauma does not expire. The justice should not either.\n\n';
-        n++;
-      }
-      if (dPros) {
-        letter += n + '. Pursue the impeachment and prosecution of all individuals incriminated in the Epstein files, regardless of party affiliation, office held, or personal wealth. The law must apply equally, or it is not law.\n\n';
-        n++;
-      }
-      if (dMax) {
-        letter += n + '. Convene a public hearing on Capitol Hill with Ghislaine Maxwell providing full testimony under oath. She was convicted of sex trafficking minors. She knows the names. The American people deserve to hear them, on the record, in full view of the nation.\n\n';
-        n++;
-      }
-      if (dRel) {
-        letter += n + '. Release all Epstein-related files to the public, unredacted and without further delay. Selective batching of evidence by a Justice Department whose own leadership appears in the files is not transparency \u2014 it is management.\n\n';
-        n++;
-      }
-
-      // Additional
-      if (additional) {
-        letter += additional + '\n\n';
-      }
-
-      // Closing
-      letter += 'The waters are receding. What is being revealed is not new ground \u2014 it is the old ground, with its graves exposed. I am asking you to look down and not look away.\n\n';
-      letter += 'History is watching. The children are watching. Your constituents are watching.\n\n';
-      letter += 'Respectfully,\n\n\n';
-      letter += name + '\n';
-      if (city) letter += city;
-
-      return letter;
-    }
-
-
-    // ═══════════════════════════════════════════════════════════════
-    //  UTILITIES
-    // ═══════════════════════════════════════════════════════════════
-
-    function copyLetterText(btn) {
-      var preview = btn.closest('.letter-output-header').nextElementSibling;
-      // skip the label div to get to the preview
-      while (preview && !preview.classList.contains('letter-preview')) {
-        preview = preview.nextElementSibling;
-      }
-      if (!preview) return;
-
-      var text = preview.textContent;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-          btn.textContent = 'Copied';
-          btn.style.borderColor = '#c9a227';
-          setTimeout(function() {
-            btn.textContent = 'Copy';
-            btn.style.borderColor = '';
-          }, 2000);
-        });
-      } else {
-        var textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-          document.execCommand('copy');
-          btn.textContent = 'Copied';
-          setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
-        } catch(e) {}
-        document.body.removeChild(textarea);
-      }
-    }
-
-    function escapeHtml(str) {
-      var div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-  </script>
-
+    block.innerHTML = h;
+    out.appendChild(block);
+  });
+
+  // Final note
+  var note = document.createElement('div');
+  note.className = 'lt-note';
+  if(del==='us'){
+    var email = document.getElementById('f-email').value.trim();
+    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. We will print and mail '+(recs.length===1?'this':'all '+recs.length)+' for you at no charge.'+(email?' Confirmation to <strong>'+esc(email)+'</strong>.':'')+
+    '<br><br>A handwritten signature carries weight. Print a copy for yourself and sign it too.<br><br>Every letter matters. The children are watching.';
+  } else if(del==='email'){
+    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. Use the "Copy & Open Contact Form" button above each letter to send it directly.'+
+    '<br><br>Physical mail carries more weight than email. If you can print and mail, do. But any action is better than silence.<br><br>Every letter matters. The children are watching.';
+  } else {
+    note.innerHTML = recs.length+' letter'+(recs.length===1?'':'s')+' generated. Print '+(recs.length===1?'it':'each')+', <strong>sign by hand</strong>, and mail to the address on the letter.'+
+    '<br><br>Congressional staff tallies constituent mail. A signed letter on paper arrives with weight. You are being counted.<br><br>Every letter matters. The children are watching.';
+  }
+  out.appendChild(note);
+  out.classList.add('vis');
+  out.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildLetter(name,city,addr,date,rec,exp,feel,extra,dS,dP,dM,dR){
+  var L = '';
+  if(addr){L+=name+'\n'+addr+'\n\n'}else{L+=name+'\n\n'}
+  L+=date+'\n\n';
+  L+=rec.name+'\n'+rec.address+'\n\n';
+  L+='Dear '+rec.name+',\n\n';
+  L+='I am writing to you as a constituent'+(city?' in '+city:'')+' who has confronted the Epstein files \u2014 the three million pages of evidence documenting decades of child sex trafficking, institutional complicity, and an architecture of impunity that reaches into both political parties and the highest offices of government.\n\n';
+  if(feel) L+=feel+'\n\n';
+  if(exp) L+=exp+'\n\n';
+  L+='Over a thousand children were fed into a machine built by Jeffrey Epstein and enabled by people who still hold power, influence, and public trust. Flight logs, sworn depositions, authenticated emails, and court records document what happened. The evidence is not ambiguous. And yet, the powerful who walked through those rooms, who flew on those planes, who smiled in those photographs \u2014 they remain free and unaccountable.\n\n';
+  L+='I am writing to demand action:\n\n';
+  var n=1;
+  if(dS){L+=n+'. Remove the statute of limitations for all crimes against children \u2014 retroactively and in perpetuity. No child\u2019s suffering should expire on a legal clock. The trauma does not expire. The justice should not either.\n\n';n++}
+  if(dP){L+=n+'. Pursue the impeachment and prosecution of all individuals incriminated in the Epstein files, regardless of party affiliation, office held, or personal wealth. The law must apply equally, or it is not law.\n\n';n++}
+  if(dM){L+=n+'. Convene a public hearing on Capitol Hill with Ghislaine Maxwell providing full testimony under oath. She was convicted of sex trafficking minors. She knows the names. The American people deserve to hear them.\n\n';n++}
+  if(dR){L+=n+'. Release all Epstein-related files to the public, unredacted and without further delay. Selective batching by a Justice Department whose own leadership appears in the files is not transparency \u2014 it is management.\n\n';n++}
+  if(extra) L+=extra+'\n\n';
+  L+='The waters are receding. What is being revealed is not new ground \u2014 it is the old ground, with its graves exposed. I am asking you to look down and not look away.\n\n';
+  L+='History is watching. The children are watching. Your constituents are watching.\n\n';
+  L+='Respectfully,\n\n\n'+name;
+  if(city) L+='\n'+city;
+  return L;
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  UTILITIES
+// ═══════════════════════════════════════════════════════════════
+
+function copyLt(btn){
+  var block = btn.closest('.lt-hdr').parentElement;
+  var body = block.querySelector('.lt-body');
+  if(!body)return;
+  navigator.clipboard.writeText(body.textContent).then(function(){
+    btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000);
+  }).catch(function(){
+    fallbackCopy(body.textContent);btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000);
+  });
+}
+
+function copyAndOpen(btn,url){
+  var block = btn.closest('.lt-hdr').parentElement;
+  var body = block.querySelector('.lt-body');
+  if(!body)return;
+  navigator.clipboard.writeText(body.textContent).then(function(){
+    btn.textContent='Copied! Opening...';window.open(url,'_blank');
+    setTimeout(function(){btn.textContent='Copy & Open Contact Form'},3000);
+  }).catch(function(){
+    fallbackCopy(body.textContent);window.open(url,'_blank');
+    btn.textContent='Copied! Opening...';setTimeout(function(){btn.textContent='Copy & Open Contact Form'},3000);
+  });
+}
+
+function fallbackCopy(text){
+  var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;left:-9999px';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+}
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+</script>
 </body>
 </html>
