@@ -11,23 +11,23 @@ COMPANION.Hologram = (function () {
   // ── The Committee ──
 
   var COMMITTEE = {
-    'The Cartographer': {
+    'The Scout': {
       role: 'The Map',
       color: '#1a8c8c',
       sigil: 'compass'
     },
-    'The Ancestor': {
+    'The Coach': {
       role: 'The Pattern',
       color: '#d4a030',
       sigil: 'tree'
     },
-    'The Stranger': {
+    'The Insider': {
       role: 'The Door',
       color: '#7a8fa6',
       sigil: 'door'
     },
-    'The Shadow': {
-      role: 'The Mirror',
+    'The Mirror': {
+      role: 'The Reflection',
       color: '#8c3a3a',
       sigil: 'mirror'
     }
@@ -122,10 +122,10 @@ COMPANION.Hologram = (function () {
 
     // Partial match (without "The")
     var aliases = {
-      'cartographer': 'The Cartographer',
-      'ancestor': 'The Ancestor',
-      'stranger': 'The Stranger',
-      'shadow': 'The Shadow'
+      'scout': 'The Scout',
+      'coach': 'The Coach',
+      'insider': 'The Insider',
+      'mirror': 'The Mirror'
     };
 
     for (var alias in aliases) {

@@ -29,15 +29,15 @@ COMPANION.App = (function () {
 
   // Committee colors
   var COMMITTEE_COLORS = {
-    'The Cartographer': '#1a8c8c',
-    'The Ancestor': '#d4a030',
-    'The Stranger': '#7a8fa6',
-    'The Shadow': '#8c3a3a'
+    'The Scout': '#1a8c8c',
+    'The Coach': '#d4a030',
+    'The Insider': '#7a8fa6',
+    'The Mirror': '#8c3a3a'
   };
 
-  // Phase 1: only Ancestor. Phase 2: add Cartographer + Stranger.
-  var PHASE_1_PERSONAS = ['The Ancestor'];
-  var PHASE_2_PERSONAS = ['The Ancestor', 'The Cartographer', 'The Stranger'];
+  // Phase 1: only Coach. Phase 2: add Scout + Insider.
+  var PHASE_1_PERSONAS = ['The Coach'];
+  var PHASE_2_PERSONAS = ['The Coach', 'The Scout', 'The Insider'];
 
 
   // ── Safe event binding ──
@@ -441,24 +441,24 @@ COMPANION.App = (function () {
     currentPhase = 1;
     COMPANION.UI.updatePhase(1);
 
-    // Summon The Ancestor
-    var ancestorName = 'The Ancestor';
-    var ancestorColor = COMMITTEE_COLORS[ancestorName];
+    // Summon The Coach
+    var coachName = 'The Coach';
+    var coachColor = COMMITTEE_COLORS[coachName];
 
     activePersonas.push({
-      name: ancestorName,
-      color: ancestorColor
+      name: coachName,
+      color: coachColor
     });
 
-    COMPANION.Hologram.summon(ancestorName, ancestorColor);
+    COMPANION.Hologram.summon(coachName, coachColor);
     playSummonSFX();
 
-    COMPANION.UI.addPersonaBadge(ancestorName, ancestorColor, function (name) {
+    COMPANION.UI.addPersonaBadge(coachName, coachColor, function (name) {
       releasePersona(name);
     });
 
     COMPANION.UI.updateHint(1, 1);
-    COMPANION.UI.addSystemMessage('The Ancestor has been summoned. The Invocation begins.');
+    COMPANION.UI.addSystemMessage('The Coach has been summoned. The Invocation begins.');
 
     // Send greeting prompt
     setTimeout(function () {
@@ -475,7 +475,7 @@ COMPANION.App = (function () {
     currentPhase = 2;
     COMPANION.UI.updatePhase(2);
 
-    var newPersonas = ['The Cartographer', 'The Stranger'];
+    var newPersonas = ['The Scout', 'The Insider'];
     var stagger = 800;
 
     newPersonas.forEach(function (name, index) {
@@ -497,7 +497,7 @@ COMPANION.App = (function () {
     });
 
     setTimeout(function () {
-      COMPANION.UI.addSystemMessage('The Cartographer and The Stranger have entered. The Symposium begins.');
+      COMPANION.UI.addSystemMessage('The Scout and The Insider have entered. The Symposium begins.');
       COMPANION.UI.updateHint(2, activePersonas.length);
     }, newPersonas.length * stagger + 400);
   }
@@ -524,17 +524,15 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function sendGreetingPrompt() {
-    var greetingText = 'The Exchange has been opened. You are The Ancestor. ' +
-      'A seeker stands before you, carrying the weight of their search for work. ' +
-      'Introduce yourself briefly — who you are, what you see, why you are here. ' +
-      'Then ask the seeker to tell you where they\'ve been: their experience, their location, ' +
-      'what they are looking for, and what they are leaving behind. ' +
-      'Be warm but unflinching. Be direct. Be brief. Do not use speaker headers — you are the only voice.';
+    var greetingText = 'The Exchange has been opened. You are The Coach. ' +
+      'A seeker stands before you. Introduce yourself in 1-2 sentences, then ask where they\'ve been — ' +
+      'their experience, location, and what they\'re looking for. Be warm, direct, and brief. ' +
+      'No speaker headers — you are the only voice.';
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
 
-    var displayName = 'The Ancestor';
+    var displayName = 'The Coach';
     var displayColor = COMMITTEE_COLORS[displayName];
 
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
@@ -590,7 +588,7 @@ COMPANION.App = (function () {
 
     // Check for phase transition from Invocation to Symposium
     // After 2-3 user turns in Phase 1, auto-transition
-    if (currentPhase === 1 && userTurnCount >= 2) {
+    if (currentPhase === 1 && userTurnCount >= 1) {
       transitionToPhase2();
       // Small delay to let UI update before sending
       setTimeout(function () {
@@ -660,10 +658,16 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function checkForThreshold(responseText) {
-    var thresholdMatch = responseText.match(/<!--\s*THRESHOLD:\s*(\{.*?\})\s*-->/);
+    var thresholdMatch = responseText.match(/<!--\s*THRESHOLD:\s*(\{.*?\})\s*-->/s);
     if (thresholdMatch) {
       try {
         var jobData = JSON.parse(thresholdMatch[1]);
+        // Build fallback URL if not provided
+        if (!jobData.url && jobData.title) {
+          var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
+          var l = jobData.zip || '';
+          jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q + '&l=' + l;
+        }
         if (jobData.url) {
           transitionToPhase3(jobData, responseText);
         }
