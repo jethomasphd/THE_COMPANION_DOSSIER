@@ -512,8 +512,11 @@ COMPANION.App = (function () {
     COMPANION.UI.updatePhase(3);
     COMPANION.UI.updateHint(3, activePersonas.length);
 
-    // Extract the committee's statements (everything before the THRESHOLD marker)
-    var statementsText = responseText.replace(/<!--\s*THRESHOLD:.*?-->/s, '').trim();
+    // Extract the committee's statements (strip THRESHOLD markers)
+    var statementsText = responseText
+      .replace(/<!--\s*THRESHOLD:[\s\S]*?-->/g, '')
+      .replace(/THRESHOLD:\s*\{[\s\S]*?\}/g, '')
+      .trim();
 
     COMPANION.UI.showThreshold(jobData, statementsText);
   }
@@ -658,7 +661,12 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function checkForThreshold(responseText) {
-    var thresholdMatch = responseText.match(/<!--\s*THRESHOLD:\s*(\{.*?\})\s*-->/s);
+    // Primary: HTML comment format <!-- THRESHOLD: {...} -->
+    var thresholdMatch = responseText.match(/<!--\s*THRESHOLD:\s*(\{[\s\S]*?\})\s*-->/);
+    // Fallback: bare THRESHOLD: {...} (no HTML comment wrapper)
+    if (!thresholdMatch) {
+      thresholdMatch = responseText.match(/THRESHOLD:\s*(\{[\s\S]*?\})/);
+    }
     if (thresholdMatch) {
       try {
         var jobData = JSON.parse(thresholdMatch[1]);
@@ -669,6 +677,7 @@ COMPANION.App = (function () {
           jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q + '&l=' + l;
         }
         if (jobData.url) {
+          console.log('[Exchange] THRESHOLD detected:', jobData);
           transitionToPhase3(jobData, responseText);
         }
       } catch (e) {

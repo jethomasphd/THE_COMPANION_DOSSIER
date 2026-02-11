@@ -376,6 +376,9 @@ COMPANION.UI = (function () {
 
     var html = text;
 
+    // Strip HTML comments (including THRESHOLD markers) before escaping
+    html = html.replace(/<!--[\s\S]*?-->/g, '');
+
     html = html
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
