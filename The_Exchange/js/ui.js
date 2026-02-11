@@ -267,7 +267,7 @@ COMPANION.UI = (function () {
     if (!elements.inputHint) return;
     if (phase === 1) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The Ancestor is listening. Tell them where you\'ve been.</span>';
+        '<span class="hint-text">The Coach is listening. Tell them where you\'ve been.</span>';
     } else if (phase === 2) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">The Committee deliberates. Share your thoughts, ask questions.</span>';
