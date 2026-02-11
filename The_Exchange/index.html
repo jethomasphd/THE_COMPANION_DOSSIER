@@ -19,6 +19,7 @@
     <section id="act-void" class="act">
       <div class="void-bg"></div>
       <div class="ember-field" id="ember-field"></div>
+      <div class="pilot-label">THE EXCHANGE &mdash; AI-Powered Job Discovery (Pilot)</div>
       <div class="act-content act-content-center">
         <div id="typewriter-block" class="typewriter-block">
           <p id="typewriter-line-1" class="typewriter-line"></p>
@@ -56,9 +57,14 @@
       <div class="act-content act-content-center">
         <div class="dialog-card">
           <div class="dialog-card-ornament">&#9670;</div>
-          <p class="dialog-card-text">What you are about to experience is not a job board, a resume scanner, or a career quiz.</p>
-          <p class="dialog-card-text">It is a <em>structured encounter</em> with four archetypal minds &mdash; The Cartographer, The Ancestor, The Stranger, The Shadow &mdash; summoned to help you find work through dialogue, not algorithms.</p>
-          <p class="dialog-card-text dialog-card-text-dim">Keep scrolling. We will explain everything.</p>
+          <p class="dialog-card-label">What is this?</p>
+          <p class="dialog-card-text">This is <strong>The Exchange</strong> &mdash; an AI-powered job discovery tool. Instead of scrolling through listings, you&rsquo;ll have a conversation with four AI personas who help you figure out what work is right for you.</p>
+          <div class="dialog-card-steps">
+            <div class="dialog-card-step"><span class="step-num">1</span><span class="step-text">You tell the AI about yourself &mdash; your experience, your location, what you&rsquo;re looking for</span></div>
+            <div class="dialog-card-step"><span class="step-num">2</span><span class="step-text">Four archetypal minds discuss your situation, referencing 100 real-format job listings</span></div>
+            <div class="dialog-card-step"><span class="step-num">3</span><span class="step-text">They converge on a match and send you to <strong>Best Jobs Online</strong> to apply</span></div>
+          </div>
+          <p class="dialog-card-text dialog-card-text-dim">You will need an Anthropic API key to power the AI. Keep scrolling &mdash; we&rsquo;ll explain the rest.</p>
         </div>
       </div>
     </section>
@@ -93,7 +99,7 @@
           <div class="dialog-card-ornament">&#9670;</div>
           <p class="dialog-card-label">What is the COMPANION Protocol?</p>
           <p class="dialog-card-text"><a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" class="doctrine-link" target="_blank">The COMPANION Protocol</a> is an open-source system that uses large language models to instantiate archetypal minds &mdash; not as chatbots, but as <em>vessels</em> that think in distinct voices, each guarding a different failure mode of understanding.</p>
-          <p class="dialog-card-text">The Exchange is the third container: labor market archetypes + real job data &rarr; dialogic job discovery.</p>
+          <p class="dialog-card-text">The Exchange is the third container: labor market archetypes + a national job corpus &rarr; dialogic job discovery.</p>
           <p class="dialog-card-text dialog-card-text-dim">The first container was <a href="../The_Chair/" class="doctrine-link">The Chair</a>. The second was <a href="../The_5_Lamps/" class="doctrine-link">The Five Lamps</a>. This one is for everyone who needs work.</p>
         </div>
       </div>
@@ -112,45 +118,86 @@
         <div class="committee-portraits" id="committee-portraits">
           <div class="portrait-reveal" data-persona="The Cartographer" data-delay="0">
             <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">C</span></div>
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="color: #1a8c8c;">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#1a8c8c" stroke-width="1.5" opacity="0.4"/>
+                <circle cx="60" cy="60" r="35" fill="none" stroke="#1a8c8c" stroke-width="1" opacity="0.3"/>
+                <line x1="60" y1="10" x2="60" y2="110" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                <line x1="10" y1="60" x2="110" y2="60" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                <polygon points="60,18 54,45 60,38 66,45" fill="#1a8c8c" opacity="0.9"/>
+                <polygon points="60,102 54,75 60,82 66,75" fill="#1a8c8c" opacity="0.4"/>
+                <polygon points="18,60 45,54 38,60 45,66" fill="#1a8c8c" opacity="0.4"/>
+                <polygon points="102,60 75,54 82,60 75,66" fill="#1a8c8c" opacity="0.4"/>
+                <circle cx="60" cy="60" r="4" fill="#1a8c8c" opacity="0.8"/>
+                <circle cx="60" cy="60" r="2" fill="#030303"/>
+              </svg>
             </div>
             <div class="portrait-info">
               <span class="portrait-title">The Cartographer</span>
               <span class="portrait-name">CARTOGRAPHER</span>
-              <span class="portrait-epithet">The One Who Maps the Territory</span>
+              <span class="portrait-epithet">Maps the labor market terrain</span>
             </div>
           </div>
 
           <div class="portrait-reveal" data-persona="The Ancestor" data-delay="1">
             <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">A</span></div>
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="color: #d4a030;">
+                <line x1="60" y1="30" x2="60" y2="105" stroke="#d4a030" stroke-width="2" opacity="0.7"/>
+                <path d="M60,30 Q30,50 35,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                <path d="M60,30 Q90,50 85,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                <path d="M60,45 Q40,55 38,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                <path d="M60,45 Q80,55 82,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                <path d="M60,55 Q45,65 42,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                <path d="M60,55 Q75,65 78,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                <path d="M60,105 Q50,100 40,110" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.3"/>
+                <path d="M60,105 Q70,100 80,110" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.3"/>
+                <circle cx="60" cy="25" r="6" fill="none" stroke="#d4a030" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="60" cy="25" r="2" fill="#d4a030" opacity="0.8"/>
+              </svg>
             </div>
             <div class="portrait-info">
               <span class="portrait-title">The Ancestor</span>
               <span class="portrait-name">ANCESTOR</span>
-              <span class="portrait-epithet">The Pattern of Your Own Work</span>
+              <span class="portrait-epithet">Reveals the pattern of your career</span>
             </div>
           </div>
 
           <div class="portrait-reveal" data-persona="The Stranger" data-delay="2">
             <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">S</span></div>
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="color: #7a8fa6;">
+                <rect x="30" y="15" width="60" height="95" rx="30" ry="30" fill="none" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                <rect x="38" y="23" width="44" height="80" rx="22" ry="22" fill="none" stroke="#7a8fa6" stroke-width="1" opacity="0.35"/>
+                <line x1="60" y1="23" x2="60" y2="103" stroke="#7a8fa6" stroke-width="0.8" opacity="0.2"/>
+                <circle cx="72" cy="65" r="3" fill="#7a8fa6" opacity="0.7"/>
+                <line x1="30" y1="110" x2="90" y2="110" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                <line x1="25" y1="110" x2="95" y2="110" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+                <path d="M60,35 L60,50" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+                <path d="M52,42 L68,42" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+              </svg>
             </div>
             <div class="portrait-info">
               <span class="portrait-title">The Stranger</span>
               <span class="portrait-name">STRANGER</span>
-              <span class="portrait-epithet">The Jobs Themselves, Given Voice</span>
+              <span class="portrait-epithet">Speaks as the jobs themselves</span>
             </div>
           </div>
 
           <div class="portrait-reveal" data-persona="The Shadow" data-delay="3">
             <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">Sh</span></div>
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="color: #8c3a3a;">
+                <ellipse cx="60" cy="55" rx="35" ry="42" fill="none" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                <ellipse cx="60" cy="55" rx="28" ry="35" fill="none" stroke="#8c3a3a" stroke-width="0.8" opacity="0.3"/>
+                <line x1="60" y1="97" x2="60" y2="115" stroke="#8c3a3a" stroke-width="2" opacity="0.6"/>
+                <line x1="45" y1="115" x2="75" y2="115" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                <line x1="40" y1="40" x2="50" y2="50" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+                <line x1="42" y1="50" x2="52" y2="42" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+                <path d="M45,30 Q60,25 75,30" fill="none" stroke="#8c3a3a" stroke-width="0.6" opacity="0.2"/>
+                <path d="M38,45 Q60,35 82,45" fill="none" stroke="#8c3a3a" stroke-width="0.6" opacity="0.15"/>
+              </svg>
             </div>
             <div class="portrait-info">
               <span class="portrait-title">The Shadow</span>
               <span class="portrait-name">SHADOW</span>
-              <span class="portrait-epithet">The Role That Looks Right But Isn&rsquo;t</span>
+              <span class="portrait-epithet">Warns you off the wrong door</span>
             </div>
           </div>
         </div>
@@ -177,7 +224,7 @@
           </blockquote>
           <div class="doctrine-pause"></div>
           <p class="doctrine-text reveal-line">The Exchange restores the dialogue.</p>
-          <p class="doctrine-text reveal-line">Four minds. Real listings. A threshold you cross together.</p>
+          <p class="doctrine-text reveal-line">Four AI minds. 100 job listings. A threshold you cross together.</p>
         </div>
       </div>
     </section>
@@ -188,9 +235,9 @@
         <div class="dialog-card">
           <div class="dialog-card-ornament">&#9670;</div>
           <p class="dialog-card-label">What happens next</p>
-          <p class="dialog-card-text">The committee has access to real job listings. When you enter, <strong>all four archetypes will be waiting</strong>. They will introduce themselves and begin the dialogue.</p>
-          <p class="dialog-card-text">Together you will explore what you actually need &mdash; not just a title and a salary, but the shape of the work itself. The Cartographer maps the terrain. The Ancestor surfaces your patterns. The Stranger speaks as the jobs themselves. The Shadow warns you off the wrong door.</p>
-          <p class="dialog-card-text">They will narrow toward a match. When convergence is reached, the exit is a real job application.</p>
+          <p class="dialog-card-text">When you enter, <strong>The Ancestor will greet you first</strong> and ask about your background. Then the full committee joins &mdash; all with access to a national database of 100 job listings across 10 industries.</p>
+          <p class="dialog-card-text">Together you will explore what you actually need. The Cartographer maps the terrain. The Ancestor surfaces your patterns. The Stranger speaks as the jobs themselves. The Shadow warns you off the wrong door.</p>
+          <p class="dialog-card-text">They narrow toward a match. When convergence is reached, you&rsquo;ll be sent to <strong>Best Jobs Online</strong> with a prepopulated search matching your role and location.</p>
           <p class="dialog-card-text dialog-card-text-gold">The dialogue is the search. The threshold is the application.</p>
         </div>
       </div>
@@ -207,7 +254,7 @@
           </blockquote>
 
           <p class="summons-text reveal-line">Open the Exchange.</p>
-          <p class="summons-subtext reveal-line">The committee is waiting. The listings are loaded.</p>
+          <p class="summons-subtext reveal-line">The committee is waiting. 100 roles across the national labor market are loaded.</p>
           <div class="summons-btn-wrapper reveal-line">
             <button id="enter-btn" class="summon-btn">
               <span class="summon-btn-prefix">Using this matter, summon</span>
@@ -241,8 +288,8 @@
       <div class="ornament-head">&#10087; &#9753;</div>
       <h2 class="binding-title">The Binding</h2>
       <div class="ornament-line-binding"><span>&#10022;</span></div>
-      <p class="binding-preamble"><span class="drop-cap">T</span>o open the Exchange and summon four archetypal minds, you must provide an <strong>API Key</strong> &mdash; a credential that connects this chamber to the intelligence that powers the committee. Think of it as the key that opens the door.</p>
-      <p class="binding-preamble binding-preamble-note">Your key is stored <em>only</em> on your own device and sent <em>only</em> to Anthropic &mdash; the company behind Claude, the AI that serves as the vessel. No one else sees it. It never touches our servers.</p>
+      <p class="binding-preamble"><span class="drop-cap">T</span>he Exchange is powered by Claude, Anthropic&rsquo;s AI. To activate the four archetypal minds, you need an <strong>API Key</strong> &mdash; a credential that connects you to the intelligence behind the committee.</p>
+      <p class="binding-preamble binding-preamble-note">Your key is stored <em>only</em> on your own device and sent <em>only</em> to Anthropic. No one else sees it. It never touches our servers. The committee has access to a database of 100 job listings and will guide you toward a match on Best Jobs Online.</p>
       <div class="binding-form">
         <label for="api-key-input" class="binding-label">&#9758; Anthropic API Key</label>
         <input type="password" id="api-key-input" class="binding-input" placeholder="sk-ant-api03-..." autocomplete="off">
@@ -312,7 +359,7 @@
         </button>
       </div>
       <div id="input-hint">
-        <span class="hint-text">The full committee is convened. Tell them what you are looking for.</span>
+        <span class="hint-text">The Ancestor will speak first. Tell them about yourself &mdash; your experience, location, and what you&rsquo;re looking for.</span>
       </div>
       <div class="chamber-action-nudge">
         <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The COMPANION Protocol &mdash; open source, public domain &rarr;</a>

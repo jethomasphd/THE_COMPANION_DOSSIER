@@ -168,6 +168,23 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 
+/* ── Pilot Label ── */
+.pilot-label {
+  position: absolute;
+  top: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-family: var(--font-terminal);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  opacity: 0.5;
+  white-space: nowrap;
+  animation: fadeIn 3s ease 0.5s both;
+}
+
 /* ── Typewriter ── */
 .typewriter-block {
   max-width: 700px;
@@ -563,6 +580,45 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gold);
   font-weight: 500;
   margin-top: var(--space-md);
+}
+
+/* ── Onboarding Step Cards ── */
+.dialog-card-steps {
+  margin: var(--space-lg) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.dialog-card-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-left: 2px solid var(--gold-dim);
+  background: rgba(201, 162, 39, 0.03);
+}
+
+.step-num {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%;
+  font-family: var(--font-terminal);
+  font-size: 0.7rem;
+  color: var(--gold);
+  margin-top: 0.15em;
+}
+
+.step-text {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--bone);
+  line-height: 1.6;
 }
 
 

@@ -8,11 +8,11 @@
 
 ## Abstract
 
-THE EXCHANGE is a self-contained web application that fuses the [COMPANION Protocol](https://github.com/jethomasphd/THE_COMPANION_DOSSIER) (a framework for summoning LLM-instantiated personas) with live XML job feed data to create a **dialogic job discovery experience**. 
+THE EXCHANGE is a self-contained web application that fuses the [COMPANION Protocol](https://github.com/jethomasphd/THE_COMPANION_DOSSIER) (a framework for summoning LLM-instantiated personas) with a national labor market corpus to create a **dialogic job discovery experience**.
 
-A user arrives. They are met not by a search bar, but by a **committee of archetypal personas** who engage them in structured dialogue — excavating their actual needs, mapping their local labor market, and narrowing toward a single high-conviction job match. The user exits the experience by stepping through a threshold directly into a job application.
+A user arrives. They are met not by a search bar, but by a **committee of archetypal personas** who engage them in structured dialogue — excavating their actual needs, mapping their local labor market, and narrowing toward a single high-conviction job match. The user exits the experience by stepping through a threshold to a prepopulated search on [Best Jobs Online](https://jobs.best-jobs-online.com).
 
-This is not a job board. It is a counselor. The XML feed is the same feed that powers conventional search. What changes is the interface: from scroll-and-click to summon-and-deliberate.
+This is not a job board. It is a counselor. The pilot includes 100 representative job listings across 10 industries. What changes is the interface: from scroll-and-click to summon-and-deliberate.
 
 The name is deliberate. Labor exchanges were the physical buildings where workers and employers found each other — places of mutual exchange, not one-directional scrolling. THE EXCHANGE restores that mutuality through dialogue.
 
@@ -66,8 +66,8 @@ THE EXCHANGE is one instance of a repeatable architectural pattern:
 
 In this instance:
 - **Personas** = A committee of archetypal labor market voices (The Cartographer, The Ancestor, The Stranger, The Shadow)
-- **Data** = XML job feed listings from one or more sources
-- **Exit** = A direct link to the best-matched job's application URL
+- **Data** = A national corpus of representative job listings
+- **Exit** = A prepopulated search on Best Jobs Online matching the converged role and location
 
 The pattern is general. Future containers may hold different data (research papers, real estate listings, investment opportunities) and different personas. The architecture remains constant.
 
@@ -738,7 +738,7 @@ THE EXCHANGE is the third instance of the **Personas + Data = Container** patter
 
 1. **The Committee of Patriots** — Historical personas + investment principles → The Republic Portfolio
 2. **The 5 Lamps** — Medical ethics board personas + clinical scenarios → medical student training
-3. **The Exchange** — Labor market archetypes + XML job feeds → dialogic job discovery
+3. **The Exchange** — Labor market archetypes + national job corpus → dialogic job discovery
 
 The architecture should be built with reuse in mind.
 
