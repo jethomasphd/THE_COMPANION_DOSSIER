@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    THE EXCHANGE — Cinematic Gateway & Session Orchestrator
    Orchestrates: cinematic intro, scroll reveals, typewriter,
-   ambient audio, XML parsing, 3-phase dialogue, and threshold.
+   ambient audio, job corpus, 3-phase dialogue, and threshold.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -70,66 +70,14 @@ COMPANION.App = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  XML FEED PARSING
+  //  LOCAL JOB CORPUS
   // ═══════════════════════════════════════════════════════════════
 
-  function fetchAndParseXml() {
-    var feedUrl = COMPANION.Matter.getXmlFeedUrl();
-    var fieldMap = COMPANION.Matter.getXmlFieldMap();
-
-    return fetch(feedUrl)
-      .then(function (response) {
-        if (!response.ok) throw new Error('XML fetch failed: ' + response.status);
-        return response.text();
-      })
-      .then(function (xmlText) {
-        return parseXml(xmlText, fieldMap);
-      })
-      .catch(function (err) {
-        console.error('[Exchange] XML fetch error:', err);
-        return [];
-      });
-  }
-
-  function parseXml(xmlText, fieldMap) {
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(xmlText, 'text/xml');
-
-    var errorNode = doc.querySelector('parsererror');
-    if (errorNode) {
-      console.error('[Exchange] XML parse error:', errorNode.textContent);
-      return [];
+  function loadJobCorpus() {
+    if (COMPANION.Matter && typeof COMPANION.Matter.getJobCorpus === 'function') {
+      return COMPANION.Matter.getJobCorpus();
     }
-
-    var items = doc.getElementsByTagName(fieldMap.itemElement);
-    var jobs = [];
-
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      var job = {};
-
-      for (var field in fieldMap.fields) {
-        if (fieldMap.fields.hasOwnProperty(field)) {
-          var tagName = fieldMap.fields[field];
-          // Handle tag names with dots (e.g., "Est.Salary")
-          var el = null;
-          var children = item.childNodes;
-          for (var j = 0; j < children.length; j++) {
-            if (children[j].nodeName === tagName) {
-              el = children[j];
-              break;
-            }
-          }
-          job[field] = el ? (el.textContent || '').trim() : '';
-        }
-      }
-
-      if (job.title && job.url) {
-        jobs.push(job);
-      }
-    }
-
-    return jobs;
+    return [];
   }
 
 
@@ -460,27 +408,25 @@ COMPANION.App = (function () {
         chamberInitialized = true;
       }
 
-      // Load XML feed and then begin
-      COMPANION.UI.showLoading('Loading the labor market corpus...');
-      COMPANION.UI.setInputEnabled(false);
+      // Load job corpus from built-in database
+      jobCorpus = loadJobCorpus();
+      xmlLoaded = true;
 
-      fetchAndParseXml()
-        .then(function (jobs) {
-          jobCorpus = jobs;
-          xmlLoaded = true;
-          COMPANION.UI.hideLoading();
+      // Count categories for the status message
+      var categories = {};
+      jobCorpus.forEach(function (j) {
+        categories[j.category] = (categories[j.category] || 0) + 1;
+      });
+      var catCount = Object.keys(categories).length;
 
-          if (jobs.length > 0) {
-            COMPANION.UI.addSystemMessage(jobs.length + ' roles loaded from the labor market feed.');
-          } else {
-            COMPANION.UI.addSystemMessage('No job listings loaded. The committee will proceed with general guidance.');
-          }
+      COMPANION.UI.addSystemMessage(
+        jobCorpus.length + ' roles loaded across ' + catCount + ' industries from the national labor market database.'
+      );
 
-          // Begin Phase 1: The Invocation
-          setTimeout(function () {
-            beginPhase1();
-          }, 800);
-        });
+      // Begin Phase 1: The Invocation
+      setTimeout(function () {
+        beginPhase1();
+      }, 800);
     } else {
       COMPANION.UI.setInputEnabled(true);
     }
