@@ -52,7 +52,16 @@ COMPANION.API = (function () {
   }
 
 
-  // ── API Key Management ──
+  // ── Proxy & API Key Management ──
+
+  function getProxyUrl() {
+    var config = getConfig();
+    return (config && config.proxyUrl) ? config.proxyUrl.replace(/\/$/, '') : '';
+  }
+
+  function useProxy() {
+    return getProxyUrl().length > 0;
+  }
 
   function getPreConfiguredKey() {
     var config = getConfig();
@@ -60,14 +69,13 @@ COMPANION.API = (function () {
   }
 
   function isPreConfigured() {
-    return getPreConfiguredKey().length > 0;
+    return useProxy() || getPreConfiguredKey().length > 0;
   }
 
   function getApiKey() {
-    // Pre-configured key takes priority
+    if (useProxy()) return '__PROXY__';
     var preKey = getPreConfiguredKey();
     if (preKey) return preKey;
-    // Fall back to user-provided key in localStorage
     return localStorage.getItem(STORAGE_KEY_API) || '';
   }
 
@@ -76,7 +84,7 @@ COMPANION.API = (function () {
   }
 
   function hasApiKey() {
-    return getApiKey().length > 0;
+    return useProxy() || getApiKey().length > 0;
   }
 
   function clearApiKey() {
@@ -241,8 +249,9 @@ COMPANION.API = (function () {
     }
     currentAbortController = new AbortController();
 
+    const isProxy = useProxy();
     const apiKey = getApiKey();
-    if (!apiKey) {
+    if (!isProxy && !apiKey) {
       onError('No API key configured. Please set your Anthropic API key.');
       return;
     }
@@ -261,14 +270,16 @@ COMPANION.API = (function () {
       lastRequestTime = Date.now();
       incrementMessageCount();
 
-      const response = await fetch(API_URL, {
+      const fetchUrl = isProxy ? (getProxyUrl() + '/v1/messages') : API_URL;
+      const fetchHeaders = { 'Content-Type': 'application/json', 'anthropic-version': API_VERSION };
+      if (!isProxy) {
+        fetchHeaders['x-api-key'] = apiKey;
+        fetchHeaders['anthropic-dangerous-direct-browser-access'] = 'true';
+      }
+
+      const response = await fetch(fetchUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': API_VERSION,
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
+        headers: fetchHeaders,
         body: JSON.stringify(body),
         signal: currentAbortController.signal
       });

@@ -1,0 +1,13 @@
+{
+  "name": "companion-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "COMPANION API proxy — Cloudflare Worker that holds the Anthropic API key server-side.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
