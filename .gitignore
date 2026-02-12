@@ -9,6 +9,7 @@
 The_Exchange/js/config.js
 The_5_Lamps/js/config.js
 The_Chair/js/config.js
+Take_Action/config.js
 
 # ── Environment files ──
 .env

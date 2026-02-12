@@ -379,17 +379,17 @@
 </div>
 
 <script src="reps-data.js"></script>
+<script src="config.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    HELP US BEAR THIS
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── CONFIGURATION ──
-   For "print and mail for me": set your form endpoint below.
-   Recommended: https://formspree.io (free tier, encrypted).
-   Or any endpoint that accepts JSON POST.
+   SUBMIT_URL is set by config.js (generated at build time by build.sh).
+   Falls back to empty string if config.js is missing (local dev).
    ─────────────────────────────────────────────────────────── */
-var SUBMIT_URL = '';  // e.g. 'https://formspree.io/f/YOUR_FORM_ID'
+var SUBMIT_URL = window.TAKE_ACTION_SUBMIT_URL || '';
 
 // ── INIT ──────────────────────────────────────────────────────
 (function(){
@@ -536,13 +536,11 @@ function generate(){
   // Benediction
   var bene = document.createElement('div');
   bene.className = 'bene';
+  var email = document.getElementById('f-email').value.trim();
   if(del==='us'){
-    var email = document.getElementById('f-email').value.trim();
     bene.innerHTML = 'We will print and mail '+(recs.length===1?'this letter':'both letters')+' for you, at no charge.' +
       (email ? ' Confirmation to <strong>'+esc(email)+'</strong>.' : '') +
       '<br><br><strong>The waters are receding. What is revealed must not be reburied.</strong>';
-    // Submit for printing
-    submitForPrint({name:name,addr:addr,email:email,letters:allLetters,date:dateStr});
   } else if(del==='email'){
     bene.innerHTML = 'Use the &ldquo;Copy &amp; Open Contact&rdquo; button above each letter. Paste. Send. Thirty seconds.' +
       '<br><br>Physical mail carries more weight. If you can do both, do both.' +
@@ -554,6 +552,15 @@ function generate(){
   out.appendChild(bene);
   out.classList.add('vis');
   out.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Submit entry for all delivery methods
+  submitEntry({
+    name:name, state:stCode, stateName:STATE_NAMES[stCode]||'',
+    delivery:del, email:email, date:dateStr,
+    senators:recs.map(function(r){return r.name}),
+    letters:allLetters.map(function(l){return {to:l.to,body:l.body}}),
+    voice:exp, feeling:feel, extra:extra
+  });
 }
 
 function buildLetter(name,addr,date,rec,exp,feel,extra,dS,dP,dM,dR){
@@ -581,8 +588,8 @@ function buildLetter(name,addr,date,rec,exp,feel,extra,dS,dP,dM,dR){
   return L;
 }
 
-// ── SUBMISSIONS (Print & Mail) ────────────────────────────────
-function submitForPrint(data){
+// ── SUBMISSION ────────────────────────────────────────────────
+function submitEntry(data){
   // Save locally first (backup)
   try{
     var saved = JSON.parse(localStorage.getItem('hubt_submissions')||'[]');
@@ -595,17 +602,9 @@ function submitForPrint(data){
   fetch(SUBMIT_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({
-      _subject:'Print & Mail Request: '+data.name,
-      name:data.name,
-      address:data.addr,
-      email:data.email,
-      date:data.date,
-      letter_count:data.letters.length,
-      letters:data.letters.map(function(l){return {to:l.to,body:l.body}})
-    })
+    body:JSON.stringify(data)
   }).then(function(r){
-    if(r.ok){
+    if(r.ok && data.delivery==='us'){
       var conf = document.createElement('div');
       conf.className = 'submit-confirm vis';
       conf.innerHTML = '<p>Your letters have been received. We will print and mail them. You will receive confirmation at the email you provided.</p>';

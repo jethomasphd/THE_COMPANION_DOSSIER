@@ -63,4 +63,10 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> The_Chair/js/config.js"
 
+# Take_Action (submission endpoint)
+cat > Take_Action/config.js << JSEOF
+window.TAKE_ACTION_SUBMIT_URL = '${COMPANION_PROXY_URL}/api/submit';
+JSEOF
+echo "  -> Take_Action/config.js"
+
 echo "Done. All containers configured for proxy mode."
