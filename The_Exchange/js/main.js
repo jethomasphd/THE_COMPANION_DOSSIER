@@ -412,15 +412,8 @@ COMPANION.App = (function () {
       jobCorpus = loadJobCorpus();
       xmlLoaded = true;
 
-      // Count categories for the status message
-      var categories = {};
-      jobCorpus.forEach(function (j) {
-        categories[j.category] = (categories[j.category] || 0) + 1;
-      });
-      var catCount = Object.keys(categories).length;
-
       COMPANION.UI.addSystemMessage(
-        jobCorpus.length + ' roles loaded across ' + catCount + ' industries from the national labor market database.'
+        'National labor market database loaded. The committee is ready.'
       );
 
       // Begin Phase 1: The Invocation
@@ -509,9 +502,6 @@ COMPANION.App = (function () {
 
   function transitionToPhase3(jobData, responseText) {
     console.log('[Exchange] Transitioning to Phase 3 with job:', jobData.title);
-    currentPhase = 3;
-    COMPANION.UI.updatePhase(3);
-    COMPANION.UI.updateHint(3, activePersonas.length);
     COMPANION.UI.setInputEnabled(false);
 
     // Extract the committee's statements (strip THRESHOLD markers)
@@ -520,14 +510,29 @@ COMPANION.App = (function () {
       .replace(/THRESHOLD:\s*\{[\s\S]*?\}/g, '')
       .trim();
 
-    // Add a dramatic threshold card to the chat after a pause
+    // Stagger the transition for a seamless feel:
+    // 1. Let the final words breathe (1s)
+    // 2. System announcement (1.2s later)
+    // 3. Phase indicator updates (0.8s later)
+    // 4. Threshold card materializes (1s later)
+
+    setTimeout(function () {
+      COMPANION.UI.addSystemMessage('The committee has reached convergence.');
+    }, 1000);
+
+    setTimeout(function () {
+      currentPhase = 3;
+      COMPANION.UI.updatePhase(3);
+      COMPANION.UI.updateHint(3, activePersonas.length);
+    }, 2200);
+
     setTimeout(function () {
       playSummonSFX();
       COMPANION.UI.addThresholdCard(jobData, function () {
         // When user clicks "Cross the Threshold" — show the full ceremony overlay
         COMPANION.UI.showThreshold(jobData, statementsText);
       });
-    }, 1800);
+    }, 3200);
   }
 
 
@@ -536,9 +541,11 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function sendGreetingPrompt() {
-    var greetingText = 'You are The Coach. Greet the seeker warmly in ONE sentence, ' +
-      'then ask them three specific things: (1) Where are you located? (2) What field or industry ' +
-      'are you in? (3) What are you looking for in your next role? Keep your total response to 3-4 sentences.';
+    var greetingText = 'You are The Coach. This is the beginning of the session. ' +
+      'Greet the seeker like a warm, experienced career counselor meeting them for the first time. ' +
+      'In your own natural voice, find out: where they are located, what kind of work they do (or want to do), ' +
+      'and what matters most to them in their next role. Be conversational — not a checklist. ' +
+      'If you sense uncertainty, that is useful too. 3-5 sentences. No headers.';
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
