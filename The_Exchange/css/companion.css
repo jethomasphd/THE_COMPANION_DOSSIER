@@ -643,6 +643,11 @@ a { color: var(--gold); text-decoration: none; }
   margin-bottom: var(--space-xl);
 }
 
+.doctrine-text-bright {
+  color: var(--gold-bright);
+  font-weight: 500;
+}
+
 .doctrine-quote {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.8vw, 2.4rem);
@@ -1691,7 +1696,7 @@ a { color: var(--gold); text-decoration: none; }
   border: 1px solid rgba(201, 162, 39, 0.25);
   background: linear-gradient(170deg, rgba(10, 14, 18, 0.95) 0%, rgba(3, 3, 3, 0.9) 100%);
   text-align: center;
-  animation: threshold-card-arrive 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: threshold-card-arrive 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow:
     0 0 0 1px rgba(201, 162, 39, 0.06),
     0 8px 40px rgba(0, 0, 0, 0.6),
@@ -1699,9 +1704,10 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 @keyframes threshold-card-arrive {
-  0% { opacity: 0; transform: translateY(30px); border-color: transparent; box-shadow: none; }
-  40% { border-color: rgba(201, 162, 39, 0.5); box-shadow: 0 0 60px rgba(201, 162, 39, 0.12); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(24px) scale(0.98); border-color: transparent; box-shadow: none; }
+  30% { opacity: 0.5; border-color: rgba(201, 162, 39, 0.4); }
+  60% { opacity: 0.85; transform: translateY(4px) scale(1); box-shadow: 0 0 60px rgba(201, 162, 39, 0.1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .threshold-chat-ornament {
@@ -1841,16 +1847,16 @@ a { color: var(--gold); text-decoration: none; }
 
 #threshold-screen.active {
   display: flex;
-  animation: threshold-reveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: threshold-reveal 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @keyframes threshold-reveal {
   0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
-  40% {
-    opacity: 0.6;
+  50% {
+    opacity: 0.7;
   }
   100% {
     opacity: 1;

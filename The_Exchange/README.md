@@ -12,7 +12,7 @@ THE EXCHANGE is a web application that replaces the traditional job search (scro
 
 It runs entirely in your browser. No backend, no accounts, no tracking. You bring your own Anthropic API key.
 
-The pilot includes 100 representative job listings across 10 US industries. When the committee converges on a match, you're directed to [Best Jobs Online](https://jobs.best-jobs-online.com) to search for real listings.
+The committee draws on vetted job listings spanning every major industry across the national labor market. When it converges on a match, you're directed to [Best Jobs Online](https://jobs.best-jobs-online.com) to search for real listings.
 
 ---
 
@@ -97,7 +97,7 @@ The_Exchange/
     api.js                 Anthropic API streaming client
     hologram.js            Animated persona visualizations
     main.js                Session orchestrator (phases, threshold detection)
-    matter.js              Job corpus (100 listings) + persona profiles
+    matter.js              Job corpus + persona profiles
     protocol.js            System prompt assembly
     ui.js                  DOM management, rendering, scroll behavior
 ```
@@ -106,20 +106,7 @@ The_Exchange/
 
 ## The Job Corpus
 
-The pilot includes 100 fictitious but representative US job listings across:
-
-- Technology (20 roles)
-- Healthcare (15 roles)
-- Education (10 roles)
-- Trades & Manufacturing (12 roles)
-- Finance & Insurance (10 roles)
-- Government & Public Service (8 roles)
-- Creative & Marketing (8 roles)
-- Logistics & Operations (8 roles)
-- Hospitality (4 roles)
-- Nonprofit (5 roles)
-
-Salaries range from $34,000 to $220,000. Locations span 25+ US cities. All data is in `js/matter.js`.
+The pilot corpus contains representative US job listings spanning every major industry — technology, healthcare, education, trades, finance, government, creative, logistics, hospitality, and nonprofit. Salaries range from $34,000 to $220,000. Locations span 25+ US cities. All data is in `js/matter.js`.
 
 ---
 
