@@ -16,7 +16,7 @@
 window.COMPANION_CONFIG = {
   // OPTION 1 — Proxy mode (recommended).
   // Your Cloudflare Worker URL. Key stays server-side.
-  proxyUrl: '',  // e.g. 'https://companion-proxy.yourname.workers.dev'
+  proxyUrl: '',  // e.g. 'https://companion.yourname.workers.dev'
 
   // OPTION 2 — Direct mode (if no proxy).
   // Your Anthropic API key. Keep this secret. Set a spend limit.
