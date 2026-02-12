@@ -2,6 +2,10 @@
    THE FIVE LAMPS — Claude API Integration
    Handles streaming communication with Anthropic's Claude API
    directly from the browser.
+
+   Supports pre-configured API key via config.js (gitignored)
+   with client-side safeguards: rate limiting, session caps,
+   daily budget tracking.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -14,13 +18,56 @@ COMPANION.API = (function () {
   const STORAGE_KEY_MODEL = 'five_lamps_v1_model';
   const MAX_TOKENS = 4096;
 
+  // Safeguard storage keys
+  const STORAGE_KEY_SESSION_COUNT = 'five_lamps_v1_session_count';
+  const STORAGE_KEY_SESSION_DATE = 'five_lamps_v1_session_date';
+  const STORAGE_KEY_MSG_COUNT = 'five_lamps_v1_msg_count';
+  const STORAGE_KEY_SESSION_START = 'five_lamps_v1_session_start';
+
   let conversationHistory = [];
   let currentAbortController = null;
+  let lastRequestTime = 0;
+
+
+  // ── Configuration ──
+
+  function getConfig() {
+    return (window.COMPANION_CONFIG && typeof window.COMPANION_CONFIG === 'object')
+      ? window.COMPANION_CONFIG
+      : null;
+  }
+
+  function getSafeguards() {
+    var config = getConfig();
+    var defaults = {
+      maxMessagesPerSession: 60,
+      maxSessionsPerDay: 20,
+      cooldownSeconds: 3,
+      sessionTimeoutMinutes: 180
+    };
+    if (config && config.safeguards) {
+      return Object.assign({}, defaults, config.safeguards);
+    }
+    return defaults;
+  }
 
 
   // ── API Key Management ──
 
+  function getPreConfiguredKey() {
+    var config = getConfig();
+    return (config && config.apiKey) ? config.apiKey : '';
+  }
+
+  function isPreConfigured() {
+    return getPreConfiguredKey().length > 0;
+  }
+
   function getApiKey() {
+    // Pre-configured key takes priority
+    var preKey = getPreConfiguredKey();
+    if (preKey) return preKey;
+    // Fall back to user-provided key in localStorage
     return localStorage.getItem(STORAGE_KEY_API) || '';
   }
 
@@ -48,14 +95,114 @@ COMPANION.API = (function () {
   }
 
 
+  // ── Safeguard Enforcement ──
+
+  function checkCooldown() {
+    var guards = getSafeguards();
+    var now = Date.now();
+    var elapsed = (now - lastRequestTime) / 1000;
+    if (lastRequestTime > 0 && elapsed < guards.cooldownSeconds) {
+      return {
+        allowed: false,
+        message: 'Please wait a moment before sending another message.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkSessionMessageLimit() {
+    var guards = getSafeguards();
+    var count = parseInt(sessionStorage.getItem(STORAGE_KEY_MSG_COUNT) || '0', 10);
+    if (count >= guards.maxMessagesPerSession) {
+      return {
+        allowed: false,
+        message: 'This session has reached its message limit (' + guards.maxMessagesPerSession + ' messages). Please start a new session.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkDailySessionLimit() {
+    var guards = getSafeguards();
+    var today = new Date().toISOString().slice(0, 10);
+    var storedDate = localStorage.getItem(STORAGE_KEY_SESSION_DATE);
+    var count = parseInt(localStorage.getItem(STORAGE_KEY_SESSION_COUNT) || '0', 10);
+
+    if (storedDate !== today) {
+      localStorage.setItem(STORAGE_KEY_SESSION_DATE, today);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, '0');
+      return { allowed: true };
+    }
+
+    if (count >= guards.maxSessionsPerDay) {
+      return {
+        allowed: false,
+        message: 'Daily session limit reached. Please return tomorrow.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkSessionTimeout() {
+    var guards = getSafeguards();
+    var start = parseInt(sessionStorage.getItem(STORAGE_KEY_SESSION_START) || '0', 10);
+    if (start > 0) {
+      var elapsed = (Date.now() - start) / 1000 / 60;
+      if (elapsed > guards.sessionTimeoutMinutes) {
+        return {
+          allowed: false,
+          message: 'This session has expired. Please refresh to start a new session.'
+        };
+      }
+    }
+    return { allowed: true };
+  }
+
+  function incrementMessageCount() {
+    var count = parseInt(sessionStorage.getItem(STORAGE_KEY_MSG_COUNT) || '0', 10);
+    sessionStorage.setItem(STORAGE_KEY_MSG_COUNT, String(count + 1));
+  }
+
+  function registerSession() {
+    if (!sessionStorage.getItem(STORAGE_KEY_SESSION_START)) {
+      sessionStorage.setItem(STORAGE_KEY_SESSION_START, String(Date.now()));
+    }
+    var today = new Date().toISOString().slice(0, 10);
+    var storedDate = localStorage.getItem(STORAGE_KEY_SESSION_DATE);
+    if (storedDate !== today) {
+      localStorage.setItem(STORAGE_KEY_SESSION_DATE, today);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, '1');
+    } else {
+      var count = parseInt(localStorage.getItem(STORAGE_KEY_SESSION_COUNT) || '0', 10);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, String(count + 1));
+    }
+  }
+
+  function runSafeguardChecks() {
+    if (!isPreConfigured()) return { allowed: true };
+
+    var checks = [
+      checkCooldown(),
+      checkSessionMessageLimit(),
+      checkDailySessionLimit(),
+      checkSessionTimeout()
+    ];
+
+    for (var i = 0; i < checks.length; i++) {
+      if (!checks[i].allowed) return checks[i];
+    }
+    return { allowed: true };
+  }
+
+
   // ── Conversation History ──
 
   function addUserMessage(content) {
-    conversationHistory.push({ role: 'user', content });
+    conversationHistory.push({ role: 'user', content: content });
   }
 
   function addAssistantMessage(content) {
-    conversationHistory.push({ role: 'assistant', content });
+    conversationHistory.push({ role: 'assistant', content: content });
   }
 
   function getHistory() {
@@ -66,10 +213,6 @@ COMPANION.API = (function () {
     conversationHistory = [];
   }
 
-  /**
-   * Trim history to keep context window manageable.
-   * Keeps the most recent N exchanges.
-   */
   function trimHistory(maxExchanges) {
     maxExchanges = maxExchanges || 40;
     const maxMessages = maxExchanges * 2;
@@ -81,22 +224,18 @@ COMPANION.API = (function () {
 
   // ── Streaming API Call ──
 
-  /**
-   * Send a message to Claude with streaming response.
-   *
-   * @param {string} userMessage - The user's message.
-   * @param {string} systemPrompt - The full system prompt.
-   * @param {function} onChunk - Called with each text chunk as it arrives.
-   * @param {function} onDone - Called when the response is complete, with full text.
-   * @param {function} onError - Called on error, with error message.
-   * @returns {function} Abort function to cancel the request.
-   */
   async function sendMessage(userMessage, systemPrompt, onChunk, onDone, onError) {
-    // Add user message to history
+
+    // Run safeguard checks before proceeding
+    var guard = runSafeguardChecks();
+    if (!guard.allowed) {
+      onError(guard.message);
+      return;
+    }
+
     addUserMessage(userMessage);
     trimHistory();
 
-    // Create abort controller
     if (currentAbortController) {
       currentAbortController.abort();
     }
@@ -119,6 +258,9 @@ COMPANION.API = (function () {
     let fullResponse = '';
 
     try {
+      lastRequestTime = Date.now();
+      incrementMessageCount();
+
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -142,7 +284,6 @@ COMPANION.API = (function () {
         } catch (e) {
           // Use the status code message
         }
-        // Remove the user message we just added since the call failed
         conversationHistory.pop();
         onError(errorMessage);
         return;
@@ -179,12 +320,10 @@ COMPANION.API = (function () {
               break;
             }
 
-            // Handle errors in the stream
             if (data.type === 'error') {
               throw new Error(data.error.message || 'Stream error');
             }
           } catch (parseError) {
-            // Skip unparseable lines (like event: lines)
             if (parseError.message && !parseError.message.includes('JSON')) {
               throw parseError;
             }
@@ -192,20 +331,17 @@ COMPANION.API = (function () {
         }
       }
 
-      // Add assistant response to history
       addAssistantMessage(fullResponse);
       onDone(fullResponse);
 
     } catch (error) {
       if (error.name === 'AbortError') {
-        // Request was cancelled
         if (fullResponse) {
           addAssistantMessage(fullResponse);
         }
         onDone(fullResponse);
         return;
       }
-      // Remove user message on error
       conversationHistory.pop();
       onError(error.message || 'An unexpected error occurred.');
     } finally {
@@ -213,9 +349,6 @@ COMPANION.API = (function () {
     }
   }
 
-  /**
-   * Abort the current streaming request.
-   */
   function abort() {
     if (currentAbortController) {
       currentAbortController.abort();
@@ -230,6 +363,7 @@ COMPANION.API = (function () {
     setApiKey,
     hasApiKey,
     clearApiKey,
+    isPreConfigured,
     getModel,
     setModel,
     sendMessage,
@@ -237,7 +371,8 @@ COMPANION.API = (function () {
     getHistory,
     clearHistory,
     addUserMessage,
-    addAssistantMessage
+    addAssistantMessage,
+    registerSession
   };
 
 })();

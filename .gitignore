@@ -1,0 +1,31 @@
+# ═══════════════════════════════════════════════════════════════
+# COMPANION — Git Ignore
+# Protects API keys, secrets, and deployment-specific configs
+# ═══════════════════════════════════════════════════════════════
+
+# ── Deployment config files (contain API keys) ──
+# Each container has a config.js that holds the live key.
+# These MUST NOT enter the repository.
+The_Exchange/js/config.js
+The_5_Lamps/js/config.js
+The_Chair/js/config.js
+
+# ── Environment files ──
+.env
+.env.*
+*.env
+
+# ── OS artifacts ──
+.DS_Store
+Thumbs.db
+
+# ── Editor artifacts ──
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ── Python artifacts ──
+__pycache__/
+*.pyc
