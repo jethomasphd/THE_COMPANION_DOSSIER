@@ -194,7 +194,11 @@ COMPANION.UI = (function () {
   // ── Threshold Reveal ──
 
   function showThreshold(jobData, statements) {
-    if (!elements.thresholdScreen) return;
+    console.log('[Exchange UI] showThreshold called:', jobData);
+    if (!elements.thresholdScreen) {
+      console.error('[Exchange UI] #threshold-screen element not found!');
+      return;
+    }
 
     if (elements.thresholdTitle) elements.thresholdTitle.textContent = jobData.title || 'Unknown Role';
     if (elements.thresholdCompany) elements.thresholdCompany.textContent = jobData.company || '';
@@ -217,13 +221,8 @@ COMPANION.UI = (function () {
       elements.thresholdStatements.innerHTML = renderMarkdownLight(statements);
     }
 
-    // Show threshold with transition
+    // Show threshold as full-screen overlay
     elements.thresholdScreen.classList.add('active');
-
-    // Scroll it into view
-    setTimeout(function () {
-      elements.thresholdScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
   }
 
   function hideThreshold() {

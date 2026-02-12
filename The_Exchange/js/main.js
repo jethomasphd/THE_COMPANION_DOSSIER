@@ -508,6 +508,7 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function transitionToPhase3(jobData, responseText) {
+    console.log('[Exchange] Transitioning to Phase 3 with job:', jobData.title);
     currentPhase = 3;
     COMPANION.UI.updatePhase(3);
     COMPANION.UI.updateHint(3, activePersonas.length);
@@ -527,10 +528,9 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function sendGreetingPrompt() {
-    var greetingText = 'The Exchange has been opened. You are The Coach. ' +
-      'A seeker stands before you. Introduce yourself in 1-2 sentences, then ask where they\'ve been — ' +
-      'their experience, location, and what they\'re looking for. Be warm, direct, and brief. ' +
-      'No speaker headers — you are the only voice.';
+    var greetingText = 'You are The Coach. Greet the seeker warmly in ONE sentence, ' +
+      'then ask them three specific things: (1) Where are you located? (2) What field or industry ' +
+      'are you in? (3) What are you looking for in your next role? Keep your total response to 3-4 sentences.';
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
@@ -541,7 +541,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount);
 
     COMPANION.API.sendMessage(
       greetingText,
@@ -621,7 +621,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount);
 
     COMPANION.API.sendMessage(
       userText,
@@ -661,28 +661,50 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function checkForThreshold(responseText) {
-    // Primary: HTML comment format <!-- THRESHOLD: {...} -->
-    var thresholdMatch = responseText.match(/<!--\s*THRESHOLD:\s*(\{[\s\S]*?\})\s*-->/);
-    // Fallback: bare THRESHOLD: {...} (no HTML comment wrapper)
-    if (!thresholdMatch) {
-      thresholdMatch = responseText.match(/THRESHOLD:\s*(\{[\s\S]*?\})/);
+    console.log('[Exchange] Checking for threshold in response (' + responseText.length + ' chars)');
+
+    var jsonStr = null;
+
+    // Strategy 1: HTML comment <!-- THRESHOLD: {...} -->
+    var m = responseText.match(/<!--\s*THRESHOLD:\s*(\{[\s\S]*?\})\s*-->/);
+    if (m) { jsonStr = m[1]; console.log('[Exchange] Matched HTML comment format'); }
+
+    // Strategy 2: bare THRESHOLD: {...}
+    if (!jsonStr) {
+      m = responseText.match(/THRESHOLD:\s*(\{[\s\S]*?\})/);
+      if (m) { jsonStr = m[1]; console.log('[Exchange] Matched bare THRESHOLD format'); }
     }
-    if (thresholdMatch) {
-      try {
-        var jobData = JSON.parse(thresholdMatch[1]);
-        // Build fallback URL if not provided
-        if (!jobData.url && jobData.title) {
-          var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
-          var l = jobData.zip || '';
-          jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q + '&l=' + l;
-        }
-        if (jobData.url) {
-          console.log('[Exchange] THRESHOLD detected:', jobData);
-          transitionToPhase3(jobData, responseText);
-        }
-      } catch (e) {
-        console.warn('[Exchange] Could not parse THRESHOLD marker:', e);
+
+    // Strategy 3: any JSON block with "title" and "company" keys near end of response
+    if (!jsonStr) {
+      var lastChunk = responseText.slice(-500);
+      m = lastChunk.match(/(\{[^{}]*"title"\s*:\s*"[^"]+?"[^{}]*"company"\s*:\s*"[^"]+?"[^{}]*\})/);
+      if (m) { jsonStr = m[1]; console.log('[Exchange] Matched JSON block fallback'); }
+    }
+
+    if (!jsonStr) {
+      console.log('[Exchange] No threshold marker found');
+      return;
+    }
+
+    try {
+      var jobData = JSON.parse(jsonStr);
+      console.log('[Exchange] Parsed job data:', jobData);
+
+      // Build URL if missing
+      if (!jobData.url && jobData.title) {
+        var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
+        var l = jobData.zip || '';
+        jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q + '&l=' + l;
       }
+
+      if (jobData.title) {
+        transitionToPhase3(jobData, responseText);
+      } else {
+        console.warn('[Exchange] Job data missing title, skipping threshold');
+      }
+    } catch (e) {
+      console.warn('[Exchange] Could not parse threshold JSON:', e, '\nRaw:', jsonStr);
     }
   }
 
