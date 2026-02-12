@@ -17,7 +17,7 @@ compatibility_date = "2024-01-01"
 # Set your allowed origins to the domains where your containers are hosted.
 # Comma-separated. Example: "https://jethomasphd.github.io,https://companion.yourdomain.com"
 [vars]
-ALLOWED_ORIGINS = "https://jethomasphd.github.io"
+ALLOWED_ORIGINS = "https://jethomasphd.github.io,https://the-companion-dossier.pages.dev"
 
 # The ANTHROPIC_API_KEY is stored as a secret, NOT here.
 # Set it with:  npx wrangler secret put ANTHROPIC_API_KEY
