@@ -1681,32 +1681,21 @@ a { color: var(--gold); text-decoration: none; }
 
 #threshold-screen {
   display: none;
-  position: relative;
-  z-index: 35;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
   padding: var(--space-3xl) var(--space-xl);
-  background: linear-gradient(180deg,
-    var(--void-deep) 0%,
-    rgba(201, 162, 39, 0.03) 40%,
-    rgba(201, 162, 39, 0.06) 60%,
-    var(--void-deep) 100%
-  );
-  border-top: 1px solid rgba(201, 162, 39, 0.2);
+  background: var(--void-deep);
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow-y: auto;
 }
 
 #threshold-screen.active {
   display: flex;
-  opacity: 1;
-  transform: translateY(0);
-  animation: threshold-reveal 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: threshold-reveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @keyframes threshold-reveal {
@@ -1733,6 +1722,7 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 /* Threshold heading */
+.threshold-title,
 .threshold-heading {
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 3vw, 1.8rem);
