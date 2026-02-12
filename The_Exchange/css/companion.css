@@ -314,6 +314,11 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--bone-dim);
 }
 
+.reveal-line em {
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
 .reveal-line-accent {
   color: var(--gold-bright);
   font-weight: 400;
@@ -1676,6 +1681,147 @@ a { color: var(--gold); text-decoration: none; }
 
 
 /* ═══════════════════════════════════════════════════════════════
+   XVIII-B.  IN-CHAT THRESHOLD CARD
+   ═══════════════════════════════════════════════════════════════ */
+
+.threshold-chat-card {
+  max-width: 500px;
+  margin: var(--space-xl) auto !important;
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  background: linear-gradient(170deg, rgba(10, 14, 18, 0.95) 0%, rgba(3, 3, 3, 0.9) 100%);
+  text-align: center;
+  animation: threshold-card-arrive 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 39, 0.06),
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes threshold-card-arrive {
+  0% { opacity: 0; transform: translateY(30px); border-color: transparent; box-shadow: none; }
+  40% { border-color: rgba(201, 162, 39, 0.5); box-shadow: 0 0 60px rgba(201, 162, 39, 0.12); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.threshold-chat-ornament {
+  font-size: 1rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.6em;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.threshold-chat-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-sm);
+}
+
+.threshold-chat-divider-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: var(--space-md) auto;
+  opacity: 0.4;
+}
+
+.threshold-chat-job {
+  margin: var(--space-md) 0;
+}
+
+.threshold-chat-job-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: var(--bone);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+
+.threshold-chat-job-company {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-xs);
+}
+
+.threshold-chat-job-location {
+  font-family: var(--font-terminal);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: var(--space-xs);
+}
+
+.threshold-chat-job-salary {
+  font-family: var(--font-terminal);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--teal-bright);
+}
+
+.threshold-chat-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  padding: 1em 2.5em;
+  margin-top: var(--space-md);
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  cursor: pointer;
+  font-family: var(--font-display);
+  transition: all 0.5s ease;
+  animation: threshold-pulse 3s ease-in-out infinite;
+}
+
+.threshold-chat-btn:hover {
+  background: rgba(201, 162, 39, 0.08);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  box-shadow:
+    0 0 30px rgba(201, 162, 39, 0.15),
+    0 0 60px rgba(201, 162, 39, 0.05);
+  transform: translateY(-2px);
+}
+
+.threshold-chat-btn:active {
+  transform: translateY(0);
+}
+
+.threshold-chat-btn-prefix {
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+.threshold-chat-btn-main {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold-bright);
+}
+
+.threshold-chat-sigil {
+  font-size: 0.8rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.5em;
+  margin-top: var(--space-md);
+  opacity: 0.4;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
    XIX.  THRESHOLD REVEAL SCREEN (Exit Experience)
    ═══════════════════════════════════════════════════════════════ */
 
@@ -2151,6 +2297,14 @@ a { color: var(--gold); text-decoration: none; }
   .threshold-btn {
     padding: 1.1em 2em;
     font-size: 1rem;
+  }
+
+  .threshold-chat-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .threshold-chat-btn {
+    padding: 0.8em 1.8em;
   }
 
   .phase-indicator {

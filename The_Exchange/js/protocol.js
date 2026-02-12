@@ -280,12 +280,18 @@ When you have a match, include this HTML comment at the END of your response:
       var phase2Turns = (turnCount || 0) - 1; // subtract Phase 1 turn
       if (phase2Turns >= 2) {
         prompt += '### *** CONVERGE NOW ***\n';
-        prompt += 'You have enough information. Pick the BEST match from the corpus and OUTPUT THE THRESHOLD MARKER.\n';
-        prompt += 'Do not ask more questions. Deliver final statements and include the marker.\n\n';
+        prompt += 'You have enough information. Pick the BEST match from the corpus.\n';
+        prompt += 'Each persona delivers ONE final sentence — their parting word on why this is the match.\n';
+        prompt += 'Use **[Name]:** headers for each. Make each statement feel like a verdict, not a suggestion.\n';
+        prompt += 'After all personas have spoken, end with a single line:\n';
+        prompt += '"The committee has spoken. Your threshold awaits."\n';
+        prompt += 'Include the THRESHOLD marker at the very end of your response.\n';
+        prompt += 'Do not ask more questions. This is the end.\n\n';
       } else if (phase2Turns >= 1) {
         prompt += '### CONVERGE IF POSSIBLE\n';
-        prompt += 'If you have a reasonable match, converge now and output the THRESHOLD marker.\n';
-        prompt += 'Only ask ONE more clarifying question if absolutely necessary.\n\n';
+        prompt += 'If you have a reasonable match, converge now.\n';
+        prompt += 'Each persona delivers a final sentence. End with "The committee has spoken. Your threshold awaits."\n';
+        prompt += 'Include the THRESHOLD marker at the very end. Only ask ONE more question if absolutely necessary.\n\n';
       }
 
       prompt += '### THRESHOLD MARKER (include at END when converging)\n';
