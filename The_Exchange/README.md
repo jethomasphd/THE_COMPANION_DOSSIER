@@ -36,7 +36,7 @@ Four personas sit with you. Each sees your search differently.
 |---|---|---|
 | **The Coach** | Career pattern reader | Speaks first. Asks where you've been. Sees arcs and themes in your career. |
 | **The Scout** | Labor market navigator | Maps the terrain — what's near you, what pays, where the gaps are. |
-| **The Insider** | Job embodiment | Speaks *as* the role itself: "I am a Data Engineer at Tidewater Analytics..." |
+| **The Insider** | Industry veteran | Knows what the work is really like — the day-to-day, the tradeoffs, what they don't put in the posting. |
 | **The Mirror** | Honest contrarian | Appears only when your stated wants don't match your revealed patterns. |
 
 ---
@@ -57,17 +57,17 @@ Answer naturally. One exchange is enough.
 The Scout and The Insider join. The committee works together:
 - The Scout filters by your **location** and describes what's available nearby
 - The Coach identifies **patterns** in what you've said
-- The Insider **becomes** 1-2 matching roles and speaks as them honestly
+- The Insider gives **honest insider perspective** on what the matching roles are actually like
 
 This takes 1-2 exchanges. The committee moves fast.
 
 ### Phase 3 — The Threshold
 
-The committee converges on a match. Each persona delivers a final statement. A threshold card appears with:
+The committee converges on a match. A card appears in the chat with:
 - The matched job title, company, location, and salary
-- A **"Cross the Threshold"** button linking to Best Jobs Online
+- A direct link to **Best Jobs Online** to search for this role
 
-Click it. Your search has a direction.
+One click. You land on the application page.
 
 ---
 
@@ -120,7 +120,7 @@ When the AI committee converges on a match, the LLM outputs a hidden HTML commen
 <!-- THRESHOLD: {"title": "...", "company": "...", "city": "...", "state": "...", "zip": "...", "salary": "...", "url": "..."} -->
 ```
 
-`main.js` detects this marker in the API response, parses the JSON, and adds a threshold card directly to the chat. Clicking "Cross the Threshold" in the chat card opens the full ceremony overlay with the external job search link. The marker is stripped from the displayed chat.
+`main.js` detects this marker in the API response, parses the JSON, and adds a threshold card directly to the chat with a link to Best Jobs Online. The marker is stripped from the displayed chat. One click takes the user to the application page.
 
 ### Customizing the Corpus
 

@@ -193,15 +193,17 @@ COMPANION.UI = (function () {
 
   // ── In-Chat Threshold Card ──
 
-  function addThresholdCard(jobData, onCross) {
+  function addThresholdCard(jobData) {
     if (!elements.dialogueMessages) return;
 
     var card = document.createElement('div');
     card.className = 'message threshold-chat-card';
 
+    var url = jobData.url || '#';
+
     var html = '';
     html += '<div class="threshold-chat-ornament">&#9671; &#9672; &#9671;</div>';
-    html += '<div class="threshold-chat-heading">The Committee Has Converged</div>';
+    html += '<div class="threshold-chat-heading">Your Match</div>';
     html += '<div class="threshold-chat-divider-line"></div>';
 
     html += '<div class="threshold-chat-job">';
@@ -219,18 +221,12 @@ COMPANION.UI = (function () {
     html += '</div>';
 
     html += '<div class="threshold-chat-divider-line"></div>';
-    html += '<button class="threshold-chat-btn">';
-    html += '<span class="threshold-chat-btn-prefix">The threshold awaits.</span>';
-    html += '<span class="threshold-chat-btn-main">Cross the Threshold</span>';
-    html += '</button>';
-    html += '<div class="threshold-chat-sigil">&#9830; &#9674; &#9830;</div>';
+    html += '<a class="threshold-chat-btn" href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">';
+    html += '<span class="threshold-chat-btn-main">Search for This Role</span>';
+    html += '<span class="threshold-chat-btn-prefix">on Best Jobs Online &rarr;</span>';
+    html += '</a>';
 
     card.innerHTML = html;
-
-    var btn = card.querySelector('.threshold-chat-btn');
-    if (btn && onCross) {
-      btn.addEventListener('click', onCross);
-    }
 
     elements.dialogueMessages.appendChild(card);
     smartScroll();
@@ -318,7 +314,7 @@ COMPANION.UI = (function () {
         '<span class="hint-text">The Committee deliberates. Share your thoughts, ask questions.</span>';
     } else if (phase === 3) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The committee has spoken. Your threshold awaits above.</span>';
+        '<span class="hint-text">Your match is above. Click to search for this role on Best Jobs Online.</span>';
     } else if (activeCount === 0) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">The Exchange awaits.</span>';

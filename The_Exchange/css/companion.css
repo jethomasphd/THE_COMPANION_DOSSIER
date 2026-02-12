@@ -1785,6 +1785,7 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gold);
   cursor: pointer;
   font-family: var(--font-display);
+  text-decoration: none;
   transition: all 0.5s ease;
   animation: threshold-pulse 3s ease-in-out infinite;
 }
