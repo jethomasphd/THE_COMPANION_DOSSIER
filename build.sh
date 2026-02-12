@@ -8,7 +8,7 @@
 #
 # Required environment variable:
 #   COMPANION_PROXY_URL — Your Cloudflare Worker proxy URL
-#                         e.g. https://companion-proxy.yourname.workers.dev
+#                         e.g. https://companion.yourname.workers.dev
 # ═══════════════════════════════════════════════════════════════
 
 set -e

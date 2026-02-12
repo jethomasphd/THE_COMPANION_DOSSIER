@@ -15,7 +15,7 @@
 
 window.COMPANION_CONFIG = {
   // OPTION 1 — Proxy mode (recommended).
-  proxyUrl: '',  // e.g. 'https://companion-proxy.yourname.workers.dev'
+  proxyUrl: '',  // e.g. 'https://companion.yourname.workers.dev'
 
   // OPTION 2 — Direct mode (if no proxy).
   apiKey: '',
