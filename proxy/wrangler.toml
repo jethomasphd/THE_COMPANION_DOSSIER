@@ -24,7 +24,7 @@ ALLOWED_ORIGINS = "https://jethomasphd.github.io,https://the-companion-dossier.p
 # Then paste the ID below.
 [[kv_namespaces]]
 binding = "SUBMISSIONS"
-id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
+id = "df802c9fe1644b07b5b67d59c3c23daf"
 
 # The ANTHROPIC_API_KEY is stored as a secret, NOT here.
 # Set it with:  npx wrangler secret put ANTHROPIC_API_KEY
