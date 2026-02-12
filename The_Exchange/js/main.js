@@ -395,6 +395,13 @@ COMPANION.App = (function () {
 
   function enterChamber() {
     COMPANION.UI.showScreen('chamber');
+    COMPANION.API.registerSession();
+
+    // Hide "Change API Key" in settings when using pre-configured key
+    if (COMPANION.API.isPreConfigured()) {
+      var changeBtn = document.getElementById('change-key-btn');
+      if (changeBtn) changeBtn.style.display = 'none';
+    }
 
     if (!chamberInitialized) {
       try {

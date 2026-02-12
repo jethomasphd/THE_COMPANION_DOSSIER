@@ -1,0 +1,23 @@
+# ═══════════════════════════════════════════════════════════════
+# COMPANION — Cloudflare Worker Configuration
+#
+# This configures the API proxy that sits between your
+# containers and the Anthropic API.
+#
+# Deploy:   npx wrangler deploy
+# Dev:      npx wrangler dev
+# Secrets:  npx wrangler secret put ANTHROPIC_API_KEY
+# ═══════════════════════════════════════════════════════════════
+
+name = "companion-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Environment variables (non-secret)
+# Set your allowed origins to the domains where your containers are hosted.
+# Comma-separated. Example: "https://jethomasphd.github.io,https://companion.yourdomain.com"
+[vars]
+ALLOWED_ORIGINS = "https://jethomasphd.github.io"
+
+# The ANTHROPIC_API_KEY is stored as a secret, NOT here.
+# Set it with:  npx wrangler secret put ANTHROPIC_API_KEY

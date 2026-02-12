@@ -2,6 +2,10 @@
    THE EXCHANGE — Claude API Integration
    Handles streaming communication with Anthropic's Claude API
    directly from the browser.
+
+   Supports pre-configured API key via config.js (gitignored)
+   with client-side safeguards: rate limiting, session caps,
+   daily budget tracking.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -14,13 +18,67 @@ COMPANION.API = (function () {
   const STORAGE_KEY_MODEL = 'the_exchange_v1_model';
   const MAX_TOKENS = 4096;
 
+  // Safeguard storage keys
+  const STORAGE_KEY_SESSION_COUNT = 'the_exchange_v1_session_count';
+  const STORAGE_KEY_SESSION_DATE = 'the_exchange_v1_session_date';
+  const STORAGE_KEY_MSG_COUNT = 'the_exchange_v1_msg_count';
+  const STORAGE_KEY_SESSION_START = 'the_exchange_v1_session_start';
+
   let conversationHistory = [];
   let currentAbortController = null;
+  let lastRequestTime = 0;
 
 
-  // ── API Key Management ──
+  // ── Configuration ──
+
+  function getConfig() {
+    return (window.COMPANION_CONFIG && typeof window.COMPANION_CONFIG === 'object')
+      ? window.COMPANION_CONFIG
+      : null;
+  }
+
+  function getSafeguards() {
+    var config = getConfig();
+    var defaults = {
+      maxMessagesPerSession: 50,
+      maxSessionsPerDay: 20,
+      cooldownSeconds: 3,
+      sessionTimeoutMinutes: 120
+    };
+    if (config && config.safeguards) {
+      return Object.assign({}, defaults, config.safeguards);
+    }
+    return defaults;
+  }
+
+
+  // ── Proxy & API Key Management ──
+
+  function getProxyUrl() {
+    var config = getConfig();
+    return (config && config.proxyUrl) ? config.proxyUrl.replace(/\/$/, '') : '';
+  }
+
+  function useProxy() {
+    return getProxyUrl().length > 0;
+  }
+
+  function getPreConfiguredKey() {
+    var config = getConfig();
+    return (config && config.apiKey) ? config.apiKey : '';
+  }
+
+  function isPreConfigured() {
+    return useProxy() || getPreConfiguredKey().length > 0;
+  }
 
   function getApiKey() {
+    // Proxy mode: no client-side key needed
+    if (useProxy()) return '__PROXY__';
+    // Pre-configured key takes priority
+    var preKey = getPreConfiguredKey();
+    if (preKey) return preKey;
+    // Fall back to user-provided key in localStorage
     return localStorage.getItem(STORAGE_KEY_API) || '';
   }
 
@@ -29,7 +87,7 @@ COMPANION.API = (function () {
   }
 
   function hasApiKey() {
-    return getApiKey().length > 0;
+    return useProxy() || getApiKey().length > 0;
   }
 
   function clearApiKey() {
@@ -45,6 +103,111 @@ COMPANION.API = (function () {
 
   function setModel(model) {
     localStorage.setItem(STORAGE_KEY_MODEL, model);
+  }
+
+
+  // ── Safeguard Enforcement ──
+
+  function checkCooldown() {
+    var guards = getSafeguards();
+    var now = Date.now();
+    var elapsed = (now - lastRequestTime) / 1000;
+    if (lastRequestTime > 0 && elapsed < guards.cooldownSeconds) {
+      return {
+        allowed: false,
+        message: 'Please wait a moment before sending another message.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkSessionMessageLimit() {
+    var guards = getSafeguards();
+    var count = parseInt(sessionStorage.getItem(STORAGE_KEY_MSG_COUNT) || '0', 10);
+    if (count >= guards.maxMessagesPerSession) {
+      return {
+        allowed: false,
+        message: 'This session has reached its message limit (' + guards.maxMessagesPerSession + ' messages). Please start a new session.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkDailySessionLimit() {
+    var guards = getSafeguards();
+    var today = new Date().toISOString().slice(0, 10);
+    var storedDate = localStorage.getItem(STORAGE_KEY_SESSION_DATE);
+    var count = parseInt(localStorage.getItem(STORAGE_KEY_SESSION_COUNT) || '0', 10);
+
+    if (storedDate !== today) {
+      // New day — reset
+      localStorage.setItem(STORAGE_KEY_SESSION_DATE, today);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, '0');
+      return { allowed: true };
+    }
+
+    if (count >= guards.maxSessionsPerDay) {
+      return {
+        allowed: false,
+        message: 'Daily session limit reached. Please return tomorrow.'
+      };
+    }
+    return { allowed: true };
+  }
+
+  function checkSessionTimeout() {
+    var guards = getSafeguards();
+    var start = parseInt(sessionStorage.getItem(STORAGE_KEY_SESSION_START) || '0', 10);
+    if (start > 0) {
+      var elapsed = (Date.now() - start) / 1000 / 60;
+      if (elapsed > guards.sessionTimeoutMinutes) {
+        return {
+          allowed: false,
+          message: 'This session has expired. Please refresh to start a new session.'
+        };
+      }
+    }
+    return { allowed: true };
+  }
+
+  function incrementMessageCount() {
+    var count = parseInt(sessionStorage.getItem(STORAGE_KEY_MSG_COUNT) || '0', 10);
+    sessionStorage.setItem(STORAGE_KEY_MSG_COUNT, String(count + 1));
+  }
+
+  function registerSession() {
+    // Mark session start time
+    if (!sessionStorage.getItem(STORAGE_KEY_SESSION_START)) {
+      sessionStorage.setItem(STORAGE_KEY_SESSION_START, String(Date.now()));
+    }
+    // Increment daily session count
+    var today = new Date().toISOString().slice(0, 10);
+    var storedDate = localStorage.getItem(STORAGE_KEY_SESSION_DATE);
+    if (storedDate !== today) {
+      localStorage.setItem(STORAGE_KEY_SESSION_DATE, today);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, '1');
+    } else {
+      var count = parseInt(localStorage.getItem(STORAGE_KEY_SESSION_COUNT) || '0', 10);
+      localStorage.setItem(STORAGE_KEY_SESSION_COUNT, String(count + 1));
+    }
+  }
+
+  function runSafeguardChecks() {
+    // Only enforce safeguards when using a pre-configured key
+    // (user-provided keys are the user's own responsibility)
+    if (!isPreConfigured()) return { allowed: true };
+
+    var checks = [
+      checkCooldown(),
+      checkSessionMessageLimit(),
+      checkDailySessionLimit(),
+      checkSessionTimeout()
+    ];
+
+    for (var i = 0; i < checks.length; i++) {
+      if (!checks[i].allowed) return checks[i];
+    }
+    return { allowed: true };
   }
 
 
@@ -78,6 +241,14 @@ COMPANION.API = (function () {
   // ── Streaming API Call ──
 
   async function sendMessage(userMessage, systemPrompt, onChunk, onDone, onError) {
+
+    // Run safeguard checks before proceeding
+    var guard = runSafeguardChecks();
+    if (!guard.allowed) {
+      onError(guard.message);
+      return;
+    }
+
     addUserMessage(userMessage);
     trimHistory();
 
@@ -86,8 +257,9 @@ COMPANION.API = (function () {
     }
     currentAbortController = new AbortController();
 
+    var isProxy = useProxy();
     var apiKey = getApiKey();
-    if (!apiKey) {
+    if (!isProxy && !apiKey) {
       onError('No API key configured. Please set your Anthropic API key.');
       return;
     }
@@ -103,14 +275,21 @@ COMPANION.API = (function () {
     var fullResponse = '';
 
     try {
-      var response = await fetch(API_URL, {
+      lastRequestTime = Date.now();
+      incrementMessageCount();
+
+      // Proxy mode: send to proxy, no key in browser
+      // Direct mode: send to Anthropic with key
+      var fetchUrl = isProxy ? (getProxyUrl() + '/v1/messages') : API_URL;
+      var fetchHeaders = { 'Content-Type': 'application/json', 'anthropic-version': API_VERSION };
+      if (!isProxy) {
+        fetchHeaders['x-api-key'] = apiKey;
+        fetchHeaders['anthropic-dangerous-direct-browser-access'] = 'true';
+      }
+
+      var response = await fetch(fetchUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': API_VERSION,
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
+        headers: fetchHeaders,
         body: JSON.stringify(body),
         signal: currentAbortController.signal
       });
@@ -206,6 +385,7 @@ COMPANION.API = (function () {
     setApiKey: setApiKey,
     hasApiKey: hasApiKey,
     clearApiKey: clearApiKey,
+    isPreConfigured: isPreConfigured,
     getModel: getModel,
     setModel: setModel,
     sendMessage: sendMessage,
@@ -213,7 +393,8 @@ COMPANION.API = (function () {
     getHistory: getHistory,
     clearHistory: clearHistory,
     addUserMessage: addUserMessage,
-    addAssistantMessage: addAssistantMessage
+    addAssistantMessage: addAssistantMessage,
+    registerSession: registerSession
   };
 
 })();
