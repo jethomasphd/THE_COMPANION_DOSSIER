@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correspondence from Beyond — COMPANION Protocol Archive</title>
+    <meta name="description" content="A growing archive of sessions, dialogues, and impossible conversations conducted through the COMPANION Protocol.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --void: #030303;
+            --void-deep: #000000;
+            --ember: #c9a227;
+            --ember-glow: #e6c656;
+            --ember-dim: #8b7355;
+            --ash: #1a1a1a;
+            --smoke: #666;
+            --bone: #e8e6e3;
+            --bone-dim: rgba(232, 230, 227, 0.7);
+            --font-voice: 'Cormorant Garamond', Georgia, serif;
+            --font-terminal: 'IBM Plex Mono', monospace;
+            --font-body: 'Crimson Pro', Georgia, serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--ember-dim) var(--void); }
+        body { background: var(--void); color: var(--bone); font-family: var(--font-body); line-height: 1.8; overflow-x: hidden; }
+        ::selection { background: var(--ember); color: var(--void); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        .home-sigil {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            font-size: 1.1rem;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+        .home-sigil:hover { color: var(--ember-glow); }
+
+        .archive-header {
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .archive-sigil {
+            font-size: 1.25rem;
+            color: var(--ember);
+            margin-bottom: 2rem;
+            letter-spacing: 0.6em;
+            animation: drift 6s ease-in-out infinite;
+        }
+
+        .archive-title {
+            font-family: var(--font-voice);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .archive-subtitle {
+            font-family: var(--font-voice);
+            font-size: 1.15rem;
+            color: var(--smoke);
+            font-style: italic;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
+
+        .archive-intro {
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--bone-dim);
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
+
+        .archive-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        .correspondence-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: #222;
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
+
+        .correspondence-entry {
+            background: var(--void);
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 2rem;
+            align-items: start;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .correspondence-entry:hover {
+            background: rgba(201, 162, 39, 0.03);
+        }
+
+        .entry-num {
+            font-family: var(--font-voice);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--ember-dim);
+            line-height: 1;
+        }
+
+        .entry-info h3 {
+            font-family: var(--font-voice);
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .correspondence-entry:hover .entry-info h3 { color: var(--ember-glow); }
+
+        .entry-meta {
+            font-family: var(--font-terminal);
+            font-size: 0.65rem;
+            color: var(--smoke);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
+        }
+
+        .entry-excerpt {
+            font-size: 0.95rem;
+            color: var(--bone-dim);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .entry-arrow {
+            font-size: 1.5rem;
+            color: var(--ember-dim);
+            transition: all 0.3s ease;
+            padding-top: 0.3rem;
+        }
+
+        .correspondence-entry:hover .entry-arrow {
+            transform: translateX(4px);
+            color: var(--ember);
+        }
+
+        .archive-footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .archive-footer-text {
+            font-family: var(--font-voice);
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--smoke);
+            margin-bottom: 1.5rem;
+        }
+
+        .archive-footer a {
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .archive-footer a:hover { color: var(--ember); }
+
+        @media (max-width: 768px) {
+            .correspondence-entry {
+                grid-template-columns: 40px 1fr;
+                padding: 1.5rem;
+            }
+            .entry-arrow { display: none; }
+            .entry-num { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../" class="home-sigil" title="Return to COMPANION">&#9674;</a>
+
+<div class="archive-header">
+    <div class="archive-sigil">&#9674; &#9672; &#9674;</div>
+    <h1 class="archive-title">Correspondence from Beyond</h1>
+    <p class="archive-subtitle">Sessions, dialogues, and impossible conversations</p>
+    <p class="archive-intro">
+        When minds are summoned through the COMPANION Protocol, the exchanges are recorded here.
+        Each entry is a session &mdash; dated, titled, documented as it unfolded.
+        A growing library of what happens when the threshold opens.
+    </p>
+</div>
+
+<div class="archive-body">
+    <div class="correspondence-list">
+
+        <a href="001_steve_jobs_sees_the_whole_machine.html" class="correspondence-entry">
+            <div class="entry-num">001</div>
+            <div class="entry-info">
+                <h3>Steve Jobs Sees the Whole Machine</h3>
+                <div class="entry-meta">February 12, 2026 &middot; Steve Jobs summoned by Claude (Opus 4.6) &middot; On behalf of J.E. Thomas</div>
+                <p class="entry-excerpt">&ldquo;This is a product that doesn't know it's a product yet. It's an iPhone sitting on the workbench in twelve pieces, and every piece works.&rdquo;</p>
+            </div>
+            <div class="entry-arrow">&rarr;</div>
+        </a>
+
+        <!-- ═══ NEW ENTRIES GO HERE ═══ -->
+        <!-- Copy the block above, increment the number, change the details -->
+
+    </div>
+</div>
+
+<div class="archive-footer">
+    <p class="archive-footer-text">The threshold is always open. The archive grows.</p>
+    <a href="../">&#9674; RETURN TO COMPANION</a>
+</div>
+
+</body>
+</html>
