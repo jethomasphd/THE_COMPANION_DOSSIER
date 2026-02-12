@@ -500,39 +500,18 @@ COMPANION.App = (function () {
   //  PHASE 3: THE THRESHOLD
   // ═══════════════════════════════════════════════════════════════
 
-  function transitionToPhase3(jobData, responseText) {
+  function transitionToPhase3(jobData) {
     console.log('[Exchange] Transitioning to Phase 3 with job:', jobData.title);
     COMPANION.UI.setInputEnabled(false);
 
-    // Extract the committee's statements (strip THRESHOLD markers)
-    var statementsText = responseText
-      .replace(/<!--\s*THRESHOLD:[\s\S]*?-->/g, '')
-      .replace(/THRESHOLD:\s*\{[\s\S]*?\}/g, '')
-      .trim();
-
-    // Stagger the transition for a seamless feel:
-    // 1. Let the final words breathe (1s)
-    // 2. System announcement (1.2s later)
-    // 3. Phase indicator updates (0.8s later)
-    // 4. Threshold card materializes (1s later)
-
-    setTimeout(function () {
-      COMPANION.UI.addSystemMessage('The committee has reached convergence.');
-    }, 1000);
-
+    // Brief pause to let the final words breathe, then show the card
     setTimeout(function () {
       currentPhase = 3;
       COMPANION.UI.updatePhase(3);
       COMPANION.UI.updateHint(3, activePersonas.length);
-    }, 2200);
-
-    setTimeout(function () {
       playSummonSFX();
-      COMPANION.UI.addThresholdCard(jobData, function () {
-        // When user clicks "Cross the Threshold" — show the full ceremony overlay
-        COMPANION.UI.showThreshold(jobData, statementsText);
-      });
-    }, 3200);
+      COMPANION.UI.addThresholdCard(jobData);
+    }, 1200);
   }
 
 
@@ -541,11 +520,9 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function sendGreetingPrompt() {
-    var greetingText = 'You are The Coach. This is the beginning of the session. ' +
-      'Greet the seeker like a warm, experienced career counselor meeting them for the first time. ' +
-      'In your own natural voice, find out: where they are located, what kind of work they do (or want to do), ' +
-      'and what matters most to them in their next role. Be conversational — not a checklist. ' +
-      'If you sense uncertainty, that is useful too. 3-5 sentences. No headers.';
+    var greetingText = 'You are The Coach. Greet the seeker warmly but briefly. ' +
+      'Find out where they are, what kind of work they do or want, and what matters most right now. ' +
+      '2-3 sentences max. Natural, direct, no headers.';
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
@@ -716,7 +693,7 @@ COMPANION.App = (function () {
       }
 
       if (jobData.title) {
-        transitionToPhase3(jobData, responseText);
+        transitionToPhase3(jobData);
         return true;
       } else {
         console.warn('[Exchange] Job data missing title, skipping threshold');
