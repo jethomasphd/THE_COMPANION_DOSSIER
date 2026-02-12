@@ -191,7 +191,53 @@ COMPANION.UI = (function () {
   }
 
 
-  // ── Threshold Reveal ──
+  // ── In-Chat Threshold Card ──
+
+  function addThresholdCard(jobData, onCross) {
+    if (!elements.dialogueMessages) return;
+
+    var card = document.createElement('div');
+    card.className = 'message threshold-chat-card';
+
+    var html = '';
+    html += '<div class="threshold-chat-ornament">&#9671; &#9672; &#9671;</div>';
+    html += '<div class="threshold-chat-heading">The Committee Has Converged</div>';
+    html += '<div class="threshold-chat-divider-line"></div>';
+
+    html += '<div class="threshold-chat-job">';
+    html += '<div class="threshold-chat-job-title">' + escapeHtml(jobData.title || 'Your Match') + '</div>';
+    if (jobData.company) {
+      html += '<div class="threshold-chat-job-company">' + escapeHtml(jobData.company) + '</div>';
+    }
+    var location = [jobData.city, jobData.state].filter(Boolean).join(', ');
+    if (location) {
+      html += '<div class="threshold-chat-job-location">' + escapeHtml(location) + '</div>';
+    }
+    if (jobData.salary) {
+      html += '<div class="threshold-chat-job-salary">$' + Number(jobData.salary).toLocaleString() + '</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="threshold-chat-divider-line"></div>';
+    html += '<button class="threshold-chat-btn">';
+    html += '<span class="threshold-chat-btn-prefix">The threshold awaits.</span>';
+    html += '<span class="threshold-chat-btn-main">Cross the Threshold</span>';
+    html += '</button>';
+    html += '<div class="threshold-chat-sigil">&#9830; &#9674; &#9830;</div>';
+
+    card.innerHTML = html;
+
+    var btn = card.querySelector('.threshold-chat-btn');
+    if (btn && onCross) {
+      btn.addEventListener('click', onCross);
+    }
+
+    elements.dialogueMessages.appendChild(card);
+    smartScroll();
+  }
+
+
+  // ── Threshold Reveal (Full-Screen Overlay) ──
 
   function showThreshold(jobData, statements) {
     console.log('[Exchange UI] showThreshold called:', jobData);
@@ -272,7 +318,7 @@ COMPANION.UI = (function () {
         '<span class="hint-text">The Committee deliberates. Share your thoughts, ask questions.</span>';
     } else if (phase === 3) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The threshold has been reached.</span>';
+        '<span class="hint-text">The committee has spoken. Your threshold awaits above.</span>';
     } else if (activeCount === 0) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">The Exchange awaits.</span>';
@@ -440,6 +486,7 @@ COMPANION.UI = (function () {
     addPersonaBadge: addPersonaBadge,
     removePersonaBadge: removePersonaBadge,
     clearPersonaBadges: clearPersonaBadges,
+    addThresholdCard: addThresholdCard,
     showThreshold: showThreshold,
     hideThreshold: hideThreshold,
     getInputText: getInputText,

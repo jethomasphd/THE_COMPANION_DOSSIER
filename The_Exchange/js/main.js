@@ -100,9 +100,9 @@ COMPANION.App = (function () {
 
   function runTypewriterSequence() {
     var lines = [
-      { id: 'typewriter-line-1', text: 'The feed is infinite. You scroll. You search. You hear nothing.', delay: 0 },
-      { id: 'typewriter-line-2', text: 'What if finding work meant being found?', delay: 1400 },
-      { id: 'typewriter-line-3', text: 'Enter the Exchange.', delay: 2200 }
+      { id: 'typewriter-line-1', text: 'You scroll. You apply. Silence.', delay: 0 },
+      { id: 'typewriter-line-2', text: 'What if finding work meant being found?', delay: 2000 },
+      { id: 'typewriter-line-3', text: 'Enter the Exchange.', delay: 2400 }
     ];
 
     var cumulativeDelay = 0;
@@ -512,6 +512,7 @@ COMPANION.App = (function () {
     currentPhase = 3;
     COMPANION.UI.updatePhase(3);
     COMPANION.UI.updateHint(3, activePersonas.length);
+    COMPANION.UI.setInputEnabled(false);
 
     // Extract the committee's statements (strip THRESHOLD markers)
     var statementsText = responseText
@@ -519,7 +520,14 @@ COMPANION.App = (function () {
       .replace(/THRESHOLD:\s*\{[\s\S]*?\}/g, '')
       .trim();
 
-    COMPANION.UI.showThreshold(jobData, statementsText);
+    // Add a dramatic threshold card to the chat after a pause
+    setTimeout(function () {
+      playSummonSFX();
+      COMPANION.UI.addThresholdCard(jobData, function () {
+        // When user clicks "Cross the Threshold" — show the full ceremony overlay
+        COMPANION.UI.showThreshold(jobData, statementsText);
+      });
+    }, 1800);
   }
 
 
@@ -635,11 +643,13 @@ COMPANION.App = (function () {
         isStreaming = false;
         currentStreamMessage.finish();
         currentStreamMessage = null;
-        COMPANION.UI.setInputEnabled(true);
         COMPANION.Hologram.clearSpeaking();
 
-        // Check for THRESHOLD marker in response
-        checkForThreshold(fullText);
+        // Check for THRESHOLD marker before re-enabling input
+        var thresholdFound = checkForThreshold(fullText);
+        if (!thresholdFound) {
+          COMPANION.UI.setInputEnabled(true);
+        }
       },
 
       function (errorMessage) {
@@ -684,7 +694,7 @@ COMPANION.App = (function () {
 
     if (!jsonStr) {
       console.log('[Exchange] No threshold marker found');
-      return;
+      return false;
     }
 
     try {
@@ -700,11 +710,14 @@ COMPANION.App = (function () {
 
       if (jobData.title) {
         transitionToPhase3(jobData, responseText);
+        return true;
       } else {
         console.warn('[Exchange] Job data missing title, skipping threshold');
+        return false;
       }
     } catch (e) {
       console.warn('[Exchange] Could not parse threshold JSON:', e, '\nRaw:', jsonStr);
+      return false;
     }
   }
 

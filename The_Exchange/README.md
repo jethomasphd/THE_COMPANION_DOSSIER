@@ -92,7 +92,7 @@ The_Exchange/
   index.html              The application (landing page + chat interface)
   exchange_grimoire.json   Persona specifications (reference)
   css/
-    exchange.css           All styles
+    companion.css          All styles
   js/
     api.js                 Anthropic API streaming client
     hologram.js            Animated persona visualizations
@@ -133,7 +133,7 @@ When the AI committee converges on a match, the LLM outputs a hidden HTML commen
 <!-- THRESHOLD: {"title": "...", "company": "...", "city": "...", "state": "...", "zip": "...", "salary": "...", "url": "..."} -->
 ```
 
-`main.js` detects this marker in the API response, parses the JSON, and triggers the threshold UI overlay. The marker is stripped from the displayed chat.
+`main.js` detects this marker in the API response, parses the JSON, and adds a threshold card directly to the chat. Clicking "Cross the Threshold" in the chat card opens the full ceremony overlay with the external job search link. The marker is stripped from the displayed chat.
 
 ### Customizing the Corpus
 
@@ -157,6 +157,6 @@ The architecture is general. Different data, different personas, same structure.
 
 ---
 
-*The Feed would have you scroll. The Exchange invites you to speak.*
+*The Flood would have you scroll forever. The Exchange asks you to speak once.*
 
 *Jacob E. Thomas, PhD — February 2026*
