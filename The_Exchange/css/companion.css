@@ -401,6 +401,222 @@ a { color: var(--gold); text-decoration: none; }
   margin: 0 auto;
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   V-B.  CHOOSE YOUR GUIDE — Interactive Selection Cards
+   ═══════════════════════════════════════════════════════════════ */
+
+.guide-select-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.guide-select-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 300;
+  color: var(--bone-dim);
+  margin-top: var(--space-sm);
+  letter-spacing: 0.02em;
+}
+
+.guide-select-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.guide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(201, 162, 39, 0.1);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: inherit;
+  color: inherit;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: guideCardReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.guide-card:nth-child(1) { animation-delay: 0.1s; }
+.guide-card:nth-child(2) { animation-delay: 0.25s; }
+.guide-card:nth-child(3) { animation-delay: 0.4s; }
+.guide-card:nth-child(4) { animation-delay: 0.55s; }
+
+@keyframes guideCardReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.guide-card:hover {
+  border-color: var(--gold-dim);
+  background: rgba(201, 162, 39, 0.04);
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(201, 162, 39, 0.06);
+}
+
+.guide-card:active {
+  transform: translateY(-1px);
+}
+
+/* Selected state */
+.guide-card.selected {
+  border-color: var(--guide-color, var(--gold));
+  background: rgba(201, 162, 39, 0.06);
+  box-shadow:
+    0 0 0 1px var(--guide-color, var(--gold)),
+    0 0 30px rgba(201, 162, 39, 0.12),
+    0 8px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.guide-card.selected .guide-card-sigil svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px var(--guide-color, var(--gold)));
+}
+
+/* Dim unselected cards when one is chosen */
+.guide-select-grid.has-selection .guide-card:not(.selected) {
+  opacity: 0.35;
+  transform: translateY(0) scale(0.97);
+  filter: grayscale(0.4);
+}
+
+.guide-card-sigil {
+  width: 100%;
+  max-width: 120px;
+  aspect-ratio: 3 / 4;
+  border: 2px solid var(--gold-dim);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--void-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15%;
+  margin-bottom: var(--space-md);
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 39, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.guide-card:hover .guide-card-sigil {
+  border-color: var(--guide-color, var(--gold));
+}
+
+.guide-card.selected .guide-card-sigil {
+  border-color: var(--guide-color, var(--gold));
+}
+
+.guide-card-sigil svg {
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.guide-card:hover .guide-card-sigil svg {
+  opacity: 0.9;
+}
+
+.guide-card-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--bone);
+  margin-bottom: var(--space-xs);
+  transition: color 0.4s ease;
+}
+
+.guide-card:hover .guide-card-name,
+.guide-card.selected .guide-card-name {
+  color: var(--guide-color, var(--gold));
+}
+
+.guide-card-line {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--bone-dim);
+  line-height: 1.5;
+  transition: color 0.4s ease;
+}
+
+.guide-card:hover .guide-card-line {
+  color: var(--bone);
+}
+
+.guide-select-footnote {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--bone-dim);
+  margin-top: var(--space-2xl);
+  opacity: 0.6;
+}
+
+/* Summon button disabled state */
+.summon-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Summon button enabled after guide selection */
+.summon-btn.guide-chosen {
+  opacity: 1;
+  pointer-events: auto;
+  animation: glow-breathe 3s ease-in-out infinite;
+}
+
+/* Responsive: Guide cards */
+@media (max-width: 900px) {
+  .guide-select-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 480px) {
+  .guide-select-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .guide-card {
+    padding: var(--space-md) var(--space-sm) var(--space-sm);
+  }
+
+  .guide-card-sigil {
+    max-width: 90px;
+  }
+
+  .guide-card-name {
+    font-size: 0.85rem;
+  }
+
+  .guide-card-line {
+    font-size: 0.65rem;
+  }
+}
+
 .portrait-reveal {
   text-align: center;
   opacity: 0;

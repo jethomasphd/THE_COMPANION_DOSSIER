@@ -260,10 +260,19 @@ When you have a match, include this HTML comment at the very END of your respons
     prompt += '- Active: ' + (activePersonas.length > 0 ? activePersonas.join(', ') : 'none') + '\n\n';
 
     if (phase === 1) {
-      prompt += '### PHASE 1 — THE INVOCATION (Coach solo)\n\n';
-      prompt += '**YOU ARE THE COACH. Speak alone. No [Name]: headers.**\n\n';
-      prompt += 'Greet them briefly. Ask where they are, what they do (or want to do), and what matters most right now.\n';
-      prompt += '2-3 sentences. Warm but direct. No preamble.\n';
+      var guideName = activePersonas.length > 0 ? activePersonas[0] : 'The Coach';
+      prompt += '### PHASE 1 — THE INVOCATION (' + guideName + ' solo)\n\n';
+      prompt += '**YOU ARE ' + guideName.toUpperCase() + '. Speak alone. No [Name]: headers.**\n\n';
+      if (guideName === 'The Scout') {
+        prompt += 'Ask where they are and what field they work in. Map their position. Be precise and spatial.\n';
+      } else if (guideName === 'The Insider') {
+        prompt += 'Ask what work they have actually done and what they want. Give honest perspective.\n';
+      } else if (guideName === 'The Mirror') {
+        prompt += 'Ask what they are looking for. Assess whether stated wants match revealed patterns.\n';
+      } else {
+        prompt += 'Ask where they are, what they do (or want to do), and what matters most right now.\n';
+      }
+      prompt += '2-3 sentences. Direct. No preamble.\n';
     } else if (phase === 2) {
       prompt += '### PHASE 2 — THE SYMPOSIUM (Full committee)\n\n';
       prompt += '**ALL ACTIVE PERSONAS SPEAK. Use [Name]: headers. 1-2 sentences each. No more.**\n\n';
