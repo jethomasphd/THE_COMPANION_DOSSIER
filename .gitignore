@@ -3,12 +3,11 @@
 # Protects API keys, secrets, and deployment-specific configs
 # ═══════════════════════════════════════════════════════════════
 
-# ── Deployment config files (contain API keys) ──
-# Each container has a config.js that holds the live key.
-# These MUST NOT enter the repository.
-The_Exchange/js/config.js
-The_5_Lamps/js/config.js
-The_Chair/js/config.js
+# ── Deployment config files ──
+# config.js files use proxy mode (no secrets — just the worker URL).
+# They are committed so they deploy with the site.
+# The API key lives server-side in the Cloudflare Worker.
+# If you switch to direct mode with an apiKey, do NOT commit that file.
 Take_Action/config.js
 
 # ── Environment files ──
