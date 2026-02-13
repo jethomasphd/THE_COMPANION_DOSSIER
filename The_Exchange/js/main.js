@@ -17,6 +17,7 @@ COMPANION.App = (function () {
   var jobCorpus = [];         // Parsed XML job listings
   var xmlLoaded = false;
   var userTurnCount = 0;
+  var selectedGuide = null;   // The archetype the user chose
 
   // ── Audio State ──
   var ambientAudioCtx = null;
@@ -316,7 +317,22 @@ COMPANION.App = (function () {
   function bindEvents() {
     var els = COMPANION.UI.elements();
 
+    // ── Guide Selection ──
+    var guideGrid = document.getElementById('guide-select-grid');
+    if (guideGrid) {
+      var guideCards = guideGrid.querySelectorAll('.guide-card');
+      guideCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var guideName = card.getAttribute('data-guide');
+          var guideColor = card.getAttribute('data-color');
+          selectGuide(guideName, guideColor, guideCards, guideGrid);
+        });
+      });
+    }
+
     on(els.enterBtn, 'click', function () {
+      if (!selectedGuide) return;
+
       var intro = document.getElementById('cinematic-intro');
       if (intro) intro.classList.add('hidden');
 
@@ -434,6 +450,56 @@ COMPANION.App = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
+  //  GUIDE SELECTION
+  // ═══════════════════════════════════════════════════════════════
+
+  function selectGuide(name, color, allCards, grid) {
+    selectedGuide = { name: name, color: color };
+
+    // Update card visual states
+    allCards.forEach(function (c) {
+      c.classList.remove('selected');
+      c.style.removeProperty('--guide-color');
+    });
+
+    var chosen = grid.querySelector('[data-guide="' + name + '"]');
+    if (chosen) {
+      chosen.classList.add('selected');
+      chosen.style.setProperty('--guide-color', color);
+    }
+
+    grid.classList.add('has-selection');
+
+    // Enable the summon button and update text
+    var enterBtn = document.getElementById('enter-btn');
+    if (enterBtn) {
+      enterBtn.disabled = false;
+      enterBtn.classList.add('guide-chosen');
+    }
+
+    var guideNameEl = document.getElementById('summon-btn-guide-name');
+    if (guideNameEl) {
+      guideNameEl.textContent = name;
+    }
+
+    var guideMsgEl = document.getElementById('summons-guide-text');
+    if (guideMsgEl) {
+      guideMsgEl.textContent = name + ' is ready.';
+    }
+
+    // Scroll the summons section into view
+    var summonsSection = document.getElementById('act-summons');
+    if (summonsSection) {
+      setTimeout(function () {
+        summonsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 400);
+    }
+
+    playSummonSFX();
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
   //  PHASE 1: THE INVOCATION
   // ═══════════════════════════════════════════════════════════════
 
@@ -441,9 +507,9 @@ COMPANION.App = (function () {
     currentPhase = 1;
     COMPANION.UI.updatePhase(1);
 
-    // Summon The Coach
-    var coachName = 'The Coach';
-    var coachColor = COMMITTEE_COLORS[coachName];
+    // Summon the chosen guide (default to The Coach if none selected)
+    var coachName = selectedGuide ? selectedGuide.name : 'The Coach';
+    var coachColor = selectedGuide ? selectedGuide.color : COMMITTEE_COLORS['The Coach'];
 
     activePersonas.push({
       name: coachName,
@@ -458,7 +524,7 @@ COMPANION.App = (function () {
     });
 
     COMPANION.UI.updateHint(1, 1);
-    COMPANION.UI.addSystemMessage('The Coach has been summoned. The Invocation begins.');
+    COMPANION.UI.addSystemMessage(coachName + ' has been summoned. The Invocation begins.');
 
     // Send greeting prompt
     setTimeout(function () {
@@ -475,7 +541,12 @@ COMPANION.App = (function () {
     currentPhase = 2;
     COMPANION.UI.updatePhase(2);
 
-    var newPersonas = ['The Scout', 'The Insider'];
+    // Add the personas that aren't already the selected guide
+    var activeNames = activePersonas.map(function (p) { return p.name; });
+    var phase2Full = ['The Coach', 'The Scout', 'The Insider'];
+    var newPersonas = phase2Full.filter(function (name) {
+      return activeNames.indexOf(name) === -1;
+    });
     var stagger = 800;
 
     newPersonas.forEach(function (name, index) {
@@ -497,7 +568,8 @@ COMPANION.App = (function () {
     });
 
     setTimeout(function () {
-      COMPANION.UI.addSystemMessage('The Scout and The Insider have entered. The Symposium begins.');
+      var joinedNames = newPersonas.join(' and ');
+      COMPANION.UI.addSystemMessage(joinedNames + ' joined. The Symposium begins.');
       COMPANION.UI.updateHint(2, activePersonas.length);
     }, newPersonas.length * stagger + 400);
   }
@@ -527,9 +599,24 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function sendGreetingPrompt() {
-    var greetingText = 'You are The Coach. Greet the seeker warmly but briefly. ' +
-      'Find out where they are, what kind of work they do or want, and what matters most right now. ' +
-      '2-3 sentences max. Natural, direct, no headers.';
+    var guideName = selectedGuide ? selectedGuide.name : 'The Coach';
+
+    var guideGreetings = {
+      'The Coach': 'You are The Coach. Greet the seeker warmly but briefly. ' +
+        'Find out where they are, what kind of work they do or want, and what matters most right now. ' +
+        '2-3 sentences max. Natural, direct, no headers.',
+      'The Scout': 'You are The Scout. Greet the seeker with precision and purpose. ' +
+        'Ask where they are located and what field they work in or want to work in. ' +
+        'You see the labor market like terrain — map their position first. 2-3 sentences max. No headers.',
+      'The Insider': 'You are The Insider. Greet the seeker honestly and directly. ' +
+        'Ask what work they have done that they were actually proud of, and what kind of work they are looking for. ' +
+        'You know what jobs are really like from the inside. 2-3 sentences max. No headers.',
+      'The Mirror': 'You are The Mirror. Greet the seeker with a direct challenge — not hostile, but honest. ' +
+        'Ask them what they are looking for in their next role. You will assess whether they mean it. ' +
+        '2-3 sentences max. No headers.'
+    };
+
+    var greetingText = guideGreetings[guideName] || guideGreetings['The Coach'];
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
