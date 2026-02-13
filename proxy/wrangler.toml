@@ -17,7 +17,7 @@ compatibility_date = "2024-01-01"
 # Set your allowed origins to the domains where your containers are hosted.
 # Comma-separated. Example: "https://jethomasphd.github.io,https://companion.yourdomain.com"
 [vars]
-ALLOWED_ORIGINS = "https://jethomasphd.github.io,https://the-companion-dossier.pages.dev"
+ALLOWED_ORIGINS = "https://jethomasphd.github.io,https://the-companion-dossier.pages.dev,https://www.the-companion-dossier.com,https://the-companion-dossier.com"
 
 # ── KV Namespace for Take_Action letter submissions ──
 # Create with:  npx wrangler kv namespace create SUBMISSIONS
