@@ -621,8 +621,8 @@ COMPANION.App = (function () {
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
 
-    var displayName = 'The Coach';
-    var displayColor = COMMITTEE_COLORS[displayName];
+    var displayName = guideName;
+    var displayColor = COMMITTEE_COLORS[displayName] || COMMITTEE_COLORS['The Coach'];
 
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
