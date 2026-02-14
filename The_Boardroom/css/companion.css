@@ -409,6 +409,17 @@ a { color: var(--gold); text-decoration: none; }
 .portrait-reveal[data-delay="6"] { transition-delay: 0.9s; }
 .portrait-reveal[data-delay="7"] { transition-delay: 1.05s; }
 
+/* Portrait Initials (placeholder before Wikipedia images load) */
+.portrait-initials {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  z-index: 1;
+  position: relative;
+}
+
 /* Sigil Portrait Frame */
 .portrait-frame-cinematic {
   position: relative;
@@ -448,12 +459,15 @@ a { color: var(--gold); text-decoration: none; }
   mix-blend-mode: overlay;
 }
 
-.portrait-frame-cinematic svg {
-  width: 60%;
-  height: auto;
-  opacity: 0.8;
-  filter: drop-shadow(0 0 12px currentColor);
-  animation: breathe 8s ease-in-out infinite;
+.portrait-frame-cinematic svg,
+.portrait-frame-cinematic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  filter: sepia(0.15) saturate(0.8);
+  z-index: 1;
+  position: relative;
 }
 
 .portrait-info {
@@ -587,6 +601,19 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--smoke);
   font-style: italic;
   margin-top: var(--space-xs);
+}
+
+.packet-field-guidance {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(232, 224, 208, 0.4);
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.packet-field-guidance em {
+  color: var(--gold-dim);
+  font-style: italic;
 }
 
 
@@ -1788,6 +1815,62 @@ a { color: var(--gold); text-decoration: none; }
 .jump-to-latest:hover {
   background: rgba(201, 162, 39, 0.12);
   border-color: var(--gold);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   XIX.  NAVIGATION SIGIL & FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+
+.nav-sigil {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1000;
+  font-size: 1.1rem;
+  color: var(--gold-dim);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.nav-sigil:hover {
+  color: var(--gold-bright);
+}
+
+.boardroom-footer {
+  padding: 2.5rem 2rem;
+  background: var(--void);
+  border-top: 1px solid var(--ash);
+  text-align: center;
+}
+
+.boardroom-footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.boardroom-footer .footer-links a {
+  font-family: var(--font-terminal);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--gold-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.boardroom-footer .footer-links a:hover {
+  color: var(--gold);
+}
+
+.boardroom-footer .footer-meta {
+  font-family: var(--font-terminal);
+  font-size: 0.55rem;
+  color: #444;
+  line-height: 2;
 }
 
 
