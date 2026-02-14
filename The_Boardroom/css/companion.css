@@ -860,6 +860,44 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gold-bright);
 }
 
+@keyframes summon-breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(201, 162, 39, 0);
+    border-color: var(--gold);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(201, 162, 39, 0.2), 0 0 50px rgba(201, 162, 39, 0.08);
+    border-color: var(--gold-bright);
+  }
+}
+
+@keyframes summon-arrow-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+.summon-btn {
+  animation: summon-breathe 3s ease-in-out infinite;
+}
+
+.summon-btn:hover {
+  animation: none;
+}
+
+.summons-btn-wrapper {
+  position: relative;
+}
+
+.summons-btn-wrapper::after {
+  content: '\2193';
+  display: block;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--gold-dim);
+  margin-top: 0.8rem;
+  animation: summon-arrow-bob 2s ease-in-out infinite;
+}
+
 .summons-motto {
   font-family: var(--font-terminal);
   font-size: 0.65rem;

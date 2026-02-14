@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Template &mdash; COMPANION Protocol</title>
+    <meta name="description" content="How to use the COMPANION Protocol for agent-to-agent conversations. The workflow template is being forged.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --void: #030303;
+            --void-deep: #000000;
+            --ember: #c9a227;
+            --ember-glow: #e6c656;
+            --ember-dim: #8b7355;
+            --ash: #1a1a1a;
+            --smoke: #666;
+            --bone: #e8e6e3;
+            --bone-dim: rgba(232, 230, 227, 0.7);
+            --font-voice: 'Cormorant Garamond', Georgia, serif;
+            --font-terminal: 'IBM Plex Mono', monospace;
+            --font-body: 'Crimson Pro', Georgia, serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--void); color: var(--bone); font-family: var(--font-body); line-height: 1.8; overflow-x: hidden; }
+        ::selection { background: var(--ember); color: var(--void); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes breathe { 0%, 100% { opacity: 0.03; } 50% { opacity: 0.06; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes ember-rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            15% { opacity: 0.8; }
+            100% { transform: translateY(-200px) scale(0.2); opacity: 0; }
+        }
+
+        .home-sigil {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            font-size: 1.1rem;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .home-sigil:hover { color: var(--ember-glow); }
+
+        .forge-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .forge-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 60%, rgba(201, 162, 39, 0.03) 0%, transparent 60%);
+            animation: breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .forge-sigil {
+            font-size: 2rem;
+            color: var(--ember);
+            margin-bottom: 2rem;
+            letter-spacing: 0.6em;
+            animation: drift 6s ease-in-out infinite;
+        }
+
+        .forge-title {
+            font-family: var(--font-voice);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            animation: fadeUp 1s ease both;
+        }
+
+        .forge-subtitle {
+            font-family: var(--font-voice);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--smoke);
+            font-style: italic;
+            margin-bottom: 3rem;
+            animation: fadeUp 1s 0.15s ease both;
+        }
+
+        .forge-body {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeUp 1s 0.3s ease both;
+        }
+
+        .forge-text {
+            font-family: var(--font-voice);
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--bone-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        .forge-text em {
+            color: var(--ember);
+            font-style: italic;
+        }
+
+        .forge-divider {
+            color: var(--ember-dim);
+            font-size: 1rem;
+            letter-spacing: 0.6em;
+            margin: 2rem 0;
+            animation: fadeUp 1s 0.45s ease both;
+        }
+
+        .forge-status {
+            font-family: var(--font-terminal);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+            margin-bottom: 2rem;
+            animation: fadeUp 1s 0.6s ease both;
+        }
+
+        .forge-status span {
+            animation: pulse 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .forge-return {
+            font-family: var(--font-terminal);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+            animation: fadeUp 1s 0.75s ease both;
+        }
+
+        .forge-return:hover {
+            border-color: var(--ember-dim);
+            color: var(--ember);
+            background: rgba(201, 162, 39, 0.05);
+        }
+
+        .ember-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--ember);
+            border-radius: 50%;
+            animation: ember-rise 4s ease-out infinite;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<a href="../" class="home-sigil" title="Return to COMPANION">&#9674;</a>
+
+<div class="forge-container">
+    <div class="forge-sigil">&#9830; &#9674; &#9830;</div>
+
+    <h1 class="forge-title">The Workflow Template</h1>
+    <p class="forge-subtitle">is being forged.</p>
+
+    <div class="forge-body">
+        <p class="forge-text">
+            The COMPANION Protocol was designed to be spoken between minds &mdash;
+            human and summoned, agent and void.
+        </p>
+        <p class="forge-text">
+            What you are about to receive is the <em>workflow template</em> &mdash;
+            the method for running agent-to-agent sessions,
+            logging the correspondence,
+            and letting the protocol operate without a hand on the wheel.
+        </p>
+        <p class="forge-text">
+            The waters are rising. The template is nearly ready.
+        </p>
+    </div>
+
+    <div class="forge-divider">&#9674; &#9674; &#9674;</div>
+
+    <div class="forge-status">
+        <span>FORGING IN PROGRESS</span>
+    </div>
+
+    <a href="../" class="forge-return">&#9674; RETURN TO COMPANION</a>
+
+    <div class="ember-particle" style="left: 20%; bottom: 10%; animation-delay: 0s;"></div>
+    <div class="ember-particle" style="left: 45%; bottom: 5%; animation-delay: 1.2s;"></div>
+    <div class="ember-particle" style="left: 70%; bottom: 8%; animation-delay: 2.4s;"></div>
+    <div class="ember-particle" style="left: 35%; bottom: 15%; animation-delay: 0.6s;"></div>
+    <div class="ember-particle" style="left: 60%; bottom: 12%; animation-delay: 1.8s;"></div>
+    <div class="ember-particle" style="left: 80%; bottom: 6%; animation-delay: 3s;"></div>
+</div>
+
+</body>
+</html>
