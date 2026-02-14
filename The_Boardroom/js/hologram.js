@@ -1,164 +1,71 @@
 /* ═══════════════════════════════════════════════════════════════
-   COMPANION — The Boardroom: Abstract Sigil Council Gallery
-   Each council seat is represented by a geometric sigil in
-   their persona color, rendered as inline SVG.
+   COMPANION — The Boardroom: Museum-Quality Portrait Gallery
+   Portraits sourced from Wikipedia at high resolution.
+   No canvas processing — pure photographic rendering with
+   CSS-driven film grain, varnish glaze, and warm color grading.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
 
 COMPANION.Hologram = (function () {
 
+  // ── The Eight Seats ──
+
   var COMMITTEE = {
     'Steve Jobs': {
       role: 'The Chair',
-      color: '#c0392b',
-      sigil: 'blade'
+      article: 'Steve_Jobs',
+      color: '#c0392b'
     },
     'Warren Buffett': {
       role: 'The CFO',
-      color: '#2c6e49',
-      sigil: 'scales'
+      article: 'Warren_Buffett',
+      color: '#2c6e49'
     },
     'Henry Ford': {
       role: 'The COO',
-      color: '#5d4e37',
-      sigil: 'gear'
+      article: 'Henry_Ford',
+      color: '#5d4e37'
     },
     'Andrew Carnegie': {
       role: 'The Scale',
-      color: '#708090',
-      sigil: 'pillar'
+      article: 'Andrew_Carnegie',
+      color: '#708090'
     },
     'Thomas Edison': {
       role: 'The CTO',
-      color: '#d4a030',
-      sigil: 'spark'
+      article: 'Thomas_Edison',
+      color: '#d4a030'
     },
     'Walt Disney': {
       role: 'The CMO',
-      color: '#4a6fa5',
-      sigil: 'star'
+      article: 'Walt_Disney',
+      color: '#4a6fa5'
     },
     'Theodore Roosevelt': {
       role: 'The Counsel',
-      color: '#8b4513',
-      sigil: 'shield'
+      article: 'Theodore_Roosevelt',
+      color: '#8b4513'
     },
     'Abraham Lincoln': {
       role: 'The Conscience',
-      color: '#2f4f4f',
-      sigil: 'column'
+      article: 'Abraham_Lincoln',
+      color: '#2f4f4f'
     }
   };
 
-  var SIGILS = {
 
-    blade: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<line x1="60" y1="10" x2="60" y2="95" stroke="' + color + '" stroke-width="2" opacity="0.8"/>' +
-        '<polygon points="60,10 52,35 60,30 68,35" fill="' + color + '" opacity="0.9"/>' +
-        '<line x1="40" y1="90" x2="80" y2="90" stroke="' + color + '" stroke-width="2.5" opacity="0.7"/>' +
-        '<line x1="50" y1="90" x2="50" y2="105" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="70" y1="90" x2="70" y2="105" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="45" y1="105" x2="75" y2="105" stroke="' + color + '" stroke-width="1" opacity="0.4"/>' +
-        '<line x1="55" y1="30" x2="55" y2="85" stroke="' + color + '" stroke-width="0.5" opacity="0.2"/>' +
-        '<line x1="65" y1="30" x2="65" y2="85" stroke="' + color + '" stroke-width="0.5" opacity="0.2"/>' +
-        '</svg>';
-    },
-
-    scales: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<line x1="60" y1="15" x2="60" y2="100" stroke="' + color + '" stroke-width="2" opacity="0.7"/>' +
-        '<line x1="25" y1="40" x2="95" y2="40" stroke="' + color + '" stroke-width="1.5" opacity="0.6"/>' +
-        '<path d="M25,40 Q25,65 40,65 Q55,65 55,40" fill="none" stroke="' + color + '" stroke-width="1.2" opacity="0.5"/>' +
-        '<path d="M65,40 Q65,65 80,65 Q95,65 95,40" fill="none" stroke="' + color + '" stroke-width="1.2" opacity="0.5"/>' +
-        '<circle cx="60" cy="15" r="5" fill="none" stroke="' + color + '" stroke-width="1.5" opacity="0.6"/>' +
-        '<circle cx="60" cy="15" r="2" fill="' + color + '" opacity="0.8"/>' +
-        '<line x1="50" y1="100" x2="70" y2="100" stroke="' + color + '" stroke-width="2" opacity="0.5"/>' +
-        '<line x1="45" y1="105" x2="75" y2="105" stroke="' + color + '" stroke-width="1" opacity="0.3"/>' +
-        '</svg>';
-    },
-
-    gear: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<circle cx="60" cy="60" r="30" fill="none" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<circle cx="60" cy="60" r="18" fill="none" stroke="' + color + '" stroke-width="1" opacity="0.35"/>' +
-        '<circle cx="60" cy="60" r="5" fill="' + color + '" opacity="0.6"/>' +
-        '<line x1="60" y1="15" x2="60" y2="30" stroke="' + color + '" stroke-width="3" opacity="0.6"/>' +
-        '<line x1="60" y1="90" x2="60" y2="105" stroke="' + color + '" stroke-width="3" opacity="0.6"/>' +
-        '<line x1="15" y1="60" x2="30" y2="60" stroke="' + color + '" stroke-width="3" opacity="0.6"/>' +
-        '<line x1="90" y1="60" x2="105" y2="60" stroke="' + color + '" stroke-width="3" opacity="0.6"/>' +
-        '<line x1="28" y1="28" x2="39" y2="39" stroke="' + color + '" stroke-width="2.5" opacity="0.5"/>' +
-        '<line x1="81" y1="81" x2="92" y2="92" stroke="' + color + '" stroke-width="2.5" opacity="0.5"/>' +
-        '<line x1="92" y1="28" x2="81" y2="39" stroke="' + color + '" stroke-width="2.5" opacity="0.5"/>' +
-        '<line x1="28" y1="92" x2="39" y2="81" stroke="' + color + '" stroke-width="2.5" opacity="0.5"/>' +
-        '</svg>';
-    },
-
-    pillar: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<rect x="40" y="25" width="40" height="75" fill="none" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="50" y1="25" x2="50" y2="100" stroke="' + color + '" stroke-width="0.8" opacity="0.25"/>' +
-        '<line x1="60" y1="25" x2="60" y2="100" stroke="' + color + '" stroke-width="0.8" opacity="0.25"/>' +
-        '<line x1="70" y1="25" x2="70" y2="100" stroke="' + color + '" stroke-width="0.8" opacity="0.25"/>' +
-        '<line x1="35" y1="20" x2="85" y2="20" stroke="' + color + '" stroke-width="2" opacity="0.6"/>' +
-        '<line x1="32" y1="25" x2="88" y2="25" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="35" y1="100" x2="85" y2="100" stroke="' + color + '" stroke-width="2" opacity="0.6"/>' +
-        '<line x1="32" y1="105" x2="88" y2="105" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<path d="M40,25 Q60,15 80,25" fill="none" stroke="' + color + '" stroke-width="1" opacity="0.35"/>' +
-        '</svg>';
-    },
-
-    spark: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<path d="M65,15 L45,55 L58,55 L40,105" fill="none" stroke="' + color + '" stroke-width="2.5" opacity="0.8" stroke-linejoin="round"/>' +
-        '<circle cx="65" cy="15" r="3" fill="' + color + '" opacity="0.9"/>' +
-        '<circle cx="40" cy="105" r="2" fill="' + color + '" opacity="0.6"/>' +
-        '<line x1="70" y1="30" x2="85" y2="25" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>' +
-        '<line x1="35" y1="75" x2="20" y2="80" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>' +
-        '<circle cx="52" cy="60" r="8" fill="none" stroke="' + color + '" stroke-width="0.6" opacity="0.2"/>' +
-        '<circle cx="52" cy="60" r="15" fill="none" stroke="' + color + '" stroke-width="0.4" opacity="0.1"/>' +
-        '</svg>';
-    },
-
-    star: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<polygon points="60,15 68,45 100,45 74,63 82,95 60,77 38,95 46,63 20,45 52,45" fill="none" stroke="' + color + '" stroke-width="1.5" opacity="0.6"/>' +
-        '<polygon points="60,30 65,48 85,48 69,59 75,80 60,68 45,80 51,59 35,48 55,48" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>' +
-        '<circle cx="60" cy="55" r="4" fill="' + color + '" opacity="0.7"/>' +
-        '<circle cx="60" cy="55" r="8" fill="none" stroke="' + color + '" stroke-width="0.5" opacity="0.2"/>' +
-        '</svg>';
-    },
-
-    shield: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<path d="M60,15 L90,30 L90,70 Q90,95 60,110 Q30,95 30,70 L30,30 Z" fill="none" stroke="' + color + '" stroke-width="1.8" opacity="0.6"/>' +
-        '<path d="M60,25 L82,37 L82,68 Q82,88 60,100 Q38,88 38,68 L38,37 Z" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>' +
-        '<line x1="60" y1="25" x2="60" y2="100" stroke="' + color + '" stroke-width="0.8" opacity="0.2"/>' +
-        '<line x1="38" y1="55" x2="82" y2="55" stroke="' + color + '" stroke-width="0.8" opacity="0.2"/>' +
-        '<circle cx="60" cy="55" r="5" fill="' + color + '" opacity="0.5"/>' +
-        '</svg>';
-    },
-
-    column: function (color) {
-      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-        '<rect x="45" y="20" width="30" height="80" fill="none" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="55" y1="20" x2="55" y2="100" stroke="' + color + '" stroke-width="0.6" opacity="0.2"/>' +
-        '<line x1="65" y1="20" x2="65" y2="100" stroke="' + color + '" stroke-width="0.6" opacity="0.2"/>' +
-        '<line x1="38" y1="15" x2="82" y2="15" stroke="' + color + '" stroke-width="2" opacity="0.6"/>' +
-        '<line x1="35" y1="20" x2="85" y2="20" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<line x1="38" y1="100" x2="82" y2="100" stroke="' + color + '" stroke-width="2" opacity="0.6"/>' +
-        '<line x1="35" y1="105" x2="85" y2="105" stroke="' + color + '" stroke-width="1.5" opacity="0.5"/>' +
-        '<circle cx="60" cy="60" r="8" fill="none" stroke="' + color + '" stroke-width="0.8" opacity="0.3"/>' +
-        '<circle cx="60" cy="60" r="3" fill="' + color + '" opacity="0.5"/>' +
-        '</svg>';
-    }
-  };
+  // ── Internal State ──
 
   var container = null;
   var galleryEl = null;
   var cards = {};
   var isInitialized = false;
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Name Matching — fuzzy on last name + aliases
+  // ═══════════════════════════════════════════════════════════════
 
   function resolveCommitteeName(input) {
     if (!input) return null;
@@ -203,7 +110,62 @@ COMPANION.Hologram = (function () {
       }
     }
 
+    // Fallback: partial match on full name
+    for (var fullName2 in COMMITTEE) {
+      if (COMMITTEE.hasOwnProperty(fullName2)) {
+        if (fullName2.toLowerCase().indexOf(needle) !== -1) {
+          return fullName2;
+        }
+      }
+    }
+
     return null;
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Wikipedia Portrait Fetching — High Resolution
+  // ═══════════════════════════════════════════════════════════════
+
+  function fetchPortraitUrl(article) {
+    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
+
+    return fetch(url)
+      .then(function (response) {
+        if (!response.ok) return null;
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data) return null;
+
+        // Prefer original image for highest quality
+        var src = null;
+        if (data.originalimage && data.originalimage.source) {
+          src = data.originalimage.source;
+        } else if (data.thumbnail && data.thumbnail.source) {
+          src = data.thumbnail.source;
+        }
+
+        if (src) {
+          // Request 600px wide for high-quality photorealistic display
+          src = src.replace(/\/\d+px-/, '/600px-');
+        }
+        return src;
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  DOM — Persona Card Creation (Photorealistic)
+  // ═══════════════════════════════════════════════════════════════
+
+  function formatNameplate(fullName) {
+    var parts = fullName.split(' ');
+    var lastName = parts[parts.length - 1].toUpperCase();
+    return lastName;
   }
 
   function createPersonaCard(fullName) {
@@ -218,18 +180,16 @@ COMPANION.Hologram = (function () {
     var frame = document.createElement('div');
     frame.className = 'patriot-frame';
 
-    var sigilWrapper = document.createElement('div');
-    sigilWrapper.className = 'patriot-sigil';
-    var sigilFn = SIGILS[persona.sigil];
-    if (sigilFn) {
-      sigilWrapper.innerHTML = sigilFn(color);
-    }
-    frame.appendChild(sigilWrapper);
-    frame.classList.add('loaded');
+    var portraitImg = document.createElement('img');
+    portraitImg.className = 'patriot-portrait';
+    portraitImg.alt = fullName + ' portrait';
+    portraitImg.draggable = false;
+
+    frame.appendChild(portraitImg);
 
     var nameplate = document.createElement('div');
     nameplate.className = 'patriot-nameplate';
-    nameplate.textContent = fullName.toUpperCase();
+    nameplate.textContent = formatNameplate(fullName);
 
     var glow = document.createElement('div');
     glow.className = 'patriot-glow';
@@ -241,15 +201,63 @@ COMPANION.Hologram = (function () {
     return {
       card: card,
       frame: frame,
+      portraitImg: portraitImg,
       nameplate: nameplate,
       glow: glow
     };
   }
 
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Portrait Loading — Direct photorealistic (no canvas)
+  // ═══════════════════════════════════════════════════════════════
+
+  function loadPortrait(fullName) {
+    var persona = COMMITTEE[fullName];
+    var cardData = cards[fullName];
+    if (!persona || !cardData) return;
+
+    fetchPortraitUrl(persona.article)
+      .then(function (imageUrl) {
+        if (!imageUrl) throw new Error('No image URL for ' + fullName);
+
+        cardData.portraitImg.onload = function () {
+          cardData.frame.classList.add('loaded');
+        };
+        cardData.portraitImg.onerror = function () {
+          // Try without CORS
+          var img2 = new Image();
+          img2.className = 'patriot-portrait';
+          img2.alt = fullName + ' portrait';
+          img2.draggable = false;
+          img2.onload = function () {
+            cardData.frame.classList.add('loaded');
+          };
+          img2.src = imageUrl;
+          cardData.frame.replaceChild(img2, cardData.portraitImg);
+          cardData.portraitImg = img2;
+        };
+        cardData.portraitImg.crossOrigin = 'anonymous';
+        cardData.portraitImg.src = imageUrl;
+      })
+      .catch(function (err) {
+        console.warn('[Hologram] Portrait unavailable for ' + fullName + ':', err.message || err);
+      });
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  Public API
+  // ═══════════════════════════════════════════════════════════════
+
   function init(containerElement) {
     if (isInitialized) return;
+
     container = containerElement;
-    if (!container) return;
+    if (!container) {
+      console.warn('[Hologram] init: no container element provided.');
+      return;
+    }
 
     galleryEl = document.createElement('div');
     galleryEl.className = 'portrait-gallery';
@@ -261,6 +269,9 @@ COMPANION.Hologram = (function () {
       var cardData = createPersonaCard(fullName);
       cards[fullName] = cardData;
       galleryEl.appendChild(cardData.card);
+
+      // Begin loading portrait immediately
+      loadPortrait(fullName);
     }
 
     isInitialized = true;
@@ -268,6 +279,7 @@ COMPANION.Hologram = (function () {
 
   function summon(name) {
     if (!isInitialized) return;
+
     var fullName = resolveCommitteeName(name);
     if (!fullName || !cards[fullName]) return;
 
@@ -283,6 +295,7 @@ COMPANION.Hologram = (function () {
 
   function release(name) {
     if (!isInitialized) return;
+
     var fullName = resolveCommitteeName(name);
     if (!fullName || !cards[fullName]) return;
 
@@ -293,6 +306,7 @@ COMPANION.Hologram = (function () {
 
   function setSpeaking(name, isSpeaking) {
     if (!isInitialized) return;
+
     var fullName = resolveCommitteeName(name);
     if (!fullName || !cards[fullName]) return;
 
