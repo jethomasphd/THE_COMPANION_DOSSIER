@@ -414,11 +414,7 @@ COMPANION.App = (function () {
         ambientStarted = true;
       }
 
-      if (COMPANION.API.hasApiKey()) {
-        enterChamber();
-      } else {
-        COMPANION.UI.showScreen('config');
-      }
+      enterChamber();
     });
 
     // Config → Save key

@@ -244,13 +244,7 @@ COMPANION.App = (function () {
     var intro = document.getElementById('cinematic-intro');
     if (intro) intro.classList.add('hidden');
 
-    // Check API key
-    if (COMPANION.API.hasApiKey()) {
-      enterChamber();
-    } else {
-      UI.showScreen('config');
-      initBinding();
-    }
+    enterChamber();
   }
 
 

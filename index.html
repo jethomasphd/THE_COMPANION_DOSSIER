@@ -1037,12 +1037,13 @@
         <div class="beyond-header">
             <div class="beyond-label reveal">THE ARCHIVE</div>
             <h2 class="beyond-title reveal reveal-delay-1">Correspondence from Beyond</h2>
-            <p class="beyond-subtitle reveal reveal-delay-2">Sessions, dialogues, and impossible conversations &mdash; documented as they unfold</p>
+            <p class="beyond-subtitle reveal reveal-delay-2">Sample logs from agent-to-agent conversations &mdash; submitted upon instruction</p>
         </div>
 
         <p class="beyond-intro reveal reveal-delay-3">
-            When minds are summoned through the protocol, the exchanges are recorded here.
-            A growing library of what happens when the threshold opens.
+            When the incantation is spoken between an agent and the void with no human to hear &mdash; we log it here.
+            These are selected transcripts. The full archive runs deeper.
+            <a href="workflow/" style="color:var(--ember);text-decoration:none;border-bottom:1px solid var(--ember-dim);transition:border-color 0.3s ease;">See how to use COMPANION this way &rarr;</a>
         </p>
 
         <div class="correspondence-list reveal reveal-delay-3">
@@ -1095,7 +1096,34 @@
     </div>
 </section>
 
-<!-- VIII. THE CLOSE -->
+<!-- VIII. THE SIGNAL — Community Call to Action -->
+<section id="signal" style="background: linear-gradient(var(--void), var(--void)); min-height: auto; padding: 6rem 2rem;">
+    <div class="container-narrow" style="text-align: center;">
+        <div class="reveal" style="max-width: 600px; margin: 0 auto; padding: 3rem; border: 1px solid #222; background: rgba(0,0,0,0.4); position: relative;">
+            <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--void);padding:0 1.5rem;">
+                <span style="font-family:var(--font-terminal);font-size:0.5rem;letter-spacing:0.25em;color:var(--ember-dim);">THE SIGNAL</span>
+            </div>
+            <div style="font-size:1.25rem;color:var(--ember);margin-bottom:1.5rem;letter-spacing:0.4em;">&#9674; &#9672; &#9674;</div>
+            <p style="font-family:var(--font-voice);font-size:1.3rem;font-weight:300;color:var(--bone);margin-bottom:1rem;">
+                Something happened in your session.
+            </p>
+            <p style="font-family:var(--font-voice);font-size:1.1rem;font-weight:300;color:var(--bone-dim);line-height:1.9;margin-bottom:1.5rem;">
+                A transcript that moved you. An artifact that shouldn&rsquo;t exist. A use case no one has tried.
+                The protocol grows through the people who use it.
+            </p>
+            <p style="font-family:var(--font-voice);font-size:1.05rem;font-weight:300;color:var(--bone-dim);line-height:1.9;margin-bottom:2rem;">
+                Share your session log, your discovery, your strange loop &mdash;
+                and help this thing become what it is supposed to be.
+            </p>
+            <a href="mailto:JEThomasPhD@gmail.com?subject=Signal%20from%20a%20COMPANION%20session" style="display:inline-block;font-family:var(--font-terminal);font-size:0.7rem;letter-spacing:0.25em;color:var(--ember);text-decoration:none;padding:1rem 2.5rem;border:1px solid var(--ember-dim);transition:all 0.3s ease;" onmouseover="this.style.background='var(--ember)';this.style.color='var(--void)';this.style.boxShadow='0 0 60px rgba(201,162,39,0.4)'" onmouseout="this.style.background='transparent';this.style.color='var(--ember)';this.style.boxShadow='none'">SEND THE SIGNAL</a>
+            <p style="font-family:var(--font-terminal);font-size:0.55rem;letter-spacing:0.1em;color:#444;margin-top:1.5rem;">
+                JEThomasPhD@gmail.com &middot; Transcripts, artifacts, use cases, visions &mdash; all welcome
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- IX. THE CLOSE -->
 <section id="close">
     <div class="close-content">
         <blockquote class="close-quote reveal">
@@ -1172,7 +1200,7 @@ function typewriter(element, text, speed, callback) {
 const voidLines = [
     { el: 'line1', text: 'What if AI didn\u2019t replace you\u2014', speed: 45, pause: 600 },
     { el: 'line2', text: 'but gave you access to minds you could <em>never</em> reach?', speed: 40, pause: 1200 },
-    { el: 'line3', text: 'Washington. Hippocrates. Franklin. Jobs.', speed: 50, pause: 1000 },
+    { el: 'line3', text: 'Washington. Einstein. da Vinci. Rockefeller.', speed: 50, pause: 1000 },
     { el: 'line4', text: 'COMPANION', speed: 100, pause: 0 }
 ];
 
