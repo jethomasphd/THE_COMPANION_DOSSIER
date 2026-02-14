@@ -35,6 +35,18 @@ COMPANION.App = (function () {
 
   var COUNCIL_NAMES = Object.keys(COUNCIL_COLORS);
 
+  // Wikipedia articles for intro portraits
+  var COUNCIL_ARTICLES = {
+    'Steve Jobs':          'Steve_Jobs',
+    'Warren Buffett':      'Warren_Buffett',
+    'Henry Ford':          'Henry_Ford',
+    'Andrew Carnegie':     'Andrew_Carnegie',
+    'Thomas Edison':       'Thomas_Edison',
+    'Walt Disney':         'Walt_Disney',
+    'Theodore Roosevelt':  'Theodore_Roosevelt',
+    'Abraham Lincoln':     'Abraham_Lincoln'
+  };
+
 
   // ═══════════════════════════════════════════════════════════════
   //  CINEMATIC INTRO
@@ -42,6 +54,7 @@ COMPANION.App = (function () {
 
   function initCinematicIntro() {
     spawnEmbers();
+    loadIntroPortraits();
     runTypewriter();
     initScrollReveals();
     initBoardPacketForm();
@@ -64,6 +77,60 @@ COMPANION.App = (function () {
       ember.style.height = ember.style.width;
       field.appendChild(ember);
     }
+  }
+
+
+  // ── Intro Portrait Loading ──
+  // Loads Wikipedia portraits into the cinematic intro portrait frames
+
+  function loadIntroPortraits() {
+    var portraitReveals = document.querySelectorAll('.portrait-reveal[data-member]');
+    portraitReveals.forEach(function (reveal) {
+      var memberName = reveal.getAttribute('data-member');
+      var article = COUNCIL_ARTICLES[memberName];
+      if (!article) return;
+
+      var frame = reveal.querySelector('.portrait-frame-cinematic');
+      if (!frame) return;
+
+      var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
+      fetch(url)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!data) return null;
+          var src = null;
+          if (data.originalimage && data.originalimage.source) {
+            src = data.originalimage.source;
+          } else if (data.thumbnail && data.thumbnail.source) {
+            src = data.thumbnail.source;
+          }
+          if (src) {
+            src = src.replace(/\/\d+px-/, '/600px-');
+          }
+          return src;
+        })
+        .then(function (imgUrl) {
+          if (!imgUrl) return;
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function () {
+            img.classList.add('loaded');
+          };
+          img.onerror = function () {
+            var img2 = new Image();
+            img2.onload = function () {
+              img2.classList.add('loaded');
+            };
+            img2.src = imgUrl;
+            frame.appendChild(img2);
+          };
+          img.src = imgUrl;
+          frame.appendChild(img);
+        })
+        .catch(function () {
+          // Initials placeholder remains
+        });
+    });
   }
 
 
