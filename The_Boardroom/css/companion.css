@@ -888,13 +888,13 @@ a { color: var(--gold); text-decoration: none; }
   position: relative;
 }
 
-.summons-btn-wrapper::after {
+.summons-btn-wrapper::before {
   content: '\2193';
   display: block;
   text-align: center;
   font-size: 1.4rem;
   color: var(--gold-dim);
-  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
   animation: summon-arrow-bob 2s ease-in-out infinite;
 }
 

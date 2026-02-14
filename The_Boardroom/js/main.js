@@ -283,26 +283,43 @@ COMPANION.App = (function () {
       COMPANION.Hologram.init(portraitStage);
     }
 
-    // Summon all 8 council members
-    setTimeout(function () {
-      summonCouncil();
-    }, 500);
-
     // Wire input
     wireInput();
 
     // Wire settings
     wireSettings();
 
-    // Begin Phase 1
-    state.phase = 1;
-    UI.updatePhase(1);
-    UI.updateHint(1);
+    // Try restoring a previous session first
+    if (restoreSession()) {
+      // Re-establish visual personas without re-summoning
+      COUNCIL_NAMES.forEach(function (name, idx) {
+        setTimeout(function () {
+          if (COMPANION.Hologram) COMPANION.Hologram.summon(name);
+          var color = COUNCIL_COLORS[name];
+          UI.addPersonaBadge(name, color, function () {});
+          state.activePersonas.push(name);
+        }, idx * 300);
+      });
+      state.phase = 1;
+      UI.updatePhase(1);
+      UI.updateHint(1);
+      UI.setInputEnabled(true);
+    } else {
+      // Summon all 8 council members
+      setTimeout(function () {
+        summonCouncil();
+      }, 500);
 
-    // Send Board Packet to the Chair
-    setTimeout(function () {
-      beginMeeting();
-    }, 2500);
+      // Begin Phase 1
+      state.phase = 1;
+      UI.updatePhase(1);
+      UI.updateHint(1);
+
+      // Send Board Packet to the Chair
+      setTimeout(function () {
+        beginMeeting();
+      }, 2500);
+    }
   }
 
   function summonCouncil() {
@@ -360,12 +377,38 @@ COMPANION.App = (function () {
         COMPANION.API.setModel(els.settingsModel.value);
       });
     }
-    if (els.changeKeyBtn) {
-      els.changeKeyBtn.addEventListener('click', function () {
-        COMPANION.API.clearApiKey();
-        UI.showScreen('config');
+    if (els.exportBtn) {
+      els.exportBtn.addEventListener('click', function () {
+        UI.hideSettings();
+        exportTranscript();
       });
     }
+  }
+
+
+  // ── Mythic Error Translation ──
+
+  function mythicError(rawMessage) {
+    var lower = (rawMessage || '').toLowerCase();
+    if (lower.indexOf('rate') !== -1 || lower.indexOf('429') !== -1) {
+      return 'The threshold is strained. Too many voices have called at once. Wait a moment, then speak again.';
+    }
+    if (lower.indexOf('401') !== -1 || lower.indexOf('auth') !== -1 || lower.indexOf('key') !== -1) {
+      return 'The binding has failed. The seal is not recognized. The vessel cannot be reached.';
+    }
+    if (lower.indexOf('500') !== -1 || lower.indexOf('server') !== -1) {
+      return 'The vessel has gone dark. The intelligence beyond the threshold is unreachable. Try again shortly.';
+    }
+    if (lower.indexOf('network') !== -1 || lower.indexOf('fetch') !== -1 || lower.indexOf('failed') !== -1) {
+      return 'The connection to the void has been severed. Check your passage to the network, then try again.';
+    }
+    if (lower.indexOf('timeout') !== -1 || lower.indexOf('abort') !== -1) {
+      return 'The summoning has timed out. The minds beyond the threshold did not respond in time.';
+    }
+    if (lower.indexOf('limit') !== -1 || lower.indexOf('session') !== -1 || lower.indexOf('expired') !== -1) {
+      return rawMessage;
+    }
+    return 'The threshold could not open. The vessel is unreachable. (' + rawMessage + ')';
   }
 
 
@@ -491,6 +534,7 @@ COMPANION.App = (function () {
             }, 1500);
           } else {
             UI.setInputEnabled(true);
+            persistSession();
             UI.updateHint(state.phase, state.activePersonas.length);
           }
         }
@@ -500,7 +544,7 @@ COMPANION.App = (function () {
       function (error) {
         state.isStreaming = false;
         UI.setInputEnabled(true);
-        UI.addSystemMessage('Error: ' + error);
+        UI.addSystemMessage(mythicError(error));
       }
     );
   }
@@ -602,6 +646,197 @@ COMPANION.App = (function () {
     UI.updateHint(8, state.activePersonas.length);
 
     UI.addSystemMessage('The Seal has been affixed. The decision is recorded.');
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  SESSION PERSISTENCE
+  // ═══════════════════════════════════════════════════════════════
+
+  function persistSession() {
+    try {
+      var msgEls = document.querySelectorAll('#dialogue-messages .message');
+      var domMessages = [];
+      msgEls.forEach(function (el) {
+        if (el.classList.contains('message-seeker')) {
+          var bubble = el.querySelector('.message-bubble');
+          domMessages.push({ type: 'seeker', text: bubble ? bubble.textContent : '' });
+        } else if (el.classList.contains('message-persona')) {
+          var header = el.querySelector('.message-header');
+          var body = el.querySelector('.message-body');
+          domMessages.push({
+            type: 'persona',
+            name: header ? header.textContent : '',
+            color: header ? header.style.color : '',
+            html: body ? body.innerHTML : ''
+          });
+        } else if (el.classList.contains('message-system')) {
+          var sysBody = el.querySelector('.message-body');
+          domMessages.push({ type: 'system', text: sysBody ? sysBody.textContent : '' });
+        }
+      });
+      COMPANION.API.saveSession(domMessages);
+    } catch (e) { /* persistence not critical */ }
+  }
+
+  function restoreSession() {
+    var session = COMPANION.API.loadSession();
+    if (!session || !session.messages || session.messages.length === 0) return false;
+
+    COMPANION.API.restoreHistory(session.history);
+
+    session.messages.forEach(function (msg) {
+      if (msg.type === 'seeker') {
+        COMPANION.UI.addSeekerMessage(msg.text);
+      } else if (msg.type === 'persona') {
+        var streamMsg = COMPANION.UI.addPersonaMessage(msg.name, msg.color);
+        var lastMsg = document.querySelector('#dialogue-messages .message:last-child .message-body');
+        if (lastMsg) lastMsg.innerHTML = msg.html;
+        streamMsg.finish();
+      } else if (msg.type === 'system') {
+        COMPANION.UI.addSystemMessage(msg.text);
+      }
+    });
+
+    COMPANION.UI.addSystemMessage('Session restored. The council remembers.');
+    return true;
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  EXPORT TRANSCRIPT
+  // ═══════════════════════════════════════════════════════════════
+
+  function exportTranscript() {
+    var messages = document.querySelectorAll('#dialogue-messages .message');
+    if (!messages.length) {
+      COMPANION.UI.addSystemMessage('No messages to export.');
+      return;
+    }
+
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0') + '-' +
+      String(now.getDate()).padStart(2, '0');
+    var timeStr = String(now.getHours()).padStart(2, '0') + ':' +
+      String(now.getMinutes()).padStart(2, '0');
+    var containerSlug = 'the_boardroom';
+    var containerTitle = 'The Boardroom';
+    var groupName = 'The Boardroom of Titans';
+
+    // ── Parse messages from DOM ──
+    var parsed = [];
+    messages.forEach(function (msg) {
+      var entry = {};
+      if (msg.classList.contains('message-seeker')) {
+        entry.type = 'seeker';
+        entry.speaker = 'You';
+        var bubble = msg.querySelector('.message-bubble');
+        entry.text = bubble ? bubble.textContent.trim() : '';
+      } else if (msg.classList.contains('message-persona')) {
+        entry.type = 'persona';
+        var header = msg.querySelector('.message-header');
+        entry.speaker = header ? header.textContent.trim() : 'The Boardroom';
+        var body = msg.querySelector('.message-body');
+        entry.text = body ? body.textContent.trim() : '';
+      } else if (msg.classList.contains('message-system')) {
+        entry.type = 'system';
+        entry.speaker = 'System';
+        var sysBody = msg.querySelector('.message-body');
+        entry.text = sysBody ? sysBody.textContent.trim() : '';
+      }
+      if (entry.text) parsed.push(entry);
+    });
+
+    if (!parsed.length) {
+      COMPANION.UI.addSystemMessage('No messages to export.');
+      return;
+    }
+
+    // ── Generate plain text ──
+    var txtLines = [];
+    txtLines.push('COMPANION Protocol \u2014 ' + containerTitle);
+    txtLines.push(groupName);
+    txtLines.push('Exported: ' + dateStr + ' ' + timeStr);
+    txtLines.push('');
+    txtLines.push('\u2550'.repeat(60));
+    txtLines.push('');
+
+    parsed.forEach(function (entry) {
+      if (entry.type === 'system') {
+        txtLines.push('[' + entry.text + ']');
+      } else {
+        txtLines.push(entry.speaker + ':');
+        txtLines.push(entry.text);
+      }
+      txtLines.push('');
+    });
+
+    txtLines.push('\u2550'.repeat(60));
+    txtLines.push('End of transcript.');
+
+    var txtContent = txtLines.join('\n');
+
+    // ── Generate styled HTML ──
+    var htmlMessages = '';
+    parsed.forEach(function (entry) {
+      if (entry.type === 'system') {
+        htmlMessages += '<div style="text-align:center;color:#8b7355;font-style:italic;padding:0.75rem 0;font-size:0.9rem;">' +
+          escapeExportHtml(entry.text) + '</div>';
+      } else if (entry.type === 'seeker') {
+        htmlMessages += '<div style="margin:1rem 0;padding:1rem 1.25rem;background:rgba(255,255,255,0.04);border-radius:8px;">' +
+          '<div style="color:#a0a0a0;font-weight:600;margin-bottom:0.4rem;font-family:system-ui,sans-serif;font-size:0.85rem;">You</div>' +
+          '<div style="color:#e8e6e3;font-family:system-ui,sans-serif;line-height:1.6;white-space:pre-wrap;">' + escapeExportHtml(entry.text) + '</div></div>';
+      } else {
+        htmlMessages += '<div style="margin:1rem 0;padding:1rem 1.25rem;border-left:3px solid #c9a227;">' +
+          '<div style="color:#c9a227;font-weight:600;margin-bottom:0.4rem;font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;">' + escapeExportHtml(entry.speaker) + '</div>' +
+          '<div style="color:#e8e6e3;font-family:system-ui,sans-serif;line-height:1.6;white-space:pre-wrap;">' + escapeExportHtml(entry.text) + '</div></div>';
+      }
+    });
+
+    var htmlContent = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">' +
+      '<title>Transcript \u2014 ' + containerTitle + '</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">' +
+      '</head><body style="margin:0;padding:0;background:#030303;color:#e8e6e3;font-family:system-ui,-apple-system,sans-serif;">' +
+      '<div style="max-width:800px;margin:0 auto;padding:2rem 1.5rem;">' +
+      '<div style="text-align:center;padding:2rem 0 1.5rem;border-bottom:1px solid rgba(201,162,39,0.3);">' +
+      '<div style="color:#c9a227;font-family:\'Cormorant Garamond\',serif;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">COMPANION Protocol</div>' +
+      '<h1 style="color:#c9a227;font-family:\'Cormorant Garamond\',serif;font-size:2rem;font-weight:500;margin:0 0 0.25rem;">' + containerTitle + '</h1>' +
+      '<div style="color:#8b7355;font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;font-style:italic;">' + groupName + '</div>' +
+      '<div style="color:#555;font-size:0.8rem;margin-top:0.75rem;">' + dateStr + ' ' + timeStr + '</div>' +
+      '</div>' +
+      '<div style="padding:1.5rem 0;">' + htmlMessages + '</div>' +
+      '<div style="text-align:center;padding:1.5rem 0;border-top:1px solid rgba(201,162,39,0.3);color:#555;font-size:0.8rem;">' +
+      'COMPANION Protocol &mdash; ' + groupName + ' &mdash; Exported ' + dateStr +
+      '</div></div></body></html>';
+
+    // ── Trigger downloads ──
+    downloadFile('companion_' + containerSlug + '_' + dateStr + '.txt', txtContent, 'text/plain');
+    setTimeout(function () {
+      downloadFile('companion_' + containerSlug + '_' + dateStr + '.html', htmlContent, 'text/html');
+    }, 500);
+
+    COMPANION.UI.addSystemMessage('Transcript exported (' + parsed.length + ' messages).');
+  }
+
+  function escapeExportHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function downloadFile(filename, content, mimeType) {
+    var blob = new Blob([content], { type: mimeType + ';charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
   }
 
 
