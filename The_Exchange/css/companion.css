@@ -586,6 +586,17 @@ a { color: var(--gold); text-decoration: none; }
   animation: glow-breathe 3s ease-in-out infinite;
 }
 
+/* Golden flash when a guide is selected — draws the eye to the summon button */
+@keyframes summon-activate {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(201, 162, 39, 0); }
+  50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(201, 162, 39, 0.4), 0 0 80px rgba(201, 162, 39, 0.15); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(201, 162, 39, 0); }
+}
+
+.summon-btn.summon-activated {
+  animation: summon-activate 0.6s ease-out;
+}
+
 /* Responsive: Guide cards */
 @media (max-width: 900px) {
   .guide-select-grid {
@@ -1028,13 +1039,13 @@ a { color: var(--gold); text-decoration: none; }
   position: relative;
 }
 
-.summons-btn-wrapper::after {
+.summons-btn-wrapper::before {
   content: '\2193';
   display: block;
   text-align: center;
   font-size: 1.4rem;
   color: var(--gold-dim);
-  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
   animation: summon-arrow-bob 2s ease-in-out infinite;
 }
 

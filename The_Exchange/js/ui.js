@@ -41,7 +41,7 @@ COMPANION.UI = (function () {
       settingsToggle: document.getElementById('settings-toggle'),
       settingsPanel: document.getElementById('settings-panel'),
       settingsModel: document.getElementById('settings-model'),
-      changeKeyBtn: document.getElementById('change-key-btn'),
+      exportBtn: document.getElementById('export-btn'),
       releaseAllBtn: document.getElementById('release-all-btn'),
       closeSettings: document.getElementById('close-settings'),
 

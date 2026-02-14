@@ -182,6 +182,43 @@ COMPANION.API = (function () {
 
   function clearHistory() {
     conversationHistory = [];
+    clearSession();
+  }
+
+  // ── Session Persistence ──
+  const SESSION_STORAGE_KEY = 'companion_boardroom_session';
+  const SESSION_EXPIRY_MS = 30 * 60 * 1000; // 30 minutes
+
+  function saveSession(domMessages) {
+    try {
+      var data = {
+        history: conversationHistory,
+        messages: domMessages || [],
+        timestamp: Date.now()
+      };
+      localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(data));
+    } catch (e) { /* storage full or unavailable */ }
+  }
+
+  function loadSession() {
+    try {
+      var raw = localStorage.getItem(SESSION_STORAGE_KEY);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (Date.now() - data.timestamp > SESSION_EXPIRY_MS) {
+        clearSession();
+        return null;
+      }
+      return data;
+    } catch (e) { return null; }
+  }
+
+  function clearSession() {
+    localStorage.removeItem(SESSION_STORAGE_KEY);
+  }
+
+  function restoreHistory(history) {
+    conversationHistory = history || [];
   }
 
   function trimHistory(maxExchanges) {
@@ -326,7 +363,11 @@ COMPANION.API = (function () {
     clearHistory: clearHistory,
     addUserMessage: addUserMessage,
     addAssistantMessage: addAssistantMessage,
-    registerSession: registerSession
+    registerSession: registerSession,
+    saveSession: saveSession,
+    loadSession: loadSession,
+    clearSession: clearSession,
+    restoreHistory: restoreHistory
   };
 
 })();
