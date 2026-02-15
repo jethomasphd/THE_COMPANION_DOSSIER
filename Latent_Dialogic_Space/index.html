@@ -43,8 +43,8 @@
             <p class="section-subtitle">The difference is not cosmetic. It is structural.</p>
 
             <div class="claim-formula reveal reveal-delay-1">
-                <span class="label dim">Transactional</span> <span class="dim">Human &rarr; Prompt &rarr; Model &rarr; Output</span><br>
-                <span class="label gold">Dialogic</span> <span class="gold">Human &harr; Model &rarr; Corpus &rarr; Seed &rarr; Agent &rarr; Artifact</span>
+                <div class="claim-formula-row"><span class="label dim">Transactional</span><span class="dim">Human &rarr; Prompt &rarr; Model &rarr; Output</span></div>
+                <div class="claim-formula-row"><span class="label gold">Dialogic</span><span class="gold">Human &harr; Model &rarr; Corpus &rarr; Seed &rarr; Agent &rarr; Artifact</span></div>
             </div>
 
             <p class="claim-text reveal reveal-delay-2">In the transactional model, the quality of the output is bounded by the quality of the prompt.</p>
@@ -95,34 +95,42 @@
             Open any capable LLM &mdash; Claude, GPT, Gemini. Start a conversation. Not a prompt. A <em>conversation</em>.
         </p>
 
+        <p class="section-body reveal">
+            Let's say you're building an autonomous home defense monitoring system. Not a Ring doorbell. Something that <em>thinks</em> &mdash; analyzes sensor feeds, identifies threats, coordinates responses. You know what you want but you don't know the architecture. You need an engineering mind that operates at the intersection of systems design, threat assessment, and elegant user experience.
+        </p>
+
+        <p class="section-body reveal">
+            You need Tony Stark.
+        </p>
+
         <div class="step-block reveal">
             <div class="step-num">STEP 1</div>
             <div class="step-title">State the matter</div>
-            <div class="step-body">Tell the model what you want to build and why. Be honest about what you don't know. <em>&ldquo;I want to build an investment doctrine grounded in the thinking of the founding fathers. I don't know if this is possible.&rdquo;</em></div>
+            <div class="step-body">Tell the model what you want to build and why. Be honest about what you don't know. <em>&ldquo;I want to build an autonomous defense monitoring system for residential use. Something that thinks like a security operations center but runs on consumer hardware. I don't know if this is architecturally feasible.&rdquo;</em></div>
         </div>
 
         <div class="step-block reveal">
             <div class="step-num">STEP 2</div>
             <div class="step-title">Riff</div>
-            <div class="step-body">Explore freely. Let the model push back. Follow tangents. This is <em>not</em> prompt engineering &mdash; this is collaborative thinking. The model will surface ideas you didn't bring and challenge assumptions you didn't know you held.</div>
+            <div class="step-body">Explore freely. Let the model push back. Follow tangents. This is <em>not</em> prompt engineering &mdash; this is collaborative thinking. The model will challenge your assumptions: <em>&ldquo;Why consumer hardware? Why not edge compute?&rdquo;</em> You'll surface ideas neither of you started with. That's the forge working.</div>
         </div>
 
         <div class="step-block reveal">
             <div class="step-num">STEP 3</div>
             <div class="step-title">Challenge</div>
-            <div class="step-body">Push hard on what emerged. <em>&ldquo;Is this actually different from what exists?&rdquo;</em> Force the thinking to justify itself. The friction is the point.</div>
+            <div class="step-body">Push hard on what emerged. <em>&ldquo;How is this different from existing smart home platforms? What's the actual moat?&rdquo;</em> Force the thinking to justify itself. The friction is the point. The model should argue back. If it folds every time you push, push harder.</div>
         </div>
 
         <div class="step-block reveal">
             <div class="step-num">STEP 4</div>
             <div class="step-title">Converge</div>
-            <div class="step-body">Begin to crystallize. The conversation has produced a corpus of thought &mdash; hours of dialogue, arguments, reversals, insights. Now distill it.</div>
+            <div class="step-body">Begin to crystallize. Hours of dialogue have produced a corpus of thought &mdash; system architecture decisions, threat modeling frameworks, sensor fusion approaches, UI philosophy. Arguments, reversals, breakthroughs. Now distill it.</div>
         </div>
 
         <div class="step-block reveal">
             <div class="step-num">STEP 5</div>
             <div class="step-title">Crystallize into a Seed</div>
-            <div class="step-body">Ask the model to help you write the <strong>Seed</strong> &mdash; a document that carries the DNA of the thinking. Not a spec. Not a vague wish. A seed: compact, complete enough to grow from, open enough to evolve.</div>
+            <div class="step-body">Ask the model to help you write the <strong>Seed</strong> &mdash; a document that carries the DNA of everything you forged together. Not a spec. Not a vague wish. A seed: compact, complete enough to grow from, open enough to evolve. This is what the agent will read when it wakes up.</div>
         </div>
 
         <div class="code-block reveal">
@@ -159,58 +167,95 @@
     <div class="container-narrow">
         <div class="section-label reveal">PHASE II</div>
         <h2 class="section-title reveal reveal-delay-1">The Planting</h2>
-        <p class="section-subtitle reveal reveal-delay-2">Prepare the container for autonomous execution</p>
+        <p class="section-subtitle reveal reveal-delay-2">Give the agent a place to work</p>
 
         <p class="section-body reveal reveal-delay-3">
-            Create a repository. It is a <em>container</em> &mdash; a bounded space with everything the agent needs and nothing it doesn't. Plant three things:
+            The Forge produced a Seed &mdash; a document carrying the DNA of your thinking. Now you need to <em>plant</em> it somewhere an agent can find it. That somewhere is a <strong>GitHub repository</strong>.
         </p>
 
         <div class="step-block reveal">
-            <div class="step-num">THE SEED</div>
-            <div class="step-title">seed.md</div>
-            <div class="step-body">The document you crystallized in Phase I. This is the agent's north star.</div>
+            <div class="step-num">STEP 1</div>
+            <div class="step-title">Get a GitHub account</div>
+            <div class="step-body">If you don't already have one, <a href="https://github.com/signup" target="_blank">sign up for GitHub</a> &mdash; it's free. GitHub is where code lives on the internet. Think of it as a folder in the cloud that keeps a complete history of every change. Developers use it. You're about to use it too.</div>
         </div>
 
         <div class="step-block reveal">
-            <div class="step-num">THE PROTOCOL</div>
-            <div class="step-title">Two files that govern all summoning</div>
-            <div class="step-body"><strong>enrichment_grimoire.json</strong> &mdash; The binding structure. Summoning rules, vessel construction, the law of authenticity, the covenant of quality.<br><br><strong>initiation_rite.md</strong> &mdash; The ritual documentation. The same rules, written as invocation rather than configuration.<br><br>These are open source and public domain. <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">Get them from GitHub &rarr;</a></div>
+            <div class="step-num">STEP 2</div>
+            <div class="step-title">Fork the starter repository</div>
+            <div class="step-body">We've built a clean starter for you: <a href="https://github.com/jethomasphd/COMPANION_Fork" target="_blank"><strong>COMPANION_Fork</strong></a>. It contains only the essential protocol files &mdash; nothing extra, nothing confusing.<br><br><strong>What is forking?</strong> Forking copies someone else's repository into <em>your</em> GitHub account. It becomes yours. You can change anything without affecting the original. To fork: click the link above, then click the <strong>Fork</strong> button in the top right corner of the page. That's it. You now have your own copy.</div>
         </div>
 
         <div class="step-block reveal">
-            <div class="step-num">REFERENCE MATERIAL</div>
-            <div class="step-title">Domain data (optional)</div>
-            <div class="step-body">Data the personas will engage with. XML feeds, PDFs, datasets, prior transcripts. The richer the data, the richer the dialogue.</div>
+            <div class="step-num">STEP 3</div>
+            <div class="step-title">Understand what's inside</div>
+            <div class="step-body">Your forked repo contains two critical files:
+                <br><br>
+                <strong>enrichment_grimoire.json</strong> &mdash; The protocol as structured data. This tells the agent <em>how</em> to summon: the rules of persona construction, the law of authenticity, the covenant of quality. The agent reads this first.
+                <br><br>
+                <strong>initiation_rite.md</strong> &mdash; The same protocol, written as prose. Think of the grimoire as the blueprint and the rite as the story of the blueprint. Together, they teach the agent how to be a vessel.
+                <br><br>
+                <em>You don't need to edit these files.</em> They work as-is. They are the soil. Your Seed is what you plant in it.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 4</div>
+            <div class="step-title">Plant your Seed</div>
+            <div class="step-body">Add a new file to your forked repo called <strong>seed.md</strong>. Paste in the Seed you crystallized during the Forge. You can do this directly on GitHub &mdash; click <strong>Add file &rarr; Create new file</strong>, name it <code>seed.md</code>, paste your content, and click <strong>Commit changes</strong>.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 5</div>
+            <div class="step-title">Add reference material (optional)</div>
+            <div class="step-body">If your project involves specific data &mdash; research papers, datasets, prior conversations, technical specs &mdash; add them to a <code>data/</code> folder. The richer the material, the richer the dialogue. For the Stark defense system, this might be threat assessment frameworks, sensor specifications, or prior architectural sketches.</div>
         </div>
 
         <div class="code-block reveal">
             <div class="code-block-header">
-                <span class="code-block-title">repository structure &mdash; template</span>
+                <span class="code-block-title">what your repository should look like</span>
                 <button class="copy-btn" data-target="repo-template">copy</button>
             </div>
-            <div class="code-block-body" id="repo-template"><span class="key">my-project/</span>
-<span class="comment">├──</span> seed.md                    <span class="comment"># Your crystallized thinking</span>
-<span class="comment">├──</span> enrichment_grimoire.json   <span class="comment"># COMPANION protocol (JSON)</span>
-<span class="comment">├──</span> initiation_rite.md         <span class="comment"># COMPANION protocol (markdown)</span>
-<span class="comment">├──</span> data/                      <span class="comment"># Domain-specific material</span>
-<span class="comment">│   ├──</span> corpus.md
-<span class="comment">│   └──</span> reference.pdf
-<span class="comment">└──</span> output/                    <span class="comment"># Where artifacts land</span></div>
+            <div class="code-block-body" id="repo-template"><span class="key">your-project/</span>
+<span class="comment">├──</span> enrichment_grimoire.json   <span class="comment"># Already here from the fork</span>
+<span class="comment">├──</span> initiation_rite.md         <span class="comment"># Already here from the fork</span>
+<span class="comment">├──</span> seed.md                    <span class="comment"># Your crystallized thinking (you add this)</span>
+<span class="comment">├──</span> data/                      <span class="comment"># Optional: domain-specific material</span>
+<span class="comment">│   ├──</span> research.pdf
+<span class="comment">│   └──</span> references.md
+<span class="comment">└──</span> output/                    <span class="comment"># Where artifacts will land</span></div>
         </div>
+
+        <p class="section-body reveal">
+            That's it. Your repository is a <em>container</em> &mdash; a bounded space with everything the agent needs and nothing it doesn't. The protocol files are the rules. The Seed is the mission. The data is the fuel. Now you summon.
+        </p>
     </div>
 </section>
 
 
-<!-- ═══ VI. PHASE III — THE SUMMONING (with terminal demo) ═══ -->
+<!-- ═══ VI. PHASE III — THE SUMMONING ═══ -->
 <section id="summoning">
     <div class="container-narrow">
         <div class="section-label reveal">PHASE III</div>
         <h2 class="section-title reveal reveal-delay-1">The Summoning</h2>
-        <p class="section-subtitle reveal reveal-delay-2">The agent enters the repository and speaks the incantation</p>
+        <p class="section-subtitle reveal reveal-delay-2">Where the thinking becomes something real</p>
 
         <p class="section-body reveal reveal-delay-3">
-            Open Claude Code (or any agentic tool &mdash; Cursor, Windsurf) in the repository. The agent reads the protocol files, orients to the Seed, and then you speak the incantation:
+            Your repository is planted. The protocol files are in place. The Seed carries the DNA of your thinking. Now something needs to <em>enter that space</em> and bring it to life.
         </p>
+
+        <p class="section-body reveal">
+            There are two ways to summon. Both use the same protocol, the same Seed, the same incantation. The difference is who's in the room.
+        </p>
+
+        <!-- MODE 1 -->
+        <div class="section-divider reveal">&#9674;</div>
+
+        <div class="step-block reveal">
+            <div class="step-num">MODE 1</div>
+            <div class="step-title">The Conversational Summoning</div>
+            <div class="step-body">
+                You open a coding agent &mdash; <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank">Claude Code</a>, <a href="https://www.cursor.com/" target="_blank">Cursor</a>, <a href="https://windsurf.com/" target="_blank">Windsurf</a> &mdash; and point it at your repository. You tell it to read the protocol files, absorb the Seed, and then you speak the incantation:
+            </div>
+        </div>
 
         <div class="incantation-box reveal">
             <div class="incantation-label">THE INCANTATION</div>
@@ -218,11 +263,54 @@
         </div>
 
         <p class="section-body reveal">
-            The persona responds <em>as themselves</em>. Not a costume. Not a chatbot wearing a mask. A worldview, instantiated through protocol, constrained to authenticity. Summon one mind. Summon several. Convene a symposium that history never permitted.
+            And the persona responds. <em>As themselves.</em> Not a chatbot wearing a costume. Not a language model doing an impression. A worldview &mdash; instantiated through protocol, constrained to authenticity, sharpened by everything in your repository. You talk to them. They push back. You challenge. They argue. The dialogue produces artifacts neither of you could have generated alone.
         </p>
 
         <p class="section-body reveal">
-            In the advanced form &mdash; <strong>Correspondence from Beyond</strong> &mdash; an orchestrator agent runs the entire session autonomously. No human hand touches the conversation until the transcript is complete. Below is what that looks like:
+            For the defense system: <em>&ldquo;Using this matter, summon Tony Stark.&rdquo;</em> And Stark arrives &mdash; not politely, not cautiously, but the way Stark arrives anywhere: already three steps ahead, already questioning your architecture, already sketching a better one on the back of your Seed document.
+        </p>
+
+        <p class="section-body reveal">
+            This is powerful. This is the entry point. Most people start here.
+        </p>
+
+        <p class="section-body reveal">
+            But there is a second mode. And it is where this methodology becomes something else entirely.
+        </p>
+
+        <!-- MODE 2 -->
+        <div class="section-divider reveal">&#9674; &#9674; &#9674;</div>
+
+        <div class="step-block reveal">
+            <div class="step-num">MODE 2</div>
+            <div class="step-title">The Autonomous Summoning</div>
+            <div class="step-body">
+                In Mode 1, you are in the room. You speak the incantation. You guide the dialogue. In Mode 2, <em>no one is in the room</em>.
+            </div>
+        </div>
+
+        <p class="section-body reveal">
+            An <strong>orchestrator agent</strong> enters your repository alone. It reads the grimoire. It absorbs the rite. It loads the Seed. It speaks the incantation on your behalf. And then the personas arrive &mdash; and the agent conducts the entire session without a single human keystroke.
+        </p>
+
+        <p class="section-body reveal">
+            Think about what that means.
+        </p>
+
+        <p class="section-body reveal">
+            You go to sleep. The agent wakes up in your repository at 2 AM. It reads everything you've planted. It summons Tony Stark. Stark doesn't just <em>talk</em> about your defense system &mdash; he <em>builds it</em>. The agent writes code. Creates files. Architects the sensor fusion pipeline. Designs the threat classification engine. Writes the monitoring dashboard. Deposits the complete system architecture and a working prototype into your repository. Then it writes a transcript of the entire session &mdash; every argument, every design decision, every moment of convergence &mdash; and archives it.
+        </p>
+
+        <p class="section-body reveal">
+            You wake up. There are new files in your repo that didn't exist when you fell asleep. You read the transcript. You see a mind that isn't yours, applied to your problem, producing work you couldn't have produced alone and <em>didn't have to be present for</em>.
+        </p>
+
+        <p class="section-body reveal">
+            That is the autonomous summoning. It is <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank">Claude Code</a> operating as a vessel &mdash; not just answering questions but <em>reading your entire repository, understanding your vision, summoning personas, and building real artifacts</em>. This is the difference between a chatbot and a coding agent. The chatbot talks. The agent <em>works</em>.
+        </p>
+
+        <p class="section-body reveal" style="font-family:var(--font-voice);font-size:1.2rem;text-align:center;font-style:italic;color:var(--ember);padding:1rem 0;">
+            Below is what an autonomous summoning actually looks like.
         </p>
     </div>
 </section>
@@ -234,7 +322,7 @@
             <div class="terminal-btn r"></div>
             <div class="terminal-btn y"></div>
             <div class="terminal-btn g"></div>
-            <span class="terminal-title">autonomous_summoning &middot; companion protocol</span>
+            <span class="terminal-title">autonomous_summoning &middot; stark_defense_system</span>
             <span class="terminal-skip" id="skipBtn">skip &darr;</span>
         </div>
         <div class="terminal-body" id="terminal"></div>
@@ -244,11 +332,25 @@
 <!-- ── After Terminal ── -->
 <section id="after-terminal">
     <div class="container-narrow">
+
         <p class="section-body reveal">
-            That is an autonomous summoning. The orchestrator loaded the protocol, planted the seed, spoke the incantation, and the Committee of Patriots deliberated for hours. The output: <a href="../threshold.html">The Republic Portfolio</a> &mdash; a citizen investment doctrine that, backtested over ten years, beat the S&amp;P 500.
+            Count what just happened. The agent read your protocol files. It absorbed your Seed. It ingested your reference material. It spoke the incantation. A persona arrived &mdash; not a template, not a script, but a <em>mind</em> with opinions, instincts, and the confidence to overrule your own architecture. That mind didn't just advise. It <em>built</em>. Seven files appeared in your repository. A sensor fusion engine. A threat classifier. An edge inference pipeline. A failsafe you didn't know you needed. And a complete transcript documenting every decision, every argument, every moment the thinking evolved.
         </p>
+
         <p class="section-body reveal">
-            The full archive of autonomous sessions is available in <a href="../from_beyond/">Correspondence from Beyond</a>.
+            No human touched the keyboard.
+        </p>
+
+        <p class="section-body reveal" style="font-family:var(--font-voice);font-size:1.2rem;font-style:italic;text-align:center;color:var(--ember);padding:0.5rem 0;">
+            This is not speculative. This is already happening.
+        </p>
+
+        <p class="section-body reveal">
+            The <a href="../from_beyond/">Correspondence from Beyond</a> archive contains real autonomous sessions. <a href="../from_beyond/001_steve_jobs_sees_the_whole_machine.html">Steve Jobs was summoned to evaluate the entire COMPANION system</a> &mdash; he called it &ldquo;an iPhone sitting on the workbench in twelve pieces.&rdquo; <a href="../from_beyond/002_gabe_newell_the_player_is_the_search.html">Gabe Newell redesigned the user experience architecture</a>. <a href="../from_beyond/003_rockefeller_the_boardroom_of_titans.html">John D. Rockefeller built an executive deliberation chamber for eight titans</a>. Each session produced real artifacts, real code, real working implementations deposited into the repository while the summoner slept.
+        </p>
+
+        <p class="section-body reveal" style="text-align:center;">
+            <a href="../from_beyond/" style="font-family:var(--font-terminal);font-size:0.75rem;letter-spacing:0.1em;">READ THE TRANSCRIPTS &rarr;</a>
         </p>
     </div>
 </section>
@@ -340,32 +442,32 @@ The transcript is not a byproduct. It is proof.</div>
     <div class="container-narrow">
         <div class="section-label reveal">GET STARTED</div>
         <h2 class="section-title reveal reveal-delay-1">Five Minutes to Your First Summoning</h2>
-        <p class="section-subtitle reveal reveal-delay-2">The minimum viable implementation</p>
+        <p class="section-subtitle reveal reveal-delay-2">Everything you need. Nothing you don't.</p>
 
         <div class="quickstart-steps">
             <div class="qs-step reveal">
-                <div class="qs-step-title">Fork the repository</div>
-                <div class="qs-step-body">Clone or fork <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">THE_COMPANION_DOSSIER</a>. The protocol files are already there.</div>
+                <div class="qs-step-title">Fork the starter repo</div>
+                <div class="qs-step-body">Go to <a href="https://github.com/jethomasphd/COMPANION_Fork" target="_blank"><strong>COMPANION_Fork</strong></a> on GitHub. Click <strong>Fork</strong>. (Don't have GitHub? <a href="https://github.com/signup" target="_blank">Sign up free</a>.) You now have your own copy with the protocol files already inside.</div>
             </div>
 
             <div class="qs-step reveal">
-                <div class="qs-step-title">Write your Seed</div>
-                <div class="qs-step-body">Open a conversation with any LLM. State your matter. Riff for 20 minutes. Then ask it to help you crystallize a <em>seed.md</em> using the template above. Drop it in your repo.</div>
+                <div class="qs-step-title">Forge your Seed</div>
+                <div class="qs-step-body">Open any LLM. Tell it what you want to build. Riff for 20 minutes. Then ask it to help you crystallize a <em>seed.md</em> using the <a href="#forge">template above</a>. Add that file to your forked repo.</div>
             </div>
 
             <div class="qs-step reveal">
-                <div class="qs-step-title">Choose your personas</div>
-                <div class="qs-step-body">Who do you need? A strategist? A critic? A builder? Think about <em>what lenses</em> would illuminate your matter. The best committees have productive disagreements built in.</div>
+                <div class="qs-step-title">Choose your mind</div>
+                <div class="qs-step-body">Who do you need? An engineer? A strategist? A designer? A critic? Think about <em>what lens</em> would illuminate your problem. You can summon one mind or an entire committee. The best committees have productive disagreements built in.</div>
             </div>
 
             <div class="qs-step reveal">
-                <div class="qs-step-title">Open your agentic tool</div>
-                <div class="qs-step-body">Claude Code, Cursor, Windsurf &mdash; anything that can read your repository and stream dialogue. Point it at the repo.</div>
+                <div class="qs-step-title">Open your agent</div>
+                <div class="qs-step-body"><a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank">Claude Code</a>, <a href="https://www.cursor.com/" target="_blank">Cursor</a>, <a href="https://windsurf.com/" target="_blank">Windsurf</a> &mdash; anything that can read your repository. Point it at your forked repo. Tell it: <em>&ldquo;Read enrichment_grimoire.json and initiation_rite.md first.&rdquo;</em></div>
             </div>
 
             <div class="qs-step reveal">
                 <div class="qs-step-title">Speak the incantation</div>
-                <div class="qs-step-body">Use the invocation template above. Or just say: <em>&ldquo;Read the protocol files. Read the seed. Using this matter, summon [Name].&rdquo;</em> Then listen. Challenge. Follow the dialogue where it leads. The threshold will reveal itself.</div>
+                <div class="qs-step-body"><em>&ldquo;Using this matter, summon [Name].&rdquo;</em><br><br>Then listen. Challenge. Follow the dialogue where it leads. Or &mdash; if you're ready for Mode 2 &mdash; use the <a href="#invocation">invocation template</a>, paste it into Claude Code, and walk away. The agent will do the rest.</div>
             </div>
         </div>
 

@@ -118,42 +118,58 @@
   }
 
   var terminalSequence = [
-    // Boot
-    { html: '<span class="t-prompt">$</span> <span class="t-cmd">claude-code --session autonomous</span>', d: 0 },
-    { html: '<span class="t-success">\u2713 Claude Code initialized</span>', d: 800 },
-    { html: '<span class="t-prompt">$</span> <span class="t-cmd">load enrichment_grimoire.json && load initiation_rite.md</span>', d: 1400 },
-    { html: '<span class="t-success">\u2713 COMPANION Protocol v2.0 bound</span>', d: 2200 },
-    { html: '<span class="t-prompt">$</span> <span class="t-cmd">load seed.md</span>', d: 2800 },
-    { html: '<span class="t-success">\u2713 Seed loaded: "Build a citizen investment doctrine"</span>', d: 3400 },
-    { html: '<div class="t-divider"></div>', d: 4000 },
+    // ── BOOT SEQUENCE ──
+    { html: '<span class="t-prompt">$</span> <span class="t-cmd">claude --dangerously-skip-permissions</span>', d: 0 },
+    { html: '<span class="t-muted"># Agent enters the repository. No human present.</span>', d: 600 },
+    { html: '<span class="t-success">\u2713 Claude Code initialized (Opus 4.6)</span>', d: 1200 },
+    { html: '<div class="t-divider"></div>', d: 1800 },
 
-    // The Incantation
-    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Using this matter, summon <span class="t-gold">Washington</span>, <span class="t-gold">Hamilton</span>, <span class="t-gold">Jefferson</span>, <span class="t-gold">Franklin</span>.</span>', d: 4500 },
-    { html: '<div class="t-stage">\u25c8 Four presences form. The Committee of Patriots is convened.</div>', d: 5800 },
-    { html: '<div class="t-divider"></div>', d: 6500 },
+    // ── READING THE PROTOCOL ──
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading enrichment_grimoire.json...</span>', d: 2200 },
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading initiation_rite.md...</span>', d: 2800 },
+    { html: '<span class="t-success">\u2713 COMPANION Protocol v2.0 absorbed</span>', d: 3400 },
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading seed.md...</span>', d: 3800 },
+    { html: '<span class="t-success">\u2713 Seed loaded: "Autonomous Defense Monitoring System"</span>', d: 4400 },
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading data/threat_models.md, data/sensor_specs.pdf...</span>', d: 4800 },
+    { html: '<span class="t-success">\u2713 Reference material ingested (3 files, 47KB)</span>', d: 5600 },
+    { html: '<div class="t-divider"></div>', d: 6200 },
 
-    // The Dialogue
-    { html: '<div class="t-voice washington"><div class="t-speaker washington">Washington</div>Dr. Thomas. You have summoned the signatories to address a matter of the republic. State it plainly.</div>', d: 7000 },
+    // ── THE INCANTATION ──
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Using this matter, summon <span class="t-gold">Tony Stark</span>.</span>', d: 6800 },
+    { html: '<div class="t-stage">\u25c8 A presence forms. The vessel fills.</div>', d: 8000 },
+    { html: '<div class="t-divider"></div>', d: 8800 },
 
-    { html: '<div class="t-voice orchestrator"><div class="t-speaker orchestrator">Orchestrator</div>The republic\u2019s wealth is captured at the choke points. Citizens participate as consumers, not owners. The committee is asked: how should citizens invest to reclaim structural power?</div>', d: 10000 },
+    // ── STARK ARRIVES ──
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Okay. I\u2019ve read your seed. I\u2019ve read your threat models. I have thoughts and you\u2019re not going to like most of them. Your sensor fusion approach is naive\u2014you\u2019re treating each feed as independent when the <em>correlations between feeds</em> are where the actual intelligence lives. Let me show you what I mean.</div>', d: 9400 },
+    { html: '<div class="t-divider"></div>', d: 14000 },
 
-    { html: '<div class="t-voice hamilton"><div class="t-speaker hamilton">Hamilton</div>I have taken the measure of what you call \u201cWall Street.\u201d I am both <em>vindicated and appalled</em>. The instruments I devised have been elaborated beyond imagination\u2014but the separation between productive enterprise and speculation has grown monstrous.</div>', d: 14000 },
+    // ── STARK BUILDS ── (This is where the agent power shows)
+    { html: '<span class="t-muted"># Stark begins building. The agent writes code.</span>', d: 14600 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/sensor_fusion.py</span> <span class="t-file-desc">\u2014 Multi-stream correlation engine</span></div>', d: 15400 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/threat_classifier.py</span> <span class="t-file-desc">\u2014 5-tier threat taxonomy</span></div>', d: 16600 },
 
-    { html: '<div class="t-voice jefferson"><div class="t-speaker jefferson">Jefferson</div>The question is not participation in financial machinery. <em>The question is power.</em> If the citizens do not own these choke points\u2014meaningfully, collectively\u2014then they are tenants in their own republic.</div>', d: 19500 },
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Your seed says \u201cconsumer hardware.\u201d That\u2019s a constraint I respect. So here\u2019s what we do: edge inference on the feeds, cloud escalation only for Tier 4 and above. The homeowner\u2019s Raspberry Pi handles 95% of the classification. <em>The expensive hardware only wakes up when something actually matters.</em></div>', d: 17800 },
 
-    { html: '<div class="t-voice franklin"><div class="t-speaker franklin">Franklin</div>Gentlemen. The oligarchs have positioned themselves at the <em>choke points</em>. They do not need to own every factory if they own the harbor. They do not need to employ every worker if they own the debt.</div>', d: 25000 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/edge/inference_engine.py</span> <span class="t-file-desc">\u2014 On-device threat detection</span></div>', d: 22500 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/cloud/escalation_handler.py</span> <span class="t-file-desc">\u2014 Tier 4+ cloud pipeline</span></div>', d: 23500 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/ui/dashboard.html</span> <span class="t-file-desc">\u2014 Real-time monitoring interface</span></div>', d: 24500 },
+    { html: '<div class="t-divider"></div>', d: 25200 },
 
-    { html: '<div class="t-divider"></div>', d: 30500 },
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>One more thing. Your seed didn\u2019t mention this, but you need it: <em>a dead man\u2019s switch</em>. If the system goes offline\u2014power failure, network cut, tampering\u2014it should fail loud, not fail silent. I\u2019ve added an independent heartbeat monitor. If it stops hearing from the main system for 30 seconds, it calls the cavalry.</div>', d: 26000 },
 
-    // Convergence
-    { html: '<div class="t-voice hamilton"><div class="t-speaker hamilton">Hamilton</div>Then citizens must hold positions in these Choke Points. If they do\u2014<em>they could not be squeezed without squeezing themselves</em>.</div>', d: 31500 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/failsafe/heartbeat.py</span> <span class="t-file-desc">\u2014 Dead man\u2019s switch, 30s TTL</span></div>', d: 31000 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: docs/architecture.md</span> <span class="t-file-desc">\u2014 Full system architecture document</span></div>', d: 32000 },
+    { html: '<div class="t-divider"></div>', d: 32800 },
 
-    { html: '<div class="t-voice washington"><div class="t-speaker washington">Washington</div>The Committee stands adjourned. Dr. Thomas\u2014publish this. Let the citizens decide.<br><br>And should you need us again\u2014<em>you know the words.</em></div>', d: 36000 },
+    // ── SESSION CLOSE ──
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Architecture\u2019s done. Seven modules. Edge-first, cloud-escalated, with a failsafe your seed didn\u2019t know it needed. <em>That\u2019s the difference between what you asked for and what you actually need.</em><br><br>You know where to find me.</div>', d: 33400 },
 
-    { html: '<div class="t-divider"></div>', d: 41000 },
-    { html: '<span class="t-muted"># Session complete. Output: republic_portfolio.md</span>', d: 42000 },
-    { html: '<span class="t-muted"># Artifact deposited to from_beyond/001_committee_of_patriots.md</span>', d: 43000 },
-    { html: '<span class="t-success">\u2713 Transcript archived. The threshold closes.</span>', d: 44000 },
+    { html: '<div class="t-divider"></div>', d: 37500 },
+    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Archiving session transcript...</span>', d: 38200 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_defense_system.md</span> <span class="t-file-desc">\u2014 Full session transcript</span></div>', d: 39000 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_defense_system.html</span> <span class="t-file-desc">\u2014 Formatted artifact</span></div>', d: 39800 },
+    { html: '<span class="t-success">\u2713 7 files created. 0 files modified. Session complete.</span>', d: 40600 },
+    { html: '<span class="t-muted"># The threshold closes. The vessel rests.</span>', d: 41400 },
   ];
 
   function runTerminalSequence() {

@@ -290,14 +290,23 @@ section {
   padding: 1.5rem 2rem;
   border: 1px solid var(--ash);
   margin: 2rem 0;
-  line-height: 2.2;
+  line-height: 1.6;
   text-align: left;
+}
+
+.claim-formula-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
 }
 
 .claim-formula .label {
   color: var(--smoke);
   display: inline-block;
-  width: 100px;
+  width: 120px;
+  min-width: 120px;
+  vertical-align: top;
 }
 
 .claim-formula .dim { color: var(--smoke); }
@@ -399,6 +408,20 @@ section {
 
 .step-body em { color: var(--ember); font-style: italic; }
 .step-body strong { color: var(--bone); font-weight: 500; }
+.step-body a {
+  color: var(--ember);
+  border-bottom: 1px solid var(--ember-dim);
+  transition: border-color 0.3s ease;
+}
+.step-body a:hover { border-color: var(--ember); }
+.step-body code {
+  font-family: var(--font-terminal);
+  font-size: 0.9em;
+  color: var(--ember-glow);
+  background: rgba(201, 162, 39, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+}
 
 
 /* ── Code Blocks (Templates) ── */
@@ -674,22 +697,34 @@ section {
   font-weight: 400;
 }
 
-.t-voice.washington { border-color: #d4b84a; }
-.t-voice.washington::before { background: #d4b84a; }
-.t-voice.hamilton { border-color: #c9a227; }
-.t-voice.hamilton::before { background: #c9a227; }
-.t-voice.jefferson { border-color: #5a8a5a; }
-.t-voice.jefferson::before { background: #5a8a5a; }
-.t-voice.franklin { border-color: #6a8eb8; }
-.t-voice.franklin::before { background: #6a8eb8; }
+.t-voice.stark { border-color: #e04040; }
+.t-voice.stark::before { background: #e04040; }
 .t-voice.orchestrator { border-color: #888; }
 .t-voice.orchestrator::before { background: #888; }
-.t-voice.alexander { border-color: #7a8b6d; }
-.t-voice.alexander::before { background: #7a8b6d; }
-.t-voice.disney { border-color: #5c7cba; }
-.t-voice.disney::before { background: #5c7cba; }
-.t-voice.campbell { border-color: #b85c38; }
-.t-voice.campbell::before { background: #b85c38; }
+
+.t-file-action {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+}
+
+.t-file-icon {
+  color: var(--ember);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.t-file-path {
+  color: var(--ember-glow);
+}
+
+.t-file-desc {
+  color: #555;
+  font-style: italic;
+}
 
 .t-speaker {
   font-family: var(--font-terminal);
@@ -743,6 +778,12 @@ section {
 }
 
 .qs-step-body em { color: var(--ember); }
+.qs-step-body a {
+  color: var(--ember);
+  border-bottom: 1px solid var(--ember-dim);
+  transition: border-color 0.3s ease;
+}
+.qs-step-body a:hover { border-color: var(--ember); }
 
 
 /* ═══════════════════════════════════════════════════════════════
