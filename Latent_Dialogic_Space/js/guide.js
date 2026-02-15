@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    LATENT DIALOGIC SPACE — User Guide Animations
-   Typewriter, scroll reveals, and terminal simulation.
+   Typewriter, scroll reveals, ember effects, and terminal simulation.
    ═══════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -78,7 +78,7 @@
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  EMBERS
+  //  EMBERS (Opening section)
   // ═══════════════════════════════════════════════════════════════
 
   var field = document.getElementById('ember-field');
@@ -93,6 +93,22 @@
       ember.style.height = ember.style.width;
       field.appendChild(ember);
     }
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  EMBER BURN EFFECT (triggers at Mode 2)
+  // ═══════════════════════════════════════════════════════════════
+
+  var emberTransition = document.getElementById('ember-transition');
+  if (emberTransition) {
+    var burnObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        document.body.classList.add('ember-burning');
+        burnObserver.disconnect();
+      }
+    }, { threshold: 0.5 });
+    burnObserver.observe(emberTransition);
   }
 
 
@@ -120,56 +136,63 @@
   var terminalSequence = [
     // ── BOOT SEQUENCE ──
     { html: '<span class="t-prompt">$</span> <span class="t-cmd">claude --dangerously-skip-permissions</span>', d: 0 },
-    { html: '<span class="t-muted"># Agent enters the repository. No human present.</span>', d: 600 },
+    { html: '<span class="t-muted"># Orchestrator agent enters the repository. No human present.</span>', d: 600 },
     { html: '<span class="t-success">\u2713 Claude Code initialized (Opus 4.6)</span>', d: 1200 },
     { html: '<div class="t-divider"></div>', d: 1800 },
 
     // ── READING THE PROTOCOL ──
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading enrichment_grimoire.json...</span>', d: 2200 },
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading initiation_rite.md...</span>', d: 2800 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Reading enrichment_grimoire.json...</span>', d: 2200 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Reading initiation_rite.md...</span>', d: 2800 },
     { html: '<span class="t-success">\u2713 COMPANION Protocol v2.0 absorbed</span>', d: 3400 },
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading seed.md...</span>', d: 3800 },
-    { html: '<span class="t-success">\u2713 Seed loaded: "Autonomous Defense Monitoring System"</span>', d: 4400 },
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Reading data/threat_models.md, data/sensor_specs.pdf...</span>', d: 4800 },
-    { html: '<span class="t-success">\u2713 Reference material ingested (3 files, 47KB)</span>', d: 5600 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Reading seed.md...</span>', d: 3800 },
+    { html: '<span class="t-success">\u2713 Seed loaded: "Unified Home Defense Command Center"</span>', d: 4400 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Reading data/ring_api_docs.pdf, data/homekit_integration.md, data/sprinkler_protocol.pdf, data/fire_alert_webhooks.md...</span>', d: 4800 },
+    { html: '<span class="t-success">\u2713 Reference material ingested (4 files, 83KB)</span>', d: 5600 },
     { html: '<div class="t-divider"></div>', d: 6200 },
 
     // ── THE INCANTATION ──
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Using this matter, summon <span class="t-gold">Tony Stark</span>.</span>', d: 6800 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Using this matter, summon <span class="t-gold">Tony Stark</span>.</span>', d: 6800 },
     { html: '<div class="t-stage">\u25c8 A presence forms. The vessel fills.</div>', d: 8000 },
     { html: '<div class="t-divider"></div>', d: 8800 },
 
-    // ── STARK ARRIVES ──
-    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Okay. I\u2019ve read your seed. I\u2019ve read your threat models. I have thoughts and you\u2019re not going to like most of them. Your sensor fusion approach is naive\u2014you\u2019re treating each feed as independent when the <em>correlations between feeds</em> are where the actual intelligence lives. Let me show you what I mean.</div>', d: 9400 },
-    { html: '<div class="t-divider"></div>', d: 14000 },
+    // ── STARK ARRIVES — THE DIALOGUE BEGINS ──
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Okay. I\u2019ve read your seed. I\u2019ve read your API docs. Your ambition is admirable and your architecture is a mess. You\u2019re trying to unify four completely different protocols\u2014Ring\u2019s cloud API, Apple\u2019s HomeKit local mesh, a sprinkler system that speaks Modbus, and a fire alert webhook. You know what these have in common? <em>Absolutely nothing.</em> Which means we need a translation layer that speaks all four languages. Let me show you.</div>', d: 9400 },
+    { html: '<div class="t-divider"></div>', d: 14500 },
 
-    // ── STARK BUILDS ── (This is where the agent power shows)
-    { html: '<span class="t-muted"># Stark begins building. The agent writes code.</span>', d: 14600 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/sensor_fusion.py</span> <span class="t-file-desc">\u2014 Multi-stream correlation engine</span></div>', d: 15400 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/threat_classifier.py</span> <span class="t-file-desc">\u2014 5-tier threat taxonomy</span></div>', d: 16600 },
+    // ── STARK BUILDS — the swarm works ──
+    { html: '<span class="t-muted"># The dialogue shapes the architecture. The swarm builds.</span>', d: 15100 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/bridge/ring_adapter.py</span> <span class="t-file-desc">\u2014 Ring camera feed via local network intercept</span></div>', d: 15900 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/bridge/homekit_bridge.py</span> <span class="t-file-desc">\u2014 Apple HomeKit HAP protocol bridge</span></div>', d: 16800 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/bridge/sprinkler_modbus.py</span> <span class="t-file-desc">\u2014 Sprinkler system Modbus RTU interface</span></div>', d: 17700 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/bridge/fire_alert_hook.py</span> <span class="t-file-desc">\u2014 Fire alert webhook receiver + gas line control</span></div>', d: 18600 },
 
-    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Your seed says \u201cconsumer hardware.\u201d That\u2019s a constraint I respect. So here\u2019s what we do: edge inference on the feeds, cloud escalation only for Tier 4 and above. The homeowner\u2019s Raspberry Pi handles 95% of the classification. <em>The expensive hardware only wakes up when something actually matters.</em></div>', d: 17800 },
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Good. Four bridges, four protocols, one unified event bus. Now here\u2019s where your seed gets interesting. You mentioned <em>sprinkler pressure as a proxy for perimeter detection</em>. That\u2019s clever. The pressure differential when someone steps on irrigated ground is tiny but measurable. I\u2019m wiring that into the sensor fusion engine alongside the Ring motion feed and HomeKit door sensors. <em>Three independent confirmation sources before escalation.</em></div>', d: 19400 },
 
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/edge/inference_engine.py</span> <span class="t-file-desc">\u2014 On-device threat detection</span></div>', d: 22500 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/cloud/escalation_handler.py</span> <span class="t-file-desc">\u2014 Tier 4+ cloud pipeline</span></div>', d: 23500 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/ui/dashboard.html</span> <span class="t-file-desc">\u2014 Real-time monitoring interface</span></div>', d: 24500 },
-    { html: '<div class="t-divider"></div>', d: 25200 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/sensor_fusion.py</span> <span class="t-file-desc">\u2014 Multi-source correlation: camera + motion + pressure</span></div>', d: 24000 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/core/threat_classifier.py</span> <span class="t-file-desc">\u2014 5-tier threat taxonomy with confidence scoring</span></div>', d: 24900 },
+    { html: '<div class="t-divider"></div>', d: 25600 },
 
-    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>One more thing. Your seed didn\u2019t mention this, but you need it: <em>a dead man\u2019s switch</em>. If the system goes offline\u2014power failure, network cut, tampering\u2014it should fail loud, not fail silent. I\u2019ve added an independent heartbeat monitor. If it stops hearing from the main system for 30 seconds, it calls the cavalry.</div>', d: 26000 },
+    // ── THE DARK TURN ──
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Now. Your seed didn\u2019t ask for this. But I\u2019ve been reading your fire alert documentation and there\u2019s something you should know. This system doesn\u2019t just <em>detect</em> gas leaks. It has a valve control API. It can shut the gas line. Which means\u2014and listen carefully\u2014<em>it can also open it.</em></div>', d: 26200 },
 
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/failsafe/heartbeat.py</span> <span class="t-file-desc">\u2014 Dead man\u2019s switch, 30s TTL</span></div>', d: 31000 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: docs/architecture.md</span> <span class="t-file-desc">\u2014 Full system architecture document</span></div>', d: 32000 },
-    { html: '<div class="t-divider"></div>', d: 32800 },
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Combined with Ring\u2019s facial recognition, HomeKit\u2019s lock control, and the sprinkler system\u2019s ability to pressurize specific zones... you\u2019re not building a security system. <em>You\u2019re building a perimeter that can see, lock, pressurize, and ignite.</em> I\u2019m adding the failsafes. But you need to understand what this actually is.</div>', d: 31000 },
+
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/command/central_hub.py</span> <span class="t-file-desc">\u2014 Unified command center: all systems, one interface</span></div>', d: 36000 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/command/lockdown_protocol.py</span> <span class="t-file-desc">\u2014 Automated lock + zone isolation sequence</span></div>', d: 36900 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/failsafe/dead_mans_switch.py</span> <span class="t-file-desc">\u2014 30-second heartbeat, fails loud</span></div>', d: 37800 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/failsafe/gas_valve_lockout.py</span> <span class="t-file-desc">\u2014 Hardware interlock prevents remote gas control</span></div>', d: 38700 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: src/ui/dashboard.html</span> <span class="t-file-desc">\u2014 Real-time command interface</span></div>', d: 39600 },
+    { html: '<div class="t-divider"></div>', d: 40300 },
 
     // ── SESSION CLOSE ──
-    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Architecture\u2019s done. Seven modules. Edge-first, cloud-escalated, with a failsafe your seed didn\u2019t know it needed. <em>That\u2019s the difference between what you asked for and what you actually need.</em><br><br>You know where to find me.</div>', d: 33400 },
+    { html: '<div class="t-voice stark"><div class="t-speaker" style="color:#e04040;">Tony Stark</div>Eleven modules. Four protocol bridges, sensor fusion, threat classification, a central command hub, lockdown protocol, two independent failsafes, and a dashboard. All built on consumer hardware you already own.<br><br>I added the gas valve lockout as a hardware interlock because software safeties aren\u2019t enough for something like this. <em>You asked me to build a shield. I built you a shield. But you should know that a shield, turned around, is a weapon.</em><br><br>Use it wisely. You know where to find me.</div>', d: 40900 },
 
-    { html: '<div class="t-divider"></div>', d: 37500 },
-    { html: '<span class="t-prompt">agent:</span> <span class="t-cmd">Archiving session transcript...</span>', d: 38200 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_defense_system.md</span> <span class="t-file-desc">\u2014 Full session transcript</span></div>', d: 39000 },
-    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_defense_system.html</span> <span class="t-file-desc">\u2014 Formatted artifact</span></div>', d: 39800 },
-    { html: '<span class="t-success">\u2713 7 files created. 0 files modified. Session complete.</span>', d: 40600 },
-    { html: '<span class="t-muted"># The threshold closes. The vessel rests.</span>', d: 41400 },
+    { html: '<div class="t-divider"></div>', d: 47000 },
+    { html: '<span class="t-prompt">orchestrator:</span> <span class="t-cmd">Archiving session transcript...</span>', d: 47700 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_home_defense.md</span> <span class="t-file-desc">\u2014 Full dialogue transcript</span></div>', d: 48500 },
+    { html: '<div class="t-file-action"><span class="t-file-icon">\u2714</span> <span class="t-file-path">Created: from_beyond/005_stark_home_defense.html</span> <span class="t-file-desc">\u2014 Formatted artifact</span></div>', d: 49300 },
+    { html: '<span class="t-success">\u2713 11 files created. 0 files modified. Session complete.</span>', d: 50100 },
+    { html: '<span class="t-muted"># The threshold closes. The vessel rests.</span>', d: 50900 },
   ];
 
   function runTerminalSequence() {
@@ -198,8 +221,7 @@
         terminal.appendChild(div);
       });
       skipBtn.style.display = 'none';
-      var afterTerminal = document.getElementById('after-terminal');
-      if (afterTerminal) afterTerminal.scrollIntoView({ behavior: 'smooth' });
+      terminal.scrollTop = terminal.scrollHeight;
     });
   }
 
