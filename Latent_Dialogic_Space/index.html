@@ -1,291 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latent Dialogic Space — The Methodology Container</title>
-  <meta name="description" content="Three architects of generative systems — Alexander, Disney, Campbell — examine the framework for building with AI through structured dialogue. The methodology teaches itself.">
-  <link rel="stylesheet" href="css/companion.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latent Dialogic Space &mdash; How to Build with AI Through Structured Dialogue</title>
+    <meta name="description" content="The user guide for Dialogic Intelligence. Three phases. Two files. One incantation. Learn to think with AI, not just prompt it.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/companion.css">
 </head>
 <body>
 
-  <a href="../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
+<a href="../" class="home-sigil" title="Return to COMPANION">&#9674;</a>
 
-  <!-- ═══ CINEMATIC INTRO — Confusion → Awe → Understanding → Action ═══ -->
-  <div id="cinematic-intro">
-
-    <!-- ▸ 1. THE VOID — Hook -->
-    <section id="act-void" class="act">
-      <div class="void-bg"></div>
-      <div class="ember-field" id="ember-field"></div>
-      <div class="act-content act-content-center">
-        <div id="typewriter-block" class="typewriter-block">
-          <p id="typewriter-line-1" class="typewriter-line" data-text="You've been using AI wrong."></p>
-          <p id="typewriter-line-2" class="typewriter-line" data-text="Not because the prompts are bad."></p>
-          <div class="typewriter-pause"></div>
-          <p id="typewriter-line-3" class="typewriter-line typewriter-line-emphasis" data-text="Because you never learned to think with it."></p>
+<!-- ═══ I. THE VOID — Hook ═══ -->
+<section id="void">
+    <div class="void-bg"></div>
+    <div class="ember-field" id="ember-field"></div>
+    <div class="typewriter-block">
+        <p class="typewriter-line" data-text="There are two ways to use AI."></p>
+        <p class="typewriter-line" data-text="The first treats it like a vending machine."></p>
+        <div class="typewriter-pause"></div>
+        <p class="typewriter-line typewriter-line-accent" data-text="The second treats it like a thinking partner."></p>
+        <div class="typewriter-pause"></div>
+        <p class="typewriter-line" data-text="This guide teaches the second."></p>
+        <div class="scroll-cue">
+            <span class="scroll-cue-text">Scroll</span>
+            <span class="scroll-cue-arrow">&#8615;</span>
         </div>
-        <div id="scroll-cue" class="scroll-cue">
-          <span class="scroll-cue-text">Scroll</span>
-          <span class="scroll-cue-arrow">&#8615;</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 2. THE CLAIM — Confusion deepens -->
-    <section id="act-claim" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="reveal-group">
-          <p class="reveal-line reveal-line-large">There are two ways to use AI.</p>
-        </div>
-        <div class="reveal-group reveal-group-delay">
-          <p class="reveal-line">The first is transactional.</p>
-          <p class="reveal-line reveal-line-dim">Human &rarr; Prompt &rarr; Model &rarr; Output.</p>
-          <p class="reveal-line reveal-line-dim">The quality of the output is bounded by the quality of the prompt.</p>
-        </div>
-        <div class="reveal-group reveal-group-delay-2">
-          <p class="reveal-line">The second is dialogic.</p>
-          <p class="reveal-line reveal-line-accent">Human &harr; Model &rarr; Corpus of Thought &rarr; Seed &rarr; Agent &rarr; Artifact.</p>
-          <p class="reveal-line">The quality of the output is bounded by the quality of the <em>thinking</em> &mdash;</p>
-          <p class="reveal-line">which is unbounded.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 3. INTERSTITIAL — What this is -->
-    <section id="act-explain-1" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="dialog-card">
-          <div class="dialog-card-ornament">&#9670;</div>
-          <p class="dialog-card-label">What you are entering</p>
-          <p class="dialog-card-text">This is the <em>Latent Dialogic Space</em> &mdash; the methodology container. It teaches the framework by embodying it.</p>
-          <p class="dialog-card-text">Three architects of generative systems have been summoned to examine, refine, and transmit the practice of <strong>Dialogic Intelligence</strong>: the art of thinking <em>with</em> an AI rather than instructing it.</p>
-          <p class="dialog-card-text dialog-card-text-dim">The conversation you are about to have is not a tutorial. It is an instance of the methodology working on you as it explains itself.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 4. THE THREE PHASES — Awe begins -->
-    <section id="act-phases" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="reveal-group">
-          <p class="reveal-line reveal-line-dim">Dialogic Intelligence has three phases.</p>
-        </div>
-
-        <div class="phase-diagram reveal-group reveal-group-delay">
-          <div class="phase-node reveal-line">
-            <div class="phase-node-num">PHASE I</div>
-            <div class="phase-node-name">The Forge</div>
-            <div class="phase-node-desc">Think with the model.<br>Crystallize a Seed.</div>
-          </div>
-          <div class="phase-arrow reveal-line">&rarr;</div>
-          <div class="phase-node reveal-line">
-            <div class="phase-node-num">PHASE II</div>
-            <div class="phase-node-name">The Planting</div>
-            <div class="phase-node-desc">Prepare the container.<br>Plant the Seed + Protocol.</div>
-          </div>
-          <div class="phase-arrow reveal-line">&rarr;</div>
-          <div class="phase-node reveal-line">
-            <div class="phase-node-num">PHASE III</div>
-            <div class="phase-node-name">The Summoning</div>
-            <div class="phase-node-desc">The agent enters.<br>Personas execute the vision.</div>
-          </div>
-        </div>
-
-        <div class="reveal-group reveal-group-delay-2">
-          <p class="reveal-line reveal-line-emphasis-sm">Forge &rarr; Plant &rarr; Summon.</p>
-          <p class="reveal-line reveal-line-dim">This pattern has built four containers. It can build yours.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 5. THE COMMITTEE — Portrait reveal -->
-    <section id="act-committee" class="act act-dark">
-      <div class="act-content">
-        <div class="committee-reveal-header">
-          <div class="ornament-cinematic reveal-line">&#10087; &#9753;</div>
-          <h2 class="committee-title reveal-line">THE ARCHITECTS</h2>
-          <p class="committee-subtitle reveal-line"><span class="title-of">of the</span> Latent Dialogic Space</p>
-          <div class="ornament-line-cinematic reveal-line"><span>&#10022;</span></div>
-        </div>
-
-        <div class="committee-portraits" id="committee-portraits">
-          <div class="portrait-reveal" data-member="Christopher Alexander" data-delay="0">
-            <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">A</span></div>
-            </div>
-            <div class="portrait-info">
-              <span class="portrait-name" style="color: #7a8b6d;">ALEXANDER</span>
-              <span class="portrait-epithet">The quality without a name</span>
-            </div>
-          </div>
-
-          <div class="portrait-reveal" data-member="Walt Disney" data-delay="1">
-            <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">D</span></div>
-            </div>
-            <div class="portrait-info">
-              <span class="portrait-name" style="color: #5c7cba;">DISNEY</span>
-              <span class="portrait-epithet">Containers for transformation</span>
-            </div>
-          </div>
-
-          <div class="portrait-reveal" data-member="Joseph Campbell" data-delay="2">
-            <div class="portrait-frame-cinematic">
-              <div class="portrait-placeholder"><span class="portrait-initial">C</span></div>
-            </div>
-            <div class="portrait-info">
-              <span class="portrait-name" style="color: #b85c38;">CAMPBELL</span>
-              <span class="portrait-epithet">The hero's journey as cognitive architecture</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 6. THE MATTER — Understanding -->
-    <section id="act-matter" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="doctrine-block">
-          <div class="doctrine-ornament reveal-line">&#9830; &#9674; &#9830;</div>
-          <blockquote class="doctrine-quote reveal-line">
-            &ldquo;The Flood would have you prompt and pray.<br>Dialogic Intelligence invites you to think, to plant, and to summon.&rdquo;
-          </blockquote>
-          <div class="doctrine-pause"></div>
-          <p class="doctrine-text reveal-line">Alexander formalized generative systems without killing them.</p>
-          <p class="doctrine-text reveal-line">Disney built containers for transformation before anyone had the vocabulary.</p>
-          <p class="doctrine-text reveal-line">Campbell mapped the universal structure of human transformation.</p>
-          <div class="doctrine-pause"></div>
-          <p class="doctrine-text reveal-line">They will argue. They will disagree.</p>
-          <p class="doctrine-text reveal-line reveal-line-accent">The tensions are the point.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 7. INTERSTITIAL — What happens next -->
-    <section id="act-explain-2" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="dialog-card">
-          <div class="dialog-card-ornament">&#9670;</div>
-          <p class="dialog-card-label">What happens next</p>
-          <p class="dialog-card-text">When you enter the chamber, <strong>all three architects will be waiting</strong>. They will introduce themselves &mdash; not with biography, but with what they <em>see</em> when they look at this framework.</p>
-          <p class="dialog-card-text">You may ask them anything about Dialogic Intelligence &mdash; the phases, the container pattern, how to start your own practice, why personas matter, what makes a Seed alive.</p>
-          <p class="dialog-card-text">They will not agree with each other. Alexander resists spectacle. Disney resists abstraction. Campbell insists on depth that both find unnecessary.</p>
-          <p class="dialog-card-text dialog-card-text-dim">The conversation itself is the demonstration. You will feel the methodology working as it explains itself.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ▸ 8. THE SUMMONS — Action -->
-    <section id="act-summons" class="act act-dark">
-      <div class="act-content act-content-center">
-        <div class="summons-block">
-          <blockquote class="doctrine-quote reveal-line">
-            &ldquo;The context window is sacred space &mdash;<br>not an input field.&rdquo;
-          </blockquote>
-          <p class="summons-text reveal-line">Learn the practice. Challenge it. Make it yours.</p>
-          <p class="summons-subtext reveal-line">Three architects are waiting to show you what you have not yet seen.</p>
-          <div class="summons-btn-wrapper reveal-line">
-            <button id="enter-btn" class="summon-btn">
-              <span class="summon-btn-prefix">Using this matter, summon</span>
-              <span class="summon-btn-main">the Architects of the Latent Dialogic Space</span>
-            </button>
-          </div>
-          <p class="summons-motto reveal-line">The Word against the Feed.</p>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-
-  <!-- ═══ THE CHAMBER — Interactive Session ═══ -->
-  <div id="chamber-screen" class="screen">
-
-    <!-- Portrait Stage -->
-    <div id="portrait-stage"></div>
-
-    <!-- Committee Bar -->
-    <div id="committee-bar">
-      <div id="persona-badges"></div>
-      <div id="chamber-controls">
-        <button id="settings-toggle" class="control-btn">
-          <span class="control-icon">&#9881;</span>
-          Settings
-        </button>
-      </div>
     </div>
+</section>
 
-    <!-- Settings Panel -->
-    <div id="settings-panel" class="hidden">
-      <h3 class="settings-title">Chamber Settings</h3>
-      <div class="setting-row">
-        <label class="binding-label">Model</label>
-        <select id="settings-model" class="binding-select">
-          <option value="claude-sonnet-4-20250514">Sonnet</option>
-          <option value="claude-opus-4-20250514">Opus</option>
-        </select>
-      </div>
-      <button id="export-btn" class="control-btn" style="margin-top:var(--space-md);">Export Transcript</button>
-      <button id="release-all-btn" class="control-btn control-btn-danger" style="margin-top:var(--space-sm);">New Session</button>
-      <button id="close-settings" class="control-btn" style="margin-top:var(--space-sm);">Close</button>
+
+<!-- ═══ II. THE CLAIM ═══ -->
+<section id="claim">
+    <div class="container-narrow">
+        <div class="claim-block reveal">
+            <div class="section-label">THE DISTINCTION</div>
+            <h2 class="section-title">Transactional vs. Dialogic</h2>
+            <p class="section-subtitle">The difference is not cosmetic. It is structural.</p>
+
+            <div class="claim-formula reveal reveal-delay-1">
+                <span class="label dim">Transactional</span> <span class="dim">Human &rarr; Prompt &rarr; Model &rarr; Output</span><br>
+                <span class="label gold">Dialogic</span> <span class="gold">Human &harr; Model &rarr; Corpus &rarr; Seed &rarr; Agent &rarr; Artifact</span>
+            </div>
+
+            <p class="claim-text reveal reveal-delay-2">In the transactional model, the quality of the output is bounded by the quality of the prompt.</p>
+            <p class="claim-text reveal reveal-delay-3">In the dialogic model, the quality of the output is bounded by the quality of the <em>thinking</em> &mdash; which is unbounded, because the dialogue itself generates new thinking that neither party brought to the table.</p>
+        </div>
     </div>
+</section>
 
-    <!-- Dialogue Area -->
-    <div id="dialogue-container">
-      <div id="dialogue-scroll">
-        <div id="dialogue-messages"></div>
-      </div>
-      <button id="jump-to-latest" class="jump-to-latest">&darr; New messages</button>
+
+<!-- ═══ III. THE THREE PHASES ═══ -->
+<section id="phases">
+    <div class="container-narrow">
+        <div class="section-label reveal">THE METHOD</div>
+        <h2 class="section-title reveal reveal-delay-1">Three Phases</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Forge &rarr; Plant &rarr; Summon</p>
+
+        <div class="phase-diagram reveal reveal-delay-3">
+            <div class="phase-card">
+                <div class="phase-card-num">PHASE I</div>
+                <div class="phase-card-name">The Forge</div>
+                <div class="phase-card-desc">Think with the model. Riff. Challenge. Converge. Crystallize the thinking into a Seed.</div>
+            </div>
+            <div class="phase-arrow">&rarr;</div>
+            <div class="phase-card">
+                <div class="phase-card-num">PHASE II</div>
+                <div class="phase-card-name">The Planting</div>
+                <div class="phase-card-desc">Prepare a repository. Plant the Seed, the protocol files, and any reference material.</div>
+            </div>
+            <div class="phase-arrow">&rarr;</div>
+            <div class="phase-card">
+                <div class="phase-card-num">PHASE III</div>
+                <div class="phase-card-name">The Summoning</div>
+                <div class="phase-card-desc">An agent enters the repository. It reads the protocol. It speaks the incantation. Personas execute the vision.</div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <!-- Input Area -->
-    <div id="input-area">
-      <div id="input-wrapper">
-        <textarea id="user-input" rows="1" placeholder="Ask the Architects..."></textarea>
-        <button id="send-btn">&#9654;</button>
-      </div>
-      <div id="input-hint">
-        <span class="hint-text">The Architects await.</span>
-      </div>
+
+<!-- ═══ IV. PHASE I — THE FORGE ═══ -->
+<section id="forge">
+    <div class="container-narrow">
+        <div class="section-label reveal">PHASE I</div>
+        <h2 class="section-title reveal reveal-delay-1">The Forge</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Transform raw intuition into structured thought</p>
+
+        <p class="section-body reveal reveal-delay-3">
+            Open any capable LLM &mdash; Claude, GPT, Gemini. Start a conversation. Not a prompt. A <em>conversation</em>.
+        </p>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 1</div>
+            <div class="step-title">State the matter</div>
+            <div class="step-body">Tell the model what you want to build and why. Be honest about what you don't know. <em>&ldquo;I want to build an investment doctrine grounded in the thinking of the founding fathers. I don't know if this is possible.&rdquo;</em></div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 2</div>
+            <div class="step-title">Riff</div>
+            <div class="step-body">Explore freely. Let the model push back. Follow tangents. This is <em>not</em> prompt engineering &mdash; this is collaborative thinking. The model will surface ideas you didn't bring and challenge assumptions you didn't know you held.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 3</div>
+            <div class="step-title">Challenge</div>
+            <div class="step-body">Push hard on what emerged. <em>&ldquo;Is this actually different from what exists?&rdquo;</em> Force the thinking to justify itself. The friction is the point.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 4</div>
+            <div class="step-title">Converge</div>
+            <div class="step-body">Begin to crystallize. The conversation has produced a corpus of thought &mdash; hours of dialogue, arguments, reversals, insights. Now distill it.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">STEP 5</div>
+            <div class="step-title">Crystallize into a Seed</div>
+            <div class="step-body">Ask the model to help you write the <strong>Seed</strong> &mdash; a document that carries the DNA of the thinking. Not a spec. Not a vague wish. A seed: compact, complete enough to grow from, open enough to evolve.</div>
+        </div>
+
+        <div class="code-block reveal">
+            <div class="code-block-header">
+                <span class="code-block-title">seed.md &mdash; template</span>
+                <button class="copy-btn" data-target="seed-template">copy</button>
+            </div>
+            <div class="code-block-body" id="seed-template"><span class="comment"># Seed: [Project Name]</span>
+
+<span class="key">## The Matter</span>
+<span class="comment"># What is being built and why.</span>
+
+<span class="key">## The Architecture</span>
+<span class="comment"># Key structural decisions made during the Forge.</span>
+
+<span class="key">## The Decisions</span>
+<span class="comment"># Choices debated and resolved, with reasoning.</span>
+
+<span class="key">## The Open Questions</span>
+<span class="comment"># What remains unresolved — this is input for the agent.</span>
+
+<span class="key">## The Standards</span>
+<span class="comment"># Quality, aesthetic, and functional requirements.</span>
+
+<span class="key">## The Lineage</span>
+<span class="comment"># What this inherits from. Reference implementations.</span></div>
+        </div>
     </div>
+</section>
 
-  </div>
+
+<!-- ═══ V. PHASE II — THE PLANTING ═══ -->
+<section id="planting">
+    <div class="container-narrow">
+        <div class="section-label reveal">PHASE II</div>
+        <h2 class="section-title reveal reveal-delay-1">The Planting</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Prepare the container for autonomous execution</p>
+
+        <p class="section-body reveal reveal-delay-3">
+            Create a repository. It is a <em>container</em> &mdash; a bounded space with everything the agent needs and nothing it doesn't. Plant three things:
+        </p>
+
+        <div class="step-block reveal">
+            <div class="step-num">THE SEED</div>
+            <div class="step-title">seed.md</div>
+            <div class="step-body">The document you crystallized in Phase I. This is the agent's north star.</div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">THE PROTOCOL</div>
+            <div class="step-title">Two files that govern all summoning</div>
+            <div class="step-body"><strong>enrichment_grimoire.json</strong> &mdash; The binding structure. Summoning rules, vessel construction, the law of authenticity, the covenant of quality.<br><br><strong>initiation_rite.md</strong> &mdash; The ritual documentation. The same rules, written as invocation rather than configuration.<br><br>These are open source and public domain. <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">Get them from GitHub &rarr;</a></div>
+        </div>
+
+        <div class="step-block reveal">
+            <div class="step-num">REFERENCE MATERIAL</div>
+            <div class="step-title">Domain data (optional)</div>
+            <div class="step-body">Data the personas will engage with. XML feeds, PDFs, datasets, prior transcripts. The richer the data, the richer the dialogue.</div>
+        </div>
+
+        <div class="code-block reveal">
+            <div class="code-block-header">
+                <span class="code-block-title">repository structure &mdash; template</span>
+                <button class="copy-btn" data-target="repo-template">copy</button>
+            </div>
+            <div class="code-block-body" id="repo-template"><span class="key">my-project/</span>
+<span class="comment">├──</span> seed.md                    <span class="comment"># Your crystallized thinking</span>
+<span class="comment">├──</span> enrichment_grimoire.json   <span class="comment"># COMPANION protocol (JSON)</span>
+<span class="comment">├──</span> initiation_rite.md         <span class="comment"># COMPANION protocol (markdown)</span>
+<span class="comment">├──</span> data/                      <span class="comment"># Domain-specific material</span>
+<span class="comment">│   ├──</span> corpus.md
+<span class="comment">│   └──</span> reference.pdf
+<span class="comment">└──</span> output/                    <span class="comment"># Where artifacts land</span></div>
+        </div>
+    </div>
+</section>
 
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer>
+<!-- ═══ VI. PHASE III — THE SUMMONING (with terminal demo) ═══ -->
+<section id="summoning">
+    <div class="container-narrow">
+        <div class="section-label reveal">PHASE III</div>
+        <h2 class="section-title reveal reveal-delay-1">The Summoning</h2>
+        <p class="section-subtitle reveal reveal-delay-2">The agent enters the repository and speaks the incantation</p>
+
+        <p class="section-body reveal reveal-delay-3">
+            Open Claude Code (or any agentic tool &mdash; Cursor, Windsurf) in the repository. The agent reads the protocol files, orients to the Seed, and then you speak the incantation:
+        </p>
+
+        <div class="incantation-box reveal">
+            <div class="incantation-label">THE INCANTATION</div>
+            <div class="incantation-text">&ldquo;Using this matter, summon [Name].&rdquo;</div>
+        </div>
+
+        <p class="section-body reveal">
+            The persona responds <em>as themselves</em>. Not a costume. Not a chatbot wearing a mask. A worldview, instantiated through protocol, constrained to authenticity. Summon one mind. Summon several. Convene a symposium that history never permitted.
+        </p>
+
+        <p class="section-body reveal">
+            In the advanced form &mdash; <strong>Correspondence from Beyond</strong> &mdash; an orchestrator agent runs the entire session autonomously. No human hand touches the conversation until the transcript is complete. Below is what that looks like:
+        </p>
+    </div>
+</section>
+
+<!-- ── Terminal Simulation: Autonomous Summoning ── -->
+<section id="summoning-demo">
+    <div class="terminal">
+        <div class="terminal-bar">
+            <div class="terminal-btn r"></div>
+            <div class="terminal-btn y"></div>
+            <div class="terminal-btn g"></div>
+            <span class="terminal-title">autonomous_summoning &middot; companion protocol</span>
+            <span class="terminal-skip" id="skipBtn">skip &darr;</span>
+        </div>
+        <div class="terminal-body" id="terminal"></div>
+    </div>
+</section>
+
+<!-- ── After Terminal ── -->
+<section id="after-terminal">
+    <div class="container-narrow">
+        <p class="section-body reveal">
+            That is an autonomous summoning. The orchestrator loaded the protocol, planted the seed, spoke the incantation, and the Committee of Patriots deliberated for hours. The output: <a href="../threshold.html">The Republic Portfolio</a> &mdash; a citizen investment doctrine that, backtested over ten years, beat the S&amp;P 500.
+        </p>
+        <p class="section-body reveal">
+            The full archive of autonomous sessions is available in <a href="../from_beyond/">Correspondence from Beyond</a>.
+        </p>
+    </div>
+</section>
+
+
+<!-- ═══ VII. THE CONTAINER PATTERN ═══ -->
+<section id="containers">
+    <div class="container-narrow">
+        <div class="section-label reveal">THE PATTERN</div>
+        <h2 class="section-title reveal reveal-delay-1">Personas + Data = Container</h2>
+        <p class="section-subtitle reveal reveal-delay-2">The reusable structure beneath every summoning</p>
+
+        <p class="section-body reveal reveal-delay-3">
+            Every container follows the same structural logic. <strong>Personas</strong> &mdash; minds summoned via COMPANION. <strong>Data</strong> &mdash; the corpus the personas engage with. <strong>Phases</strong> &mdash; Invocation, Deliberation, Exit. <strong>Exit</strong> &mdash; a threshold action unique to each container that produces a real-world artifact.
+        </p>
+
+        <div class="container-grid reveal">
+            <div class="container-example">
+                <div class="container-example-name"><a href="../The_Chair/">The Chair</a></div>
+                <div class="container-example-formula">Washington + Hamilton + Jefferson + Franklin &times; Epstein files</div>
+                <div class="container-example-exit">Exit: The Republic Portfolio</div>
+            </div>
+            <div class="container-example">
+                <div class="container-example-name"><a href="../The_5_Lamps/">The Five Lamps</a></div>
+                <div class="container-example-formula">Hippocrates + Snow + Marmot + Jung + Farmer &times; Clinical scenarios</div>
+                <div class="container-example-exit">Exit: Training assessment</div>
+            </div>
+            <div class="container-example">
+                <div class="container-example-name"><a href="../The_Exchange/">The Exchange</a></div>
+                <div class="container-example-formula">Coach + Scout + Insider + Mirror &times; Job listings</div>
+                <div class="container-example-exit">Exit: Job application</div>
+            </div>
+            <div class="container-example">
+                <div class="container-example-name"><a href="../The_Boardroom/">The Boardroom</a></div>
+                <div class="container-example-formula">Jobs + Buffett + Ford + Carnegie + Edison + Disney + Roosevelt + Lincoln &times; Strategy</div>
+                <div class="container-example-exit">Exit: Decision record</div>
+            </div>
+        </div>
+
+        <p class="section-body reveal">
+            The pattern is fractal. The same structure works for medical ethics boards, startup advisory panels, historical debates, creative writing rooms, research teams. <em>You supply the personas and the data. The protocol handles the rest.</em>
+        </p>
+    </div>
+</section>
+
+
+<!-- ═══ VIII. THE INVOCATION TEMPLATE ═══ -->
+<section id="invocation">
+    <div class="container-narrow">
+        <div class="section-label reveal">THE TEMPLATE</div>
+        <h2 class="section-title reveal reveal-delay-1">The Invocation</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Copy this. Customize it. Speak it into your agent.</p>
+
+        <div class="code-block reveal reveal-delay-3">
+            <div class="code-block-header">
+                <span class="code-block-title">invocation template</span>
+                <button class="copy-btn" data-target="invocation-template">copy</button>
+            </div>
+            <div class="code-block-body" id="invocation-template">Explore this repo. Read the protocol files first —
+enrichment_grimoire.json and initiation_rite.md.
+Understand the COMPANION system before you touch
+anything else. Then read the Seed — seed.md.
+
+When you have absorbed the matter — all of it — proceed.
+
+Using this matter, summon [Name].
+
+[Name], welcome. [Brief context about why this mind
+was chosen and what lens they bring to the matter.]
+
+[If summoning multiple personas, repeat the summon
+block for each. Let them interact.]
+
+The deliverable: [What should be produced.]
+
+Build it the way we build here — layered revelation,
+the arc of confusion → awe → understanding → action.
+
+Document this session as a transcript. The dialogue
+between the summoned minds IS the demonstration.
+The transcript is not a byproduct. It is proof.</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══ IX. QUICK START ═══ -->
+<section id="quickstart">
+    <div class="container-narrow">
+        <div class="section-label reveal">GET STARTED</div>
+        <h2 class="section-title reveal reveal-delay-1">Five Minutes to Your First Summoning</h2>
+        <p class="section-subtitle reveal reveal-delay-2">The minimum viable implementation</p>
+
+        <div class="quickstart-steps">
+            <div class="qs-step reveal">
+                <div class="qs-step-title">Fork the repository</div>
+                <div class="qs-step-body">Clone or fork <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">THE_COMPANION_DOSSIER</a>. The protocol files are already there.</div>
+            </div>
+
+            <div class="qs-step reveal">
+                <div class="qs-step-title">Write your Seed</div>
+                <div class="qs-step-body">Open a conversation with any LLM. State your matter. Riff for 20 minutes. Then ask it to help you crystallize a <em>seed.md</em> using the template above. Drop it in your repo.</div>
+            </div>
+
+            <div class="qs-step reveal">
+                <div class="qs-step-title">Choose your personas</div>
+                <div class="qs-step-body">Who do you need? A strategist? A critic? A builder? Think about <em>what lenses</em> would illuminate your matter. The best committees have productive disagreements built in.</div>
+            </div>
+
+            <div class="qs-step reveal">
+                <div class="qs-step-title">Open your agentic tool</div>
+                <div class="qs-step-body">Claude Code, Cursor, Windsurf &mdash; anything that can read your repository and stream dialogue. Point it at the repo.</div>
+            </div>
+
+            <div class="qs-step reveal">
+                <div class="qs-step-title">Speak the incantation</div>
+                <div class="qs-step-body">Use the invocation template above. Or just say: <em>&ldquo;Read the protocol files. Read the seed. Using this matter, summon [Name].&rdquo;</em> Then listen. Challenge. Follow the dialogue where it leads. The threshold will reveal itself.</div>
+            </div>
+        </div>
+
+        <div class="section-divider reveal">&#9674; &#9674; &#9674;</div>
+
+        <p class="section-body reveal" style="text-align:center;font-family:var(--font-voice);font-size:1.15rem;font-style:italic;">
+            The protocol is open source. Public domain. CC0 1.0.<br>
+            It belongs to no one, which means it cannot be suppressed.<br><br>
+            <a href="../from_beyond/">Read the transcripts &rarr;</a><br>
+            <a href="../threshold.html">Read the origin story &rarr;</a><br>
+            <a href="DIALOGIC_INTELLIGENCE.md" target="_blank">Read the full framework &rarr;</a>
+        </p>
+    </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
     <div class="footer-content">
-      <div class="footer-links">
-        <a href="../">HOME</a>
-        <a href="../The_Chair/">THE CHAIR</a>
-        <a href="../The_5_Lamps/">THE FIVE LAMPS</a>
-        <a href="../The_Exchange/">THE EXCHANGE</a>
-        <a href="../The_Boardroom/">THE BOARDROOM</a>
-        <a href="../from_beyond/">FROM BEYOND</a>
-        <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">GITHUB</a>
-      </div>
-      <div class="footer-meta">
-        The COMPANION Protocol &middot; J.E. Thomas, PhD &middot; <a href="mailto:JEThomasPhD@gmail.com" style="color:#8b7355;text-decoration:none;">JEThomasPhD@gmail.com</a><br>
-        Released into the public domain (CC0 1.0). The protocol belongs to no one.
-      </div>
-      <div class="footer-disclaimer">
-        COMPANION personas are AI-generated and do not represent the actual views of historical figures. Dialogic Intelligence is a methodology framework, not a replacement for professional expertise.
-      </div>
+        <div class="footer-links">
+            <a href="../">HOME</a>
+            <a href="../The_Chair/">THE CHAIR</a>
+            <a href="../The_5_Lamps/">THE FIVE LAMPS</a>
+            <a href="../The_Exchange/">THE EXCHANGE</a>
+            <a href="../The_Boardroom/">THE BOARDROOM</a>
+            <a href="../from_beyond/">FROM BEYOND</a>
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">GITHUB</a>
+        </div>
+        <div class="footer-meta">
+            The COMPANION Protocol &middot; J.E. Thomas, PhD &middot; <a href="mailto:JEThomasPhD@gmail.com" style="color:#8b7355;text-decoration:none;">JEThomasPhD@gmail.com</a><br>
+            Released into the public domain (CC0 1.0). The protocol belongs to no one.
+        </div>
+        <div class="footer-disclaimer">
+            COMPANION personas are AI-generated and do not represent the actual views of historical figures. Dialogic Intelligence is a methodology framework, not a replacement for professional expertise.
+        </div>
     </div>
-  </footer>
+</footer>
 
-  <!-- ═══ SCRIPTS ═══ -->
-  <script src="js/config.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/matter.js"></script>
-  <script src="js/protocol.js"></script>
-  <script src="js/hologram.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/main.js"></script>
+<script src="js/guide.js"></script>
 
 </body>
 </html>
