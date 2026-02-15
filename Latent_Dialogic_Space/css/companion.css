@@ -625,8 +625,7 @@ section {
   font-family: var(--font-terminal);
   font-size: 0.8rem;
   line-height: 1.75;
-  min-height: 400px;
-  max-height: 600px;
+  height: 520px;
   overflow-y: auto;
   position: relative;
   z-index: 1;
@@ -860,7 +859,7 @@ footer {
   .terminal-body {
     font-size: 0.7rem;
     padding: 1rem;
-    min-height: 300px;
+    height: 400px;
   }
 
   .t-voice {
