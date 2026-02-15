@@ -1056,22 +1056,12 @@ section {
   line-height: 1.6;
 }
 
-.letter-providence {
+.letter-subcaption {
   font-family: var(--font-voice);
-  font-size: 1.15rem;
-  font-style: italic;
+  font-size: 1rem;
   color: var(--ember-dim);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.letter-credentials {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--bone-dim);
-  letter-spacing: 0.02em;
+  margin-top: 0.75rem;
+  letter-spacing: 0.03em;
 }
 
 
