@@ -507,6 +507,218 @@ section {
 }
 
 
+/* ── Flow Diagram (Transactional vs Dialogic) ── */
+
+.flow-diagram {
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--ash);
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.flow-diagram-horror {
+  border-color: rgba(139, 0, 0, 0.3);
+  background: rgba(139, 0, 0, 0.02);
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  flex-wrap: wrap;
+}
+
+.flow-label {
+  font-family: var(--font-terminal);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  min-width: 110px;
+  text-transform: uppercase;
+}
+
+.flow-label.dim { color: var(--smoke); }
+.flow-label.gold { color: var(--ember); }
+
+.flow-nodes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.flow-node {
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--ash);
+}
+
+.flow-node.dim { color: var(--smoke); border-color: #222; }
+.flow-node.gold { color: var(--ember); border-color: rgba(201, 162, 39, 0.3); }
+
+.flow-arrow,
+.flow-arrow-bi {
+  font-family: var(--font-terminal);
+  font-size: 0.9rem;
+  color: var(--smoke);
+}
+
+.flow-arrow-bi { color: var(--ember); font-weight: 500; }
+
+.flow-legend {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ash);
+}
+
+.flow-legend-item {
+  font-family: var(--font-terminal);
+  font-size: 0.6rem;
+  color: #555;
+  line-height: 2;
+  letter-spacing: 0.05em;
+}
+
+.flow-arrow-symbol {
+  display: inline-block;
+  width: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--smoke);
+}
+
+.flow-arrow-symbol.gold { color: var(--ember); }
+
+
+/* ── Stark Reveal ── */
+
+.stark-reveal {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.stark-portrait {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  border: 2px solid rgba(224, 64, 64, 0.3);
+  box-shadow: 0 0 40px rgba(224, 64, 64, 0.1), 0 0 80px rgba(0, 0, 0, 0.5);
+}
+
+.stark-quote {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.stark-quote-text {
+  font-family: var(--font-voice);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-style: italic;
+  color: var(--bone-dim);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.stark-quote-attr {
+  font-family: var(--font-terminal);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #e04040;
+}
+
+
+/* ── Ember Transition (Old Frame Burns) ── */
+
+@keyframes ember-glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes burn-line {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.ember-transition {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.ember-transition-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ember), rgba(224, 64, 64, 0.6), var(--ember), transparent);
+  background-size: 200% 100%;
+  animation: burn-line 4s linear infinite;
+}
+
+.ember-transition-text {
+  font-family: var(--font-voice);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ember);
+  white-space: nowrap;
+  animation: ember-glow-pulse 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+}
+
+
+/* ── Horror Text Effects ── */
+
+@keyframes blood-glow {
+  0%, 100% { text-shadow: none; }
+  50% { text-shadow: 0 0 30px rgba(139, 0, 0, 0.15); }
+}
+
+.horror-text {
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* ── Warning Block ── */
+
+.warning-block {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  margin: 3rem 0;
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  background: rgba(139, 0, 0, 0.03);
+  position: relative;
+}
+
+.warning-block::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(139, 0, 0, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.warning-block p {
+  font-family: var(--font-voice);
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: var(--bone);
+  line-height: 2.2;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.warning-block p:last-child { margin-bottom: 0; }
+
+.warning-block em {
+  color: #c41e1e;
+  font-style: italic;
+}
+
+
 /* ── Container Examples Grid ── */
 
 .container-grid {
@@ -783,6 +995,14 @@ section {
   transition: border-color 0.3s ease;
 }
 .qs-step-body a:hover { border-color: var(--ember); }
+.qs-step-body code {
+  font-family: var(--font-terminal);
+  font-size: 0.85em;
+  color: var(--ember-glow);
+  background: rgba(201, 162, 39, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -871,6 +1091,17 @@ footer {
     font-size: 0.7rem;
     padding: 1rem;
   }
+
+  .flow-diagram { padding: 1rem; }
+  .flow-label { min-width: 80px; font-size: 0.5rem; }
+  .flow-node { font-size: 0.65rem; padding: 0.2rem 0.4rem; }
+  .flow-nodes { gap: 0.3rem; }
+
+  .stark-portrait { width: 160px; height: 160px; }
+
+  .ember-transition-text { font-size: 0.8rem; }
+
+  .warning-block { padding: 1.5rem 1rem; }
 }
 
 @media (max-width: 480px) {
