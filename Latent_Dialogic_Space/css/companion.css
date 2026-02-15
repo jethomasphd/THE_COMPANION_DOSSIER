@@ -1006,6 +1006,76 @@ section {
 
 
 /* ═══════════════════════════════════════════════════════════════
+   X-A.  PERSONAL LETTER
+   ═══════════════════════════════════════════════════════════════ */
+
+.letter-section {
+  padding: 5rem 2rem;
+  border-top: 1px solid var(--ash);
+}
+
+.letter-block {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.letter-block p {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--bone);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.letter-block em {
+  color: var(--ember);
+  font-style: italic;
+}
+
+.letter-signature {
+  margin: 3rem 0 1.5rem;
+  text-align: left;
+}
+
+.letter-name {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--bone);
+  margin-bottom: 0.2rem;
+}
+
+.letter-location,
+.letter-date {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--smoke);
+  line-height: 1.6;
+}
+
+.letter-providence {
+  font-family: var(--font-voice);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--ember-dim);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.letter-credentials {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--bone-dim);
+  letter-spacing: 0.02em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
    X.  FOOTER
    ═══════════════════════════════════════════════════════════════ */
 

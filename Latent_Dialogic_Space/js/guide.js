@@ -119,8 +119,13 @@
   var terminal = document.getElementById('terminal');
   var terminalStarted = false;
 
+  function isNearBottom(el) {
+    return el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+  }
+
   function addTerminalLine(html, delay) {
     setTimeout(function () {
+      var shouldScroll = isNearBottom(terminal);
       var div = document.createElement('div');
       div.className = 't-line';
       div.innerHTML = html;
@@ -128,8 +133,10 @@
       requestAnimationFrame(function () {
         div.classList.add('visible');
       });
-      // Auto-scroll terminal
-      terminal.scrollTop = terminal.scrollHeight;
+      // Only auto-scroll if user is already near the bottom
+      if (shouldScroll) {
+        terminal.scrollTop = terminal.scrollHeight;
+      }
     }, delay);
   }
 
