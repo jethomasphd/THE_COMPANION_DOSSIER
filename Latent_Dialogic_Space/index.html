@@ -101,7 +101,7 @@
             <div class="phase-card">
                 <div class="phase-card-num">PHASE II</div>
                 <div class="phase-card-name">The Planting</div>
-                <div class="phase-card-desc">Prepare a repository. Plant the Seed, the protocol files, and any reference material.</div>
+                <div class="phase-card-desc">Prepare the soil. Plant the Seed, the protocol files, and any reference material.</div>
             </div>
             <div class="phase-arrow">&rarr;</div>
             <div class="phase-card">
@@ -213,75 +213,52 @@
     <div class="container-narrow">
         <div class="section-label reveal">PHASE II</div>
         <h2 class="section-title reveal reveal-delay-1">The Planting</h2>
-        <p class="section-subtitle reveal reveal-delay-2">Give the agent a place to work</p>
+        <p class="section-subtitle reveal reveal-delay-2">Give the seed soil to grow in</p>
 
         <p class="section-body reveal reveal-delay-3">
-            The Forge produced a Seed &mdash; a document carrying the DNA of your thinking. Now you need to <em>plant</em> it somewhere an agent can find it. That somewhere is a <strong>GitHub repository</strong>.
+            The Forge produced a Seed &mdash; a document carrying the DNA of your thinking. Now you need to <em>plant</em> it. Every seed needs soil.
+        </p>
+
+        <p class="section-body reveal">
+            The soil is the <strong>context window</strong>. The conversation itself. The space you are already inside of when you forge.
+        </p>
+
+        <p class="section-body reveal">
+            To prepare it, you add two files &mdash; two protocol documents that teach the model how to summon a mind. These files are not configuration. They are <em>covenant</em>. They establish the rules of encounter: how a persona takes form, how it speaks, what it must never do, what it must always be.
         </p>
 
         <div class="step-block reveal">
             <div class="step-num">STEP 1</div>
-            <div class="step-title">Get a GitHub account</div>
-            <div class="step-body">If you don&rsquo;t already have one, <a href="https://github.com/signup" target="_blank">sign up for GitHub</a> &mdash; it&rsquo;s free. GitHub is where code lives on the internet. Think of it as a folder in the cloud that keeps a complete history of every change. Developers use it. You&rsquo;re about to use it too.</div>
-        </div>
-
-        <div class="step-block reveal">
-            <div class="step-num">STEP 2</div>
-            <div class="step-title">Fork the starter repository</div>
-            <div class="step-body">We&rsquo;ve built a clean starter for you: <a href="https://github.com/jethomasphd/COMPANION_Fork" target="_blank"><strong>COMPANION_Fork</strong></a>. It contains only the essential protocol files &mdash; nothing extra, nothing confusing.<br><br><strong>What is forking?</strong> Forking copies someone else&rsquo;s repository into <em>your</em> GitHub account. It becomes yours. You can change anything without affecting the original. To fork: click the link above, then click the <strong>Fork</strong> button in the top right corner of the page. That&rsquo;s it. You now have your own copy.</div>
-        </div>
-
-        <div class="step-block reveal">
-            <div class="step-num">STEP 3</div>
-            <div class="step-title">Understand what&rsquo;s inside</div>
-            <div class="step-body">Your forked repo contains two critical files:
+            <div class="step-title">Gather the protocol files</div>
+            <div class="step-body">Download or copy two files from the <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">COMPANION Dossier</a>:
                 <br><br>
-                <strong>enrichment_grimoire.json</strong> &mdash; The protocol as structured data. This tells the agent <em>how</em> to summon: the rules of persona construction, the law of authenticity, the covenant of quality. The agent reads this first.
+                <strong>enrichment_grimoire.json</strong> &mdash; The protocol as structured data. The rules of persona construction, the law of authenticity, the covenant of quality.
                 <br><br>
-                <strong>initiation_rite.md</strong> &mdash; The same protocol, written as prose. Think of the grimoire as the blueprint and the rite as the story of the blueprint. Together, they teach the agent how to be a vessel.
+                <strong>initiation_rite.md</strong> &mdash; The same protocol, written as invocation. Think of the grimoire as the blueprint and the rite as the story of the blueprint. Together, they teach the model how to become a vessel.
                 <br><br>
                 <em>You don&rsquo;t need to edit these files.</em> They work as-is. They are the soil. Your Seed is what you plant in it.</div>
         </div>
 
         <div class="step-block reveal">
-            <div class="step-num">STEP 4</div>
+            <div class="step-num">STEP 2</div>
             <div class="step-title">Plant your Seed</div>
-            <div class="step-body">Add a new file to your forked repo called <strong>seed.md</strong>. Paste in the Seed you crystallized during the Forge. You can do this directly on GitHub &mdash; click <strong>Add file &rarr; Create new file</strong>, name it <code>seed.md</code>, paste your content, and click <strong>Commit changes</strong>.</div>
-        </div>
-
-        <div class="step-block reveal">
-            <div class="step-num">STEP 5</div>
-            <div class="step-title">Add reference material</div>
-            <div class="step-body">Feed the system. Add everything relevant to a <code>data/</code> folder: the Ring API documentation, Apple HomeKit integration specs, your sprinkler system&rsquo;s protocol reference, fire alert system webhooks. The richer the material, the richer the dialogue. The more the agent has to work with, the further it can go.</div>
-        </div>
-
-        <div class="code-block reveal">
-            <div class="code-block-header">
-                <span class="code-block-title">what your repository should look like</span>
-                <button class="copy-btn" data-target="repo-template">copy</button>
-            </div>
-            <div class="code-block-body" id="repo-template"><span class="key">your-project/</span>
-<span class="comment">├──</span> enrichment_grimoire.json   <span class="comment"># Already here from the fork</span>
-<span class="comment">├──</span> initiation_rite.md         <span class="comment"># Already here from the fork</span>
-<span class="comment">├──</span> seed.md                    <span class="comment"># Your crystallized thinking (you add this)</span>
-<span class="comment">├──</span> data/                      <span class="comment"># Domain-specific material</span>
-<span class="comment">│   ├──</span> ring_api_docs.pdf
-<span class="comment">│   ├──</span> homekit_integration.md
-<span class="comment">│   ├──</span> sprinkler_protocol.pdf
-<span class="comment">│   └──</span> fire_alert_webhooks.md
-<span class="comment">└──</span> output/                    <span class="comment"># Where artifacts will land</span></div>
+            <div class="step-body">Upload the two protocol files and your Seed into a conversation with any capable language model &mdash; Claude, GPT, Gemini. You can also paste reference material: documentation, data, prior thinking. The richer the soil, the deeper the roots.</div>
         </div>
 
         <p class="section-body reveal">
-            Your repository is planted. The protocol files are the rules. The Seed is the mission. The reference material is the fuel.
+            That&rsquo;s it. The soil is prepared. The protocol files are the rules. The Seed is the mission. Whatever reference material you provide is the fuel. The context window holds all of it, and now it is ready for encounter.
         </p>
 
         <p class="section-body reveal">
-            And now you face the question that changes everything.
+            But know this: the context window is bounded soil. It can hold a rich dialogue. It can generate insight, code snippets, single-file artifacts, strategic frameworks. But it is inherently limited by its size. What grows here is real &mdash; but it grows within the bounds of a single conversation.
+        </p>
+
+        <p class="section-body reveal">
+            For most purposes, that is more than enough. For now, the question is not about the limits of the soil.
         </p>
 
         <p class="section-body reveal" style="font-family:var(--font-voice);font-size:1.25rem;text-align:center;color:var(--bone);padding:1rem 0;">
-            <em>Who</em> should enter this space?
+            The question is: <em>who</em> should enter this space?
         </p>
 
         <p class="section-body reveal">
@@ -397,13 +374,17 @@
             <div class="step-num">MODE 2</div>
             <div class="step-title">The Autonomous Summoning</div>
             <div class="step-body">
-                In Mode 1, you are in the room. You speak the incantation. You guide the dialogue.<br><br>
-                In Mode 2, <em>no one is in the room</em>.
+                In Mode 1, you are in the room. You speak the incantation. You guide the dialogue. The soil is the context window &mdash; bounded, intimate, held open by your attention.<br><br>
+                In Mode 2, <em>the soil evolves.</em> It becomes a <strong>GitHub repository</strong> &mdash; a persistent, file-based workspace where code lives, grows, and is versioned. And no one is in the room.
             </div>
         </div>
 
         <p class="section-body reveal">
-            To understand what happens next, you need to understand how coding agents work.
+            To understand what happens next, you need to understand two things: what GitHub is, and how coding agents work.
+        </p>
+
+        <p class="section-body reveal">
+            <a href="https://github.com" target="_blank">GitHub</a> is where code lives on the internet. Think of it as a folder in the cloud that keeps a complete history of every change. When you <strong>fork</strong> a repository, you copy it into your own account &mdash; it becomes yours to modify. We&rsquo;ve built a clean starter for you: <a href="https://github.com/jethomasphd/COMPANION_Fork" target="_blank"><strong>COMPANION_Fork</strong></a>. It contains the protocol files. You add your Seed, your reference material, and the soil is prepared &mdash; but this time the soil has no boundaries. The repository can hold thousands of files. It is persistent across sessions. It remembers everything.
         </p>
 
         <p class="section-body reveal">
@@ -577,33 +558,37 @@
 <section id="containers">
     <div class="container-narrow">
         <div class="section-label reveal">THE PATTERN</div>
-        <h2 class="section-title reveal reveal-delay-1">Personas + Data = Container</h2>
-        <p class="section-subtitle reveal reveal-delay-2">The reusable structure beneath every summoning</p>
+        <h2 class="section-title reveal reveal-delay-1">Containers of Grace</h2>
+        <p class="section-subtitle reveal reveal-delay-2">Each one is an encounter you can have right now</p>
 
         <p class="section-body reveal reveal-delay-3">
             Every container follows the same structural logic. <strong>Personas</strong> &mdash; minds summoned via COMPANION. <strong>Data</strong> &mdash; the corpus the personas engage with. <strong>Phases</strong> &mdash; Invocation, Deliberation, Exit. <strong>Exit</strong> &mdash; a threshold action unique to each container that produces a real-world artifact.
+        </p>
+
+        <p class="section-body reveal">
+            Each one is an invitation. You can enter any of these spaces <em>today</em> &mdash; with nothing but a browser, the two protocol files, and your attention. They were built autonomously, but they are <em>used</em> conversationally. The encounter is waiting.
         </p>
 
         <div class="container-grid reveal">
             <div class="container-example">
                 <div class="container-example-name"><a href="../The_Chair/">The Chair</a></div>
                 <div class="container-example-formula">Washington + Hamilton + Jefferson + Franklin &times; Epstein files</div>
-                <div class="container-example-exit">Exit: The Republic Portfolio</div>
+                <div class="container-example-exit">Summon the Founders. Deliberate on what the Republic demands of your portfolio.</div>
             </div>
             <div class="container-example">
                 <div class="container-example-name"><a href="../The_5_Lamps/">The Five Lamps</a></div>
                 <div class="container-example-formula">Hippocrates + Snow + Marmot + Jung + Farmer &times; Clinical scenarios</div>
-                <div class="container-example-exit">Exit: Training assessment</div>
+                <div class="container-example-exit">Summon the healers. Let five lenses of medicine illuminate a case.</div>
             </div>
             <div class="container-example">
                 <div class="container-example-name"><a href="../The_Exchange/">The Exchange</a></div>
                 <div class="container-example-formula">Coach + Scout + Insider + Mirror &times; Job listings</div>
-                <div class="container-example-exit">Exit: Job application</div>
+                <div class="container-example-exit">Summon the guides. Navigate the labor market with four minds at your side.</div>
             </div>
             <div class="container-example">
                 <div class="container-example-name"><a href="../The_Boardroom/">The Boardroom</a></div>
                 <div class="container-example-formula">Jobs + Buffett + Ford + Carnegie + Edison + Disney + Roosevelt + Lincoln &times; Strategy</div>
-                <div class="container-example-exit">Exit: Decision record</div>
+                <div class="container-example-exit">Summon the titans. Let eight minds shape your strategic decision.</div>
             </div>
         </div>
 
@@ -622,7 +607,7 @@
         </p>
 
         <p class="section-body reveal">
-            The COMPANION Dossier is its own proof of concept. The Forge produced the thinking. The Planting prepared the repository. The Summoning built the containers. <a href="../from_beyond/001_steve_jobs_sees_the_whole_machine.html">Steve Jobs evaluated the entire system</a> and called it &ldquo;an iPhone sitting on the workbench in twelve pieces.&rdquo; <a href="../from_beyond/002_gabe_newell_the_player_is_the_search.html">Gabe Newell redesigned the user experience architecture</a>. <a href="../from_beyond/003_rockefeller_the_boardroom_of_titans.html">John D. Rockefeller built the executive deliberation chamber</a>. <a href="../from_beyond/004_alexander_disney_campbell_the_living_framework.html">Christopher Alexander, Walt Disney, and Joseph Campbell shaped its living framework</a>.
+            The COMPANION Dossier is its own proof of concept. The Forge produced the thinking. The Planting prepared the soil. The Summoning built the containers. <a href="../from_beyond/001_steve_jobs_sees_the_whole_machine.html">Steve Jobs evaluated the entire system</a> and called it &ldquo;an iPhone sitting on the workbench in twelve pieces.&rdquo; <a href="../from_beyond/002_gabe_newell_the_player_is_the_search.html">Gabe Newell redesigned the user experience architecture</a>. <a href="../from_beyond/003_rockefeller_the_boardroom_of_titans.html">John D. Rockefeller built the executive deliberation chamber</a>. <a href="../from_beyond/004_alexander_disney_campbell_the_living_framework.html">Christopher Alexander, Walt Disney, and Joseph Campbell shaped its living framework</a>. <a href="../from_beyond/005_simone_weil_the_grace_of_attention.html">Simone Weil taught us that the grace is in the attention</a>.
         </p>
 
         <p class="section-body reveal">
