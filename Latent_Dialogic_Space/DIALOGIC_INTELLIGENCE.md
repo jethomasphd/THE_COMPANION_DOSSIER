@@ -69,17 +69,21 @@ This is the same principle that makes good conversation between humans productiv
 
 ### Phase II: The Planting
 
-**Purpose:** Prepare a repository that contains everything an autonomous agent needs to execute.
+**Purpose:** Prepare the soil — a space that holds the Seed, the protocol, and whatever reference material the summoned mind will need.
 
-**What happens:** You create a GitHub repository (or equivalent) and plant three things:
+**The soil takes two forms:**
 
-1. **The Seed** (`Seed.md` or equivalent) — The crystallized output of Phase I. This is the agent's brief: what to build, why it matters, what decisions have already been made.
+**In Mode 1 (The Practice),** the soil is the context window itself. You upload the protocol files and your Seed directly into a conversation with any capable LLM. The context window holds everything — the rules of engagement, the crystallized thinking, any reference material you provide. It is bounded by the conversation's limits, but it is immediate, accessible, and requires no technical setup.
 
-2. **The Protocol Files** — The COMPANION Protocol's `enrichment_grimoire.json` and `initiation_rite.md`, which govern how personas are instantiated, how they behave, and what standards they must meet. These files are the constitutional layer — they ensure that any personas summoned during execution maintain fidelity, depth, and authentic voice.
+**In Mode 2 (The Frontier),** the soil evolves into a GitHub repository — a persistent, file-based workspace with no size constraints. The repository holds the same three things, but in a structure that an autonomous agent can navigate:
 
-3. **Reference Material** — Any existing implementations, transcripts from prior sessions, data files, or architectural patterns the agent should learn from. The richer the context, the more coherent the execution.
+1. **The Seed** (`Seed.md` or equivalent) — The crystallized output of Phase I.
 
-**Repository structure (template):**
+2. **The Protocol Files** — The COMPANION Protocol's `enrichment_grimoire.json` and `initiation_rite.md`, which govern how personas are instantiated, how they behave, and what standards they must meet.
+
+3. **Reference Material** — Any existing implementations, transcripts from prior sessions, data files, or architectural patterns the agent should learn from. The richer the soil, the deeper the roots.
+
+**Repository structure (Mode 2 only):**
 
 ```
 your-project/
@@ -97,7 +101,7 @@ your-project/
     └── .gitkeep
 ```
 
-**The principle:** The repository is a *container* — a bounded space with everything the agent needs and nothing it doesn't. The COMPANION Protocol files are always present because they establish the rules of engagement. The Seed is always present because it carries the intent. Everything else is context.
+**The principle:** Whether the soil is a context window or a repository, the logic is the same — a *container* holding everything the summoned mind needs and nothing it doesn't. The COMPANION Protocol files establish the rules of encounter. The Seed carries the intent. Everything else is context.
 
 ---
 
