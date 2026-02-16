@@ -263,48 +263,6 @@
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  PHASE PROGRESS TRACKING
-  // ═══════════════════════════════════════════════════════════════
-
-  var phaseForge = document.getElementById('phase-forge');
-  var phasePlant = document.getElementById('phase-plant');
-  var phaseSummon = document.getElementById('phase-summon');
-
-  if (phaseForge && phasePlant && phaseSummon) {
-    var forgeSection = document.getElementById('forge');
-    var plantSection = document.getElementById('planting');
-    var summonSection = document.getElementById('summoning');
-
-    var phaseObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.id;
-          // Reset all
-          phaseForge.classList.remove('phase-active', 'phase-complete');
-          phasePlant.classList.remove('phase-active', 'phase-complete');
-          phaseSummon.classList.remove('phase-active', 'phase-complete');
-
-          if (id === 'forge') {
-            phaseForge.classList.add('phase-active');
-          } else if (id === 'planting') {
-            phaseForge.classList.add('phase-complete');
-            phasePlant.classList.add('phase-active');
-          } else if (id === 'summoning') {
-            phaseForge.classList.add('phase-complete');
-            phasePlant.classList.add('phase-complete');
-            phaseSummon.classList.add('phase-active');
-          }
-        }
-      });
-    }, { threshold: 0.15 });
-
-    if (forgeSection) phaseObserver.observe(forgeSection);
-    if (plantSection) phaseObserver.observe(plantSection);
-    if (summonSection) phaseObserver.observe(summonSection);
-  }
-
-
-  // ═══════════════════════════════════════════════════════════════
   //  SMOOTH SCROLL
   // ═══════════════════════════════════════════════════════════════
 
