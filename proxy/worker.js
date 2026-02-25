@@ -3,6 +3,7 @@
 
    Routes:
      POST /v1/messages       — Anthropic API proxy (existing)
+     GET  /api/usajobs/search — USAJobs API proxy (new)
      POST /api/submit        — Receive Take_Action letter submissions
      GET  /admin             — Admin dashboard (requires ?key=ADMIN_KEY)
      POST /api/status        — Update submission status (requires key)
@@ -10,6 +11,8 @@
    Secrets (set via wrangler secret put):
      ANTHROPIC_API_KEY       — Anthropic API key
      ADMIN_KEY               — Protects the admin dashboard
+     USAJOBS_API_KEY         — USAJobs API authorization key
+     USAJOBS_EMAIL           — Email used as User-Agent for USAJobs API
 
    KV Namespace:
      SUBMISSIONS             — Stores letter submissions
@@ -48,6 +51,11 @@ export default {
     // ── Route: Anthropic API Proxy ──
     if (url.pathname === '/v1/messages' && request.method === 'POST') {
       return handleProxy(request, env);
+    }
+
+    // ── Route: USAJobs API Proxy ──
+    if (url.pathname === '/api/usajobs/search' && request.method === 'GET') {
+      return handleUSAJobsSearch(request, url, env);
     }
 
     // ── Route: Submit letter entry ──
@@ -139,6 +147,151 @@ async function handleProxy(request, env) {
   } catch (fetchError) {
     return errorResponse(502, 'Failed to reach Anthropic API.');
   }
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// USAJOBS API PROXY
+// ═══════════════════════════════════════════════════════════════
+
+const USAJOBS_API_URL = 'https://data.usajobs.gov/api/search';
+
+// Allowed USAJobs query parameters (whitelist for security)
+const USAJOBS_ALLOWED_PARAMS = [
+  'Keyword', 'PositionTitle', 'LocationName', 'RemunerationMinimumAmount',
+  'RemunerationMaximumAmount', 'PayGradeLow', 'PayGradeHigh', 'JobCategoryCode',
+  'Organization', 'PositionOfferingTypeCode', 'PositionScheduleTypeCode',
+  'DatePosted', 'SortField', 'SortDirection', 'Page', 'ResultsPerPage',
+  'WhoMayApply', 'Radius', 'Fields', 'HiringPath', 'RemoteIndicator'
+];
+
+async function handleUSAJobsSearch(request, url, env) {
+  const origin = request.headers.get('Origin') || '';
+  if (!isAllowedOrigin(origin, env)) {
+    return errorResponse(403, 'Origin not allowed.');
+  }
+
+  if (!env.USAJOBS_API_KEY || !env.USAJOBS_EMAIL) {
+    return corsJson(origin, 500, { error: 'USAJobs API not configured. Set USAJOBS_API_KEY and USAJOBS_EMAIL secrets.' });
+  }
+
+  // Build sanitized query string from allowed parameters only
+  const queryParts = [];
+  for (const param of USAJOBS_ALLOWED_PARAMS) {
+    const value = url.searchParams.get(param);
+    if (value !== null && value !== '') {
+      queryParts.push(param + '=' + encodeURIComponent(value));
+    }
+  }
+
+  const usajobsUrl = USAJOBS_API_URL + (queryParts.length > 0 ? '?' + queryParts.join('&') : '');
+
+  try {
+    const usajobsResponse = await fetch(usajobsUrl, {
+      method: 'GET',
+      headers: {
+        'Host': 'data.usajobs.gov',
+        'User-Agent': env.USAJOBS_EMAIL,
+        'Authorization-Key': env.USAJOBS_API_KEY
+      }
+    });
+
+    if (!usajobsResponse.ok) {
+      const errText = await usajobsResponse.text();
+      console.error('USAJobs API error:', usajobsResponse.status, errText);
+      return corsJson(origin, usajobsResponse.status, {
+        error: 'USAJobs API returned ' + usajobsResponse.status
+      });
+    }
+
+    const data = await usajobsResponse.json();
+
+    // Transform the response to a lighter format for the client
+    const result = transformUSAJobsResponse(data);
+
+    return corsJson(origin, 200, result);
+
+  } catch (fetchError) {
+    console.error('USAJobs fetch error:', fetchError);
+    return corsJson(origin, 502, { error: 'Failed to reach USAJobs API.' });
+  }
+}
+
+/**
+ * Transform raw USAJobs API response into a lighter format.
+ * Strips unnecessary fields to reduce payload size.
+ */
+function transformUSAJobsResponse(data) {
+  const searchResult = data.SearchResult || {};
+  const items = searchResult.SearchResultItems || [];
+
+  return {
+    totalCount: searchResult.SearchResultCountAll || 0,
+    returnedCount: searchResult.SearchResultCount || 0,
+    items: items.map(function (item) {
+      const matched = item.MatchedObjectDescriptor || {};
+      const position = matched.PositionLocation || [];
+      const remuneration = (matched.PositionRemuneration || [])[0] || {};
+      const userArea = matched.UserArea || {};
+      const details = userArea.Details || {};
+
+      // Get the first location
+      const loc = position[0] || {};
+
+      return {
+        positionId: matched.PositionID || '',
+        title: matched.PositionTitle || '',
+        organizationName: matched.OrganizationName || '',
+        departmentName: matched.DepartmentName || '',
+        city: loc.CityName || '',
+        state: extractState(loc.LocationName || ''),
+        zip: loc.PostalCode || '',
+        locationName: loc.LocationName || '',
+        salaryMin: remuneration.MinimumRange || '',
+        salaryMax: remuneration.MaximumRange || '',
+        salaryDisplay: (remuneration.MinimumRange && remuneration.MaximumRange)
+          ? '$' + Number(remuneration.MinimumRange).toLocaleString('en-US') +
+            ' - $' + Number(remuneration.MaximumRange).toLocaleString('en-US') +
+            ' ' + (remuneration.RateIntervalCode || 'Per Year')
+          : '',
+        grade: extractGrade(matched.JobGrade || []),
+        schedule: (matched.PositionSchedule || [])[0]?.ScheduleName || '',
+        qualificationSummary: matched.QualificationSummary || '',
+        jobCategory: ((matched.JobCategory || [])[0] || {}).Name || '',
+        applyUrl: (matched.ApplyURI || [])[0] || '',
+        positionUrl: matched.PositionURI || '',
+        openDate: matched.PublicationStartDate || '',
+        closeDate: matched.ApplicationCloseDate || '',
+        majorDuties: (details.MajorDuties || []).slice(0, 3)
+      };
+    })
+  };
+}
+
+/**
+ * Extract state abbreviation from USAJobs location string.
+ * e.g. "Denver, Colorado" → "CO"
+ */
+function extractState(locationName) {
+  if (!locationName) return '';
+  // USAJobs often returns "City, State" format
+  const parts = locationName.split(',');
+  if (parts.length >= 2) {
+    return parts[parts.length - 1].trim().substring(0, 2).toUpperCase();
+  }
+  return '';
+}
+
+/**
+ * Extract grade string from JobGrade array.
+ */
+function extractGrade(gradeArray) {
+  if (!gradeArray || gradeArray.length === 0) return '';
+  const g = gradeArray[0] || {};
+  if (g.Code && g.Code !== '0') {
+    return g.Code;
+  }
+  return '';
 }
 
 
@@ -522,7 +675,7 @@ function handlePreflight(request, env) {
     status: 204,
     headers: {
       'Access-Control-Allow-Origin': origin,
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, anthropic-version',
       'Access-Control-Max-Age': '86400'
     }

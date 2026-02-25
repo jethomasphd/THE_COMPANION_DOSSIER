@@ -15,9 +15,11 @@ COMPANION.App = (function () {
   var chamberInitialized = false;
   var currentPhase = 0;       // 0 = not started, 1 = invocation, 2 = symposium, 3 = threshold
   var jobCorpus = [];         // Parsed XML job listings
+  var liveJobs = [];          // Live USAJobs results
   var xmlLoaded = false;
   var userTurnCount = 0;
   var selectedGuide = null;   // The archetype the user chose
+  var userMessages = [];      // Track user messages for search context
 
   // ── Audio State ──
   var ambientAudioCtx = null;
@@ -443,7 +445,7 @@ COMPANION.App = (function () {
         COMPANION.UI.setInputEnabled(true);
       } else {
         COMPANION.UI.addSystemMessage(
-          'National labor market database loaded. The committee is ready.'
+          'National labor market database loaded. Live USAJobs integration active. The committee is ready.'
         );
 
         // Begin Phase 1: The Invocation
@@ -641,7 +643,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount, liveJobs);
 
     COMPANION.API.sendMessage(
       greetingText,
@@ -715,18 +717,71 @@ COMPANION.App = (function () {
     COMPANION.UI.setInputEnabled(false);
 
     userTurnCount++;
+    userMessages.push(text);
 
     // Check for phase transition from Invocation to Symposium
     // After 2-3 user turns in Phase 1, auto-transition
     if (currentPhase === 1 && userTurnCount >= 1) {
       transitionToPhase2();
-      // Small delay to let UI update before sending
-      setTimeout(function () {
-        sendToAPI(text);
-      }, 2000);
+      // Search USAJobs with the user's context, then send to API
+      searchAndSend(text);
+    } else if (currentPhase === 2) {
+      // Refine USAJobs search with updated context
+      searchAndSend(text);
     } else {
       sendToAPI(text);
     }
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  USAJOBS LIVE SEARCH
+  // ═══════════════════════════════════════════════════════════════
+
+  function searchAndSend(userText) {
+    if (!COMPANION.USAJobs) {
+      // USAJobs module not loaded — fall back to static corpus
+      setTimeout(function () { sendToAPI(userText); }, currentPhase === 2 ? 2000 : 0);
+      return;
+    }
+
+    var terms = COMPANION.USAJobs.extractSearchTerms(userText, userMessages);
+
+    // Only search if we have meaningful terms
+    if (!terms.keyword && !terms.locationName) {
+      setTimeout(function () { sendToAPI(userText); }, currentPhase === 2 ? 2000 : 0);
+      return;
+    }
+
+    COMPANION.UI.addSystemMessage('Searching USAJobs for live federal listings...');
+
+    var searchParams = {};
+    if (terms.keyword) searchParams.keyword = terms.keyword;
+    if (terms.locationName) searchParams.locationName = terms.locationName;
+    searchParams.resultsPerPage = 25;
+
+    COMPANION.USAJobs.search(searchParams).then(function (result) {
+      if (result.error) {
+        console.warn('[Exchange] USAJobs search error:', result.error);
+        COMPANION.UI.addSystemMessage('Live job search unavailable. Using reference corpus.');
+      } else if (result.jobs.length > 0) {
+        liveJobs = result.jobs;
+        var msg = result.total + ' federal positions found';
+        if (terms.locationName) msg += ' near ' + terms.locationName;
+        msg += '. ' + result.jobs.length + ' loaded for the committee.';
+        COMPANION.UI.addSystemMessage(msg);
+      } else {
+        COMPANION.UI.addSystemMessage('No federal positions matched. The committee will use the reference corpus.');
+      }
+
+      // Small delay to let system messages render
+      setTimeout(function () { sendToAPI(userText); }, 800);
+
+    }).catch(function (err) {
+      console.error('[Exchange] USAJobs search failed:', err);
+      COMPANION.UI.addSystemMessage('Live search unavailable. Using reference corpus.');
+      setTimeout(function () { sendToAPI(userText); }, 800);
+    });
   }
 
 
@@ -748,7 +803,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount, liveJobs);
 
     COMPANION.API.sendMessage(
       userText,
@@ -763,6 +818,9 @@ COMPANION.App = (function () {
         currentStreamMessage.finish();
         currentStreamMessage = null;
         COMPANION.Hologram.clearSpeaking();
+
+        // Check for SEARCH marker (committee requests a refined search)
+        checkForSearchRequest(fullText);
 
         // Check for THRESHOLD marker before re-enabling input
         var thresholdFound = checkForThreshold(fullText);
@@ -821,11 +879,35 @@ COMPANION.App = (function () {
       var jobData = JSON.parse(jsonStr);
       console.log('[Exchange] Parsed job data:', jobData);
 
+      // Try to match against live USAJobs results for real apply URL
+      if (COMPANION.USAJobs && liveJobs.length > 0) {
+        var liveMatch = COMPANION.USAJobs.findJobByTitle(jobData.title);
+        if (liveMatch) {
+          console.log('[Exchange] Matched live USAJobs listing:', liveMatch.title);
+          // Enrich threshold data with live job info
+          if (liveMatch.applyUrl) jobData.url = liveMatch.applyUrl;
+          if (liveMatch.positionUrl) jobData.positionUrl = liveMatch.positionUrl;
+          if (liveMatch.salaryRange) jobData.salaryRange = liveMatch.salaryRange;
+          if (liveMatch.department) jobData.department = liveMatch.department;
+          if (liveMatch.grade) jobData.grade = liveMatch.grade;
+          if (liveMatch.closeDate) jobData.closeDate = liveMatch.closeDate;
+          jobData.isUSAJobs = true;
+        }
+      }
+
       // Build URL if missing
       if (!jobData.url && jobData.title) {
-        var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
-        var l = jobData.zip || '';
-        jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q + '&l=' + l;
+        // Default to USAJobs search if we have live data context, otherwise Best Jobs Online
+        if (liveJobs.length > 0) {
+          var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
+          var l = jobData.city ? encodeURIComponent(jobData.city).replace(/%20/g, '+') : '';
+          jobData.url = 'https://www.usajobs.gov/Search/Results?k=' + q + (l ? '&l=' + l : '');
+          jobData.isUSAJobs = true;
+        } else {
+          var q2 = encodeURIComponent(jobData.title).replace(/%20/g, '+');
+          var l2 = jobData.zip || '';
+          jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q2 + '&l=' + l2;
+        }
       }
 
       if (jobData.title) {
@@ -838,6 +920,48 @@ COMPANION.App = (function () {
     } catch (e) {
       console.warn('[Exchange] Could not parse threshold JSON:', e, '\nRaw:', jsonStr);
       return false;
+    }
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  SEARCH REQUEST DETECTION
+  // ═══════════════════════════════════════════════════════════════
+
+  function checkForSearchRequest(responseText) {
+    // Detect <!-- SEARCH: {"keyword": "...", "location": "..."} --> markers
+    var m = responseText.match(/<!--\s*SEARCH:\s*(\{[\s\S]*?\})\s*-->/);
+    if (!m) return;
+
+    if (!COMPANION.USAJobs) return;
+
+    try {
+      var searchReq = JSON.parse(m[1]);
+      console.log('[Exchange] Committee requested search:', searchReq);
+
+      var params = {};
+      if (searchReq.keyword) params.keyword = searchReq.keyword;
+      if (searchReq.location) params.locationName = searchReq.location;
+      if (searchReq.title) params.positionTitle = searchReq.title;
+      params.resultsPerPage = 25;
+
+      COMPANION.UI.addSystemMessage('The Scout is mapping new territory on USAJobs...');
+
+      COMPANION.USAJobs.search(params).then(function (result) {
+        if (result.jobs.length > 0) {
+          liveJobs = result.jobs;
+          COMPANION.UI.addSystemMessage(
+            result.total + ' positions found. ' + result.jobs.length + ' loaded for the committee.'
+          );
+        } else {
+          COMPANION.UI.addSystemMessage('No matching federal positions found for that search.');
+        }
+      }).catch(function (err) {
+        console.error('[Exchange] Refinement search failed:', err);
+      });
+
+    } catch (e) {
+      console.warn('[Exchange] Could not parse SEARCH marker:', e);
     }
   }
 

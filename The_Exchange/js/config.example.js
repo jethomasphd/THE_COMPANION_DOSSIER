@@ -7,10 +7,20 @@
    Two modes:
      1. PROXY (recommended): Set proxyUrl to your Cloudflare Worker.
         The API key lives server-side. Nothing secret in the browser.
+        The proxy also handles USAJobs API calls (requires server-side
+        USAJOBS_API_KEY and USAJOBS_EMAIL secrets on the worker).
      2. DIRECT: Set apiKey here. Key is in browser JS (spend-limit it).
+        Note: USAJobs integration requires proxy mode.
 
    If config.js is absent, the container falls back to
    asking the user for their own key (The Binding screen).
+
+   USAJobs API Setup:
+     1. Request an API key at https://developer.usajobs.gov/APIRequest/Index
+     2. Set the key and email as Cloudflare Worker secrets:
+        npx wrangler secret put USAJOBS_API_KEY
+        npx wrangler secret put USAJOBS_EMAIL
+     3. Deploy the worker: npx wrangler deploy
    ═══════════════════════════════════════════════════════════════ */
 
 window.COMPANION_CONFIG = {
