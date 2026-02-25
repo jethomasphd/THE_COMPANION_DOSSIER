@@ -9,7 +9,7 @@ var COMPANION = window.COMPANION || {};
 
 COMPANION.Hologram = (function () {
 
-  // ── The Eight Seats ──
+  // ── The Five Seats ──
 
   var COMMITTEE = {
     'Socrates': {
@@ -27,16 +27,6 @@ COMPANION.Hologram = (function () {
       article: 'John_Dewey',
       color: '#5A7D9A'
     },
-    'Jean Piaget': {
-      role: 'The Developmentalist',
-      article: 'Jean_Piaget',
-      color: '#8A6AAF'
-    },
-    'Horace Mann': {
-      role: 'The Superintendent',
-      article: 'Horace_Mann',
-      color: '#3A6B9F'
-    },
     'Ada Lovelace': {
       role: 'The Polymath',
       article: 'Ada_Lovelace',
@@ -46,11 +36,6 @@ COMPANION.Hologram = (function () {
       role: 'The Liberator',
       article: 'Paulo_Freire',
       color: '#CC6B3A'
-    },
-    'Lev Vygotsky': {
-      role: 'The Scaffolder',
-      article: 'Lev_Vygotsky',
-      color: '#3A8B8B'
     }
   };
 
@@ -86,21 +71,12 @@ COMPANION.Hologram = (function () {
       'dewey': 'John Dewey',
       'john dewey': 'John Dewey',
       'dean': 'John Dewey',
-      'piaget': 'Jean Piaget',
-      'jean': 'Jean Piaget',
-      'developmentalist': 'Jean Piaget',
-      'mann': 'Horace Mann',
-      'horace': 'Horace Mann',
-      'superintendent': 'Horace Mann',
       'lovelace': 'Ada Lovelace',
       'ada': 'Ada Lovelace',
       'polymath': 'Ada Lovelace',
       'freire': 'Paulo Freire',
       'paulo': 'Paulo Freire',
-      'liberator': 'Paulo Freire',
-      'vygotsky': 'Lev Vygotsky',
-      'lev': 'Lev Vygotsky',
-      'scaffolder': 'Lev Vygotsky'
+      'liberator': 'Paulo Freire'
     };
 
     for (var alias in aliases) {
