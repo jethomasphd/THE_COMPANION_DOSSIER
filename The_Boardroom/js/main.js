@@ -537,6 +537,11 @@ COMPANION.App = (function () {
             persistSession();
             UI.updateHint(state.phase, state.activePersonas.length);
           }
+        } else {
+          // Phase 8 but no decision record parsed — keep input alive
+          UI.setInputEnabled(true);
+          persistSession();
+          UI.updateHint(state.phase, state.activePersonas.length);
         }
       },
 
@@ -556,14 +561,16 @@ COMPANION.App = (function () {
     var UI = COMPANION.UI;
 
     // Look for phase markers like "— Phase III:" or "Phase IV:"
+    // Only match formal transition markers — e.g. "— Phase III: Truth Round —"
+    // Casual mentions of phase names must NOT trigger transitions.
     var phasePatterns = [
-      { regex: /Phase\s+VIII|Phase\s+8|The\s+Seal/i, phase: 8 },
-      { regex: /Phase\s+VII|Phase\s+7|Votes/i, phase: 7 },
-      { regex: /Phase\s+VI|Phase\s+6|Motions/i, phase: 6 },
-      { regex: /Phase\s+V[^I]|Phase\s+5|Cross.?Examination/i, phase: 5 },
-      { regex: /Phase\s+IV|Phase\s+4|Proposals/i, phase: 4 },
-      { regex: /Phase\s+III|Phase\s+3|Truth\s+Round/i, phase: 3 },
-      { regex: /Phase\s+II[^I]|Phase\s+2|Convening/i, phase: 2 }
+      { regex: /—\s*Phase\s+(?:VIII|8)[:\s]/i, phase: 8 },
+      { regex: /—\s*Phase\s+(?:VII|7)[:\s]/i, phase: 7 },
+      { regex: /—\s*Phase\s+(?:VI|6)[:\s]/i, phase: 6 },
+      { regex: /—\s*Phase\s+(?:V|5)[:\s]/i, phase: 5 },
+      { regex: /—\s*Phase\s+(?:IV|4)[:\s]/i, phase: 4 },
+      { regex: /—\s*Phase\s+(?:III|3)[:\s]/i, phase: 3 },
+      { regex: /—\s*Phase\s+(?:II|2)[:\s]/i, phase: 2 }
     ];
 
     var highestPhase = state.phase;
@@ -573,8 +580,10 @@ COMPANION.App = (function () {
       }
     }
 
+    // Only advance one phase at a time to prevent accidental jumps
     if (highestPhase > state.phase) {
-      state.phase = highestPhase;
+      var nextPhase = state.phase + 1;
+      state.phase = nextPhase;
       UI.updatePhase(state.phase);
       UI.addSystemMessage('Phase transition: ' + getPhaseLabel(state.phase));
     }
