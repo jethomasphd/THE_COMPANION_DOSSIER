@@ -30,3 +30,9 @@ id = "df802c9fe1644b07b5b67d59c3c23daf"
 # Set it with:  npx wrangler secret put ANTHROPIC_API_KEY
 # The ADMIN_KEY protects the /admin dashboard.
 # Set it with:  npx wrangler secret put ADMIN_KEY
+
+# ── USAJobs API credentials ──
+# Request an API key at: https://developer.usajobs.gov/APIRequest/Index
+# The email must match the one used to request the key.
+# Set with:  npx wrangler secret put USAJOBS_API_KEY
+# Set with:  npx wrangler secret put USAJOBS_EMAIL

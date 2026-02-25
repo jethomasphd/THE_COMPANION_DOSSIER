@@ -200,10 +200,14 @@ COMPANION.UI = (function () {
     card.className = 'message threshold-chat-card';
 
     var url = jobData.url || '#';
+    var isUSAJobs = jobData.isUSAJobs || false;
 
     var html = '';
     html += '<div class="threshold-chat-ornament">&#9671; &#9672; &#9671;</div>';
     html += '<div class="threshold-chat-heading">Your Match</div>';
+    if (isUSAJobs) {
+      html += '<div class="threshold-chat-source">Live Federal Position &mdash; USAJobs.gov</div>';
+    }
     html += '<div class="threshold-chat-divider-line"></div>';
 
     html += '<div class="threshold-chat-job">';
@@ -211,20 +215,43 @@ COMPANION.UI = (function () {
     if (jobData.company) {
       html += '<div class="threshold-chat-job-company">' + escapeHtml(jobData.company) + '</div>';
     }
+    if (jobData.department && jobData.department !== jobData.company) {
+      html += '<div class="threshold-chat-job-dept">' + escapeHtml(jobData.department) + '</div>';
+    }
     var location = [jobData.city, jobData.state].filter(Boolean).join(', ');
     if (location) {
       html += '<div class="threshold-chat-job-location">' + escapeHtml(location) + '</div>';
     }
-    if (jobData.salary) {
+    if (jobData.salaryRange) {
+      html += '<div class="threshold-chat-job-salary">' + escapeHtml(jobData.salaryRange) + '</div>';
+    } else if (jobData.salary) {
       html += '<div class="threshold-chat-job-salary">$' + Number(jobData.salary).toLocaleString() + '</div>';
+    }
+    if (jobData.grade) {
+      html += '<div class="threshold-chat-job-grade">Grade: ' + escapeHtml(jobData.grade) + '</div>';
+    }
+    if (jobData.closeDate) {
+      html += '<div class="threshold-chat-job-closes">Apply by: ' + escapeHtml(jobData.closeDate) + '</div>';
     }
     html += '</div>';
 
     html += '<div class="threshold-chat-divider-line"></div>';
     html += '<a class="threshold-chat-btn" href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">';
-    html += '<span class="threshold-chat-btn-main">Search for This Role</span>';
-    html += '<span class="threshold-chat-btn-prefix">on Best Jobs Online &rarr;</span>';
+    if (isUSAJobs) {
+      html += '<span class="threshold-chat-btn-main">Apply on USAJobs</span>';
+      html += '<span class="threshold-chat-btn-prefix">at USAJobs.gov &rarr;</span>';
+    } else {
+      html += '<span class="threshold-chat-btn-main">Search for This Role</span>';
+      html += '<span class="threshold-chat-btn-prefix">on Best Jobs Online &rarr;</span>';
+    }
     html += '</a>';
+
+    // If USAJobs, also show a secondary link to the position detail page
+    if (isUSAJobs && jobData.positionUrl) {
+      html += '<a class="threshold-chat-btn-secondary" href="' + escapeHtml(jobData.positionUrl) + '" target="_blank" rel="noopener noreferrer">';
+      html += 'View Full Posting on USAJobs &rarr;';
+      html += '</a>';
+    }
 
     card.innerHTML = html;
 
@@ -314,7 +341,7 @@ COMPANION.UI = (function () {
         '<span class="hint-text">The Committee deliberates. Share your thoughts, ask questions.</span>';
     } else if (phase === 3) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">Your match is above. Click to search for this role on Best Jobs Online.</span>';
+        '<span class="hint-text">Your match is above. Click to apply or view the full posting.</span>';
     } else if (activeCount === 0) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">The Exchange awaits.</span>';
