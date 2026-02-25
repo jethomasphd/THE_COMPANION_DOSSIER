@@ -221,49 +221,120 @@ COMPANION.USAJobs = (function () {
   function extractSearchTerms(text, conversationContext) {
     var combined = text;
     if (conversationContext && conversationContext.length > 0) {
-      // Include recent user messages for context
       combined = conversationContext.slice(-4).join(' ') + ' ' + text;
     }
 
-    var lower = combined.toLowerCase();
-
-    // Extract location - look for "in [City]" or "in [City], [State]" or state abbreviations
+    // ── Extract location (case-insensitive) ──
     var locationName = '';
-    var locationPatterns = [
-      /(?:in|near|around|from|at|based in|located in|live in|living in)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*(?:,\s*[A-Z]{2})?)/g,
-      /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*,\s*[A-Z]{2})/g
-    ];
 
-    for (var p = 0; p < locationPatterns.length; p++) {
-      var locMatch = combined.match(locationPatterns[p]);
-      if (locMatch) {
-        locationName = locMatch[locMatch.length - 1]
-          .replace(/^(?:in|near|around|from|at|based in|located in|live in|living in)\s+/i, '')
-          .trim();
-        break;
+    // Pattern 1: "City, ST" or "City, State" (e.g. "Denver, CO" or "Austin, Texas")
+    var cityStateMatch = combined.match(/([A-Za-z][A-Za-z .]+),\s*([A-Z]{2})\b/);
+    if (!cityStateMatch) {
+      cityStateMatch = combined.match(/([A-Za-z][A-Za-z .]+),\s*([A-Za-z]{4,})/);
+    }
+    if (cityStateMatch) {
+      locationName = cityStateMatch[0].trim();
+    }
+
+    // Pattern 2: preposition + place name (e.g. "in Denver", "near Austin", "from New York")
+    if (!locationName) {
+      var prepMatch = combined.match(/(?:in|near|around|from|based in|located in|live in|living in|moved to|moving to)\s+([A-Za-z][A-Za-z .]+?)(?:\s*[.,;!?]|\s+(?:and|but|or|i |my |the |doing|looking|work|for|area|region)|\s*$)/i);
+      if (prepMatch) {
+        locationName = prepMatch[1].trim();
       }
     }
 
-    // Extract job-related keywords — remove common stop words and location
-    var stopWords = /\b(i|me|my|am|is|are|was|were|be|been|being|have|has|had|do|does|did|will|would|could|should|shall|may|might|can|the|a|an|and|but|or|nor|for|so|yet|to|of|in|on|at|by|with|from|into|through|during|before|after|above|below|between|out|off|over|under|about|against|not|no|this|that|these|those|it|its|him|her|his|she|he|they|them|their|we|us|our|you|your|what|which|who|whom|where|when|how|why|all|each|every|both|few|more|most|some|any|such|than|too|very|just|also|now|here|there|then|if|want|like|looking|look|work|working|find|something|think|know|need|really|been|currently|right|good|great|new|make|get|got|going|job|career|role|position|interested|experience|years|year|ago|done)\b/gi;
+    // Pattern 3: US state names (standalone)
+    if (!locationName) {
+      var states = /\b(Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming)\b/i;
+      var stateMatch = combined.match(states);
+      if (stateMatch) {
+        locationName = stateMatch[1].trim();
+      }
+    }
+
+    // ── Extract job-related keywords ──
+    // Remove only the most basic stop words; keep domain terms like "work", "engineer", etc.
+    var stopWords = /\b(i|im|me|my|am|is|are|was|were|be|been|being|have|has|had|do|does|did|will|would|could|should|shall|may|might|can|the|a|an|and|but|or|nor|for|so|yet|to|of|in|on|at|by|with|from|into|through|during|before|after|above|below|between|out|off|over|under|about|against|not|no|this|that|these|those|it|its|him|her|his|she|he|they|them|their|we|us|our|you|your|what|which|who|whom|where|when|how|why|all|each|every|both|few|more|most|some|any|such|than|too|very|just|also|now|here|there|then|if|like|find|something|think|know|need|really|currently|right|good|great|new|make|get|got|going|been|ago|done|lot|kind|pretty|much|thing|things|stuff|way|trying|try|looking|want|area|region|moved|moving|live|living|based|located)\b/gi;
 
     var keywords = combined
-      .replace(locationName, '')  // remove location from keyword string
-      .replace(/[^\w\s]/g, ' ')  // remove punctuation
+      .replace(new RegExp(locationName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), ' ')
+      .replace(/[^\w\s-]/g, ' ')
       .replace(stopWords, ' ')
       .replace(/\s+/g, ' ')
       .trim();
 
-    // Take the most relevant terms (first 5-6 words)
+    // Take the most relevant terms (first 4 words — less is better for USAJobs)
     var terms = keywords.split(' ').filter(function (w) {
       return w.length > 2;
     });
-    var keyword = terms.slice(0, 6).join(' ');
+    var keyword = terms.slice(0, 4).join(' ');
 
     return {
       keyword: keyword || '',
       locationName: locationName || ''
     };
+  }
+
+
+  /**
+   * Cascading search: tries progressively broader queries until results are found.
+   * 1. keyword + location
+   * 2. location only (all jobs in that area)
+   * 3. keyword only (all matching jobs nationwide)
+   * 4. broad search (recent openings, no filters)
+   *
+   * @param {Object} terms - { keyword, locationName }
+   * @param {number} [perPage] - Results per page
+   * @returns {Promise<Object>} - { jobs, total, error, searchUsed }
+   */
+  async function cascadingSearch(terms, perPage) {
+    perPage = perPage || 25;
+
+    // Build a list of search strategies, most specific first
+    var strategies = [];
+
+    if (terms.keyword && terms.locationName) {
+      strategies.push({
+        label: 'keyword + location',
+        params: { keyword: terms.keyword, locationName: terms.locationName, resultsPerPage: perPage }
+      });
+    }
+    if (terms.locationName) {
+      strategies.push({
+        label: 'location only',
+        params: { locationName: terms.locationName, resultsPerPage: perPage }
+      });
+    }
+    if (terms.keyword) {
+      strategies.push({
+        label: 'keyword only',
+        params: { keyword: terms.keyword, resultsPerPage: perPage }
+      });
+    }
+    // Final fallback: recent postings, public, sorted by date
+    strategies.push({
+      label: 'recent openings',
+      params: { resultsPerPage: perPage }
+    });
+
+    for (var i = 0; i < strategies.length; i++) {
+      var strategy = strategies[i];
+      var result = await search(strategy.params);
+
+      if (result.error) {
+        // API-level error — don't retry, just return
+        return result;
+      }
+
+      if (result.jobs.length > 0) {
+        result.searchUsed = strategy.label;
+        return result;
+      }
+    }
+
+    // All strategies exhausted (shouldn't happen since last is unfiltered)
+    return { jobs: [], total: 0, error: null, searchUsed: 'none' };
   }
 
 
@@ -365,6 +436,7 @@ COMPANION.USAJobs = (function () {
   // ── Public API ──
   return {
     search: search,
+    cascadingSearch: cascadingSearch,
     extractSearchTerms: extractSearchTerms,
     formatForPrompt: formatForPrompt,
     getCachedResults: getCachedResults,

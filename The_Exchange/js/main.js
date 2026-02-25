@@ -740,46 +740,41 @@ COMPANION.App = (function () {
 
   function searchAndSend(userText) {
     if (!COMPANION.USAJobs) {
-      // USAJobs module not loaded — fall back to static corpus
       setTimeout(function () { sendToAPI(userText); }, currentPhase === 2 ? 2000 : 0);
       return;
     }
 
     var terms = COMPANION.USAJobs.extractSearchTerms(userText, userMessages);
 
-    // Only search if we have meaningful terms
-    if (!terms.keyword && !terms.locationName) {
-      setTimeout(function () { sendToAPI(userText); }, currentPhase === 2 ? 2000 : 0);
-      return;
-    }
-
     COMPANION.UI.addSystemMessage('Searching USAJobs for live federal listings...');
 
-    var searchParams = {};
-    if (terms.keyword) searchParams.keyword = terms.keyword;
-    if (terms.locationName) searchParams.locationName = terms.locationName;
-    searchParams.resultsPerPage = 25;
-
-    COMPANION.USAJobs.search(searchParams).then(function (result) {
+    // Use cascading search — tries keyword+location, then location only,
+    // then keyword only, then broad recent listings. Always returns results.
+    COMPANION.USAJobs.cascadingSearch(terms, 25).then(function (result) {
       if (result.error) {
         console.warn('[Exchange] USAJobs search error:', result.error);
-        COMPANION.UI.addSystemMessage('Live job search unavailable. Using reference corpus.');
+        COMPANION.UI.addSystemMessage('USAJobs API unavailable right now. The committee will proceed.');
       } else if (result.jobs.length > 0) {
         liveJobs = result.jobs;
         var msg = result.total + ' federal positions found';
-        if (terms.locationName) msg += ' near ' + terms.locationName;
+        if (result.searchUsed === 'keyword + location') {
+          if (terms.locationName) msg += ' near ' + terms.locationName;
+        } else if (result.searchUsed === 'location only') {
+          msg += ' in ' + terms.locationName;
+        } else if (result.searchUsed === 'keyword only') {
+          msg += ' nationwide';
+        } else if (result.searchUsed === 'recent openings') {
+          msg = result.jobs.length + ' recent federal openings loaded';
+        }
         msg += '. ' + result.jobs.length + ' loaded for the committee.';
         COMPANION.UI.addSystemMessage(msg);
-      } else {
-        COMPANION.UI.addSystemMessage('No federal positions matched. The committee will use the reference corpus.');
       }
 
-      // Small delay to let system messages render
       setTimeout(function () { sendToAPI(userText); }, 800);
 
     }).catch(function (err) {
       console.error('[Exchange] USAJobs search failed:', err);
-      COMPANION.UI.addSystemMessage('Live search unavailable. Using reference corpus.');
+      COMPANION.UI.addSystemMessage('USAJobs API unavailable right now. The committee will proceed.');
       setTimeout(function () { sendToAPI(userText); }, 800);
     });
   }
