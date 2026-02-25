@@ -654,95 +654,86 @@ COMPANION.App = (function () {
 
     var inquiry = state.inquiry || {};
 
-    // Build plans table rows
-    var plansHtml = '';
+    // Build plans as compact rows
+    var plansRows = '';
     if (lesson.plans && lesson.plans.length) {
       lesson.plans.forEach(function (plan, i) {
-        plansHtml += '<tr>' +
-          '<td style="padding:8pt;border:1px solid #bbb;font-weight:bold;width:60pt;">Plan ' + (i + 1) + '</td>' +
-          '<td style="padding:8pt;border:1px solid #bbb;">' + esc(plan.action || '') + '</td>' +
-          '<td style="padding:8pt;border:1px solid #bbb;width:80pt;">' + esc(plan.owner || '') + '</td>' +
-          '<td style="padding:8pt;border:1px solid #bbb;width:80pt;">' + esc(plan.timeline || '') + '</td>' +
-          '<td style="padding:8pt;border:1px solid #bbb;">' + esc(plan.success || '') + '</td>' +
+        plansRows += '<tr>' +
+          '<td style="padding:3pt 5pt;border:1px solid #ccc;">' + esc(plan.action || '') + '</td>' +
+          '<td style="padding:3pt 5pt;border:1px solid #ccc;width:55pt;">' + esc(plan.owner || '') + '</td>' +
+          '<td style="padding:3pt 5pt;border:1px solid #ccc;width:50pt;">' + esc(plan.timeline || '') + '</td>' +
+          '<td style="padding:3pt 5pt;border:1px solid #ccc;">' + esc(plan.success || '') + '</td>' +
           '</tr>';
       });
     }
 
-    // Build dissent section
-    var dissentHtml = '';
+    // Dissent as inline list
+    var dissentLine = '';
     if (lesson.dissent && lesson.dissent.length) {
+      var parts = [];
       lesson.dissent.forEach(function (d) {
-        dissentHtml += '<p style="margin:4pt 0;"><strong>' + esc(d.seat || '') + ':</strong> ' + esc(d.position || '') + '</p>';
+        parts.push('<strong>' + esc(d.seat || '') + ':</strong> ' + esc(d.position || ''));
       });
-    } else {
-      dissentHtml = '<p style="margin:4pt 0;color:#888;"><em>None recorded.</em></p>';
+      dissentLine = parts.join(' &nbsp;|&nbsp; ');
     }
 
-    // Build counsel section
-    var counselHtml = '';
-    if (lesson.counsel) {
-      for (var planName in lesson.counsel) {
-        if (lesson.counsel.hasOwnProperty(planName)) {
-          counselHtml += '<h3 style="font-size:11pt;color:#8B4513;margin:10pt 0 4pt;">' + esc(planName) + '</h3>';
-          var votes = lesson.counsel[planName];
-          for (var seat in votes) {
-            if (votes.hasOwnProperty(seat)) {
-              var v = votes[seat];
-              counselHtml += '<p style="margin:2pt 0 2pt 12pt;font-size:10pt;"><strong>' + esc(seat) + ':</strong> ' +
-                esc(v.vote || '') + ' &mdash; ' + esc(v.reason || '') + '</p>';
-            }
-          }
-        }
-      }
-    }
+    // Inquiry context as inline string
+    var contextParts = [];
+    if (inquiry.classroom) contextParts.push(esc(inquiry.classroom));
+    if (inquiry.constraints) contextParts.push(esc(inquiry.constraints));
+    if (inquiry.tried) contextParts.push('Tried: ' + esc(inquiry.tried));
+    var contextLine = contextParts.join(' &mdash; ');
 
     var htmlContent = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
       'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
       'xmlns="http://www.w3.org/TR/REC-html40">' +
       '<head><meta charset="UTF-8">' +
-      '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->' +
+      '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View>' +
+      '<w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->' +
       '<style>' +
-      'body{font-family:Cambria,Georgia,serif;font-size:11pt;line-height:1.6;color:#222;margin:0;padding:0.75in 1in;}' +
-      'h1{font-size:20pt;color:#8B4513;border-bottom:2pt solid #8B4513;padding-bottom:6pt;margin:0 0 4pt;}' +
-      'h2{font-size:13pt;color:#8B4513;margin:16pt 0 6pt;border-bottom:1px solid #ddd;padding-bottom:3pt;}' +
-      '.meta{color:#888;font-size:9pt;margin-bottom:16pt;}' +
-      '.approach-box{background:#FDF5E6;border-left:4pt solid #8B4513;padding:8pt 12pt;margin:8pt 0;}' +
-      'table{border-collapse:collapse;width:100%;margin:8pt 0;}' +
-      'th{background:#8B4513;color:white;padding:6pt 8pt;text-align:left;font-size:9pt;}' +
-      'td{padding:6pt 8pt;border:1px solid #bbb;font-size:10pt;vertical-align:top;}' +
-      '.proof-box{background:#F0F8F0;border:1px solid #4A8C5C;padding:8pt 12pt;margin:8pt 0;}' +
-      '.footer{margin-top:20pt;padding-top:10pt;border-top:1px solid #ccc;font-size:8pt;color:#999;text-align:center;}' +
+      '@page{size:8.5in 11in;margin:0.6in 0.7in;}' +
+      'body{font-family:Calibri,Arial,sans-serif;font-size:9.5pt;line-height:1.35;color:#222;margin:0;padding:0;}' +
+      'h1{font-size:14pt;color:#8B4513;margin:0 0 2pt;padding:0;}' +
+      '.subtitle{font-size:8pt;color:#888;margin:0 0 8pt;}' +
+      '.section-label{font-size:8pt;font-weight:bold;color:#8B4513;text-transform:uppercase;letter-spacing:0.5pt;margin:8pt 0 2pt;padding-bottom:1pt;border-bottom:0.5pt solid #ddd;}' +
+      '.challenge{font-size:10pt;font-weight:bold;margin:2pt 0;}' +
+      '.context{font-size:8.5pt;color:#555;margin:1pt 0 0;}' +
+      '.approach-box{background:#FDF5E6;border-left:3pt solid #8B4513;padding:4pt 8pt;margin:3pt 0;font-size:10pt;font-weight:bold;}' +
+      '.rationale{font-size:9pt;margin:2pt 0 0;color:#333;}' +
+      'table{border-collapse:collapse;width:100%;margin:3pt 0;}' +
+      'th{background:#8B4513;color:white;padding:2pt 5pt;text-align:left;font-size:7.5pt;text-transform:uppercase;}' +
+      'td{padding:3pt 5pt;border:1px solid #ccc;font-size:8.5pt;vertical-align:top;}' +
+      '.avoided{font-size:8.5pt;color:#555;margin:2pt 0;}' +
+      '.dissent{font-size:8.5pt;margin:2pt 0;}' +
+      '.proof-box{background:#F0F8F0;border-left:3pt solid #4A8C5C;padding:3pt 8pt;margin:3pt 0;font-size:9pt;}' +
+      '.footer{margin-top:6pt;padding-top:4pt;border-top:0.5pt solid #ccc;font-size:7pt;color:#aaa;text-align:center;}' +
       '</style></head><body>' +
 
       '<h1>Lesson Record</h1>' +
-      '<div class="meta">The Symposium of Sages &mdash; COMPANION Protocol &mdash; ' + dateStr + '</div>' +
+      '<div class="subtitle">The Symposium of Sages &mdash; ' + dateStr + '</div>' +
 
-      '<h2>The Inquiry</h2>' +
-      '<p><strong>Challenge:</strong> ' + esc(inquiry.challenge || '') + '</p>' +
-      (inquiry.classroom ? '<p><strong>Classroom:</strong> ' + esc(inquiry.classroom) + '</p>' : '') +
-      (inquiry.constraints ? '<p><strong>Constraints:</strong> ' + esc(inquiry.constraints) + '</p>' : '') +
-      (inquiry.tried ? '<p><strong>What Was Tried:</strong> ' + esc(inquiry.tried) + '</p>' : '') +
+      '<div class="section-label">Challenge</div>' +
+      '<div class="challenge">' + esc(inquiry.challenge || '') + '</div>' +
+      (contextLine ? '<div class="context">' + contextLine + '</div>' : '') +
 
-      '<h2>The Approach</h2>' +
-      '<div class="approach-box"><strong>' + esc(lesson.approach || '') + '</strong></div>' +
-      (lesson.rationale ? '<p>' + esc(lesson.rationale) + '</p>' : '') +
+      '<div class="section-label">Approach</div>' +
+      '<div class="approach-box">' + esc(lesson.approach || '') + '</div>' +
+      (lesson.rationale ? '<div class="rationale">' + esc(lesson.rationale) + '</div>' : '') +
 
-      (plansHtml ? '<h2>Action Plans</h2>' +
-        '<table><tr><th>Plan</th><th>Action</th><th>Owner</th><th>Timeline</th><th>Success Criteria</th></tr>' +
-        plansHtml + '</table>' : '') +
+      (plansRows ? '<div class="section-label">Action Plans</div>' +
+        '<table><tr><th>Action</th><th>Owner</th><th>Timeline</th><th>Success Criteria</th></tr>' +
+        plansRows + '</table>' : '') +
 
-      '<h2>What Was Avoided</h2>' +
-      '<p>' + esc(lesson.avoided || 'Not specified.') + '</p>' +
+      (lesson.avoided ? '<div class="section-label">Avoided</div>' +
+        '<div class="avoided">' + esc(lesson.avoided) + '</div>' : '') +
 
-      '<h2>Dissenting Views</h2>' +
-      dissentHtml +
+      (dissentLine ? '<div class="section-label">Dissent</div>' +
+        '<div class="dissent">' + dissentLine + '</div>' : '') +
 
-      (counselHtml ? '<h2>Counsel</h2>' + counselHtml : '') +
-
-      '<h2>30-Day Proof Metric</h2>' +
+      '<div class="section-label">30-Day Proof</div>' +
       '<div class="proof-box">' + esc(lesson.proof || 'Not specified.') + '</div>' +
 
-      '<div class="footer">COMPANION Protocol &mdash; The Symposium of Sages &mdash; ' + dateStr + '</div>' +
+      '<div class="footer">COMPANION Protocol &mdash; The Symposium of Sages</div>' +
       '</body></html>';
 
     downloadFile('lesson_record_' + dateStr + '.doc', htmlContent, 'application/msword');
