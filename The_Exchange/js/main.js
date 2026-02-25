@@ -56,10 +56,10 @@ COMPANION.App = (function () {
       COMPANION.UI.init();
       bindEvents();
 
-      COMPANION.API.setModel('claude-sonnet-4-20250514');
+      COMPANION.API.setModel('claude-opus-4-6');
       var els = COMPANION.UI.elements();
       if (els.settingsModel) {
-        els.settingsModel.value = 'claude-sonnet-4-20250514';
+        els.settingsModel.value = 'claude-opus-4-6';
       }
 
       startCinematicIntro();
@@ -395,7 +395,7 @@ COMPANION.App = (function () {
     if (!key) return;
 
     COMPANION.API.setApiKey(key);
-    COMPANION.API.setModel('claude-sonnet-4-20250514');
+    COMPANION.API.setModel('claude-opus-4-6');
 
     enterChamber();
   }

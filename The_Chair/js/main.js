@@ -86,10 +86,10 @@ COMPANION.App = (function () {
       bindEvents();
 
       // Force Opus — Deep Deliberation
-      COMPANION.API.setModel('claude-opus-4-20250514');
+      COMPANION.API.setModel('claude-opus-4-6');
       var els = COMPANION.UI.elements();
       if (els.settingsModel) {
-        els.settingsModel.value = 'claude-opus-4-20250514';
+        els.settingsModel.value = 'claude-opus-4-6';
       }
 
       // Start cinematic intro
@@ -473,7 +473,7 @@ COMPANION.App = (function () {
     COMPANION.API.setApiKey(key);
 
     // Always Opus — Deep Deliberation
-    COMPANION.API.setModel('claude-opus-4-20250514');
+    COMPANION.API.setModel('claude-opus-4-6');
 
     enterChamber();
   }

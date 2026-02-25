@@ -88,11 +88,11 @@ COMPANION.App = (function () {
       COMPANION.UI.init();
       bindEvents();
 
-      // Force Sonnet — accessible for students
-      COMPANION.API.setModel('claude-sonnet-4-20250514');
+      // Force Opus — Deep Deliberation
+      COMPANION.API.setModel('claude-opus-4-6');
       var els = COMPANION.UI.elements();
       if (els.settingsModel) {
-        els.settingsModel.value = 'claude-sonnet-4-20250514';
+        els.settingsModel.value = 'claude-opus-4-6';
       }
 
       // Start cinematic intro
@@ -475,8 +475,8 @@ COMPANION.App = (function () {
 
     COMPANION.API.setApiKey(key);
 
-    // Always Sonnet — accessible for students
-    COMPANION.API.setModel('claude-sonnet-4-20250514');
+    // Always Opus — Deep Deliberation
+    COMPANION.API.setModel('claude-opus-4-6');
 
     enterChamber();
   }
