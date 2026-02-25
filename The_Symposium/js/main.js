@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    THE SYMPOSIUM — Session Orchestrator
    Manages the cinematic intro, inquiry submission,
-   eight-phase meeting flow, lesson record detection,
+   five-phase meeting flow, lesson record detection,
    and all session state.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -26,11 +26,8 @@ COMPANION.App = (function () {
     'Socrates':          '#C0785A',
     'Maria Montessori':  '#4A8C5C',
     'John Dewey':        '#5A7D9A',
-    'Jean Piaget':       '#8A6AAF',
-    'Horace Mann':       '#3A6B9F',
     'Ada Lovelace':      '#B05080',
-    'Paulo Freire':      '#CC6B3A',
-    'Lev Vygotsky':      '#3A8B8B'
+    'Paulo Freire':      '#CC6B3A'
   };
 
   var COUNCIL_NAMES = Object.keys(COUNCIL_COLORS);
@@ -40,11 +37,8 @@ COMPANION.App = (function () {
     'Socrates':          'Socrates',
     'Maria Montessori':  'Maria_Montessori',
     'John Dewey':        'John_Dewey',
-    'Jean Piaget':       'Jean_Piaget',
-    'Horace Mann':       'Horace_Mann',
     'Ada Lovelace':      'Ada_Lovelace',
-    'Paulo Freire':      'Paulo_Freire',
-    'Lev Vygotsky':      'Lev_Vygotsky'
+    'Paulo Freire':      'Paulo_Freire'
   };
 
 
@@ -304,7 +298,7 @@ COMPANION.App = (function () {
       UI.updateHint(1);
       UI.setInputEnabled(true);
     } else {
-      // Summon all 8 council members
+      // Summon all 5 council members
       setTimeout(function () {
         summonCouncil();
       }, 500);
@@ -439,7 +433,7 @@ COMPANION.App = (function () {
     var text = UI.getInputText();
     if (!text || state.isStreaming) return;
 
-    if (state.phase === 8 && state.lessonRecord) {
+    if (state.phase === 5 && state.lessonRecord) {
       // Meeting is sealed — don't allow further input
       return;
     }
@@ -515,7 +509,7 @@ COMPANION.App = (function () {
         // Detect phase transitions in the response
         detectPhaseTransition(fullResponse);
 
-        // Check for Lesson Record (Phase 8)
+        // Check for Lesson Record (Phase 5)
         var lesson = Protocol.parseLessonRecord(fullResponse);
         if (lesson) {
           handleLessonRecord(lesson);
@@ -523,7 +517,7 @@ COMPANION.App = (function () {
         }
 
         // Auto-advance through phases if the AI marks transitions
-        if (state.phase < 8) {
+        if (state.phase < 5) {
           if (shouldAutoAdvance()) {
             setTimeout(function () {
               autoAdvanceMeeting();
@@ -534,7 +528,7 @@ COMPANION.App = (function () {
             UI.updateHint(state.phase, state.activePersonas.length);
           }
         } else {
-          // Phase 8 but no lesson record parsed — keep input alive
+          // Phase 5 but no lesson record parsed — keep input alive
           // so the user can prompt the AI to deliver The Bell
           UI.setInputEnabled(true);
           persistSession();
@@ -557,12 +551,9 @@ COMPANION.App = (function () {
   function detectPhaseTransition(text) {
     var UI = COMPANION.UI;
 
-    // Only match formal transition markers — e.g. "— Phase III: The Observation —"
-    // or "Phase 3:" at the start of a line. Casual mentions of phase names must NOT trigger transitions.
+    // Only match formal transition markers — e.g. "— Phase 3: The Dialectic —"
+    // Casual mentions of phase names must NOT trigger transitions.
     var phasePatterns = [
-      { regex: /—\s*Phase\s+(?:VIII|8)[:\s]/i, phase: 8 },
-      { regex: /—\s*Phase\s+(?:VII|7)[:\s]/i, phase: 7 },
-      { regex: /—\s*Phase\s+(?:VI|6)[:\s]/i, phase: 6 },
       { regex: /—\s*Phase\s+(?:V|5)[:\s]/i, phase: 5 },
       { regex: /—\s*Phase\s+(?:IV|4)[:\s]/i, phase: 4 },
       { regex: /—\s*Phase\s+(?:III|3)[:\s]/i, phase: 3 },
@@ -588,13 +579,10 @@ COMPANION.App = (function () {
   function getPhaseLabel(phase) {
     var labels = {
       1: 'The Inquiry',
-      2: 'The Convening',
-      3: 'The Observation',
-      4: 'The Approaches',
-      5: 'The Dialectic',
-      6: 'The Lesson Plan',
-      7: 'The Counsel',
-      8: 'The Bell'
+      2: 'The Observation',
+      3: 'The Dialectic',
+      4: 'The Lesson Plan',
+      5: 'The Bell'
     };
     return labels[phase] || 'Unknown';
   }
@@ -603,8 +591,12 @@ COMPANION.App = (function () {
   // ── Auto-Advance Logic ──
 
   function shouldAutoAdvance() {
-    if (state.phase >= 2 && state.phase <= 4) return true;
-    if (state.phase === 6 || state.phase === 7) return true;
+    // Phase 1: needs user interaction (clarification)
+    // Phase 2: auto-advance (observation → dialectic)
+    // Phase 3: needs user interaction (dialectic — the heat)
+    // Phase 4: auto-advance (lesson plan → bell)
+    // Phase 5: final
+    if (state.phase === 2 || state.phase === 4) return true;
     return false;
   }
 
@@ -612,7 +604,7 @@ COMPANION.App = (function () {
     if (state.isStreaming) return;
 
     var nextPhase = state.phase + 1;
-    if (nextPhase > 8) return;
+    if (nextPhase > 5) return;
 
     state.phase = nextPhase;
     COMPANION.UI.updatePhase(state.phase);
@@ -630,18 +622,138 @@ COMPANION.App = (function () {
   function handleLessonRecord(lesson) {
     var UI = COMPANION.UI;
 
-    state.phase = 8;
+    state.phase = 5;
     state.lessonRecord = lesson;
-    UI.updatePhase(8);
+    UI.updatePhase(5);
 
     // Show lesson card in chat
     UI.addLessonCard(lesson);
 
     // Disable input — meeting is sealed
     UI.setInputEnabled(false);
-    UI.updateHint(8, state.activePersonas.length);
+    UI.updateHint(5, state.activePersonas.length);
 
     UI.addSystemMessage('The Bell has sounded. The lesson record is sealed.');
+
+    // Auto-export the lesson document
+    setTimeout(function () {
+      exportLessonDoc(lesson);
+    }, 1000);
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  LESSON DOCUMENT EXPORT (.doc)
+  // ═══════════════════════════════════════════════════════════════
+
+  function exportLessonDoc(lesson) {
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0') + '-' +
+      String(now.getDate()).padStart(2, '0');
+
+    var inquiry = state.inquiry || {};
+
+    // Build plans table rows
+    var plansHtml = '';
+    if (lesson.plans && lesson.plans.length) {
+      lesson.plans.forEach(function (plan, i) {
+        plansHtml += '<tr>' +
+          '<td style="padding:8pt;border:1px solid #bbb;font-weight:bold;width:60pt;">Plan ' + (i + 1) + '</td>' +
+          '<td style="padding:8pt;border:1px solid #bbb;">' + esc(plan.action || '') + '</td>' +
+          '<td style="padding:8pt;border:1px solid #bbb;width:80pt;">' + esc(plan.owner || '') + '</td>' +
+          '<td style="padding:8pt;border:1px solid #bbb;width:80pt;">' + esc(plan.timeline || '') + '</td>' +
+          '<td style="padding:8pt;border:1px solid #bbb;">' + esc(plan.success || '') + '</td>' +
+          '</tr>';
+      });
+    }
+
+    // Build dissent section
+    var dissentHtml = '';
+    if (lesson.dissent && lesson.dissent.length) {
+      lesson.dissent.forEach(function (d) {
+        dissentHtml += '<p style="margin:4pt 0;"><strong>' + esc(d.seat || '') + ':</strong> ' + esc(d.position || '') + '</p>';
+      });
+    } else {
+      dissentHtml = '<p style="margin:4pt 0;color:#888;"><em>None recorded.</em></p>';
+    }
+
+    // Build counsel section
+    var counselHtml = '';
+    if (lesson.counsel) {
+      for (var planName in lesson.counsel) {
+        if (lesson.counsel.hasOwnProperty(planName)) {
+          counselHtml += '<h3 style="font-size:11pt;color:#8B4513;margin:10pt 0 4pt;">' + esc(planName) + '</h3>';
+          var votes = lesson.counsel[planName];
+          for (var seat in votes) {
+            if (votes.hasOwnProperty(seat)) {
+              var v = votes[seat];
+              counselHtml += '<p style="margin:2pt 0 2pt 12pt;font-size:10pt;"><strong>' + esc(seat) + ':</strong> ' +
+                esc(v.vote || '') + ' &mdash; ' + esc(v.reason || '') + '</p>';
+            }
+          }
+        }
+      }
+    }
+
+    var htmlContent = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+      'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+      'xmlns="http://www.w3.org/TR/REC-html40">' +
+      '<head><meta charset="UTF-8">' +
+      '<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->' +
+      '<style>' +
+      'body{font-family:Cambria,Georgia,serif;font-size:11pt;line-height:1.6;color:#222;margin:0;padding:0.75in 1in;}' +
+      'h1{font-size:20pt;color:#8B4513;border-bottom:2pt solid #8B4513;padding-bottom:6pt;margin:0 0 4pt;}' +
+      'h2{font-size:13pt;color:#8B4513;margin:16pt 0 6pt;border-bottom:1px solid #ddd;padding-bottom:3pt;}' +
+      '.meta{color:#888;font-size:9pt;margin-bottom:16pt;}' +
+      '.approach-box{background:#FDF5E6;border-left:4pt solid #8B4513;padding:8pt 12pt;margin:8pt 0;}' +
+      'table{border-collapse:collapse;width:100%;margin:8pt 0;}' +
+      'th{background:#8B4513;color:white;padding:6pt 8pt;text-align:left;font-size:9pt;}' +
+      'td{padding:6pt 8pt;border:1px solid #bbb;font-size:10pt;vertical-align:top;}' +
+      '.proof-box{background:#F0F8F0;border:1px solid #4A8C5C;padding:8pt 12pt;margin:8pt 0;}' +
+      '.footer{margin-top:20pt;padding-top:10pt;border-top:1px solid #ccc;font-size:8pt;color:#999;text-align:center;}' +
+      '</style></head><body>' +
+
+      '<h1>Lesson Record</h1>' +
+      '<div class="meta">The Symposium of Sages &mdash; COMPANION Protocol &mdash; ' + dateStr + '</div>' +
+
+      '<h2>The Inquiry</h2>' +
+      '<p><strong>Challenge:</strong> ' + esc(inquiry.challenge || '') + '</p>' +
+      (inquiry.classroom ? '<p><strong>Classroom:</strong> ' + esc(inquiry.classroom) + '</p>' : '') +
+      (inquiry.constraints ? '<p><strong>Constraints:</strong> ' + esc(inquiry.constraints) + '</p>' : '') +
+      (inquiry.tried ? '<p><strong>What Was Tried:</strong> ' + esc(inquiry.tried) + '</p>' : '') +
+
+      '<h2>The Approach</h2>' +
+      '<div class="approach-box"><strong>' + esc(lesson.approach || '') + '</strong></div>' +
+      (lesson.rationale ? '<p>' + esc(lesson.rationale) + '</p>' : '') +
+
+      (plansHtml ? '<h2>Action Plans</h2>' +
+        '<table><tr><th>Plan</th><th>Action</th><th>Owner</th><th>Timeline</th><th>Success Criteria</th></tr>' +
+        plansHtml + '</table>' : '') +
+
+      '<h2>What Was Avoided</h2>' +
+      '<p>' + esc(lesson.avoided || 'Not specified.') + '</p>' +
+
+      '<h2>Dissenting Views</h2>' +
+      dissentHtml +
+
+      (counselHtml ? '<h2>Counsel</h2>' + counselHtml : '') +
+
+      '<h2>30-Day Proof Metric</h2>' +
+      '<div class="proof-box">' + esc(lesson.proof || 'Not specified.') + '</div>' +
+
+      '<div class="footer">COMPANION Protocol &mdash; The Symposium of Sages &mdash; ' + dateStr + '</div>' +
+      '</body></html>';
+
+    downloadFile('lesson_record_' + dateStr + '.doc', htmlContent, 'application/msword');
+
+    COMPANION.UI.addSystemMessage('Lesson record downloaded. Take it to your classroom.');
+  }
+
+  function esc(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
 

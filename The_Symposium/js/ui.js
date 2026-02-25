@@ -58,13 +58,10 @@ COMPANION.UI = (function () {
     if (!elements.phaseIndicator) return;
     var labels = {
       1: 'Phase I \u2014 The Inquiry',
-      2: 'Phase II \u2014 The Convening',
-      3: 'Phase III \u2014 The Observation',
-      4: 'Phase IV \u2014 The Approaches',
-      5: 'Phase V \u2014 The Dialectic',
-      6: 'Phase VI \u2014 The Lesson Plan',
-      7: 'Phase VII \u2014 The Counsel',
-      8: 'Phase VIII \u2014 The Bell'
+      2: 'Phase II \u2014 The Observation',
+      3: 'Phase III \u2014 The Dialectic',
+      4: 'Phase IV \u2014 The Lesson Plan',
+      5: 'Phase V \u2014 The Bell'
     };
     elements.phaseIndicator.textContent = labels[phase] || '';
     elements.phaseIndicator.className = 'phase-indicator phase-' + phase;
@@ -243,18 +240,21 @@ COMPANION.UI = (function () {
 
   function updateHint(phase, activeCount) {
     if (!elements.inputHint) return;
-    if (phase <= 2) {
+    if (phase <= 1) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">Socrates is convening. Present your challenge.</span>';
-    } else if (phase <= 5) {
+        '<span class="hint-text">Socrates is receiving your inquiry. Respond to his questions.</span>';
+    } else if (phase === 2) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The Symposium deliberates. Interject if needed.</span>';
-    } else if (phase <= 7) {
+        '<span class="hint-text">The Symposium observes. Each seat names what they see.</span>';
+    } else if (phase === 3) {
+      elements.inputHint.innerHTML =
+        '<span class="hint-text">The Dialectic. Interject if needed &mdash; this is where the heat is.</span>';
+    } else if (phase === 4) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">Plans and counsel. The Symposium is converging.</span>';
-    } else if (phase === 8) {
+    } else if (phase === 5) {
       elements.inputHint.innerHTML =
-        '<span class="hint-text">The Bell has sounded. The lesson record is above.</span>';
+        '<span class="hint-text">The Bell has sounded. Your lesson record has been downloaded.</span>';
     } else if (activeCount === 0) {
       elements.inputHint.innerHTML =
         '<span class="hint-text">The Symposium awaits.</span>';
