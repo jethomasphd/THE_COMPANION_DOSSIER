@@ -161,10 +161,9 @@ COMPANION.Matter = (function () {
   var SESSION_FRAMING = [
     '## Session Context',
     '',
-    'THE EXCHANGE with live USAJobs integration. The static corpus below contains ~100 representative',
-    'US labor market listings for reference. When live USAJobs federal listings are available (see LIVE section),',
-    'prioritize those — they are real, currently open positions. On convergence, direct the seeker to apply',
-    'via the USAJobs apply URL for federal positions, or Best Jobs Online for static corpus matches.'
+    'THE EXCHANGE with live USAJobs integration. Live federal listings from USAJobs.gov are the primary job source.',
+    'The static corpus below is background context only — do not recommend static corpus jobs when live listings are loaded.',
+    'On convergence, direct the seeker to apply via the USAJobs apply URL.'
   ].join('\n');
 
 

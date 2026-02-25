@@ -726,8 +726,9 @@ COMPANION.App = (function () {
       // Search USAJobs with the user's context, then send to API
       searchAndSend(text);
     } else if (currentPhase === 2) {
-      // Refine USAJobs search with updated context
-      searchAndSend(text);
+      // In Phase 2, use already-loaded jobs — don't re-search on every message.
+      // The Scout can request a refined search via <!-- SEARCH --> markers.
+      sendToAPI(text);
     } else {
       sendToAPI(text);
     }
@@ -934,22 +935,29 @@ COMPANION.App = (function () {
       var searchReq = JSON.parse(m[1]);
       console.log('[Exchange] Committee requested search:', searchReq);
 
-      var params = {};
-      if (searchReq.keyword) params.keyword = searchReq.keyword;
-      if (searchReq.location) params.locationName = searchReq.location;
-      if (searchReq.title) params.positionTitle = searchReq.title;
-      params.resultsPerPage = 25;
+      var terms = {
+        keyword: searchReq.keyword || searchReq.title || '',
+        locationName: searchReq.location || ''
+      };
 
       COMPANION.UI.addSystemMessage('The Scout is mapping new territory on USAJobs...');
 
-      COMPANION.USAJobs.search(params).then(function (result) {
+      // Use cascading search so we always get results
+      COMPANION.USAJobs.cascadingSearch(terms, 25).then(function (result) {
+        if (result.error) {
+          console.warn('[Exchange] Refinement search error:', result.error);
+          return;
+        }
         if (result.jobs.length > 0) {
           liveJobs = result.jobs;
-          COMPANION.UI.addSystemMessage(
-            result.total + ' positions found. ' + result.jobs.length + ' loaded for the committee.'
-          );
-        } else {
-          COMPANION.UI.addSystemMessage('No matching federal positions found for that search.');
+          var msg = result.jobs.length + ' positions found';
+          if (result.searchUsed === 'location only' && terms.locationName) {
+            msg += ' in ' + terms.locationName;
+          } else if (result.searchUsed === 'keyword only') {
+            msg += ' nationwide';
+          }
+          msg += '. Loaded for the committee.';
+          COMPANION.UI.addSystemMessage(msg);
         }
       }).catch(function (err) {
         console.error('[Exchange] Refinement search failed:', err);
