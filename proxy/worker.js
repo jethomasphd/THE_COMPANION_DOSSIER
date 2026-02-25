@@ -21,6 +21,9 @@ const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
 const ANTHROPIC_VERSION = '2023-06-01';
 
 const ALLOWED_MODELS = [
+  'claude-opus-4-6',
+  'claude-sonnet-4-6',
+  'claude-haiku-4-5-20251001',
   'claude-sonnet-4-20250514',
   'claude-opus-4-20250514',
   'claude-haiku-3-5-20241022'

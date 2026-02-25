@@ -95,7 +95,7 @@ COMPANION.API = (function () {
   // ── Model Management ──
 
   function getModel() {
-    return localStorage.getItem(STORAGE_KEY_MODEL) || 'claude-sonnet-4-20250514';
+    return localStorage.getItem(STORAGE_KEY_MODEL) || 'claude-opus-4-6';
   }
 
   function setModel(model) {
