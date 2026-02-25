@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
    THE EXCHANGE — Cinematic Gateway & Session Orchestrator
    Orchestrates: cinematic intro, scroll reveals, typewriter,
-   ambient audio, job corpus, 3-phase dialogue, and threshold.
+   ambient audio, live USAJobs search, 3-phase dialogue, and threshold.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -14,9 +14,7 @@ COMPANION.App = (function () {
   var currentStreamMessage = null;
   var chamberInitialized = false;
   var currentPhase = 0;       // 0 = not started, 1 = invocation, 2 = symposium, 3 = threshold
-  var jobCorpus = [];         // Parsed XML job listings
   var liveJobs = [];          // Live USAJobs results
-  var xmlLoaded = false;
   var userTurnCount = 0;
   var selectedGuide = null;   // The archetype the user chose
   var userMessages = [];      // Track user messages for search context
@@ -69,18 +67,6 @@ COMPANION.App = (function () {
     } catch (e) {
       console.error('COMPANION init error:', e);
     }
-  }
-
-
-  // ═══════════════════════════════════════════════════════════════
-  //  LOCAL JOB CORPUS
-  // ═══════════════════════════════════════════════════════════════
-
-  function loadJobCorpus() {
-    if (COMPANION.Matter && typeof COMPANION.Matter.getJobCorpus === 'function') {
-      return COMPANION.Matter.getJobCorpus();
-    }
-    return [];
   }
 
 
@@ -423,10 +409,6 @@ COMPANION.App = (function () {
         chamberInitialized = true;
       }
 
-      // Load job corpus from built-in database
-      jobCorpus = loadJobCorpus();
-      xmlLoaded = true;
-
       // Try restoring a previous session first
       if (restoreSession()) {
         // Re-establish the selected guide's visual persona
@@ -445,7 +427,7 @@ COMPANION.App = (function () {
         COMPANION.UI.setInputEnabled(true);
       } else {
         COMPANION.UI.addSystemMessage(
-          'National labor market database loaded. Live USAJobs integration active. The committee is ready.'
+          'Live USAJobs integration active. The committee is ready.'
         );
 
         // Begin Phase 1: The Invocation
@@ -643,7 +625,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount, liveJobs);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, userTurnCount, liveJobs);
 
     COMPANION.API.sendMessage(
       greetingText,
@@ -799,7 +781,7 @@ COMPANION.App = (function () {
     currentStreamMessage = COMPANION.UI.addPersonaMessage(displayName, displayColor);
 
     var personaNames = activePersonas.map(function (p) { return p.name; });
-    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, jobCorpus, userTurnCount, liveJobs);
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(personaNames, currentPhase, userTurnCount, liveJobs);
 
     COMPANION.API.sendMessage(
       userText,
@@ -891,19 +873,12 @@ COMPANION.App = (function () {
         }
       }
 
-      // Build URL if missing
+      // Build USAJobs search URL if no applyUrl was matched
       if (!jobData.url && jobData.title) {
-        // Default to USAJobs search if we have live data context, otherwise Best Jobs Online
-        if (liveJobs.length > 0) {
-          var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
-          var l = jobData.city ? encodeURIComponent(jobData.city).replace(/%20/g, '+') : '';
-          jobData.url = 'https://www.usajobs.gov/Search/Results?k=' + q + (l ? '&l=' + l : '');
-          jobData.isUSAJobs = true;
-        } else {
-          var q2 = encodeURIComponent(jobData.title).replace(/%20/g, '+');
-          var l2 = jobData.zip || '';
-          jobData.url = 'https://jobs.best-jobs-online.com/jobs?q=' + q2 + '&l=' + l2;
-        }
+        var q = encodeURIComponent(jobData.title).replace(/%20/g, '+');
+        var l = jobData.city ? encodeURIComponent(jobData.city).replace(/%20/g, '+') : '';
+        jobData.url = 'https://www.usajobs.gov/Search/Results?k=' + q + (l ? '&l=' + l : '');
+        jobData.isUSAJobs = true;
       }
 
       if (jobData.title) {
@@ -958,6 +933,11 @@ COMPANION.App = (function () {
           }
           msg += '. Loaded for the committee.';
           COMPANION.UI.addSystemMessage(msg);
+
+          // Send the new listings to the committee so it responds about them
+          setTimeout(function () {
+            sendToAPI('The Scout found new listings. Review the updated LIVE USAJobs Federal Listings and present the best matches to the seeker.');
+          }, 800);
         }
       }).catch(function (err) {
         console.error('[Exchange] Refinement search failed:', err);

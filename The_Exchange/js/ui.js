@@ -237,13 +237,8 @@ COMPANION.UI = (function () {
 
     html += '<div class="threshold-chat-divider-line"></div>';
     html += '<a class="threshold-chat-btn" href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">';
-    if (isUSAJobs) {
-      html += '<span class="threshold-chat-btn-main">Apply on USAJobs</span>';
-      html += '<span class="threshold-chat-btn-prefix">at USAJobs.gov &rarr;</span>';
-    } else {
-      html += '<span class="threshold-chat-btn-main">Search for This Role</span>';
-      html += '<span class="threshold-chat-btn-prefix">on Best Jobs Online &rarr;</span>';
-    }
+    html += '<span class="threshold-chat-btn-main">Apply on USAJobs</span>';
+    html += '<span class="threshold-chat-btn-prefix">at USAJobs.gov &rarr;</span>';
     html += '</a>';
 
     // If USAJobs, also show a secondary link to the position detail page

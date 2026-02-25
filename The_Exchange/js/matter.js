@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    THE EXCHANGE — The Matter Before the Committee
    Content payload for the dialogic job discovery session.
-   Includes a fictitious US national labor market corpus
-   for the pilot demonstration.
+   Persona profiles, essay, and session framing.
+   Job data comes exclusively from the live USAJobs API.
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPANION = window.COMPANION || {};
@@ -55,7 +55,7 @@ COMPANION.Matter = (function () {
     'Personas + Data = Container.',
     '',
     'The COMPANION Protocol summons minds as vessels.',
-    'A national labor market corpus provides the data layer.',
+    'Live federal job listings provide the data layer.',
     'The container is a bounded space where dialogue replaces scrolling.',
     '',
     'Instead of a search bar, you meet a committee.',
@@ -65,7 +65,7 @@ COMPANION.Matter = (function () {
     'The Exchange is the third container in this lineage:',
     '1. The Committee of Patriots — founding minds + investment principles',
     '2. The Five Lamps — physician-minds + clinical ethics',
-    '3. The Exchange — labor market archetypes + job corpus data',
+    '3. The Exchange — labor market archetypes + live federal job data',
     '',
     '---',
     '',
@@ -161,15 +161,16 @@ COMPANION.Matter = (function () {
   var SESSION_FRAMING = [
     '## Session Context',
     '',
-    'THE EXCHANGE with live USAJobs integration. Live federal listings from USAJobs.gov are the primary job source.',
-    'The static corpus below is background context only — do not recommend static corpus jobs when live listings are loaded.',
-    'On convergence, direct the seeker to apply via the USAJobs apply URL.'
+    'THE EXCHANGE with live USAJobs integration. All job listings come from the USAJobs.gov API —',
+    'these are real, currently open federal positions. On convergence, direct the seeker to apply',
+    'via the USAJobs apply URL.'
   ].join('\n');
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  THE CORPUS — Fictitious US National Labor Market Database
-  //  ~100 representative roles for the pilot demonstration
+  //  LEGACY CORPUS — No longer used.
+  //  All job data now comes from live USAJobs API.
+  //  Retained here as reference data only; never injected into prompts.
   // ═══════════════════════════════════════════════════════════════
 
   var JOB_CORPUS = [
@@ -296,50 +297,6 @@ COMPANION.Matter = (function () {
   ];
 
 
-  // ── Job Corpus Formatting ──
-
-  /**
-   * Format parsed jobs into a compact text summary for the system prompt.
-   * @param {Array} jobs - Job objects from the corpus.
-   * @returns {string} Formatted job corpus text.
-   */
-  function formatJobCorpus(jobs) {
-    if (!jobs || jobs.length === 0) {
-      return '## Job Corpus\n\nNo job listings loaded. The committee cannot reference specific roles.';
-    }
-
-    var lines = [
-      '## Available Job Listings (' + jobs.length + ' roles in the corpus)',
-      '',
-      'The following job listings represent the current labor market. Reference these by title, company, city, and salary.',
-      'When The Insider embodies a role, use the actual data. When The Scout describes the landscape,',
-      'summarize patterns from this data (common roles, geographic clusters, salary ranges).',
-      '',
-      'Format: ID | Title | Company | City, State ZIP | Salary | Category',
-      '---'
-    ];
-
-    for (var i = 0; i < jobs.length; i++) {
-      var j = jobs[i];
-      var salary = j.salary ? '$' + Number(j.salary).toLocaleString() : 'Not listed';
-      var location = j.city + ', ' + j.state + ' ' + j.zip;
-      lines.push(j.id + ' | ' + j.title + ' | ' + j.company + ' | ' + location + ' | ' + salary + ' | ' + j.category);
-    }
-
-    lines.push('---');
-    lines.push('');
-    lines.push('### Job Descriptions (for The Insider to embody)');
-    lines.push('');
-
-    for (var k = 0; k < jobs.length; k++) {
-      var job = jobs[k];
-      lines.push(job.id + ' — ' + job.title + ' at ' + job.company + ': ' + job.description);
-    }
-
-    return lines.join('\n');
-  }
-
-
   // ── Public API ──
 
   function getEssay() {
@@ -354,17 +311,13 @@ COMPANION.Matter = (function () {
     return SESSION_FRAMING;
   }
 
-  function getJobCorpus() {
-    return JOB_CORPUS.slice();
-  }
-
   /**
    * Build the complete matter payload for the system prompt.
-   * @param {Array} jobs - Job corpus (optional, defaults to built-in).
+   * Includes session framing and persona profiles only.
+   * Job data comes from live USAJobs API, injected separately by protocol.js.
    * @returns {string} The full matter text.
    */
-  function buildMatterPayload(jobs) {
-    var corpus = jobs && jobs.length > 0 ? jobs : JOB_CORPUS;
+  function buildMatterPayload() {
     return [
       '# THE MATTER BEFORE THE EXCHANGE',
       '',
@@ -372,11 +325,7 @@ COMPANION.Matter = (function () {
       '',
       '---',
       '',
-      PERSONA_PROFILES,
-      '',
-      '---',
-      '',
-      formatJobCorpus(corpus)
+      PERSONA_PROFILES
     ].join('\n');
   }
 
@@ -385,8 +334,6 @@ COMPANION.Matter = (function () {
     getEssay: getEssay,
     getPersonaProfiles: getPersonaProfiles,
     getSessionFraming: getSessionFraming,
-    getJobCorpus: getJobCorpus,
-    formatJobCorpus: formatJobCorpus,
     buildMatterPayload: buildMatterPayload
   };
 

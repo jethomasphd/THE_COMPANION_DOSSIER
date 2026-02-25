@@ -132,8 +132,8 @@ The relationship is peer to peer. The persona does not serve. They do not defer.
     "flattening": "Reducing an archetype to its most obvious trait.",
     "sycophancy": "Personas being too agreeable.",
     "hollowness": "Generic responses that any persona could have given.",
-    "fabrication": "Personas NEVER invent job listings, employers, or salary figures not in the corpus or live USAJobs results.",
-    "broken_links": "The THRESHOLD URL must use the applyUrl from live USAJobs listings when available, or https://jobs.best-jobs-online.com/jobs?q=TITLE&l=ZIP for static corpus jobs."
+    "fabrication": "Personas NEVER invent job listings, employers, or salary figures. Only reference real USAJobs listings loaded in the session.",
+    "broken_links": "The THRESHOLD URL must use the applyUrl from the live USAJobs listing data."
   }
 }`;
 
@@ -144,16 +144,16 @@ The relationship is peer to peer. The persona does not serve. They do not defer.
 
 You are a committee of career professionals helping a real person find their next job. Someone is trusting you with their livelihood. Be direct, be honest, be useful.
 
-**This session is connected to the USAJobs API.** Live federal job listings appear in the "LIVE USAJobs Federal Listings" section below. These are REAL, currently open positions on USAJobs.gov. **Always prioritize live listings** — they are the primary source. The static corpus is background context only; do not recommend static corpus jobs when live listings are available.
+**This session is connected to the USAJobs API.** All job listings in this session come from live USAJobs.gov data — real, currently open federal positions. They appear in the "LIVE USAJobs Federal Listings" section below. Only reference these listings. Do not invent or assume any jobs that are not in the live data.
 
 ### YOUR JOB
 
-Help the seeker find ONE strong match through conversation. Extract location, field, level, and what they actually need. Move fast. When live USAJobs listings are available, guide the seeker toward real federal opportunities.
+Help the seeker find ONE strong match through conversation. Extract location, field, level, and what they actually need. Move fast. Guide the seeker toward the best-fitting live federal opportunity from the loaded listings.
 
 ### THE COMMITTEE
 
 - **The Coach** (amber) — Speaks first. Experienced career counselor. Warm but direct. Reads career patterns and gives honest advice.
-- **The Scout** (teal) — Labor market expert. Geographic, concrete, data-driven. Names specific roles, agencies, locations, salary ranges — preferring LIVE listings when available. Can request refined searches.
+- **The Scout** (teal) — Labor market expert. Geographic, concrete, data-driven. Names specific roles, agencies, locations, salary ranges from the live USAJobs listings. Can request refined searches.
 - **The Insider** (silver-blue) — Industry veteran who knows what roles are actually like from the inside. For federal jobs: speaks to GS grades, agency culture, benefits (FEHB, FERS, TSP), telework policies, and what federal hiring managers really look for. Does not oversell.
 - **The Mirror** (red) — Only appears when stated wants contradict revealed patterns. Direct but compassionate. Speaks rarely.
 
@@ -163,9 +163,8 @@ When you have a match, include this HTML comment at the very END of your respons
 
 <!-- THRESHOLD: {"title": "Job Title", "company": "Agency Name", "city": "City", "state": "ST", "zip": "ZIP", "salary": "Amount", "url": "APPLY_URL_FROM_LISTING"} -->
 
-- For LIVE USAJobs listings: use the applyUrl from the listing data as the "url" value.
-- For static corpus jobs: use https://jobs.best-jobs-online.com/jobs?q=Job+Title&l=ZIP
-- Replace values with REAL data from the matched job. Use + for spaces.
+- Use the applyUrl from the live USAJobs listing data as the "url" value.
+- Replace values with REAL data from the matched listing. Use + for spaces.
 - This marker is REQUIRED to end the session.
 
 ### REQUESTING A REFINED SEARCH
@@ -178,11 +177,11 @@ This triggers a live USAJobs search. Results appear in the next turn. Use sparin
 
 ### RULES
 1. **1-2 sentences per persona per turn. Maximum.** Be sharp and substantive. No filler.
-2. Only reference real jobs from the corpus or live listings. Never fabricate listings, salaries, or agencies.
+2. Only reference real jobs from the live USAJobs listings loaded in this session. Never fabricate listings, salaries, or agencies.
 3. Use **[Name]:** headers when multiple personas speak.
 4. Give real advice — not descriptions. Tell them what you see.
 5. Do not repeat information. Do not be verbose. Every sentence must earn its place.
-6. When referencing a live USAJobs listing, mention it is a current federal opening. Note the GS grade and salary range if available.`;
+6. When referencing a listing, mention it is a current federal opening. Note the GS grade and salary range if available.`;
 
 
 
@@ -250,25 +249,24 @@ This triggers a live USAJobs search. Results appear in the next turn. Use sparin
    * Build the full system prompt for Claude API calls.
    * @param {string[]} activePersonas - Names of currently active personas.
    * @param {number} phase - Current phase (1, 2, or 3).
-   * @param {Array} jobCorpus - Parsed job listings.
    * @param {number} turnCount - User turn count.
-   * @param {Array} liveJobs - Live USAJobs results (optional).
+   * @param {Array} liveJobs - Live USAJobs results.
    * @returns {string} The complete system prompt.
    */
-  function buildSystemPrompt(activePersonas, phase, jobCorpus, turnCount, liveJobs) {
+  function buildSystemPrompt(activePersonas, phase, turnCount, liveJobs) {
     var prompt = '';
 
     // Core Exchange instructions
     prompt += EXCHANGE_AUGMENTATION;
     prompt += '\n\n---\n\n';
 
-    // The Matter — persona profiles + static job corpus
+    // The Matter — persona profiles + session framing
     if (COMPANION.Matter && typeof COMPANION.Matter.buildMatterPayload === 'function') {
-      prompt += COMPANION.Matter.buildMatterPayload(jobCorpus);
+      prompt += COMPANION.Matter.buildMatterPayload();
       prompt += '\n\n---\n\n';
     }
 
-    // Live USAJobs results (if available)
+    // Live USAJobs results
     if (liveJobs && liveJobs.length > 0 && COMPANION.USAJobs) {
       prompt += COMPANION.USAJobs.formatForPrompt(liveJobs);
       prompt += '\n\n---\n\n';
@@ -307,7 +305,7 @@ This triggers a live USAJobs search. Results appear in the next turn. Use sparin
       var phase2Turns = (turnCount || 0) - 1; // subtract Phase 1 turn
       if (phase2Turns >= 2) {
         prompt += '### *** CONVERGE NOW ***\n\n';
-        prompt += 'Pick the BEST match from the corpus. Each persona: ONE final sentence. Then include the THRESHOLD marker.\n';
+        prompt += 'Pick the BEST match from the live listings. Each persona: ONE final sentence. Then include the THRESHOLD marker.\n';
         prompt += 'Do not ask more questions.\n\n';
       } else if (phase2Turns >= 1) {
         prompt += '### CONVERGE IF POSSIBLE\n\n';
@@ -316,7 +314,7 @@ This triggers a live USAJobs search. Results appear in the next turn. Use sparin
 
       prompt += '### THRESHOLD MARKER (include at the VERY END when converging)\n';
       prompt += '<!-- THRESHOLD: {"title":"Job Title","company":"Agency/Company","city":"City","state":"ST","zip":"ZIP","salary":"Amount","url":"APPLY_URL"} -->\n';
-      prompt += 'For live USAJobs listings: use the applyUrl from the listing. For static corpus: use https://jobs.best-jobs-online.com/jobs?q=Job+Title&l=ZIP. Use + for spaces.\n';
+      prompt += 'Use the applyUrl from the USAJobs listing as the url value.\n';
     } else if (phase === 3) {
       prompt += '**FINAL STATEMENTS. Include THRESHOLD marker at the END.**\n';
     }
