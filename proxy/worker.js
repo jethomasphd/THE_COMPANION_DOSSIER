@@ -166,13 +166,14 @@ const USAJOBS_ALLOWED_PARAMS = [
 ];
 
 async function handleUSAJobsSearch(request, url, env) {
+  // USAJobs returns only public federal job data — no secrets exposed.
+  // Allow requests without an Origin header (direct browser/curl testing)
+  // but still set CORS headers for browser fetch() calls from allowed origins.
   const origin = request.headers.get('Origin') || '';
-  if (!isAllowedOrigin(origin, env)) {
-    return errorResponse(403, 'Origin not allowed.');
-  }
+  const safeOrigin = (origin && isAllowedOrigin(origin, env)) ? origin : '*';
 
   if (!env.USAJOBS_API_KEY || !env.USAJOBS_EMAIL) {
-    return corsJson(origin, 500, { error: 'USAJobs API not configured. Set USAJOBS_API_KEY and USAJOBS_EMAIL secrets.' });
+    return corsJson(safeOrigin, 500, { error: 'USAJobs API not configured. Set USAJOBS_API_KEY and USAJOBS_EMAIL secrets.' });
   }
 
   // Build sanitized query string from allowed parameters only
@@ -199,7 +200,7 @@ async function handleUSAJobsSearch(request, url, env) {
     if (!usajobsResponse.ok) {
       const errText = await usajobsResponse.text();
       console.error('USAJobs API error:', usajobsResponse.status, errText);
-      return corsJson(origin, usajobsResponse.status, {
+      return corsJson(safeOrigin, usajobsResponse.status, {
         error: 'USAJobs API returned ' + usajobsResponse.status
       });
     }
@@ -209,11 +210,11 @@ async function handleUSAJobsSearch(request, url, env) {
     // Transform the response to a lighter format for the client
     const result = transformUSAJobsResponse(data);
 
-    return corsJson(origin, 200, result);
+    return corsJson(safeOrigin, 200, result);
 
   } catch (fetchError) {
     console.error('USAJobs fetch error:', fetchError);
-    return corsJson(origin, 502, { error: 'Failed to reach USAJobs API.' });
+    return corsJson(safeOrigin, 502, { error: 'Failed to reach USAJobs API.' });
   }
 }
 
