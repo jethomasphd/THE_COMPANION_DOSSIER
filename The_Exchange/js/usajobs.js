@@ -115,8 +115,8 @@ COMPANION.USAJobs = (function () {
 
 
   /**
-   * Transform USAJobs API response into Exchange job corpus format.
-   * Maps federal job data to the same structure as the static corpus.
+   * Transform USAJobs API response into Exchange job format.
+   * Maps federal job data to a normalized structure.
    */
   function transformResults(apiResponse) {
     if (!apiResponse || !apiResponse.items || !Array.isArray(apiResponse.items)) {
@@ -340,7 +340,6 @@ COMPANION.USAJobs = (function () {
 
   /**
    * Format live job results for the system prompt.
-   * Produces a compact text summary matching the static corpus format.
    * @param {Array} jobs - Transformed USAJobs results.
    * @returns {string} Formatted text for the system prompt.
    */
@@ -353,7 +352,7 @@ COMPANION.USAJobs = (function () {
       '## LIVE USAJobs Federal Listings (' + jobs.length + ' current openings)',
       '',
       'These are REAL federal job postings from USAJobs.gov, live right now.',
-      'Prioritize these over the static corpus when they match the seeker\'s interests.',
+      'These are the ONLY job listings available. Reference ONLY these when discussing specific roles.',
       'When referencing these jobs, note they are federal positions with benefits.',
       '',
       'Format: ID | Title | Agency | City, State | Salary | Grade | Category',
