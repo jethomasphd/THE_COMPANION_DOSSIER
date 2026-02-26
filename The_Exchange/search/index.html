@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Exchange &mdash; Find Your Federal Job</title>
+  <meta name="description" content="Talk to four AI career minds. They search live USAJobs.gov listings and help you find one real federal job that fits. Free. No account. Five minutes.">
+  <link rel="stylesheet" href="../css/companion.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a href="../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
+
+  <!-- ═══ DIRECT ENTRY — Brief context + Guide Selection ═══ -->
+  <div id="cinematic-intro">
+
+    <!-- ▸ CONTEXT — What this is, fast -->
+    <section id="act-context" class="act act-dark" style="min-height: auto; padding: 4rem 0 1rem;">
+      <div class="act-content act-content-center">
+        <div class="dialog-card" style="max-width: 44rem;">
+          <div class="dialog-card-ornament">&#9670;</div>
+          <p class="dialog-card-label">The Exchange</p>
+          <p class="dialog-card-text"><strong>A free federal job search that works like a conversation.</strong> Four AI career minds search live listings on <strong>USAJobs.gov</strong> and help you find one real match in about five minutes. No account needed. No resume upload.</p>
+          <div class="dialog-card-steps">
+            <div class="dialog-card-step"><span class="step-num">1</span><span class="step-text">Pick a guide below &mdash; each approaches your search differently</span></div>
+            <div class="dialog-card-step"><span class="step-num">2</span><span class="step-text">Tell them where you are, what you do, and what you need</span></div>
+            <div class="dialog-card-step"><span class="step-num">3</span><span class="step-text">They search live federal openings and narrow down to your best fit</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ CHOOSE YOUR GUIDE -->
+    <section id="act-choose-guide" class="act act-dark" style="min-height: auto; padding: 2rem 0 1rem;">
+      <div class="act-content act-content-center">
+        <div class="guide-select-header">
+          <div class="ornament-cinematic">&#10087; &#9753;</div>
+          <h2 class="committee-title">Choose Your Guide</h2>
+          <p class="guide-select-subtitle">Each mind sees your search differently. Pick the one that speaks to you.</p>
+          <div class="ornament-line-cinematic"><span>&#10022;</span></div>
+        </div>
+
+        <div class="guide-select-grid" id="guide-select-grid">
+
+          <button class="guide-card" data-guide="The Coach" data-color="#d4a030">
+            <div class="guide-card-sigil">
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <line x1="60" y1="30" x2="60" y2="105" stroke="#d4a030" stroke-width="2" opacity="0.7"/>
+                <path d="M60,30 Q30,50 35,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                <path d="M60,30 Q90,50 85,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                <path d="M60,45 Q40,55 38,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                <path d="M60,45 Q80,55 82,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                <path d="M60,55 Q45,65 42,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                <path d="M60,55 Q75,65 78,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                <circle cx="60" cy="25" r="6" fill="none" stroke="#d4a030" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="60" cy="25" r="2" fill="#d4a030" opacity="0.8"/>
+              </svg>
+            </div>
+            <span class="guide-card-name">The Coach</span>
+            <span class="guide-card-line">&ldquo;I read the story your resume won&rsquo;t tell.&rdquo;</span>
+          </button>
+
+          <button class="guide-card" data-guide="The Scout" data-color="#1a8c8c">
+            <div class="guide-card-sigil">
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="#1a8c8c" stroke-width="1.5" opacity="0.4"/>
+                <circle cx="60" cy="60" r="35" fill="none" stroke="#1a8c8c" stroke-width="1" opacity="0.3"/>
+                <line x1="60" y1="10" x2="60" y2="110" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                <line x1="10" y1="60" x2="110" y2="60" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                <polygon points="60,18 54,45 60,38 66,45" fill="#1a8c8c" opacity="0.9"/>
+                <polygon points="60,102 54,75 60,82 66,75" fill="#1a8c8c" opacity="0.4"/>
+                <circle cx="60" cy="60" r="4" fill="#1a8c8c" opacity="0.8"/>
+                <circle cx="60" cy="60" r="2" fill="#030303"/>
+              </svg>
+            </div>
+            <span class="guide-card-name">The Scout</span>
+            <span class="guide-card-line">&ldquo;I know what&rsquo;s out there before you do.&rdquo;</span>
+          </button>
+
+          <button class="guide-card" data-guide="The Insider" data-color="#7a8fa6">
+            <div class="guide-card-sigil">
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="15" width="60" height="95" rx="30" ry="30" fill="none" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                <rect x="38" y="23" width="44" height="80" rx="22" ry="22" fill="none" stroke="#7a8fa6" stroke-width="1" opacity="0.35"/>
+                <line x1="60" y1="23" x2="60" y2="103" stroke="#7a8fa6" stroke-width="0.8" opacity="0.2"/>
+                <circle cx="72" cy="65" r="3" fill="#7a8fa6" opacity="0.7"/>
+                <line x1="30" y1="110" x2="90" y2="110" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                <path d="M60,35 L60,50" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+                <path d="M52,42 L68,42" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="guide-card-name">The Insider</span>
+            <span class="guide-card-line">&ldquo;I&rsquo;ve done the work. Let me tell you what it&rsquo;s really like.&rdquo;</span>
+          </button>
+
+          <button class="guide-card" data-guide="The Mirror" data-color="#8c3a3a">
+            <div class="guide-card-sigil">
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="60" cy="55" rx="35" ry="42" fill="none" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                <ellipse cx="60" cy="55" rx="28" ry="35" fill="none" stroke="#8c3a3a" stroke-width="0.8" opacity="0.3"/>
+                <line x1="60" y1="97" x2="60" y2="115" stroke="#8c3a3a" stroke-width="2" opacity="0.6"/>
+                <line x1="45" y1="115" x2="75" y2="115" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                <line x1="40" y1="40" x2="50" y2="50" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+                <line x1="42" y1="50" x2="52" y2="42" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+              </svg>
+            </div>
+            <span class="guide-card-name">The Mirror</span>
+            <span class="guide-card-line">&ldquo;Tell me what you want. I&rsquo;ll tell you if you mean it.&rdquo;</span>
+          </button>
+
+        </div>
+
+        <p class="guide-select-footnote">The others will join as the conversation deepens.</p>
+      </div>
+    </section>
+
+    <!-- ▸ ENTER -->
+    <section id="act-summons" class="act act-dark" style="min-height: auto; padding: 2rem 0 3rem;">
+      <div class="act-content act-content-center">
+        <div class="summons-block">
+          <p class="summons-text" id="summons-guide-text">Choose your guide above to begin.</p>
+          <p class="summons-subtext">Live federal positions from USAJobs.gov. One conversation. One match.</p>
+          <div class="summons-btn-wrapper">
+            <button id="enter-btn" class="summon-btn" disabled>
+              <span class="summon-btn-prefix">Using this matter, summon</span>
+              <span class="summon-btn-main" id="summon-btn-guide-name">the Exchange</span>
+            </button>
+          </div>
+
+          <div class="summons-footer" style="margin-top: 2.5rem;">
+            <span><a href="../../" class="footer-link">Home</a></span>
+            <span class="summons-divider">&middot;</span>
+            <span><a href="../" class="footer-link">Full Experience</a></span>
+            <span class="summons-divider">&middot;</span>
+            <span><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" class="footer-link" target="_blank">The Dossier</a></span>
+            <span class="summons-divider">&middot;</span>
+            <span><a href="mailto:JEThomasPhD@gmail.com" class="footer-link">Contact</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+  <!-- ═══ SCREEN: THE CHAMBER ═══ -->
+  <div id="chamber-screen" class="screen">
+
+    <!-- Portrait Stage -->
+    <div id="portrait-stage"></div>
+
+    <!-- Committee Bar -->
+    <div id="committee-bar">
+      <div id="persona-badges"></div>
+      <div id="chamber-controls">
+        <button id="settings-toggle" class="control-btn" title="Settings">
+          <span class="control-icon">&#9881;</span>
+          <span class="control-label">Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Phase Indicator -->
+    <div id="phase-indicator"></div>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="hidden">
+      <div class="settings-inner">
+        <h3 class="settings-title">Exchange Settings</h3>
+        <div class="setting-row">
+          <label for="settings-model" class="binding-label">Model</label>
+          <select id="settings-model" class="binding-select">
+            <option value="claude-opus-4-6">Opus &mdash; Deep Dialogue</option>
+          </select>
+        </div>
+        <div class="setting-row setting-row-btns">
+          <button id="export-btn" class="control-btn">Export Transcript</button>
+          <button id="release-all-btn" class="control-btn control-btn-danger">Dismiss the Committee</button>
+        </div>
+        <button id="close-settings" class="control-btn">Close</button>
+      </div>
+    </div>
+
+    <!-- Dialogue Area -->
+    <div id="dialogue-container">
+      <div id="dialogue-scroll">
+        <div id="dialogue-messages"></div>
+      </div>
+      <button id="jump-to-latest" class="jump-to-latest" aria-label="Jump to latest message">&#8615; New messages</button>
+    </div>
+
+    <!-- Input Area -->
+    <div id="input-area">
+      <div id="input-wrapper">
+        <textarea id="user-input" placeholder="Speak to the Exchange..." rows="1"></textarea>
+        <button id="send-btn" title="Send">
+          <span>&#10148;</span>
+        </button>
+      </div>
+      <div id="input-hint">
+        <span class="hint-text">The Coach will speak first. Tell them about yourself &mdash; your experience, location, and what you&rsquo;re looking for.</span>
+      </div>
+      <div class="chamber-action-nudge">
+        <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The COMPANION Protocol &mdash; open source, public domain &rarr;</a>
+      </div>
+      <div class="chamber-action-nudge" style="margin-top: 0.25rem;">
+        <span style="cursor:pointer;opacity:0.5;" onclick="document.getElementById('export-btn').click()">Export this transcript &darr;</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- COMPANION — The Exchange -->
+  <script src="../js/config.js"></script>
+  <script src="../js/matter.js"></script>
+  <script src="../js/protocol.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/usajobs.js"></script>
+  <script src="../js/hologram.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
