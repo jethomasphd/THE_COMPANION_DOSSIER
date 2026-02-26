@@ -9,37 +9,248 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Search Landing: single-viewport composition ── */
+
+    .search-landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      background: var(--void);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle radial glow behind the content */
+    .search-landing::before {
+      content: '';
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(201, 162, 39, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .search-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ── Confusion ── */
+    .search-wound {
+      margin-bottom: 1.2rem;
+    }
+    .search-wound p {
+      font-family: var(--font-display);
+      font-weight: 300;
+      color: var(--bone-dim);
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+    .search-wound .wound-hook {
+      color: var(--bone);
+      font-weight: 400;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+
+    /* ── Awe (the turn) ── */
+    .search-turn {
+      margin-bottom: 1.5rem;
+    }
+    .search-turn-ornament {
+      font-size: 0.75rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.8em;
+      margin-bottom: 0.8rem;
+    }
+    .search-turn p {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3.2vw, 2rem);
+      font-weight: 500;
+      color: var(--bone);
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+    }
+    .search-turn .turn-gold {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ── Understanding (how it works) ── */
+    .search-how {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .search-step {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .search-step-num {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .search-step-text {
+      font-family: var(--font-body);
+      font-size: clamp(0.78rem, 1.4vw, 0.88rem);
+      color: var(--bone-dim);
+      text-align: left;
+    }
+
+    /* ── Action: Guide Cards (compact) ── */
+    .search-landing .guide-select-header {
+      margin-bottom: 1.2rem;
+    }
+    .search-landing .committee-title {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      letter-spacing: 0.12em;
+    }
+    .search-landing .guide-select-subtitle {
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      margin-top: 0.3rem;
+    }
+    .search-landing .ornament-cinematic {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .search-landing .ornament-line-cinematic {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+    }
+    .search-landing .guide-card {
+      padding: 1rem 0.8rem 0.8rem;
+    }
+    .search-landing .guide-card-sigil {
+      max-width: 80px;
+      margin-bottom: 0.6rem;
+      padding: 12%;
+    }
+    .search-landing .guide-card-name {
+      font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+    }
+    .search-landing .guide-card-line {
+      font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+      line-height: 1.4;
+    }
+    .search-landing .guide-select-footnote {
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    /* ── Summon area (compact) ── */
+    .search-summon {
+      margin-top: 1rem;
+    }
+    .search-summon .summons-text {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      margin-bottom: 0.2rem;
+    }
+    .search-summon .summons-subtext {
+      font-size: clamp(0.8rem, 1.4vw, 0.92rem);
+      margin-bottom: 1rem;
+    }
+    .search-summon .summon-btn {
+      padding: 0.9em 2.4em;
+    }
+    .search-summon .summons-btn-wrapper {
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── Footer ── */
+    .search-footer {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+    }
+    .search-footer a {
+      color: var(--bone-dim);
+      transition: color 0.3s ease;
+    }
+    .search-footer a:hover {
+      color: var(--gold);
+    }
+    .search-footer .summons-divider {
+      margin: 0 0.4rem;
+    }
+
+    /* ── Mobile: stack to 2 columns ── */
+    @media (max-width: 768px) {
+      .search-landing {
+        padding: 1.5rem 1rem;
+        justify-content: flex-start;
+        padding-top: 2.5rem;
+      }
+      .search-how {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .search-landing .guide-select-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+    }
+
+    /* ── Very short viewports ── */
+    @media (max-height: 700px) {
+      .search-wound { margin-bottom: 0.6rem; }
+      .search-turn { margin-bottom: 0.8rem; }
+      .search-how { margin-bottom: 1rem; gap: 1rem; }
+      .search-landing .guide-select-header { margin-bottom: 0.8rem; }
+      .search-landing .guide-card-sigil { max-width: 60px; }
+      .search-summon { margin-top: 0.6rem; }
+    }
+  </style>
 </head>
 <body>
 
   <a href="../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
 
-  <!-- ═══ DIRECT ENTRY — Brief context + Guide Selection ═══ -->
+  <!-- ═══ SINGLE-VIEWPORT LANDING: Confusion → Awe → Understanding → Action ═══ -->
   <div id="cinematic-intro">
+    <div class="search-landing">
+      <div class="search-inner">
 
-    <!-- ▸ CONTEXT — What this is, fast -->
-    <section id="act-context" class="act act-dark" style="min-height: auto; padding: 4rem 0 1rem;">
-      <div class="act-content act-content-center">
-        <div class="dialog-card" style="max-width: 44rem;">
-          <div class="dialog-card-ornament">&#9670;</div>
-          <p class="dialog-card-label">The Exchange</p>
-          <p class="dialog-card-text"><strong>A free federal job search that works like a conversation.</strong> Four AI career minds search live listings on <strong>USAJobs.gov</strong> and help you find one real match in about five minutes. No account needed. No resume upload.</p>
-          <div class="dialog-card-steps">
-            <div class="dialog-card-step"><span class="step-num">1</span><span class="step-text">Pick a guide below &mdash; each approaches your search differently</span></div>
-            <div class="dialog-card-step"><span class="step-num">2</span><span class="step-text">Tell them where you are, what you do, and what you need</span></div>
-            <div class="dialog-card-step"><span class="step-num">3</span><span class="step-text">They search live federal openings and narrow down to your best fit</span></div>
-          </div>
+        <!-- ▸ CONFUSION — the wound, compressed -->
+        <div class="search-wound">
+          <p class="wound-hook">You scroll. You apply. Silence.</p>
+          <p>Half those listings were already filled. Some were never real. The job board doesn&rsquo;t know you.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ▸ CHOOSE YOUR GUIDE -->
-    <section id="act-choose-guide" class="act act-dark" style="min-height: auto; padding: 2rem 0 1rem;">
-      <div class="act-content act-content-center">
+        <!-- ▸ AWE — the turn -->
+        <div class="search-turn">
+          <div class="search-turn-ornament">&#9670; &nbsp; &#9670; &nbsp; &#9670;</div>
+          <p>What if finding work meant <span class="turn-gold">being found?</span></p>
+        </div>
+
+        <!-- ▸ UNDERSTANDING — how it works -->
+        <div class="search-how">
+          <div class="search-step"><span class="search-step-num">1</span><span class="search-step-text">Pick a guide below</span></div>
+          <div class="search-step"><span class="search-step-num">2</span><span class="search-step-text">Tell them where you are and what you need</span></div>
+          <div class="search-step"><span class="search-step-num">3</span><span class="search-step-text">They search live federal jobs and find your match</span></div>
+        </div>
+
+        <!-- ▸ ACTION — Choose Your Guide -->
         <div class="guide-select-header">
           <div class="ornament-cinematic">&#10087; &#9753;</div>
           <h2 class="committee-title">Choose Your Guide</h2>
-          <p class="guide-select-subtitle">Each mind sees your search differently. Pick the one that speaks to you.</p>
+          <p class="guide-select-subtitle">Four AI minds. Each sees your search differently.</p>
           <div class="ornament-line-cinematic"><span>&#10022;</span></div>
         </div>
 
@@ -114,35 +325,33 @@
         </div>
 
         <p class="guide-select-footnote">The others will join as the conversation deepens.</p>
-      </div>
-    </section>
 
-    <!-- ▸ ENTER -->
-    <section id="act-summons" class="act act-dark" style="min-height: auto; padding: 2rem 0 3rem;">
-      <div class="act-content act-content-center">
-        <div class="summons-block">
-          <p class="summons-text" id="summons-guide-text">Choose your guide above to begin.</p>
-          <p class="summons-subtext">Live federal positions from USAJobs.gov. One conversation. One match.</p>
-          <div class="summons-btn-wrapper">
-            <button id="enter-btn" class="summon-btn" disabled>
-              <span class="summon-btn-prefix">Using this matter, summon</span>
-              <span class="summon-btn-main" id="summon-btn-guide-name">the Exchange</span>
-            </button>
-          </div>
-
-          <div class="summons-footer" style="margin-top: 2.5rem;">
-            <span><a href="../../" class="footer-link">Home</a></span>
-            <span class="summons-divider">&middot;</span>
-            <span><a href="../" class="footer-link">Full Experience</a></span>
-            <span class="summons-divider">&middot;</span>
-            <span><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" class="footer-link" target="_blank">The Dossier</a></span>
-            <span class="summons-divider">&middot;</span>
-            <span><a href="mailto:JEThomasPhD@gmail.com" class="footer-link">Contact</a></span>
+        <!-- ▸ SUMMON -->
+        <div class="search-summon">
+          <div class="summons-block">
+            <p class="summons-text" id="summons-guide-text">Choose your guide to begin.</p>
+            <p class="summons-subtext">Live federal positions from USAJobs.gov. One conversation. One match.</p>
+            <div class="summons-btn-wrapper">
+              <button id="enter-btn" class="summon-btn" disabled>
+                <span class="summon-btn-prefix">Using this matter, summon</span>
+                <span class="summon-btn-main" id="summon-btn-guide-name">the Exchange</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
+        <div class="search-footer">
+          <span><a href="../">Full experience</a></span>
+          <span class="summons-divider">&middot;</span>
+          <span><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank">The Dossier</a></span>
+          <span class="summons-divider">&middot;</span>
+          <span><a href="../../">COMPANION Protocol</a></span>
+          <span class="summons-divider">&middot;</span>
+          <span><a href="mailto:JEThomasPhD@gmail.com">Contact</a></span>
+        </div>
+
+      </div>
+    </div>
   </div>
 
 
@@ -201,7 +410,7 @@
         </button>
       </div>
       <div id="input-hint">
-        <span class="hint-text">The Coach will speak first. Tell them about yourself &mdash; your experience, location, and what you&rsquo;re looking for.</span>
+        <span class="hint-text">Tell them about yourself &mdash; your experience, location, and what you&rsquo;re looking for.</span>
       </div>
       <div class="chamber-action-nudge">
         <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER" target="_blank">The COMPANION Protocol &mdash; open source, public domain &rarr;</a>
