@@ -11,31 +11,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Search Landing: single-viewport composition ── */
+    /* ══════════════════════════════════════════════════════════
+       SEARCH LANDING — Single viewport, timed reveal sequence
+       Confusion → Awe → Understanding → Action
+       ══════════════════════════════════════════════════════════ */
 
     .search-landing {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem 1.5rem;
-      background: var(--void);
+      padding: 2.5rem 1.5rem 1.5rem;
+      background: var(--void-deep);
       position: relative;
       overflow: hidden;
     }
 
-    /* Subtle radial glow behind the content */
+    /* ── Breathing void glow ── */
     .search-landing::before {
       content: '';
       position: absolute;
-      top: 18%;
+      top: 10%;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(201, 162, 39, 0.04) 0%, transparent 70%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(201, 162, 39, 0.025) 0%, transparent 65%);
+      animation: breathe 10s ease-in-out infinite;
       pointer-events: none;
+    }
+
+    /* ── Ember field (JS-populated) ── */
+    .search-ember-field {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .search-ember-field .ember {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: ember-float linear infinite;
+      will-change: transform, opacity;
     }
 
     .search-inner {
@@ -46,52 +70,105 @@
       text-align: center;
     }
 
-    /* ── Confusion ── */
+    /* ══════════════════════════════════════════
+       PHASE 1 — CONFUSION (the wound)
+       Appears first. Typewriter + fade.
+       ══════════════════════════════════════════ */
+
     .search-wound {
-      margin-bottom: 1.2rem;
-    }
-    .search-wound p {
-      font-family: var(--font-display);
-      font-weight: 300;
-      color: var(--bone-dim);
-      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
-      line-height: 1.6;
-      letter-spacing: 0.03em;
-    }
-    .search-wound .wound-hook {
-      color: var(--bone);
-      font-weight: 400;
-      font-size: clamp(1rem, 2vw, 1.15rem);
+      margin-bottom: 1.4rem;
+      min-height: 4.5em;
     }
 
-    /* ── Awe (the turn) ── */
+    /* Typewriter lines in the wound */
+    .wound-typewriter {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+      line-height: 1.7;
+      color: var(--bone);
+      min-height: 1.3em;
+      opacity: 0;
+      letter-spacing: 0.01em;
+    }
+    .wound-typewriter.typing,
+    .wound-typewriter.typed {
+      opacity: 1;
+    }
+    .wound-typewriter .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 0.85em;
+      background: var(--gold);
+      margin-left: 3px;
+      animation: cursor-blink 0.8s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    .wound-context {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(0.88rem, 1.6vw, 1rem);
+      color: var(--bone-dim);
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+    .wound-context.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════════
+       PHASE 2 — AWE (the turn)
+       Diamond ornament + golden emphasis
+       ══════════════════════════════════════════ */
+
     .search-turn {
       margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .search-turn.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
     .search-turn-ornament {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       color: var(--gold-dim);
-      letter-spacing: 0.8em;
-      margin-bottom: 0.8rem;
+      letter-spacing: 1em;
+      margin-bottom: 0.6rem;
+      opacity: 0;
+      transition: opacity 1.5s ease;
     }
-    .search-turn p {
+    .search-turn-ornament.revealed {
+      opacity: 1;
+    }
+    .search-turn-text {
       font-family: var(--font-display);
-      font-size: clamp(1.3rem, 3.2vw, 2rem);
+      font-size: clamp(1.3rem, 3.2vw, 2.1rem);
       font-weight: 500;
       color: var(--bone);
       line-height: 1.3;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
     .search-turn .turn-gold {
-      color: var(--gold);
+      color: var(--gold-bright);
       font-weight: 600;
+      text-shadow: 0 0 30px rgba(201, 162, 39, 0.2);
     }
 
-    /* ── Understanding (how it works) ── */
+    /* ══════════════════════════════════════════
+       PHASE 3 — UNDERSTANDING (how it works)
+       ══════════════════════════════════════════ */
+
     .search-how {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 2.5rem;
       margin-bottom: 1.8rem;
       flex-wrap: wrap;
     }
@@ -99,6 +176,13 @@
       display: flex;
       align-items: baseline;
       gap: 0.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .search-step.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
     .search-step-num {
       font-family: var(--font-display);
@@ -114,9 +198,25 @@
       text-align: left;
     }
 
-    /* ── Action: Guide Cards (compact) ── */
+    /* ══════════════════════════════════════════
+       PHASE 4 — ACTION (guide cards + summon)
+       Cascading reveal of each element
+       ══════════════════════════════════════════ */
+
+    .search-action {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .search-action.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Compact overrides for guide cards in search context */
     .search-landing .guide-select-header {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.1rem;
     }
     .search-landing .committee-title {
       font-size: clamp(1.4rem, 3.5vw, 2rem);
@@ -154,10 +254,13 @@
       font-size: 0.82rem;
     }
 
-    /* ── Summon area (compact) ── */
+    /* Summon area (compact) */
     .search-summon {
       margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.8s ease;
     }
+    .search-summon.revealed { opacity: 1; }
     .search-summon .summons-text {
       font-size: clamp(1rem, 2.5vw, 1.4rem);
       margin-bottom: 0.2rem;
@@ -173,28 +276,28 @@
       margin-bottom: 0.8rem;
     }
 
-    /* ── Footer ── */
+    /* Footer */
     .search-footer {
       margin-top: 1rem;
       font-size: 0.78rem;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
+    .search-footer.revealed { opacity: 1; }
     .search-footer a {
       color: var(--bone-dim);
       transition: color 0.3s ease;
     }
-    .search-footer a:hover {
-      color: var(--gold);
-    }
-    .search-footer .summons-divider {
-      margin: 0 0.4rem;
-    }
+    .search-footer a:hover { color: var(--gold); }
+    .search-footer .summons-divider { margin: 0 0.4rem; }
 
-    /* ── Mobile: stack to 2 columns ── */
+
+    /* ── Responsive ── */
     @media (max-width: 768px) {
       .search-landing {
-        padding: 1.5rem 1rem;
+        padding: 2rem 1rem 1rem;
         justify-content: flex-start;
-        padding-top: 2.5rem;
+        padding-top: 3rem;
       }
       .search-how {
         flex-direction: column;
@@ -206,15 +309,20 @@
         gap: 0.8rem;
       }
     }
-
-    /* ── Very short viewports ── */
-    @media (max-height: 700px) {
-      .search-wound { margin-bottom: 0.6rem; }
+    @media (max-height: 750px) {
+      .search-wound { margin-bottom: 0.8rem; min-height: 3.5em; }
       .search-turn { margin-bottom: 0.8rem; }
-      .search-how { margin-bottom: 1rem; gap: 1rem; }
+      .search-how { margin-bottom: 1rem; gap: 1.5rem; }
       .search-landing .guide-select-header { margin-bottom: 0.8rem; }
       .search-landing .guide-card-sigil { max-width: 60px; }
+      .search-landing .guide-card { padding: 0.8rem 0.6rem 0.6rem; }
       .search-summon { margin-top: 0.6rem; }
+    }
+    @media (max-height: 650px) {
+      .search-landing { padding-top: 1.5rem; padding-bottom: 1rem; }
+      .wound-typewriter { font-size: clamp(0.95rem, 2vw, 1.2rem); }
+      .search-turn-text { font-size: clamp(1.1rem, 2.6vw, 1.6rem); }
+      .search-landing .committee-title { font-size: clamp(1.2rem, 3vw, 1.6rem); }
     }
   </style>
 </head>
@@ -222,112 +330,119 @@
 
   <a href="../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
 
-  <!-- ═══ SINGLE-VIEWPORT LANDING: Confusion → Awe → Understanding → Action ═══ -->
+  <!-- ═══ SINGLE-VIEWPORT LANDING — Timed reveal sequence ═══ -->
   <div id="cinematic-intro">
     <div class="search-landing">
+
+      <!-- Floating embers -->
+      <div class="search-ember-field" id="search-ember-field"></div>
+
       <div class="search-inner">
 
-        <!-- ▸ CONFUSION — the wound, compressed -->
+        <!-- ▸ PHASE 1: CONFUSION — typewriter wound -->
         <div class="search-wound">
-          <p class="wound-hook">You scroll. You apply. Silence.</p>
-          <p>Half those listings were already filled. Some were never real. The job board doesn&rsquo;t know you.</p>
+          <p class="wound-typewriter" id="wound-line-1"></p>
+          <p class="wound-typewriter" id="wound-line-2"></p>
+          <p class="wound-context" id="wound-context">Half those listings were already filled. Some were never real. The job board doesn&rsquo;t know you.</p>
         </div>
 
-        <!-- ▸ AWE — the turn -->
-        <div class="search-turn">
-          <div class="search-turn-ornament">&#9670; &nbsp; &#9670; &nbsp; &#9670;</div>
-          <p>What if finding work meant <span class="turn-gold">being found?</span></p>
+        <!-- ▸ PHASE 2: AWE — the turn -->
+        <div class="search-turn" id="search-turn">
+          <div class="search-turn-ornament" id="search-ornament">&#9670; &nbsp; &#9670; &nbsp; &#9670;</div>
+          <p class="search-turn-text">What if finding work meant <span class="turn-gold">being found?</span></p>
         </div>
 
-        <!-- ▸ UNDERSTANDING — how it works -->
+        <!-- ▸ PHASE 3: UNDERSTANDING — how it works -->
         <div class="search-how">
-          <div class="search-step"><span class="search-step-num">1</span><span class="search-step-text">Pick a guide below</span></div>
-          <div class="search-step"><span class="search-step-num">2</span><span class="search-step-text">Tell them where you are and what you need</span></div>
-          <div class="search-step"><span class="search-step-num">3</span><span class="search-step-text">They search live federal jobs and find your match</span></div>
+          <div class="search-step" id="step-1"><span class="search-step-num">1</span><span class="search-step-text">Pick a guide below</span></div>
+          <div class="search-step" id="step-2"><span class="search-step-num">2</span><span class="search-step-text">Tell them where you are and what you need</span></div>
+          <div class="search-step" id="step-3"><span class="search-step-num">3</span><span class="search-step-text">They search live federal jobs and find your match</span></div>
         </div>
 
-        <!-- ▸ ACTION — Choose Your Guide -->
-        <div class="guide-select-header">
-          <div class="ornament-cinematic">&#10087; &#9753;</div>
-          <h2 class="committee-title">Choose Your Guide</h2>
-          <p class="guide-select-subtitle">Four AI minds. Each sees your search differently.</p>
-          <div class="ornament-line-cinematic"><span>&#10022;</span></div>
+        <!-- ▸ PHASE 4: ACTION — Choose Your Guide -->
+        <div class="search-action" id="search-action">
+          <div class="guide-select-header">
+            <div class="ornament-cinematic">&#10087; &#9753;</div>
+            <h2 class="committee-title">Choose Your Guide</h2>
+            <p class="guide-select-subtitle">Four AI minds. Each sees your search differently.</p>
+            <div class="ornament-line-cinematic"><span>&#10022;</span></div>
+          </div>
+
+          <div class="guide-select-grid" id="guide-select-grid">
+
+            <button class="guide-card" data-guide="The Coach" data-color="#d4a030">
+              <div class="guide-card-sigil">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="60" y1="30" x2="60" y2="105" stroke="#d4a030" stroke-width="2" opacity="0.7"/>
+                  <path d="M60,30 Q30,50 35,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                  <path d="M60,30 Q90,50 85,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
+                  <path d="M60,45 Q40,55 38,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                  <path d="M60,45 Q80,55 82,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
+                  <path d="M60,55 Q45,65 42,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                  <path d="M60,55 Q75,65 78,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
+                  <circle cx="60" cy="25" r="6" fill="none" stroke="#d4a030" stroke-width="1.5" opacity="0.6"/>
+                  <circle cx="60" cy="25" r="2" fill="#d4a030" opacity="0.8"/>
+                </svg>
+              </div>
+              <span class="guide-card-name">The Coach</span>
+              <span class="guide-card-line">&ldquo;I read the story your resume won&rsquo;t tell.&rdquo;</span>
+            </button>
+
+            <button class="guide-card" data-guide="The Scout" data-color="#1a8c8c">
+              <div class="guide-card-sigil">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="#1a8c8c" stroke-width="1.5" opacity="0.4"/>
+                  <circle cx="60" cy="60" r="35" fill="none" stroke="#1a8c8c" stroke-width="1" opacity="0.3"/>
+                  <line x1="60" y1="10" x2="60" y2="110" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                  <line x1="10" y1="60" x2="110" y2="60" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
+                  <polygon points="60,18 54,45 60,38 66,45" fill="#1a8c8c" opacity="0.9"/>
+                  <polygon points="60,102 54,75 60,82 66,75" fill="#1a8c8c" opacity="0.4"/>
+                  <circle cx="60" cy="60" r="4" fill="#1a8c8c" opacity="0.8"/>
+                  <circle cx="60" cy="60" r="2" fill="#030303"/>
+                </svg>
+              </div>
+              <span class="guide-card-name">The Scout</span>
+              <span class="guide-card-line">&ldquo;I know what&rsquo;s out there before you do.&rdquo;</span>
+            </button>
+
+            <button class="guide-card" data-guide="The Insider" data-color="#7a8fa6">
+              <div class="guide-card-sigil">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="30" y="15" width="60" height="95" rx="30" ry="30" fill="none" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                  <rect x="38" y="23" width="44" height="80" rx="22" ry="22" fill="none" stroke="#7a8fa6" stroke-width="1" opacity="0.35"/>
+                  <line x1="60" y1="23" x2="60" y2="103" stroke="#7a8fa6" stroke-width="0.8" opacity="0.2"/>
+                  <circle cx="72" cy="65" r="3" fill="#7a8fa6" opacity="0.7"/>
+                  <line x1="30" y1="110" x2="90" y2="110" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
+                  <path d="M60,35 L60,50" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+                  <path d="M52,42 L68,42" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
+                </svg>
+              </div>
+              <span class="guide-card-name">The Insider</span>
+              <span class="guide-card-line">&ldquo;I&rsquo;ve done the work. Let me tell you what it&rsquo;s really like.&rdquo;</span>
+            </button>
+
+            <button class="guide-card" data-guide="The Mirror" data-color="#8c3a3a">
+              <div class="guide-card-sigil">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="60" cy="55" rx="35" ry="42" fill="none" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                  <ellipse cx="60" cy="55" rx="28" ry="35" fill="none" stroke="#8c3a3a" stroke-width="0.8" opacity="0.3"/>
+                  <line x1="60" y1="97" x2="60" y2="115" stroke="#8c3a3a" stroke-width="2" opacity="0.6"/>
+                  <line x1="45" y1="115" x2="75" y2="115" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
+                  <line x1="40" y1="40" x2="50" y2="50" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+                  <line x1="42" y1="50" x2="52" y2="42" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
+                </svg>
+              </div>
+              <span class="guide-card-name">The Mirror</span>
+              <span class="guide-card-line">&ldquo;Tell me what you want. I&rsquo;ll tell you if you mean it.&rdquo;</span>
+            </button>
+
+          </div>
+
+          <p class="guide-select-footnote">The others will join as the conversation deepens.</p>
         </div>
-
-        <div class="guide-select-grid" id="guide-select-grid">
-
-          <button class="guide-card" data-guide="The Coach" data-color="#d4a030">
-            <div class="guide-card-sigil">
-              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <line x1="60" y1="30" x2="60" y2="105" stroke="#d4a030" stroke-width="2" opacity="0.7"/>
-                <path d="M60,30 Q30,50 35,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
-                <path d="M60,30 Q90,50 85,70" fill="none" stroke="#d4a030" stroke-width="1.2" opacity="0.5"/>
-                <path d="M60,45 Q40,55 38,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
-                <path d="M60,45 Q80,55 82,75" fill="none" stroke="#d4a030" stroke-width="1" opacity="0.4"/>
-                <path d="M60,55 Q45,65 42,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
-                <path d="M60,55 Q75,65 78,80" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.35"/>
-                <circle cx="60" cy="25" r="6" fill="none" stroke="#d4a030" stroke-width="1.5" opacity="0.6"/>
-                <circle cx="60" cy="25" r="2" fill="#d4a030" opacity="0.8"/>
-              </svg>
-            </div>
-            <span class="guide-card-name">The Coach</span>
-            <span class="guide-card-line">&ldquo;I read the story your resume won&rsquo;t tell.&rdquo;</span>
-          </button>
-
-          <button class="guide-card" data-guide="The Scout" data-color="#1a8c8c">
-            <div class="guide-card-sigil">
-              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="#1a8c8c" stroke-width="1.5" opacity="0.4"/>
-                <circle cx="60" cy="60" r="35" fill="none" stroke="#1a8c8c" stroke-width="1" opacity="0.3"/>
-                <line x1="60" y1="10" x2="60" y2="110" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
-                <line x1="10" y1="60" x2="110" y2="60" stroke="#1a8c8c" stroke-width="0.8" opacity="0.25"/>
-                <polygon points="60,18 54,45 60,38 66,45" fill="#1a8c8c" opacity="0.9"/>
-                <polygon points="60,102 54,75 60,82 66,75" fill="#1a8c8c" opacity="0.4"/>
-                <circle cx="60" cy="60" r="4" fill="#1a8c8c" opacity="0.8"/>
-                <circle cx="60" cy="60" r="2" fill="#030303"/>
-              </svg>
-            </div>
-            <span class="guide-card-name">The Scout</span>
-            <span class="guide-card-line">&ldquo;I know what&rsquo;s out there before you do.&rdquo;</span>
-          </button>
-
-          <button class="guide-card" data-guide="The Insider" data-color="#7a8fa6">
-            <div class="guide-card-sigil">
-              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <rect x="30" y="15" width="60" height="95" rx="30" ry="30" fill="none" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
-                <rect x="38" y="23" width="44" height="80" rx="22" ry="22" fill="none" stroke="#7a8fa6" stroke-width="1" opacity="0.35"/>
-                <line x1="60" y1="23" x2="60" y2="103" stroke="#7a8fa6" stroke-width="0.8" opacity="0.2"/>
-                <circle cx="72" cy="65" r="3" fill="#7a8fa6" opacity="0.7"/>
-                <line x1="30" y1="110" x2="90" y2="110" stroke="#7a8fa6" stroke-width="1.5" opacity="0.5"/>
-                <path d="M60,35 L60,50" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
-                <path d="M52,42 L68,42" stroke="#7a8fa6" stroke-width="0.8" opacity="0.3"/>
-              </svg>
-            </div>
-            <span class="guide-card-name">The Insider</span>
-            <span class="guide-card-line">&ldquo;I&rsquo;ve done the work. Let me tell you what it&rsquo;s really like.&rdquo;</span>
-          </button>
-
-          <button class="guide-card" data-guide="The Mirror" data-color="#8c3a3a">
-            <div class="guide-card-sigil">
-              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="60" cy="55" rx="35" ry="42" fill="none" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
-                <ellipse cx="60" cy="55" rx="28" ry="35" fill="none" stroke="#8c3a3a" stroke-width="0.8" opacity="0.3"/>
-                <line x1="60" y1="97" x2="60" y2="115" stroke="#8c3a3a" stroke-width="2" opacity="0.6"/>
-                <line x1="45" y1="115" x2="75" y2="115" stroke="#8c3a3a" stroke-width="1.5" opacity="0.5"/>
-                <line x1="40" y1="40" x2="50" y2="50" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
-                <line x1="42" y1="50" x2="52" y2="42" stroke="#8c3a3a" stroke-width="0.8" opacity="0.25"/>
-              </svg>
-            </div>
-            <span class="guide-card-name">The Mirror</span>
-            <span class="guide-card-line">&ldquo;Tell me what you want. I&rsquo;ll tell you if you mean it.&rdquo;</span>
-          </button>
-
-        </div>
-
-        <p class="guide-select-footnote">The others will join as the conversation deepens.</p>
 
         <!-- ▸ SUMMON -->
-        <div class="search-summon">
+        <div class="search-summon" id="search-summon">
           <div class="summons-block">
             <p class="summons-text" id="summons-guide-text">Choose your guide to begin.</p>
             <p class="summons-subtext">Live federal positions from USAJobs.gov. One conversation. One match.</p>
@@ -340,7 +455,7 @@
           </div>
         </div>
 
-        <div class="search-footer">
+        <div class="search-footer" id="search-footer">
           <span><a href="../">Full experience</a></span>
           <span class="summons-divider">&middot;</span>
           <span><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank">The Dossier</a></span>
@@ -357,11 +472,7 @@
 
   <!-- ═══ SCREEN: THE CHAMBER ═══ -->
   <div id="chamber-screen" class="screen">
-
-    <!-- Portrait Stage -->
     <div id="portrait-stage"></div>
-
-    <!-- Committee Bar -->
     <div id="committee-bar">
       <div id="persona-badges"></div>
       <div id="chamber-controls">
@@ -371,11 +482,7 @@
         </button>
       </div>
     </div>
-
-    <!-- Phase Indicator -->
     <div id="phase-indicator"></div>
-
-    <!-- Settings Panel -->
     <div id="settings-panel" class="hidden">
       <div class="settings-inner">
         <h3 class="settings-title">Exchange Settings</h3>
@@ -392,22 +499,16 @@
         <button id="close-settings" class="control-btn">Close</button>
       </div>
     </div>
-
-    <!-- Dialogue Area -->
     <div id="dialogue-container">
       <div id="dialogue-scroll">
         <div id="dialogue-messages"></div>
       </div>
       <button id="jump-to-latest" class="jump-to-latest" aria-label="Jump to latest message">&#8615; New messages</button>
     </div>
-
-    <!-- Input Area -->
     <div id="input-area">
       <div id="input-wrapper">
         <textarea id="user-input" placeholder="Speak to the Exchange..." rows="1"></textarea>
-        <button id="send-btn" title="Send">
-          <span>&#10148;</span>
-        </button>
+        <button id="send-btn" title="Send"><span>&#10148;</span></button>
       </div>
       <div id="input-hint">
         <span class="hint-text">Tell them about yourself &mdash; your experience, location, and what you&rsquo;re looking for.</span>
@@ -419,7 +520,6 @@
         <span style="cursor:pointer;opacity:0.5;" onclick="document.getElementById('export-btn').click()">Export this transcript &darr;</span>
       </div>
     </div>
-
   </div>
 
 
@@ -432,6 +532,95 @@
   <script src="../js/hologram.js"></script>
   <script src="../js/ui.js"></script>
   <script src="../js/main.js"></script>
+
+  <!-- Search landing: timed reveal sequence -->
+  <script>
+  (function () {
+    'use strict';
+
+    // ── Embers ──
+    var field = document.getElementById('search-ember-field');
+    if (field) {
+      for (var i = 0; i < 20; i++) {
+        var e = document.createElement('div');
+        e.className = 'ember';
+        e.style.left = Math.random() * 100 + '%';
+        e.style.animationDelay = Math.random() * 10 + 's';
+        e.style.animationDuration = (10 + Math.random() * 10) + 's';
+        e.style.opacity = (0.2 + Math.random() * 0.4).toString();
+        var sz = 1.5 + Math.random() * 2;
+        e.style.width = sz + 'px';
+        e.style.height = sz + 'px';
+        field.appendChild(e);
+      }
+    }
+
+    // ── Typewriter engine ──
+    function typewrite(elId, text, cb) {
+      var el = document.getElementById(elId);
+      if (!el) { if (cb) cb(); return; }
+      el.classList.add('typing');
+      var cursor = document.createElement('span');
+      cursor.className = 'typewriter-cursor';
+      el.appendChild(cursor);
+      var idx = 0;
+      function next() {
+        if (idx < text.length) {
+          el.insertBefore(document.createTextNode(text[idx]), cursor);
+          idx++;
+          setTimeout(next, 40 + Math.random() * 30);
+        } else {
+          el.classList.remove('typing');
+          el.classList.add('typed');
+          setTimeout(function () {
+            if (cursor.parentNode) cursor.remove();
+            if (cb) cb();
+          }, 400);
+        }
+      }
+      next();
+    }
+
+    function reveal(id, delay) {
+      setTimeout(function () {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('revealed');
+      }, delay);
+    }
+
+    // ── Sequence ──
+    // 0.0s — first line types
+    // ~1.8s — second line types
+    // ~3.4s — wound context fades in
+    // ~4.2s — ornament + turn
+    // ~5.0s — steps cascade
+    // ~5.8s — guide cards + header
+    // ~6.6s — summon + footer
+
+    setTimeout(function () {
+      typewrite('wound-line-1', 'You scroll. You apply. Silence.', function () {
+        typewrite('wound-line-2', 'The last fifteen links were fake.', function () {
+
+          // Phase 2: wound context + turn
+          reveal('wound-context', 400);
+          reveal('search-ornament', 1000);
+          reveal('search-turn', 1200);
+
+          // Phase 3: steps cascade
+          reveal('step-1', 1800);
+          reveal('step-2', 2100);
+          reveal('step-3', 2400);
+
+          // Phase 4: guide cards + summon
+          reveal('search-action', 2800);
+          reveal('search-summon', 3600);
+          reveal('search-footer', 4000);
+        });
+      });
+    }, 600);
+
+  })();
+  </script>
 
 </body>
 </html>
