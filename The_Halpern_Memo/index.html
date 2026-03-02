@@ -929,16 +929,19 @@
     transform: translateY(0);
   }
 
-  .breadcrumb-nav a {
-    color: var(--ink-ghost);
+  .breadcrumb-nav a,
+  .breadcrumb-nav .bc-phase {
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s ease;
   }
 
   .breadcrumb-nav a:hover { color: var(--ember); }
-  .breadcrumb-nav .bc-sep { color: var(--iron); }
-  .breadcrumb-nav .bc-current { color: var(--ember-dim); }
+  .breadcrumb-nav .bc-sep { color: var(--iron); font-size: 8px; }
+  .breadcrumb-nav .bc-future-sep { color: var(--ink-ghost); opacity: 0.4; }
+  .breadcrumb-nav .bc-completed { color: var(--ink-ghost); }
+  .breadcrumb-nav .bc-active { color: var(--ember); font-weight: 500; }
+  .breadcrumb-nav .bc-future { color: var(--ink-ghost); opacity: 0.35; font-style: italic; }
 
   /* ===== PHASE TIMELINE ===== */
   .phase-timeline {
@@ -1276,13 +1279,17 @@
 </head>
 <body>
 
-<!-- ==================== BREADCRUMB NAV ==================== -->
+<!-- ==================== BREADCRUMB NAV — THE ARC ==================== -->
 <nav class="breadcrumb-nav" id="breadcrumb">
-  <a href="../">THE COMPANION DOSSIER</a>
-  <span class="bc-sep">›</span>
-  <a href="../The_Addendum/">ADDENDA</a>
-  <span class="bc-sep">›</span>
-  <span class="bc-current">THE HALPERN MEMO</span>
+  <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="bc-phase bc-completed">THE DOSSIER</a>
+  <span class="bc-sep">→</span>
+  <a href="../" class="bc-phase bc-completed">THE CONTAINERS</a>
+  <span class="bc-sep">→</span>
+  <span class="bc-phase bc-active">THE HALPERN MEMO</span>
+  <span class="bc-sep bc-future-sep">→</span>
+  <span class="bc-phase bc-future">EXPERIMENT & COLLABORATORS</span>
+  <span class="bc-sep bc-future-sep">→</span>
+  <span class="bc-phase bc-future">COMPANION WORKING GROUP</span>
 </nav>
 
 <!-- ==================== OPENING GATE ==================== -->
@@ -1336,7 +1343,7 @@
 
   <!-- ==================== WHERE YOU ARE ==================== -->
   <div class="guide-box reveal" data-guide="Orientation — Where You Are">
-    <p>You have entered a living archive. What you are reading is not a finished paper—it is the documented act of two minds, from different disciplines and different continents, wrestling with what AI can and cannot do to human understanding. Everything here is real: real correspondence, real intellectual risk, real unresolved questions. This page is designed to be read slowly, in order, like entering a room that has been arranged for your arrival.</p>
+    <p>You have entered a living archive. What you are reading is not a finished paper—it is the documented act of two minds, from different disciplines and different countries, wrestling with what AI can and cannot do to human understanding. Everything here is real: real correspondence, real intellectual risk, real unresolved questions. This page is designed to be read slowly, in order, like entering a room that has been arranged for your arrival.</p>
   </div>
 
   <!-- ==================== PHASE TIMELINE ==================== -->
@@ -1352,7 +1359,7 @@
 
       <div class="phase-node completed" data-phase="2">
         <div class="phase-title">The Website & the Containers</div>
-        <div class="phase-desc">Five interactive experiences—<a href="../The_Chair/" class="site-link">The Chair</a>, <a href="../The_5_Lamps/" class="site-link">The Five Lamps</a>, <a href="../The_Exchange/" class="site-link">The Exchange</a>, <a href="../The_Boardroom/" class="site-link">The Boardroom</a>, <a href="../The_Symposium/" class="site-link">The Symposium</a>—each a live container where the protocol is applied to a specific domain. The <a href="../Latent_Dialogic_Space/" class="site-link">Latent Dialogic Space</a> gives the experience its theoretical foundation.</div>
+        <div class="phase-desc">Five interactive experiences—<a href="../The_Chair/" class="site-link">The Chair</a>, <a href="../The_5_Lamps/" class="site-link">The Five Lamps</a>, <a href="../The_Exchange/" class="site-link">The Exchange</a>, <a href="../The_Boardroom/" class="site-link">The Boardroom of Titans</a>, <a href="../The_Symposium/" class="site-link">The Symposium of Sages</a>—each a live container where the protocol is applied to a specific domain. <a href="../The_Addendum/" class="site-link">The Addendum</a> and <a href="../Latent_Dialogic_Space/" class="site-link">Latent Dialogic Space</a> give the experience its theoretical foundations.</div>
         <a href="../" class="phase-link">Explore the-companion-dossier.com →</a>
       </div>
 
@@ -1363,7 +1370,7 @@
 
       <div class="phase-node future" data-phase="4">
         <div class="phase-title">The Experiment & Early Collaborators</div>
-        <div class="phase-desc">The Prism Experiment will be constructed and run. The Lincoln Specification tested across three conditions. Early collaborators—historians, computational linguists, civic technologists—will be recruited to refine the methodology and evaluate the results.</div>
+        <div class="phase-desc">The Prism Experiment will be constructed and run. The Lincoln Specification tested across three conditions. Early collaborators—historians, sociologists, psychologists, anthropologists—will be recruited to refine the methodology and evaluate the results.</div>
       </div>
 
       <div class="phase-node future" data-phase="5">
@@ -1465,7 +1472,7 @@
         <div class="intervention-number">IV</div>
         <div class="intervention-label">Intervention IV</div>
         <h4>Technical Transparency</h4>
-        <p>Broader adoption among scholars and civic technologists requires a parallel exposition: model dependencies, reproducibility conditions, failure modes. The grimoire summons. A supplementary white paper must explain the machinery of summoning.</p>
+        <p>Broader adoption among historians, sociologists, psychologists, and anthropologists requires a parallel exposition: model dependencies, reproducibility conditions, failure modes. The grimoire summons. A supplementary white paper must explain the machinery of summoning.</p>
       </div>
       <div class="intervention">
         <div class="intervention-number">V</div>
@@ -1564,7 +1571,7 @@
     <h2>THE TEMPORAL PRISM</h2>
 
     <div class="guide-box" data-guide="What's Happening Here">
-      <p>This is the methodological heart of the document. The Miranda Hypothesis (Part III) identified the problem. Now the question becomes: can we fix it? The Prism Experiment proposes a controlled test—three conditions, identical questions, one variable. If you are a researcher, a historian, or a builder, this is where the invitation begins.</p>
+      <p>This is the methodological heart of the document. The Miranda Hypothesis (Part III) identified the problem. Now the question becomes: can we fix it? The Prism Experiment proposes a controlled test—three conditions, identical questions, one variable. If you are a historian, a sociologist, a psychologist, an anthropologist—or anyone who recognizes what is at stake—this is where the invitation begins.</p>
     </div>
 
     <p>If unanchored instantiation draws disproportionately from culturally dominant sources, the solution is a temporal prism: a curated corpus seeded into the context window alongside the protocol files, refracting the model's broader training data through a specific historical lens.</p>
@@ -1833,7 +1840,7 @@
         <div class="card-body">
           <div class="card-name">Abraham Lincoln</div>
           <div class="card-role">Free Labor · Wartime Constitutionalism</div>
-          <div class="card-desc">His political economy was rooted in a moralized labor theory of value. The Civil War forced him to test that philosophy under extreme conditions. He expanded executive power dramatically but always under the banner of preserving popular government. Lincoln also appears in <a href="../The_Boardroom/" class="site-link">The Boardroom</a>, where his leadership lens operates alongside seven other titans.</div>
+          <div class="card-desc">His political economy was rooted in a moralized labor theory of value. The Civil War forced him to test that philosophy under extreme conditions. He expanded executive power dramatically but always under the banner of preserving popular government.</div>
         </div>
       </div>
 
@@ -1924,7 +1931,7 @@
     <p>The path from the critical memo to Protocol v3.0 is visible, but several questions cannot be resolved from within the project alone. They require the kind of deep historical judgment that prompted this exchange in the first place.</p>
 
     <div class="guide-box" data-guide="An Invitation">
-      <p>These are genuine open questions—not rhetorical ones. If you are a historian, a computational linguist, a psychologist, a civic technologist, or anyone who recognizes the stakes of what is being attempted here, these are the doors through which collaboration enters. The experiment cannot be built without people who bring expertise the Principal Investigator does not possess. <a href="mailto:JEThomasPhD@gmail.com?subject=Signal%20from%20the%20Halpern%20Memo">Send the signal →</a></p>
+      <p>These are genuine open questions—not rhetorical ones. If you are a historian, a sociologist, a psychologist, an anthropologist—or anyone who recognizes the stakes of what is being attempted here—these are the doors through which collaboration enters. The experiment cannot be built without people who bring expertise the Principal Investigator does not possess. <a href="mailto:JEThomasPhD@gmail.com?subject=Signal%20from%20the%20Halpern%20Memo">Send the signal →</a></p>
     </div>
 
     <div class="open-question">
