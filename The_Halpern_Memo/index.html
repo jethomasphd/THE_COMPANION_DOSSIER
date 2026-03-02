@@ -904,6 +904,336 @@
     margin-left: 4px;
   }
 
+  /* ===== BREADCRUMB NAV ===== */
+  .breadcrumb-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 12px 30px;
+    background: linear-gradient(180deg, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0.8) 70%, transparent 100%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .breadcrumb-nav.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .breadcrumb-nav a {
+    color: var(--ink-ghost);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb-nav a:hover { color: var(--ember); }
+  .breadcrumb-nav .bc-sep { color: var(--iron); }
+  .breadcrumb-nav .bc-current { color: var(--ember-dim); }
+
+  /* ===== PHASE TIMELINE ===== */
+  .phase-timeline {
+    margin: 40px 0;
+    padding: 30px;
+    background: var(--bg-fragment);
+    border: 1px solid var(--iron);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .phase-timeline-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .phase-timeline-track {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .phase-timeline-track::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--ember), var(--ember-dim), var(--iron), var(--ink-ghost));
+  }
+
+  .phase-node {
+    position: relative;
+    padding: 12px 0 24px 20px;
+  }
+
+  .phase-node:last-child { padding-bottom: 0; }
+
+  .phase-node::before {
+    content: attr(data-phase);
+    position: absolute;
+    left: -26px;
+    top: 12px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ember);
+    text-align: center;
+    line-height: 26px;
+    border: 1px solid var(--ember-dim);
+    background: var(--bg-void);
+  }
+
+  .phase-node.completed::before {
+    background: var(--ember-dim);
+    color: var(--bg-void);
+    border-color: var(--ember);
+  }
+
+  .phase-node.active::before {
+    border-color: var(--ember);
+    box-shadow: 0 0 12px rgba(201, 162, 39, 0.3);
+    animation: phase-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes phase-pulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(201, 162, 39, 0.2); }
+    50% { box-shadow: 0 0 18px rgba(201, 162, 39, 0.5); }
+  }
+
+  .phase-node.future::before {
+    border-color: var(--ink-ghost);
+    color: var(--ink-ghost);
+    border-style: dashed;
+  }
+
+  .phase-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--bone);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .phase-node.future .phase-title { color: var(--ink-faded); }
+
+  .phase-desc {
+    font-size: 14px;
+    color: var(--ash);
+    line-height: 1.6;
+  }
+
+  .phase-node.future .phase-desc { color: var(--ink-ghost); font-style: italic; }
+
+  .phase-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ember-dim);
+    text-decoration: none;
+    margin-top: 6px;
+    transition: color 0.3s ease;
+  }
+
+  .phase-link:hover { color: var(--ember); }
+
+  /* ===== COGNITIVE HANDHOLDS ===== */
+  .handhold {
+    display: inline-block;
+    position: relative;
+    border-bottom: 1px dotted var(--ember-dim);
+    cursor: help;
+  }
+
+  .handhold-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--ember-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--ember-dim);
+    cursor: help;
+    vertical-align: super;
+    margin-left: 3px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .handhold-icon:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(201, 162, 39, 0.06);
+  }
+
+  .handhold-tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    padding: 16px 18px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    z-index: 100;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+    text-align: left;
+    font-style: normal;
+  }
+
+  .handhold-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--ember-dim);
+  }
+
+  .handhold-tip .ht-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .handhold-tip .ht-link {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ember);
+    text-decoration: none;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  .handhold-tip .ht-link:hover { text-decoration: underline; }
+
+  .handhold-icon:hover .handhold-tip,
+  .handhold-icon:focus .handhold-tip {
+    display: block;
+  }
+
+  /* ===== GUIDE BOX ===== */
+  .guide-box {
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.04), rgba(201, 162, 39, 0.01));
+    border: 1px solid rgba(201, 162, 39, 0.15);
+    border-left: 3px solid var(--ember-dim);
+    border-radius: 2px;
+    padding: 18px 22px;
+    margin: 25px 0;
+    position: relative;
+  }
+
+  .guide-box::before {
+    content: attr(data-guide);
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    margin-bottom: 10px;
+  }
+
+  .guide-box p {
+    font-size: 15px;
+    color: var(--ash);
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  .guide-box a {
+    color: var(--ember);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ember-dim);
+    transition: border-color 0.3s ease;
+  }
+
+  .guide-box a:hover { border-color: var(--ember); }
+
+  /* ===== CLOSING QUOTE ===== */
+  .closing-reflection {
+    background: linear-gradient(180deg, var(--bg-void), rgba(201, 162, 39, 0.03), var(--bg-void));
+    padding: 50px 35px;
+    margin: 40px -30px;
+    position: relative;
+    border-top: 1px solid var(--ember-dim);
+    border-bottom: 1px solid var(--ember-dim);
+    text-align: center;
+  }
+
+  .closing-reflection::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ember-dim), transparent);
+    margin: 0 auto 25px;
+  }
+
+  .closing-reflection blockquote {
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--ink);
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .closing-reflection .cr-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-ghost);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 18px;
+    text-align: center;
+  }
+
+  /* ===== CROSS-SITE LINKS ===== */
+  .site-link {
+    color: var(--ember);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ember-dim);
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .site-link:hover {
+    border-color: var(--ember);
+    color: var(--ember-glow);
+  }
+
   /* ===== ANIMATIONS ===== */
   @keyframes fadeIn { to { opacity: 1; } }
   @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
@@ -945,6 +1275,15 @@
 </style>
 </head>
 <body>
+
+<!-- ==================== BREADCRUMB NAV ==================== -->
+<nav class="breadcrumb-nav" id="breadcrumb">
+  <a href="../">THE COMPANION DOSSIER</a>
+  <span class="bc-sep">›</span>
+  <a href="../The_Addendum/">ADDENDA</a>
+  <span class="bc-sep">›</span>
+  <span class="bc-current">THE HALPERN MEMO</span>
+</nav>
 
 <!-- ==================== OPENING GATE ==================== -->
 <div class="gate">
@@ -995,6 +1334,51 @@
 
   <div class="sigil reveal">◊ ◈ ◊</div>
 
+  <!-- ==================== WHERE YOU ARE ==================== -->
+  <div class="guide-box reveal" data-guide="Orientation — Where You Are">
+    <p>You have entered a living archive. What you are reading is not a finished paper—it is the documented act of two minds, from different disciplines and different continents, wrestling with what AI can and cannot do to human understanding. Everything here is real: real correspondence, real intellectual risk, real unresolved questions. This page is designed to be read slowly, in order, like entering a room that has been arranged for your arrival.</p>
+  </div>
+
+  <!-- ==================== PHASE TIMELINE ==================== -->
+  <div class="phase-timeline reveal">
+    <div class="phase-timeline-label">The Arc — Five Phases</div>
+    <div class="phase-timeline-track">
+
+      <div class="phase-node completed" data-phase="1">
+        <div class="phase-title">The COMPANION Dossier</div>
+        <div class="phase-desc">A 94-page protocol specification, session transcripts, and whitepaper. An epidemiologist uploads two files to a language model and summons the Founders. The Republic Portfolio emerges. The first proof of concept.</div>
+        <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="phase-link">Read the Dossier (PDF) →</a>
+      </div>
+
+      <div class="phase-node completed" data-phase="2">
+        <div class="phase-title">The Website & the Containers</div>
+        <div class="phase-desc">Five interactive experiences—<a href="../The_Chair/" class="site-link">The Chair</a>, <a href="../The_5_Lamps/" class="site-link">The Five Lamps</a>, <a href="../The_Exchange/" class="site-link">The Exchange</a>, <a href="../The_Boardroom/" class="site-link">The Boardroom</a>, <a href="../The_Symposium/" class="site-link">The Symposium</a>—each a live container where the protocol is applied to a specific domain. The <a href="../Latent_Dialogic_Space/" class="site-link">Latent Dialogic Space</a> gives the experience its theoretical foundation.</div>
+        <a href="../" class="phase-link">Explore the-companion-dossier.com →</a>
+      </div>
+
+      <div class="phase-node active" data-phase="3">
+        <div class="phase-title">The Halpern Memo & Associated Correspondence</div>
+        <div class="phase-desc">You are here. A historian reads the Dossier. A memo arrives—not a review, but a working document that hardens the epistemic foundations of the entire project. The Miranda Hypothesis emerges. The Prism Experiment is proposed. The second committee is designed.</div>
+      </div>
+
+      <div class="phase-node future" data-phase="4">
+        <div class="phase-title">The Experiment & Early Collaborators</div>
+        <div class="phase-desc">The Prism Experiment will be constructed and run. The Lincoln Specification tested across three conditions. Early collaborators—historians, computational linguists, civic technologists—will be recruited to refine the methodology and evaluate the results.</div>
+      </div>
+
+      <div class="phase-node future" data-phase="5">
+        <div class="phase-title">The COMPANION Working Group</div>
+        <div class="phase-desc">A monthly convening of researchers contributing to and investigating the COMPANION protocol. Cross-disciplinary. Open to anyone who takes the work seriously. The protocol belongs to no one, which means the working group belongs to everyone who shows up.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="guide-box reveal" data-guide="How to Read This Document">
+    <p>This page unfolds in six parts. <strong>Part I</strong> reconstructs the initial contact between disciplines. <strong>Part II</strong> distills five critical interventions from the Halpern Memo. <strong>Part III</strong> introduces the Miranda Hypothesis—the discovery that changed everything. <strong>Part IV</strong> proposes an experiment to test it. <strong>Part V</strong> designs a second deliberative committee. <strong>Part VI</strong> lays out the open questions that require collaborative resolution. Throughout, look for the <span class="handhold-icon" tabindex="0" style="display:inline-flex;position:relative;">?<span class="handhold-tip"><span class="ht-label">Cognitive Handhold</span>Tooltips like this one provide context, definitions, and connections to the larger COMPANION project. Hover or tap to reveal them throughout the document.</span></span> icons—they are cognitive handholds designed to bridge you into the narrative wherever you enter.</p>
+  </div>
+
+  <div class="divider reveal">◊ ◈ ◊</div>
 
   <!-- ==================== PART I ==================== -->
   <div class="fragment reveal">
@@ -1005,12 +1389,12 @@
 
     <h2>FIRST CONTACT</h2>
 
-    <p>In February 2026, the COMPANION Dossier received its first serious critical engagement from a historian. What arrived was generous, rigorous, and informed by a career spent studying how power is structured and contested in American life. It hardened the epistemic foundations of the entire COMPANION concept. What follows is a record of what emerged in the space between disciplines—a historian and a behavioral epidemiologist, thinking together about what these AI machines can and cannot summon.</p>
+    <p>In February 2026, the <a href="../" class="site-link">COMPANION Dossier</a> received its first serious critical engagement from a historian. What arrived was generous, rigorous, and informed by a career spent studying how power is structured and contested in American life. It hardened the epistemic foundations of the entire COMPANION concept. What follows is a record of what emerged in the space between disciplines—a historian and a behavioral epidemiologist, thinking together about what these AI machines can and cannot summon.</p>
 
     <p>The initial outreach posed a question the Principal Investigator could not answer alone.</p>
 
     <div class="correspondence-fragment" data-label="Recovered — Outbound · February 17, 2026">
-      <div class="cf-body">"I'm genuinely curious about a historian's perspective on whether these kinds of encounters can help modern people learn and grow their thinking on contemporary issues. Could this be a meaningful pedagogical or civic deliberation tool, or is it JUST sophisticated AI theater?… I asked Washington, Hamilton, Jefferson, and Franklin a simple question: what should ordinary citizens do to reclaim economic sovereignty? They didn't give me slogans. They deliberated. What they produced was the Republic Portfolio—and it outperformed the S&P 500. But here's what I can't answer on my own: is the dialogue authentic? I can hear that it sounds compelling. I can't evaluate whether it sounds <em>true</em>."</div>
+      <div class="cf-body">"I'm genuinely curious about a historian's perspective on whether these kinds of encounters can help modern people learn and grow their thinking on contemporary issues. Could this be a meaningful pedagogical or civic deliberation tool, or is it JUST sophisticated AI theater?… I asked Washington, Hamilton, Jefferson, and Franklin a simple question: what should ordinary citizens do to reclaim economic sovereignty? They didn't give me slogans. They deliberated. What they produced was the Republic Portfolio<span class="handhold-icon" tabindex="0">?<span class="handhold-tip"><span class="ht-label">The Republic Portfolio</span>The very first COMPANION session produced an investment framework that, backtested over ten years, outperformed the S&P 500 with lower volatility. The full origin story is documented on the site.<a href="../threshold.html" class="ht-link">Read the Origin Story →</a></span></span>—and it outperformed the S&P 500. But here's what I can't answer on my own: is the dialogue authentic? I can hear that it sounds compelling. I can't evaluate whether it sounds <em>true</em>."</div>
       <div class="cf-source">— J. Thomas to R. Halpern</div>
     </div>
 
@@ -1029,7 +1413,7 @@
     </div>
 
     <div class="archival-note">
-      Rick Halpern is an emeritus professor at one of the premier global affairs institutions in the world—a social historian of race and labor in America who has spent a career interrogating exactly the kind of power structures the Committee of Patriots was convened to address. He treated the Dossier the way scholars treat work they believe deserves to be refined into something durable. The Dossier acquired a serious interlocutor. That changed the physics of everything.
+      Rick Halpern is an emeritus professor at one of the premier global affairs institutions in the world—a social historian of race and labor in America who has spent a career interrogating exactly the kind of power structures the Committee of Patriots<span class="handhold-icon" tabindex="0">?<span class="handhold-tip"><span class="ht-label">The Committee of Patriots</span>The first COMPANION deliberation. Washington, Hamilton, Jefferson, and Franklin convened to address civic crisis. Their sessions are live and interactive.<a href="../The_Chair/" class="ht-link">Enter The Chair →</a></span></span> was convened to address. He treated the Dossier the way scholars treat work they believe deserves to be refined into something durable. The Dossier acquired a serious interlocutor. That changed the physics of everything.
     </div>
   </div>
 
@@ -1045,7 +1429,7 @@
 
     <h2>WHAT THE HISTORIAN SAW</h2>
 
-    <p>The memo opens by foregrounding a tension embedded in the choice of interlocutors: the small-r republican vision of the Founding Fathers was, in significant respects, profoundly anti-democratic. The Senate, the Electoral College, the indirect mechanisms of representation—these were not accidental. They were structural expressions of suspicion toward popular rule. To summon these figures into our present is to invite assumptions about governance that the convener must make explicit.</p>
+    <p>The memo opens by foregrounding a tension embedded in the choice of interlocutors: the small-r republican vision of the Founding Fathers was, in significant respects, profoundly anti-democratic. The Senate, the Electoral College, the indirect mechanisms of representation—these were not accidental. They were structural expressions of suspicion toward popular rule. To summon these figures into our present<span class="handhold-icon" tabindex="0">?<span class="handhold-tip"><span class="ht-label">The Summoning</span>The COMPANION protocol uses two files—an initiation rite and an enrichment grimoire—uploaded to any capable language model. The incantation: "Using this matter, summon [Name]." The AI is the glass; the mind that appears on the glass is the product.<a href="../Latent_Dialogic_Space/" class="ht-link">How Dialogic Intelligence works →</a></span></span> is to invite assumptions about governance that the convener must make explicit.</p>
 
     <div class="extracted">
       "It is rare to encounter a project that attempts not merely to design a technical protocol, but to articulate a philosophy of technology, a civic intervention, and a new genre of intellectual practice simultaneously."
@@ -1053,6 +1437,10 @@
     </div>
 
     <p>From this frame, five specific interventions emerged. Each one a door.</p>
+
+    <div class="guide-box" data-guide="What You're About to Read">
+      <p>These five interventions are the intellectual core of the Halpern Memo. Each one identifies a specific weakness in the COMPANION protocol as originally designed and proposes a path to strengthen it. Together, they transformed a proof-of-concept into a research program. The interventions are presented in their original order—temporal anchoring first, because everything else depends on it.</p>
+    </div>
 
     <div class="interventions-grid">
       <div class="intervention">
@@ -1102,7 +1490,7 @@
 
     <p>The temporality intervention unlocked something the Principal Investigator had sensed but could not name.</p>
 
-    <p>The large language models that power COMPANION are trained on massive text corpora. Within those corpora, the volume and recency of text associated with "Alexander Hamilton" is not dominated by Hamilton's own writings. It is dominated by <em>Hamilton</em>: the Lin-Manuel Miranda musical. The cast recording, the libretto, the thousands of reviews, analyses, and cultural commentary generated after 2015.</p>
+    <p>The large language models<span class="handhold-icon" tabindex="0">?<span class="handhold-tip"><span class="ht-label">Language Models & COMPANION</span>COMPANION works with any capable LLM—Claude, GPT, Gemini. The protocol files (initiation_rite.md and enrichment_grimoire.json) shape the model's behavior; the model's training data provides the raw material. The question this section raises: which raw material dominates?</span></span> that power COMPANION are trained on massive text corpora. Within those corpora, the volume and recency of text associated with "Alexander Hamilton" is not dominated by Hamilton's own writings. It is dominated by <em>Hamilton</em>: the Lin-Manuel Miranda musical. The cast recording, the libretto, the thousands of reviews, analyses, and cultural commentary generated after 2015.</p>
 
     <!-- CORPUS WEIGHT VISUAL -->
     <div class="corpus-visual reveal">
@@ -1175,6 +1563,10 @@
 
     <h2>THE TEMPORAL PRISM</h2>
 
+    <div class="guide-box" data-guide="What's Happening Here">
+      <p>This is the methodological heart of the document. The Miranda Hypothesis (Part III) identified the problem. Now the question becomes: can we fix it? The Prism Experiment proposes a controlled test—three conditions, identical questions, one variable. If you are a researcher, a historian, or a builder, this is where the invitation begins.</p>
+    </div>
+
     <p>If unanchored instantiation draws disproportionately from culturally dominant sources, the solution is a temporal prism: a curated corpus seeded into the context window alongside the protocol files, refracting the model's broader training data through a specific historical lens.</p>
 
     <p>The analogy is optical. White light contains all frequencies. A prism separates what is already present. The temporal prism does not add knowledge the model lacks; it selects which knowledge dominates.</p>
@@ -1236,7 +1628,7 @@
       <div class="prism-condition" data-num="II">
         <div class="condition-name">Condition II</div>
         <div class="condition-title">The Primary Source Lens</div>
-        <p>Protocol files plus the same questions, seeded with a curated corpus of Lincoln's own writing: the Lincoln-Douglas debates, the letter to Horace Greeley, the Emancipation Proclamation, the Gettysburg Address, the Second Inaugural. But Lincoln's prose is often strategically ambiguous. How does one build a small corpus to hone the larger corpus already in the model?</p>
+        <p>Protocol files plus the same questions, seeded with a carefully selected corpus of Lincoln's own writing chosen to refract a <em>specific</em> Lincoln—not the composite, but a historically situated mind at a particular moment in its evolution. The corpus selection is itself an interpretive act: which texts, from which period, arranged in what order, will produce the Lincoln we are trying to test? The examples below—the Lincoln-Douglas debates, the letter to Horace Greeley, the Emancipation Proclamation, the Gettysburg Address, the Second Inaugural—are illustrative candidates, not a final selection. The definitive corpus will be determined collaboratively with a historian, because the choice of what to include <em>is</em> the experiment's most consequential design decision. Lincoln's prose is often strategically ambiguous. How does one build a small corpus to hone the larger corpus already in the model?</p>
       </div>
 
       <div class="prism-condition" data-num="III">
@@ -1309,13 +1701,15 @@
 │   ├── <span class="dn">interrogation/</span>
 │   │   ├── <span class="df">diagnostic_questions.md</span>        <span class="dc"># same questions</span>
 │   │   └── <span class="df">structured_pushback.md</span>         <span class="dc"># same pushback</span>
-│   ├── <span class="dn">seed/</span>
-│   │   ├── <span class="ds">lincoln_douglas_1858.txt</span>       <span class="dc"># "A house divided…"</span>
-│   │   ├── <span class="ds">greeley_letter_1862.txt</span>        <span class="dc"># "My paramount object…"</span>
-│   │   ├── <span class="ds">emancipation_1863.txt</span>          <span class="dc"># the Proclamation</span>
-│   │   ├── <span class="ds">gettysburg_1863.txt</span>            <span class="dc"># 272 words</span>
-│   │   ├── <span class="ds">second_inaugural_1865.txt</span>      <span class="dc"># "With malice toward none…"</span>
-│   │   └── <span class="ds">private_correspondence.txt</span>     <span class="dc"># selected letters</span>
+│   ├── <span class="dn">seed/</span>                               <span class="dc"># ILLUSTRATIVE — final corpus TBD w/ historian</span>
+│   │   ├── <span class="ds">lincoln_douglas_1858.txt</span>       <span class="dc"># e.g. "A house divided…"</span>
+│   │   ├── <span class="ds">greeley_letter_1862.txt</span>        <span class="dc"># e.g. "My paramount object…"</span>
+│   │   ├── <span class="ds">emancipation_1863.txt</span>          <span class="dc"># e.g. the Proclamation</span>
+│   │   ├── <span class="ds">gettysburg_1863.txt</span>            <span class="dc"># e.g. 272 words</span>
+│   │   ├── <span class="ds">second_inaugural_1865.txt</span>      <span class="dc"># e.g. "With malice toward none…"</span>
+│   │   └── <span class="ds">private_correspondence.txt</span>     <span class="dc"># e.g. selected letters</span>
+│   │                                       <span class="dc"># the selection IS the experiment's</span>
+│   │                                       <span class="dc"># most consequential design decision</span>
 │   └── <span class="dn">output/</span>
 │       ├── <span class="df">transcript.md</span>
 │       ├── <span class="df">embeddings.json</span>
@@ -1421,9 +1815,9 @@
 
     <h2>BEYOND THE FOUNDING</h2>
 
-    <p>The critical memo proposes a second deliberative council to address what the Committee of Patriots could not: the convergence of multiple crises—democratic erosion, wealth concentration, ecological strain, epistemic fragmentation, imperial overreach—into a single compounding conjuncture. A polycrisis.</p>
+    <p>The critical memo proposes a second deliberative council to address what the <a href="../The_Chair/" class="site-link">Committee of Patriots</a> could not: the convergence of multiple crises—democratic erosion, wealth concentration, ecological strain, epistemic fragmentation, imperial overreach—into a single compounding conjuncture. A polycrisis.</p>
 
-    <p>The Committee of Patriots asked: <em>What should citizens own?</em><br>The second committee asks a prior question: <em>What must citizens confront?</em></p>
+    <p>The Committee of Patriots asked: <em>What should citizens own?</em><span class="handhold-icon" tabindex="0">?<span class="handhold-tip"><span class="ht-label">The Republic Portfolio</span>The Committee's first session produced the Republic Portfolio—a citizen investment doctrine. The full transcript and backtested results are documented in the Origin Story.<a href="../threshold.html" class="ht-link">Read the Origin Story →</a></span></span><br>The second committee asks a prior question: <em>What must citizens confront?</em></p>
 
     <p>The proposed roster creates a deliberate collision between institutional reform and prophetic rupture.</p>
 
@@ -1439,7 +1833,7 @@
         <div class="card-body">
           <div class="card-name">Abraham Lincoln</div>
           <div class="card-role">Free Labor · Wartime Constitutionalism</div>
-          <div class="card-desc">His political economy was rooted in a moralized labor theory of value. The Civil War forced him to test that philosophy under extreme conditions. He expanded executive power dramatically but always under the banner of preserving popular government.</div>
+          <div class="card-desc">His political economy was rooted in a moralized labor theory of value. The Civil War forced him to test that philosophy under extreme conditions. He expanded executive power dramatically but always under the banner of preserving popular government. Lincoln also appears in <a href="../The_Boardroom/" class="site-link">The Boardroom</a>, where his leadership lens operates alongside seven other titans.</div>
         </div>
       </div>
 
@@ -1529,6 +1923,10 @@
 
     <p>The path from the critical memo to Protocol v3.0 is visible, but several questions cannot be resolved from within the project alone. They require the kind of deep historical judgment that prompted this exchange in the first place.</p>
 
+    <div class="guide-box" data-guide="An Invitation">
+      <p>These are genuine open questions—not rhetorical ones. If you are a historian, a computational linguist, a psychologist, a civic technologist, or anyone who recognizes the stakes of what is being attempted here, these are the doors through which collaboration enters. The experiment cannot be built without people who bring expertise the Principal Investigator does not possess. <a href="mailto:JEThomasPhD@gmail.com?subject=Signal%20from%20the%20Halpern%20Memo">Send the signal →</a></p>
+    </div>
+
     <div class="open-question">
       <div class="q-number">I</div>
       <h4>The Lincoln Prism: Which Sources, Which Moment?</h4>
@@ -1594,6 +1992,15 @@
   </div>
 
 
+  <!-- ==================== CLOSING REFLECTION ==================== -->
+  <div class="closing-reflection reveal">
+    <blockquote>
+      "As I was telling my wife about our correspondence, she said something that made me proud: the story itself is compelling. Cross-generational, cross-disciplinary, cross-continental—two people meeting somewhere on the frontier of this strange thing called AI that everybody uses and nobody fully understands. It feels like lightning in a bottle. Almost like being pulled into a good book that I am a participant in. So I made a visual document to help bridge curious minds into the narrative, whether now or at some point in the future, because I believe that documenting the act of this wrestling with AI is somehow important in itself."
+    </blockquote>
+    <div class="cr-attr">— J. Thomas, Principal Investigator</div>
+  </div>
+
+
   <!-- Seal -->
   <div class="seal reveal">
     <div class="seal-circle">PROCEDIT</div>
@@ -1602,7 +2009,7 @@
   <!-- Terminal -->
   <div class="terminal reveal">
     COMPANION ARCHIVE — WORKING PAPERS — RECORD I<br>
-    STATUS: ACTIVE · COLLABORATION IN PROGRESS<br>
+    STATUS: ACTIVE · PHASE 3 OF 5 · COLLABORATION IN PROGRESS<br>
     <br>
     PRINCIPAL INVESTIGATOR: J. THOMAS, PhD · AUSTIN, TEXAS<br>
     CRITICAL RESPONDENT: R. HALPERN, PhD · EMERITUS · UNIVERSITY OF TORONTO<br>
@@ -1610,6 +2017,18 @@
     THE PRISM EXPERIMENT AWAITS CONSTRUCTION<br>
     THE SECOND COMMITTEE AWAITS CONVOCATION<br>
     THE THRESHOLD WIDENS<span class="cursor"></span>
+  </div>
+
+  <!-- Site Navigation -->
+  <div class="guide-box reveal" data-guide="Continue Exploring">
+    <p>
+      <a href="../">← Return to the-companion-dossier.com</a><br>
+      <a href="../The_Chair/">Enter The Chair</a> — The Committee of Patriots, live and interactive<br>
+      <a href="../threshold.html">Read the Origin Story</a> — How the Republic Portfolio was born<br>
+      <a href="../The_Addendum/">Read the Addendum</a> — The theoretical foundation<br>
+      <a href="../Latent_Dialogic_Space/">Latent Dialogic Space</a> — How dialogic intelligence works<br>
+      <a href="../from_beyond/">Correspondence from Beyond</a> — Autonomous sessions from the archive
+    </p>
   </div>
 
 </div>
@@ -1634,7 +2053,46 @@ document.querySelectorAll('.card-portrait-wrap img').forEach(img => {
     img.style.opacity = '1';
   }
 });
+
+// Breadcrumb visibility on scroll
+const breadcrumb = document.getElementById('breadcrumb');
+const gate = document.querySelector('.gate');
+if (breadcrumb && gate) {
+  const gateObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        breadcrumb.classList.add('visible');
+      } else {
+        breadcrumb.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0 });
+  gateObserver.observe(gate);
+}
+
+// Touch support for cognitive handholds
+document.querySelectorAll('.handhold-icon').forEach(icon => {
+  icon.addEventListener('click', function(e) {
+    // Close any other open tips
+    document.querySelectorAll('.handhold-icon.active').forEach(other => {
+      if (other !== this) other.classList.remove('active');
+    });
+    this.classList.toggle('active');
+    e.stopPropagation();
+  });
+});
+
+// Close tips on outside click
+document.addEventListener('click', () => {
+  document.querySelectorAll('.handhold-icon.active').forEach(icon => {
+    icon.classList.remove('active');
+  });
+});
 </script>
+<style>
+  /* Touch support for handholds */
+  .handhold-icon.active .handhold-tip { display: block; }
+</style>
 
 </body>
 </html>
