@@ -1125,12 +1125,29 @@
             .ytd-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .ytd-value { font-size: 2rem; }
             .chart-legend { gap: 1rem; }
-            
+
             .watchtower-nav {
                 gap: 0.75rem;
+            }
+        }
+
+        /* Mobile: ensure commentary section is never hidden by failed observers */
+        @media (max-width: 800px) {
+            .vigil-commentary-section {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .vigil-commentary {
+                padding: 1.25rem 1.25rem;
+            }
+
+            .commentary-text {
+                font-size: 1rem;
+                line-height: 1.75;
             }
         }
     </style>
@@ -1794,7 +1811,7 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.classList.add('visible');
         }
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
