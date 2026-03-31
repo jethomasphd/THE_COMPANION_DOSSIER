@@ -701,6 +701,24 @@ body::before {
   inset: 0;
   background: linear-gradient(170deg, rgba(201,162,39,0.06) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
   pointer-events: none;
+  z-index: 2;
+}
+
+.portrait-frame-cinematic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+  filter: contrast(1.08) brightness(0.95) saturate(0.85);
+}
+
+.portrait-frame-cinematic img.loaded {
+  opacity: 1;
 }
 
 .portrait-placeholder {
@@ -1026,6 +1044,7 @@ body::before {
   <div class="portrait-reveal reveal" data-delay="0">
     <div class="portrait-frame-cinematic">
       <div class="portrait-placeholder"><span class="portrait-initial">W</span></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg" alt="George Washington" onload="this.classList.add('loaded')" loading="lazy">
     </div>
     <div class="portrait-info">
       <span class="portrait-title">Gen.</span>
@@ -1037,6 +1056,7 @@ body::before {
   <div class="portrait-reveal reveal" data-delay="1">
     <div class="portrait-frame-cinematic">
       <div class="portrait-placeholder"><span class="portrait-initial">H</span></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Alexander_Hamilton_portrait_by_John_Trumbull_1806.jpg" alt="Alexander Hamilton" onload="this.classList.add('loaded')" loading="lazy">
     </div>
     <div class="portrait-info">
       <span class="portrait-title">Col.</span>
@@ -1048,6 +1068,7 @@ body::before {
   <div class="portrait-reveal reveal" data-delay="2">
     <div class="portrait-frame-cinematic">
       <div class="portrait-placeholder"><span class="portrait-initial">J</span></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Official_Presidential_portrait_of_Thomas_Jefferson_%28by_Rembrandt_Peale%2C_1800%29.jpg" alt="Thomas Jefferson" onload="this.classList.add('loaded')" loading="lazy">
     </div>
     <div class="portrait-info">
       <span class="portrait-title">Mr.</span>
@@ -1059,6 +1080,7 @@ body::before {
   <div class="portrait-reveal reveal" data-delay="3">
     <div class="portrait-frame-cinematic">
       <div class="portrait-placeholder"><span class="portrait-initial">F</span></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Benjamin_Franklin_by_Joseph_Duplessis_1778.jpg" alt="Benjamin Franklin" onload="this.classList.add('loaded')" loading="lazy">
     </div>
     <div class="portrait-info">
       <span class="portrait-title">Dr.</span>
