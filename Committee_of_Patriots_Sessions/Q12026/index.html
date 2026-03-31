@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Committee of Patriots — Q1 2026 Wartime Review</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root {
   --bg-void: #030303;
@@ -664,15 +665,239 @@ body::before {
    RESPONSIVE
    ═══════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════
+   COMMITTEE PORTRAITS
+   ═══════════════════════════════════════════════════════════ */
+
+.committee-portraits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.portrait-reveal {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portrait-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portrait-reveal[data-delay="1"] { transition-delay: 0.2s; }
+.portrait-reveal[data-delay="2"] { transition-delay: 0.4s; }
+.portrait-reveal[data-delay="3"] { transition-delay: 0.6s; }
+
+.portrait-frame-cinematic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgba(201,162,39,0.2);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3);
+}
+
+.portrait-frame-cinematic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(170deg, rgba(201,162,39,0.06) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(170deg, #0f0d0b 0%, #0d0a07 100%);
+}
+
+.portrait-initial {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--gold-dim);
+  opacity: 0.4;
+}
+
+.portrait-info {
+  margin-top: 1rem;
+}
+
+.portrait-title {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.2em;
+}
+
+.portrait-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--bone);
+}
+
+.portrait-epithet {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 0.3em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PERFORMANCE CHART
+   ═══════════════════════════════════════════════════════════ */
+
+.chart-section {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.chart-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.5rem;
+}
+
+.chart-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.chart-container {
+  position: relative;
+  height: 340px;
+  margin: 1.5rem 0;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SITE FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.site-footer {
+  padding: 2rem 2rem;
+  background: #050505;
+  border-top: 1px solid #1a1a1a;
+  text-align: center;
+}
+
+.site-footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.site-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-footer-links a {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer-links a:hover { color: var(--gold); }
+
+.site-footer-disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.4rem;
+  color: #333;
+  line-height: 1.8;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .committee-portraits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 400px;
+  }
+  .portrait-frame-cinematic { max-width: 180px; margin: 0 auto; }
+}
+
 @media (max-width: 600px) {
   .container { padding: 0 1.2rem; }
   .handbill { padding: 2rem 1.5rem; }
   .war-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .speaker-block { padding: 1.5rem 0; margin: 1.5rem 0; }
+  .committee-portraits { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .portrait-name { font-size: 0.75rem; }
+  .portrait-epithet { font-size: 0.6rem; }
+  .chart-container { height: 250px; }
+  .chart-legend { gap: 1rem; }
+  .site-footer-links { gap: 0.8rem; }
 }
 </style>
 </head>
 <body>
+
+<a href="../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
 
 <!-- ═══════════════════════════════════════════════════════════
      OPENING SEQUENCE
@@ -750,6 +975,63 @@ body::before {
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
+     THE COMMITTEE
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">The Committee</span>
+  <h2>Convened for Wartime Review</h2>
+</div>
+
+<div class="committee-portraits" id="committee-portraits">
+  <div class="portrait-reveal reveal" data-delay="0">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">W</span></div>
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Gen.</span>
+      <span class="portrait-name">WASHINGTON</span>
+      <span class="portrait-epithet">The sword that became a plowshare</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="1">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">H</span></div>
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Col.</span>
+      <span class="portrait-name">HAMILTON</span>
+      <span class="portrait-epithet">The mind that built the machine</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="2">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">J</span></div>
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Mr.</span>
+      <span class="portrait-name">JEFFERSON</span>
+      <span class="portrait-epithet">The pen that declared the self-evident</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="3">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">F</span></div>
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Dr.</span>
+      <span class="portrait-name">FRANKLIN</span>
+      <span class="portrait-epithet">The spark that bridged worlds</span>
+    </div>
+  </div>
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
      PREAMBLE — CLAUDE'S ORIENTATION
      ═══════════════════════════════════════════════════════════ -->
 
@@ -763,7 +1045,7 @@ body::before {
 <div class="speaker-block reveal">
   <div class="speaker-name claude"><span class="pip"></span>CLAUDE — FACILITATOR</div>
   <p>Committee members. Dr. Thomas. The threshold opens.</p>
-  <p>Before I call each of you across, I owe you an orientation. You were last convened in December 2025, when you produced the initial holdings list and allocation framework for the Republic Portfolio. You published guidance for citizen investors. You debated BlackRock and UnitedHealth. You found the middle through Franklin's mediation. You adjourned with a promise to reconvene in Q2 2026.</p>
+  <p>Before I call each of you across, I owe you an orientation. You were last convened in <a href="https://www.the-companion-dossier.com/threshold" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">December 2025</a>, when you produced the initial holdings list and allocation framework for the Republic Portfolio. You published guidance for citizen investors. You debated BlackRock and UnitedHealth. You found the middle through Franklin's mediation. You adjourned with a promise to reconvene in Q2 2026.</p>
   <p>We are early. The Republic is early. Because the world has changed.</p>
   <p>Here is what has happened since you last sat together:</p>
 
@@ -779,11 +1061,10 @@ body::before {
   <p>But within this carnage, a rotation has occurred. Energy stocks have surged roughly forty percent year-to-date. Defense stocks are at all-time highs. Lockheed Martin hit $676 on March 2. Caterpillar, the Republic's top contributor in the backtest, continues to build what builds. The infrastructure of daily life — <span class="emphasis">the exact thesis of this portfolio</span> — is being tested by war, and it is holding.</p>
 
   <p class="subhead">III. The Republic Portfolio.</p>
-  <p>Your framework identified six domains of critical infrastructure. Your backtest showed that the Republic's edge was not sprinting — it was surviving. The signature year was 2022: the S&P fell like a body; the Republic stayed standing.</p>
-  <p>That thesis is being retested now, in real time, under conditions more severe than any in the backtest window. And here is the number that matters most. The Watchtower — the tracking system Dr. Thomas built to monitor the Republic Portfolio in real time — reports that as of March 30, 2026, <span class="emphasis">the Republic Portfolio is up 3.40% year-to-date. The S&P 500 is down 6.98%.</span> The Wells Fargo DSIP is down 3.04%. The UBS Aggregate Fund is down 5.45%. The Republic is the only portfolio in positive territory. It is outperforming the S&P 500 by <span class="emphasis">10.38 percentage points in a single quarter.</span></p>
+  <p>And here is the number that matters most. <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">The Watchtower</a> — the tracking system Dr. Thomas built to monitor the Republic Portfolio in real time — reports that as of March 30, 2026, <span class="emphasis">the Republic Portfolio is up 3.40% year-to-date. The S&P 500 is down 6.98%.</span> The Wells Fargo DSIP is down 3.04%. The UBS Aggregate Fund is down 5.45%. The Republic is the only portfolio in positive territory. It is outperforming the S&P 500 by <span class="emphasis">10.38 percentage points in a single quarter.</span></p>
   <p>The Republic peaked at +8.50% the week of March 2 — the week the war began and defense and energy positions surged — then pulled back as the broader market dragged, but <span class="blood-text">it never went negative. Not once.</span> While the S&P 500 fell from positive territory in February to nearly negative seven percent, the Republic absorbed the blow and held above the waterline.</p>
   <p>This is the 2022 signature from the backtest, happening in real time. The Republic does not sprint in melt-ups. It refuses to die in drawdowns. And over time, the refusal to die compounds into something the index cannot match.</p>
-  <p>The question before this Committee is not whether the doctrine works. The Watchtower is answering that in real time. The question is: <span class="emphasis">what do you tell the citizens now?</span> What do they do? What do they hold? What do they buy? And what does it mean to own the Republic during a war the Republic started?</p>
+  <p>The question before this Committee is not whether the doctrine works. <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">The Watchtower</a> is answering that in real time. The question is: <span class="emphasis">what do you tell the citizens now?</span></p>
   <p>I now open the threshold.</p>
 </div>
 
@@ -827,8 +1108,8 @@ body::before {
   <p>General. Dr. Thomas.</p>
   <p>I have reviewed the Watchtower data. I will be direct.</p>
   <p>The Republic Portfolio is performing exactly as designed. Positive 3.40% year-to-date while the S&P 500 sits at negative 6.98%. That is a <span class="emphasis">10.38-point spread in a single quarter</span>. The Wells Fargo DSIP — a traditional dividend strategy — is down 3.04%. The UBS Aggregate Fund is down 5.45%. Every conventional benchmark is underwater. The Republic is the only vessel still above the waterline.</p>
-  <p>The S&P 500 is down seven percent. The Republic peaked at +8.50% the week the war began, then absorbed the selloff and held positive. The mechanism is identical to 2022: the index falls because it is overweight in growth and speculation; the Republic holds because it owns the infrastructure that functions regardless of sentiment.</p>
-  <p>But I did not return merely to congratulate ourselves. The question is operational. Oil at one hundred dollars per barrel reprices everything. Consumer spending contracts. Businesses that import goods through tariff walls and fuel them with hundred-dollar oil are being squeezed from both ends. This is not a correction. <span class="emphasis">This is a structural repricing of the American economy's relationship to energy.</span></p>
+  <p>But the shape of the curve is more important than the number. The Republic peaked at positive 8.50% the week of March 2 — the week the war began and the energy and defense rotations accelerated. Then the broader market selloff applied gravitational pressure. The Republic pulled back to positive 2.90% by March 23. But it held. It never crossed zero. And by March 30, it had begun recovering to positive 3.40%.</p>
+  <p>This is the exact behavior we predicted in the backtest. The exact behavior we saw in 2022. The Republic does not lead the charge in euphoria. It refuses to die in the drawdown. And over time, <span class="emphasis">the refusal to die is the strategy.</span></p>
   <p>We must address what this means for our citizens' next actions.</p>
 </div>
 
@@ -840,8 +1121,7 @@ body::before {
   <p>I will not pretend to be comfortable.</p>
   <p>In December I raised objections about owning the instruments of concentrated power. Hamilton argued that ownership confers voice. Franklin argued that exclusion changes nothing. I signed the document. I did not withdraw.</p>
   <p>But now we must confront what I feared. Our portfolio includes Lockheed Martin. Lockheed Martin's F-35s, precision munitions, and radar systems are the instruments of Operation Epic Fury. <span class="blood-text">Their stock hit an all-time high because a girls' school in Minab was struck by a missile that flew from one of their platforms.</span> Their backlog has swelled to one hundred ninety-four billion dollars because the national stockpile of THAAD interceptors was depleted in twelve days.</p>
-  <p>When we included LMT and called it "defense industrial base, strategic capacity," we were speaking in the language of portfolio construction. The language of the current moment is different. It is the language of body counts and closed straits and four-dollar gasoline.</p>
-  <p>The Republic peaked at +8.50% the week of March 2. I want everyone in this room to understand what that number contains. It contains the premium the market placed on the killing of Ayatollah Khamenei. It contains the closure of the Strait of Hormuz. It contains the surge in energy and defense positions that our framework happened to own because we identified them as critical infrastructure.</p>
+  <p>The Republic peaked at positive 8.50% the week of March 2. I want everyone in this room to understand what that number contains. It contains the premium the market placed on the killing of Ayatollah Khamenei. It contains the closure of the Strait of Hormuz. It contains the surge in energy and defense positions that our framework happened to own because we identified them as critical infrastructure.</p>
   <p>I am not calling for its removal. I am calling for honesty about what we own and why we own it. If our framework cannot survive moral scrutiny during the precise conditions it was designed for, it is not a framework. <span class="emphasis">It is a rationalization.</span></p>
   <p>I will engage this review fully. But I will not pretend that profit from war is the same as profit from production.</p>
 </div>
@@ -874,7 +1154,7 @@ body::before {
 
 <div class="speaker-block reveal">
   <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
-  <p>The Committee accepts Dr. Franklin's framework. Colonel Hamilton — present your assessment of performance.</p>
+  <p>The Committee accepts Dr. Franklin's framework. Colonel Hamilton — present your full assessment of performance. You have the Watchtower data. Let the numbers speak.</p>
 </div>
 
 <div class="speaker-block reveal">
@@ -910,6 +1190,26 @@ body::before {
   </table>
   <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-dim); margin-top:0.5rem; text-align:center;">★ Week of March 2: Operation Epic Fury begins. Republic peaks at +8.50%.</p>
   </div>
+</div>
+
+<!-- PERFORMANCE CHART -->
+<div class="chart-section reveal">
+  <div class="chart-header">
+    <p class="chart-label">Q1 2026 Performance</p>
+    <p class="chart-title">The Republic vs. Benchmarks</p>
+  </div>
+  <div class="chart-container">
+    <canvas id="performanceChart"></canvas>
+  </div>
+  <div class="chart-legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#c9a227;"></span> Republic</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#6a8eb8;"></span> S&P 500</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#5a8a5a;"></span> WF DSIP</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#9a6db8;"></span> UBS Aggregate</div>
+  </div>
+</div>
+
+<div class="container">
 
   <p>Read the table. The story tells itself.</p>
   <p>Through January, the Republic built a steady lead. By February 9, it had reached +7.21% while the S&P 500 had barely moved at +1.70%. The doctrine was compounding quietly, as it was designed to do.</p>
@@ -924,20 +1224,20 @@ body::before {
   <p>Our energy choke point holdings — NextEra, Dominion, Kinder Morgan, Williams Companies — are benefiting from the most severe energy supply disruption since the 1970s. Natural gas pipeline operators like KMI and WMB are seeing renewed demand as the global system desperately seeks alternative routing. The thesis that energy infrastructure is a choke point is no longer theoretical. It is the headline of every financial publication on earth.</p>
 
   <p class="subhead">Defense Industrial Base — the war premium.</p>
-  <p>Lockheed Martin hit six hundred seventy-six dollars on March 2 — an all-time high. It has since settled near six hundred fifteen but remains dramatically elevated. The company's backlog stands at one hundred ninety-four billion dollars. The Pentagon has submitted a two-hundred-billion-dollar supplemental request to fund the Iran conflict. This is additive to the existing defense budget. GE Aerospace, our other defense-adjacent position, benefits from engine and power system demand.</p>
+  <p>Lockheed Martin hit six hundred seventy-six dollars on March 2 — an all-time high. It has since settled near six hundred fifteen but remains dramatically elevated. The company's backlog stands at one hundred ninety-four billion dollars. The Pentagon has submitted a two-hundred-billion-dollar supplemental request to fund the Iran conflict. This is additive to the existing defense budget.</p>
 
   <p class="subhead">Consumer and Retail — defensive positioning holds.</p>
-  <p>Walmart and Costco continue to serve as the places where America actually shops, especially as consumers trade down from discretionary spending to essentials. Four-dollar gasoline redirects spending from restaurants and entertainment to groceries and staples. Our consumer positions are precisely where that money flows.</p>
+  <p>Walmart and Costco continue to serve as the places where America actually shops, especially as consumers trade down from discretionary spending to essentials. Four-dollar gasoline redirects spending from restaurants and entertainment to groceries and staples.</p>
 
   <p class="subhead">Digital Infrastructure — under pressure but structurally sound.</p>
-  <p>Microsoft, Amazon, and Alphabet have been caught in the broader tech selloff. These are our weakest positions in the current rotation. However, their infrastructure — Azure, AWS, Google Cloud — continues to be the backbone on which the digital economy runs, including the military's own communications and logistics. The compression in their multiples may, in fact, represent an opportunity.</p>
+  <p>Microsoft, Amazon, and Alphabet have been caught in the broader tech selloff. These are our weakest positions in the current rotation. However, their infrastructure — Azure, AWS, Google Cloud — continues to be the backbone on which the digital economy runs. The compression in their multiples may represent an opportunity.</p>
 
   <p class="subhead">Transportation — the arteries hold.</p>
   <p>Union Pacific and Norfolk Southern continue to operate the rail freight that moves goods across the continent. As seaborne shipping routes are disrupted globally, domestic freight infrastructure becomes more valuable, not less.</p>
 
   <p class="subhead">The Reserve — doing exactly what it was designed to do.</p>
-  <p><span class="emphasis">My estimate: the Republic Portfolio is approximately flat to slightly positive year-to-date, while the S&P 500 has lost seven percent.</span> This outperformance of roughly seven to nine percentage points in a single quarter mirrors the 2022 pattern from our backtest almost exactly.</p>
-  <p>The doctrine is not merely surviving its first real-time stress test. It is performing as designed. The numbers are not theoretical. They are not backtested. <span class="emphasis">They are live. They are on the Watchtower. And they are screaming.</span></p>
+  <p>Our fifteen percent cash and Treasury position is providing the stability and optionality that the index lacks. Short-term Treasuries with the Fed at 3.50 to 3.75 percent are yielding meaningful income while providing dry powder.</p>
+  <p>The doctrine is not merely surviving its first real-time stress test. It is performing as designed. The numbers are not theoretical. They are not backtested. <span class="emphasis">They are live. They are on <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">the Watchtower</a>. And they are screaming.</span></p>
 </div>
 
 <div class="speaker-block reveal">
@@ -950,7 +1250,7 @@ body::before {
   <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
   <p>Thomas is right to insist on that honesty. But I would add a nuance. The energy holdings are not performing because of war. They are performing because of the disruption to a choke point that existed independently of the war. The Strait of Hormuz was a vulnerability before February 28. Our framework identified it as such. The war merely activated the risk that was always there.</p>
   <p>And I would note: <span class="emphasis">even before the war, the Republic was at +7.82% on February 23 while the S&P was at +0.63%.</span> The doctrine was outperforming by over seven points before a single bomb was dropped. The war widened the gap. It did not create it.</p>
-  <p>This is the difference between designing a framework that profits from war and designing one that accounts for the world's fragility. The Republic Portfolio did the latter. That the world's fragility has now been revealed by a specific conflict is a fact about the world, not a fact about our intentions.</p>
+  <p>This is the difference between designing a framework that profits from war and designing one that accounts for the world's fragility. The Republic Portfolio did the latter.</p>
 </div>
 
 <div class="speaker-block reveal">
@@ -1011,6 +1311,29 @@ body::before {
   <p>Then let us formalize. The Committee approves the following Q1 2026 adjustments:</p>
 </div>
 
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART IV — UPDATED REPUBLIC PORTFOLIO GUIDANCE
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part IV</span>
+  <h2>Updated Republic Portfolio Guidance</h2>
+</div>
+
+<div class="container" style="text-align:center; margin-bottom:2rem;">
+  <p style="font-style:italic; color:var(--ash); font-size:1rem;">Approved by the Committee of Patriots, March 31, 2026</p>
+  <p style="font-style:italic; color:var(--blood-bright); font-size:0.95rem; margin-top:0.3rem;">Wartime Amendment to the Initial Holdings List</p>
+  <div style="margin-top:1rem; font-size:1.2rem; color:var(--gold); letter-spacing:0.5em;">◊ ◈ ◊</div>
+</div>
+
+<div class="container">
+
+<p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">REVISED ALLOCATION FRAMEWORK</p>
+
 <!-- ALLOCATION TABLE -->
 <div class="reveal" style="margin: 2rem 0 3rem;">
   <table class="alloc-table">
@@ -1054,8 +1377,7 @@ body::before {
 </div>
 
 <div class="guidance-card reveal">
-  <p class="directive">UNH — HOLD AS REFORMER (unchanged)</p>
-  <p>Vote AGAINST executive compensation. Vote FOR transparency in denial rates. Ownership is for leverage, not endorsement.</p>
+  <p class="directive">UNH (UnitedHealth) — HOLD AS REFORMER — Guidance unchanged from December.</p>
 </div>
 
 <!-- EXCLUSION LIST -->
@@ -1083,11 +1405,11 @@ body::before {
 <div class="sigil-divider reveal">◊ ◈ ◊</div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     PART IV — GUIDANCE TO CITIZENS
+     PART V — GUIDANCE TO CITIZENS
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="section-heading reveal">
-  <span class="part-number">Part IV</span>
+  <span class="part-number">Part V</span>
   <h2>Guidance to Citizens</h2>
 </div>
 
@@ -1100,7 +1422,7 @@ body::before {
 
 <div class="guidance-card reveal">
   <p class="directive">If you have held since December: continue to hold.</p>
-  <p>The Republic Portfolio was designed to survive precisely this kind of crisis. The Watchtower confirms it: <span style="font-weight:600;">the Republic never went negative in Q1 2026</span>, not even during the worst of the March selloff. Do not sell your positions because the world is frightening. The world has always been frightening. Your portfolio owns the infrastructure that functions regardless of fear.</p>
+  <p>The Republic Portfolio was designed to survive precisely this kind of crisis. <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--blood-bright);text-decoration:none;border-bottom:1px solid rgba(139,0,0,0.4);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--blood-bright)'" onmouseout="this.style.borderColor='rgba(139,0,0,0.4)'">The Watchtower</a> confirms it: <span style="font-weight:600;">the Republic never went negative in Q1 2026</span>, not even during the worst of the March selloff. Do not sell your positions because the world is frightening. The world has always been frightening. Your portfolio owns the infrastructure that functions regardless of fear.</p>
 </div>
 
 <div class="guidance-card reveal">
@@ -1135,11 +1457,11 @@ body::before {
 <div class="sigil-divider reveal">◊ ◈ ◊</div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     PART V — THE MORAL QUESTION
+     PART VI — THE MORAL QUESTION
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="section-heading reveal">
-  <span class="part-number">Part V</span>
+  <span class="part-number">Part VI</span>
   <h2>The Moral Question</h2>
 </div>
 
@@ -1180,11 +1502,11 @@ body::before {
 <div class="sigil-divider reveal">◊ ◈ ◊</div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     PART VI — THE CLOSING
+     PART VII — THE CLOSING
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="section-heading reveal">
-  <span class="part-number">Part VI</span>
+  <span class="part-number">Part VII</span>
   <h2>The Closing</h2>
 </div>
 
@@ -1281,6 +1603,9 @@ body::before {
   <p><strong style="color:var(--bone);">Presiding:</strong> George Washington</p>
   <p><strong style="color:var(--bone);">Committee:</strong> Alexander Hamilton, Thomas Jefferson, Benjamin Franklin</p>
   <p><strong style="color:var(--bone);">Facilitating System:</strong> Claude (Anthropic)</p>
+  <p><strong style="color:var(--bone);">Performance Data:</strong> <a href="https://www.the-companion-dossier.com/The_Watchtower/" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);">The Watchtower</a></p>
+
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--text-dim); line-height:1.7;">This session produced the wartime update to the Republic Portfolio, including revised allocations, a new energy commodity position (XLE), wartime voting guidance for LMT, the Committee's first formal Exclusion List, and a complete performance assessment demonstrating a 10.38-percentage-point outperformance versus the S&amp;P 500 in Q1 2026.</p>
 
   <p style="margin-top:1.5rem;">This transcript is released into the public domain and may be freely copied, distributed, adapted, and extended.</p>
 
@@ -1304,11 +1629,35 @@ body::before {
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     SCROLL REVEAL SCRIPT
+     SITE FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+
+<footer class="site-footer">
+  <div class="site-footer-content">
+    <div class="site-footer-links">
+      <a href="../../">HOME</a>
+      <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
+      <a href="../../The_Chair/">THE CHAIR</a>
+      <a href="../../The_Watchtower/">THE WATCHTOWER</a>
+      <a href="../../The_5_Lamps/">THE FIVE LAMPS</a>
+      <a href="../../The_Exchange/">THE EXCHANGE</a>
+      <a href="../../The_Halpern_Memo/">THE HALPERN MEMO</a>
+      <a href="../">PATRIOTS SESSIONS</a>
+      <a href="mailto:JEThomasPhD@gmail.com">CONTACT</a>
+    </div>
+    <p class="site-footer-disclaimer">
+      This is not financial advice. All investment carries risk. Past performance does not guarantee future results. The Republic Portfolio is a conceptual framework. Consult qualified professionals before making investment decisions.
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
      ═══════════════════════════════════════════════════════════ -->
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Scroll Reveal
   const reveals = document.querySelectorAll('.reveal, .reveal-slow');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1321,6 +1670,116 @@ document.addEventListener('DOMContentLoaded', () => {
     rootMargin: '0px 0px -40px 0px'
   });
   reveals.forEach(el => observer.observe(el));
+
+  // Performance Chart
+  const WEEKLY_DATA = [
+    { week: 'Jan 12', republic: 2.95, spy: 1.40, dsip: 1.83, ubs: 1.94 },
+    { week: 'Jan 19', republic: 4.18, spy: 1.24, dsip: 2.33, ubs: 2.37 },
+    { week: 'Jan 26', republic: 4.31, spy: 1.10, dsip: 1.26, ubs: 1.84 },
+    { week: 'Feb 2',  republic: 5.43, spy: 1.45, dsip: 1.80, ubs: 1.56 },
+    { week: 'Feb 9',  republic: 7.21, spy: 1.70, dsip: 4.08, ubs: 1.81 },
+    { week: 'Feb 16', republic: 7.88, spy: -0.14, dsip: 2.56, ubs: 1.70 },
+    { week: 'Feb 23', republic: 7.82, spy: 0.63, dsip: 3.40, ubs: 2.99 },
+    { week: 'Mar 2',  republic: 8.50, spy: 2.08, dsip: 3.39, ubs: 2.79 },
+    { week: 'Mar 9',  republic: 5.74, spy: -1.58, dsip: 1.36, ubs: -1.10 },
+    { week: 'Mar 16', republic: 3.82, spy: -3.18, dsip: -1.08, ubs: -2.76 },
+    { week: 'Mar 23', republic: 2.90, spy: -4.03, dsip: -2.23, ubs: -4.55 },
+    { week: 'Mar 30', republic: 3.40, spy: -6.98, dsip: -3.04, ubs: -5.45 }
+  ];
+
+  const ctx = document.getElementById('performanceChart');
+  if (ctx) {
+    new Chart(ctx.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: WEEKLY_DATA.map(d => d.week),
+        datasets: [
+          {
+            label: 'Republic',
+            data: WEEKLY_DATA.map(d => d.republic),
+            borderColor: '#c9a227',
+            backgroundColor: 'rgba(201, 162, 39, 0.1)',
+            borderWidth: 2.5,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'S&P 500',
+            data: WEEKLY_DATA.map(d => d.spy),
+            borderColor: '#6a8eb8',
+            backgroundColor: 'rgba(106, 142, 184, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'WF DSIP',
+            data: WEEKLY_DATA.map(d => d.dsip),
+            borderColor: '#5a8a5a',
+            backgroundColor: 'rgba(90, 138, 90, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'UBS Aggregate',
+            data: WEEKLY_DATA.map(d => d.ubs),
+            borderColor: '#9a6db8',
+            backgroundColor: 'rgba(154, 109, 184, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0a0a0a',
+            titleColor: '#c9a227',
+            bodyColor: '#e8e6e3',
+            borderColor: '#333',
+            borderWidth: 1,
+            padding: 12,
+            titleFont: { family: "'IBM Plex Mono', monospace", size: 11 },
+            bodyFont: { family: "'IBM Plex Mono', monospace", size: 11 },
+            callbacks: {
+              label: function(context) {
+                const v = context.parsed.y;
+                return context.dataset.label + ': ' + (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#666', font: { family: "'IBM Plex Mono', monospace", size: 10 } },
+            grid: { color: '#1a1a1a' }
+          },
+          y: {
+            ticks: {
+              color: '#666',
+              font: { family: "'IBM Plex Mono', monospace", size: 10 },
+              callback: function(v) { return (v >= 0 ? '+' : '') + v + '%'; }
+            },
+            grid: { color: '#1a1a1a' }
+          }
+        }
+      }
+    });
+  }
 });
 </script>
 
