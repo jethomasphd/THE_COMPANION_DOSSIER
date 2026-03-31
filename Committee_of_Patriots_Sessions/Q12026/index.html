@@ -680,20 +680,11 @@ body::before {
 
 .portrait-reveal {
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.portrait-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.portrait-reveal[data-delay="1"] { transition-delay: 0.2s; }
-.portrait-reveal[data-delay="2"] { transition-delay: 0.4s; }
-.portrait-reveal[data-delay="3"] { transition-delay: 0.6s; }
+.portrait-reveal[data-delay="1"] { transition-delay: 0.2s !important; }
+.portrait-reveal[data-delay="2"] { transition-delay: 0.4s !important; }
+.portrait-reveal[data-delay="3"] { transition-delay: 0.6s !important; }
 
 .portrait-frame-cinematic {
   position: relative;
@@ -879,19 +870,67 @@ body::before {
     max-width: 400px;
   }
   .portrait-frame-cinematic { max-width: 180px; margin: 0 auto; }
+  .section-heading { padding: 4rem 1.5rem 2rem; }
+  .section-heading h2 { font-size: 1.8rem; }
+  .opening h1 { font-size: 2.5rem; }
+  .alloc-table { font-size: 0.75rem; }
+  .alloc-table th, .alloc-table td { padding: 0.5rem 0.6rem; }
+  .guidance-card { padding: 1.2rem 1.5rem; }
+  .exclusion { padding: 0.8rem 1rem; }
+  .chart-section { padding: 2rem 1rem; }
 }
 
 @media (max-width: 600px) {
   .container { padding: 0 1.2rem; }
   .handbill { padding: 2rem 1.5rem; }
-  .war-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .war-context { padding: 3rem 1rem; }
+  .war-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .war-stat { padding: 1rem 0.8rem; }
+  .war-stat .number { font-size: 1.5rem; }
+  .war-stat .label { font-size: 0.55rem; letter-spacing: 0.1em; }
   .speaker-block { padding: 1.5rem 0; margin: 1.5rem 0; }
-  .committee-portraits { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .speaker-block p { font-size: 1rem; line-height: 1.75; }
+  .committee-portraits { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1.2rem; }
   .portrait-name { font-size: 0.75rem; }
   .portrait-epithet { font-size: 0.6rem; }
-  .chart-container { height: 250px; }
-  .chart-legend { gap: 1rem; }
+  .portrait-frame-cinematic { max-width: 150px; }
+  .chart-container { height: 220px; }
+  .chart-section { padding: 2rem 0.5rem; }
+  .chart-legend { gap: 0.8rem; }
+  .legend-item { font-size: 0.55rem; }
+  .section-heading { padding: 3rem 1rem 1.5rem; }
+  .section-heading h2 { font-size: 1.5rem; letter-spacing: 0.04em; }
+  .opening h1 { font-size: 2rem; letter-spacing: 0.08em; }
+  .opening-subtitle { font-size: 1rem; }
+  .opening-meta { font-size: 0.6rem; letter-spacing: 0.15em; }
+  .convener-directive { padding: 2rem 1.2rem; }
+  .convener-directive p { font-size: 1rem; }
+  .stage-direction { padding: 1rem 1.2rem; font-size: 0.9rem; }
+  .guidance-card { padding: 1rem 1.2rem; }
+  .guidance-card .directive { font-size: 0.95rem; }
+  .guidance-card p { font-size: 0.9rem; }
+  .alloc-table { font-size: 0.7rem; }
+  .alloc-table th, .alloc-table td { padding: 0.4rem 0.5rem; }
+  .exclusion { padding: 0.8rem 1rem; }
+  .exclusion .ticker { font-size: 0.8rem; }
+  .exclusion .reason { font-size: 0.85rem; }
+  .handbill h3 { font-size: 1.4rem; }
+  .handbill .tickers { font-size: 0.75rem; }
+  .handbill .mandate { font-size: 1.3rem; }
+  .colophon { padding: 3rem 1.2rem; }
   .site-footer-links { gap: 0.8rem; }
+  .site-footer-links a { font-size: 0.45rem; }
+}
+
+@media (max-width: 400px) {
+  .war-stats { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .war-stat .number { font-size: 1.3rem; }
+  .opening h1 { font-size: 1.7rem; }
+  .committee-portraits { gap: 0.8rem; }
+  .portrait-frame-cinematic { max-width: 130px; }
+  .chart-container { height: 180px; }
+  .legend-item { font-size: 0.5rem; gap: 0.3rem; }
+  .legend-dot { width: 6px; height: 6px; }
 }
 </style>
 </head>
@@ -1192,6 +1231,8 @@ body::before {
   </div>
 </div>
 
+</div> <!-- close Part II container for full-width chart -->
+
 <!-- PERFORMANCE CHART -->
 <div class="chart-section reveal">
   <div class="chart-header">
@@ -1211,6 +1252,8 @@ body::before {
 
 <div class="container">
 
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
   <p>Read the table. The story tells itself.</p>
   <p>Through January, the Republic built a steady lead. By February 9, it had reached +7.21% while the S&P 500 had barely moved at +1.70%. The doctrine was compounding quietly, as it was designed to do.</p>
   <p>February 16 marks the inflection. The S&P 500 slipped negative for the first time — down 0.14%. The Republic held at +7.88%. The tariff overhang and geopolitical tension were already sorting winners from losers, and the Republic was on the right side of the sort.</p>
@@ -1219,24 +1262,41 @@ body::before {
   <p>By March 30, the Republic had stabilized at <span class="emphasis">+3.40%</span>. The S&P 500 continued to deteriorate to <span class="blood-text">−6.98%</span>. The DSIP strategy sits at −3.04%. The UBS Aggregate is at −5.45%.</p>
   <p>The spread: the Republic is outperforming the S&P 500 by <span class="emphasis">10.38 percentage points</span>. It is outperforming DSIP by 6.44 points. It is outperforming UBS by 8.85 points. In a single quarter.</p>
   <p>I will now speak to the sector decomposition.</p>
+</div>
 
-  <p class="subhead">Energy Infrastructure — the strongest performers.</p>
-  <p>Our energy choke point holdings — NextEra, Dominion, Kinder Morgan, Williams Companies — are benefiting from the most severe energy supply disruption since the 1970s. Natural gas pipeline operators like KMI and WMB are seeing renewed demand as the global system desperately seeks alternative routing. The thesis that energy infrastructure is a choke point is no longer theoretical. It is the headline of every financial publication on earth.</p>
+<div class="speaker-block reveal" style="border-top:none; padding-top:0;">
+  <div class="speaker-name hamilton" style="margin-bottom:2rem;"><span class="pip"></span>HAMILTON — SECTOR DECOMPOSITION</div>
 
-  <p class="subhead">Defense Industrial Base — the war premium.</p>
-  <p>Lockheed Martin hit six hundred seventy-six dollars on March 2 — an all-time high. It has since settled near six hundred fifteen but remains dramatically elevated. The company's backlog stands at one hundred ninety-four billion dollars. The Pentagon has submitted a two-hundred-billion-dollar supplemental request to fund the Iran conflict. This is additive to the existing defense budget.</p>
+  <div style="border-left:3px solid var(--gold-dim); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(201,162,39,0.03);">
+    <p class="subhead" style="margin-top:0;">Energy Infrastructure — the strongest performers.</p>
+    <p>Our energy choke point holdings — NextEra, Dominion, Kinder Morgan, Williams Companies — are benefiting from the most severe energy supply disruption since the 1970s. Natural gas pipeline operators like KMI and WMB are seeing renewed demand as the global system desperately seeks alternative routing. The thesis that energy infrastructure is a choke point is no longer theoretical. It is the headline of every financial publication on earth.</p>
+  </div>
 
-  <p class="subhead">Consumer and Retail — defensive positioning holds.</p>
-  <p>Walmart and Costco continue to serve as the places where America actually shops, especially as consumers trade down from discretionary spending to essentials. Four-dollar gasoline redirects spending from restaurants and entertainment to groceries and staples.</p>
+  <div style="border-left:3px solid var(--blood); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(139,0,0,0.03);">
+    <p class="subhead" style="margin-top:0;">Defense Industrial Base — the war premium.</p>
+    <p>Lockheed Martin hit six hundred seventy-six dollars on March 2 — an all-time high. It has since settled near six hundred fifteen but remains dramatically elevated. The company's backlog stands at one hundred ninety-four billion dollars. The Pentagon has submitted a two-hundred-billion-dollar supplemental request to fund the Iran conflict. This is additive to the existing defense budget.</p>
+  </div>
 
-  <p class="subhead">Digital Infrastructure — under pressure but structurally sound.</p>
-  <p>Microsoft, Amazon, and Alphabet have been caught in the broader tech selloff. These are our weakest positions in the current rotation. However, their infrastructure — Azure, AWS, Google Cloud — continues to be the backbone on which the digital economy runs. The compression in their multiples may represent an opportunity.</p>
+  <div style="border-left:3px solid var(--bone); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(212,197,176,0.03);">
+    <p class="subhead" style="margin-top:0;">Consumer and Retail — defensive positioning holds.</p>
+    <p>Walmart and Costco continue to serve as the places where America actually shops, especially as consumers trade down from discretionary spending to essentials. Four-dollar gasoline redirects spending from restaurants and entertainment to groceries and staples.</p>
+  </div>
 
-  <p class="subhead">Transportation — the arteries hold.</p>
-  <p>Union Pacific and Norfolk Southern continue to operate the rail freight that moves goods across the continent. As seaborne shipping routes are disrupted globally, domestic freight infrastructure becomes more valuable, not less.</p>
+  <div style="border-left:3px solid #7090c0; padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(112,144,192,0.03);">
+    <p class="subhead" style="margin-top:0;">Digital Infrastructure — under pressure but structurally sound.</p>
+    <p>Microsoft, Amazon, and Alphabet have been caught in the broader tech selloff. These are our weakest positions in the current rotation. However, their infrastructure — Azure, AWS, Google Cloud — continues to be the backbone on which the digital economy runs. The compression in their multiples may represent an opportunity.</p>
+  </div>
 
-  <p class="subhead">The Reserve — doing exactly what it was designed to do.</p>
-  <p>Our fifteen percent cash and Treasury position is providing the stability and optionality that the index lacks. Short-term Treasuries with the Fed at 3.50 to 3.75 percent are yielding meaningful income while providing dry powder.</p>
+  <div style="border-left:3px solid var(--ash); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(160,144,128,0.03);">
+    <p class="subhead" style="margin-top:0;">Transportation — the arteries hold.</p>
+    <p>Union Pacific and Norfolk Southern continue to operate the rail freight that moves goods across the continent. As seaborne shipping routes are disrupted globally, domestic freight infrastructure becomes more valuable, not less.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--gold); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(201,162,39,0.03);">
+    <p class="subhead" style="margin-top:0;">The Reserve — doing exactly what it was designed to do.</p>
+    <p>Our fifteen percent cash and Treasury position is providing the stability and optionality that the index lacks. Short-term Treasuries with the Fed at 3.50 to 3.75 percent are yielding meaningful income while providing dry powder.</p>
+  </div>
+
   <p>The doctrine is not merely surviving its first real-time stress test. It is performing as designed. The numbers are not theoretical. They are not backtested. <span class="emphasis">They are live. They are on <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">the Watchtower</a>. And they are screaming.</span></p>
 </div>
 

@@ -319,16 +319,33 @@
         }
 
         @media (max-width: 600px) {
+            body { padding: 20px 10px; }
             .handbill {
-                padding: 30px 25px;
+                padding: 25px 20px;
+                box-shadow: 0 0 0 2px #1a1308, 0 0 0 4px #3d2f1a, 0 10px 30px rgba(0,0,0,0.4);
             }
-            .header h1 {
-                font-size: 22px;
-                letter-spacing: 3px;
-            }
-            .holdings {
-                font-size: 12px;
-            }
+            .header h1 { font-size: 20px; letter-spacing: 3px; }
+            .header h2 { font-size: 15px; }
+            .holdings { font-size: 12px; letter-spacing: 1px; line-height: 2; }
+            .section-title { font-size: 13px; letter-spacing: 2px; }
+            .allocation-label { font-size: 12px; }
+            .instruction-item { font-size: 13px; padding-left: 20px; text-indent: -20px; }
+            .preamble { font-size: 13px; }
+            .note-star { font-size: 12px; }
+            .war-banner p { font-size: 12px; letter-spacing: 1px; }
+            .performance-box .headline { font-size: 14px; }
+            .performance-box .numbers { font-size: 13px; }
+            .motto .main { font-size: 18px; }
+            .motto .sub { font-size: 14px; }
+            .covenant-box p { font-size: 12px; }
+            .ornament { font-size: 18px; letter-spacing: 8px; }
+        }
+
+        @media (max-width: 400px) {
+            .handbill { padding: 20px 15px; }
+            .header h1 { font-size: 17px; letter-spacing: 2px; }
+            .holdings { font-size: 11px; }
+            .performance-box .numbers { font-size: 11px; }
         }
     </style>
 </head>
