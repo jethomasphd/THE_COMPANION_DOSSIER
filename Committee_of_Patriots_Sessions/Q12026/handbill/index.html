@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Republic Portfolio — Wartime Handbill, March 1826</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2c2416;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .handbill {
+            background:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+                linear-gradient(to bottom, #f4e4c1 0%, #e8d4a8 50%, #dcc696 100%);
+            max-width: 700px;
+            padding: 50px 60px;
+            box-shadow:
+                0 0 0 3px #1a1308,
+                0 0 0 6px #3d2f1a,
+                0 0 0 9px #1a1308,
+                0 15px 50px rgba(0,0,0,0.5);
+            position: relative;
+            font-family: 'IM Fell English', Georgia, serif;
+            color: #1a1308;
+            line-height: 1.5;
+        }
+
+        .handbill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(139,109,64,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(100,70,30,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(80,60,30,0.1) 100%);
+            pointer-events: none;
+        }
+
+        .ornament {
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 12px;
+            margin: 15px 0;
+            color: #3d2f1a;
+        }
+
+        .ornament-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ornament-line::before,
+        .ornament-line::after {
+            content: '';
+            flex: 1;
+            max-width: 120px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3d2f1a, transparent);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+
+        .header h2 {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 18px;
+            font-weight: normal;
+            font-style: italic;
+            color: #3d2f1a;
+            margin-top: 8px;
+        }
+
+        .header .date {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 14px;
+            color: #5a4d38;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .war-banner {
+            text-align: center;
+            margin: 25px 0;
+            padding: 12px 20px;
+            border: 2px solid #8b0000;
+            background: rgba(139, 0, 0, 0.06);
+        }
+
+        .war-banner p {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b0000;
+            line-height: 1.8;
+        }
+
+        .performance-box {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px 20px;
+            border: 1px dashed #3d2f1a;
+        }
+
+        .performance-box .headline {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: #1a1308;
+            margin-bottom: 5px;
+        }
+
+        .performance-box .numbers {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 15px;
+            color: #3d2f1a;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin: 30px 0 15px;
+            padding: 8px 0;
+            border-top: 1px dashed #3d2f1a;
+            border-bottom: 1px dashed #3d2f1a;
+            color: #1a1308;
+        }
+
+        .holdings {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 2px;
+            line-height: 2.2;
+            margin: 10px 0;
+            color: #1a1308;
+        }
+
+        .allocation-label {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #3d2f1a;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .note-star {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #5a4d38;
+            text-align: left;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .exclusion-box {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #8b0000;
+        }
+
+        .exclusion-box p {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b0000;
+        }
+
+        .reserve-box {
+            text-align: center;
+            margin: 15px 0;
+            padding: 12px 20px;
+            border: 2px double #3d2f1a;
+        }
+
+        .reserve-box .label {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #3d2f1a;
+        }
+
+        .reserve-box .detail {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #5a4d38;
+            margin-top: 5px;
+        }
+
+        .instruction-item {
+            margin: 12px 0;
+            padding-left: 25px;
+            text-indent: -25px;
+            font-family: 'IM Fell English', Georgia, serif;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .instruction-item::before {
+            content: '\261E\00a0';
+            font-size: 16px;
+        }
+
+        .motto {
+            text-align: center;
+            margin: 30px 0 15px;
+        }
+
+        .motto .main {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 22px;
+            letter-spacing: 3px;
+            color: #8b0000;
+            margin-bottom: 5px;
+        }
+
+        .motto .sub {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #3d2f1a;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #3d2f1a;
+        }
+
+        .footer-line {
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
+
+        .footer-small {
+            font-size: 10px;
+            color: #5a4d38;
+            font-style: italic;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 48px;
+            line-height: 0.85;
+            padding-right: 6px;
+            padding-top: 4px;
+            color: #1a1308;
+        }
+
+        .preamble {
+            font-family: 'IM Fell English', Georgia, serif;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .covenant-box {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px 20px;
+            border: 2px solid #3d2f1a;
+            background: rgba(61, 47, 26, 0.04);
+        }
+
+        .covenant-box p {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #3d2f1a;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .handbill {
+                padding: 30px 25px;
+            }
+            .header h1 {
+                font-size: 22px;
+                letter-spacing: 3px;
+            }
+            .holdings {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#a08860;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#d4b070'" onmouseout="this.style.color='#a08860'" title="Return to COMPANION">&#9674;</a>
+
+<div class="handbill">
+
+    <div class="ornament">&#10087; &#9753;</div>
+
+    <div class="header">
+        <h1>The Republic Portfolio</h1>
+        <div class="ornament-line"><span>&#9670; &#9672; &#9670;</span></div>
+        <h2>Wartime Update &mdash; A Handbill for Citizens</h2>
+        <p class="date">March 31, 1826</p>
+    </div>
+
+    <div class="war-banner">
+        <p>Day 32 &mdash; Operation Epic Fury<br>The Strait of Hormuz Remains Closed</p>
+    </div>
+
+    <div class="performance-box">
+        <p class="headline">Q1 2026 Performance</p>
+        <p class="numbers">Republic <strong>+3.40%</strong> &nbsp;|&nbsp; S&amp;P 500 <strong>&minus;6.98%</strong> &nbsp;|&nbsp; Spread: <strong>+10.38 pts</strong></p>
+    </div>
+
+    <div class="preamble">
+        <span class="drop-cap">C</span>itizens of the Republic &mdash; The Committee of Patriots, convened this day for its Q1 2026 Wartime Review, reports to you that the Republic Portfolio has endured the first great trial since its founding. While the S&amp;P 500 has lost nearly seven percent and the conventional benchmarks have fallen into loss territory, the Republic has held above the waterline. It peaked at +8.50% the week the war began. It never went negative. Not once. The doctrine is not theoretical. It is live, on <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:#3d2f1a;">the Watchtower</a>, and it is holding.
+    </div>
+
+    <div class="ornament-line"><span>&#9830; &#9674; &#9830;</span></div>
+
+    <div class="section-title">Engines of the Republic (45%)</div>
+    <div class="holdings">
+        CAT &middot; DE &middot; HON &middot; LMT* &middot; GE &middot; WMT &middot; COST &middot; HD &middot; JNJ &middot; PFE &middot; ADM &middot; BG &middot; TSN &middot; SCHW &middot; BRK.B
+    </div>
+
+    <div class="section-title">Critical Choke Points (35%)</div>
+    <div class="holdings">
+        NEE &middot; D &middot; KMI &middot; WMB &middot; V &middot; MA &middot; JPM &middot; MSFT &middot; AMZN &middot; GOOGL &middot; UNP &middot; NSC &middot; MCK &middot; UNH&dagger; &middot; <strong style="color:#8b0000;">XLE (NEW)</strong>
+    </div>
+
+    <div class="reserve-box">
+        <p class="label">Reserve &mdash; 20%</p>
+        <p class="detail">Cash or Treasuries &mdash; Increased from 15% during wartime</p>
+    </div>
+
+    <div class="ornament-line"><span>&#10022;</span></div>
+
+    <div class="note-star">*LMT: Hold as Citizen Overseer. Vote for transparency in civilian casualty reporting. Vote for independent review of targeting protocols. Vote against executive compensation without accountability.</div>
+    <div class="note-star">&dagger;UNH: Hold as Reformer. Vote against extraction. Vote for transparency.</div>
+
+    <div class="exclusion-box">
+        <p>Excluded: BLK &middot; PLTR &middot; META</p>
+    </div>
+
+    <div class="ornament-line"><span>&#9830; &#9674; &#9830;</span></div>
+
+    <div class="section-title">Wartime Instructions to Citizens</div>
+
+    <div class="instruction-item">If you have held since December: <em>continue to hold.</em> The Republic never went negative in Q1 2026. Do not sell because the world is frightening. The world has always been frightening.</div>
+
+    <div class="instruction-item">If you have been contributing monthly: <em>do not stop.</em> Dollar-cost averaging through a crisis is how ordinary citizens build wealth. Time is on your side.</div>
+
+    <div class="instruction-item">If you have new capital to deploy: <em>build your Reserve to 20% first.</em> The Hormuz crisis may resolve in weeks or persist for months. The Reserve is not a retreat &mdash; it is preparation.</div>
+
+    <div class="instruction-item">If you have not yet begun: <em>begin now.</em> A crisis is the worst time to build a framework and the best time to enter one. Even fifty dollars deployed today is a vote.</div>
+
+    <div class="instruction-item"><em>Vote your shares.</em> Proxy season approaches. Every share you own is a vote in how these companies are governed. Ownership without voice is speculation. Do not speculate. Govern.</div>
+
+    <div class="ornament-line"><span>&#10022;</span></div>
+
+    <div class="covenant-box">
+        <p>The Republic Portfolio is not a clean thing. It was never designed to be clean. It was designed to be real. Reality includes wars and choke points and pipelines that carry gas that warms homes and also fuels fighter jets. To own the Republic is to own its contradictions. The citizen's task is to hold them consciously, to vote with awareness, and to understand that participation in the economy is never morally neutral.</p>
+        <p style="margin-top:10px; font-style:normal; font-weight:bold; color:#1a1308;">This is not a disclaimer. It is a covenant.</p>
+    </div>
+
+    <div class="motto">
+        <p class="main">Own them. Vote them. Govern.</p>
+        <p class="sub">Hold through the fire.</p>
+    </div>
+
+    <div class="ornament">&#9830; &#9672; &#9830;</div>
+
+    <footer class="footer">
+        <p class="footer-line">Published by Order of the COMMITTEE of PATRIOTS</p>
+        <p class="footer-line">Gen. WASHINGTON, presiding &middot; Col. HAMILTON &middot; Mr. JEFFERSON &middot; Dr. FRANKLIN</p>
+        <p class="footer-small" style="margin-top: 10px;">Convened via the COMPANION Protocol v2.0 &middot; March 31, 2026</p>
+        <p class="footer-small">Wartime Amendment to the Initial Holdings List</p>
+        <p class="footer-small" style="margin-top:8px;">This Handbill is released into the Publick Domain and may be freely copied, distributed, and extended.</p>
+        <div class="ornament" style="margin-top: 15px; font-size: 16px;">&mdash; FINIS &mdash;</div>
+    </footer>
+
+</div>
+
+</body>
+</html>
