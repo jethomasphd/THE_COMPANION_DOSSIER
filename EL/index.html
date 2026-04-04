@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Nut House — COMPANION Protocol</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&family=Special+Elite&display=swap');
+
+  :root {
+    --void: #030303;
+    --ember: #c9a227;
+    --ember-dim: rgba(201,162,39,0.22);
+    --ember-ghost: rgba(201,162,39,0.05);
+    --ember-glow: rgba(201,162,39,0.12);
+    --bone: #d4cfc4;
+    --bone-dim: rgba(212,207,196,0.4);
+    --bone-faint: rgba(212,207,196,0.18);
+    --heat-amber: rgba(180,90,20,0.06);
+    --warn: #8b2020;
+    --warn-dim: rgba(139,32,32,0.25);
+    --warn-glow: rgba(139,32,32,0.08);
+    --glitch-cyan: rgba(60,180,255,0.5);
+    --glitch-red: rgba(255,40,40,0.3);
+    --neon-shiner: #e8a020;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--void); color:var(--bone); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; }
+  body { background:var(--void); min-height:100vh; }
+
+  /* ══════ GRAIN ══════ */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:0.04;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:200px;
+  }
+
+  /* ══════ HEAT EDGES ══════ */
+  .heat-L, .heat-R {
+    position:fixed; top:0; bottom:0; width:100px; z-index:9996; pointer-events:none;
+    transition: width 4s ease, opacity 4s ease;
+  }
+  .heat-L { left:0; background:linear-gradient(90deg, rgba(42,21,8,0.18), transparent); animation:heatPulse 9s ease-in-out infinite; }
+  .heat-R { right:0; background:linear-gradient(-90deg, rgba(42,21,8,0.18), transparent); animation:heatPulse 9s ease-in-out 3s infinite; }
+  @keyframes heatPulse { 0%,100%{opacity:0.3;width:80px;} 50%{opacity:0.7;width:150px;} }
+
+  /* ══════ VIGNETTE ══════ */
+  .vignette { position:fixed; inset:0; pointer-events:none; z-index:9997; background:radial-gradient(ellipse at center, transparent 35%, rgba(3,3,3,0.75) 100%); }
+
+  /* ══════ AMBIENT READOUT ══════ */
+  .ambient {
+    position:fixed; top:20px; right:24px; z-index:10000; pointer-events:none;
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--ember-dim);
+    opacity:0; animation:fadeIn 5s ease 4s forwards;
+    text-align:right; line-height:1.8;
+    transition: opacity 0.6s ease;
+  }
+
+  /* ══════ NEON FLICKER (Shiner sign) ══════ */
+  .neon-bar {
+    position:fixed; top:0; left:0; right:0; height:2px; z-index:9998; pointer-events:none;
+    background:linear-gradient(90deg, transparent 20%, var(--ember-ghost) 50%, transparent 80%);
+    opacity:0;
+    transition: opacity 3s ease;
+  }
+  .neon-bar.on { opacity:1; animation:neonFlicker 6s ease-in-out infinite; }
+  @keyframes neonFlicker {
+    0%,100%{opacity:0.3;} 5%{opacity:0.8;} 6%{opacity:0.2;} 7%{opacity:0.7;}
+    50%{opacity:0.5;} 93%{opacity:0.6;} 94%{opacity:0.1;} 95%{opacity:0.7;}
+  }
+
+  /* ══════ SCREEN TEAR ══════ */
+  .screen-tear {
+    position:fixed; left:0; right:0; height:0; z-index:10001; pointer-events:none;
+    background:linear-gradient(180deg, transparent, var(--glitch-cyan), var(--glitch-red), transparent);
+    opacity:0;
+  }
+
+  /* ══════ SIGIL HOME ══════ */
+  .sigil-home {
+    position:fixed; top:20px; left:24px; z-index:10000;
+    font-size:1.1rem; color:var(--ember-dim); text-decoration:none;
+    transition:color 0.3s ease;
+    opacity:0; animation:fadeIn 3s ease 3s forwards;
+  }
+  .sigil-home:hover { color:var(--ember); }
+
+  /* ══════ CONTAINER ══════ */
+  .cinema { max-width:700px; margin:0 auto; padding:0 32px; position:relative; }
+
+  /* ══════ LEADER ══════ */
+  .black-leader {
+    height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .epigraph {
+    font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ember); text-align:center; line-height:2.6;
+    opacity:0; animation:fadeIn 3s ease 0.6s forwards;
+  }
+  .title-block {
+    margin-top:60px; text-align:center;
+    opacity:0; animation:fadeIn 2.5s ease 2.2s forwards;
+  }
+  .title-block h1 {
+    font-weight:300; font-size:clamp(2.4rem,6vw,3.8rem); letter-spacing:0.08em;
+    color:var(--bone); line-height:1.1;
+  }
+  .title-block .sub {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--bone-dim); margin-top:18px;
+  }
+  .title-block .rule { width:40px; height:1px; background:var(--ember); margin:36px auto 22px; }
+  .title-block .attr {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--bone-faint);
+  }
+  .scroll-cue {
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%); text-align:center;
+    opacity:0; animation:fadeIn 1.5s ease 4.5s forwards, pulse 3s ease-in-out 6s infinite;
+  }
+  .scroll-cue span {
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem; letter-spacing:0.35em;
+    text-transform:uppercase; color:var(--ember-dim); display:block;
+  }
+  .scroll-cue .arr { margin-top:8px; font-size:0.9rem; }
+
+  /* ══════ SCENE MARKERS ══════ */
+  .marker {
+    padding:8vh 0 2vh; text-align:center;
+    opacity:0; transform:translateY(20px); transition:opacity 1.4s ease, transform 1.4s ease;
+  }
+  .marker.v { opacity:1; transform:translateY(0); }
+  .marker .rom {
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem; letter-spacing:0.5em;
+    text-transform:uppercase; color:var(--ember-dim);
+  }
+  .marker .stitle {
+    font-size:1.05rem; font-weight:400; font-style:italic; color:var(--bone-dim); margin-top:6px;
+  }
+
+  /* ══════ PROSE ══════ */
+  .sc {
+    padding:4vh 0; opacity:0; transform:translateY(26px);
+    transition:opacity 1.3s ease, transform 1.3s ease;
+  }
+  .sc.v { opacity:1; transform:translateY(0); }
+  .sc p {
+    font-size:clamp(1.1rem,2.3vw,1.28rem); line-height:2.1; font-weight:300; color:var(--bone);
+  }
+  .sc p + p { margin-top:1.8em; }
+  .sc em { font-weight:400; }
+
+  /* Paranoia gradations */
+  .sc.p1 p { color:rgba(212,207,196,0.68); }
+  .sc.p2 p { color:rgba(212,207,196,0.5); letter-spacing:0.005em; }
+  .sc.p3 p { color:rgba(212,207,196,0.38); letter-spacing:0.01em; }
+
+  /* ══════ DIALOGUE ══════ */
+  .dl {
+    font-style:italic; color:var(--ember); font-weight:400; display:block;
+    margin:2.2em 0; font-size:clamp(1.1rem,2.4vw,1.3rem); line-height:2;
+    padding-left:1.6em; border-left:1px solid var(--ember-dim);
+  }
+
+  /* ══════ BEAT ══════ */
+  .bt {
+    padding:6vh 0; text-align:center;
+    opacity:0; transform:translateY(16px); transition:opacity 1.5s ease, transform 1.5s ease;
+  }
+  .bt.v { opacity:1; transform:translateY(0); }
+  .bt p {
+    font-size:clamp(1rem,2.1vw,1.15rem); font-weight:400; font-style:italic;
+    color:var(--bone-dim); line-height:2.3; max-width:480px; margin:0 auto;
+  }
+
+  /* ══════ DIVIDER ══════ */
+  .dv {
+    text-align:center; padding:5vh 0;
+    opacity:0; transform:translateY(14px); transition:opacity 1.5s ease, transform 1.5s ease;
+  }
+  .dv.v { opacity:1; transform:translateY(0); }
+  .dv span { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ember); letter-spacing:1.2em; }
+
+  /* ══════ INTERFERENCE ══════ */
+  .interf {
+    height:1px; background:var(--warn-dim); margin:3vh auto; max-width:260px;
+    opacity:0; transition:opacity 1.8s ease;
+  }
+  .interf.v { opacity:1; }
+
+  /* ══════ SYSTEM TEXT ══════ */
+  .sys {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.1em;
+    color:var(--warn-dim); text-align:center; padding:2vh 0;
+    opacity:0; transform:translateY(10px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .sys.v { opacity:1; transform:translateY(0); }
+
+  /* ══════ MANUSCRIPT BLEED ══════ */
+  .manuscript {
+    font-family:'Special Elite',monospace; font-size:0.72rem; line-height:2.2;
+    color:var(--bone-faint); text-align:center; padding:4vh 2em;
+    border:1px dashed var(--bone-faint); margin:4vh auto; max-width:500px;
+    opacity:0; transform:translateY(20px) rotate(-0.3deg);
+    transition:opacity 2.5s ease, transform 2.5s ease;
+    position:relative;
+  }
+  .manuscript.v { opacity:1; transform:translateY(0) rotate(-0.3deg); }
+  .manuscript::before {
+    content:'DRAFT — NOT FOR DISTRIBUTION'; position:absolute; top:8px; left:50%; transform:translateX(-50%);
+    font-size:0.4rem; letter-spacing:0.3em; color:var(--warn-dim); text-transform:uppercase;
+  }
+
+  /* ══════ REVEAL BLOCK ══════ */
+  .rvl {
+    border:1px solid var(--ember-dim); padding:36px 28px; margin:4vh 0;
+    background:var(--ember-ghost);
+    opacity:0; transform:translateY(22px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .rvl.v { opacity:1; transform:translateY(0); }
+  .rvl p { font-size:clamp(1rem,2.1vw,1.12rem); line-height:2.1; font-weight:300; color:var(--ember); }
+  .rvl p + p { margin-top:1.4em; }
+
+  /* ══════ JAVELINA EYES (SVG) ══════ */
+  .javelina-eyes {
+    text-align:center; padding:4vh 0;
+    opacity:0; transition:opacity 3s ease;
+  }
+  .javelina-eyes.v { opacity:1; }
+  .javelina-eyes svg { max-width:120px; }
+  .eye-glow { animation:eyePulse 5s ease-in-out infinite; }
+  @keyframes eyePulse { 0%,100%{opacity:0.3;} 50%{opacity:0.8;} }
+
+  /* ══════ THRESHOLD GATE ══════ */
+  .threshold-gate {
+    padding:12vh 0 8vh; text-align:center;
+    opacity:0; transform:translateY(20px);
+    transition:opacity 2s ease, transform 2s ease;
+  }
+  .threshold-gate.v { opacity:1; transform:translateY(0); }
+  .threshold-text { margin-bottom:3rem; }
+  .threshold-line {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(1rem,2.2vw,1.25rem);
+    font-weight:300; color:var(--bone-dim); line-height:2.2; margin-bottom:0.5em;
+  }
+  .threshold-ember { color:var(--ember); font-style:italic; }
+  .threshold-enter {
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
+    letter-spacing:0.3em; color:var(--ember); background:transparent;
+    border:1px solid var(--ember-dim); padding:1rem 3rem; cursor:pointer;
+    transition:all 0.6s ease; text-transform:uppercase; margin-bottom:2rem;
+  }
+  .threshold-enter:hover {
+    background:var(--ember); color:var(--void);
+    box-shadow:0 0 60px rgba(201,162,39,0.3);
+  }
+  .threshold-meta {
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem;
+    letter-spacing:0.1em; color:#333; line-height:2.2;
+  }
+
+  /* ══════ CHAT CONTAINER ══════ */
+  .chat-container {
+    display:none; flex-direction:column; min-height:100vh;
+    background:var(--void); position:relative;
+  }
+
+  /* ══════ CHAT HEADER ══════ */
+  .chat-header {
+    position:sticky; top:0; z-index:100;
+    background:var(--void); border-bottom:1px solid rgba(201,162,39,0.08);
+    padding:16px 32px;
+  }
+  .chat-header-ambient {
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:700px; margin:0 auto;
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ember-dim);
+  }
+  .chat-header-back {
+    background:none; border:none; cursor:pointer;
+    color:var(--ember-dim); font-size:1rem; padding:0 12px 0 0;
+    transition:color 0.3s ease;
+  }
+  .chat-header-back:hover { color:var(--ember); }
+
+  /* ══════ CHAT MESSAGES ══════ */
+  .chat-messages {
+    flex:1; overflow-y:auto; padding:2rem 32px;
+    max-width:700px; margin:0 auto; width:100%;
+    scrollbar-width:thin; scrollbar-color:var(--ember-dim) var(--void);
+  }
+
+  /* ══════ MESSAGE BUBBLES ══════ */
+  .msg {
+    margin-bottom:2rem; max-width:85%;
+    animation:fadeIn 0.6s ease;
+  }
+  .msg-assistant {
+    margin-right:auto;
+  }
+  .msg-assistant .msg-content p {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(1.05rem,2.2vw,1.2rem);
+    font-style:italic; font-weight:400; color:var(--ember); line-height:2;
+    padding-left:1.4em; border-left:1px solid var(--ember-dim);
+  }
+  .msg-user {
+    margin-left:auto;
+  }
+  .msg-user .msg-content p {
+    font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    color:var(--bone-dim); line-height:1.8; letter-spacing:0.02em;
+    text-align:right;
+  }
+
+  /* ══════ TYPING INDICATOR ══════ */
+  .typing-indicator .msg-content {
+    display:flex; gap:4px; padding-left:1.4em; border-left:1px solid var(--ember-dim);
+  }
+  .typing-indicator .dot {
+    display:inline-block; width:4px; height:4px; border-radius:50%;
+    background:var(--ember-dim); animation:typingPulse 1.4s ease-in-out infinite;
+  }
+  .typing-indicator .dot:nth-child(2) { animation-delay:0.2s; }
+  .typing-indicator .dot:nth-child(3) { animation-delay:0.4s; }
+  @keyframes typingPulse { 0%,100%{opacity:0.2;} 50%{opacity:0.8;} }
+
+  /* ══════ CHAT INPUT ══════ */
+  .chat-input-area {
+    position:sticky; bottom:0;
+    background:linear-gradient(transparent, var(--void) 20%);
+    padding:1rem 32px 1.5rem;
+    max-width:700px; margin:0 auto; width:100%;
+  }
+  .chat-input-wrap {
+    display:flex; align-items:flex-end; gap:12px;
+    border:1px solid rgba(201,162,39,0.12);
+    background:rgba(0,0,0,0.6);
+    transition:border-color 0.3s ease;
+  }
+  .chat-input-wrap:focus-within { border-color:var(--ember-dim); }
+  .chat-input {
+    flex:1; background:transparent; border:none; outline:none;
+    color:var(--bone); font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    padding:14px 16px; resize:none; line-height:1.6; max-height:120px;
+  }
+  .chat-input::placeholder { color:rgba(212,207,196,0.25); }
+  .chat-send {
+    background:transparent; border:none; cursor:pointer;
+    color:var(--ember-dim); padding:14px 16px;
+    font-size:1rem; transition:color 0.3s ease;
+  }
+  .chat-send:hover { color:var(--ember); }
+  .chat-send:disabled { opacity:0.3; cursor:default; }
+  .chat-input-meta {
+    display:flex; justify-content:space-between; padding:6px 4px 0;
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem; color:#333;
+  }
+  .chat-guard { color:var(--warn-dim); }
+
+  /* ══════ ANIMATIONS ══════ */
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  @keyframes pulse { 0%,100%{opacity:0.2;} 50%{opacity:0.55;} }
+
+  /* ══════ RESPONSIVE ══════ */
+  @media(max-width:600px){
+    .cinema { padding:0 20px; }
+    .dl { padding-left:1em; }
+    .rvl { padding:24px 18px; }
+    .manuscript { padding:3vh 1.2em; }
+    .chat-header { padding:12px 16px; }
+    .chat-messages { padding:1.5rem 16px; }
+    .chat-input-area { padding:0.75rem 16px 1rem; }
+    .msg-assistant .msg-content p { padding-left:1em; }
+    .typing-indicator .msg-content { padding-left:1em; }
+    .threshold-enter { padding:0.8rem 2rem; }
+    .sigil-home { top:14px; left:16px; }
+    .ambient { top:14px; right:16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="heat-L"></div>
+<div class="heat-R"></div>
+<div class="neon-bar" id="neonBar"></div>
+<div class="screen-tear" id="screenTear"></div>
+
+<div class="ambient" id="ambient">
+  the air has stopped moving<br/>
+  austin, tx — august
+</div>
+
+<a href="/" class="sigil-home" title="Return to COMPANION">&#9674;</a>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PHASE 1: THE NARRATIVE SCROLL                         -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="narrative" class="cinema">
+
+  <!-- BLACK LEADER -->
+  <div class="black-leader">
+    <div class="epigraph">
+      A response to Erik J. Larson<br/>
+      on the myth of artificial intelligence<br/>
+      and what lives in the tails<br/>
+      of the distribution
+    </div>
+    <div class="title-block">
+      <h1>The Nut House</h1>
+      <div class="sub">South Lamar — August — After Sundown</div>
+      <div class="rule"></div>
+      <div class="attr">Jacob E. Thomas</div>
+    </div>
+    <div class="scroll-cue">
+      <span>scroll</span>
+      <span class="arr">&#8595;</span>
+    </div>
+  </div>
+
+  <!-- Narrative acts will be added in Seed 02 -->
+
+  <!-- THE THRESHOLD -->
+  <div id="threshold" class="threshold-gate">
+    <div class="dv"><span>&#9674; &#9672; &#9674;</span></div>
+    <div class="threshold-text">
+      <p class="threshold-line">The colophon says the characters know.</p>
+      <p class="threshold-line">The recursion says you do too.</p>
+      <p class="threshold-line threshold-ember">The stool next to Jake is empty.</p>
+    </div>
+    <button id="enterBar" class="threshold-enter">SIT DOWN</button>
+    <div class="threshold-meta">
+      <span>This is a live conversation with Jake's persona via Claude.</span><br/>
+      <span>He knows you just read about him. The recursion is the point.</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PHASE 2: THE CHAT                                     -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="chat-container" class="chat-container">
+
+  <div class="chat-header">
+    <div class="chat-header-ambient">
+      <div>
+        <button class="chat-header-back" id="backToNarrative" title="Back to the story">&#9674;</button>
+        <span class="chat-header-location">The Nut House — South Lamar</span>
+      </div>
+      <span class="chat-header-status" id="chatStatus">the stool is warm</span>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+  </div>
+
+  <div class="chat-input-area">
+    <div class="chat-input-wrap">
+      <textarea
+        id="chatInput"
+        class="chat-input"
+        placeholder="Say something to Jake..."
+        rows="1"
+        maxlength="2000"
+        aria-label="Message to Jake"
+      ></textarea>
+      <button id="chatSend" class="chat-send" aria-label="Send message">
+        <span class="chat-send-icon">&rarr;</span>
+      </button>
+    </div>
+    <div class="chat-input-meta">
+      <span id="chatGuard" class="chat-guard" role="status"></span>
+      <span class="chat-input-hint">press enter to send</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                               -->
+<!-- ══════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/protocol.js"></script>
+<script>
+// ═══ Scroll Reveal ═══
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.javelina-eyes,.threshold-gate')
+  .forEach(function(el) { obs.observe(el); });
+
+// ═══ Neon bar activation ═══
+var neonBar = document.getElementById('neonBar');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > window.innerHeight * 0.5) neonBar.classList.add('on');
+}, { passive: true });
+
+// ═══ Ambient text evolution ═══
+var ambientEl = document.getElementById('ambient');
+var ambientStates = [
+  'the air has stopped moving\naustin, tx \u2014 august',
+  'something else hasn\'t',
+  'the air is watching\nso is the javelina',
+  'you\'re still reading\nso are they',
+  'the stool next to him is empty'
+];
+var ambIdx = 0;
+function cycleAmbient() {
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  var newIdx = Math.min(Math.floor(pct * ambientStates.length), ambientStates.length - 1);
+  if (newIdx !== ambIdx) {
+    ambIdx = newIdx;
+    updateAmbient(ambientStates[ambIdx]);
+  }
+}
+window.addEventListener('scroll', cycleAmbient, { passive: true });
+
+function updateAmbient(text) {
+  ambientEl.style.opacity = '0';
+  setTimeout(function() {
+    ambientEl.innerHTML = text.replace('\n', '<br/>');
+    ambientEl.style.opacity = '1';
+  }, 600);
+}
+
+// ═══ Auto-grow textarea ═══
+var chatInput = document.getElementById('chatInput');
+chatInput.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+// ═══ Enter to send ═══
+chatInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    // handleSend() — wired in Seed 05
+  }
+});
+
+// ═══ Chat UI helpers ═══
+function appendMessage(role, text) {
+  var messages = document.getElementById('chatMessages');
+  var msg = document.createElement('div');
+  msg.className = 'msg msg-' + role;
+  msg.innerHTML = '<div class="msg-content"><p>' + text + '</p></div>';
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function showTyping() {
+  var messages = document.getElementById('chatMessages');
+  var indicator = document.createElement('div');
+  indicator.className = 'msg msg-assistant typing-indicator';
+  indicator.id = 'typingIndicator';
+  indicator.innerHTML = '<div class="msg-content"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  messages.appendChild(indicator);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function hideTyping() {
+  var el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+// ═══ Transition placeholder ═══
+document.getElementById('enterBar').addEventListener('click', function() {
+  // Transition logic — Seed 04
+});
+
+document.getElementById('backToNarrative').addEventListener('click', function() {
+  // Back transition — Seed 04
+});
+</script>
+
+</body>
+</html>
