@@ -322,6 +322,34 @@
   }
   .chat-header-back:hover { color:var(--ember); }
 
+  /* RETURN TO STORY CTA */
+  .chat-return-cta {
+    text-align:center; padding:1.5rem 32px 0.5rem;
+    max-width:700px; margin:0 auto; width:100%;
+  }
+  .chat-return-btn {
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
+    letter-spacing:0.25em; color:var(--ember); background:transparent;
+    border:1px solid var(--ember-dim); padding:0.9rem 2.5rem; cursor:pointer;
+    transition:all 0.5s ease; text-transform:uppercase;
+    animation:returnPulse 4s ease-in-out 8s infinite;
+  }
+  .chat-return-btn:hover {
+    background:var(--ember); color:var(--void);
+    box-shadow:0 0 40px rgba(201,162,39,0.25);
+    animation:none;
+  }
+  .chat-return-hint {
+    display:block; margin-top:0.6rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem;
+    letter-spacing:0.15em; color:rgba(212,207,196,0.2);
+    text-transform:uppercase;
+  }
+  @keyframes returnPulse {
+    0%,100% { border-color:var(--ember-dim); }
+    50% { border-color:var(--ember); box-shadow:0 0 20px rgba(201,162,39,0.12); }
+  }
+
   /* CHAT MESSAGES */
   .chat-messages {
     flex:1; overflow-y:auto; padding:2rem 32px;
@@ -414,6 +442,8 @@
     .threshold-enter { padding:0.8rem 2rem; }
     .sigil-home { top:14px; left:16px; }
     .ambient { top:14px; right:16px; }
+    .chat-return-cta { padding:1.2rem 16px 0.5rem; }
+    .chat-return-btn { padding:0.7rem 1.8rem; font-size:0.6rem; }
   }
 </style>
 </head>
@@ -797,6 +827,11 @@
     </div>
   </div>
 
+  <div class="chat-return-cta">
+    <button class="chat-return-btn" id="returnToStory">RETURN TO THE STORY &#8594;</button>
+    <span class="chat-return-hint">the narrative continues where you left off</span>
+  </div>
+
 </div>
 
 
@@ -1048,7 +1083,7 @@ document.getElementById('enterBar').addEventListener('click', function() {
 });
 
 // ═══ TRANSITION: Chat → Narrative (resume at VI) ═══
-document.getElementById('backToNarrative').addEventListener('click', function() {
+function returnToNarrative() {
   var narrative = document.getElementById('narrative');
   var chat = document.getElementById('chat-container');
   var postChat = document.getElementById('postChat');
@@ -1082,7 +1117,10 @@ document.getElementById('backToNarrative').addEventListener('click', function() 
     setHeatIntensity(0.3);
     updateAmbient('the story continues\nhe stayed');
   }, 600);
-});
+}
+
+document.getElementById('backToNarrative').addEventListener('click', returnToNarrative);
+document.getElementById('returnToStory').addEventListener('click', returnToNarrative);
 
 // ═══ CHAT ENGINE ═══
 var isStreaming = false;
