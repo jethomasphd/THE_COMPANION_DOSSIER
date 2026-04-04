@@ -69,4 +69,18 @@ window.TAKE_ACTION_SUBMIT_URL = '${COMPANION_PROXY_URL}/api/submit';
 JSEOF
 echo "  -> Take_Action/config.js"
 
+# EL (The Nut House)
+cat > EL/js/config.js << JSEOF
+window.COMPANION_CONFIG = {
+  proxyUrl: '${COMPANION_PROXY_URL}',
+  safeguards: {
+    maxMessagesPerSession: 40,
+    maxSessionsPerDay: 15,
+    cooldownSeconds: 3,
+    sessionTimeoutMinutes: 120
+  }
+};
+JSEOF
+echo "  -> EL/js/config.js"
+
 echo "Done. All containers configured for proxy mode."
