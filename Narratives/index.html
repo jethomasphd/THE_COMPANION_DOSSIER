@@ -485,7 +485,11 @@
   <!-- ── ACT VI: THE SHELF (Action) ── -->
   <section id="act-shelf" class="act act-dark" style="min-height:auto;padding:8vh 0 4vh;">
     <div class="act-content act-content-center">
-      <div class="doctrine-ornament" style="margin-bottom:var(--space-2xl);">&#9830; &#9830; &#9830;</div>
+      <!-- Library image -->
+      <div style="margin-bottom:var(--space-2xl);opacity:0;transform:translateY(20px);transition:opacity 2s ease, transform 2s ease;" class="reveal-img">
+        <img src="Assets/library.png" alt="An impossible library — shelves receding deeper than the room should allow" style="width:100%;max-width:900px;border-radius:2px;filter:brightness(0.85);box-shadow:0 0 80px rgba(192,120,90,0.08);">
+      </div>
+      <div class="doctrine-ornament" style="margin-bottom:var(--space-xl);">&#9830; &#9830; &#9830;</div>
       <p class="doctrine-text" style="margin-bottom:0.5rem;">Select a narrative. Open the cover.</p>
       <p class="doctrine-text" style="color:var(--gold-dim);margin-bottom:var(--space-2xl);">The room is already warm.</p>
     </div>
@@ -677,7 +681,7 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.dialog-card, .doctrine-block, .summons-block').forEach(function(el) {
+  document.querySelectorAll('.dialog-card, .doctrine-block, .summons-block, .reveal-img').forEach(function(el) {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 1s ease, transform 1s ease';
