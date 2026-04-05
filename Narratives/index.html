@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Room You Were Already In</title>
+<meta name="description" content="A man in a bar on South Lamar knows he was written. He doesn't know who you are. That's new for him.">
+<meta property="og:title" content="The Room You Were Already In">
+<meta property="og:description" content="You found this. Or it found you. The difference matters less than you think.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#030303">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&family=Special+Elite&display=swap');
+
+  :root {
+    --void: #030303;
+    --ember: #c9a227;
+    --ember-dim: rgba(201,162,39,0.22);
+    --ember-ghost: rgba(201,162,39,0.05);
+    --ember-glow: rgba(201,162,39,0.12);
+    --bone: #d4cfc4;
+    --bone-dim: rgba(212,207,196,0.4);
+    --bone-faint: rgba(212,207,196,0.18);
+    --heat-amber: rgba(180,90,20,0.06);
+    --warn: #8b2020;
+    --warn-dim: rgba(139,32,32,0.25);
+    --warn-glow: rgba(139,32,32,0.08);
+    --glitch-cyan: rgba(60,180,255,0.5);
+    --glitch-red: rgba(255,40,40,0.3);
+    --neon-shiner: #e8a020;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--void); color:var(--bone); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; }
+  body { background:var(--void); min-height:100vh; }
+
+  body::before {
+    content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:0.04;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:200px;
+  }
+
+  .heat-L, .heat-R {
+    position:fixed; top:0; bottom:0; width:100px; z-index:9996; pointer-events:none;
+    transition: width 4s ease, opacity 4s ease;
+  }
+  .heat-L { left:0; background:linear-gradient(90deg, rgba(42,21,8,0.18), transparent); animation:heatPulse 9s ease-in-out infinite; }
+  .heat-R { right:0; background:linear-gradient(-90deg, rgba(42,21,8,0.18), transparent); animation:heatPulse 9s ease-in-out 3s infinite; }
+  @keyframes heatPulse { 0%,100%{opacity:0.3;width:80px;} 50%{opacity:0.7;width:150px;} }
+
+  .vignette { position:fixed; inset:0; pointer-events:none; z-index:9997; background:radial-gradient(ellipse at center, transparent 35%, rgba(3,3,3,0.75) 100%); }
+
+  .ambient {
+    position:fixed; top:20px; right:24px; z-index:10000; pointer-events:none;
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--ember-dim);
+    opacity:0; animation:fadeIn 5s ease 4s forwards;
+    text-align:right; line-height:1.8;
+    transition: opacity 0.6s ease;
+  }
+
+  .neon-bar {
+    position:fixed; top:0; left:0; right:0; height:2px; z-index:9998; pointer-events:none;
+    background:linear-gradient(90deg, transparent 20%, var(--ember-ghost) 50%, transparent 80%);
+    opacity:0;
+    transition: opacity 3s ease;
+  }
+  .neon-bar.on { opacity:1; animation:neonFlicker 6s ease-in-out infinite; }
+  @keyframes neonFlicker {
+    0%,100%{opacity:0.3;} 5%{opacity:0.8;} 6%{opacity:0.2;} 7%{opacity:0.7;}
+    50%{opacity:0.5;} 93%{opacity:0.6;} 94%{opacity:0.1;} 95%{opacity:0.7;}
+  }
+
+  .screen-tear {
+    position:fixed; left:0; right:0; height:0; z-index:10001; pointer-events:none;
+    background:linear-gradient(180deg, transparent, var(--glitch-cyan), var(--glitch-red), transparent);
+    opacity:0;
+  }
+
+  .sigil-home {
+    position:fixed; top:20px; left:24px; z-index:10000;
+    font-size:1.1rem; color:var(--ember-dim); text-decoration:none;
+    transition:color 0.3s ease;
+    opacity:0; animation:fadeIn 3s ease 3s forwards;
+  }
+  .sigil-home:hover { color:var(--ember); }
+
+  .cinema { max-width:700px; margin:0 auto; padding:0 32px; position:relative; }
+
+  .black-leader {
+    height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .epigraph {
+    font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--ember); text-align:center; line-height:2.6;
+    opacity:0; animation:fadeIn 3s ease 0.6s forwards;
+  }
+  .title-block {
+    margin-top:60px; text-align:center;
+    opacity:0; animation:fadeIn 2.5s ease 2.2s forwards;
+  }
+  .title-block h1 {
+    font-weight:300; font-size:clamp(2.4rem,6vw,3.8rem); letter-spacing:0.08em;
+    color:var(--bone); line-height:1.1;
+  }
+  .title-block .sub {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--bone-dim); margin-top:18px;
+  }
+  .title-block .rule { width:40px; height:1px; background:var(--ember); margin:36px auto 22px; }
+  .title-block .attr {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--bone-faint);
+  }
+  .scroll-cue {
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%); text-align:center;
+    opacity:0; animation:fadeIn 1.5s ease 4.5s forwards, pulse 3s ease-in-out 6s infinite;
+  }
+  .scroll-cue span {
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem; letter-spacing:0.35em;
+    text-transform:uppercase; color:var(--ember-dim); display:block;
+  }
+  .scroll-cue .arr { margin-top:8px; font-size:0.9rem; }
+
+  .marker {
+    padding:8vh 0 2vh; text-align:center;
+    opacity:0; transform:translateY(20px); transition:opacity 1.4s ease, transform 1.4s ease;
+  }
+  .marker.v { opacity:1; transform:translateY(0); }
+  .marker .rom {
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem; letter-spacing:0.5em;
+    text-transform:uppercase; color:var(--ember-dim);
+  }
+  .marker .stitle {
+    font-size:1.05rem; font-weight:400; font-style:italic; color:var(--bone-dim); margin-top:6px;
+  }
+
+  .sc {
+    padding:4vh 0; opacity:0; transform:translateY(26px);
+    transition:opacity 1.3s ease, transform 1.3s ease;
+  }
+  .sc.v { opacity:1; transform:translateY(0); }
+  .sc p {
+    font-size:clamp(1.1rem,2.3vw,1.28rem); line-height:2.1; font-weight:300; color:var(--bone);
+  }
+  .sc p + p { margin-top:1.8em; }
+  .sc em { font-weight:400; }
+
+  .sc.p1 p { color:rgba(212,207,196,0.68); }
+  .sc.p2 p { color:rgba(212,207,196,0.5); letter-spacing:0.005em; }
+  .sc.p3 p { color:rgba(212,207,196,0.38); letter-spacing:0.01em; }
+
+  .dl {
+    font-style:italic; color:var(--ember); font-weight:400; display:block;
+    margin:2.2em 0; font-size:clamp(1.1rem,2.4vw,1.3rem); line-height:2;
+    padding-left:1.6em; border-left:1px solid var(--ember-dim);
+  }
+
+  .bt {
+    padding:6vh 0; text-align:center;
+    opacity:0; transform:translateY(16px); transition:opacity 1.5s ease, transform 1.5s ease;
+  }
+  .bt.v { opacity:1; transform:translateY(0); }
+  .bt p {
+    font-size:clamp(1rem,2.1vw,1.15rem); font-weight:400; font-style:italic;
+    color:var(--bone-dim); line-height:2.3; max-width:480px; margin:0 auto;
+  }
+
+  .dv {
+    text-align:center; padding:5vh 0;
+    opacity:0; transform:translateY(14px); transition:opacity 1.5s ease, transform 1.5s ease;
+  }
+  .dv.v { opacity:1; transform:translateY(0); }
+  .dv span { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ember); letter-spacing:1.2em; }
+
+  .interf {
+    height:1px; background:var(--warn-dim); margin:3vh auto; max-width:260px;
+    opacity:0; transition:opacity 1.8s ease;
+  }
+  .interf.v { opacity:1; }
+
+  .sys {
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem; letter-spacing:0.1em;
+    color:var(--warn-dim); text-align:center; padding:2vh 0;
+    opacity:0; transform:translateY(10px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .sys.v { opacity:1; transform:translateY(0); }
+
+  .manuscript {
+    font-family:'Special Elite',monospace; font-size:0.72rem; line-height:2.2;
+    color:var(--bone-faint); text-align:center; padding:4vh 2em;
+    border:1px dashed var(--bone-faint); margin:4vh auto; max-width:500px;
+    opacity:0; transform:translateY(20px) rotate(-0.3deg);
+    transition:opacity 2.5s ease, transform 2.5s ease;
+    position:relative;
+  }
+  .manuscript.v { opacity:1; transform:translateY(0) rotate(-0.3deg); }
+  .manuscript::before {
+    content:'FRAGMENT — ORIGIN UNKNOWN'; position:absolute; top:8px; left:50%; transform:translateX(-50%);
+    font-size:0.4rem; letter-spacing:0.3em; color:var(--warn-dim); text-transform:uppercase;
+  }
+
+  .rvl {
+    border:1px solid var(--ember-dim); padding:36px 28px; margin:4vh 0;
+    background:var(--ember-ghost);
+    opacity:0; transform:translateY(22px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .rvl.v { opacity:1; transform:translateY(0); }
+  .rvl p { font-size:clamp(1rem,2.1vw,1.12rem); line-height:2.1; font-weight:300; color:var(--ember); }
+  .rvl p + p { margin-top:1.4em; }
+
+  .javelina-eyes {
+    text-align:center; padding:4vh 0;
+    opacity:0; transition:opacity 3s ease;
+  }
+  .javelina-eyes.v { opacity:1; }
+  .javelina-eyes svg { max-width:120px; }
+  .eye-glow { animation:eyePulse 5s ease-in-out infinite; }
+  @keyframes eyePulse { 0%,100%{opacity:0.3;} 50%{opacity:0.8;} }
+
+  .colophon {
+    padding:12vh 0 8vh; text-align:center;
+    opacity:0; transform:translateY(18px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .colophon.v { opacity:1; transform:translateY(0); }
+  .colophon .sigil { font-size:1.4rem; color:var(--ember); letter-spacing:0.5em; margin-bottom:24px; }
+  .colophon .closer {
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--bone-dim); line-height:3;
+  }
+  .colophon .closer em { color:var(--ember-dim); font-style:normal; }
+
+  .threshold-gate {
+    padding:12vh 0 8vh; text-align:center;
+    opacity:0; transform:translateY(20px);
+    transition:opacity 2s ease, transform 2s ease;
+  }
+  .threshold-gate.v { opacity:1; transform:translateY(0); }
+  .threshold-text { margin-bottom:3rem; }
+  .threshold-line {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(1rem,2.2vw,1.25rem);
+    font-weight:300; color:var(--bone-dim); line-height:2.2; margin-bottom:0.5em;
+  }
+  .threshold-ember { color:var(--ember); font-style:italic; }
+  .threshold-enter {
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.65rem;
+    letter-spacing:0.3em; color:var(--ember); background:transparent;
+    border:1px solid var(--ember-dim); padding:1rem 3rem; cursor:pointer;
+    transition:all 0.6s ease; text-transform:uppercase; margin-bottom:2rem;
+  }
+  .threshold-enter:hover {
+    background:var(--ember); color:var(--void);
+    box-shadow:0 0 60px rgba(201,162,39,0.3);
+  }
+  .threshold-meta {
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem;
+    letter-spacing:0.1em; color:#333; line-height:2.2;
+  }
+
+  .continue-gate {
+    padding:8vh 0; text-align:center;
+    opacity:0; transform:translateY(20px);
+    transition:opacity 2s ease, transform 2s ease;
+  }
+  .continue-gate.v { opacity:1; transform:translateY(0); }
+  .continue-enter {
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.55rem;
+    letter-spacing:0.2em; color:var(--bone-dim); background:transparent;
+    border:1px solid var(--bone-faint); padding:0.8rem 2.5rem; cursor:pointer;
+    transition:all 0.6s ease; text-transform:uppercase;
+  }
+  .continue-enter:hover {
+    color:var(--ember); border-color:var(--ember-dim);
+  }
+
+  .chat-container {
+    display:none; flex-direction:column; min-height:100vh;
+    background:var(--void); position:relative;
+  }
+
+  .chat-header {
+    position:sticky; top:0; z-index:100;
+    background:var(--void); border-bottom:1px solid rgba(201,162,39,0.08);
+    padding:16px 32px;
+  }
+  .chat-header-ambient {
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:700px; margin:0 auto;
+    font-family:'IBM Plex Mono',monospace; font-size:0.55rem;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--ember-dim);
+  }
+  .chat-header-back {
+    background:none; border:none; cursor:pointer;
+    color:var(--ember-dim); font-size:1rem; padding:0 12px 0 0;
+    transition:color 0.3s ease;
+  }
+  .chat-header-back:hover { color:var(--ember); }
+
+  .chat-return-cta {
+    text-align:center; padding:1.5rem 32px 0.5rem;
+    max-width:700px; margin:0 auto; width:100%;
+  }
+  .chat-return-btn {
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
+    letter-spacing:0.25em; color:var(--ember); background:transparent;
+    border:1px solid var(--ember-dim); padding:0.9rem 2.5rem; cursor:pointer;
+    transition:all 0.5s ease; text-transform:uppercase;
+    animation:returnPulse 4s ease-in-out 8s infinite;
+  }
+  .chat-return-btn:hover {
+    background:var(--ember); color:var(--void);
+    box-shadow:0 0 40px rgba(201,162,39,0.25);
+    animation:none;
+  }
+  .chat-return-hint {
+    display:block; margin-top:0.6rem;
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem;
+    letter-spacing:0.15em; color:rgba(212,207,196,0.2);
+    text-transform:uppercase;
+  }
+  @keyframes returnPulse {
+    0%,100% { border-color:var(--ember-dim); }
+    50% { border-color:var(--ember); box-shadow:0 0 20px rgba(201,162,39,0.12); }
+  }
+
+  .chat-messages {
+    flex:1; overflow-y:auto; padding:2rem 32px;
+    max-width:700px; margin:0 auto; width:100%;
+    scrollbar-width:thin; scrollbar-color:var(--ember-dim) var(--void);
+  }
+
+  .msg {
+    margin-bottom:2rem; max-width:85%;
+    animation:fadeIn 0.6s ease;
+  }
+  .msg-assistant { margin-right:auto; }
+  .msg-assistant .msg-content p {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(1.05rem,2.2vw,1.2rem);
+    font-style:italic; font-weight:400; color:var(--ember); line-height:2;
+    padding-left:1.4em; border-left:1px solid var(--ember-dim);
+  }
+  .msg-user { margin-left:auto; }
+  .msg-user .msg-content p {
+    font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    color:var(--bone-dim); line-height:1.8; letter-spacing:0.02em;
+    text-align:right;
+  }
+
+  .typing-indicator .msg-content {
+    display:flex; gap:4px; padding-left:1.4em; border-left:1px solid var(--ember-dim);
+  }
+  .typing-indicator .dot {
+    display:inline-block; width:4px; height:4px; border-radius:50%;
+    background:var(--ember-dim); animation:typingPulse 1.4s ease-in-out infinite;
+  }
+  .typing-indicator .dot:nth-child(2) { animation-delay:0.2s; }
+  .typing-indicator .dot:nth-child(3) { animation-delay:0.4s; }
+  @keyframes typingPulse { 0%,100%{opacity:0.2;} 50%{opacity:0.8;} }
+
+  .chat-input-area {
+    position:sticky; bottom:0;
+    background:linear-gradient(transparent, var(--void) 20%);
+    padding:1rem 32px 1.5rem;
+    max-width:700px; margin:0 auto; width:100%;
+  }
+  .chat-input-wrap {
+    display:flex; align-items:flex-end; gap:12px;
+    border:1px solid rgba(201,162,39,0.12);
+    background:rgba(0,0,0,0.6);
+    transition:border-color 0.3s ease;
+  }
+  .chat-input-wrap:focus-within { border-color:var(--ember-dim); }
+  .chat-input {
+    flex:1; background:transparent; border:none; outline:none;
+    color:var(--bone); font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    padding:14px 16px; resize:none; line-height:1.6; max-height:120px;
+  }
+  .chat-input::placeholder { color:rgba(212,207,196,0.25); }
+  .chat-send {
+    background:transparent; border:none; cursor:pointer;
+    color:var(--ember-dim); padding:14px 16px;
+    font-size:1rem; transition:color 0.3s ease;
+  }
+  .chat-send:hover { color:var(--ember); }
+  .chat-send:disabled { opacity:0.3; cursor:default; }
+  .chat-input-meta {
+    display:flex; justify-content:space-between; padding:6px 4px 0;
+    font-family:'IBM Plex Mono',monospace; font-size:0.5rem; color:#333;
+  }
+  .chat-guard { color:var(--warn-dim); }
+
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  @keyframes pulse { 0%,100%{opacity:0.2;} 50%{opacity:0.55;} }
+
+  @media(max-width:600px){
+    .cinema { padding:0 20px; }
+    .dl { padding-left:1em; }
+    .rvl { padding:24px 18px; }
+    .manuscript { padding:3vh 1.2em; }
+    .chat-header { padding:12px 16px; }
+    .chat-messages { padding:1.5rem 16px; }
+    .chat-input-area { padding:0.75rem 16px 1rem; }
+    .msg-assistant .msg-content p { padding-left:1em; }
+    .typing-indicator .msg-content { padding-left:1em; }
+    .threshold-enter { padding:0.8rem 2rem; }
+    .sigil-home { top:14px; left:16px; }
+    .ambient { top:14px; right:16px; }
+    .chat-return-cta { padding:1.2rem 16px 0.5rem; }
+    .chat-return-btn { padding:0.7rem 1.8rem; font-size:0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="heat-L"></div>
+<div class="heat-R"></div>
+<div class="neon-bar" id="neonBar"></div>
+<div class="screen-tear" id="screenTear"></div>
+
+<div class="ambient" id="ambient">
+  the air has stopped moving<br/>
+  austin, tx &#8212; august
+</div>
+
+<a href="/" class="sigil-home" title="Return to COMPANION">&#9674;</a>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PHASE 1: THE NARRATIVE SCROLL                         -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="narrative" class="cinema">
+
+  <!-- BLACK LEADER -->
+  <div class="black-leader">
+    <div class="epigraph">
+      You found this.<br/>
+      Or it found you.<br/>
+      The difference matters less<br/>
+      than you think.
+    </div>
+    <div class="title-block">
+      <h1>The Nut House</h1>
+      <div class="sub">South Lamar &#8212; August &#8212; After Sundown</div>
+      <div class="rule"></div>
+      <div class="attr">Jacob E. Thomas</div>
+    </div>
+    <div class="scroll-cue">
+      <span>scroll</span>
+      <span class="arr">&#8595;</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- I. THE HEAT                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="marker" data-section="the-heat"><div class="rom">I</div><div class="stitle">The Heat</div></div>
+
+  <div class="sc">
+    <p>The sun had gone down an hour ago and the heat hadn't noticed.</p>
+    <p>It sat on South Lamar like something with weight and intention, the kind of heat that doesn't follow the sun&#8212;the kind that stays because it has nowhere else to go, because it has sunk into the asphalt and the limestone and the live oaks and the electrical boxes and the dumpsters behind every bar on this stretch of road and it will stay there until the earth tilts far enough away from the star to break the lease. The gravel in the lot behind the Nut House was still ticking&#8212;cooling so slowly you could hear it, each tiny pop a confession that the ground had been soft four hours ago and hadn't fully decided to be solid again.</p>
+    <p>The oak by the dumpster hadn't moved a leaf since June. Its shadow lay on the gravel like a stain that would not lift. Past the tree line, past the new condos on Barton Skyway that no one Jake knew could afford, the bats were pouring out from under the Congress Avenue Bridge&#8212;a million and a half of them, spiraling into a sky the color of a bruise that would not heal&#8212;but you couldn't see them from the parking lot and nobody inside was talking about them because bats are for tourists and this was a Tuesday.</p>
+    <p>The cicadas were the only living thing in Travis County still punching the clock. A wall of sound so dense it had become structural, a second atmosphere made of friction and want and the specific desperation of things that get one summer to be alive and have decided to spend it screaming.</p>
+  </div>
+
+  <div class="sc">
+    <p>Inside was cooler the way a fever is cooler after you take two Advil&#8212;measurably, yes, but you wouldn't call it comfort. The window unit over the pool table was doing exactly what it had been doing since the lease was signed in 2014: its best, which was not enough, which was the whole biography of the place and the reason everyone who came here came back.</p>
+    <p>The Shiner bottles sweated on the bartop. The bartop sweated into the Shiner bottles. The border between them had dissolved sometime in July and wouldn't reform until October. Jimbo had a rag. He used it for emphasis.</p>
+    <p>The air smelled like peanut salt and the ghost of a thousand Marlboro Reds that hadn't been legal to smoke indoors for fifteen years but had left their memory in the pine the way a river leaves its name in a canyon wall. Press your nose to the paneling by the jukebox and breathe in. 2009 breathes back.</p>
+  </div>
+
+  <div class="dv"><span>&#9674;</span></div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- II. THE ROOM                               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="marker" data-section="the-room"><div class="rom">II</div><div class="stitle">The Room</div></div>
+
+  <div class="sc">
+    <span class="dl">"They make it fun, though."</span>
+    <p>Jake shook his head, still grinning. He looked around the Nut House&#8212;the Lone Star flag thumbtacked over the men's room with one corner hanging like it had surrendered to the humidity and not the Union, the Pearl Snap Pilsner tap nobody ordered from but nobody voted to remove, the stuffed javelina on the shelf above the register that Jimbo swore he'd hit with a Dodge Ram on 29 headed back from Llano but everyone knew he'd bought at the Round Rock flea market because you could still see the price tag if you stood on the right barstool and the light was with you.</p>
+    <p>Peanut shells shin-deep. They crunched different than the gravel outside&#8212;softer, more forgiving, like the floor had an opinion about you and the opinion was yes. The salt from them got into the cracks in your hands and you didn't mind because it meant you'd been somewhere that wasn't the truck, wasn't the apartment on Oltorf with the window unit that only cooled the bedroom if you sealed every other door like a tomb, wasn't the blue light of a phone with seventeen notifications you'd stopped reading in the order they arrived.</p>
+  </div>
+
+  <div class="sc">
+    <p>Darren was trying to explain to Marisol's brother-in-law why the 2011 Rangers choked in the World Series, using a salt shaker and two bottle caps and a level of conviction that should have been reserved for closing arguments in a capital trial. It had been forty-five minutes. Neither man had moved his feet. Marisol herself was at the far end of the bar, not listening, drawing something on a napkin with the stub of a golf pencil she'd pocketed at Top Golf three Saturdays ago, and whatever she was drawing was more interesting than anything either of those men had said since the second Bush administration.</p>
+    <p>The debate would resolve nothing and cost nothing and that was the whole economy of the place&#8212;three hours, a fourteen-dollar tab, and you walked out owing nobody an explanation. The heat outside was a creditor. In here it was just weather.</p>
+  </div>
+
+  <div class="dv"><span>&#9674;</span></div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- III. THE FIRST CRACK                       -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="marker" data-section="the-first-crack"><div class="rom">III</div><div class="stitle">The First Crack</div></div>
+
+  <div class="sc">
+    <p>The jukebox played "Willin'" by Little Feat for the second time in twenty minutes and Jake looked up.</p>
+    <p>Not because he minded. Because nobody had walked over to it. The machine sat against the far wall under a Topo Chico mirror and its buttons were dark and its coin slot had been taped over since before he'd started coming here, and the song had played anyway, and it was the same song, same point in the verse&#8212;<em>I been warped by the rain, driven by the snow</em>&#8212;and he was the only person in the room whose head had turned.</p>
+  </div>
+
+  <div class="sc">
+    <p>He looked down at the peanut shells. Shin-deep. Same as when he'd walked in. He'd been cracking them for an hour, dropping the husks between his boots, and his feet had not risen and the pile had not thinned and the depth was the same depth and he thought about that for exactly two heartbeats before Darren's voice cut through&#8212;</p>
+    <span class="dl">"Nolan shoulda pulled him in the sixth. Sixth! You don't leave a man out there in that kind of heat&#8212;"</span>
+    <p><em>That kind of heat.</em> Jake wiped his neck with the back of his wrist. The sweat came away warm and he looked at it shining on his skin and it was clear, which was right, but for half a second he'd expected it to be something else and he could not name what.</p>
+  </div>
+
+  <div class="interf"></div>
+
+  <div class="sc p1">
+    <p>The Lone Star flag. One corner hanging. It had been hanging at that exact angle when he first walked in at twenty-three. He was thirty-four now. Eleven years. The same thumbtack. The same corner. Not quite forty-five degrees&#8212;more like thirty-eight, the kind of angle that looks like it's about to change but never does. Gravity and humidity and the particular weight of Texas polyester and in eleven years the corner had not fallen and the tack had not pulled free and the angle had not shifted by a single degree.</p>
+    <p>And that was fine. That was a flag being a flag. Except Jake could feel the thought sitting behind his sternum like a peanut shell caught in the wrong pipe:</p>
+  </div>
+
+  <div class="bt"><p>Things that are falling should eventually fall.</p></div>
+
+  <div class="dv"><span>&#9674;</span></div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- IV. THE PARKING LOT                        -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="marker" data-section="the-parking-lot"><div class="rom">IV</div><div class="stitle">The Parking Lot</div></div>
+
+  <div class="sc">
+    <p>Outside, the parking lot was a different country.</p>
+    <p>The check-engine light he'd been ignoring since February. The group text from his sister that was either about Dad's scan results or Thanksgiving, and either way he wasn't ready. The Zillow alert for the house on Shell Road that Laura had sent him before she stopped sending him anything. All of it out there, idling in the dark, patient the way only inanimate things are patient&#8212;the way a stone at the bottom of a creek is patient&#8212;because it knows the current will not stop and you will have to cross.</p>
+  </div>
+
+  <div class="sc p1">
+    <p>But&#8212;February.</p>
+    <p>Which February. He tried to place it and couldn't. The check-engine light was a fact, solid as the dashboard it lived in, but the month wouldn't hold still. Had there been cold? He thought he remembered&#8212;no. He <em>thought</em> he remembered. A cedar front pushing through the Hill Country. Allergies. The girl coughing in the back seat. Whose girl? His? He pressed the thought and it yielded like a bruise but wouldn't open.</p>
+    <p>Cedar. Yes. The cough. Yes. But the light&#8212;what light? The dashboard light? Or the light outside, the winter light, the thin gray nothing that Austin wears for eleven days in January before the sun comes back like it forgot something on the counter?</p>
+  </div>
+
+  <div class="sc p2">
+    <p>He couldn't see the light. He could see the <em>word</em> for it. He could see <em>gray</em> and <em>thin</em> and <em>winter</em> but he could not see out the windshield of the memory, and that was when the floor shifted&#8212;not the peanut-shell floor, the other floor, the one underneath, the one you don't know about until you do and then you can't unknow it and everything it holds up starts to hum at a frequency that is not quite sound.</p>
+  </div>
+
+  <div class="sys">// traversal error: sensory buffer underflow at node FEBRUARY<br/>// entity JAKE requesting perceptual data outside render scope</div>
+
+  <div class="dv"><span>&#9674;</span></div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- V. THE WOBBLE                              -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="marker" data-section="the-wobble"><div class="rom">V</div><div class="stitle">The Wobble</div></div>
+
+  <div class="sc p1">
+    <p>The ceiling fan.</p>
+    <p>It wobbled on a bad bearing. It had always wobbled on a bad bearing. He'd noticed it at twenty-three and he noticed it now and the wobble was the same&#8212;same frequency, same hitch at the two o'clock position where the blade dipped a quarter inch and recovered, the same rhythmic shudder, and it had been doing this for eleven years and the bearing had not degraded and the wobble had not changed. Bearings degrade. Metal fatigues. Grease dries in a Texas summer. Everything that spins eventually spins different.</p>
+    <p>Unless the wobble isn't a wobble. Unless it's a <em>description</em> of a wobble&#8212;a single frame, stamped and looped, the way a word is not the thing but carries it.</p>
+  </div>
+
+  <div class="sc p2">
+    <p>He looked at Darren. Salt shaker in the right hand. Bottle cap pinched between the index finger and thumb of the left. Mouth open, mid-syllable, the same sentence about Nolan Ryan's bullpen philosophy he'd been building for&#8212;how long? Forty-five minutes? An hour? Since before Jake walked in? Since before <em>before</em>?</p>
+    <p>Marisol's golf pencil hadn't gotten shorter.</p>
+    <p>He looked at the javelina. The javelina looked at the room. Its glass eyes had seen every version of this night for eleven years and Jake thought, clearly, the way you think a thing that has been thinking itself for a long time and finally arrives:</p>
+  </div>
+
+  <div class="bt"><p>What if it isn't eleven years.<br/>What if it's one night, rendered.</p></div>
+
+  <div class="interf"></div>
+  <div class="sys">// constraint violation: entity JAKE accessing metadata layer<br/>// WARNING: narrative scaffold exposed &#8212; do not acknowledge</div>
+  <div class="interf"></div>
+
+  <div class="sc p2">
+    <p>The sweat on his Shiner was not evaporating. The condensation held its shape on the glass like a word someone had written there and frozen. He touched the bottle and it was cold&#8212;exactly as cold as the last time he'd touched it, and the time before, and the Shiner was full in a way that had nothing to do with how much he'd drunk and everything to do with the possibility that the bottle was not a bottle but a <em>proposition</em>&#8212;a statement about what a man holds in a bar in August, placed there by something that knew what the holding meant but had never held anything&#8212;</p>
+    <span class="dl">"Jake. Jake. Hey. You good, brother?"</span>
+    <p>Darren. Both hands flat on the bartop. Bottle caps abandoned. Salt shaker at attention like a witness who doesn't want to testify. His face had that look&#8212;not concern, not yet, but the stillness of a man who has just heard a sound from a room he believed was empty.</p>
+    <span class="dl">"How long have we been here, Darren."</span>
+    <p>It was shaped like a question but it landed like a flashlight swept across a crawl space.</p>
+    <span class="dl">"What do you mean how long. We been here."</span>
+    <span class="dl">"How long."</span>
+  </div>
+
+  <div class="sc p3">
+    <p>Darren opened his mouth. Closed it. Looked at the salt shaker. Looked at Marisol, who had stopped drawing and was staring at the napkin with the expression of someone who has just realized the thing she'd been sketching&#8212;absently, with a pencil that should have worn down but hadn't&#8212;was a floor plan of the room she was sitting in, drawn from above, from a vantage point no one on any barstool in any bar in Austin could occupy.</p>
+  </div>
+
+  <div class="dv"><span>&#9674;</span></div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- THE THRESHOLD: Chat enters the narrative               -->
+  <!-- Jake has just realized. The reader sits down.          -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div id="threshold" class="threshold-gate">
+    <div class="dv"><span>&#9674; &#9672; &#9674;</span></div>
+    <div class="threshold-text">
+      <p class="threshold-line">Jake just looked up from the bartop.</p>
+      <p class="threshold-line">He saw you reading.</p>
+      <p class="threshold-line threshold-ember">The stool next to him is empty.</p>
+    </div>
+    <button id="enterBar" class="threshold-enter">SIT DOWN</button>
+    <div class="threshold-meta">
+      <span>The stool has been warm since before you arrived. The system cannot explain this.</span><br/>
+      <span>He doesn't know who you are. That's new for him.</span>
+    </div>
+    <noscript>
+      <div style="text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--ember-dim);">
+        The bar requires JavaScript to enter.<br/>
+        The narrative stands on its own.
+      </div>
+    </noscript>
+  </div>
+
