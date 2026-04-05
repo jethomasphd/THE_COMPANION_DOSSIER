@@ -83,4 +83,18 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> EL/js/config.js"
 
+# Narratives (The Room You Were Already In)
+cat > Narratives/js/config.js << JSEOF
+window.COMPANION_CONFIG = {
+  proxyUrl: '${COMPANION_PROXY_URL}',
+  safeguards: {
+    maxMessagesPerSession: 40,
+    maxSessionsPerDay: 15,
+    cooldownSeconds: 3,
+    sessionTimeoutMinutes: 120
+  }
+};
+JSEOF
+echo "  -> Narratives/js/config.js"
+
 echo "Done. All containers configured for proxy mode."
