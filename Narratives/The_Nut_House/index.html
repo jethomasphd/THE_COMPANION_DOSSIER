@@ -335,10 +335,25 @@
     animation:fadeIn 0.6s ease;
   }
   .msg-assistant { margin-right:auto; }
-  .msg-assistant .msg-content p {
-    font-family:'Cormorant Garamond',serif; font-size:clamp(1.05rem,2.2vw,1.2rem);
-    font-style:italic; font-weight:400; color:var(--ember); line-height:2;
-    padding-left:1.4em; border-left:1px solid var(--ember-dim);
+  .msg-assistant .msg-label {
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem;
+    letter-spacing:0.35em; text-transform:uppercase;
+    color:var(--ember-dim); margin-bottom:0.6rem;
+  }
+  .msg-assistant .msg-content {
+    display:flex; flex-direction:column; gap:0;
+  }
+  /* Jake's spoken words — warm, present, his */
+  .msg-voice {
+    font-family:'Cormorant Garamond',serif; font-size:clamp(1.1rem,2.4vw,1.3rem);
+    font-weight:400; color:var(--bone); line-height:2;
+    padding:0.3em 0;
+  }
+  /* Stage direction — recessive, environmental */
+  .msg-stage {
+    font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
+    font-style:italic; color:var(--bone-faint); line-height:1.9;
+    letter-spacing:0.02em; padding:0.5em 0;
   }
   .msg-user { margin-left:auto; }
   .msg-user .msg-content p {
@@ -348,7 +363,7 @@
   }
 
   .typing-indicator .msg-content {
-    display:flex; gap:4px; padding-left:1.4em; border-left:1px solid var(--ember-dim);
+    display:flex; flex-direction:row; gap:4px; padding-left:1.4em; border-left:1px solid var(--ember-dim);
   }
   .typing-indicator .dot {
     display:inline-block; width:4px; height:4px; border-radius:50%;
@@ -991,7 +1006,69 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function parseJakeResponse(text) {
+  // Split text into voice (dialogue) and stage (direction) segments
+  var parts = [];
+  var remaining = text;
+  while (remaining.length > 0) {
+    var stageStart = remaining.indexOf('*');
+    if (stageStart === -1) {
+      // No more stage direction — rest is voice
+      var voice = remaining.trim();
+      if (voice) parts.push({ type: 'voice', text: voice });
+      break;
+    }
+    // Anything before the * is voice
+    if (stageStart > 0) {
+      var voiceBefore = remaining.substring(0, stageStart).trim();
+      if (voiceBefore) parts.push({ type: 'voice', text: voiceBefore });
+    }
+    // Find closing *
+    var stageEnd = remaining.indexOf('*', stageStart + 1);
+    if (stageEnd === -1) {
+      // Unclosed * — treat rest as voice
+      var rest = remaining.substring(stageStart + 1).trim();
+      if (rest) parts.push({ type: 'voice', text: rest });
+      break;
+    }
+    var stageText = remaining.substring(stageStart + 1, stageEnd).trim();
+    if (stageText) parts.push({ type: 'stage', text: stageText });
+    remaining = remaining.substring(stageEnd + 1);
+  }
+  return parts;
+}
+
+function renderJakeMessage(text) {
+  var messages = document.getElementById('chatMessages');
+  var msg = document.createElement('div');
+  msg.className = 'msg msg-assistant';
+
+  var label = document.createElement('div');
+  label.className = 'msg-label';
+  label.textContent = 'jake';
+  msg.appendChild(label);
+
+  var content = document.createElement('div');
+  content.className = 'msg-content';
+
+  var parts = parseJakeResponse(text);
+  parts.forEach(function(part) {
+    var el = document.createElement('div');
+    el.className = part.type === 'stage' ? 'msg-stage' : 'msg-voice';
+    el.textContent = part.text;
+    content.appendChild(el);
+  });
+
+  msg.appendChild(content);
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
 function appendMessage(role, text) {
+  if (role === 'assistant') {
+    renderJakeMessage(text);
+    return;
+  }
   var messages = document.getElementById('chatMessages');
   var msg = document.createElement('div');
   msg.className = 'msg msg-' + role;
@@ -1246,24 +1323,39 @@ function sendToJake(userMessage, isVisible) {
     userMessage,
     systemPrompt,
 
-    // onChunk
+    // onChunk — raw stream display
     function(chunk) {
       hideTyping();
       if (!streamEl) {
         streamEl = document.createElement('div');
         streamEl.className = 'msg msg-assistant';
-        streamEl.innerHTML = '<div class="msg-content"><p></p></div>';
+        var streamLabel = document.createElement('div');
+        streamLabel.className = 'msg-label';
+        streamLabel.textContent = 'jake';
+        streamEl.appendChild(streamLabel);
+        var streamContent = document.createElement('div');
+        streamContent.className = 'msg-content';
+        var streamP = document.createElement('div');
+        streamP.className = 'msg-voice';
+        streamP.id = 'streamTarget';
+        streamContent.appendChild(streamP);
+        streamEl.appendChild(streamContent);
         messages.appendChild(streamEl);
         updateChatStatus('jake is talking');
       }
-      var p = streamEl.querySelector('p');
-      p.textContent += chunk;
+      var target = document.getElementById('streamTarget');
+      target.textContent += chunk;
       messages.scrollTop = messages.scrollHeight;
     },
 
-    // onDone
+    // onDone — re-render with parsed voice/stage separation
     function(fullText) {
       hideTyping();
+      // Replace streaming element with properly parsed version
+      if (streamEl && fullText) {
+        streamEl.remove();
+        renderJakeMessage(fullText);
+      }
       isStreaming = false;
       chatInput.disabled = false;
       chatSend.disabled = false;
