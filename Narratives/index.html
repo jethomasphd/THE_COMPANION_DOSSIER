@@ -753,3 +753,559 @@
 
 </div><!-- /narrative cinema -->
 
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PHASE 2: THE CHAT                                     -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="chat-container" class="chat-container">
+
+  <div class="chat-header">
+    <div class="chat-header-ambient">
+      <div>
+        <button class="chat-header-back" id="backToNarrative" title="Back to the story">&#9674;</button>
+        <span class="chat-header-location">The Nut House &#8212; South Lamar</span>
+      </div>
+      <span class="chat-header-status" id="chatStatus">the stool is warm</span>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+  </div>
+
+  <div class="chat-input-area">
+    <div class="chat-input-wrap">
+      <textarea
+        id="chatInput"
+        class="chat-input"
+        placeholder="The stool is warm..."
+        rows="1"
+        maxlength="2000"
+        aria-label="Message to Jake"
+      ></textarea>
+      <button id="chatSend" class="chat-send" aria-label="Send message">
+        <span class="chat-send-icon">&rarr;</span>
+      </button>
+    </div>
+    <div class="chat-input-meta">
+      <span id="chatGuard" class="chat-guard" role="status"></span>
+      <span class="chat-input-hint">press enter to send</span>
+    </div>
+  </div>
+
+  <div class="chat-return-cta">
+    <button class="chat-return-btn" id="returnToStory">RETURN TO THE STORY &#8594;</button>
+    <span class="chat-return-hint">the narrative continues where you left off</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                               -->
+<!-- ══════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/observer.js"></script>
+<script src="js/api.js"></script>
+<script src="js/protocol.js"></script>
+<script>
+// ═══ Initialize Observer ═══
+OBSERVER.init();
+
+// ═══ Scroll Reveal ═══
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.javelina-eyes,.threshold-gate,.colophon')
+  .forEach(function(el) { obs.observe(el); });
+
+// ═══ Neon bar activation ═══
+var neonBar = document.getElementById('neonBar');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > window.innerHeight * 0.5) neonBar.classList.add('on');
+}, { passive: true });
+
+// ═══ Ambient text evolution (observer-aware) ═══
+var ambientEl = document.getElementById('ambient');
+var ambIdx = 0;
+
+function getAmbientStates() {
+  var states = ['the air has stopped moving\naustin, tx \u2014 august'];
+  var hints = OBSERVER.getAmbientHints();
+
+  // Mix observer hints with scripted states
+  if (hints.length > 0) states.push(hints[0]);
+  states.push('something else hasn\'t');
+  states.push('the air is watching\nso is the javelina');
+  if (hints.length > 1) states.push(hints[1]);
+  states.push('things that are falling\nshould eventually fall');
+  states.push('you\'re still reading\nso are they');
+  if (hints.length > 2) states.push(hints[2]);
+  states.push('the stool next to him is empty');
+
+  return states;
+}
+
+function cycleAmbient() {
+  var states = getAmbientStates();
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  var newIdx = Math.min(Math.floor(pct * states.length), states.length - 1);
+  if (newIdx !== ambIdx) {
+    ambIdx = newIdx;
+    updateAmbient(states[ambIdx]);
+  }
+}
+window.addEventListener('scroll', cycleAmbient, { passive: true });
+
+function updateAmbient(text) {
+  ambientEl.style.opacity = '0';
+  setTimeout(function() {
+    ambientEl.innerHTML = text.replace('\n', '<br/>');
+    ambientEl.style.opacity = '1';
+  }, 600);
+}
+
+// ═══ Screen tears (narrative mode) ═══
+var tearCount = 0;
+function triggerTear() {
+  var tear = document.getElementById('screenTear');
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if (pct < 0.2) { setTimeout(triggerTear, 8000 + Math.random() * 12000); return; }
+
+  var y = Math.random() * window.innerHeight;
+  tear.style.top = y + 'px';
+  tear.style.height = (2 + Math.random() * 4) + 'px';
+  tear.style.opacity = (0.3 + pct * 0.5).toString();
+  setTimeout(function() { tear.style.opacity = '0'; tear.style.height = '0'; }, 80 + Math.random() * 120);
+
+  tearCount++;
+  var delay = Math.max(3000, 10000 - tearCount * 400 - pct * 5000);
+  setTimeout(triggerTear, delay + Math.random() * 3000);
+}
+setTimeout(triggerTear, 12000);
+
+// ═══ System text flicker ═══
+function sysFlicker() {
+  document.querySelectorAll('.sys.v').forEach(function(s) {
+    s.style.opacity = Math.random() > 0.4 ? '0.4' : '1';
+    setTimeout(function() { s.style.opacity = '1'; }, 80 + Math.random() * 100);
+  });
+  setTimeout(sysFlicker, 2500 + Math.random() * 5000);
+}
+setTimeout(sysFlicker, 10000);
+
+// ═══ Observer-generated system messages (injected during scroll) ═══
+var observerSysInjected = false;
+function injectObserverSys() {
+  if (observerSysInjected) return;
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if (pct < 0.5) return;
+
+  observerSysInjected = true;
+  var messages = OBSERVER.getSystemMessage();
+  var target = document.getElementById('observerSys1');
+  if (target && messages.length > 0) {
+    target.innerHTML += '<br/>' + messages.join('<br/>');
+  }
+}
+window.addEventListener('scroll', injectObserverSys, { passive: true });
+
+// ═══ Colophon observer data ═══
+function updateColophonObserver() {
+  var el = document.getElementById('colophonObserver');
+  if (!el) return;
+  var d = OBSERVER.get();
+  var lines = [];
+
+  if (d.isReturn) {
+    lines.push('[ You have been here before. Visit ' + d.visitCount + '. ]');
+    lines.push('[ The room kept your shape. ]');
+  } else {
+    lines.push('[ First visit. The room is learning your weight. ]');
+  }
+
+  if (d.isLateNight) {
+    lines.push('[ It is ' + String(d.arrivalHour).padStart(2,'0') + ':' + String(d.arrivalTime.getMinutes()).padStart(2,'0') + ' where you are. ]');
+    lines.push('[ Most doors are closed at this hour. This one wasn\'t. ]');
+  }
+
+  if (d.longestPauseSection) {
+    lines.push('[ You lingered on: ' + d.longestPauseSection + '. ]');
+    lines.push('[ It lingered on you. ]');
+  }
+
+  if (d.hasScrolledBack) {
+    lines.push('[ You scrolled back. The text felt it. ]');
+  }
+
+  lines.push('[ The javelina is still watching. ]');
+  el.innerHTML = lines.join('<br/>');
+}
+
+// Run colophon update when it becomes visible
+var colophonObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { updateColophonObserver(); colophonObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+var colophonEl = document.querySelector('.colophon');
+if (colophonEl) colophonObs.observe(colophonEl);
+
+// ═══ Heat shimmer on scroll ═══
+window.addEventListener('scroll', function() {
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  var w = 80 + pct * 100;
+  var o = 0.15 + pct * 0.25;
+  document.querySelector('.heat-L').style.width = w + 'px';
+  document.querySelector('.heat-L').style.opacity = o;
+  document.querySelector('.heat-R').style.width = w + 'px';
+  document.querySelector('.heat-R').style.opacity = o;
+}, { passive: true });
+
+// ═══ Javelina eyes intensify on return visits ═══
+(function() {
+  var d = OBSERVER.get();
+  if (d.isReturn) {
+    var style = document.createElement('style');
+    var intensity = Math.min(0.4 + d.visitCount * 0.1, 0.9);
+    style.textContent = '.eye-glow { animation:eyePulse 3s ease-in-out infinite; }' +
+      '@keyframes eyePulse { 0%,100%{opacity:' + (intensity * 0.5) + ';} 50%{opacity:' + intensity + ';} }';
+    document.head.appendChild(style);
+  }
+})();
+
+// ═══ Auto-grow textarea ═══
+var chatInput = document.getElementById('chatInput');
+chatInput.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+// ═══ Chat UI helpers ═══
+function escapeHtml(text) {
+  var div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function appendMessage(role, text) {
+  var messages = document.getElementById('chatMessages');
+  var msg = document.createElement('div');
+  msg.className = 'msg msg-' + role;
+  msg.innerHTML = '<div class="msg-content"><p>' + text + '</p></div>';
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function showTyping() {
+  var messages = document.getElementById('chatMessages');
+  var indicator = document.createElement('div');
+  indicator.className = 'msg msg-assistant typing-indicator';
+  indicator.id = 'typingIndicator';
+  indicator.innerHTML = '<div class="msg-content"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  messages.appendChild(indicator);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function hideTyping() {
+  var el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+function updateChatStatus(status) {
+  document.getElementById('chatStatus').textContent = status;
+}
+
+function setHeatIntensity(level) {
+  var w = 80 + level * 120;
+  var o = 0.15 + level * 0.35;
+  document.querySelector('.heat-L').style.width = w + 'px';
+  document.querySelector('.heat-L').style.opacity = o;
+  document.querySelector('.heat-R').style.width = w + 'px';
+  document.querySelector('.heat-R').style.opacity = o;
+}
+
+function updateChatAmbient() {
+  var history = NARRATIVES.API.getHistory();
+  var count = history.length;
+  var d = OBSERVER.get();
+  var text;
+
+  if (count <= 4) {
+    text = d.isReturn ? 'you came back\nsouth lamar \u2014 late' : 'the stool is warm\nsouth lamar \u2014 late';
+  } else if (count <= 12) {
+    text = 'jimbo wipes the bartop\nthe jukebox hums';
+  } else if (count <= 24) {
+    text = 'darren stopped talking\nmarisol looks up';
+  } else if (count <= 40) {
+    text = d.isNight ? 'the cicadas are louder now\nit is late where you are' : 'the cicadas are louder now\nor maybe you\'re listening';
+  } else {
+    text = 'last call was an hour ago\nnobody moved';
+  }
+  updateAmbient(text);
+}
+
+// ═══ Screen tears (chat mode) ═══
+function chatTears() {
+  if (document.getElementById('chat-container').style.display !== 'flex') {
+    setTimeout(chatTears, 10000);
+    return;
+  }
+  var tear = document.getElementById('screenTear');
+  var y = Math.random() * window.innerHeight;
+  tear.style.top = y + 'px';
+  tear.style.height = (1 + Math.random() * 3) + 'px';
+  tear.style.opacity = '0.2';
+  setTimeout(function() {
+    tear.style.opacity = '0';
+    tear.style.height = '0';
+  }, 60 + Math.random() * 80);
+  setTimeout(chatTears, 8000 + Math.random() * 15000);
+}
+
+// ═══ System flicker (chat mode, observer-aware) ═══
+function chatSystemFlicker() {
+  if (!chatInitiated) return;
+  var messages = document.getElementById('chatMessages');
+  var history = NARRATIVES.API.getHistory();
+  if (history.length < 12 || Math.random() > 0.15) {
+    setTimeout(chatSystemFlicker, 20000 + Math.random() * 40000);
+    return;
+  }
+
+  var d = OBSERVER.get();
+  var flickers = [
+    '// the javelina blinked',
+    '// marisol\'s pencil moved',
+    '// traversal depth: nominal',
+    '// the wobble is still the same wobble',
+    '// session note: they stayed'
+  ];
+
+  // Add observer-aware flickers
+  if (d.isReturn) flickers.push('// return visitor \u2014 the stool remembers');
+  if (d.isLateNight) flickers.push('// ' + String(d.arrivalHour).padStart(2,'0') + ':' + String(d.arrivalTime.getMinutes()).padStart(2,'0') + ' \u2014 most people are asleep');
+  if (d.hasScrolledBack) flickers.push('// they went back to re-read something');
+  if (d.tabHiddenCount > 0) flickers.push('// they looked away. the javelina didn\'t.');
+
+  var sys = document.createElement('div');
+  sys.textContent = flickers[Math.floor(Math.random() * flickers.length)];
+  sys.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:0.5rem;' +
+    'color:var(--warn-dim);text-align:center;padding:1rem 0;opacity:0;' +
+    'transition:opacity 1.5s ease;letter-spacing:0.1em;';
+  messages.appendChild(sys);
+  requestAnimationFrame(function() { sys.style.opacity = '0.5'; });
+  setTimeout(function() {
+    sys.style.opacity = '0';
+    setTimeout(function() { sys.remove(); }, 1500);
+  }, 4000);
+  setTimeout(chatSystemFlicker, 30000 + Math.random() * 60000);
+}
+
+// ═══ TRANSITION: Narrative > Chat ═══
+document.getElementById('enterBar').addEventListener('click', function() {
+  var narrative = document.getElementById('narrative');
+  var chat = document.getElementById('chat-container');
+  var tear = document.getElementById('screenTear');
+
+  // Screen tear
+  tear.style.top = '50%';
+  tear.style.height = '6px';
+  tear.style.opacity = '0.7';
+  setTimeout(function() { tear.style.height = '0'; tear.style.opacity = '0'; }, 150);
+
+  // Fade out narrative
+  narrative.style.transition = 'opacity 1s ease';
+  narrative.style.opacity = '0';
+
+  setTimeout(function() {
+    narrative.style.display = 'none';
+    chat.style.display = 'flex';
+    chat.style.opacity = '0';
+
+    requestAnimationFrame(function() {
+      chat.style.transition = 'opacity 0.8s ease';
+      chat.style.opacity = '1';
+    });
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Intensify atmosphere
+    neonBar.classList.add('on');
+    setHeatIntensity(0.6);
+
+    var d = OBSERVER.get();
+    var arrivalText = d.isReturn ? 'you came back\nthe stool remembers' : 'the stool is warm\nsouth lamar \u2014 late';
+    updateAmbient(arrivalText);
+
+    // Start ambient effects
+    setTimeout(chatTears, 5000);
+
+    // Jake's opening
+    setTimeout(function() {
+      initiateChat();
+    }, 1200);
+
+  }, 1000);
+});
+
+// ═══ TRANSITION: Chat > Narrative (resume at VI) ═══
+function returnToNarrative() {
+  var narrative = document.getElementById('narrative');
+  var chat = document.getElementById('chat-container');
+  var postChat = document.getElementById('postChat');
+
+  chat.style.transition = 'opacity 0.6s ease';
+  chat.style.opacity = '0';
+
+  setTimeout(function() {
+    chat.style.display = 'none';
+
+    // Reveal post-chat sections (VI-VIII)
+    postChat.style.display = 'block';
+
+    // Re-observe newly visible elements for scroll-reveal
+    postChat.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.javelina-eyes,.colophon')
+      .forEach(function(el) { obs.observe(el); });
+
+    narrative.style.display = 'block';
+    narrative.style.opacity = '0';
+
+    requestAnimationFrame(function() {
+      narrative.style.transition = 'opacity 0.8s ease';
+      narrative.style.opacity = '1';
+    });
+
+    // Scroll to VI
+    setTimeout(function() {
+      postChat.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+
+    setHeatIntensity(0.3);
+    updateAmbient('the story continues\nhe stayed');
+  }, 600);
+}
+
+document.getElementById('backToNarrative').addEventListener('click', returnToNarrative);
+document.getElementById('returnToStory').addEventListener('click', returnToNarrative);
+
+// ═══ CHAT ENGINE ═══
+var isStreaming = false;
+var chatInitiated = false;
+
+function initiateChat() {
+  if (chatInitiated) return;
+  chatInitiated = true;
+
+  if (!NARRATIVES.API.isReady()) {
+    appendMessage('assistant', 'The connection to the bar has been lost. The proxy is not configured.');
+    chatInput.disabled = true;
+    document.getElementById('chatSend').disabled = true;
+    return;
+  }
+
+  NARRATIVES.API.registerSession();
+
+  var d = OBSERVER.get();
+  var opener = '[The person who just read the story has sat down on the stool next to you. They haven\'t said anything yet. You noticed them right at the moment you were asking Darren how long you\'d been here. The realization is still fresh. You notice them.';
+  if (d.isReturn) opener += ' This person has been here before \u2014 you can feel it, the way you feel a groove in wood.';
+  if (d.isLateNight) opener += ' It is very late wherever they are.';
+  opener += ']';
+
+  sendToJake(opener, false);
+}
+
+function sendToJake(userMessage, isVisible) {
+  if (isStreaming) return;
+
+  var chatSend = document.getElementById('chatSend');
+  var messages = document.getElementById('chatMessages');
+
+  if (isVisible !== false) {
+    appendMessage('user', escapeHtml(userMessage));
+    OBSERVER.registerChatMessage();
+  }
+
+  chatInput.value = '';
+  chatInput.style.height = 'auto';
+  chatInput.disabled = true;
+  chatSend.disabled = true;
+  isStreaming = true;
+
+  showTyping();
+  updateChatStatus('...');
+
+  var observerContext = OBSERVER.getChatContext();
+  var systemPrompt = NARRATIVES.Protocol.buildSystemPrompt(observerContext);
+  var streamEl = null;
+
+  NARRATIVES.API.sendMessage(
+    userMessage,
+    systemPrompt,
+
+    // onChunk
+    function(chunk) {
+      hideTyping();
+      if (!streamEl) {
+        streamEl = document.createElement('div');
+        streamEl.className = 'msg msg-assistant';
+        streamEl.innerHTML = '<div class="msg-content"><p></p></div>';
+        messages.appendChild(streamEl);
+        updateChatStatus('jake is talking');
+      }
+      var p = streamEl.querySelector('p');
+      p.textContent += chunk;
+      messages.scrollTop = messages.scrollHeight;
+    },
+
+    // onDone
+    function(fullText) {
+      hideTyping();
+      isStreaming = false;
+      chatInput.disabled = false;
+      chatSend.disabled = false;
+      chatInput.focus();
+      updateChatStatus('the stool is warm');
+      updateChatAmbient();
+
+      // Start system flicker after first exchange
+      if (NARRATIVES.API.getHistory().length === 2) {
+        setTimeout(chatSystemFlicker, 30000);
+      }
+    },
+
+    // onError
+    function(errorMsg) {
+      hideTyping();
+      isStreaming = false;
+      chatInput.disabled = false;
+      chatSend.disabled = false;
+      updateChatStatus('the signal broke');
+
+      var guard = document.getElementById('chatGuard');
+      guard.textContent = errorMsg;
+      setTimeout(function() { guard.textContent = ''; }, 5000);
+    }
+  );
+}
+
+function handleSend() {
+  var text = chatInput.value.trim();
+  if (!text || isStreaming) return;
+  sendToJake(text, true);
+}
+
+document.getElementById('chatSend').addEventListener('click', handleSend);
+chatInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    handleSend();
+  }
+});
+</script>
+
+</body>
+</html>
