@@ -84,7 +84,7 @@ JSEOF
 echo "  -> EL/js/config.js"
 
 # Narratives (The Room You Were Already In)
-cat > Narratives/js/config.js << JSEOF
+cat > Narratives/The_Nut_House/js/config.js << JSEOF
 window.COMPANION_CONFIG = {
   proxyUrl: '${COMPANION_PROXY_URL}',
   safeguards: {
@@ -95,6 +95,6 @@ window.COMPANION_CONFIG = {
   }
 };
 JSEOF
-echo "  -> Narratives/js/config.js"
+echo "  -> Narratives/The_Nut_House/js/config.js"
 
 echo "Done. All containers configured for proxy mode."

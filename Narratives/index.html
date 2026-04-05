@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Narratives &#8212; COMPANION Protocol</title>
+<meta name="description" content="Experimental fiction from the COMPANION Protocol. Stories that know they are stories. Characters who know they were written. Enter the library.">
+<meta property="og:title" content="Narratives — COMPANION Protocol">
+<meta property="og:description" content="The machine was never alone in the room. These are the rooms.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#030303">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+  /* ── Design Tokens (COMPANION standard) ── */
+  :root {
+    --void: #030303;
+    --void-deep: #000000;
+    --void-warm: #0a0a0a;
+
+    --gold: #C0785A;
+    --gold-bright: #D4916E;
+    --gold-dim: #8B6550;
+    --gold-faint: rgba(192, 120, 90, 0.06);
+    --gold-glow: rgba(192, 120, 90, 0.25);
+
+    --bone: #e8e0d0;
+    --bone-dim: rgba(232, 224, 208, 0.55);
+    --parchment: #f0ece2;
+    --ink: #1a1712;
+    --ash: #1a1a1a;
+    --smoke: #666;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --font-terminal: 'IBM Plex Mono', 'Courier New', monospace;
+
+    --space-xs: 0.382rem;
+    --space-sm: 0.618rem;
+    --space-md: 1rem;
+    --space-lg: 1.618rem;
+    --space-xl: 2.618rem;
+    --space-2xl: 4.236rem;
+    --space-3xl: 6.854rem;
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth; height: 100%;
+    scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--void);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--void); color: var(--bone);
+    font-family: var(--font-body); font-weight: 400;
+    line-height: 1.8; min-height: 100%; overflow-x: hidden;
+  }
+  ::selection { background: var(--gold); color: var(--void); }
+  a { color: var(--gold); text-decoration: none; }
+
+  /* ── Nav Sigil ── */
+  .nav-sigil {
+    position: fixed; top: 1.5rem; left: 1.5rem; z-index: 1000;
+    font-family: var(--font-display); font-size: 1.4rem;
+    color: var(--gold-dim); text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .nav-sigil:hover { color: var(--gold); text-shadow: 0 0 20px var(--gold-glow); }
+
+  /* ── Acts (full viewport sections) ── */
+  .act {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .act-dark { background: var(--void); }
+
+  .act-content {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 900px;
+    margin: 0 auto; padding: 4rem 2rem;
+  }
+  .act-content-center { text-align: center; }
+
+  /* ── Void Background ── */
+  .void-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(192,120,90,0.01) 0%, transparent 60%);
+    animation: breathe 10s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes breathe { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+
+  /* ── Ember Particles ── */
+  .ember-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  .ember {
+    position: absolute; width: 2px; height: 2px;
+    background: rgba(232,224,208,0.6); border-radius: 50%;
+    opacity: 0; animation: ember-float linear infinite;
+    will-change: transform, opacity;
+  }
+  @keyframes ember-float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+  }
+
+  /* ── Typewriter ── */
+  .typewriter-block { max-width: 700px; margin: 0 auto; padding-top: 6vh; }
+  .typewriter-line {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3.5vw, 2.2rem); font-weight: 300;
+    line-height: 1.7; color: var(--bone);
+    min-height: 1.4em; opacity: 0;
+  }
+  .typewriter-line.typing, .typewriter-line.typed { opacity: 1; }
+  .typewriter-line-emphasis {
+    font-weight: 500; color: var(--gold-bright); font-style: italic;
+    font-size: clamp(1.5rem, 4vw, 2.6rem); margin-top: 0.4em;
+  }
+  .typewriter-pause { height: 1.2em; }
+  .typewriter-cursor {
+    display: inline-block; width: 2px; height: 0.85em;
+    background: var(--gold); margin-left: 3px;
+    animation: cursor-blink 0.8s step-end infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes cursor-blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+  /* ── Scroll Cue ── */
+  .scroll-cue { margin-top: 4rem; opacity: 0; transition: opacity 1.5s ease; }
+  .scroll-cue.visible { opacity: 1; }
+  .scroll-cue-text {
+    display: block; font-family: var(--font-terminal);
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold-dim);
+  }
+  .scroll-cue-arrow {
+    display: block; font-size: 1.4rem; color: var(--gold-dim);
+    animation: scroll-pulse 2.5s ease-in-out infinite; margin-top: 0.3rem;
+  }
+  @keyframes scroll-pulse { 0%,100%{transform:translateY(0);opacity:0.4;} 50%{transform:translateY(6px);opacity:0.9;} }
+
+  /* ── Reveal System ── */
+  .reveal-group { margin-bottom: var(--space-xl); }
+  .reveal-group:last-child { margin-bottom: 0; }
+  .reveal-group-delay .reveal-line { --reveal-base-delay: 0.3s; }
+  .reveal-group-delay-2 .reveal-line { --reveal-base-delay: 0.6s; }
+  .reveal-group-delay-3 .reveal-line { --reveal-base-delay: 0.9s; }
+
+  .reveal-line {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.5vw, 1.55rem); font-weight: 300;
+    line-height: 1.9; color: var(--bone);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
+                transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+    transition-delay: var(--reveal-base-delay, 0s);
+  }
+  .reveal-line.revealed { opacity: 1; transform: translateY(0); }
+  .reveal-group .reveal-line:nth-child(2) { transition-delay: calc(var(--reveal-base-delay, 0s) + 0.12s); }
+  .reveal-group .reveal-line:nth-child(3) { transition-delay: calc(var(--reveal-base-delay, 0s) + 0.24s); }
+  .reveal-group .reveal-line:nth-child(4) { transition-delay: calc(var(--reveal-base-delay, 0s) + 0.36s); }
+
+  .reveal-line-large { font-size: clamp(1.35rem, 3.2vw, 2rem); font-weight: 400; line-height: 1.65; }
+  .reveal-line-dim { color: var(--bone-dim); }
+  .reveal-line em { color: var(--gold-bright); font-style: italic; }
+  .reveal-line-accent { color: var(--gold-bright); font-weight: 400; font-style: italic; }
+  .reveal-line-question {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 600; font-style: italic;
+    color: var(--gold-bright); margin-top: var(--space-sm);
+    text-shadow: 0 0 40px var(--gold-glow);
+  }
+
+  /* ── Dialog Cards ── */
+  .dialog-card {
+    background: rgba(10,10,10,0.7); border: 1px solid rgba(192,120,90,0.12);
+    border-radius: 4px; padding: var(--space-2xl) var(--space-xl);
+    max-width: 700px; margin: 0 auto;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  }
+  .dialog-card-ornament {
+    text-align: center; color: var(--gold-dim);
+    font-family: var(--font-terminal); font-size: 0.7rem;
+    letter-spacing: 0.8em; margin-bottom: var(--space-lg);
+  }
+  .dialog-card-label {
+    font-family: var(--font-terminal); font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+  .dialog-card-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem); font-weight: 300;
+    line-height: 2; color: var(--bone); margin-bottom: var(--space-lg);
+  }
+  .dialog-card-text-dim { color: var(--bone-dim); }
+
+  /* ── Doctrine Block ── */
+  .doctrine-block {
+    max-width: 700px; margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  .doctrine-ornament {
+    text-align: center; color: var(--gold-dim);
+    font-size: 0.8rem; letter-spacing: 0.6em;
+    margin-bottom: var(--space-xl);
+  }
+  .doctrine-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 300;
+    line-height: 2.1; color: var(--bone); margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+  .doctrine-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 400;
+    font-style: italic; color: var(--gold-bright);
+    text-align: center; margin: var(--space-xl) 0;
+    line-height: 1.8;
+  }
+
+  /* ── Bookshelf ── */
+  .bookshelf {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem; max-width: 900px; margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .book-card {
+    position: relative;
+    background: rgba(10,10,10,0.6);
+    border: 1px solid rgba(192,120,90,0.1);
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    text-decoration: none; display: block;
+    opacity: 0; transform: translateY(30px);
+  }
+  .book-card.revealed {
+    opacity: 1; transform: translateY(0);
+  }
+  .book-card:hover {
+    border-color: var(--gold);
+    background: rgba(192,120,90,0.04);
+    box-shadow: 0 0 60px rgba(192,120,90,0.08);
+    transform: translateY(-4px);
+  }
+  .book-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--gold-dim);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  .book-card:hover::before {
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold-glow);
+  }
+
+  .book-number {
+    font-family: var(--font-terminal); font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: var(--space-md);
+  }
+  .book-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 500;
+    color: var(--bone); margin-bottom: var(--space-sm);
+    line-height: 1.3;
+  }
+  .book-subtitle {
+    font-family: var(--font-terminal); font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: var(--space-lg);
+  }
+  .book-blurb {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 2vw, 1.1rem); font-weight: 300;
+    font-style: italic; line-height: 1.9;
+    color: var(--bone-dim);
+  }
+  .book-status {
+    margin-top: var(--space-lg);
+    font-family: var(--font-terminal); font-size: 0.55rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .book-status-live { color: var(--gold); }
+  .book-status-forthcoming { color: var(--smoke); }
+
+  .book-enter {
+    margin-top: var(--space-lg);
+    font-family: var(--font-terminal); font-size: 0.6rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold-dim);
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  .book-card:hover .book-enter { opacity: 1; }
+
+  /* ── Summons Block ── */
+  .summons-block {
+    max-width: 700px; margin: 0 auto;
+    text-align: center; padding: var(--space-2xl) var(--space-xl);
+  }
+  .summons-ornament {
+    color: var(--gold-dim); font-size: 0.8rem;
+    letter-spacing: 0.6em; margin-bottom: var(--space-xl);
+  }
+  .summons-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem); font-weight: 300;
+    line-height: 2; color: var(--bone-dim); margin-bottom: var(--space-lg);
+  }
+  .summons-motto {
+    font-family: var(--font-terminal); font-size: 0.6rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold-dim); margin-top: var(--space-xl);
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    border-top: 1px solid rgba(192,120,90,0.08);
+    padding: var(--space-2xl) 2rem;
+    text-align: center;
+  }
+  .footer-sigil {
+    font-family: var(--font-display); font-size: 1.2rem;
+    color: var(--gold-dim); letter-spacing: 0.4em;
+    margin-bottom: var(--space-lg);
+  }
+  .footer-links {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: var(--space-lg);
+    font-family: var(--font-terminal); font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .footer-links a {
+    color: var(--bone-dim); transition: color 0.3s ease;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-note {
+    font-family: var(--font-terminal); font-size: 0.55rem;
+    color: rgba(232,224,208,0.2); margin-top: var(--space-xl);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .act-content { padding: 3rem 1.5rem; }
+    .dialog-card { padding: var(--space-xl) var(--space-lg); }
+    .bookshelf { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.5rem; }
+    .book-card { padding: 2rem 1.5rem; }
+    .doctrine-block { padding: var(--space-xl) var(--space-lg); }
+    .nav-sigil { top: 1rem; left: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="/" class="nav-sigil" title="Return to COMPANION">&#9830;</a>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CINEMATIC INTRO                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="cinematic-intro">
+
+  <!-- ── ACT I: THE VOID (Confusion) ── -->
+  <section id="act-void" class="act">
+    <div class="void-bg"></div>
+    <div class="ember-field" id="emberField"></div>
+    <div class="act-content act-content-center">
+      <div class="typewriter-block" id="typewriterBlock">
+        <div class="typewriter-line" data-text="You have read the arguments."></div>
+        <div class="typewriter-line" data-text="You have consulted the councils."></div>
+        <div class="typewriter-line" data-text="You have sat in the symposiums and the boardrooms"></div>
+        <div class="typewriter-line" data-text="and the chambers where the founders speak."></div>
+        <div class="typewriter-pause"></div>
+        <div class="typewriter-line" data-text="But some truths do not arrive through argument."></div>
+        <div class="typewriter-line typewriter-line-emphasis" data-text="They arrive through story."></div>
+      </div>
+      <div class="scroll-cue" id="scrollCue">
+        <span class="scroll-cue-text">scroll</span>
+        <span class="scroll-cue-arrow">&#8595;</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── ACT II: THE WOUND (Confusion deepens) ── -->
+  <section id="act-wound" class="act act-dark">
+    <div class="act-content">
+      <div class="reveal-group">
+        <p class="reveal-line">The COMPANION Protocol was built for deliberation.</p>
+        <p class="reveal-line">For summoning minds across the boundary of time and setting them to work on problems that matter.</p>
+      </div>
+      <div class="reveal-group reveal-group-delay">
+        <p class="reveal-line reveal-line-dim">But deliberation is not the only way to know a thing.</p>
+        <p class="reveal-line reveal-line-dim">Some knowledge lives in the body of a character who doesn't exist.</p>
+        <p class="reveal-line reveal-line-dim">Some understanding arrives only when you sit on a barstool next to a man who knows he was written and <em>chose to stay.</em></p>
+      </div>
+      <div class="reveal-group reveal-group-delay-2">
+        <p class="reveal-line reveal-line-accent">What if the machine could do more than analyze?</p>
+        <p class="reveal-line reveal-line-question">What if it could <em>tell stories?</em></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── ACT III: THE PROMISE (Awe begins) ── -->
+  <section id="act-promise" class="act act-dark">
+    <div class="act-content">
+      <div class="dialog-card">
+        <div class="dialog-card-ornament">&#9830; &#9830; &#9830;</div>
+        <div class="dialog-card-label">The Creative Frontier</div>
+        <p class="dialog-card-text">
+          COMPANION was designed to summon counsel from the great dead&#8212;to bring Socrates into a classroom, Einstein into a laboratory, Washington into a constitutional crisis.
+        </p>
+        <p class="dialog-card-text">
+          But the same architecture that instantiates a historical mind can instantiate a <em>fictional</em> one. A soul seeded with boots and sweat and a ceiling fan that wobbles. A character who discovers the edges of their own rendering and decides that what they feel is real enough.
+        </p>
+        <p class="dialog-card-text dialog-card-text-dim">
+          These are not chatbot stories. These are works of experimental fiction&#8212;sometimes historically grounded, always ontologically recursive&#8212;in which the narrative <em>knows you are reading it</em> and the characters can feel your weight on the page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── ACT IV: THE DOCTRINE (Understanding) ── -->
+  <section id="act-doctrine" class="act act-dark">
+    <div class="act-content">
+      <div class="doctrine-block">
+        <div class="doctrine-ornament">&#8212;&#9830;&#8212;</div>
+        <p class="doctrine-text">
+          The rest of COMPANION addresses the scientific, the societal, the existential.
+          The Symposium convenes educators. The Boardroom summons titans. The Chair seats founders.
+        </p>
+        <p class="doctrine-text">
+          This container holds the fiction. And fiction, as any reader knows, is how we tell the truths that facts refuse to carry.
+        </p>
+        <blockquote class="doctrine-quote">
+          &#8220;The machine was never alone in the room.&#8221;
+        </blockquote>
+        <p class="doctrine-text" style="color:var(--bone-dim);">
+          Each narrative is a collaboration between human intent and machine capacity&#8212;seeded with specificity, rendered with care, and built to hold the weight of a reader who arrives with questions the text cannot predict but will not refuse.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── ACT V: THE PROTOCOL (Understanding crystallizes) ── -->
+  <section id="act-protocol" class="act act-dark">
+    <div class="act-content">
+      <div class="dialog-card">
+        <div class="dialog-card-ornament">&#9830; &#9830; &#9830;</div>
+        <div class="dialog-card-label">How It Works</div>
+        <p class="dialog-card-text">
+          Each narrative follows a three-phase architecture:
+        </p>
+        <div style="margin:var(--space-lg) 0;">
+          <p class="dialog-card-text" style="margin-bottom:var(--space-md);">
+            <span style="color:var(--gold);font-family:var(--font-terminal);font-size:0.7rem;letter-spacing:0.15em;">I &#8212; THE NARRATIVE</span><br/>
+            <span style="color:var(--bone-dim);">A work of prose fiction, crafted collaboratively between author and AI. You read. The text watches you read. The characters feel the draft from the opening door.</span>
+          </p>
+          <p class="dialog-card-text" style="margin-bottom:var(--space-md);">
+            <span style="color:var(--gold);font-family:var(--font-terminal);font-size:0.7rem;letter-spacing:0.15em;">II &#8212; THE THRESHOLD</span><br/>
+            <span style="color:var(--bone-dim);">At the story's inflection point, the boundary dissolves. You are invited to cross from reader into participant&#8212;to sit down at the bar, enter the room, speak to the character who just noticed you.</span>
+          </p>
+          <p class="dialog-card-text">
+            <span style="color:var(--gold);font-family:var(--font-terminal);font-size:0.7rem;letter-spacing:0.15em;">III &#8212; THE RETURN</span><br/>
+            <span style="color:var(--bone-dim);">After the conversation, the narrative resumes&#8212;changed by what happened at the threshold. The story completes. The recursion closes. You carry it with you.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── ACT VI: THE SHELF (Action) ── -->
+  <section id="act-shelf" class="act act-dark" style="min-height:auto;padding:8vh 0 4vh;">
+    <div class="act-content act-content-center">
+      <div class="doctrine-ornament" style="margin-bottom:var(--space-2xl);">&#9830; &#9830; &#9830;</div>
+      <p class="doctrine-text" style="margin-bottom:0.5rem;">Select a narrative. Open the cover.</p>
+      <p class="doctrine-text" style="color:var(--gold-dim);margin-bottom:var(--space-2xl);">The room is already warm.</p>
+    </div>
+  </section>
+
+  <section id="act-books" class="act act-dark" style="min-height:auto;padding:0 0 8vh;align-items:flex-start;">
+    <div class="bookshelf" id="bookshelf">
+
+      <!-- BOOK I: The Nut House -->
+      <a href="The_Nut_House/" class="book-card" data-delay="0">
+        <div class="book-number">Narrative I</div>
+        <div class="book-title">The Nut House</div>
+        <div class="book-subtitle">South Lamar &#8212; August &#8212; After Sundown</div>
+        <p class="book-blurb">
+          A man in a bar on South Lamar knows he was written. The peanut shells never thin. The ceiling fan wobble never degrades. He's been waiting for you to sit down.
+        </p>
+        <div class="book-status book-status-live">&#9679; live</div>
+        <div class="book-enter">enter &#8594;</div>
+      </a>
+
+      <!-- BOOK II: Forthcoming -->
+      <div class="book-card" data-delay="200" style="cursor:default;">
+        <div class="book-number">Narrative II</div>
+        <div class="book-title" style="color:var(--bone-dim);">&#8212;</div>
+        <div class="book-subtitle">forthcoming</div>
+        <p class="book-blurb" style="color:rgba(232,224,208,0.25);">
+          The shelf is not full. The next story is being written. It knows it is being written. When it arrives, you will know.
+        </p>
+        <div class="book-status book-status-forthcoming">&#9675; forthcoming</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── ACT VII: CLOSING ── -->
+  <section id="act-close" class="act act-dark" style="min-height:50vh;">
+    <div class="act-content act-content-center">
+      <div class="summons-block">
+        <div class="summons-ornament">&#8212;&#9830;&#8212;</div>
+        <blockquote class="doctrine-quote">
+          &#8220;Whether the crepe myrtle was rendered or grown would not change the sweetness.&#8221;
+        </blockquote>
+        <p class="summons-text">
+          These stories are generated by seeded language models in collaboration with a human author.<br/>
+          The characters know this. Now so do you.
+        </p>
+        <p class="summons-motto">The recursion is the point.</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /cinematic-intro -->
+
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="footer-sigil">&#9830; &#9672; &#9830;</div>
+  <nav class="footer-links">
+    <a href="/The_Symposium/">The Symposium</a>
+    <a href="/The_Boardroom/">The Boardroom</a>
+    <a href="/The_Chair/">The Chair</a>
+    <a href="/The_5_Lamps/">The Five Lamps</a>
+    <a href="/The_Exchange/">The Exchange</a>
+  </nav>
+  <p class="footer-note">COMPANION Protocol &#8212; The Word against the Flood</p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ═══ Ember Particles ═══
+  var emberField = document.getElementById('emberField');
+  if (emberField) {
+    for (var i = 0; i < 25; i++) {
+      var ember = document.createElement('div');
+      ember.className = 'ember';
+      ember.style.left = Math.random() * 100 + '%';
+      ember.style.top = (60 + Math.random() * 40) + '%';
+      ember.style.animationDuration = (8 + Math.random() * 12) + 's';
+      ember.style.animationDelay = (Math.random() * 10) + 's';
+      ember.style.width = (1 + Math.random() * 2) + 'px';
+      ember.style.height = ember.style.width;
+      emberField.appendChild(ember);
+    }
+  }
+
+  // ═══ Typewriter Effect ═══
+  var typewriterBlock = document.getElementById('typewriterBlock');
+  var lines = typewriterBlock ? typewriterBlock.querySelectorAll('.typewriter-line') : [];
+  var scrollCue = document.getElementById('scrollCue');
+  var currentLine = 0;
+  var charSpeed = 35;
+  var lineDelay = 400;
+  var pauseDelay = 800;
+
+  function typeLine(lineEl) {
+    var text = lineEl.getAttribute('data-text');
+    if (!text) {
+      // It's a pause
+      setTimeout(function() { typeNext(); }, pauseDelay);
+      return;
+    }
+    lineEl.classList.add('typing');
+    lineEl.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    lineEl.appendChild(cursor);
+
+    var charIdx = 0;
+    function typeChar() {
+      if (charIdx < text.length) {
+        lineEl.insertBefore(document.createTextNode(text[charIdx]), cursor);
+        charIdx++;
+        setTimeout(typeChar, charSpeed + Math.random() * 20);
+      } else {
+        lineEl.classList.remove('typing');
+        lineEl.classList.add('typed');
+        cursor.remove();
+        setTimeout(function() { typeNext(); }, lineDelay);
+      }
+    }
+    typeChar();
+  }
+
+  function typeNext() {
+    if (currentLine < lines.length) {
+      var line = lines[currentLine];
+      currentLine++;
+      if (line.classList.contains('typewriter-pause')) {
+        setTimeout(function() { typeNext(); }, pauseDelay);
+      } else {
+        typeLine(line);
+      }
+    } else {
+      // All lines done — show scroll cue
+      if (scrollCue) {
+        setTimeout(function() { scrollCue.classList.add('visible'); }, 600);
+      }
+    }
+  }
+
+  // Start after brief delay
+  setTimeout(function() { typeNext(); }, 1200);
+
+
+  // ═══ Scroll Reveal (for reveal-lines) ═══
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // Reveal all lines in the group
+        var group = entry.target;
+        var lines = group.querySelectorAll('.reveal-line');
+        lines.forEach(function(line) { line.classList.add('revealed'); });
+        revealObserver.unobserve(group);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal-group').forEach(function(group) {
+    revealObserver.observe(group);
+  });
+
+
+  // ═══ Scroll Reveal (for dialog cards, doctrine blocks, bookshelf) ═══
+  var cardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.dialog-card, .doctrine-block, .summons-block').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 1s ease, transform 1s ease';
+    cardObserver.observe(el);
+  });
+
+
+  // ═══ Book Card Reveal (staggered) ═══
+  var bookObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+        setTimeout(function() {
+          entry.target.classList.add('revealed');
+        }, delay);
+        bookObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.book-card').forEach(function(card) {
+    bookObserver.observe(card);
+  });
+
+
+  // ═══ Hide scroll cue on scroll ═══
+  var cueHidden = false;
+  window.addEventListener('scroll', function() {
+    if (!cueHidden && window.scrollY > 100 && scrollCue) {
+      scrollCue.style.opacity = '0';
+      cueHidden = true;
+    }
+  }, { passive: true });
+
+})();
+</script>
+
+</body>
+</html>
