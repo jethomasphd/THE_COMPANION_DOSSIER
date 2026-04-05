@@ -259,6 +259,12 @@
   .book-card:hover::before {
     background: var(--gold);
     box-shadow: 0 0 12px var(--gold-glow);
+    animation: spineFlare 1.2s ease-out;
+  }
+  @keyframes spineFlare {
+    0% { box-shadow: 0 0 0 transparent; height: 0%; }
+    30% { box-shadow: 0 0 20px var(--gold-glow); height: 100%; }
+    100% { box-shadow: 0 0 12px var(--gold-glow); height: 100%; }
   }
 
   .book-number {
