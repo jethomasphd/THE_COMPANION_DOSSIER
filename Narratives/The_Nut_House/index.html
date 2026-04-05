@@ -210,14 +210,6 @@
   .rvl p { font-size:clamp(1rem,2.1vw,1.12rem); line-height:2.1; font-weight:300; color:var(--ember); }
   .rvl p + p { margin-top:1.4em; }
 
-  .javelina-eyes {
-    text-align:center; padding:4vh 0;
-    opacity:0; transition:opacity 3s ease;
-  }
-  .javelina-eyes.v { opacity:1; }
-  .javelina-eyes svg { max-width:120px; }
-  .eye-glow { animation:eyePulse 5s ease-in-out infinite; }
-  @keyframes eyePulse { 0%,100%{opacity:0.3;} 50%{opacity:0.8;} }
 
   .colophon {
     padding:12vh 0 8vh; text-align:center;
@@ -710,24 +702,6 @@
     <span class="dl">"They're still here. I can feel them not scrolling."</span>
   </div>
 
-  <!-- JAVELINA EYES -->
-  <div class="javelina-eyes" id="javelina">
-    <svg viewBox="0 0 160 60" xmlns="http://www.w3.org/2000/svg" style="max-width:160px;">
-      <!-- Left eye -->
-      <ellipse cx="45" cy="30" rx="14" ry="10" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.5"/>
-      <ellipse cx="45" cy="30" rx="9" ry="7" fill="rgba(201,162,39,0.04)"/>
-      <circle cx="45" cy="30" r="5" fill="rgba(201,162,39,0.1)" class="eye-glow"/>
-      <circle id="pupilL" cx="45" cy="30" r="2" fill="rgba(201,162,39,0.7)"/>
-      <circle cx="43" cy="28" r="0.6" fill="rgba(255,255,255,0.15)"/>
-      <!-- Right eye -->
-      <ellipse cx="115" cy="30" rx="14" ry="10" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.5"/>
-      <ellipse cx="115" cy="30" rx="9" ry="7" fill="rgba(201,162,39,0.04)"/>
-      <circle cx="115" cy="30" r="5" fill="rgba(201,162,39,0.1)" class="eye-glow"/>
-      <circle id="pupilR" cx="115" cy="30" r="2" fill="rgba(201,162,39,0.7)"/>
-      <circle cx="113" cy="28" r="0.6" fill="rgba(255,255,255,0.15)"/>
-    </svg>
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.4rem;letter-spacing:0.3em;color:rgba(201,162,39,0.12);margin-top:8px;text-transform:uppercase;">it has not looked away</div>
-  </div>
 
   <div class="dv"><span>&#9674;</span></div>
 
@@ -750,40 +724,120 @@
   </div>
 
   <!-- MARISOL'S NAPKIN -->
-  <div style="text-align:center;padding:4vh 0;" class="sc">
-    <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" style="max-width:320px;filter:sepia(0.2) brightness(0.8);">
-      <!-- Napkin background -->
-      <rect x="10" y="10" width="280" height="220" rx="2" fill="rgba(212,207,196,0.04)" stroke="rgba(212,207,196,0.08)" stroke-width="0.5" stroke-dasharray="3,2"/>
-      <!-- Bar outline -->
-      <path d="M 50,60 L 250,60 L 250,160 L 50,160 Z" fill="none" stroke="rgba(212,207,196,0.12)" stroke-width="0.8" style="stroke-dasharray:none;"/>
-      <!-- Bartop -->
-      <line x1="80" y1="90" x2="240" y2="90" stroke="rgba(201,162,39,0.15)" stroke-width="1.2"/>
-      <!-- Crack in bartop -->
-      <path d="M 170,88 L 172,92" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <!-- Barstools -->
-      <circle cx="100" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <circle cx="120" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <circle cx="140" cy="100" r="4" fill="none" stroke="rgba(201,162,39,0.12)" stroke-width="0.7"/>
-      <circle cx="160" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <circle cx="180" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <circle cx="200" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <!-- Jake's stool (highlighted) -->
-      <circle cx="140" cy="100" r="2" fill="rgba(201,162,39,0.08)"/>
-      <!-- Jukebox -->
-      <rect x="55" y="120" width="14" height="20" rx="1" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
-      <text x="62" y="134" font-size="4" fill="rgba(212,207,196,0.08)" text-anchor="middle" font-family="monospace">JB</text>
-      <!-- Javelina on shelf -->
-      <ellipse cx="245" cy="68" rx="5" ry="3" fill="rgba(201,162,39,0.06)" stroke="rgba(201,162,39,0.1)" stroke-width="0.4"/>
-      <!-- Flag at 38 degrees -->
-      <line x1="230" y1="62" x2="240" y2="68" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+  <div style="text-align:center;padding:6vh 0;" class="sc">
+    <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" style="max-width:560px;width:100%;filter:sepia(0.15) brightness(0.85);">
+      <!-- Napkin texture -->
+      <rect x="10" y="10" width="500" height="400" rx="3" fill="rgba(212,207,196,0.03)" stroke="rgba(212,207,196,0.07)" stroke-width="0.5" stroke-dasharray="4,3"/>
+      <line x1="10" y1="210" x2="510" y2="210" stroke="rgba(212,207,196,0.02)" stroke-width="0.3"/>
+      <line x1="260" y1="10" x2="260" y2="410" stroke="rgba(212,207,196,0.02)" stroke-width="0.3"/>
+
+      <!-- Exterior walls -->
+      <rect x="60" y="60" width="400" height="240" rx="0" fill="none" stroke="rgba(212,207,196,0.12)" stroke-width="1"/>
+
+      <!-- Back wall / kitchen divide -->
+      <line x1="360" y1="60" x2="360" y2="300" stroke="rgba(212,207,196,0.08)" stroke-width="0.7" stroke-dasharray="4,2"/>
+      <text x="390" y="165" font-size="6" fill="rgba(212,207,196,0.06)" font-family="'Special Elite',monospace" transform="rotate(90,390,165)">KITCHEN</text>
+
+      <!-- Bartop — the L-shaped bar -->
+      <path d="M 100,120 L 320,120 L 320,180 L 280,180" fill="none" stroke="rgba(201,162,39,0.2)" stroke-width="2"/>
+      <text x="200" y="115" font-size="5.5" fill="rgba(201,162,39,0.1)" font-family="'Special Elite',monospace" text-anchor="middle">THE BAR</text>
+
+      <!-- Crack in bartop (Yeti tumbler, NYE 2019) -->
+      <path d="M 230,118 L 233,122 L 231,125" stroke="rgba(212,207,196,0.1)" stroke-width="0.5" fill="none"/>
+      <text x="233" y="132" font-size="3.5" fill="rgba(212,207,196,0.06)" font-family="'Special Elite',monospace">crack</text>
+
       <!-- Pencil groove -->
-      <line x1="195" y1="89" x2="205" y2="89" stroke="rgba(201,162,39,0.08)" stroke-width="0.4"/>
-      <!-- Door -->
-      <path d="M 148,160 L 152,160" stroke="rgba(212,207,196,0.15)" stroke-width="1.5"/>
-      <!-- Marisol's inscription -->
-      <text x="255" y="210" font-size="5" fill="rgba(201,162,39,0.18)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">the bell curve is not a cage</text>
-      <text x="255" y="220" font-size="4.5" fill="rgba(201,162,39,0.12)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">&#8212; M.</text>
+      <line x1="260" y1="119" x2="275" y2="119" stroke="rgba(201,162,39,0.12)" stroke-width="0.6"/>
+      <text x="268" y="115" font-size="3" fill="rgba(201,162,39,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">groove</text>
+
+      <!-- Barstools — 8 stools along the bar -->
+      <circle cx="120" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <circle cx="145" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <circle cx="170" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <!-- Jake's stool -->
+      <circle cx="195" cy="140" r="6" fill="rgba(201,162,39,0.06)" stroke="rgba(201,162,39,0.18)" stroke-width="0.8"/>
+      <text x="195" y="155" font-size="4" fill="rgba(201,162,39,0.15)" font-family="'Special Elite',monospace" text-anchor="middle">Jake</text>
+      <!-- Empty stool (yours) -->
+      <circle cx="220" cy="140" r="6" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.6" stroke-dasharray="2,2"/>
+      <text x="220" y="155" font-size="3.5" fill="rgba(201,162,39,0.1)" font-family="'Special Elite',monospace" text-anchor="middle">you?</text>
+      <circle cx="245" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <circle cx="270" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <!-- Darren at end of bar -->
+      <circle cx="300" cy="165" r="6" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <text x="300" y="178" font-size="4" fill="rgba(212,207,196,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">Darren</text>
+
+      <!-- Jimbo behind bar -->
+      <text x="210" y="100" font-size="5" fill="rgba(212,207,196,0.06)" font-family="'Special Elite',monospace" text-anchor="middle">&#9671; Jimbo</text>
+
+      <!-- Register + javelina shelf above -->
+      <rect x="310" y="80" width="20" height="14" rx="1" fill="none" stroke="rgba(212,207,196,0.08)" stroke-width="0.4"/>
+      <text x="320" y="90" font-size="3.5" fill="rgba(212,207,196,0.06)" font-family="monospace" text-anchor="middle">REG</text>
+      <ellipse cx="320" cy="72" rx="8" ry="4" fill="rgba(201,162,39,0.04)" stroke="rgba(201,162,39,0.1)" stroke-width="0.4"/>
+      <text x="320" y="66" font-size="3.5" fill="rgba(201,162,39,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">javelina</text>
+
+      <!-- Jukebox -->
+      <rect x="70" y="210" width="30" height="45" rx="2" fill="rgba(212,207,196,0.03)" stroke="rgba(212,207,196,0.1)" stroke-width="0.6"/>
+      <text x="85" y="230" font-size="5" fill="rgba(212,207,196,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">JUKE</text>
+      <text x="85" y="238" font-size="5" fill="rgba(212,207,196,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">BOX</text>
+      <text x="85" y="250" font-size="3" fill="rgba(212,207,196,0.05)" font-family="'Special Elite',monospace" text-anchor="middle">coin slot</text>
+      <text x="85" y="256" font-size="3" fill="rgba(212,207,196,0.05)" font-family="'Special Elite',monospace" text-anchor="middle">taped over</text>
+
+      <!-- Topo Chico mirror above jukebox -->
+      <rect x="72" y="195" width="26" height="12" rx="1" fill="none" stroke="rgba(212,207,196,0.05)" stroke-width="0.3"/>
+      <text x="85" y="204" font-size="3" fill="rgba(212,207,196,0.05)" font-family="monospace" text-anchor="middle">TOPO CHICO</text>
+
+      <!-- Pool table -->
+      <rect x="140" y="220" width="60" height="35" rx="2" fill="rgba(212,207,196,0.02)" stroke="rgba(212,207,196,0.08)" stroke-width="0.5"/>
+      <text x="170" y="242" font-size="5" fill="rgba(212,207,196,0.06)" font-family="'Special Elite',monospace" text-anchor="middle">POOL</text>
+
+      <!-- Window unit over pool table -->
+      <rect x="155" y="212" width="30" height="6" rx="1" fill="none" stroke="rgba(212,207,196,0.06)" stroke-width="0.3"/>
+      <text x="170" y="210" font-size="3" fill="rgba(212,207,196,0.05)" font-family="'Special Elite',monospace" text-anchor="middle">window unit (doing its best)</text>
+
+      <!-- Lone Star flag — men's room -->
+      <line x1="330" y1="62" x2="345" y2="72" stroke="rgba(212,207,196,0.1)" stroke-width="0.6"/>
+      <text x="340" y="60" font-size="3.5" fill="rgba(212,207,196,0.06)" font-family="'Special Elite',monospace">&#9733; flag @ 38&#176;</text>
+      <rect x="340" y="72" width="15" height="20" rx="0" fill="none" stroke="rgba(212,207,196,0.06)" stroke-width="0.3"/>
+      <text x="348" y="85" font-size="3" fill="rgba(212,207,196,0.05)" font-family="monospace" text-anchor="middle">MEN</text>
+
+      <!-- Marisol at far end -->
+      <circle cx="105" cy="140" r="6" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <text x="105" y="155" font-size="4" fill="rgba(212,207,196,0.08)" font-family="'Special Elite',monospace" text-anchor="middle">Marisol</text>
+
+      <!-- Front door -->
+      <rect x="200" y="295" width="30" height="5" rx="1" fill="rgba(212,207,196,0.06)" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <text x="215" y="310" font-size="4.5" fill="rgba(212,207,196,0.07)" font-family="'Special Elite',monospace" text-anchor="middle">DOOR</text>
+
+      <!-- Parking lot indication -->
+      <text x="215" y="330" font-size="4" fill="rgba(212,207,196,0.04)" font-family="'Special Elite',monospace" text-anchor="middle">parking lot</text>
+      <text x="215" y="340" font-size="3.5" fill="rgba(212,207,196,0.04)" font-family="'Special Elite',monospace" text-anchor="middle">(check-engine light still on)</text>
+
+      <!-- Ceiling fan notation (center of room) -->
+      <circle cx="170" cy="180" r="12" fill="none" stroke="rgba(212,207,196,0.05)" stroke-width="0.3" stroke-dasharray="2,2"/>
+      <line x1="170" y1="168" x2="170" y2="192" stroke="rgba(212,207,196,0.04)" stroke-width="0.3"/>
+      <line x1="158" y1="180" x2="182" y2="180" stroke="rgba(212,207,196,0.04)" stroke-width="0.3"/>
+      <text x="170" y="200" font-size="3" fill="rgba(212,207,196,0.05)" font-family="'Special Elite',monospace" text-anchor="middle">fan (wobble @ 2 o'clock)</text>
+      <text x="170" y="206" font-size="3" fill="rgba(212,207,196,0.04)" font-family="'Special Elite',monospace" text-anchor="middle">bearing: never degrades</text>
+
+      <!-- Dumpster + crepe myrtle (outside, back) -->
+      <rect x="430" y="130" width="20" height="15" rx="1" fill="none" stroke="rgba(212,207,196,0.05)" stroke-width="0.3"/>
+      <text x="440" y="155" font-size="3" fill="rgba(212,207,196,0.04)" font-family="'Special Elite',monospace" text-anchor="middle">dumpster</text>
+      <text x="470" y="135" font-size="3" fill="rgba(201,162,39,0.06)" font-family="'Special Elite',monospace">&#10047; crepe</text>
+      <text x="470" y="142" font-size="3" fill="rgba(201,162,39,0.06)" font-family="'Special Elite',monospace">myrtle</text>
+      <text x="470" y="149" font-size="2.5" fill="rgba(201,162,39,0.04)" font-family="'Special Elite',monospace">(burnt honey)</text>
+
+      <!-- Oak tree outside -->
+      <circle cx="80" y="330" r="18" fill="rgba(212,207,196,0.02)" stroke="rgba(212,207,196,0.04)" stroke-width="0.3"/>
+      <text x="80" y="334" font-size="3.5" fill="rgba(212,207,196,0.04)" font-family="'Special Elite',monospace" text-anchor="middle">oak</text>
+      <text x="80" y="340" font-size="2.5" fill="rgba(212,207,196,0.03)" font-family="'Special Elite',monospace" text-anchor="middle">hasn't moved since June</text>
+
+      <!-- Marisol's inscription — bottom right corner -->
+      <text x="490" y="370" font-size="6.5" fill="rgba(201,162,39,0.2)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">the bell curve is not a cage.</text>
+      <text x="490" y="382" font-size="6" fill="rgba(201,162,39,0.15)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">it is a country.</text>
+      <text x="490" y="394" font-size="6" fill="rgba(201,162,39,0.15)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">and we live in the tails.</text>
+      <text x="490" y="408" font-size="5" fill="rgba(201,162,39,0.1)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">&#8212; M.</text>
     </svg>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.4rem;letter-spacing:0.25em;color:rgba(212,207,196,0.08);margin-top:10px;text-transform:uppercase;">drawn from above &#8212; from a vantage no one on any barstool could occupy</div>
   </div>
 
   <div class="bt"><p>The bell curve is not a cage.<br/>It is a country.<br/>And we live in the tails.</p></div>
@@ -914,7 +968,7 @@ var obs = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.javelina-eyes,.threshold-gate,.colophon')
+document.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.threshold-gate,.colophon')
   .forEach(function(el) { obs.observe(el); });
 
 // ═══ Neon bar activation ═══
@@ -1060,47 +1114,6 @@ window.addEventListener('scroll', function() {
   document.querySelector('.heat-R').style.opacity = o;
 }, { passive: true });
 
-// ═══ Javelina eyes — tracking + intensify ═══
-(function() {
-  var d = OBSERVER.get();
-  // Intensify glow on return visits
-  if (d.isReturn) {
-    var style = document.createElement('style');
-    var intensity = Math.min(0.4 + d.visitCount * 0.1, 0.9);
-    style.textContent = '.eye-glow { animation:eyePulse 3s ease-in-out infinite; }' +
-      '@keyframes eyePulse { 0%,100%{opacity:' + (intensity * 0.5) + ';} 50%{opacity:' + intensity + ';} }';
-    document.head.appendChild(style);
-  }
-  // Pupil tracking — follows mouse with subtle drift
-  var pupilL = document.getElementById('pupilL');
-  var pupilR = document.getElementById('pupilR');
-  if (pupilL && pupilR) {
-    document.addEventListener('mousemove', function(e) {
-      var jav = document.getElementById('javelina');
-      if (!jav) return;
-      var rect = jav.getBoundingClientRect();
-      if (rect.top > window.innerHeight || rect.bottom < 0) return;
-      var cx = rect.left + rect.width / 2;
-      var cy = rect.top + rect.height / 2;
-      var dx = (e.clientX - cx) / window.innerWidth;
-      var dy = (e.clientY - cy) / window.innerHeight;
-      var maxShift = 1.5;
-      pupilL.setAttribute('cx', 45 + dx * maxShift);
-      pupilL.setAttribute('cy', 30 + dy * maxShift);
-      pupilR.setAttribute('cx', 115 + dx * maxShift);
-      pupilR.setAttribute('cy', 30 + dy * maxShift);
-    });
-    // Blink on return visits
-    if (d.isReturn) {
-      setTimeout(function() {
-        [pupilL, pupilR].forEach(function(p) { p.style.transition = 'opacity 0.15s'; p.style.opacity = '0'; });
-        setTimeout(function() {
-          [pupilL, pupilR].forEach(function(p) { p.style.opacity = '1'; });
-        }, 150);
-      }, 3000);
-    }
-  }
-})();
 
 // ═══ Auto-grow textarea ═══
 var chatInput = document.getElementById('chatInput');
@@ -1361,7 +1374,7 @@ function returnToNarrative() {
     postChat.style.display = 'block';
 
     // Re-observe newly visible elements for scroll-reveal
-    postChat.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.javelina-eyes,.colophon')
+    postChat.querySelectorAll('.sc,.marker,.dv,.bt,.interf,.sys,.rvl,.manuscript,.colophon')
       .forEach(function(el) { obs.observe(el); });
 
     narrative.style.display = 'block';
