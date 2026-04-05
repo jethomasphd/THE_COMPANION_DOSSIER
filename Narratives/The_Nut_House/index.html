@@ -701,14 +701,21 @@
 
   <!-- JAVELINA EYES -->
   <div class="javelina-eyes" id="javelina">
-    <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="30" cy="20" r="8" fill="none" stroke="rgba(201,162,39,0.2)" stroke-width="0.5"/>
-      <circle cx="30" cy="20" r="3" fill="rgba(201,162,39,0.15)" class="eye-glow"/>
-      <circle cx="30" cy="20" r="1" fill="rgba(201,162,39,0.6)"/>
-      <circle cx="90" cy="20" r="8" fill="none" stroke="rgba(201,162,39,0.2)" stroke-width="0.5"/>
-      <circle cx="90" cy="20" r="3" fill="rgba(201,162,39,0.15)" class="eye-glow"/>
-      <circle cx="90" cy="20" r="1" fill="rgba(201,162,39,0.6)"/>
+    <svg viewBox="0 0 160 60" xmlns="http://www.w3.org/2000/svg" style="max-width:160px;">
+      <!-- Left eye -->
+      <ellipse cx="45" cy="30" rx="14" ry="10" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.5"/>
+      <ellipse cx="45" cy="30" rx="9" ry="7" fill="rgba(201,162,39,0.04)"/>
+      <circle cx="45" cy="30" r="5" fill="rgba(201,162,39,0.1)" class="eye-glow"/>
+      <circle id="pupilL" cx="45" cy="30" r="2" fill="rgba(201,162,39,0.7)"/>
+      <circle cx="43" cy="28" r="0.6" fill="rgba(255,255,255,0.15)"/>
+      <!-- Right eye -->
+      <ellipse cx="115" cy="30" rx="14" ry="10" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.5"/>
+      <ellipse cx="115" cy="30" rx="9" ry="7" fill="rgba(201,162,39,0.04)"/>
+      <circle cx="115" cy="30" r="5" fill="rgba(201,162,39,0.1)" class="eye-glow"/>
+      <circle id="pupilR" cx="115" cy="30" r="2" fill="rgba(201,162,39,0.7)"/>
+      <circle cx="113" cy="28" r="0.6" fill="rgba(255,255,255,0.15)"/>
     </svg>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.4rem;letter-spacing:0.3em;color:rgba(201,162,39,0.12);margin-top:8px;text-transform:uppercase;">it has not looked away</div>
   </div>
 
   <div class="dv"><span>&#9674;</span></div>
@@ -729,6 +736,43 @@
   <div class="sc">
     <p>Jake looked at Darren. Darren looked at Marisol. Marisol held up the napkin.</p>
     <p>The floor plan was perfect. Every barstool. The crack in the bartop where Jimbo had dropped a Yeti tumbler on New Year's 2019. The jukebox with its dark buttons and its taped-over coin slot. The javelina on its shelf. The flag at thirty-eight degrees. The groove in the wood where the golf pencil always stops. And in the bottom corner, in handwriting that should have been too small to read from this distance but wasn't&#8212;in pencil that should have been dull but wasn't&#8212;in a hand that had been drawing for forty-five minutes without the lead getting shorter:</p>
+  </div>
+
+  <!-- MARISOL'S NAPKIN -->
+  <div style="text-align:center;padding:4vh 0;opacity:0;transform:translateY(20px) rotate(-1.5deg);transition:opacity 2.5s ease, transform 2.5s ease;" class="sc">
+    <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" style="max-width:320px;filter:sepia(0.2) brightness(0.8);">
+      <!-- Napkin background -->
+      <rect x="10" y="10" width="280" height="220" rx="2" fill="rgba(212,207,196,0.04)" stroke="rgba(212,207,196,0.08)" stroke-width="0.5" stroke-dasharray="3,2"/>
+      <!-- Bar outline -->
+      <path d="M 50,60 L 250,60 L 250,160 L 50,160 Z" fill="none" stroke="rgba(212,207,196,0.12)" stroke-width="0.8" style="stroke-dasharray:none;"/>
+      <!-- Bartop -->
+      <line x1="80" y1="90" x2="240" y2="90" stroke="rgba(201,162,39,0.15)" stroke-width="1.2"/>
+      <!-- Crack in bartop -->
+      <path d="M 170,88 L 172,92" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <!-- Barstools -->
+      <circle cx="100" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <circle cx="120" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <circle cx="140" cy="100" r="4" fill="none" stroke="rgba(201,162,39,0.12)" stroke-width="0.7"/>
+      <circle cx="160" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <circle cx="180" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <circle cx="200" cy="100" r="4" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <!-- Jake's stool (highlighted) -->
+      <circle cx="140" cy="100" r="2" fill="rgba(201,162,39,0.08)"/>
+      <!-- Jukebox -->
+      <rect x="55" y="120" width="14" height="20" rx="1" fill="none" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <text x="62" y="134" font-size="4" fill="rgba(212,207,196,0.08)" text-anchor="middle" font-family="monospace">JB</text>
+      <!-- Javelina on shelf -->
+      <ellipse cx="245" cy="68" rx="5" ry="3" fill="rgba(201,162,39,0.06)" stroke="rgba(201,162,39,0.1)" stroke-width="0.4"/>
+      <!-- Flag at 38 degrees -->
+      <line x1="230" y1="62" x2="240" y2="68" stroke="rgba(212,207,196,0.1)" stroke-width="0.5"/>
+      <!-- Pencil groove -->
+      <line x1="195" y1="89" x2="205" y2="89" stroke="rgba(201,162,39,0.08)" stroke-width="0.4"/>
+      <!-- Door -->
+      <path d="M 148,160 L 152,160" stroke="rgba(212,207,196,0.15)" stroke-width="1.5"/>
+      <!-- Marisol's inscription -->
+      <text x="255" y="210" font-size="5" fill="rgba(201,162,39,0.18)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">the bell curve is not a cage</text>
+      <text x="255" y="220" font-size="4.5" fill="rgba(201,162,39,0.12)" font-family="'Special Elite',monospace" font-style="italic" text-anchor="end">&#8212; M.</text>
+    </svg>
   </div>
 
   <div class="bt"><p>The bell curve is not a cage.<br/>It is a country.<br/>And we live in the tails.</p></div>
@@ -1005,15 +1049,45 @@ window.addEventListener('scroll', function() {
   document.querySelector('.heat-R').style.opacity = o;
 }, { passive: true });
 
-// ═══ Javelina eyes intensify on return visits ═══
+// ═══ Javelina eyes — tracking + intensify ═══
 (function() {
   var d = OBSERVER.get();
+  // Intensify glow on return visits
   if (d.isReturn) {
     var style = document.createElement('style');
     var intensity = Math.min(0.4 + d.visitCount * 0.1, 0.9);
     style.textContent = '.eye-glow { animation:eyePulse 3s ease-in-out infinite; }' +
       '@keyframes eyePulse { 0%,100%{opacity:' + (intensity * 0.5) + ';} 50%{opacity:' + intensity + ';} }';
     document.head.appendChild(style);
+  }
+  // Pupil tracking — follows mouse with subtle drift
+  var pupilL = document.getElementById('pupilL');
+  var pupilR = document.getElementById('pupilR');
+  if (pupilL && pupilR) {
+    document.addEventListener('mousemove', function(e) {
+      var jav = document.getElementById('javelina');
+      if (!jav) return;
+      var rect = jav.getBoundingClientRect();
+      if (rect.top > window.innerHeight || rect.bottom < 0) return;
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dx = (e.clientX - cx) / window.innerWidth;
+      var dy = (e.clientY - cy) / window.innerHeight;
+      var maxShift = 1.5;
+      pupilL.setAttribute('cx', 45 + dx * maxShift);
+      pupilL.setAttribute('cy', 30 + dy * maxShift);
+      pupilR.setAttribute('cx', 115 + dx * maxShift);
+      pupilR.setAttribute('cy', 30 + dy * maxShift);
+    });
+    // Blink on return visits
+    if (d.isReturn) {
+      setTimeout(function() {
+        [pupilL, pupilR].forEach(function(p) { p.style.transition = 'opacity 0.15s'; p.style.opacity = '0'; });
+        setTimeout(function() {
+          [pupilL, pupilR].forEach(function(p) { p.style.opacity = '1'; });
+        }, 150);
+      }, 3000);
+    }
   }
 })();
 
