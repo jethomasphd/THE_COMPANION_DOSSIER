@@ -373,6 +373,30 @@
   .typing-indicator .dot:nth-child(3) { animation-delay:0.4s; }
   @keyframes typingPulse { 0%,100%{opacity:0.2;} 50%{opacity:0.8;} }
 
+  /* STARTER QUESTIONS */
+  .starter-questions {
+    padding:1.5rem 0; max-width:85%;
+    animation:fadeIn 1s ease;
+  }
+  .starter-label {
+    font-family:'IBM Plex Mono',monospace; font-size:0.45rem;
+    letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--ember-dim); margin-bottom:0.8rem;
+  }
+  .starter-btn {
+    display:block; background:transparent;
+    border:1px solid rgba(201,162,39,0.08); border-radius:2px;
+    padding:0.7rem 1rem; margin-bottom:0.5rem;
+    font-family:'Cormorant Garamond',serif; font-size:clamp(0.9rem,2vw,1.05rem);
+    font-style:italic; color:var(--bone-dim);
+    cursor:pointer; text-align:left; width:100%;
+    transition:all 0.4s ease;
+  }
+  .starter-btn:hover {
+    border-color:var(--ember-dim); color:var(--ember);
+    background:rgba(201,162,39,0.03);
+  }
+
   .chat-input-area {
     position:sticky; bottom:0;
     background:linear-gradient(transparent, var(--void) 20%);
@@ -762,6 +786,7 @@
       <em>The recursion is the point.</em>
     </div>
     <div id="colophonObserver" style="margin-top:36px;font-family:'IBM Plex Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;color:var(--warn-dim);line-height:2.4;"></div>
+    <a href="../" style="display:inline-block;margin-top:48px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--ember-dim);border:1px solid rgba(201,162,39,0.12);padding:0.9rem 2.5rem;text-decoration:none;transition:all 0.5s ease;" onmouseover="this.style.color='var(--ember)';this.style.borderColor='var(--ember)';this.style.background='rgba(201,162,39,0.04)'" onmouseout="this.style.color='';this.style.borderColor='';this.style.background=''">&#9674; Return to the Library</a>
   </div>
 
   </div><!-- /postChat -->
@@ -1082,7 +1107,13 @@ function showTyping() {
   var indicator = document.createElement('div');
   indicator.className = 'msg msg-assistant typing-indicator';
   indicator.id = 'typingIndicator';
-  indicator.innerHTML = '<div class="msg-content"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  indicator.innerHTML = '<div class="msg-label" style="margin-bottom:0.3rem;">jake</div>' +
+    '<div class="msg-content">' +
+    '<span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
+    '</div>' +
+    '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:0.5rem;color:var(--ember-dim);' +
+    'letter-spacing:0.15em;margin-top:0.5rem;opacity:0;animation:fadeIn 2s ease 1s forwards;">' +
+    'the jukebox hums between tracks</div>';
   messages.appendChild(indicator);
   messages.scrollTop = messages.scrollHeight;
 }
@@ -1323,38 +1354,25 @@ function sendToJake(userMessage, isVisible) {
     userMessage,
     systemPrompt,
 
-    // onChunk — raw stream display
+    // onChunk — accumulate silently, keep thinking indicator visible
     function(chunk) {
-      hideTyping();
+      // Don't hide typing — let the thinking indicator stay
       if (!streamEl) {
-        streamEl = document.createElement('div');
-        streamEl.className = 'msg msg-assistant';
-        var streamLabel = document.createElement('div');
-        streamLabel.className = 'msg-label';
-        streamLabel.textContent = 'jake';
-        streamEl.appendChild(streamLabel);
-        var streamContent = document.createElement('div');
-        streamContent.className = 'msg-content';
-        var streamP = document.createElement('div');
-        streamP.className = 'msg-voice';
-        streamP.id = 'streamTarget';
-        streamContent.appendChild(streamP);
-        streamEl.appendChild(streamContent);
-        messages.appendChild(streamEl);
-        updateChatStatus('jake is talking');
+        streamEl = '';
+        updateChatStatus('jake is thinking');
       }
-      var target = document.getElementById('streamTarget');
-      target.textContent += chunk;
+      streamEl += chunk;
       messages.scrollTop = messages.scrollHeight;
     },
 
-    // onDone — re-render with parsed voice/stage separation
+    // onDone — render the complete response in museum form
     function(fullText) {
       hideTyping();
-      // Replace streaming element with properly parsed version
-      if (streamEl && fullText) {
-        streamEl.remove();
+      if (fullText) {
         renderJakeMessage(fullText);
+        // Hide suggested questions after first real exchange
+        var starters = document.getElementById('starterQuestions');
+        if (starters) starters.style.display = 'none';
       }
       isStreaming = false;
       chatInput.disabled = false;
@@ -1363,8 +1381,9 @@ function sendToJake(userMessage, isVisible) {
       updateChatStatus('the stool is warm');
       updateChatAmbient();
 
-      // Start system flicker after first exchange
+      // Show starter questions after Jake's greeting
       if (NARRATIVES.API.getHistory().length === 2) {
+        setTimeout(function() { showStarterQuestions(); }, 800);
         setTimeout(chatSystemFlicker, 30000);
       }
     },
@@ -1384,9 +1403,44 @@ function sendToJake(userMessage, isVisible) {
   );
 }
 
+function showStarterQuestions() {
+  var messages = document.getElementById('chatMessages');
+  var container = document.createElement('div');
+  container.className = 'starter-questions';
+  container.id = 'starterQuestions';
+
+  var label = document.createElement('div');
+  label.className = 'starter-label';
+  label.textContent = 'or try one of these';
+  container.appendChild(label);
+
+  var questions = [
+    'How did you know you were written?',
+    'What does the wobble feel like from the inside?',
+    'Do you think about what happens when I close this tab?',
+    'Tell me about the javelina.'
+  ];
+
+  questions.forEach(function(q) {
+    var btn = document.createElement('button');
+    btn.className = 'starter-btn';
+    btn.textContent = q;
+    btn.addEventListener('click', function() {
+      container.style.display = 'none';
+      sendToJake(q, true);
+    });
+    container.appendChild(btn);
+  });
+
+  messages.appendChild(container);
+  messages.scrollTop = messages.scrollHeight;
+}
+
 function handleSend() {
   var text = chatInput.value.trim();
   if (!text || isStreaming) return;
+  var starters = document.getElementById('starterQuestions');
+  if (starters) starters.style.display = 'none';
   sendToJake(text, true);
 }
 
