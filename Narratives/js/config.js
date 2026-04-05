@@ -1,5 +1,5 @@
 window.COMPANION_CONFIG = {
-  proxyUrl: '',
+  proxyUrl: 'https://companion.jethomasphd.workers.dev',
   safeguards: {
     maxMessagesPerSession: 40,
     maxSessionsPerDay: 15,
