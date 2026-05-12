@@ -256,32 +256,22 @@ COMPANION.App = (function () {
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (!data) return null;
+          // Prefer thumbnail.source — it always contains /NNNpx-/, so we can
+          // upsize it to a predictable 600px. originalimage can be a 10+MB
+          // scan that times out or fails to decode in the browser.
           var src = null;
-          if (data.originalimage && data.originalimage.source) {
+          if (data.thumbnail && data.thumbnail.source) {
+            src = data.thumbnail.source.replace(/\/\d+px-/, '/600px-');
+          } else if (data.originalimage && data.originalimage.source) {
             src = data.originalimage.source;
-          } else if (data.thumbnail && data.thumbnail.source) {
-            src = data.thumbnail.source;
-          }
-          if (src) {
-            src = src.replace(/\/\d+px-/, '/600px-');
           }
           return src;
         })
         .then(function (imgUrl) {
           if (!imgUrl) return;
           var img = new Image();
-          img.crossOrigin = 'anonymous';
           img.onload = function () {
             img.classList.add('loaded');
-          };
-          img.onerror = function () {
-            // Retry without CORS
-            var img2 = new Image();
-            img2.onload = function () {
-              img2.classList.add('loaded');
-            };
-            img2.src = imgUrl;
-            frame.appendChild(img2);
           };
           img.src = imgUrl;
           frame.appendChild(img);
