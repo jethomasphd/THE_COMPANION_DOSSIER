@@ -113,15 +113,14 @@ COMPANION.Hologram = (function () {
       .then(function (data) {
         if (!data) return null;
 
+        // Prefer the thumbnail URL — it always contains /NNNpx-/ so we can
+        // predictably upsize to 600px. originalimage may be a multi-MB scan
+        // that times out or fails to decode.
         var src = null;
-        if (data.originalimage && data.originalimage.source) {
+        if (data.thumbnail && data.thumbnail.source) {
+          src = data.thumbnail.source.replace(/\/\d+px-/, '/600px-');
+        } else if (data.originalimage && data.originalimage.source) {
           src = data.originalimage.source;
-        } else if (data.thumbnail && data.thumbnail.source) {
-          src = data.thumbnail.source;
-        }
-
-        if (src) {
-          src = src.replace(/\/\d+px-/, '/600px-');
         }
         return src;
       })
@@ -194,22 +193,11 @@ COMPANION.Hologram = (function () {
       .then(function (imageUrl) {
         if (!imageUrl) throw new Error('No image URL for ' + fullName);
 
+        // No crossOrigin: we don't read pixels, and the anonymous mode
+        // makes the load fail when the upstream image lacks CORS headers.
         cardData.portraitImg.onload = function () {
           cardData.frame.classList.add('loaded');
         };
-        cardData.portraitImg.onerror = function () {
-          var img2 = new Image();
-          img2.className = 'patriot-portrait';
-          img2.alt = fullName + ' portrait';
-          img2.draggable = false;
-          img2.onload = function () {
-            cardData.frame.classList.add('loaded');
-          };
-          img2.src = imageUrl;
-          cardData.frame.replaceChild(img2, cardData.portraitImg);
-          cardData.portraitImg = img2;
-        };
-        cardData.portraitImg.crossOrigin = 'anonymous';
         cardData.portraitImg.src = imageUrl;
       })
       .catch(function (err) {
