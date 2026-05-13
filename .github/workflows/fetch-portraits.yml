@@ -1,0 +1,33 @@
+name: Fetch Portraits
+
+# Run manually from the Actions tab: pick a branch and click "Run workflow".
+# The job downloads every portrait listed in The_Pantheon/fetch_portraits.sh
+# and commits any new images back to the branch it ran on.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run portrait fetcher
+        run: ./The_Pantheon/fetch_portraits.sh
+
+      - name: Commit and push new portraits
+        run: |
+          if git diff --quiet -- The_Pantheon/; then
+            echo "No new portraits — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add The_Pantheon/
+          git commit -m "Populate The Pantheon with portraits from Wikipedia"
+          git push
