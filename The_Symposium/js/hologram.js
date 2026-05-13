@@ -99,38 +99,6 @@ COMPANION.Hologram = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  Wikipedia Portrait Fetching — High Resolution
-  // ═══════════════════════════════════════════════════════════════
-
-  function fetchPortraitUrl(article) {
-    var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
-
-    return fetch(url)
-      .then(function (response) {
-        if (!response.ok) return null;
-        return response.json();
-      })
-      .then(function (data) {
-        if (!data) return null;
-
-        // Prefer the thumbnail URL — it always contains /NNNpx-/ so we can
-        // predictably upsize to 600px. originalimage may be a multi-MB scan
-        // that times out or fails to decode.
-        var src = null;
-        if (data.thumbnail && data.thumbnail.source) {
-          src = data.thumbnail.source.replace(/\/\d+px-/, '/600px-');
-        } else if (data.originalimage && data.originalimage.source) {
-          src = data.originalimage.source;
-        }
-        return src;
-      })
-      .catch(function () {
-        return null;
-      });
-  }
-
-
-  // ═══════════════════════════════════════════════════════════════
   //  DOM — Persona Card Creation (Photorealistic)
   // ═══════════════════════════════════════════════════════════════
 
@@ -189,20 +157,10 @@ COMPANION.Hologram = (function () {
     var cardData = cards[fullName];
     if (!persona || !cardData) return;
 
-    fetchPortraitUrl(persona.article)
-      .then(function (imageUrl) {
-        if (!imageUrl) throw new Error('No image URL for ' + fullName);
-
-        // No crossOrigin: we don't read pixels, and the anonymous mode
-        // makes the load fail when the upstream image lacks CORS headers.
-        cardData.portraitImg.onload = function () {
-          cardData.frame.classList.add('loaded');
-        };
-        cardData.portraitImg.src = imageUrl;
-      })
-      .catch(function (err) {
-        console.warn('[Hologram] Portrait unavailable for ' + fullName + ':', err.message || err);
-      });
+    cardData.portraitImg.onload = function () {
+      cardData.frame.classList.add('loaded');
+    };
+    cardData.portraitImg.src = '../The_Pantheon/' + persona.article + '.jpg';
   }
 
 

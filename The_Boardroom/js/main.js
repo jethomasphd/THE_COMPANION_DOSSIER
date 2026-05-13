@@ -93,34 +93,12 @@ COMPANION.App = (function () {
       var frame = reveal.querySelector('.portrait-frame-cinematic');
       if (!frame) return;
 
-      var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(article);
-      fetch(url)
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (data) {
-          if (!data) return null;
-          // Prefer thumbnail.source — it always contains /NNNpx-/, so we can
-          // upsize it to a predictable 600px. originalimage can be a 10+MB
-          // scan that times out or fails to decode in the browser.
-          var src = null;
-          if (data.thumbnail && data.thumbnail.source) {
-            src = data.thumbnail.source.replace(/\/\d+px-/, '/600px-');
-          } else if (data.originalimage && data.originalimage.source) {
-            src = data.originalimage.source;
-          }
-          return src;
-        })
-        .then(function (imgUrl) {
-          if (!imgUrl) return;
-          var img = new Image();
-          img.onload = function () {
-            img.classList.add('loaded');
-          };
-          img.src = imgUrl;
-          frame.appendChild(img);
-        })
-        .catch(function () {
-          // Initials placeholder remains
-        });
+      var img = new Image();
+      img.onload = function () {
+        img.classList.add('loaded');
+      };
+      img.src = '../The_Pantheon/' + article + '.jpg';
+      frame.appendChild(img);
     });
   }
 
