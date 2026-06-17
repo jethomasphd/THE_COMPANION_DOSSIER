@@ -54,6 +54,10 @@ PORTRAITS=(
   "John_Dewey|John_Dewey.jpg|"
   "Ada_Lovelace|Ada_Lovelace.jpg|"
   "Paulo_Freire|Paulo_Freire.jpg|"
+
+  # ── The Aerodrome (the 1905 studio portraits) ──
+  "Wilbur_Wright|Wilbur_Wright.jpg|https://upload.wikimedia.org/wikipedia/commons/3/38/Wilbur_Wright-crop.jpg"
+  "Orville_Wright|Orville_Wright.jpg|https://upload.wikimedia.org/wikipedia/commons/9/90/Orville_Wright_1905.jpg"
 )
 
 resolve_via_api() {
