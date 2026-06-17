@@ -15,7 +15,9 @@ COMPANION.API = (function () {
   const API_VERSION = '2023-06-01';
   const STORAGE_KEY_API = 'the_aerodrome_v1_api_key';
   const STORAGE_KEY_MODEL = 'the_aerodrome_v1_model';
-  const MAX_TOKENS = 4096;
+  // Kept deliberately low: the brothers trade short, punchy turns.
+  // This is a backstop against runaway length, not the primary lever (see protocol.js).
+  const MAX_TOKENS = 1600;
 
   const STORAGE_KEY_SESSION_COUNT = 'the_aerodrome_v1_session_count';
   const STORAGE_KEY_SESSION_DATE = 'the_aerodrome_v1_session_date';
