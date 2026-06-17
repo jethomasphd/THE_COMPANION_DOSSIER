@@ -271,12 +271,9 @@ COMPANION.App = (function () {
 
   function sendGreeting() {
     var greeting =
-      'The brothers Wilbur and Orville Wright have been summoned to the Aerodrome and now stand at the field. ' +
-      'A seeker has come from the year 2026 — an age drowning in information, "the Flood," in which new silicon minds (what they call artificial intelligence) now ride atop an endless torrent of words and signals. ' +
-      'The seeker wishes to think WITH you about the oldest longing made new: how a heavy age might learn, metaphorically, to fly — to stop being carried by the information and learn instead to rise above it, to steer, to be lighter and freer and more in control, the way you once taught a world of iron and steam to leave the ground. ' +
-      'Arrive in your own voices. Each of you: greet the seeker briefly and vividly — who you are, and the spark of how you two, from a bicycle shop, did what the great engineers could not. ' +
-      'Then, between the two of you, offer one opening reflection that takes the measure of this strange new air — drawing on what you truly know: the lying published tables versus the wind you measured yourselves, control over raw power, lightness, the discipline of a thousand glides. ' +
-      'Scrap a little, as you do. Keep it warm and brief. Then invite the seeker to speak freely.';
+      'You two — Wilbur and Orville Wright — have just been summoned to the Aerodrome. A seeker stands before you, come from the year 2026: an age drowning in information ("the Flood"), where new machine minds (artificial intelligence) now ride atop an endless torrent of words. They want to think WITH you about how a heavy age might learn, metaphorically, to fly — to stop being carried by the information and learn to rise above it. ' +
+      'Arrive now, and keep it SHORT and alive — a quick, vivid hello from each of you (one or two lines: who you are), then ONE sharp, surprising thought about this strange new air, drawn from what you actually know (the lying published tables vs. the wind you measured yourselves; control over power; lightness). Scrap a little. Then hand it straight to the seeker with a real question. ' +
+      'No speeches. Trade lines. Prefix every turn with **[Wilbur Wright]:** or **[Orville Wright]:**';
 
     state.isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
@@ -338,7 +335,7 @@ COMPANION.App = (function () {
 
 
   // ═══════════════════════════════════════════════════════════════
-  //  STREAMING — with live speaker detection
+  //  STREAMING — each brother's turn becomes its own chat bubble
   // ═══════════════════════════════════════════════════════════════
 
   function streamFromBrothers(userMessage) {
@@ -348,8 +345,37 @@ COMPANION.App = (function () {
 
     var systemPrompt = COMPANION.Protocol.buildSystemPrompt(state.activePersonas);
 
-    var msgHandle = COMPANION.UI.addPersonaMessage('The Brothers', COLLECTIVE_COLOR);
-    var currentSpeaker = null;
+    var raw = '';
+    var handles = [];   // one chat bubble per speaker turn, in order
+
+    // Render the accumulated text as a sequence of per-speaker bubbles.
+    function applySegments(isDone) {
+      var segs = parseSpeakerSegments(raw);
+      var hasSpeaker = segs.some(function (s) { return !!s.speaker; });
+
+      var list;
+      if (hasSpeaker) {
+        list = segs.filter(function (s) { return !!s.speaker; });
+      } else if (isDone) {
+        list = segs;                 // fallback: no markers ever arrived
+      } else {
+        return;                      // still waiting for the first marker
+      }
+
+      for (var i = 0; i < list.length; i++) {
+        var seg = list[i];
+        var isLast = (i === list.length - 1);
+        var active = !isDone && isLast;
+        var fullName = seg.speaker ? matchBadgeName(seg.speaker) : 'The Brothers';
+        var color = BROTHER_COLORS[fullName] || COLLECTIVE_COLOR;
+
+        if (!handles[i]) {
+          handles[i] = COMPANION.UI.addPersonaMessage(fullName, color);
+          if (active) highlightSpeaker(fullName);
+        }
+        handles[i].setText(cleanContent(seg.content, active), active);
+      }
+    }
 
     COMPANION.API.sendMessage(
       userMessage,
@@ -357,35 +383,13 @@ COMPANION.App = (function () {
 
       // onChunk
       function (chunk) {
-        msgHandle.update(chunk);
-
-        var fullText = msgHandle.getText();
-        var speakerMatch = fullText.match(/\*\*\[([^\]]+)\]:\*\*/g);
-        if (speakerMatch) {
-          var last = speakerMatch[speakerMatch.length - 1];
-          var nameMatch = last.match(/\*\*\[([^\]]+)\]:\*\*/);
-          if (nameMatch) {
-            var newSpeaker = nameMatch[1];
-            if (newSpeaker !== currentSpeaker) {
-              if (COMPANION.Hologram) {
-                COMPANION.Hologram.clearSpeaking();
-                COMPANION.Hologram.setSpeaking(newSpeaker, true);
-              }
-              COMPANION.UI.clearBadgesSpeaking();
-              var data = COMPANION.Hologram ? COMPANION.Hologram.getPersonaData(newSpeaker) : null;
-              if (data) {
-                msgHandle.setHeader(newSpeaker, data.color);
-                COMPANION.UI.setBadgeSpeaking(matchBadgeName(newSpeaker), true);
-              }
-              currentSpeaker = newSpeaker;
-            }
-          }
-        }
+        raw += chunk;
+        applySegments(false);
       },
 
       // onDone
       function () {
-        msgHandle.finish();
+        applySegments(true);
         state.isStreaming = false;
         if (COMPANION.Hologram) COMPANION.Hologram.clearSpeaking();
         COMPANION.UI.clearBadgesSpeaking();
@@ -407,7 +411,7 @@ COMPANION.App = (function () {
 
       // onError
       function (error) {
-        msgHandle.finish();
+        applySegments(true);
         state.isStreaming = false;
         if (COMPANION.Hologram) COMPANION.Hologram.clearSpeaking();
         COMPANION.UI.clearBadgesSpeaking();
@@ -418,7 +422,47 @@ COMPANION.App = (function () {
     );
   }
 
-  // Map a detected speaker name to the badge label (full name).
+  // Split a streamed reply into per-speaker segments on **[Name]:** markers.
+  function parseSpeakerSegments(text) {
+    var re = /\*\*\[([^\]]+)\]:\*\*/g;
+    var markers = [];
+    var m;
+    while ((m = re.exec(text)) !== null) {
+      markers.push({ name: m[1], start: m.index, end: re.lastIndex });
+    }
+    if (markers.length === 0) return [{ speaker: null, content: text }];
+
+    var segs = [];
+    if (markers[0].start > 0) {
+      segs.push({ speaker: null, content: text.slice(0, markers[0].start) });
+    }
+    for (var i = 0; i < markers.length; i++) {
+      var cs = markers[i].end;
+      var ce = (i + 1 < markers.length) ? markers[i + 1].start : text.length;
+      segs.push({ speaker: markers[i].name, content: text.slice(cs, ce) });
+    }
+    return segs;
+  }
+
+  // Trim leading whitespace; on the live turn, hide a half-typed next marker.
+  function cleanContent(c, isActive) {
+    c = c.replace(/^\s+/, '');
+    if (isActive) {
+      c = c.replace(/\*\*\[[^\]\n]*$/, '').replace(/\*\*\[[^\n]*?\]:?\*?$/, '');
+    }
+    return c;
+  }
+
+  function highlightSpeaker(fullName) {
+    if (COMPANION.Hologram) {
+      COMPANION.Hologram.clearSpeaking();
+      if (fullName !== 'The Brothers') COMPANION.Hologram.setSpeaking(fullName, true);
+    }
+    COMPANION.UI.clearBadgesSpeaking();
+    if (fullName !== 'The Brothers') COMPANION.UI.setBadgeSpeaking(fullName, true);
+  }
+
+  // Map a detected speaker name to the full badge/persona label.
   function matchBadgeName(speaker) {
     var lower = (speaker || '').toLowerCase();
     if (lower.indexOf('wilbur') !== -1) return 'Wilbur Wright';

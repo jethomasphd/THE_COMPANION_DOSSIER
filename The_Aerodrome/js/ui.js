@@ -93,6 +93,12 @@ COMPANION.UI = (function () {
         body.appendChild(cursor);
         smartScroll();
       },
+      setText: function (text, active) {
+        rawText = text;
+        body.innerHTML = renderMarkdownLight(rawText);
+        if (active) body.appendChild(cursor);
+        smartScroll();
+      },
       finish: function () {
         body.innerHTML = renderMarkdownLight(rawText);
         smartScroll();
