@@ -143,6 +143,12 @@
         .doctrine-motto { text-align:center; margin-top: 2.2rem; font-family: var(--font-voice); font-size: 1.4rem; font-style: italic; color: var(--ember); letter-spacing: 0.02em; }
         .doctrine-fine { text-align:center; font-family: var(--font-terminal); font-size: 0.45rem; letter-spacing: 0.1em; color: var(--smoke); margin-top: 0.8rem; }
         .doctrine-fine em { color: var(--ember-dim); font-style: italic; }
+        .tk.new { border-color: var(--ember-dim); color: var(--ember-glow); }
+        .tk.new .co { color: var(--ember-dim); }
+        .amendment { margin-top: 1.1rem; text-align: center; font-family: var(--font-terminal); font-size: 0.5rem; letter-spacing: 0.06em; line-height: 2; color: var(--smoke); border: 1px dashed #2a2a2a; background: rgba(201,162,39,0.025); padding: 0.8rem 1rem; }
+        .amendment strong { color: var(--ember-dim); }
+        .amendment a { color: var(--ember); text-decoration: none; border-bottom: 1px solid var(--ember-dim); }
+        .amendment a:hover { color: var(--ember-glow); }
 
         /* ── THE FIELD ── */
         #field { background: #060606; padding: 5.5rem 2rem; }
@@ -331,14 +337,14 @@
         <div class="ob-header reveal">
             <div class="eyebrow">THE DOCTRINE, MADE CONCRETE</div>
             <h2 class="ob-title">The Order of Battle</h2>
-            <p class="ob-intro">The Republic Portfolio is not an abstraction. It is twenty-nine companies and a cash reserve, equal-weighted within each rank. This is exactly what the model holds.</p>
+            <p class="ob-intro">The Republic Portfolio is not an abstraction. It is thirty companies and a cash reserve, equal-weighted within each rank — as amended by the Committee's Q1 2026 Wartime Review. This is exactly what the model holds.</p>
         </div>
         <div class="bucket engines reveal reveal-delay-1">
-            <div class="bucket-top"><span class="bucket-name">⚙ Engines of the Republic</span><span class="bucket-weight">50%</span></div>
+            <div class="bucket-top"><span class="bucket-name">⚙ Engines of the Republic</span><span class="bucket-weight"><s style="color:#555;font-size:0.85rem">50%</s> 45%</span></div>
             <div class="bucket-sub">THE PRODUCERS · THE BUILDERS · THE FOUNDATION — MANUFACTURING · RETAIL · HEALTHCARE · AGRICULTURE · FINANCE FOR CITIZENS</div>
             <div class="tickers">
                 <span class="tk">CAT<span class="co">Caterpillar</span></span><span class="tk">DE<span class="co">Deere</span></span>
-                <span class="tk">HON<span class="co">Honeywell</span></span><span class="tk">LMT<span class="co">Lockheed Martin</span></span>
+                <span class="tk">HON<span class="co">Honeywell</span></span><span class="tk">LMT*<span class="co">Lockheed Martin</span></span>
                 <span class="tk">GE<span class="co">GE Aerospace</span></span><span class="tk">WMT<span class="co">Walmart</span></span>
                 <span class="tk">COST<span class="co">Costco</span></span><span class="tk">HD<span class="co">Home Depot</span></span>
                 <span class="tk">JNJ<span class="co">Johnson &amp; Johnson</span></span><span class="tk">PFE<span class="co">Pfizer</span></span>
@@ -358,15 +364,17 @@
                 <span class="tk">AMZN<span class="co">Amazon</span></span><span class="tk">GOOGL<span class="co">Alphabet</span></span>
                 <span class="tk">UNP<span class="co">Union Pacific</span></span><span class="tk">NSC<span class="co">Norfolk Southern</span></span>
                 <span class="tk">MCK<span class="co">McKesson</span></span><span class="tk">UNH<span class="co">UnitedHealth †</span></span>
+                <span class="tk new">XLE<span class="co">Energy Select SPDR · added Q1</span></span>
             </div>
         </div>
         <div class="bucket reserve reveal reveal-delay-3">
-            <div class="bucket-top"><span class="bucket-name">⛨ Reserve</span><span class="bucket-weight">15%</span></div>
+            <div class="bucket-top"><span class="bucket-name">⛨ Reserve</span><span class="bucket-weight"><s style="color:#555;font-size:0.85rem">15%</s> 20%</span></div>
             <div class="bucket-sub">MAINTAIN DISCIPLINE · AWAIT OPPORTUNITIES</div>
-            <p class="reserve-note">Short-term Treasury instruments (modeled as BIL). Dry powder is a position.</p>
+            <p class="reserve-note">Short-term Treasury instruments (modeled as BIL). Raised from 15% to 20% in the Q1 Wartime Review. Dry powder is a position.</p>
         </div>
+        <div class="amendment reveal reveal-delay-3">⚔ Amended <strong>March 31, 2026</strong> — Q1 2026 Wartime Review: Engines 50%&rarr;45% · Reserve 15%&rarr;20% · <strong>XLE</strong> added to the Choke Points · BLK · PLTR · META excluded. <a href="https://the-companion-dossier.com/Committee_of_Patriots_Sessions/Q12026/" target="_blank">Read the session &rarr;</a></div>
         <p class="doctrine-motto reveal reveal-delay-3">"Own them. Vote them. Govern."</p>
-        <p class="doctrine-fine reveal reveal-delay-3">† UNH held as <em>Reformer, not Endorser</em> — vote AGAINST executive pay, FOR transparency. Ownership for leverage, not approbation.</p>
+        <p class="doctrine-fine reveal reveal-delay-3">* LMT held as <em>Citizen Overseer</em> — vote for casualty-reporting transparency and independent targeting review. &nbsp;&middot;&nbsp; † UNH held as <em>Reformer, not Endorser</em> — vote AGAINST executive pay, FOR transparency. Ownership for leverage, not approbation.</p>
     </div>
 </section>
 
@@ -382,9 +390,9 @@
         <div class="field-grid">
             <div class="contender republic reveal reveal-delay-1">
                 <div class="contender-top"><span class="contender-icon">⚔</span><span class="contender-name">The Republic</span></div>
-                <div class="contender-ticker">THE COMMITTEE'S DOCTRINE · 29 NAMES + RESERVE</div>
+                <div class="contender-ticker">THE COMMITTEE'S DOCTRINE · 30 NAMES + RESERVE</div>
                 <p class="contender-phil"><em>Productive ownership as civic act.</em> Own what makes things; own what controls access. Concentrated in engines and choke points — real assets in real industries — on the bet that they endure what speculation cannot.</p>
-                <div class="contender-meta">50% ENGINES · 35% CHOKE POINTS · 15% RESERVE</div>
+                <div class="contender-meta">45% ENGINES · 35% CHOKE POINTS · 20% RESERVE · Q1 AMENDED</div>
             </div>
             <div class="contender spy reveal reveal-delay-2">
                 <div class="contender-top"><span class="contender-icon">📊</span><span class="contender-name">S&amp;P 500</span></div>
@@ -435,7 +443,7 @@
 
         <div class="upshot reveal reveal-delay-1">
             <div class="upshot-label">THE UPSHOT</div>
-            <p>The race is a photo finish at the top and a rout at the bottom. <em>The Republic Portfolio set the pace for almost the entire year</em> — it led the field on 102 of 116 trading days, pushed past +7% by early February while the index was still underwater, and peaked near +10.7% in early March; by late March the gap from the doctrine at the top to the worst fund at the bottom had yawned to nearly nineteen points. Then a broad second-quarter rally did what broad rallies do: it lifted the cap-weighted index and the large-cap dividend fund fastest of all, and in the closing weeks <em>SPY (+9.89%) and UBS's Dividend Ruler (+9.61%) edged past the doctrine</em>, which finished third by a hair at +9.39% — within half a point of the lead it had held since January. Underneath the dead heat sits real dispersion: the mid-cap fund clawed back from deep negatives to nearly match the leaders, while international equity stalled near +5% and the growth-tilted QGARP strategy — down as much as 14% in the spring — limped to +1.5%. The doctrine did not win the year outright, but it spent it in front, and even after the rally <em>it finished ahead of the mid-cap, international, and growth funds</em> — trailing only the S&amp;P 500 and the Dividend Ruler, and the index by just fifty basis points. Engines and choke points kept pace with the market through both its fear and its greed — which was, after all, the whole claim.</p>
+            <p>The race came down to the final session. For nearly the entire year <em>the Republic Portfolio led the field — 103 of 116 trading sessions</em> — and it led through the worst of the tape, not just the best. When war and the Hormuz crisis cratered every rival in late March, the doctrine stood at +4.5% on the 30th while the S&amp;P had surrendered more than seven points and the weakest fund had lost fourteen — a spread of eighteen points from top to bottom. <em>At that low the Committee rebalanced:</em> the Q1 Wartime Review of March 31 trimmed the Engines to 45%, lifted the Reserve to 20%, and added an energy sleeve — XLE — to the Choke Points. The doctrine carried its lead deep into May, cresting above +10%. Only a broad June melt-up finally caught it: the cap-weighted index and UBS's Dividend Ruler edged ahead in the closing weeks, and after leading <em>as late as June 17</em> the Republic slipped to third on the very last day, finishing <em>+9.05%</em> — behind the index and the Dividend Ruler by under a point, but ahead of the mid-cap, international, and growth funds, the last of which (QGARP, down as much as 14% in the spring) never recovered. The doctrine did not win the year. It merely led almost all of it — and it kept pace with the market through both the fear and the greed, which was the entire claim.</p>
         </div>
 
         <div class="standings reveal reveal-delay-2" id="standings"></div>
@@ -444,7 +452,7 @@
             <div class="chronicle-header">
                 <div class="chronicle-label">THE FULL STORY</div>
                 <h3 class="chronicle-title">Cumulative Return — Every Trading Day of 2026</h3>
-                <div class="chronicle-sub" id="chartSub">hover to read the field · tap a key to isolate a line</div>
+                <div class="chronicle-sub" id="chartSub">hover to read the field · tap a key to isolate a line · dashed line = Q1 reshuffle</div>
             </div>
             <div class="chart-toolbar" id="chartToolbar"></div>
             <div class="chart-container">
@@ -452,11 +460,11 @@
                 <div class="chart-caption" id="chartCaption"></div>
             </div>
             <p class="method">
-                <strong>How this is built.</strong> Adjusted (total-return) daily closes from Yahoo Finance, Jan 2 – Jun 18 2026.
-                The Republic Portfolio is modeled buy-and-hold from its 29 listed holdings plus a 15% short-term Treasury reserve,
-                equal-weighted within each bucket — the exact doctrine from the Committee's handbill (GE held as GE Aerospace).
-                Each fund is its own NAV total return, indexed to zero on the first trading day. Data refreshes when the model is re-run.
-                <strong>This is not investment advice; past performance does not guarantee future results.</strong>
+                <strong>How this is built.</strong> Adjusted (total-return) daily closes from Yahoo Finance, Jan 2 – Jun 18 2026, indexed to zero on the first trading day.
+                The Republic Portfolio is modeled buy-and-hold and equal-weighted within each bucket, as the Committee's handbill prescribes (GE held as GE Aerospace).
+                It is held under the founding 50 / 35 / 15 roster through March 31, then <strong>rebalanced into the Q1 Wartime amendment</strong> — Engines 45%, Choke Points 35% (+XLE), Reserve 20% — and held to date; the dashed line on the chart marks the pivot.
+                Each fund is its own NAV total return. Data refreshes when <code>model_ytd.py</code> is re-run.
+                <strong>Not investment advice; past performance does not guarantee future results.</strong>
             </p>
         </div>
     </div>
@@ -584,7 +592,7 @@
             <div class="stand-desc">${m.desc}</div>
             ${spark(m.series, m.color)}
             <div class="stand-val" style="color:${m.color}">${fmt(m.val)}</div>
-            <div class="stand-foot">YTD · ${m.key === 'republic' ? 'led 102 of ' + D.n_points + ' days' : 'as of ' + asofPretty}</div>
+            <div class="stand-foot">YTD · ${m.key === 'republic' ? 'led ' + ((D.stats && D.stats.republic_led) || '—') + ' of ' + D.n_points + ' days' : 'as of ' + asofPretty}</div>
         </div>`).join('');
 
     // ── interactive chart ──
@@ -597,6 +605,21 @@
                 ctx.save(); ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom);
                 ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(201,162,39,0.35)'; ctx.stroke(); ctx.restore();
             }
+        }
+    };
+    // vertical marker at the Q1 reshuffle pivot
+    const pivotLine = {
+        id: 'pivotLine',
+        afterDatasetsDraw(chart) {
+            const pi = D.pivot_index;
+            if (pi == null) return;
+            const x = chart.scales.x.getPixelForValue(pi), { top, bottom } = chart.chartArea, ctx = chart.ctx;
+            ctx.save();
+            ctx.beginPath(); ctx.setLineDash([4, 4]); ctx.moveTo(x, top); ctx.lineTo(x, bottom);
+            ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(232,230,227,0.30)'; ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = 'rgba(201,162,39,0.9)'; ctx.font = "9px 'IBM Plex Mono', monospace"; ctx.textAlign = 'left';
+            ctx.fillText('  ◊ Q1 RESHUFFLE', x, top + 11);
+            ctx.restore();
         }
     };
     const ctx = document.getElementById('performanceChart').getContext('2d');
@@ -643,7 +666,7 @@
                 }
             }
         },
-        plugins: [crosshair]
+        plugins: [pivotLine, crosshair]
     });
 
     // ── custom toggle legend ──
