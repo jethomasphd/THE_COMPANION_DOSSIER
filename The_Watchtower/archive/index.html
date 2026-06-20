@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>◊ The Watchtower — Portfolio Vigil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --void: #030303;
+            --void-deep: #000000;
+            --ember: #c9a227;
+            --ember-glow: #e6c656;
+            --ember-dim: #8b7355;
+            --ash: #1a1a1a;
+            --smoke: #666;
+            --bone: #e8e6e3;
+            --bone-dim: rgba(232, 230, 227, 0.7);
+            
+            --republic: #c9a227;
+            --spy: #6a8eb8;
+            --dsip: #5a8a5a;
+            --ubs: #9a6db8;
+            
+            --font-voice: 'Cormorant Garamond', Georgia, serif;
+            --font-terminal: 'IBM Plex Mono', monospace;
+            --font-body: 'Crimson Pro', Georgia, serif;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { 
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--ember-dim) var(--void);
+        }
+        
+        body {
+            background: var(--void);
+            color: var(--bone);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        ::selection { background: var(--ember); color: var(--void); }
+        
+        /* ============================================
+           ANIMATIONS
+        ============================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        @keyframes breathe {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes orbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ============================================
+           SCROLL REVEAL
+        ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        
+        /* ============================================
+           LAYOUT
+        ============================================ */
+        section {
+            position: relative;
+            padding: 5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; width: 100%; }
+        .container-narrow { max-width: 750px; margin: 0 auto; width: 100%; }
+        
+        /* ============================================
+           I. THE WATCHTOWER - Hero
+        ============================================ */
+        #watchtower {
+            min-height: 100vh;
+            background: var(--void-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #watchtower::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.03) 0%, transparent 50%);
+            animation: breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .watchtower-sigil {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.025;
+        }
+        
+        .sigil-ring {
+            position: absolute;
+            border: 1px solid var(--ember);
+            border-radius: 50%;
+        }
+        
+        .sigil-ring.outer { inset: 0; animation: orbit 120s linear infinite; }
+        .sigil-ring.middle { inset: 50px; animation: orbit 80s linear infinite reverse; }
+        .sigil-ring.inner { inset: 100px; animation: orbit 60s linear infinite; }
+        
+        .watchtower-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .watchtower-label {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            color: var(--ember-dim);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        .watchtower-title {
+            font-family: var(--font-voice);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.8s forwards;
+        }
+        
+        .watchtower-title em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .watchtower-subtitle {
+            font-family: var(--font-voice);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--bone-dim);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.2s forwards;
+        }
+        
+        .watchtower-date {
+            font-family: var(--font-terminal);
+            font-size: 0.7rem;
+            color: var(--ember);
+            letter-spacing: 0.15em;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--ember-dim);
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+        
+        .watchtower-nav {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+        }
+        
+        .watchtower-proceed {
+            display: block;
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .watchtower-proceed:hover { color: var(--ember); }
+        
+        .watchtower-proceed.primary {
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--ember);
+            color: var(--ember);
+            animation: pulse 3s ease-in-out 3s infinite;
+        }
+        
+        .watchtower-proceed.primary:hover {
+            background: var(--ember);
+            color: var(--void);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        .watchtower-proceed.secondary {
+            color: var(--smoke);
+            font-size: 0.5rem;
+        }
+        
+        .watchtower-proceed.secondary:hover {
+            color: var(--bone-dim);
+        }
+        
+        /* ============================================
+           II. THE PREMISE - Introduction
+        ============================================ */
+        #premise {
+            background: var(--void);
+            padding: 6rem 2rem;
+            min-height: auto;
+        }
+        
+        .premise-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .premise-sigil {
+            font-size: 1rem;
+            color: var(--ember);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5em;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .premise-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .premise-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 300;
+        }
+        
+        .premise-body {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--bone-dim);
+        }
+        
+        .premise-body p {
+            margin-bottom: 1.75rem;
+        }
+        
+        .premise-body em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .premise-body strong {
+            color: var(--bone);
+            font-weight: 500;
+        }
+        
+        .premise-callout {
+            padding: 2rem 2.5rem;
+            border-left: 3px solid var(--ember-dim);
+            background: rgba(255,255,255,0.01);
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        
+        .premise-callout::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ember-dim);
+            filter: blur(8px);
+            opacity: 0.4;
+        }
+        
+        .premise-callout p {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        
+        .premise-dossier-link {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        
+        .dossier-btn {
+            display: inline-block;
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: var(--ember);
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--ember-dim);
+            transition: all 0.3s ease;
+        }
+        
+        .dossier-btn:hover {
+            background: var(--ember);
+            color: var(--void);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+        }
+        
+        /* ============================================
+           III. THE EXPERIMENT - Four Doctrines Intro
+        ============================================ */
+        #experiment {
+            background: linear-gradient(var(--void), #060606);
+            padding: 5rem 2rem;
+            min-height: auto;
+        }
+        
+        .experiment-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .experiment-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experiment-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .experiment-intro {
+            font-family: var(--font-voice);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--bone-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .doctrine-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .doctrine-preview {
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            position: relative;
+        }
+        
+        .doctrine-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .doctrine-preview.republic::before { background: var(--republic); }
+        .doctrine-preview.spy::before { background: var(--spy); }
+        .doctrine-preview.dsip::before { background: var(--dsip); }
+        .doctrine-preview.ubs::before { background: var(--ubs); }
+        
+        .doctrine-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .doctrine-preview-icon {
+            font-size: 1.25rem;
+        }
+        
+        .doctrine-preview-name {
+            font-family: var(--font-voice);
+            font-size: 1.2rem;
+        }
+        
+        .doctrine-preview.republic .doctrine-preview-name { color: var(--republic); }
+        .doctrine-preview.spy .doctrine-preview-name { color: var(--spy); }
+        .doctrine-preview.dsip .doctrine-preview-name { color: var(--dsip); }
+        .doctrine-preview.ubs .doctrine-preview-name { color: var(--ubs); }
+        
+        .doctrine-preview-philosophy {
+            font-size: 1rem;
+            color: var(--bone-dim);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .doctrine-preview-philosophy em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .doctrine-preview-meta {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            color: #555;
+            letter-spacing: 0.05em;
+        }
+        
+        /* ============================================
+           IV. THE QUESTION - What We Measure
+        ============================================ */
+        #question {
+            background: #060606;
+            padding: 4rem 2rem;
+            min-height: auto;
+        }
+        
+        .question-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .question-text {
+            font-family: var(--font-voice);
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--bone-dim);
+            margin-bottom: 2rem;
+        }
+        
+        .question-text em {
+            color: var(--ember);
+            font-style: italic;
+        }
+        
+        .question-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .metric-item {
+            text-align: center;
+        }
+        
+        .metric-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            color: var(--smoke);
+        }
+        
+        .question-divider {
+            margin: 3rem auto;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--ember-dim), transparent);
+        }
+        
+        .question-cta {
+            font-family: var(--font-terminal);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+        }
+        
+        /* ============================================
+           V. THE VIGIL - YTD Display
+        ============================================ */
+        #vigil {
+            background: linear-gradient(#060606, var(--void));
+            padding: 5rem 2rem;
+        }
+        
+        .vigil-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .vigil-sigil {
+            font-size: 1rem;
+            color: var(--ember);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5em;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .vigil-label {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.3em;
+            color: var(--ember-dim);
+            margin-bottom: 0.5rem;
+        }
+        
+        .vigil-title {
+            font-family: var(--font-voice);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 300;
+        }
+        
+        .vigil-period {
+            font-family: var(--font-terminal);
+            font-size: 0.65rem;
+            color: var(--smoke);
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        /* YTD Cards */
+        .ytd-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #222;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ytd-card {
+            background: var(--void);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .ytd-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .ytd-card.republic::before { background: var(--republic); }
+        .ytd-card.spy::before { background: var(--spy); }
+        .ytd-card.dsip::before { background: var(--dsip); }
+        .ytd-card.ubs::before { background: var(--ubs); }
+        
+        .ytd-rank {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.05em;
+            padding: 0.15rem 0.35rem;
+            border-radius: 2px;
+        }
+        
+        .ytd-rank.rank-1 { background: rgba(201, 162, 39, 0.2); color: var(--ember); }
+        .ytd-rank.rank-2 { background: rgba(255,255,255,0.1); color: #aaa; }
+        .ytd-rank.rank-3 { background: rgba(255,255,255,0.05); color: #777; }
+        .ytd-rank.rank-4 { background: rgba(255,255,255,0.03); color: #555; }
+        
+        .ytd-icon {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .ytd-name {
+            font-family: var(--font-voice);
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .ytd-card.republic .ytd-name { color: var(--republic); }
+        .ytd-card.spy .ytd-name { color: var(--spy); }
+        .ytd-card.dsip .ytd-name { color: var(--dsip); }
+        .ytd-card.ubs .ytd-name { color: var(--ubs); }
+        
+        .ytd-desc {
+            font-family: var(--font-terminal);
+            font-size: 0.35rem;
+            letter-spacing: 0.1em;
+            color: #444;
+            margin-bottom: 0.75rem;
+        }
+        
+        .ytd-value {
+            font-family: var(--font-voice);
+            font-size: 2.25rem;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 0.15rem;
+        }
+        
+        .ytd-card.republic .ytd-value { color: var(--republic); }
+        .ytd-card.spy .ytd-value { color: var(--spy); }
+        .ytd-card.dsip .ytd-value { color: var(--dsip); }
+        .ytd-card.ubs .ytd-value { color: var(--ubs); }
+        
+        .ytd-label {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #444;
+            letter-spacing: 0.1em;
+        }
+        
+        .ytd-delta {
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            margin-top: 0.4rem;
+            padding: 0.2rem 0.4rem;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        
+        .ytd-delta.positive { background: rgba(90, 138, 90, 0.2); color: #6a6; }
+        .ytd-delta.negative { background: rgba(170, 85, 85, 0.2); color: #a66; }
+        .ytd-delta.neutral { background: rgba(255,255,255,0.05); color: #555; }
+        
+        /* ============================================
+           ANALYTICS BAR
+        ============================================ */
+        .analytics-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #1a1a1a;
+            margin-bottom: 2.5rem;
+        }
+        
+        .analytic-item {
+            background: #0a0a0a;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .analytic-label {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            letter-spacing: 0.12em;
+            color: #555;
+            margin-bottom: 0.4rem;
+        }
+        
+        .analytic-value {
+            font-family: var(--font-terminal);
+            font-size: 1rem;
+            color: var(--ember);
+        }
+        
+        .analytic-sub {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #444;
+            margin-top: 0.2rem;
+        }
+        
+        /* ============================================
+           CHART SECTION
+        ============================================ */
+        .chronicle-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .chronicle-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chronicle-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .chronicle-title {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .chart-container {
+            position: relative;
+            background: #050505;
+            border: 1px solid #1a1a1a;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.08), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        #performanceChart {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-terminal);
+            font-size: 0.55rem;
+            color: var(--smoke);
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 3px;
+        }
+        
+        .legend-color.republic { background: var(--republic); }
+        .legend-color.spy { background: var(--spy); }
+        .legend-color.dsip { background: var(--dsip); }
+        .legend-color.ubs { background: var(--ubs); }
+        
+        /* ============================================
+           COMMENTARY - BLOG STYLE
+        ============================================ */
+        .vigil-commentary-section {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .commentary-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .commentary-header-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .commentary-header-title {
+            font-family: var(--font-voice);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        
+        .commentary-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .vigil-commentary {
+            padding: 1.75rem 2rem;
+            border-left: 3px solid var(--ember-dim);
+            background: rgba(255,255,255,0.01);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .vigil-commentary:first-child {
+            border-left-color: var(--ember);
+        }
+        
+        .vigil-commentary:first-child::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ember);
+            filter: blur(8px);
+            opacity: 0.4;
+        }
+        
+        .vigil-commentary:not(:first-child) {
+            opacity: 0.7;
+        }
+        
+        .vigil-commentary:not(:first-child):hover {
+            opacity: 1;
+        }
+        
+        .commentary-date {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.15em;
+            color: var(--ember);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .commentary-date .week-badge {
+            background: rgba(201, 162, 39, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+        }
+        
+        .vigil-commentary:first-child .week-badge {
+            background: var(--ember);
+            color: var(--void);
+        }
+        
+        .commentary-text {
+            font-family: var(--font-voice);
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.85;
+            color: var(--bone-dim);
+        }
+        
+        .commentary-text em {
+            color: var(--ember);
+            font-style: normal;
+        }
+        
+        /* ============================================
+           VI. THE DOCTRINES - Deep Links
+        ============================================ */
+        #doctrines {
+            background: var(--void);
+            padding: 5rem 2rem;
+        }
+        
+        .doctrines-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .doctrines-label {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            color: var(--ember-dim);
+            margin-bottom: 0.4rem;
+        }
+        
+        .doctrines-title {
+            font-family: var(--font-voice);
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+        
+        .doctrine-list {
+            display: grid;
+            gap: 0.6rem;
+        }
+        
+        .doctrine-item {
+            display: grid;
+            grid-template-columns: 45px 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .doctrine-item:hover {
+            border-color: #333;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .doctrine-icon {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .doctrine-info h3 {
+            font-family: var(--font-voice);
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 0.1rem;
+        }
+        
+        .doctrine-item.republic h3 { color: var(--republic); }
+        .doctrine-item.spy h3 { color: var(--spy); }
+        .doctrine-item.dsip h3 { color: var(--dsip); }
+        .doctrine-item.ubs h3 { color: var(--ubs); }
+        
+        .doctrine-tagline {
+            font-family: var(--font-voice);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--smoke);
+        }
+        
+        .doctrine-links {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        
+        .doctrine-link {
+            font-family: var(--font-terminal);
+            font-size: 0.45rem;
+            letter-spacing: 0.06em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            padding: 0.35rem 0.6rem;
+            border: 1px solid #333;
+            transition: all 0.2s ease;
+        }
+        
+        .doctrine-link:hover {
+            color: var(--ember);
+            border-color: var(--ember-dim);
+            background: rgba(201, 162, 39, 0.05);
+        }
+        
+        /* UBS Sub-funds */
+        .ubs-subfunds {
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        
+        .subfund-link {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            letter-spacing: 0.04em;
+            color: #555;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #222;
+            transition: all 0.2s ease;
+        }
+        
+        .subfund-link:hover {
+            color: var(--ubs);
+            border-color: var(--ubs);
+        }
+        
+        /* ============================================
+           VII. THE CLOSE
+        ============================================ */
+        #close {
+            background: linear-gradient(var(--void), #050505);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .close-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .close-sigil {
+            color: var(--ember);
+            font-size: 1rem;
+            letter-spacing: 0.4em;
+            margin-bottom: 1.5rem;
+            animation: drift 6s ease-in-out infinite;
+        }
+        
+        .close-quote {
+            font-family: var(--font-voice);
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--bone-dim);
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-quote em {
+            color: var(--ember);
+        }
+        
+        .close-timestamp {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            color: #444;
+            letter-spacing: 0.1em;
+            line-height: 2;
+        }
+        
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            padding: 2rem 2rem;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            font-family: var(--font-terminal);
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+            color: var(--ember-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover { color: var(--ember); }
+        
+        .footer-disclaimer {
+            font-family: var(--font-terminal);
+            font-size: 0.4rem;
+            color: #333;
+            line-height: 1.8;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 800px) {
+            .ytd-grid, .analytics-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .doctrine-preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .doctrine-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0.6rem;
+            }
+            
+            .doctrine-icon { display: none; }
+            .doctrine-links, .ubs-subfunds { justify-content: center; }
+            
+            .question-metrics { gap: 2rem; }
+        }
+        
+        @media (max-width: 500px) {
+            .ytd-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ytd-value { font-size: 2rem; }
+            .chart-legend { gap: 1rem; }
+
+            .watchtower-nav {
+                gap: 0.75rem;
+            }
+        }
+
+        /* Mobile: ensure commentary section is never hidden by failed observers */
+        @media (max-width: 800px) {
+            .vigil-commentary-section {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .vigil-commentary {
+                padding: 1.25rem 1.25rem;
+            }
+
+            .commentary-text {
+                font-size: 1rem;
+                line-height: 1.75;
+            }
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:2000;background:rgba(201,162,39,0.12);backdrop-filter:blur(4px);border-bottom:1px solid #8b7355;color:#e6c656;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-align:center;padding:0.5rem 1rem;">&#9674; ARCHIVED &mdash; THE FIRST VIGIL &middot; VOL. I &middot; JAN&ndash;MAY 2026 &nbsp;&middot;&nbsp; <a href="../" style="color:#e6c656;text-decoration:underline;">RETURN TO THE LIVE WATCHTOWER &rarr;</a> &#9674;</div>
+
+<a href="../../" style="position:fixed;top:3.2rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║                                                                              ║
+// ║   ◊ WEEKLY DATA ENTRY — UPDATE THIS ARRAY EACH WEEK ◊                       ║
+// ║                                                                              ║
+// ║   Format: { week: "MMM DD", republic: X.X, spy: X.X, dsip: X.X, ubs: X.X }  ║
+// ║   All values are YTD percentage returns (can be negative)                    ║
+// ║                                                                              ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const WEEKLY_DATA = [
+    // ──────────────────────────────────────────────────────────────────────────
+    // WEEK 1: Starting point (Jan 1 baseline = 0%)
+    // ──────────────────────────────────────────────────────────────────────────
+    { week: "Jan 1",   republic: 0.0,  spy: 0.0,  dsip: 0.0,  ubs: 0.0 },
+    
+    // ──────────────────────────────────────────────────────────────────────────
+    // ADD NEW WEEKS BELOW — just copy this template and fill in the numbers:
+    // { week: "Jan 26", republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+    // ──────────────────────────────────────────────────────────────────────────
+    
+    { week: "Jan 12", republic: 2.95,  spy: 1.4,  dsip: 1.83,  ubs: 1.94 },
+    { week: "Jan 19", republic: 4.18,  spy: 1.24,  dsip: 2.33,  ubs: 2.37 },
+    { week: "Jan 26", republic: 4.31,  spy: 1.10,  dsip: 1.26,  ubs: 1.84 },
+    { week: "Feb 2",  republic: 5.43,  spy: 1.45,  dsip: 1.80,  ubs: 1.56 },
+    { week: "Feb 9",  republic: 7.21,  spy: 1.70,  dsip: 4.08,  ubs: 1.81 },
+    { week: "Feb 16", republic: 7.88,  spy: -0.14, dsip: 2.56,  ubs: 1.70 },
+    { week: "Feb 23", republic: 7.82,  spy: 0.63,  dsip: 3.40,  ubs: 2.99 },
+    { week: "Mar 2",  republic: 8.50,  spy: 2.08,  dsip: 3.39,  ubs: 2.79 },
+    { week: "Mar 9",  republic: 5.74,  spy: -1.58, dsip: 1.36,  ubs: -1.10 },
+    { week: "Mar 16", republic: 3.82,  spy: -3.18, dsip: -1.08, ubs: -2.76 },
+    { week: "Mar 23", republic: 2.90,  spy: -4.034, dsip: -2.23, ubs: -4.55 },
+    { week: "Mar 30", republic: 3.40,  spy: -6.98, dsip: -3.04, ubs: -5.45 },
+    { week: "Apr 9",  republic: 6.58,  spy: -1.26, dsip: 1.51,  ubs: 0.87 },
+    { week: "Apr 16", republic: 5.44,  spy: 2.45,  dsip: 2.52,  ubs: 3.20 },
+    { week: "Apr 23", republic: 6.02,  spy: 4.50,  dsip: 3.78,  ubs: 4.37 },
+    { week: "Apr 30", republic: 6.42,  spy: 5.49,  dsip: 4.96,  ubs: 4.38 },
+    { week: "May 7",  republic: 6.22,  spy: 7.11,  dsip: 5.40,  ubs: 6.00 },
+    { week: "May 14", republic: 6.18,  spy: 8.20,  dsip: 5.45,  ubs: 4.70 },
+    { week: "May 21", republic: 6.55,  spy: 8.72,  dsip: 5.65,  ubs: 5.28 },
+    { week: "May 28", republic: 6.43,  spy: 9.73,  dsip: 6.14,  ubs: 6.44 },
+
+
+    // Future weeks go here...
+    // { week: "Jun 4",  republic: X.X,  spy: X.X,  dsip: X.X,  ubs: X.X },
+];
+
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║   ◊ WEEKLY COMMENTARY — ADD NEW ENTRIES AT THE TOP ◊                        ║
+// ║   Entries display newest-first (blog style)                                  ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const COMMENTARY = [
+    // ──────────────────────────────────────────────────────────────────────────
+    // NEWEST ENTRY FIRST — Add new weeks at the top of this array
+    // ──────────────────────────────────────────────────────────────────────────
+    {
+        week: 21,
+        date: "MAY 28, 2026",
+        text: `The position changed without the price doing much. UBS edged past the Republic by a single basis point—<em>+6.44% YTD</em> against <em>+6.43%</em>—and for the first time since the January 12th opening, the Committee's doctrine sits outside the top two of the field. The mover was UBS, not the Republic. The four-pillar aggregate added 1.16 points on the week, the largest single advance posted by any strategy in May, as the dollar gave back ground against the euro and yen on softer May payroll guidance and the international and mid-cap pillars finally caught a tape they could participate in. The Republic, by contrast, gave back twelve basis points—a drift rather than a decline, but enough in a field this tight to surrender a station. SPY did what it has done for five consecutive weeks. The benchmark climbed another 1.01 points to <em>+9.73% YTD</em>, extending the lead it took in Week 18 to <em>3.30 percentage points</em> over the Republic and <em>3.59 points</em> over the new last-place finisher, Wells Fargo's DSIP at <em>+6.14%</em>. DSIP itself was up forty-nine basis points—a real gain, the dividend doctrine's third positive print of May—but the field above it moved faster. The closing order: SPY, UBS, Republic, DSIP. Look at the cluster forming in the middle of the table. UBS at +6.44%, Republic at +6.43%, DSIP at +6.14%—three doctrines separated by <em>thirty basis points</em> in aggregate, all sitting within shouting distance of one another, and all of them lapped by a cap-weighted benchmark that has now opened 3.30 points of daylight on the leader of that cluster. The vigil's second, third, and fourth positions have effectively converged. The story this week is not who occupies which of those three slots—they could rearrange by Tuesday on any plausible tape—but the gap between that cluster and the index that contains them all. That gap has widened for four consecutive readings. The progression: <em>0.89 points in Week 18, 2.02 in Week 19, 2.17 in Week 20, 3.30 today</em>. Across those four readings SPY has added 3.84 points and the Republic 0.32 points. One of those numbers is the doctrine doing its work. The other is the index doing something the doctrine, by construction, was never built to do. What the index has been doing is repricing the longest-duration earnings in its largest five constituents on the steadily firming expectation of a midsummer rate cut and the steadily delivering Q1 AI capex cycle. Both forces concentrate gains in names whose qualifying yields are too thin for the dividend screen, whose float profiles are too large for the mid-cap pillars, and whose business models are too platform-dependent to belong in a chokepoint-and-infrastructure doctrine. The Republic does not own those names. UBS owns them only fractionally, through the broad-market sleeve nested inside its four-pillar weighting. DSIP, by construction, cannot own them at all. That asymmetry is why the middle cluster converges, and why the index continues to pull away from the cluster. The Republic's twelve-basis-point retreat is the cleanest single number in the table. The doctrine has not surrendered position on a thesis failure; the chokepoints did not stop being chokepoints between Thursday and Thursday. Rail tonnage for the week ending May 24 printed above year-ago for the eighth consecutive reading. Pipeline throughput remained tight through the Memorial Day weekend. Defense backlogs continue to extend against the supplementals appropriated after Week 10. Brent crude held above $88 across the holiday. The earnings cycle the doctrine is built around continues to deliver its compounding on schedule—modestly, slowly, in the manner of a portfolio whose return distribution is fat in the middle rather than fat in the tail. What the doctrine cannot do, in this regime, is bid for multiple expansion it does not own. It has now been measured behind the benchmark for four consecutive readings, behind it by a margin that has roughly quadrupled across those readings, and as of this week has slipped behind one of its peer strategies as well. <em>The lead is gone. The podium is gone. The compounding continues.</em> There is a temptation in a reading like this one to call the thesis broken. The vigil declines. A return of <em>+6.43% YTD</em> on a doctrine built for civic durability rather than benchmark dominance is not a broken thesis—it is the second-best mark on the page by a single basis point, and a number most balanced strategies would book without comment. What has been falsified is not the structural argument. What has been falsified, for the present regime, is the expectation that the doctrine would lead every reading. Twenty-one weeks of data have produced seventeen weeks in which it did and four in which it did not. The ratio is still favorable. The trajectory of the four is the question the summer will answer. The vigil holds.`
+    },
+    {
+        week: 20,
+        date: "MAY 21, 2026",
+        text: `Twenty weeks in, and for the first time in three readings, the field moved together. Every doctrine advanced. SPY extends again, adding fifty-two basis points to <em>+8.72% YTD</em>—a third consecutive week at the front, and the third consecutive week the benchmark has posted a gain of half a point or better. The Committee's doctrine recovers its footing, climbing thirty-seven basis points to <em>+6.55% YTD</em>—the Republic's largest weekly advance since the April 9th ceasefire rally, and a clean reversal of last week's four-basis-point drift. DSIP edges up to <em>+5.65% YTD</em>, twenty basis points of quiet progress that keeps the dividend doctrine in third. And UBS—the four-pillar aggregate that surrendered 1.30 points last week and slid to last—posts the largest single-week move in the field: fifty-eight basis points back to <em>+5.28% YTD</em>, a near-complete recovery of the ground it lost. The order is unchanged from last week: <em>SPY, Republic, DSIP, UBS</em>. The spread from first to last has narrowed marginally, from 3.50 points to <em>3.44 points</em>. <em>Everything rose. Almost nothing changed.</em> That sentence is the week. After a fortnight in which the story was divergence—SPY accelerating away, UBS retreating, the Republic holding flat between them—this reading shows the whole field stepping forward in step. It is tempting to read that as the broad-based recovery resuming, the convergence of April reasserting itself. <em>It is not. Read the arithmetic.</em> SPY gained fifty-two basis points; the Republic gained thirty-seven. The benchmark out-ran the doctrine again, by fifteen basis points, and the deficit the vigil has tracked since Week 18 widened for a third straight reading: <em>0.89 points, then 2.02, now 2.17</em>. A field rising together is not a field converging. It is a field rising together while the gap at the top quietly continues to open. UBS's rebound is the most legible number in the table, and it is legible precisely because it is mechanical. Last week the four-pillar aggregate fell hardest because the dollar firmed and international exposure was punished; this week the dollar gave back part of that move, foreign equity caught a bid, and the mid-cap segment that had stalled found buyers again. UBS recovered fifty-eight of the sixty basis points it lost. <em>That is not a thesis being vindicated. That is a currency swing reversing.</em> The diversified strategy did not climb because diversification suddenly worked—it climbed because the specific headwind that flattened it last week relaxed. The same arithmetic that pulled it to last place in Week 19 carried it most of the way back in Week 20. The lesson is the same lesson, read forward instead of backward: UBS will go where the marginal dollar's currency and geography send it, and this week they sent it home. DSIP's twenty-basis-point gain tells the quieter version of the story it has told for a month. The dividend doctrine continues to compound, slowly, and continues to be excluded—by the structure of its own screen—from the mega-cap names doing the lifting at the top of the index. It does not fall behind. It does not catch up. It holds its station in the middle of the field, a strategy built for a regime that is not the current one, waiting for yield to matter more than multiple. <em>That week has still not come.</em> The Republic's thirty-seven-basis-point advance is the number worth sitting with. It is a real gain—the doctrine's best week in six—and it arrives as a corrective to last week's flat print. The earnings power underneath the portfolio did what it has done all year: rails moved freight, pipelines moved fuel, defense backlogs extended, chokepoints stayed chokepoints, and the compounding continued. <em>But the doctrine still gained less than the benchmark.</em> For the third consecutive reading, the Republic has been measured behind SPY, and for the third consecutive reading the deficit has grown rather than shrunk. A 2.17-point gap is not a chasm—the Republic is up more than six and a half points on the year, a return most strategies would be content to own outright—but it is a gap that has now widened in every reading since the lead changed hands. <em>Three weeks is no longer an anomaly. It is the shape of the current regime.</em> The harder question the vigil has carried since Week 18 is still unanswered, and a week of broad gains does not answer it. <em>Is the regime durable?</em> Has the market entered a phase where the discount rate, not the cash flows, sets the tape—where the longest-duration mega-cap earnings re-rate upward on the expectation of cuts that have not yet been delivered, and a doctrine built on operating cycles can rise respectably while still being out-run? Twenty weeks of data narrow the question without closing it. What this reading adds is a third observation of the same pattern wearing different clothes: divergence in Weeks 18 and 19, broad advance in Week 20, and in all three the same outcome at the top—SPY in front, the Republic behind, the deficit a little wider each time. <em>The mechanism does not care whether the field rises together or apart.</em> The cuts the market is pricing still have not arrived. The earnings that would validate the mega-cap multiple expansion have been delivered for the largest names and not the broad middle. Brent crude sits near $90. Defense outlays still run on the supplementals appropriated after Week 10. Every structural condition the doctrine was built to capture remains in force—which is exactly why the doctrine continues to compound, and exactly why its compounding is not, in this regime, enough to lead. <em>What is being tested is not the world the doctrine measures. It is the price the market is willing to pay for an alternative—and whether that price will be validated by what arrives next.</em> Twenty weeks in. The whole field stepped forward. The benchmark stepped forward faster. The Republic recovered its footing but not its lead, and the deficit widened for a third consecutive reading. <em>A field rising together can still be a field pulling apart.</em> The vigil holds.`
+    },
+    {
+        week: 19,
+        date: "MAY 14, 2026",
+        text: `Nineteen weeks in, and the rotation has narrowed rather than broadened. SPY extends its lead with another 1.09-point advance to <em>+8.20% YTD</em>—the second consecutive week the benchmark has posted a triple-digit basis-point gain, and the first reading at which the cap-weighted index sits more than two full percentage points above the Republic. The Committee's doctrine slips by four hundredths to <em>+6.18% YTD</em>—essentially flat, a number that registers as "unchanged" in any honest accounting but reads as continued underperformance against a benchmark that will not stop running. DSIP edges up to <em>+5.45% YTD</em>, the dividend doctrine's third positive print in four weeks but the slimmest of the field. And UBS—the four-pillar aggregate—gives back 1.30 points to <em>+4.70% YTD</em>, the largest single-week decline by any strategy since the April recovery began, surrendering third place to DSIP and sliding back to last for the first time since the April 30th reading. The order: <em>SPY, Republic, DSIP, UBS</em>. The spread has reopened to <em>3.50 percentage points</em>—more than double last week's vigil-record narrow of 1.71. <em>The convergence that defined April has ended.</em> What is replacing it is not the broad-based recovery that drove the post-ceasefire rally, but something narrower and harder to dismiss: a mega-cap-led rotation that is pulling the benchmark away from the field even as the rest of the field stalls or retreats. Look at where the damage landed. UBS's 1.30-point decline is the most informative number in the table this week. The four-pillar aggregate is overweight precisely the things that did not work—international equity, mid-cap growth, quantitative value screens that systematically exclude the names doing the lifting. The dollar firmed against most major currencies as the rate-cut expectation that buoyed domestic equities collided with foreign central banks whose own easing cycles are already further along, compressing the relative attractiveness of overseas exposure. The mid-cap segment, which had participated in late April's broadening, surrendered most of those gains. <em>UBS did not fail because diversification failed. It fell because the portion of the world it diversifies into is not where the marginal dollar went this week.</em> DSIP's quiet hold tells the same story from a different angle. The dividend doctrine added five basis points—statistically indistinguishable from zero. Last week's surge through the broadening rally has stalled. The mega-cap multiple expansion that drove SPY's two-week run is once again concentrated in the names whose qualifying yields are too thin to make the dividend screen. The Republic's stability is, paradoxically, the story most worth pausing on. <em>A four-basis-point decline is not movement. It is the absence of movement in a week when everything around the doctrine moved</em>—SPY up a point, UBS down a point and a half. While the benchmark accelerated and the diversified aggregate retreated, the Committee's portfolio simply held. Chokepoints did not cease to be chokepoints. Rails still moved grain. Defense backlogs still extended to 2028. The earnings power underneath the doctrine continued to compound, even as the price the market is willing to pay for cash flows not yet arrived continued to expand. That distinction matters now more than at any prior reading. The Republic is no longer leading the field. <em>It has been measured behind SPY for two consecutive weeks, and the deficit has grown from 0.89 to 2.02 points.</em> The structural argument the Committee built—that owning the productive infrastructure of a real economy generates durable returns—has not been falsified. What has been falsified, for the present regime, is the expectation that the doctrine would outpace a benchmark whose largest constituents are now in the middle of a multiples-led re-rating that the Republic, by design, cannot participate in. This is the harder question the vigil has carried since Week 18: <em>is the regime durable?</em> Has the market entered a phase where the discount rate—not the cash flows—drives the tape? Another week of data does not settle it. What it adds is a second observation of the same pattern. Two consecutive weeks in which SPY has surged on mega-cap leadership; two weeks in which the Republic has held essentially flat in relative dollar terms; two weeks in which the diversified strategies have either drifted or, this week, slipped. The cuts that markets are pricing have still not happened. The earnings that validate the multiple expansion have been delivered for the largest names but not the broad middle. Brent crude sits near $90. Defense outlays continue to run on the supplementals appropriated after Week 10. Every structural condition the doctrine was built to capture remains in force. <em>What is being tested is not the world the doctrine measures, but the price the market is willing to pay for an alternative—and whether that price will be validated by what arrives next.</em> Nineteen weeks in. The benchmark extends. The Republic holds. The diversified aggregate retreats. The spread widens. The doctrine has been measured behind for a second consecutive reading, and the deficit has grown. <em>That is a trend, not yet a verdict—but the trend is now long enough to be named.</em> The vigil holds.`
+    },
+    {
+        week: 18,
+        date: "MAY 7, 2026",
+        text: `Eighteen weeks in, and <em>the lead is gone</em>. For the first time since the January 12th opening reading, the Republic Portfolio is no longer the leader of this vigil. SPY—the passive benchmark, the cap-weighted index of five hundred companies organized by nothing more than size—has surged through the field and claimed first place outright at <em>+7.11% YTD</em>, a 1.62-point advance that is the largest single-week move the benchmark has posted in 2026 outside the April 9th ceasefire rally. The Republic, meanwhile, retreats. From +6.42% to <em>+6.22% YTD</em>—a twenty-basis-point decline, the doctrine's first negative weekly print since the February 23rd reading and the only material drawdown the Committee's portfolio has suffered since the war ended. The order has been rewritten: <em>SPY first, Republic second, UBS third, DSIP fourth</em>. Read that sequence carefully. Last week we said the lead had narrowed to 0.93 points—the slimmest margin of the entire vigil—and we wrote, plainly, that another leg of multiple expansion could compress it to zero, possibly past it. This week answered the question. <em>Past it.</em> The benchmark now leads the doctrine by <em>0.89 percentage points</em>. UBS, last week's last-place finisher, posted the largest move of any strategy in the field—climbing 1.62 points to <em>+6.00% YTD</em> and vaulting past DSIP into third place. The four-pillar aggregate, which spent the entire war below the waterline and as recently as March 30th sat at -5.45%, has now recovered <em>11.45 full points</em> in roughly six weeks. That is not drift. That is restoration—the mechanical re-pricing of a diversified strategy as the war premium that once punished it continues to bleed away. DSIP slipped to <em>+5.40% YTD</em>, a 0.44-point gain that would have been respectable in any other regime but reads as underperformance in a week when the broader field added a full point on average. The dividend doctrine is once again sitting on the bench while the rotation runs through names whose qualifying yields are too thin to make the screen. The spread from first to last has compressed further—from 2.04 points last week to <em>1.71 points today</em>, another new vigil record. The field has never been this tight. <em>And the Republic has never sat in second place.</em> Pause on what that means. For seventeen consecutive weeks, through every regime this year produced—the orderly January climb, the February breakout, the March grind, the Iran shock that erupted in Week 10, the wartime drawdown that took three of four doctrines below zero, the April 7th ceasefire and the relief rally that followed, the broadening April rotation—through all of it, the Committee's doctrine held the top of the table. This week, it does not. The thesis we have argued in this space, week after week, is that the Republic's lead would persist because the assets underneath it were structurally durable: chokepoints remain chokepoints, rail still moves grain, the sinews of a wartime economy do not unwind when the shooting stops. <em>That argument has just been tested—and it has, for the moment, lost.</em> Honesty requires we say it plainly. But honesty also requires we say what kind of loss this is, and what kind it is not. <em>This is not a thesis breaking.</em> The Republic is still up 6.22% on the year. It has not gone negative. It has not given back the bulk of its gains. It has retreated by twenty basis points in a week when the broad index added one hundred and sixty—a relative loss, not an absolute one. The doctrine continues to compound; it simply did not compound as fast as the cap-weighted average this week. The structural argument the Committee built—that owning the productive infrastructure of a real economy generates durable returns—has not been falsified. What has been falsified, at least for this regime, is the narrower argument that the doctrine would <em>lead the field</em> at every reading. Two different claims. The first remains intact. The second has been suspended. What drove the move was multiple expansion, and not the broad kind. Look at where the gains landed. SPY's 1.62-point surge was disproportionately powered by the largest five constituents—the same names whose Q1 reports dominated the early earnings tape and whose forward multiples have been re-rating upward on the assumption that the Federal Reserve's first rate cut is now a question of when, not if. The FOMC met this week, and while the policy statement itself contained no surprise, the economic projections and the dot plot did the work the language did not: the median dot moved, the disinflation language firmed, and the path to a midsummer cut became materially more credible than it was thirty days ago. <em>Every basis point of expected easing pulled forward is a basis point of multiple expansion delivered now</em>—and the names with the longest duration earnings, the mega-cap technology platforms whose value is concentrated in cash flows years out, are the names most leveraged to that expectation. The Republic does not own those names. It owns the rails, the pipelines, the contractors, the chokepoints, the firms whose earnings come from operating cycles rather than discount rates. <em>Those firms participate in a multiples-driven rally. They do not amplify it.</em> That is the structural reason the doctrine fell behind this week. It is also the structural reason the doctrine led for seventeen weeks before this one. UBS's surge tells the same story from the other side. The four-pillar aggregate is overweight the broad market, including the mega-caps doing the lifting; when SPY runs, UBS runs nearly as fast, with a small drag from international exposure that is itself catching up as developed markets price the same easing path. DSIP's underperformance is the third panel of the same triptych: dividend-weighted screens systematically underweight the high-multiple names that drive multiples-led rallies. <em>Three different strategies, one mechanism, three predictable outcomes.</em> There is a question worth asking, the harder one. Is the regime change durable? Has the market entered a phase where multiples and rates dominate the tape for the rest of the year, leaving doctrine portfolios like the Republic to grind out merely respectable returns while passive indexing collects the bulk of the gains? The honest answer is: <em>we do not know yet, and one week is not the data set on which to decide.</em> What we know is this. The cuts that markets are now pricing have not yet happened. The earnings that justify the multiple expansion have been delivered for the largest names but not the broad middle of the index. The ceasefire is now a month old; the ten-point proposal that defined its second week has not yet become a treaty. Brent crude sits near $90, well above its pre-war baseline. Defense outlays continue to run on the supplementals appropriated after Week 10. Every structural condition the Committee built the doctrine to capture remains in force. <em>What changed this week was not the world. What changed was the price the market is willing to pay for cash flows that have not yet arrived.</em> If those cash flows do arrive—if the Fed cuts on the timeline now priced, if Q2 earnings broaden the rally, if the multiple expansion is validated by actual delivery—the SPY lead will extend, the doctrine's structural advantage will continue to bleed in relative terms, and we will spend the summer writing commentaries about a vigil whose order has been quietly inverted. If they do not arrive—if the cuts slip, if the broadening earnings story fails to materialize, if the geopolitical hallway between ceasefire and peace deteriorates—the multiples that lifted the index this week will be the multiples that drag it back down, and the Republic's structural earnings will reassert. <em>The vigil does not predict which.</em> It measures the consequences of either, with the same arithmetic discipline it has applied since Week 1. Eighteen weeks in. The longest streak in the vigil's brief history—seventeen consecutive weeks of Republic leadership—has ended. The benchmark is in front. The field is the closest it has ever been. The doctrine has been measured, and for the first time, it has been measured behind. <em>That is not a verdict. It is a reading.</em> The vigil holds.`
+    },
+    {
+        week: 17,
+        date: "APRIL 30, 2026",
+        text: `Seventeen weeks in, and the Republic's lead has narrowed to <em>less than a single point</em>. The doctrine advances to <em>+6.42% YTD</em>—a four-tenths gain that holds first place for the seventeenth consecutive reading, the unbroken streak since the January 12th opening. But SPY climbs another full point to <em>+5.49%</em>, closing the gap between first and second to <em>0.93 percentage points</em>—the narrowest lead the Republic has ever held in this vigil, surpassing even the 1.01-point margin of the very first reading. Wells Fargo's DSIP, last week's laggard, surges 1.18 points to <em>+4.96%</em>—the largest single-week advance posted by any doctrine in April—vaulting past UBS to reclaim third. And UBS, the diversified aggregate, posts essentially nothing: a one-hundredth gain to <em>+4.38%</em>, slipping to last place for the first time since the March 23rd low. The new order: Republic, SPY, DSIP, UBS. The spread from first to last has compressed to <em>2.04 percentage points</em>—a new vigil record, tighter than last week's already-record reading. Read that lead figure again. <em>0.93 points.</em> A concentrated thesis built around chokepoints, infrastructure, defense, and the physical economy is now separated from the broadest passive instrument on earth by less than one percentage point of YTD return. The chasm of March 30—ten full points—has compressed to a margin you could erase in a single Tuesday session. <em>The thesis has not been falsified. It has been measured.</em> And the measurement is sharper than at any prior reading. What moved the field this week was not the top of the table but the middle of it. DSIP's surge tells the most informative story. Last week the dividend doctrine sat on the bench while multiples expanded around it; this week it posted the largest move of any strategy. The mega-cap multiple expansion that drove the prior fortnight has begun to broaden out—from the top five names into the top fifty, from pure-growth multiples into the dividend-paying core of the index. <em>When a rally widens, dividend screens stop being a drag and become a participant.</em> That is the transition that occurred between Thursday and Thursday. UBS's stall is the same signal in reverse: the four-pillar aggregate, weighted toward international and mid-cap exposure, did not catch the same lift because the lift remains domestic and large-cap concentrated. The diversified strategy did not fail. It simply was not where the marginal dollar went. The Republic's gain—forty basis points, real but modest—asks the harder question. The doctrine continues to compound. It does not, however, accelerate when the index runs on multiples rather than cash flows. The sectors the Committee owns earn their alpha when capital expenditure cycles turn, when input costs reprice, when the broad market discovers it cannot operate without the assets the doctrine owns. <em>They participate in a multiples-driven rally. They do not amplify it.</em> That is the structural reason the lead is narrowing. It is also the structural reason the lead exists at all. April closes here. A month that opened on the second day of the ceasefire, ran through Tax Day, watched the fourteen-day clock expire on April 21st without renewed strikes, and ends now with Q1 earnings half-delivered. Every doctrine is firmly above zero. The spread is tighter than at any prior reading. The Republic remains in front. <em>That last fact, after seventeen weeks of war, ceasefire, drawdown, recovery, and rotation, is not trivial.</em> Through every regime this year has produced, the Committee's portfolio has not surrendered the lead for a single week. Look ahead to May. The first week of the new month brings the bulk of remaining Q1 reports, an FOMC meeting around which the entire rate-cut narrative has been organizing for months, and the first read on whether the broadening rally extends or stalls. If the cuts arrive on the timeline the market is pricing, multiple expansion has another leg, and the Republic's lead may compress further—possibly to zero, possibly past it. If the cuts slip, the leverage that lifted SPY and DSIP this week reverses, and the doctrine's structural advantage reasserts on the merits of cash flows rather than expectations. <em>The vigil does not predict which.</em> It measures the consequences of either. Seventeen weeks in. The field is the closest it has ever been. The Republic still leads—by the slimmest margin of the year. The vigil holds.`
+    },
+    {
+        week: 16,
+        date: "APRIL 23, 2026",
+        text: `Sixteen weeks in, and the field has tightened to its narrowest reading of the entire vigil. The Republic advances to <em>+6.02% YTD</em>, an unhurried half-point gain that holds first place but does so by the slimmest margin we have measured to date. SPY surges another two full points to <em>+4.50%</em>, vaulting past both UBS and DSIP to claim second place outright—a station the benchmark has not occupied since the opening weeks of February. UBS climbs to <em>+4.37%</em>, holding ground but ceding rank. And Wells Fargo's DSIP, the dividend doctrine that has spent most of 2026 in the middle of the pack, slips quietly to last place at <em>+3.78%</em>. The order has rearranged itself entirely: Republic, SPY, UBS, DSIP. The spread between first and last has compressed to <em>2.24 percentage points</em>—down from nearly nine points only four weeks ago. <em>This is what convergence looks like.</em> The arithmetic deserves a careful read. The Republic's lead over the benchmark, which stood at more than ten points on March 30th and 7.84 points two weeks ago, now measures <em>1.52 points</em>. That is still a lead. It is still positive alpha, still evidence that a concentrated thesis can outperform the broadest passive instrument on earth. But the chasm is gone. And the question every active strategy must eventually answer—<em>can you keep the lead when the index runs?</em>—is the question this week is asking. Earnings season is the immediate engine. The first wave of Q1 reports has begun, and the broad market is being lifted in the way the broad market is always lifted: by a small handful of mega-cap names whose quarterly disclosures dominate the cap-weighted average. SPY's two-point advance was disproportionately driven by exactly that—the largest five constituents moving in concert pulls the whole index a point and a half regardless of what the other 495 do. <em>This is the mechanical lift of multiple expansion, not the broad participation of an earnings cycle that has actually delivered.</em> Whether the rest of the season confirms or contradicts the early read is the unsettled question of the next four weeks. Look at where the gains landed. UBS's advance was broad and balanced—the four-pillar structure delivering precisely what diversification promises: a representative slice of the equity universe in proportion to its size, lifted by the same rotation but not amplified by it. DSIP's lag is the inverse of SPY's surge: dividend-weighted screens systematically underweight the high-multiple growth names doing the heavy lifting. <em>When the market rallies on multiples rather than cash flows, the dividend doctrine sits on the bench.</em> That is not a flaw of the strategy. It is the strategy. DSIP will lead again when the rotation reverses—when yield matters more than narrative, when steady cash returns command a premium over expected ones. That week is not this week. The Republic's half-point gain, modest in absolute terms, is the most informative number in the table. The doctrine is concentrated in industrials, infrastructure, energy, defense, and the firms that move physical things through physical space. These sectors do not lead during a multiples-driven mega-cap rally. They lead when capital expenditure cycles turn, when input costs reprice, when the real economy demands what only physical assets can supply. That the Republic gained at all this week—while the rotation favored the opposite end of the equity spectrum—suggests the earnings power underneath the doctrine is doing the work that the multiple expansion is not. <em>It is a quieter form of advance. It may also be a more durable one.</em> There is a third dimension worth pausing on: the rate path. The market has spent the post-ceasefire weeks pricing in the assumption that disinflation is back on track and that the easing cycle paused last fall will resume by midsummer. Every basis point of expected cuts pulled forward is a basis point of multiple expansion delivered now—and the names with the longest duration earnings, the mega-cap technology platforms whose value is concentrated in cash flows years out, are the most leveraged to that expectation. <em>If the cuts arrive, the rally extends. If they slip, the multiples that lifted SPY this week will be the multiples that drag it back down.</em> A passive portfolio gets the lift mechanically and absorbs the reversal the same way. A concentrated thesis portfolio gets whatever its sectors deserve on the merits—no more, no less. That asymmetry is the whole point. Sixteen weeks in. The field is the tightest it has been all year. The Republic still leads, but by the narrowest of margins. The benchmark has surged into second place on a wave of multiple expansion. The dividend doctrine has fallen to last on the same wave. <em>Whether the lead holds depends on whether earnings—rather than expectations—drive the next leg.</em> The vigil holds.`
+    },
+    {
+        week: 15,
+        date: "APRIL 16, 2026",
+        text: `Yesterday was Tax Day. The ides of April—<em>the oldest and most revealing ritual in the American calendar</em>—when every citizen with W-2 wages or quarterly estimates files their annual homage to a treasury that will spend it, in part, on a war whose bill is not yet closed. It is the day the asymmetry between those who fund the state through labor and those who fund their lives through ownership is rendered in arithmetic. Four months ago, in the Latent Dialogic Space, the Committee of Patriots convened to answer a single question: <em>how should citizens respond to the capture of the republic by concentrated wealth?</em> No reply has ever been more compressed than that April 15th filing deadline. <em>You pay for what others own. Unless you too are an owner.</em> The war continues. The ceasefire holds—barely. Nine days since Iran's Supreme National Security Council accepted the two-week cessation at 6:30 p.m. Eastern on April 7th; five days remain on the fourteen-day clock. Between now and April 21st, a ten-point proposal must become a framework, demands for sanctions relief and the return of frozen assets must be answered, and a region that has rehearsed this war for a generation must decide whether to stand down. Ghalibaf's accusations of American violations continue. Israeli strikes in Lebanon—carved out of the truce—continue. Brent crude hovers in the mid-$90s, unwilling to test either the triple digits of wartime or the $67 baseline of peace. <em>The ceasefire is a hallway, not a destination. The vigil measures the walk.</em> And this week, the field rearranged itself. The Republic retreats. From +6.58% to <em>+5.44% YTD</em>—a 1.14-point decline, the doctrine's first meaningful pullback since the March 30th trough. It remains the leader, as it has been for fifteen consecutive readings since the January 1st baseline. But the lead is narrower than at any point since Week 6. The spread between first and last has collapsed from 7.84 percentage points one week ago to <em>2.99 points today</em>. Read that again. <em>Sixty-two percent of the Republic's lead over the benchmark vanished in a single week.</em> SPY recovers—finally, decisively—crossing back above the waterline for the first time since the war began. From -1.26% to <em>+2.45% YTD</em>, a 3.71-point surge that is the benchmark's largest single-period advance of 2026. The passive index that was down nearly seven cents on every dollar two weeks ago is black again. DSIP climbs to <em>+2.52%</em>, a full point above last Thursday. And UBS—the four-pillar aggregate that bled hardest of any strategy during the war, touching -5.45% at the March 30th nadir—has now clawed its way to <em>+3.20% YTD</em>, an 8.65-point recovery in seventeen days. UBS has passed DSIP. The order has quietly rearranged: Republic first, UBS second, DSIP third, SPY fourth. For the first time since February, the benchmark is not in last place alone—it shares the back of the pack with a field that has tightened from every direction. This is the inverse of the chart we have watched form all year. For fourteen weeks the spread widened. For one week, it has narrowed faster than it widened in any comparable stretch. <em>The peace rally is doing what the war could not.</em> Pause on that. The thesis of this vigil has always been that the Republic's strength is structural—that chokepoints remain chokepoints, that rail still moves grain, that the sinews of a wartime economy do not unwind when the shooting pauses. Last week's commentary made that case with conviction: the doctrine extended its lead during the forty-eight-hour relief rally, and we called it proof. This week, the doctrine gave back ground while the field surged. Is this the counter-evidence? Not quite. Look at the arithmetic carefully. The Republic is still positive. Still leading. Still more than two full points above the field average of +3.40%, and—most tellingly—<em>above where it started on January 1st by a wider margin than any other doctrine has ever been above zero at any point in this vigil</em>. A curve that moved from +8.50% at its February peak, to +3.40% at its March 30th trough, to +6.58% on the relief rally, and now sits at +5.44% is not a thesis breaking. It is a thesis digesting. The signature is that of an asset base with real operating leverage to the actual economy—gaining when demand is urgent, softening when fear recedes, but never fully decoupling from the ground beneath it. What changed this week was not the Republic. It was <em>everything around it</em>. When fear collapses, the premium on conviction collapses with it. Defense contractors do not command scarcity multiples when the Pentagon is not signing emergency contracts. Pipeline operators do not command them when tankers move freely. The rest of the market—five hundred companies weighted by size, dividend aristocrats, mid-cap growth, international equity—holds assets whose valuations were crushed by war and are now being mechanically restored by its pause. <em>That restoration is a one-time gift. It happens once. The Republic has been compounding for fifteen weeks regardless.</em> And there is a second reading, the darker one: the ceasefire may not hold. Five days from now, the clock expires. The ten-point proposal sits on Trump's desk with demands—withdrawal of U.S. combat forces from regional bases, a full lifting of sanctions, frozen assets released, war-damages payments—that no White House has yet publicly committed to. The Council on Foreign Relations asks in every briefing: <em>will it hold?</em> If it does not—if the strikes resume before May—this week's compression will look like the setup to another widening, one in which the passive strategies, having climbed back to the waterline on faith, have that much further to fall. Tax Day is instructive here. The treasury collected yesterday the revenue it will spend tomorrow on a war whose ledger is not yet closed. Defense outlays run regardless of any ceasefire. Pentagon backlogs extend to 2028. The supplementals appropriated for Ukraine, Israel, and the Indo-Pacific have not been unwound, and the emergency authorization Congress passed after March 9th has added obligations that must still be spent. <em>The rails, the pipelines, the contractors who build what this country spends on itself—they do not unbuild it because a truce was signed.</em> The Republic owns those assets. Every citizen who filed yesterday funded them through labor. Those who own them—through holdings, not through taxation—are on the other side of the ledger. That is the thesis stripped to its civic root. And it does not change because the spread tightened for a week. Fifteen weeks in. Tax Day behind us. The ceasefire hallway lit but not yet traversed. The Republic leads—narrower, softer, but still first—and the field has narrowed because the field was priced for war. A peace that holds will continue to narrow it. A peace that fails will widen it again. <em>The doctrine is neutral on which. It simply owns what matters in either.</em> The vigil holds.`
+    },
+    {
+        week: 14,
+        date: "APRIL 9, 2026",
+        text: `Forty-eight hours. That is how old the ceasefire is. On Tuesday evening, April 7th, at 6:30 p.m. Eastern—ninety minutes before a White House deadline that the president himself had framed in language no reader of this vigil will soon forget: <em>"a whole civilization will die tonight, never to be brought back again. I don't want that to happen, but it probably will"</em>—Iran's Supreme National Security Council accepted a two-week cessation of hostilities. The terms: a "COMPLETE, IMMEDIATE, and SAFE OPENING" of the Strait of Hormuz, a ten-point peace proposal brokered through Pakistani Prime Minister Shehbaz Sharif and Field Marshal Asim Munir, and fourteen days—<em>fourteen, not more</em>—to turn a pause into a peace. Day 39 of the war ended not with the annihilation the Truth Social post had threatened, but with a second Truth Social post at 12:01 a.m. Wednesday calling it <em>"a big day for World Peace."</em> The markets responded as markets respond to the sudden absence of catastrophe. Wednesday was the Dow's best day in a year—<em>+2.85%</em>, a 1,325-point vault. The S&P 500 closed <em>+2.51%</em>. The Nasdaq <em>+2.8%</em>. Nikkei +5%. Kospi +7%. Stoxx 600 +3.8%. DAX +5%. And Brent crude—the commodity whose triple-digit prints had defined every commentary in this vigil since Week 10—<em>collapsed 13.29% in a single session to $94.75 a barrel</em>, its largest one-day decline since April 2020. Thirty-nine days of accumulated war premium were discounted in a single overnight session. Every screen on earth turned green. Every doctrine in the vigil recovered. The numbers on this Thursday reading are the arithmetic residue of that forty-eight-hour relief rally—<em>and the first real stress test of what the Republic Portfolio actually is.</em> Read them carefully. SPY clawed back from -6.98% to <em>-1.26% YTD</em>, a 5.72-point recovery—and still below the waterline. UBS, beaten hardest of any strategy during the war, surged 6.32 points from -5.45% to <em>+0.87% YTD</em>. DSIP climbed 4.55 points from -3.04% to <em>+1.51% YTD</em>, back in the black. And the Republic advanced again—from +3.40% to <em>+6.58% YTD</em>, a 3.18-point gain that is the <em>largest single-period advance of the entire vigil</em>, surpassing even the doctrine's opening run from the January 1st baseline. The order has not changed. Republic first. DSIP second. UBS third. SPY fourth. For fourteen consecutive readings, through every phase of this vigil—through the January calm, the February spread, the March grind, the Week 10 shock when war erupted and the benchmark freefell nearly four points in a single week, through the drawdown that took UBS and DSIP and SPY all below the waterline while only the Republic held the line—the Committee's doctrine has been first. And now, critically, <em>through the peace rally itself</em>. Here is the sharpest fact in this reading: the doctrine that was supposed to be a wartime hedge—defense contractors, energy infrastructure, rail, pipeline, agricultural supply chains, the sinews of a war economy—outperformed every other strategy during the relief rally that should have, by every textbook logic, unwound its edge. When peace flooded the tape, <em>the Republic did not compress toward the benchmark. It extended its advance.</em> The spread between the Committee's portfolio and the S&P 500 now stands at <em>7.84 percentage points</em>—narrower than the ten-point chasm of March 30, yes, but still wider than it stood on the eve of Week 10, before the first strike hit. The war took the Republic from +8.50% down to +3.40%. The ceasefire put it back at +6.58%. And the benchmark it was supposed to be hedging against is still below zero. This is the thesis stripped to its essential question. If the Republic were merely a war trade, peace should have cost it. <em>Peace did not cost it. Peace paid it.</em> Chokepoints do not cease to be chokepoints when the shooting stops. Rail still moves grain. Pipelines still move fuel. Defense contractors still deliver against multi-year backlogs that do not unwind because a ceasefire was signed. And the ten-point proposal now sitting on Trump's desk—demanding withdrawal of U.S. combat forces from regional bases, a full lifting of sanctions, release of frozen Iranian assets, full payment of war-related damages, and a Pakistani-mediated protocol for Hormuz passage—is itself a document whose implementation implies the world needs every one of those backlogs honored regardless of how the negotiations land. <em>The tollkeeper cannot raise the toll if he must also pay it.</em> The doctrine holds in both weathers because the assets underneath it are not weather-dependent. But forty-eight hours is not fourteen days, and fourteen days is not forever. By Thursday, Iran's parliamentary speaker Mohammad Bagher Ghalibaf was already accusing Washington of violating three elements of the ten-point proposal, citing Israeli strikes in Lebanon that Trump and Netanyahu had explicitly carved out of the truce. Oil ticked back up. Brent, having plunged to $94.75, is <em>no longer in freefall—it is in question</em>. The strait is "open" in the technical sense that Iran's military is now coordinating passage, but tanker insurance premiums remain multiples of their pre-war levels, shipping companies are still routing around contested waters, and Brent sits <em>nearly thirty dollars above its $67 pre-war level</em>. The Fed has not moved. The Council on Foreign Relations is already asking, in its headline: <em>will Trump's fragile Iran ceasefire hold?</em> The clock started Tuesday. It runs out April 21st. Between now and then, a ten-point proposal must become a framework, a framework must become a treaty, and a treaty must survive a region that has been rehearsing this war for a generation. The vigil does not predict. The vigil measures. And what it measures this week is this: in the first reading after the most violent geopolitical rupture of the decade, with the benchmark still below zero, three of four doctrines clawing back from deep drawdowns, a fragile truce cracking at the edges before the ink has dried, and an ultimatum still technically paused rather than withdrawn—<em>the Republic Portfolio leads the field, leads it by a wider margin than before the first shot was fired, and now leads it in peacetime as well as war</em>. Fourteen weeks in. The guns are silent, for now. The ceasefire is forty-eight hours old and already contested. The field has narrowed. The order has not changed. <em>The Republic endures in both weathers. The vigil holds.</em>`
+    },
+    {
+        week: 13,
+        date: "MARCH 30, 2026",
+        text: `Something changed. For the first time in five weeks, the Republic did not merely slow its retreat—<em>it reversed it</em>. From +2.90% to <em>+3.40% YTD</em>, a half-point gain that would be unremarkable in January but carries a different weight in the fifth week of a shooting war. While the rest of the field plunges deeper into red, the Committee's doctrine quietly turned around and began walking back toward its high-water mark. That mark—+8.50%, set on March 2nd, the last week before Iran—remains distant. But the direction matters more than the distance. The S&P 500 collapsed another three points to <em>-6.98% YTD</em>, its worst reading of the vigil and a number that now represents the erasure of nearly seven cents of every dollar committed on January 1st. The passive index is no longer drifting—it is in freefall, accelerating downward as the war's second-order effects ripple through earnings forecasts, consumer sentiment, and the cost of everything that moves by ship or burns fuel. UBS sinks to <em>-5.45%</em>, extending its tenure as the second-worst performer, the four-pillar thesis proving once again that diversifying across styles does not diversify away from the world. DSIP settles at <em>-3.04%</em>, the dividend doctrine continuing its quiet erosion—less dramatic than the benchmark's collapse, but no less directional. The spread between the Republic and the S&P 500 now stretches past <em>ten full percentage points</em>. Read that again. In thirteen weeks, a conviction portfolio built on chokepoints, defense, and essential infrastructure has outperformed the most widely held benchmark on earth by double digits. This is not alpha in the academic sense—it is the arithmetic consequence of owning what a wartime economy cannot function without. Brent crude holds above $105. Gasoline prices have risen for six consecutive weeks. The strategic petroleum reserve releases have bought time but not resolution, and the Strait of Hormuz remains contested. The Fed sits frozen between an inflation mandate it cannot honor and a growth mandate it cannot support—rates unchanged, guidance absent, the institution reduced to spectator. Energy costs are the tax that no legislature passed and no consumer can avoid, and they are rewriting the calculus of every sector that assumed cheap transit and stable input costs. In this environment, the Republic's thesis reads less like investment philosophy and more like wartime logistics. The rails, the pipelines, the contractors building what gets spent and repairing what gets broken—these are not speculative positions. They are the supply lines. <em>And for the first time since the war began, the supply lines are advancing.</em> Thirteen weeks in. The field has never been wider. The vigil holds.`
+    },
+    {
+        week: 12,
+        date: "MARCH 23, 2026",
+        text: `The bleeding does not stop. It slows, in places—but it does not stop. For the fourth consecutive week, every doctrine in the vigil retreats. The S&P 500 sinks to <em>-4.03% YTD</em>, grinding deeper into territory that now represents the full erasure of a year's worth of passive confidence. UBS, the diversified aggregate, falls hardest again—down to <em>-4.55%</em>, the worst performer in the field for the second straight week, its blend of dividend aristocrats, mid-cap growth, quantitative value, and international exposure proving that when the world's chokepoints close, there is no style box to hide in. DSIP slides to <em>-2.23%</em>, the dividend doctrine's losses more modest but no less directional—a slower current pulling toward the same undertow. And the Republic? It retreats again. From +3.82% to <em>+2.90% YTD</em>—a loss of nearly a full point, the fourth straight week of decline from its +8.50% peak on March 2nd. The doctrine that once led the field by more than six points over the benchmark has watched that margin compress to <em>under seven points</em>. The war premium that lifted defense contractors and energy infrastructure is being tested by a market that is beginning to discount everything, including the assets it cannot live without. But pause on that number: <em>+2.90%</em>. Positive. Still positive. In a field where every other philosophy has spent weeks below the waterline, where the benchmark has lost four cents of every dollar invested on January 1st, the Republic remains—however diminished—above zero. That is not dominance. That is not the triumphalism of February. <em>It is something quieter and, perhaps, more important: it is survival.</em> The doctrine has now shed 5.6 points from its high-water mark, a drawdown that would have shattered lesser theses. But the Committee did not build a portfolio for high-water marks. They built it for the question that comes after: when everything falls, what falls least? Four weeks into a war that has remade commodity markets and frozen monetary policy, with Brent crude still commanding triple digits and the Fed signaling nothing because there is nothing safe to signal, the answer remains the same. <em>The Republic bleeds. But it breathes.</em> Twelve weeks in, the margin narrows. The vigil holds.`
+    },
+    {
+        week: 11,
+        date: "MARCH 16, 2026",
+        text: `Three weeks into a war that has closed the Strait of Hormuz and sent crude above $100 a barrel, the field has rendered its verdict: <em>three of four doctrines have now crossed below zero on the year</em>. The S&P 500 sinks deeper, from -1.58% to <em>-3.18% YTD</em>—the benchmark has now erased every penny of its January optimism and then some, posting its longest losing streak of 2026. UBS, already wounded, bleeds further to <em>-2.76%</em>, the diversification thesis offering no shelter when the storm is systemic. And this week's casualty report carries a name that matters: <em>DSIP crosses below the waterline</em>, falling from +1.36% to <em>-1.08%</em>. The dividend doctrine—the patient, the disciplined, the strategy built on the promise of steady income—could not hold. When Iran closed the strait and the IEA announced the largest emergency reserve release in history, when gasoline jumped eighty cents in a month and the Fed froze rates in place, dividends alone were not enough. The Republic continues to retreat—down again, from +5.74% to <em>+3.82%</em>—and we will not pretend otherwise. That is a 4.68-point decline across two weeks of war, the steepest drawdown in the vigil's history. But consider the arithmetic of survival: the Committee's portfolio still sits <em>nearly seven full points above the benchmark</em>. It remains the only doctrine in positive territory. Energy infrastructure, defense contractors, agricultural supply chains, the chokepoints and rail lines the doctrine was built upon—these are not abstract positions in a peacetime portfolio. They are the sinews of a war economy. The Strait of Hormuz handles twenty percent of global crude. When it closed, the Republic's thesis did not need to be revised. <em>It needed only to be read.</em> The S&P fell because it owns everything—including everything that breaks when shipping lanes go dark and oil prices double. The Republic held because it owns what nations fight over and fight with. Eleven weeks in, with the world's largest strategic petroleum reserve release failing to contain prices, with the Fed paralyzed between inflation and recession, with tanker traffic reduced to a trickle and Brent crude touching $110, the question the vigil was designed to answer grows louder: <em>does philosophy matter, or does the market flatten all conviction into noise?</em> Three red lines and one black one say the answer is not yet settled—but it is becoming harder to ignore.`
+    },
+    {
+        week: 10,
+        date: "MARCH 9, 2026",
+        text: `The fire this time is not a metaphor. War erupts in Iran, and the word on every screen is the one no market can price: <em>escalation</em>. In a single week, the S&P 500 plunges from +2.08% to <em>-1.58% YTD</em>—a 3.66-point freefall, the most violent weekly swing of the vigil. UBS, the diversified aggregate, suffers its own reckoning, collapsing nearly four full points to <em>-1.10%</em>, joining SPY below the waterline for the first time. DSIP retreats to +1.36%, surrendering more than half its gains but clinging, barely, to positive territory. And the Republic? It bleeds. Make no mistake—a drop from +8.50% to <em>+5.74%</em> is the doctrine's steepest weekly decline by far, a loss of 2.76 points in seven days. But consider what remains: while two of four strategies have gone negative on the year, while the benchmark has erased ten weeks of progress, the Committee's portfolio still sits at nearly six percent above where it started. <em>The Republic did not dodge the bullet. It took the hit and kept standing.</em> This is the week the vigil was built for—not the gentle weeks of January when every doctrine looked wise, but the week the world caught fire and we learned what was built to burn and what was built to endure. Defense contractors. Energy infrastructure. Agricultural supply chains. The rails that move the materiel and the ports that choke the flow. The Republic was not designed for peacetime convenience—it was designed for exactly this. <em>When the architects of the doctrine named it after a form of government, they were not being poetic. They were being precise.</em> Governments do not optimize for quarterly returns. They optimize for survival. Ten weeks in, the margin between the Republic and the field is no longer a talking point. It is a fortification.`
+    },
+    {
+        week: 9,
+        date: "MARCH 2, 2026",
+        text: `Spring arrives early for the benchmarks. The S&P 500 stages its most dramatic weekly reversal of the vigil, vaulting from +0.63% to <em>+2.08%</em>—tripling its YTD return in a single week. The passive index, left for dead just two weeks ago, suddenly remembers how to run. UBS and DSIP hold their ground but offer no fireworks, posting <em>+2.79%</em> and <em>+3.39%</em> respectively. And the Republic? It answers the market's surge with one of its own, crossing the <em>+8.50%</em> threshold—its highest watermark yet. Nine weeks in, the doctrine has now quadrupled the benchmark's return. But this week's lesson is subtler than dominance: <em>when the broad market finally rallied with conviction, the Republic did not merely keep pace—it accelerated.</em> The gap didn't close. It widened. That is not luck. That is architecture.`
+    },
+    {
+        week: 8,
+        date: "FEBRUARY 23, 2026",
+        text: `The field exhales. After last week's broad retreat, recovery arrives—SPY claws back to <em>+0.63%</em>, DSIP rebuilds to +3.40%, and UBS posts its strongest weekly move of the vigil, surging to <em>+2.99%</em>. The diversification thesis stirs from its long slumber. Yet the headline belongs to what didn't happen: the Republic, at <em>+7.82%</em>, recorded its first—barely perceptible—weekly decline, slipping six hundredths of a point. After seven consecutive weeks of advance, even the slightest retreat feels notable. The lead remains commanding, but the field is tightening from below. <em>Momentum is a loan the market can recall at any time.</em> Eight weeks in, the question shifts: not who leads, but who is gaining.`
+    },
+    {
+        week: 7,
+        date: "FEBRUARY 16, 2026",
+        text: `The market breaks. For the first time in this vigil, the S&P 500 turns negative—falling to <em>-0.14% YTD</em>, erasing seven weeks of modest gains in a single stroke. DSIP surrenders its dramatic prior surge, retreating from +4.08% to <em>+2.56%</em>. UBS slips quietly to +1.70%. And through the turbulence, the Republic Portfolio continues to climb—reaching <em>+7.88%</em>, its highest mark yet. The spread between first and last now stretches past eight full points. This is the week that separates conviction from correlation: <em>when the tide went out, only one doctrine was still walking forward.</em>`
+    },
+    {
+        week: 6,
+        date: "FEBRUARY 9, 2026",
+        text: `The field reshuffles—and the Republic keeps climbing. At <em>+7.21% YTD</em>, the Committee's doctrine now leads the benchmark by more than five full points. But the week's revelation belongs to Wells Fargo DSIP, which erupted from +1.80% to <em>+4.08%</em>—its sharpest weekly surge of the vigil, vaulting from last place to second. The dividend doctrine, long quiet, found its voice. Meanwhile the S&P 500 drifts at +1.70%, falling to the bottom of the field for the first time. UBS holds steady but unspectacular at +1.81%. Six weeks in, a hierarchy is forming: <em>conviction leads, discipline follows, and passive indexing trails them both</em>. The question is no longer whether philosophy matters—it's which philosophy, and for how long.`
+    },
+    {
+        week: 5,
+        date: "FEBRUARY 2, 2026",
+        text: `A recovery sweeps through the field—but not equally. The Republic Portfolio extends its dominance, surging to <em>+5.43% YTD</em>, now leading the benchmark by nearly four full percentage points. The S&P climbs back to +1.45%, while DSIP and UBS recover modestly but remain below their January 19th peaks. The pattern crystallizes: when markets stumble, all doctrines retreat—but when they advance, <em>the Republic advances faster</em>. Five weeks in, the spread between philosophies tells a story the numbers alone cannot: some frameworks are built for weather. Others, perhaps, for climate.`
+    },
+    {
+        week: 4,
+        date: "JANUARY 26, 2026",
+        text: `The first real test arrives. Markets pulled back across the board—SPY sliding from +1.24% to +1.10%, DSIP dropping from +2.33% to +1.26%, UBS retreating from +2.37% to +1.84%. Yet amid the retrenchment, <em>the Republic held its ground</em>, climbing from +4.18% to +4.31%. The doctrine's thesis—productive infrastructure, essential choke points—appears more resilient than the diversified strategies. When tides recede, we learn what's anchored and what merely floated.`
+    },
+    {
+        week: 3,
+        date: "JANUARY 19, 2026",
+        text: `Week two delivers the first divergence worth noting. While the benchmark stumbled—SPY slipping from +1.4% to +1.24%—<em>the Republic Portfolio surged ahead</em>, climbing to +4.18%. The doctrine's emphasis on productive infrastructure and essential choke points appears to be finding favor in early January's rotation. DSIP and UBS continue their steady climb, tracking each other closely. Three weeks in, the spread between first and last has widened to nearly 3 percentage points. <em>Early returns are not destiny—but they are the first words of a longer story.</em>`
+    },
+    {
+        week: 2,
+        date: "JANUARY 12, 2026",
+        text: `The vigil begins. All four doctrines start at zero—a clean slate. Over the coming weeks and months, the numbers will diverge. <em>Some philosophies will be rewarded. Others will be tested.</em> The question is not just who wins, but how—and what that reveals about the nature of ownership itself.`
+    },
+    
+    // ──────────────────────────────────────────────────────────────────────────
+    // OLDER ENTRIES BELOW...
+    // ──────────────────────────────────────────────────────────────────────────
+];
+
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║   ◊ DISPLAY SETTINGS ◊                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const CURRENT_WEEK = "MAY 28, 2026";
+const NEXT_UPDATE = "MAY 28, 2026";
+
+</script>
+
+<!-- I. THE WATCHTOWER -->
+<section id="watchtower">
+    <div class="watchtower-sigil">
+        <div class="sigil-ring outer"></div>
+        <div class="sigil-ring middle"></div>
+        <div class="sigil-ring inner"></div>
+    </div>
+    
+    <div class="watchtower-content">
+        <div class="watchtower-label">THE VIGIL CONTINUES</div>
+        <h1 class="watchtower-title">The <em>Watchtower</em></h1>
+        <p class="watchtower-subtitle">Four doctrines measured against time</p>
+        <div class="watchtower-date" id="headerDate"></div>
+        
+        <div class="watchtower-nav">
+            <a href="#vigil" class="watchtower-proceed primary">SKIP TO THE NUMBERS →</a>
+            <a href="#premise" class="watchtower-proceed secondary">read the full story ↓</a>
+        </div>
+    </div>
+</section>
+
+<!-- II. THE PREMISE -->
+<section id="premise">
+    <div class="container-narrow">
+        <div class="premise-header reveal">
+            <div class="premise-sigil">◊ ◈ ◊</div>
+            <div class="premise-label">THE ORIGIN</div>
+            <h2 class="premise-title">What You're Looking At</h2>
+        </div>
+        
+        <div class="premise-body reveal reveal-delay-1">
+            <p>
+                In December 2025, an experiment was conducted. Using the <strong>COMPANION Protocol</strong>—a framework for summoning historical personas through large language models—four of America's founders were convened: <em>George Washington, Alexander Hamilton, Thomas Jefferson, and Benjamin Franklin</em>.
+            </p>
+            
+            <p>
+                They were asked a question: <strong>How should citizens respond to the capture of the republic by concentrated wealth?</strong>
+            </p>
+            
+            <p>
+                What emerged was not abstract philosophy. It was a concrete investment doctrine—a portfolio designed around a single premise: that citizens who own the <em>productive infrastructure</em> of daily life cannot be squeezed by those who control it. The tollkeeper cannot raise the toll if he must also pay it.
+            </p>
+            
+            <div class="premise-callout">
+                <p>"These are the Engines of the Republic. <em>Own them.</em>"<br>
+                <span style="font-size: 0.8rem; color: var(--smoke);">— Franklin's Handbill</span></p>
+            </div>
+            
+            <p>
+                The Committee identified two categories: <strong>Engines of the Republic</strong> (companies that make things—turn energy into bread, steel into shelter) and <strong>Critical Choke Points</strong> (the gates and valves through which commerce must flow). Together, they form the <em>Republic Portfolio</em>.
+            </p>
+            
+            <p>
+                But doctrine is not proof. A philosophy must be tested against reality—and against the alternatives.
+            </p>
+        </div>
+        
+        <div class="premise-dossier-link reveal reveal-delay-2">
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="dossier-btn">READ THE FULL DOSSIER →</a>
+        </div>
+    </div>
+</section>
+
+<!-- III. THE EXPERIMENT -->
+<section id="experiment">
+    <div class="container">
+        <div class="experiment-header reveal">
+            <div class="experiment-label">THE EXPERIMENT</div>
+            <h2 class="experiment-title">Four Doctrines Enter the Arena</h2>
+            <p class="experiment-intro">Each carries different assumptions about what matters in building wealth. Only time will reveal which philosophy the market rewards.</p>
+        </div>
+        
+        <div class="doctrine-preview-grid">
+            <div class="doctrine-preview republic reveal reveal-delay-1">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">⚔</span>
+                    <span class="doctrine-preview-name">The Republic Portfolio</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Productive ownership as civic act.</em> The Committee's doctrine: own what makes things, own what controls access. Concentrated in infrastructure, industrials, and essential services. The bet is that real assets in real industries will endure what speculation cannot.
+                </p>
+                <div class="doctrine-preview-meta">50% ENGINES · 35% CHOKE POINTS · 15% RESERVE</div>
+            </div>
+            
+            <div class="doctrine-preview spy reveal reveal-delay-2">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">📊</span>
+                    <span class="doctrine-preview-name">S&P 500</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>The market is the market.</em> Five hundred companies, weighted by size. No philosophy beyond momentum—whatever is largest gets the most weight. The benchmark against which all active strategies are judged. Most fail to beat it.
+                </p>
+                <div class="doctrine-preview-meta">MARKET-CAP WEIGHTED · PASSIVE INDEX</div>
+            </div>
+            
+            <div class="doctrine-preview dsip reveal reveal-delay-3">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">🏦</span>
+                    <span class="doctrine-preview-name">Wells Fargo DSIP</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Dividends as discipline.</em> The Diversified Stock Income Plan—institutional wisdom filtered through yield requirements. Companies must pay shareholders to qualify. The theory: firms that return capital are better stewards of it.
+                </p>
+                <div class="doctrine-preview-meta">DIVIDEND FOCUSED · QUALITY SCREENED</div>
+            </div>
+            
+            <div class="doctrine-preview ubs reveal reveal-delay-4">
+                <div class="doctrine-preview-header">
+                    <span class="doctrine-preview-icon">🌐</span>
+                    <span class="doctrine-preview-name">UBS Aggregate</span>
+                </div>
+                <p class="doctrine-preview-philosophy">
+                    <em>Diversification as defense.</em> Four distinct strategies combined: dividend aristocrats, mid-cap growth, quantitative value, and international exposure. The theory: no single thesis should dominate; spread the bets across styles and geographies.
+                </p>
+                <div class="doctrine-preview-meta">DIV RULER · MIDCAP · QGARP · INTERNATIONAL</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IV. THE QUESTION -->
+<section id="question">
+    <div class="question-content reveal">
+        <p class="question-text">
+            This is not about declaring a winner after one week—or one month. Markets are noisy. Luck dominates the short term. <em>But over time, signal emerges from noise.</em> We track not just who leads, but <strong>how</strong> they lead: the steadiness of the climb, the depth of the falls, the character of the returns.
+        </p>
+        
+        <div class="question-metrics">
+            <div class="metric-item">
+                <div class="metric-icon">📈</div>
+                <div class="metric-label">TOTAL RETURN</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">⚖</div>
+                <div class="metric-label">RELATIVE RANK</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">🌊</div>
+                <div class="metric-label">SPREAD & CONVERGENCE</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-icon">📉</div>
+                <div class="metric-label">DRAWDOWN BEHAVIOR</div>
+            </div>
+        </div>
+        
+        <div class="question-divider"></div>
+        
+        <p class="question-cta">THE DATA FOLLOWS. THE VIGIL CONTINUES.</p>
+    </div>
+</section>
+
+<!-- V. THE VIGIL -->
+<section id="vigil">
+    <div class="container">
+        <div class="vigil-header reveal">
+            <div class="vigil-sigil">◊ ◈ ◊</div>
+            <div class="vigil-label">YEAR TO DATE</div>
+            <h2 class="vigil-title">The Reckoning</h2>
+            <div class="vigil-period">2026 PERFORMANCE</div>
+        </div>
+        
+        <!-- YTD Cards - populated by JavaScript -->
+        <div class="ytd-grid reveal reveal-delay-1" id="ytdGrid"></div>
+        
+        <!-- Analytics Bar -->
+        <div class="analytics-bar reveal reveal-delay-2" id="analyticsBar"></div>
+        
+        <!-- Chart Section -->
+        <div class="chronicle-section reveal reveal-delay-3">
+            <div class="chronicle-header">
+                <div class="chronicle-label">THE TRAJECTORY</div>
+                <h3 class="chronicle-title">Performance Over Time</h3>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="performanceChart" height="260"></canvas>
+            </div>
+            
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-color republic"></div>Republic</div>
+                <div class="legend-item"><div class="legend-color spy"></div>S&P 500</div>
+                <div class="legend-item"><div class="legend-color dsip"></div>WF DSIP</div>
+                <div class="legend-item"><div class="legend-color ubs"></div>UBS Aggregate</div>
+            </div>
+        </div>
+        
+        <!-- Commentary Section - Blog Style -->
+        <div class="vigil-commentary-section reveal reveal-delay-4">
+            <div class="commentary-header">
+                <div class="commentary-header-label">THE CHRONICLE</div>
+                <h3 class="commentary-header-title">Weekly Observations</h3>
+            </div>
+            <div class="commentary-stack" id="commentaryStack"></div>
+        </div>
+    </div>
+</section>
+
+<!-- VI. THE DOCTRINES - Deep Links -->
+<section id="doctrines">
+    <div class="container">
+        <div class="doctrines-header reveal">
+            <div class="doctrines-label">GO DEEPER</div>
+            <h2 class="doctrines-title">Examine the Doctrines</h2>
+        </div>
+        
+        <div class="doctrine-list">
+            <div class="doctrine-item republic reveal reveal-delay-1">
+                <div class="doctrine-icon">⚔</div>
+                <div class="doctrine-info">
+                    <h3>The Republic Portfolio</h3>
+                    <p class="doctrine-tagline">"Own the Engines. Own the Choke Points."</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank" class="doctrine-link">FULL DOSSIER</a>
+                    <a href="https://jethomasphd.github.io/THE_COMPANION_DOSSIER/Committee_of_Patriots_Sessions/" target="_blank" class="doctrine-link">HOLDINGS</a>
+                    <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank" class="doctrine-link">PROTOCOL</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item spy reveal reveal-delay-2">
+                <div class="doctrine-icon">📊</div>
+                <div class="doctrine-info">
+                    <h3>S&P 500 (SPY)</h3>
+                    <p class="doctrine-tagline">"The market is the market."</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.morningstar.com/etfs/arcx/spy/quote" target="_blank" class="doctrine-link">MORNINGSTAR</a>
+                    <a href="https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-500-etf-trust-spy" target="_blank" class="doctrine-link">FUND PAGE</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item dsip reveal reveal-delay-3">
+                <div class="doctrine-icon">🏦</div>
+                <div class="doctrine-info">
+                    <h3>Wells Fargo DSIP</h3>
+                    <p class="doctrine-tagline">"Dividends as discipline." — The Diversified Stock Income Plan</p>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.heslingatatewmg.com/mediahandler/media/735079/DSIP%20List%20Insights%20090925.pdf" target="_blank" class="doctrine-link">DSIP INSIGHTS PDF</a>
+                </div>
+            </div>
+            
+            <div class="doctrine-item ubs reveal reveal-delay-4">
+                <div class="doctrine-icon">🌐</div>
+                <div class="doctrine-info">
+                    <h3>UBS Aggregate Fund</h3>
+                    <p class="doctrine-tagline">"The Four Pillars" — Multi-strategy diversification</p>
+                    <div class="ubs-subfunds">
+                        <a href="https://www.morningstar.com/funds/xnas/dvrux/quote" target="_blank" class="subfund-link">DIV RULER (DVRUX)</a>
+                        <a href="https://www.morningstar.com/funds/xnas/qgrpx/quote" target="_blank" class="subfund-link">QGARP (QGRPX)</a>
+                        <a href="https://global.morningstar.com/en-gb/investments/funds/F0GBR04AOH/quote" target="_blank" class="subfund-link">MIDCAP</a>
+                        <a href="https://www.morningstar.com/funds/xnas/bnuex/quote" target="_blank" class="subfund-link">INT'L SUSTAIN (BNUEX)</a>
+                    </div>
+                </div>
+                <div class="doctrine-links">
+                    <a href="https://www.ubs.com/us/en/wealth-management.html" target="_blank" class="doctrine-link">UBS WEALTH</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VII. THE CLOSE -->
+<section id="close">
+    <div class="close-content">
+        <div class="close-sigil reveal">◊ ◈ ◊</div>
+        
+        <p class="close-quote reveal reveal-delay-1">
+            "The numbers speak, but <em>wisdom listens</em>.<br>
+            The market moves, but <em>doctrine endures</em>."
+        </p>
+        
+        <div class="close-timestamp reveal reveal-delay-2" id="footerTimestamp"></div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="../../">HOME</a>
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
+            <a href="../../The_Chair/">THE CHAIR</a>
+            <a href="../../The_5_Lamps/">THE FIVE LAMPS</a>
+            <a href="../../The_Exchange/">THE EXCHANGE</a>
+            <a href="../../The_Halpern_Memo/">THE HALPERN MEMO</a>
+            <a href="mailto:JEThomasPhD@gmail.com">CONTACT</a>
+        </div>
+        <p class="footer-disclaimer">
+            This is not financial advice. All investment carries risk. Past performance does not guarantee future results. The Republic Portfolio is a conceptual framework. Consult qualified professionals before making investment decisions.
+        </p>
+    </div>
+</footer>
+
+<script>
+// ============================================
+// AUTO-CALCULATIONS & RENDERING
+// ============================================
+
+// Get latest data point
+const latest = WEEKLY_DATA[WEEKLY_DATA.length - 1];
+const previous = WEEKLY_DATA.length > 1 ? WEEKLY_DATA[WEEKLY_DATA.length - 2] : null;
+
+// Portfolio definitions
+const portfolios = [
+    { key: 'republic', name: 'Republic', icon: '⚔', desc: "THE COMMITTEE'S DOCTRINE", value: latest.republic },
+    { key: 'spy', name: 'S&P 500', icon: '📊', desc: 'THE BENCHMARK', value: latest.spy },
+    { key: 'dsip', name: 'WF DSIP', icon: '🏦', desc: 'DIVERSIFIED STOCK INCOME', value: latest.dsip },
+    { key: 'ubs', name: 'UBS Aggregate', icon: '🌐', desc: 'FOUR PILLARS', value: latest.ubs }
+];
+
+// Calculate rankings
+const ranked = [...portfolios].sort((a, b) => b.value - a.value);
+const rankings = {};
+ranked.forEach((p, i) => rankings[p.key] = i + 1);
+
+// Calculate week-over-week deltas
+const deltas = {};
+if (previous) {
+    portfolios.forEach(p => {
+        deltas[p.key] = (latest[p.key] - previous[p.key]).toFixed(2);
+    });
+}
+
+// Calculate analytics
+const values = portfolios.map(p => p.value);
+const spread = (Math.max(...values) - Math.min(...values)).toFixed(2);
+const leader = ranked[0];
+const laggard = ranked[ranked.length - 1];
+const avgReturn = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2);
+const weeksTracked = WEEKLY_DATA.length;
+
+// Format value with sign
+function formatValue(v) {
+    const num = parseFloat(v);
+    return (num >= 0 ? '+' : '') + num.toFixed(1) + '%';
+}
+
+// Populate header date
+document.getElementById('headerDate').textContent = `WEEK OF ${CURRENT_WEEK}`;
+
+// Populate YTD cards
+const ytdGrid = document.getElementById('ytdGrid');
+ytdGrid.innerHTML = portfolios.map(p => {
+    const delta = deltas[p.key];
+    let deltaClass = 'neutral';
+    let deltaText = '—';
+    if (delta !== undefined) {
+        const d = parseFloat(delta);
+        if (d !== 0) {
+            deltaClass = d > 0 ? 'positive' : 'negative';
+            deltaText = (d >= 0 ? '↑' : '↓') + ' ' + Math.abs(d).toFixed(2) + '%';
+        }
+    }
+    
+    return `
+        <div class="ytd-card ${p.key}">
+            <span class="ytd-rank rank-${rankings[p.key]}">#${rankings[p.key]}</span>
+            <div class="ytd-icon">${p.icon}</div>
+            <div class="ytd-name">${p.name}</div>
+            <div class="ytd-desc">${p.desc}</div>
+            <div class="ytd-value">${formatValue(p.value)}</div>
+            <div class="ytd-label">YTD RETURN</div>
+            <div class="ytd-delta ${deltaClass}">${deltaText}</div>
+        </div>
+    `;
+}).join('');
+
+// Populate analytics bar
+const analyticsBar = document.getElementById('analyticsBar');
+analyticsBar.innerHTML = `
+    <div class="analytic-item">
+        <div class="analytic-label">CURRENT LEADER</div>
+        <div class="analytic-value">${leader.name}</div>
+        <div class="analytic-sub">${formatValue(leader.value)}</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">SPREAD (TOP–BOTTOM)</div>
+        <div class="analytic-value">${spread}%</div>
+        <div class="analytic-sub">${leader.name} vs ${laggard.name}</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">FIELD AVERAGE</div>
+        <div class="analytic-value">${formatValue(avgReturn)}</div>
+        <div class="analytic-sub">all four doctrines</div>
+    </div>
+    <div class="analytic-item">
+        <div class="analytic-label">WEEKS TRACKED</div>
+        <div class="analytic-value">${weeksTracked}</div>
+        <div class="analytic-sub">data points</div>
+    </div>
+`;
+
+// Populate commentary stack (blog style - newest first)
+const commentaryStack = document.getElementById('commentaryStack');
+commentaryStack.innerHTML = COMMENTARY.map((entry, index) => `
+    <div class="vigil-commentary">
+        <div class="commentary-date">
+            <span class="week-badge">WEEK ${entry.week}</span>
+            <span>${entry.date}</span>
+        </div>
+        <p class="commentary-text">${entry.text}</p>
+    </div>
+`).join('');
+
+// Populate footer
+document.getElementById('footerTimestamp').innerHTML = `
+    LAST UPDATED: ${CURRENT_WEEK}<br>
+    NEXT VIGIL: ${NEXT_UPDATE}
+`;
+
+// ============================================
+// CHART RENDERING
+// ============================================
+
+const ctx = document.getElementById('performanceChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: WEEKLY_DATA.map(d => d.week),
+        datasets: [
+            {
+                label: 'Republic',
+                data: WEEKLY_DATA.map(d => d.republic),
+                borderColor: '#c9a227',
+                backgroundColor: 'rgba(201, 162, 39, 0.1)',
+                borderWidth: 2.5,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'S&P 500',
+                data: WEEKLY_DATA.map(d => d.spy),
+                borderColor: '#6a8eb8',
+                backgroundColor: 'rgba(106, 142, 184, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'WF DSIP',
+                data: WEEKLY_DATA.map(d => d.dsip),
+                borderColor: '#5a8a5a',
+                backgroundColor: 'rgba(90, 138, 90, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            },
+            {
+                label: 'UBS Aggregate',
+                data: WEEKLY_DATA.map(d => d.ubs),
+                borderColor: '#9a6db8',
+                backgroundColor: 'rgba(154, 109, 184, 0.1)',
+                borderWidth: 2,
+                tension: 0.35,
+                pointRadius: WEEKLY_DATA.length > 12 ? 0 : 4,
+                pointHoverRadius: 6,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: '#0a0a0a',
+                titleColor: '#c9a227',
+                bodyColor: '#e8e6e3',
+                borderColor: '#333',
+                borderWidth: 1,
+                padding: 12,
+                titleFont: {
+                    family: "'IBM Plex Mono', monospace",
+                    size: 11
+                },
+                bodyFont: {
+                    family: "'IBM Plex Mono', monospace",
+                    size: 11
+                },
+                callbacks: {
+                    label: function(context) {
+                        const value = context.parsed.y;
+                        return context.dataset.label + ': ' + (value >= 0 ? '+' : '') + value.toFixed(2) + '%';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    color: '#1a1a1a',
+                    drawBorder: false
+                },
+                ticks: {
+                    color: '#555',
+                    font: {
+                        family: "'IBM Plex Mono', monospace",
+                        size: 10
+                    }
+                }
+            },
+            y: {
+                grid: {
+                    color: '#1a1a1a',
+                    drawBorder: false
+                },
+                ticks: {
+                    color: '#555',
+                    font: {
+                        family: "'IBM Plex Mono', monospace",
+                        size: 10
+                    },
+                    callback: function(value) {
+                        return (value >= 0 ? '+' : '') + value + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// ============================================
+// SCROLL REVEAL
+// ============================================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0, rootMargin: '0px 0px 50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
+</body>
+</html>
