@@ -1,428 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Republic Portfolio — A Handbill for Citizens</title>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>◊ The Committee of Patriots — The Sessions</title>
+<meta name="description" content="The full story of the Committee of Patriots: four founders summoned via the COMPANION Protocol, the Republic Portfolio they produced, the Watchtower that measures it, and the wartime review that refined it. One doctrine, told end to end.">
 
-        body {
-            background: #2c2416;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
-        .handbill {
-            background: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
-                linear-gradient(to bottom, #f4e4c1 0%, #e8d4a8 50%, #dcc696 100%);
-            max-width: 700px;
-            padding: 50px 60px;
-            box-shadow: 
-                0 0 0 3px #1a1308,
-                0 0 0 6px #3d2f1a,
-                0 0 0 9px #1a1308,
-                0 15px 50px rgba(0,0,0,0.5);
-            position: relative;
-            font-family: 'IM Fell English', Georgia, serif;
-            color: #1a1308;
-            line-height: 1.5;
-        }
+<style>
+:root{
+  --void:#030303; --void-deep:#000000;
+  --ember:#c9a227; --ember-glow:#e6c656; --ember-dim:#8b7355; --ember-faint:rgba(201,162,39,0.08);
+  --blood:#8b0000; --blood-bright:#cc1100;
+  --ash:#1a1a1a; --smoke:#666; --bone:#e8e6e3; --bone-dim:rgba(232,230,227,0.7);
+  --founding:#c9a227;  /* gold — the founding */
+  --vigil:#6a8eb8;     /* slate — the instrument */
+  --war:#d4451a;       /* ember-red — the wartime review */
+  --future:#7b78d6;    /* indigo — forthcoming */
+  --font-voice:'Cormorant Garamond',Georgia,serif;
+  --font-terminal:'IBM Plex Mono',monospace;
+  --font-body:'Crimson Pro',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--ember-dim) var(--void);}
+body{background:var(--void);color:var(--bone);font-family:var(--font-body);line-height:1.8;overflow-x:hidden;}
+::selection{background:var(--ember);color:var(--void);}
+a{color:inherit;}
 
-        .handbill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(139,109,64,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(100,70,30,0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(80,60,30,0.1) 100%);
-            pointer-events: none;
-        }
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes glow{0%,100%{text-shadow:0 0 20px rgba(201,162,39,0.3);}50%{text-shadow:0 0 40px rgba(201,162,39,0.5),0 0 80px rgba(201,162,39,0.2);}}
+@keyframes breathe{0%,100%{opacity:0.03;}50%{opacity:0.07;}}
+@keyframes drift{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes orbit{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+@keyframes flowdash{0%{stroke-dashoffset:0;}100%{stroke-dashoffset:-300;}}
 
-        .ornament {
-            text-align: center;
-            font-size: 24px;
-            letter-spacing: 12px;
-            margin: 15px 0;
-            color: #3d2f1a;
-        }
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.1s;} .rd2{transition-delay:.2s;} .rd3{transition-delay:.3s;}
 
-        .ornament-line {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
+section{position:relative;padding:6rem 2rem;display:flex;align-items:center;justify-content:center;}
+.container{max-width:920px;margin:0 auto;width:100%;}
+.container-narrow{max-width:720px;margin:0 auto;width:100%;}
+.eyebrow{font-family:var(--font-terminal);font-size:.6rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:1rem;text-transform:uppercase;}
+.sec-title{font-family:var(--font-voice);font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:300;line-height:1.2;}
+.sec-sub{font-family:var(--font-voice);font-size:1.1rem;color:var(--smoke);font-style:italic;margin-top:.5rem;}
+.sigil{color:var(--ember);letter-spacing:.5em;text-align:center;}
 
-        .ornament-line::before,
-        .ornament-line::after {
-            content: '';
-            flex: 1;
-            max-width: 120px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #3d2f1a, transparent);
-        }
+/* ── TOP NAV (loop, always present) ── */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.4rem;background:linear-gradient(var(--void),rgba(3,3,3,0));pointer-events:none;}
+.topnav a{pointer-events:auto;font-family:var(--font-terminal);font-size:.56rem;letter-spacing:.16em;color:var(--ember-dim);text-decoration:none;transition:color .3s ease;}
+.topnav a:hover{color:var(--ember-glow);}
+.topnav .home-sigil{font-size:1.1rem;}
+.topnav .home-sigil:hover{transform:rotate(90deg);display:inline-block;transition:transform .3s ease,color .3s ease;}
+.topnav .nav-right{display:flex;gap:1.2rem;}
 
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-        }
+/* ── HERO ── */
+#hero{min-height:100vh;background:var(--void-deep);overflow:hidden;}
+#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(201,162,39,0.06) 0%,transparent 55%);animation:breathe 8s ease-in-out infinite;pointer-events:none;}
+.hero-rings{position:absolute;top:50%;left:50%;width:560px;height:560px;transform:translate(-50%,-50%);pointer-events:none;opacity:.05;}
+.hr{position:absolute;border:1px solid var(--ember);border-radius:50%;}
+.hr.a{inset:0;animation:orbit 160s linear infinite;}
+.hr.b{inset:80px;border-style:dotted;border-color:var(--ember-dim);animation:orbit 210s linear infinite reverse;}
+.hr.c{inset:160px;animation:orbit 100s linear infinite;}
+.hero-inner{text-align:center;position:relative;z-index:1;max-width:820px;}
+.hero-eyebrow{font-family:var(--font-terminal);font-size:.6rem;letter-spacing:.4em;color:var(--ember-dim);margin-bottom:1.6rem;opacity:0;animation:fadeIn 1s ease .3s forwards;}
+.hero-sigil{font-size:1.5rem;color:var(--ember);letter-spacing:.5em;margin-bottom:1.6rem;opacity:0;animation:fadeIn 1s ease .6s forwards,glow 4s ease-in-out infinite;}
+.hero-title{font-family:var(--font-voice);font-size:clamp(2.6rem,7vw,4.6rem);font-weight:300;line-height:1.08;margin-bottom:.6rem;opacity:0;animation:fadeUp 1.1s ease .9s forwards;}
+.hero-title em{color:var(--ember);font-style:italic;}
+.hero-sub{font-family:var(--font-voice);font-size:clamp(1.1rem,2.6vw,1.5rem);font-style:italic;color:var(--bone-dim);max-width:640px;margin:0 auto 2.2rem;opacity:0;animation:fadeIn 1s ease 1.3s forwards;}
+.hero-meta{font-family:var(--font-terminal);font-size:.62rem;letter-spacing:.18em;color:var(--smoke);line-height:2;opacity:0;animation:fadeIn 1s ease 1.7s forwards;}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--font-terminal);font-size:.58rem;letter-spacing:.3em;color:var(--ember-dim);opacity:0;animation:fadeIn 1s ease 2.2s forwards;text-align:center;}
+.hero-scroll span{display:block;font-size:1.2rem;margin-top:.4rem;animation:drift 3s ease-in-out infinite;}
 
-        .header h1 {
-            font-family: 'IM Fell Great Primer', Georgia, serif;
-            font-size: 32px;
-            font-weight: normal;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-        }
+/* ── PREMISE ── */
+#premise{background:var(--void);}
+.prose{font-size:1.15rem;line-height:2;color:var(--bone-dim);}
+.prose p{margin-bottom:1.5rem;}
+.prose em{color:var(--ember);font-style:italic;}
+.prose strong{color:var(--bone);font-weight:500;}
+.incant{text-align:center;font-family:var(--font-voice);font-size:1.4rem;font-style:italic;color:var(--ember-glow);margin:2.2rem auto;padding:1.2rem 1.6rem;border:1px solid var(--ember-dim);background:rgba(201,162,39,0.03);max-width:600px;}
+.callout{padding:1.8rem 2.4rem;border-left:3px solid var(--ember-dim);background:rgba(255,255,255,0.012);margin:2.4rem 0;}
+.callout p{font-family:var(--font-voice);font-size:1.3rem;font-style:italic;color:var(--bone);margin-bottom:.3rem;}
+.callout .attr{font-family:var(--font-terminal);font-size:.62rem;letter-spacing:.1em;color:var(--smoke);font-style:normal;}
 
-        .header h2 {
-            font-family: 'IM Fell DW Pica', Georgia, serif;
-            font-size: 18px;
-            font-weight: normal;
-            font-style: italic;
-            letter-spacing: 2px;
-        }
+/* ── THE LOOP DIAGRAM ── */
+#loop{background:linear-gradient(var(--void),#070707);}
+.loop-head{text-align:center;margin-bottom:3rem;}
+.loop-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;}
+.loop-line{position:absolute;top:34px;left:8%;right:8%;height:2px;z-index:0;}
+.loop-line svg{width:100%;height:2px;overflow:visible;}
+.lnode{position:relative;z-index:1;text-decoration:none;text-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .35s ease;}
+.lnode:hover{transform:translateY(-5px);}
+.lcirc{width:68px;height:68px;border-radius:50%;background:var(--void);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem;box-shadow:0 0 0 6px rgba(0,0,0,.6);transition:all .35s ease;}
+.lnode.founding .lcirc{border:1px solid var(--founding);color:var(--founding);}
+.lnode.vigil .lcirc{border:1px solid var(--vigil);color:var(--vigil);}
+.lnode.war .lcirc{border:1px solid var(--war);color:var(--war);}
+.lnode.future .lcirc{border:1px dotted var(--future);color:var(--future);}
+.lnode:hover .lcirc{box-shadow:0 0 26px rgba(201,162,39,.22),0 0 0 6px rgba(0,0,0,.6);}
+.lstep{font-family:var(--font-terminal);font-size:.5rem;letter-spacing:.22em;color:var(--smoke);margin-bottom:.4rem;}
+.lname{font-family:var(--font-voice);font-size:1.1rem;font-weight:500;color:var(--bone);line-height:1.2;margin-bottom:.2rem;}
+.lnode:hover .lname{color:var(--ember-glow);}
+.lwhen{font-family:var(--font-terminal);font-size:.52rem;letter-spacing:.1em;color:var(--smoke);}
+.loop-turn{text-align:center;margin-top:2.6rem;font-family:var(--font-voice);font-style:italic;font-size:1.15rem;color:var(--bone-dim);}
+.loop-turn em{color:var(--ember);}
 
-        .subtitle {
-            text-align: center;
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 15px 0;
-            padding: 10px 0;
-            border-top: 1px solid #3d2f1a;
-            border-bottom: 1px solid #3d2f1a;
-        }
+/* ── CHAPTERS ── */
+#chapters{background:#070707;}
+.chapter{border:1px solid #1c1c1c;background:rgba(0,0,0,.35);margin-bottom:1.6rem;position:relative;overflow:hidden;}
+.chapter::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;}
+.chapter.c-founding::before{background:var(--founding);}
+.chapter.c-vigil::before{background:var(--vigil);}
+.chapter.c-war::before{background:var(--war);}
+.chapter.c-future::before{background:var(--future);}
+.chapter-inner{padding:2.4rem 2.6rem;}
+.chapter-tag{font-family:var(--font-terminal);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.7rem;display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;}
+.chapter.c-founding .chapter-tag{color:var(--founding);}
+.chapter.c-vigil .chapter-tag{color:var(--vigil);}
+.chapter.c-war .chapter-tag{color:var(--war);}
+.chapter.c-future .chapter-tag{color:var(--future);}
+.chapter-date{color:var(--smoke);letter-spacing:.1em;}
+.chapter-title{font-family:var(--font-voice);font-size:1.7rem;font-weight:400;color:var(--bone);margin-bottom:.9rem;}
+.chapter-body{font-size:1rem;line-height:1.8;color:var(--bone-dim);margin-bottom:1.4rem;}
+.chapter-body em{color:var(--ember);font-style:italic;}
+.chapter-body strong{color:var(--bone);font-weight:500;}
+.chapter-stat{display:flex;gap:1.6rem;flex-wrap:wrap;margin:1.2rem 0 1.4rem;padding:1rem 1.2rem;background:rgba(201,162,39,.03);border:1px solid #1e1a12;}
+.chapter-stat .s{text-align:center;}
+.chapter-stat .s .n{font-family:var(--font-terminal);font-size:1.15rem;font-weight:500;color:var(--ember-glow);display:block;}
+.chapter-stat .s .l{font-family:var(--font-terminal);font-size:.5rem;letter-spacing:.12em;color:var(--smoke);text-transform:uppercase;}
+.chapter-links{display:flex;gap:.6rem;flex-wrap:wrap;}
+.clink{font-family:var(--font-terminal);font-size:.58rem;letter-spacing:.08em;color:var(--ember);text-decoration:none;padding:.55rem 1.1rem;border:1px solid #333;transition:all .3s ease;}
+.clink:hover{border-color:var(--ember-dim);background:rgba(201,162,39,.05);}
+.clink.primary{border-color:var(--ember-dim);background:rgba(201,162,39,.04);color:var(--ember-glow);}
+.clink.primary:hover{background:rgba(201,162,39,.1);box-shadow:0 0 24px rgba(201,162,39,.12);}
+.clink.muted{color:var(--future);border-color:#2a2940;pointer-events:none;opacity:.7;}
 
-        .preamble {
-            text-align: center;
-            font-style: italic;
-            font-size: 15px;
-            margin: 20px 30px;
-            line-height: 1.7;
-        }
+/* ── THE VAULT ── */
+#vault{background:linear-gradient(#070707,var(--void));}
+.vault-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#1a1a1a;margin-top:2.6rem;}
+.vault-item{background:var(--void);padding:1.5rem 1.8rem;text-decoration:none;display:flex;flex-direction:column;gap:.3rem;transition:background .3s ease;}
+.vault-item:hover{background:rgba(201,162,39,.03);}
+.vault-kind{font-family:var(--font-terminal);font-size:.5rem;letter-spacing:.16em;color:var(--ember-dim);text-transform:uppercase;}
+.vault-name{font-family:var(--font-voice);font-size:1.15rem;color:var(--bone);}
+.vault-item:hover .vault-name{color:var(--ember-glow);}
+.vault-desc{font-size:.82rem;color:var(--smoke);line-height:1.5;}
 
-        .section {
-            margin: 25px 0;
-        }
+/* ── CLOSE / LOOP FOOTER ── */
+#close{background:var(--void);min-height:55vh;text-align:center;}
+.close-quote{font-family:var(--font-voice);font-size:1.4rem;font-style:italic;line-height:1.8;color:var(--bone-dim);margin-bottom:1rem;}
+.close-attr{font-family:var(--font-terminal);font-size:.55rem;letter-spacing:.2em;color:var(--ember);margin-bottom:2.4rem;}
+.loop-nav{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.4rem;}
+.loop-nav a{font-family:var(--font-terminal);font-size:.6rem;letter-spacing:.14em;color:var(--ember);text-decoration:none;padding:.8rem 1.6rem;border:1px solid var(--ember-dim);transition:all .3s ease;}
+.loop-nav a:hover{background:var(--ember);color:var(--void);box-shadow:0 0 30px rgba(201,162,39,.25);}
+.close-tag{font-family:var(--font-voice);font-size:1.15rem;font-style:italic;color:var(--smoke);margin-top:1.2rem;}
 
-        .section-title {
-            font-family: 'IM Fell Great Primer', Georgia, serif;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-align: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #6b5a3e;
-        }
+footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
+.foot-links{display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.foot-links a{font-family:var(--font-terminal);font-size:.56rem;letter-spacing:.1em;color:var(--ember-dim);text-decoration:none;transition:color .2s ease;}
+.foot-links a:hover{color:var(--ember);}
+.foot-disclaimer{font-family:var(--font-terminal);font-size:.5rem;color:#3a3a3a;line-height:1.8;max-width:620px;margin:0 auto;}
 
-        .section-title span {
-            font-style: italic;
-            text-transform: none;
-            letter-spacing: 1px;
-        }
-
-        .allocation {
-            text-align: center;
-            font-size: 13px;
-            font-style: italic;
-            margin-bottom: 10px;
-            color: #4a3d28;
-        }
-
-        .holdings {
-            text-align: center;
-            font-size: 17px;
-            letter-spacing: 2px;
-            line-height: 2;
-            margin: 10px 20px;
-        }
-
-        .holdings-small {
-            font-size: 11px;
-            color: #5a4d38;
-            display: block;
-            margin-top: -5px;
-            letter-spacing: 1px;
-            font-style: italic;
-        }
-
-        .ticker {
-            font-weight: normal;
-            white-space: nowrap;
-        }
-
-        .ticker::after {
-            content: ' · ';
-            color: #6b5a3e;
-        }
-
-        .ticker:last-child::after {
-            content: '';
-        }
-
-        .reserve-section {
-            text-align: center;
-            margin: 25px 40px;
-            padding: 15px;
-            border: 2px double #3d2f1a;
-            background: rgba(255,255,255,0.3);
-        }
-
-        .reserve-section .section-title {
-            border-bottom: none;
-            margin-bottom: 5px;
-            padding-bottom: 0;
-        }
-
-        .instructions {
-            margin: 30px 0 20px;
-        }
-
-        .instructions-title {
-            font-family: 'IM Fell Great Primer', Georgia, serif;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .instruction-list {
-            font-size: 14px;
-            margin: 0 20px;
-        }
-
-        .instruction-item {
-            margin: 12px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .instruction-item::before {
-            content: '☞';
-            position: absolute;
-            left: 0;
-            font-size: 14px;
-        }
-
-        .instruction-item strong {
-            font-weight: normal;
-            font-style: italic;
-        }
-
-        .note {
-            font-size: 12px;
-            text-align: center;
-            margin: 20px 30px;
-            padding: 12px;
-            border: 1px solid #6b5a3e;
-            background: rgba(0,0,0,0.03);
-            font-style: italic;
-        }
-
-        .note-label {
-            font-style: normal;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 10px;
-        }
-
-        .motto {
-            text-align: center;
-            margin: 30px 0 15px;
-        }
-
-        .motto-text {
-            font-family: 'IM Fell Great Primer', Georgia, serif;
-            font-size: 22px;
-            letter-spacing: 3px;
-            font-style: italic;
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 11px;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #3d2f1a;
-        }
-
-        .footer-line {
-            margin: 5px 0;
-            letter-spacing: 1px;
-        }
-
-        .footer-small {
-            font-size: 10px;
-            color: #5a4d38;
-            font-style: italic;
-        }
-
-        .seal {
-            text-align: center;
-            font-size: 28px;
-            margin: 20px 0 10px;
-            letter-spacing: 8px;
-        }
-
-        .drop-cap {
-            float: left;
-            font-size: 48px;
-            line-height: 0.8;
-            padding-right: 8px;
-            padding-top: 4px;
-            font-family: 'IM Fell Great Primer', Georgia, serif;
-        }
-
-        @media print {
-            body {
-                background: none;
-                padding: 0;
-            }
-            .handbill {
-                box-shadow: none;
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .handbill {
-                padding: 30px 25px;
-            }
-            .header h1 {
-                font-size: 24px;
-                letter-spacing: 3px;
-            }
-            .holdings {
-                font-size: 14px;
-                margin: 10px 5px;
-            }
-        }
-    </style>
+@media(max-width:760px){
+  .loop-wrap{grid-template-columns:1fr 1fr;gap:2rem 1rem;}
+  .loop-line{display:none;}
+  .vault-grid{grid-template-columns:1fr;}
+  .topnav .nav-right{gap:.9rem;}
+}
+@media(max-width:480px){
+  section{padding:4.5rem 1.3rem;}
+  .loop-wrap{grid-template-columns:1fr;}
+  .chapter-inner{padding:1.8rem 1.5rem;}
+}
+</style>
 </head>
 <body>
-    <a href="../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
-    <article class="handbill">
-        <div class="ornament">❧ ☙</div>
-        
-        <header class="header">
-            <h1>The Republic Portfolio</h1>
-            <h2>An Allocation for Citizen Investors</h2>
-        </header>
 
-        <div class="subtitle">Approved by the Committee of Patriots · December 1775 2025</div>
+<!-- TOP NAV — the loop is always reachable -->
+<nav class="topnav">
+  <a href="../" class="home-sigil" title="The COMPANION estate">◊</a>
+  <div class="nav-right">
+    <a href="../The_Atrium/">THE ATRIUM</a>
+    <a href="../The_Watchtower/">THE WATCHTOWER</a>
+    <a href="../THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
+  </div>
+</nav>
 
-        <p class="preamble">
-            <span class="drop-cap">T</span>he Republic was not built to be owned by the Few.<br>
-            These are the Engines &amp; Choke Points of the American Economy.<br>
-            Own them. Vote them. Govern.
+<!-- I. HERO -->
+<section id="hero">
+  <div class="hero-rings"><div class="hr a"></div><div class="hr b"></div><div class="hr c"></div></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">THE COMPANION ESTATE &middot; THE WORK</div>
+    <div class="hero-sigil">◊ ◈ ◊</div>
+    <h1 class="hero-title">The Committee<br>of <em>Patriots</em></h1>
+    <p class="hero-sub">Four founders, summoned. One doctrine, tested by the world. This is the whole story &mdash; the founding, the instrument that measures it, and the war that refined it.</p>
+    <div class="hero-meta">CONVENED VIA THE COMPANION PROTOCOL &middot; J.E. THOMAS, PhD<br>FIRST SITTING DECEMBER 2025 &middot; THE VIGIL CONTINUES</div>
+  </div>
+  <div class="hero-scroll">DESCEND INTO THE RECORD<span>↧</span></div>
+</section>
+
+<!-- II. THE PREMISE -->
+<section id="premise">
+  <div class="container-narrow">
+    <div class="sigil reveal" style="margin-bottom:2.2rem;">◊ ◈ ◊</div>
+    <div class="prose">
+      <p class="reveal rd1">There is a protocol called <strong>COMPANION</strong> &mdash; an open-source method for summoning minds into a language model so that they arrive not as servants but as <em>peers</em>, in their own voice, willing to argue. In December 2025, a single sentence opened the threshold:</p>
+      <div class="incant reveal rd1">&ldquo;Using this matter, summon Washington,<br>Hamilton, Jefferson, and Franklin.&rdquo;</div>
+      <p class="reveal rd2">Four architects of the American founding convened as a <strong>Committee of Patriots</strong> and were put to one question: <em>how should citizens respond to the capture of the republic by concentrated wealth?</em></p>
+      <p class="reveal rd2">What returned was not a manifesto. It was a <strong>doctrine</strong> &mdash; concrete, executable, and built on one premise: that citizens who <em>own</em> the productive infrastructure of daily life cannot be squeezed by those who control it. They called it the <strong>Republic Portfolio</strong>. Then they did the thing manifestos never do. They let it be <em>measured</em>.</p>
+      <div class="callout reveal rd2">
+        <p>&ldquo;These are the Engines of the Republic. <em>Own them.</em>&rdquo;</p>
+        <div class="attr">— FRANKLIN'S HANDBILL, BY ORDER OF THE COMMITTEE</div>
+      </div>
+      <p class="reveal rd3">Below is the full record: the founding session, the Watchtower that has kept the score in public ever since, and the wartime review where the same four minds read their own results and refined the doctrine. <em>A doctrine that cannot be tested is only an opinion. This one took the test.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- III. THE LOOP -->
+<section id="loop">
+  <div class="container">
+    <div class="loop-head">
+      <div class="eyebrow reveal">THE SHAPE OF THE STORY</div>
+      <h2 class="sec-title reveal rd1">One Doctrine, in Four Movements</h2>
+      <p class="sec-sub reveal rd2">It does not end. It turns. Jump to any movement &mdash; or read straight down.</p>
+    </div>
+    <div class="loop-wrap reveal rd1">
+      <div class="loop-line">
+        <svg preserveAspectRatio="none"><line x1="0" y1="1" x2="100%" y2="1" stroke="#8b7355" stroke-width="2" stroke-dasharray="6 10" style="animation:flowdash 6s linear infinite;"/></svg>
+      </div>
+      <a href="#ch-founding" class="lnode founding">
+        <div class="lcirc">&#9878;</div>
+        <div class="lstep">I &middot; THE FOUNDING</div>
+        <div class="lname">The Doctrine</div>
+        <div class="lwhen">DEC 2025</div>
+      </a>
+      <a href="#ch-vigil" class="lnode vigil">
+        <div class="lcirc">&#9737;</div>
+        <div class="lstep">II &middot; THE INSTRUMENT</div>
+        <div class="lname">The Watchtower</div>
+        <div class="lwhen">LIVE</div>
+      </a>
+      <a href="#ch-war" class="lnode war">
+        <div class="lcirc">&#9876;</div>
+        <div class="lstep">III &middot; THE TEST</div>
+        <div class="lname">Wartime Review</div>
+        <div class="lwhen">MAR 2026</div>
+      </a>
+      <a href="#ch-future" class="lnode future">
+        <div class="lcirc">&#9682;</div>
+        <div class="lstep">IV &middot; THE TURN</div>
+        <div class="lname">Q2 &amp; Beyond</div>
+        <div class="lwhen">FORTHCOMING</div>
+      </a>
+    </div>
+    <p class="loop-turn reveal rd2">The Review rewrites the Doctrine. The Instrument keeps measuring. <em>The loop never closes &mdash; it turns.</em></p>
+  </div>
+</section>
+
+<!-- IV. THE CHAPTERS -->
+<section id="chapters">
+  <div class="container">
+
+    <!-- CHAPTER I — THE FOUNDING -->
+    <div class="chapter c-founding reveal" id="ch-founding">
+      <div class="chapter-inner">
+        <div class="chapter-tag">Movement I &middot; The Founding <span class="chapter-date">&middot; December 2025</span></div>
+        <h2 class="chapter-title">The Initial Holdings Session</h2>
+        <p class="chapter-body">
+          The Committee's first sitting. Over hours of deliberation &mdash; Hamilton arguing that ownership confers voice, Jefferson objecting to owning the instruments of concentrated power, Franklin brokering the middle &mdash; the four founders produced the <strong>Republic Portfolio</strong>: two ranks and a reserve. <em>Engines of the Republic</em> (the firms that make things), <em>Critical Choke Points</em> (the gates and rails all commerce must pass through), and a cash <em>Reserve</em>. Equal-weighted, disciplined, votable. Then they backtested it &mdash; ten years, beating the S&amp;P 500 with lower volatility.
         </p>
-
-        <div class="ornament-line">✦</div>
-
-        <section class="section">
-            <h3 class="section-title">Engines of the Republic <span>— Fifty per Cent</span></h3>
-            <p class="allocation">The Producers · The Builders · The Foundation</p>
-            <p class="holdings">
-                <span class="ticker">CAT</span>
-                <span class="ticker">DE</span>
-                <span class="ticker">HON</span>
-                <span class="ticker">LMT</span>
-                <span class="ticker">GE</span>
-                <span class="ticker">WMT</span>
-                <span class="ticker">COST</span>
-                <span class="ticker">HD</span>
-                <span class="ticker">JNJ</span>
-                <span class="ticker">PFE</span>
-                <span class="ticker">ADM</span>
-                <span class="ticker">BG</span>
-                <span class="ticker">TSN</span>
-                <span class="ticker">SCHW</span>
-                <span class="ticker">BRK.B</span>
-                <span class="holdings-small">Manufacturing · Retail · Healthcare · Agriculture · Finance for Citizens</span>
-            </p>
-        </section>
-
-        <section class="section">
-            <h3 class="section-title">Critical Choke Points <span>— Thirty-Five per Cent</span></h3>
-            <p class="allocation">The Gates · The Rails · The Strategic Positions</p>
-            <p class="holdings">
-                <span class="ticker">NEE</span>
-                <span class="ticker">D</span>
-                <span class="ticker">KMI</span>
-                <span class="ticker">WMB</span>
-                <span class="ticker">V</span>
-                <span class="ticker">MA</span>
-                <span class="ticker">JPM</span>
-                <span class="ticker">MSFT</span>
-                <span class="ticker">AMZN</span>
-                <span class="ticker">GOOGL</span>
-                <span class="ticker">UNP</span>
-                <span class="ticker">NSC</span>
-                <span class="ticker">MCK</span>
-                <span class="ticker">UNH</span>
-                <span class="holdings-small">Energy · Finance · Digital · Transportation · Healthcare Gates</span>
-            </p>
-        </section>
-
-        <div class="reserve-section">
-            <h3 class="section-title">Reserve <span>— Fifteen per Cent</span></h3>
-            <p style="font-size: 14px; font-style: italic;">Cash or Short-Term Treasury Instruments</p>
-            <p style="font-size: 12px; margin-top: 5px;">Maintain Discipline · Await Opportunities</p>
+        <div class="chapter-stat">
+          <div class="s"><span class="n">50 / 35 / 15</span><span class="l">Engines / Choke Points / Reserve</span></div>
+          <div class="s"><span class="n">30</span><span class="l">Companies + Cash</span></div>
+          <div class="s"><span class="n">10 yr</span><span class="l">Backtest, S&amp;P-beating</span></div>
         </div>
-
-        <div class="ornament-line">❦</div>
-
-        <section class="instructions">
-            <h3 class="instructions-title">Instructions for Execution</h3>
-            <div class="instruction-list">
-                <p class="instruction-item"><strong>Equal Weight within Categories.</strong> Divide each category's allocation equally among its holdings.</p>
-                <p class="instruction-item"><strong>Start with what you have.</strong> Even fifty dollars deployed is participation. Fractional shares are acceptable.</p>
-                <p class="instruction-item"><strong>Add Consistently.</strong> Monthly contributions, however small, compound both wealth and voice.</p>
-                <p class="instruction-item"><strong>Vote Every Proxy.</strong> Ownership without voice is mere speculation. Exercise the franchise.</p>
-                <p class="instruction-item"><strong>Adapt to Conscience.</strong> If a holding violates your principles, exclude it and reallocate within the category.</p>
-            </div>
-        </section>
-
-        <div class="note">
-            <span class="note-label">Concerning UNH:</span> Hold as Reformer, not Endorser. Vote AGAINST executive compensation. Vote FOR transparency. Ownership here is for leverage, not approbation.
+        <div class="chapter-links">
+          <a href="handbill/" class="clink primary">FRANKLIN'S HANDBILL &rarr;</a>
+          <a href="Committe_of_Patriots_Innitial_Holdings_Session_2025-12.pdf" class="clink" target="_blank">THE FULL SESSION (PDF)</a>
+          <a href="The_Republic_Portfolio_2025-12.pdf" class="clink" target="_blank">THE WHITE PAPER</a>
+          <a href="backtest_2025-12.py" class="clink" target="_blank">THE BACKTEST SCRIPT</a>
         </div>
+      </div>
+    </div>
 
-        <div class="ornament">◊ ◈ ◊</div>
-
-        <div class="motto">
-            <p class="motto-text">"Own them. Vote them. Govern."</p>
+    <!-- CHAPTER II — THE INSTRUMENT -->
+    <div class="chapter c-vigil reveal" id="ch-vigil">
+      <div class="chapter-inner">
+        <div class="chapter-tag">Movement II &middot; The Instrument <span class="chapter-date">&middot; Live, since January 2026</span></div>
+        <h2 class="chapter-title">The Watchtower</h2>
+        <p class="chapter-body">
+          A doctrine is only an argument until it meets the tape. So the Watchtower was built: it models the Republic Portfolio from its <em>actual</em> holdings and measures it &mdash; every trading day, in public &mdash; against the index and four professional funds. No backtest. No way to hide a bad week. <strong>This is the receipt the entire story is staked on.</strong> When the founders reconvene, this is the evidence they read.
+        </p>
+        <div class="chapter-links">
+          <a href="../The_Watchtower/" class="clink primary">CLIMB THE WATCHTOWER &rarr;</a>
+          <a href="../The_Watchtower/archive/" class="clink" target="_blank">THE FIRST VIGIL (ARCHIVE)</a>
         </div>
+      </div>
+    </div>
 
-        <div class="seal">☆ ✯ ☆</div>
+    <!-- CHAPTER III — THE WARTIME REVIEW -->
+    <div class="chapter c-war reveal" id="ch-war">
+      <div class="chapter-inner">
+        <div class="chapter-tag">Movement III &middot; The Test <span class="chapter-date">&middot; March 31, 2026</span></div>
+        <h2 class="chapter-title">The Q1 2026 Wartime Review</h2>
+        <p class="chapter-body">
+          War came &mdash; Operation Epic Fury, the Strait of Hormuz closed, the markets bleeding. The Committee reconvened early, not in triumph but in gravity, to do four things: read the Watchtower's record, confront the moral weight of owning the infrastructure of a nation at war, refine the doctrine, and tell the citizens what to do now. The Republic had held &mdash; <em>up while the index was down nearly seven points</em> &mdash; and the founders used the result to <strong>amend their own framework</strong>: Engines trimmed to make room for a larger Reserve, an energy position added, and the Committee's first formal <em>Exclusion List</em>.
+        </p>
+        <div class="chapter-stat">
+          <div class="s"><span class="n">45 / 35 / 20</span><span class="l">Amended Allocation</span></div>
+          <div class="s"><span class="n">+XLE</span><span class="l">New Energy Position</span></div>
+          <div class="s"><span class="n">BLK · PLTR · META</span><span class="l">Excluded</span></div>
+        </div>
+        <div class="chapter-links">
+          <a href="Q12026/" class="clink primary">ENTER THE WARTIME REVIEW &rarr;</a>
+          <a href="Q12026/handbill/" class="clink" target="_blank">THE WARTIME HANDBILL</a>
+          <a href="Q12026/Committee_of_Patriots_Q1_2026_Wartime_Review.pdf" class="clink" target="_blank">THE SESSION (PDF)</a>
+        </div>
+      </div>
+    </div>
 
-        <footer class="footer">
-            <p class="footer-line">Published by Order of the COMMITTEE of PATRIOTS</p>
-            <p class="footer-line">Gen. WASHINGTON, presiding · Col. HAMILTON · Mr. JEFFERSON · Dr. FRANKLIN</p>
-            <p class="footer-small" style="margin-top: 10px;">Convened via the COMPANION Protocol · December 2025</p>
-            <p class="footer-small">This Handbill is released into the Publick Domain and may be freely copied &amp; distributed.</p>
-            <div class="ornament" style="margin-top: 15px; font-size: 16px;">— FINIS —</div>
-        </footer>
-    </article>
+    <!-- CHAPTER IV — THE TURN -->
+    <div class="chapter c-future reveal" id="ch-future">
+      <div class="chapter-inner">
+        <div class="chapter-tag">Movement IV &middot; The Turn <span class="chapter-date">&middot; Q2 2026 — forthcoming</span></div>
+        <h2 class="chapter-title">The Next Reconvening</h2>
+        <p class="chapter-body">
+          The wartime session adjourned with a motion: <em>reconvene at the end of Q2 &mdash; or sooner, if the crisis resolves or escalates.</em> That sitting has not yet been called. The Watchtower keeps its vigil in the meantime, and the story it tells has grown more complicated &mdash; the Republic's commanding spring lead has narrowed as the broader market recovered. <strong>This is what an honest record looks like: not an unbroken victory lap, but a doctrine still being measured.</strong> When the founders are next summoned, this chapter will be written from whatever the tape says then.
+        </p>
+        <div class="chapter-links">
+          <a href="../The_Watchtower/" class="clink primary">SEE WHERE IT STANDS NOW &rarr;</a>
+          <span class="clink muted">Q2 SESSION &middot; AWAITING THE THRESHOLD</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- V. THE VAULT -->
+<section id="vault">
+  <div class="container">
+    <div class="loop-head">
+      <div class="eyebrow reveal">EVERY ARTIFACT, IN ONE PLACE</div>
+      <h2 class="sec-title reveal rd1">The Vault</h2>
+      <p class="sec-sub reveal rd2">The complete documentary record of the Committee. All public domain.</p>
+    </div>
+    <div class="vault-grid reveal rd1">
+      <a href="handbill/" class="vault-item">
+        <span class="vault-kind">Broadside &middot; Dec 2025</span>
+        <span class="vault-name">Franklin's Handbill</span>
+        <span class="vault-desc">The Republic Portfolio as a 1775-style broadside for citizens. &ldquo;Own them. Vote them. Govern.&rdquo;</span>
+      </a>
+      <a href="Committe_of_Patriots_Innitial_Holdings_Session_2025-12.pdf" class="vault-item" target="_blank">
+        <span class="vault-kind">Transcript &middot; PDF</span>
+        <span class="vault-name">Initial Holdings Session</span>
+        <span class="vault-desc">The full founding deliberation: doctrine, methodology, and the initial portfolio composition.</span>
+      </a>
+      <a href="The_Republic_Portfolio_2025-12.pdf" class="vault-item" target="_blank">
+        <span class="vault-kind">White Paper &middot; PDF</span>
+        <span class="vault-name">The Republic Portfolio</span>
+        <span class="vault-desc">The original founding white paper for the doctrine, previously released inside the full Dossier.</span>
+      </a>
+      <a href="backtest_2025-12.py" class="vault-item" target="_blank">
+        <span class="vault-kind">Code &middot; Python</span>
+        <span class="vault-name">The Backtest Script</span>
+        <span class="vault-desc">Reproducible ten-year backtest of the doctrine. Run it yourself. Backtests are not predictive.</span>
+      </a>
+      <a href="Q12026/" class="vault-item">
+        <span class="vault-kind">Transcript &middot; Interactive</span>
+        <span class="vault-name">Q1 2026 Wartime Review</span>
+        <span class="vault-desc">The full wartime session: performance assessment, amendments, the moral question, guidance to citizens.</span>
+      </a>
+      <a href="Q12026/handbill/" class="vault-item">
+        <span class="vault-kind">Broadside &middot; Mar 2026</span>
+        <span class="vault-name">The Wartime Handbill</span>
+        <span class="vault-desc">The amended allocation as a distributable broadside. &ldquo;Hold through the fire.&rdquo;</span>
+      </a>
+      <a href="Q12026/Committee_of_Patriots_Q1_2026_Wartime_Review.pdf" class="vault-item" target="_blank">
+        <span class="vault-kind">Transcript &middot; PDF</span>
+        <span class="vault-name">Wartime Review (PDF)</span>
+        <span class="vault-desc">The Q1 2026 session as a printable record. Public domain, freely distributable.</span>
+      </a>
+      <a href="../The_Watchtower/" class="vault-item">
+        <span class="vault-kind">Instrument &middot; Live</span>
+        <span class="vault-name">The Watchtower</span>
+        <span class="vault-desc">The live scoreboard. The doctrine measured day by day against the index and the professionals.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VI. CLOSE / LOOP -->
+<section id="close">
+  <div class="container-narrow">
+    <blockquote class="close-quote reveal">
+      &ldquo;The Republic was not built to be owned by the few.<br>
+      It was built to endure. And so is this portfolio.&rdquo;
+    </blockquote>
+    <div class="close-attr reveal rd1">&mdash; WASHINGTON, CLOSING THE WARTIME REVIEW</div>
+    <div class="loop-nav reveal rd2">
+      <a href="#ch-founding">↻ BEGIN AGAIN</a>
+      <a href="../The_Watchtower/">THE WATCHTOWER →</a>
+      <a href="../The_Atrium/">↩ THE ATRIUM</a>
+    </div>
+    <div class="sigil reveal rd3" style="font-size:1rem;">◊ ◈ ◊</div>
+    <div class="close-tag reveal rd3">Own them. Vote them. Govern.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-links">
+    <a href="../">HOME</a>
+    <a href="../The_Atrium/">THE ATRIUM</a>
+    <a href="handbill/">THE HANDBILL</a>
+    <a href="../The_Watchtower/">THE WATCHTOWER</a>
+    <a href="Q12026/">Q1 REVIEW</a>
+    <a href="../THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
+    <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">GITHUB</a>
+  </div>
+  <div class="foot-disclaimer">
+    Educational / civic research only. This is not financial advice. All investment carries risk. Past performance does not guarantee future results. Backtests are not predictive. The Committee of Patriots is a conceptual framework produced via the COMPANION Protocol; personas are AI-generated and do not represent the actual views of historical figures. Consult qualified professionals before making investment decisions.<br>
+    Released into the public domain (CC0 1.0). The protocol belongs to no one, which means it cannot be suppressed.
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
 </body>
 </html>
