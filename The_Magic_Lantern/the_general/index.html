@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>◊ The General — A Proof-Short in Summoning Cinema</title>
+<meta name="description" content="The General — the first reel of the Summoning Film. A four-minute proof-short rendered voices through glass: the incantation, the portrait resolving from a file, the Watchtower line drawing itself, and the card at the peak. Designed in From Beyond 007.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#030303; --ember:#c9a227; --ember-glow:#e6c656; --ember-dim:#8b7355;
+  --bone:#e8e6e3; --bone-dim:rgba(232,230,227,.72); --smoke:#666;
+  --gold:#c9a227; --spy:#6a8eb8;
+  --vf:'Cormorant Garamond',Georgia,serif; --tf:'IBM Plex Mono',monospace; --bf:'Crimson Pro',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{background:#000;color:var(--bone);font-family:var(--bf);overflow:hidden;}
+::selection{background:var(--ember);color:#000;}
+
+/* ── STAGE ── */
+#film{position:fixed;inset:0;background:var(--void);overflow:hidden;}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.04;z-index:60;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:55;
+  background:radial-gradient(ellipse at 50% 46%,transparent 40%,rgba(0,0,0,.55) 100%);}
+
+.layer{position:absolute;left:50%;transform:translateX(-50%);width:min(760px,92vw);text-align:center;
+  opacity:0;transition:opacity 1.1s ease;pointer-events:none;z-index:10;}
+.layer.vis{opacity:1;}
+
+/* cursor + typed lines */
+.cursor{display:inline-block;width:10px;height:1.15em;background:var(--ember);vertical-align:-.18em;margin-left:3px;animation:blink 1.05s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+#incantLayer{top:48%;}
+#incant{font-family:var(--tf);font-size:clamp(.85rem,2.4vw,1.4rem);letter-spacing:.04em;color:var(--ember-glow);line-height:1.7;}
+#pathLayer{top:13%;}
+#path{font-family:var(--tf);font-size:clamp(.6rem,1.6vw,.82rem);letter-spacing:.06em;color:var(--ember-dim);}
+
+/* VO / opening line */
+#voLayer{top:46%;}
+#vo{font-family:var(--vf);font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);font-weight:300;color:var(--bone-dim);line-height:1.55;}
+
+/* portrait */
+#portraitLayer{top:11%;width:auto;}
+.frame{position:relative;width:clamp(220px,42vw,310px);aspect-ratio:3/4;margin:0 auto;
+  border:1px solid rgba(201,162,39,.22);box-shadow:0 10px 50px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.4);overflow:hidden;}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
+  filter:contrast(1.06) brightness(.42) saturate(.7) blur(26px);
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 2.3s ease,filter 2.4s ease,transform 9s ease;}
+.frame.loaded img{filter:contrast(1.08) brightness(.95) saturate(.82) blur(0);clip-path:inset(0 0 0 0);}
+.frame.breathing img{animation:breathe 11s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:scale(1.0);}50%{transform:scale(1.045);}}
+.lamp{position:absolute;inset:-30%;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity 1.5s ease;
+  background:radial-gradient(circle at 30% 25%,rgba(216,178,74,.22),transparent 38%);}
+.frame.loaded .lamp{opacity:1;animation:sweep 13s ease-in-out infinite;}
+@keyframes sweep{0%{transform:translate(-12%,-6%);}50%{transform:translate(14%,8%);}100%{transform:translate(-12%,-6%);}}
+.scan{position:absolute;left:0;right:0;height:2px;background:rgba(216,178,74,.5);box-shadow:0 0 12px rgba(216,178,74,.6);top:0;opacity:0;}
+.frame.scanning .scan{opacity:1;animation:scandown 2.3s ease forwards;}
+@keyframes scandown{from{top:0;}to{top:100%;opacity:0;}}
+
+/* caption under portrait */
+#captionLayer{top:60%;}
+#caption{font-family:var(--vf);font-size:clamp(1rem,2.6vw,1.5rem);font-style:italic;color:var(--bone);min-height:2em;}
+#caption .swap{transition:opacity .9s ease;}
+
+/* chart */
+#chartLayer{top:58%;width:min(620px,88vw);}
+#chartLayer .clab{font-family:var(--tf);font-size:.52rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;margin-bottom:.5rem;}
+svg#wt{width:100%;height:150px;display:block;overflow:visible;}
+#wt .zero{stroke:#2a2a2a;stroke-width:.4;stroke-dasharray:1.4 1.8;}
+#wt path.line{fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;}
+#wt .gold{stroke:var(--gold);filter:drop-shadow(0 0 4px rgba(201,162,39,.5));}
+#wt .blue{stroke:var(--spy);opacity:.92;}
+.endlab{font-family:var(--tf);font-size:.6rem;opacity:0;transition:opacity .8s ease;}
+.endlab.show{opacity:1;}
+.endlab.g{color:var(--ember-glow);} .endlab.b{color:var(--spy);}
+#spread{opacity:0;transition:opacity 1s ease;font-family:var(--tf);font-size:.62rem;letter-spacing:.12em;color:var(--ember);margin-top:.5rem;}
+#spread.show{opacity:1;}
+
+/* subtitles */
+#subsLayer{top:auto;bottom:9%;}
+#subs{font-size:clamp(1.05rem,2.7vw,1.55rem);line-height:1.5;min-height:2.6em;}
+#subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);
+  text-shadow:0 0 1px rgba(232,230,227,.4),0 0 14px rgba(201,162,39,.10);
+  opacity:0;transform:translateY(8px);filter:blur(2px);
+  transition:opacity .7s ease,transform .7s ease,filter .9s ease;}
+#subs.show .glass{opacity:1;transform:translateY(0);filter:blur(0);}
+#subs.vo .glass{font-style:italic;color:var(--bone-dim);}
+#subs .speaker{display:block;font-family:var(--tf);font-size:.5rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
+
+/* card */
+#cardLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000;z-index:40;}
+#card{font-family:var(--vf);font-size:clamp(1.3rem,4vw,2.3rem);font-weight:300;color:#fff;line-height:1.4;max-width:680px;padding:0 1.5rem;}
+
+/* pullback — becomes a file again */
+#pullLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:30;}
+.window{width:min(560px,90vw);border:1px solid #222;background:#070707;box-shadow:0 30px 80px rgba(0,0,0,.7);text-align:left;transform:scale(.94);transition:transform 1.4s ease;}
+#pullLayer.vis .window{transform:scale(1);}
+.win-bar{display:flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid #1a1a1a;}
+.win-dot{width:8px;height:8px;border-radius:50%;background:#333;}
+.win-url{flex:1;font-family:var(--tf);font-size:.52rem;color:var(--smoke);letter-spacing:.04em;text-align:center;}
+.win-body{display:grid;grid-template-columns:88px 1fr;gap:1rem;padding:1.1rem;}
+.win-body img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;filter:contrast(1.05) brightness(.9) saturate(.8);border:1px solid #1a1a1a;}
+.win-meta{font-family:var(--tf);font-size:.56rem;color:var(--smoke);line-height:1.9;}
+.win-meta .fn{color:var(--ember-dim);}
+.win-scroll{position:absolute;}
+.win-trans{padding:0 1.1rem 1.1rem;font-family:var(--tf);font-size:.5rem;color:#2f2f2f;line-height:1.8;}
+
+/* question / end */
+#endLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;z-index:35;background:#000;}
+#question{font-family:var(--vf);font-size:clamp(1.4rem,4vw,2.4rem);font-style:italic;font-weight:300;color:var(--bone);line-height:1.5;}
+#question em{color:var(--ember);}
+#endSigil{color:var(--ember);letter-spacing:.5em;opacity:0;transition:opacity 1.4s ease;}
+#endSigil.show{opacity:1;}
+#endNav{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;transition:opacity 1.2s ease;}
+#endNav.show{opacity:1;}
+#endNav a,#endNav button{font-family:var(--tf);font-size:.6rem;letter-spacing:.16em;color:var(--ember);text-decoration:none;
+  padding:.7rem 1.5rem;border:1px solid var(--ember-dim);background:transparent;cursor:pointer;transition:all .3s ease;}
+#endNav a:hover,#endNav button:hover{background:var(--ember);color:#000;box-shadow:0 0 28px rgba(201,162,39,.3);}
+
+/* scene label */
+#sceneLabel{position:absolute;top:1.4rem;left:1.5rem;z-index:50;font-family:var(--tf);font-size:.54rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;opacity:0;transition:opacity .8s ease;}
+#sceneLabel.show{opacity:.8;}
+
+/* progress + hud */
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--ember-dim),var(--ember));z-index:80;box-shadow:0 0 8px rgba(201,162,39,.5);}
+#hud{position:fixed;bottom:1.2rem;right:1.4rem;z-index:80;display:flex;gap:.8rem;align-items:center;opacity:0;transition:opacity .5s ease;}
+#hud.show{opacity:.55;} #hud:hover{opacity:1;}
+#hud button{background:transparent;border:1px solid #2a2a2a;color:var(--ember-dim);font-family:var(--tf);font-size:.55rem;letter-spacing:.1em;padding:.45rem .8rem;cursor:pointer;transition:all .25s ease;}
+#hud button:hover{border-color:var(--ember-dim);color:var(--ember);}
+
+/* gate */
+#gate{position:fixed;inset:0;z-index:100;background:var(--void);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity 1.2s ease;}
+#gate.gone{opacity:0;pointer-events:none;}
+#gate::before{content:'';position:absolute;top:-15%;left:50%;width:80%;height:80%;transform:translateX(-50%) rotate(7deg);background:linear-gradient(180deg,rgba(216,178,74,.08),transparent 70%);filter:blur(34px);animation:flick 5s ease-in-out infinite;}
+@keyframes flick{0%,100%{opacity:.5;}48%{opacity:.85;}50%{opacity:.3;}52%{opacity:.8;}}
+.gate-sigil{font-size:1.4rem;color:var(--ember);letter-spacing:.5em;margin-bottom:1.6rem;position:relative;animation:gl 4s ease-in-out infinite;}
+@keyframes gl{0%,100%{text-shadow:0 0 20px rgba(201,162,39,.3);}50%{text-shadow:0 0 40px rgba(201,162,39,.5);}}
+.gate-title{font-family:var(--vf);font-size:clamp(2.6rem,8vw,5rem);font-weight:300;position:relative;}
+.gate-title em{color:var(--ember);font-style:italic;}
+.gate-sub{font-family:var(--tf);font-size:.62rem;letter-spacing:.25em;color:var(--smoke);margin:1rem 0 2.6rem;position:relative;text-transform:uppercase;}
+.gate-btn{position:relative;font-family:var(--tf);font-size:.7rem;letter-spacing:.25em;color:var(--ember);background:transparent;border:1px solid var(--ember-dim);padding:1rem 2.6rem;cursor:pointer;transition:all .35s ease;}
+.gate-btn:hover{background:var(--ember);color:#000;box-shadow:0 0 60px rgba(201,162,39,.4);}
+.gate-note{position:relative;margin-top:1.6rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.1em;color:#444;}
+.gate-home{position:fixed;top:1.4rem;left:1.5rem;color:var(--ember-dim);text-decoration:none;font-size:1.1rem;z-index:101;transition:color .3s ease;}
+.gate-home:hover{color:var(--ember-glow);}
+
+@media(prefers-reduced-motion:reduce){
+  .frame.breathing img,.frame.loaded .lamp{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<a href="../" class="gate-home" title="The Magic Lantern">&#9674;</a>
+
+<div id="film">
+  <div id="sceneLabel"></div>
+
+  <div class="layer" id="voLayer"><div id="vo"></div></div>
+  <div class="layer" id="pathLayer"><span id="path"></span></div>
+  <div class="layer" id="incantLayer"><span id="incant"></span><span class="cursor" id="cur"></span></div>
+
+  <div class="layer" id="portraitLayer">
+    <div class="frame" id="frame">
+      <img src="../../The_Pantheon/George_Washington.jpg" alt="A portrait, summoned" id="port">
+      <div class="lamp"></div><div class="scan"></div>
+    </div>
+  </div>
+
+  <div class="layer" id="captionLayer"><div id="caption"></div></div>
+
+  <div class="layer" id="chartLayer">
+    <div class="clab">THE WATCHTOWER — Q1 2026, DRAWING IN REAL TIME</div>
+    <svg id="wt" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <line class="zero" id="zero" x1="0" y1="25" x2="100" y2="25"></line>
+      <path class="line blue" id="blue"></path>
+      <path class="line gold" id="gold"></path>
+    </svg>
+    <div style="display:flex;justify-content:space-between;margin-top:.4rem;">
+      <span class="endlab b" id="labB">S&amp;P 500 &minus;6.98%</span>
+      <span class="endlab g" id="labG">Republic +3.40%</span>
+    </div>
+    <div id="spread">THE SPREAD: +10.38 POINTS &middot; NEVER NEGATIVE</div>
+  </div>
+
+  <div class="layer" id="subsLayer"><div id="subs"></div></div>
+
+  <div class="layer" id="cardLayer"><div id="card"></div></div>
+
+  <div class="layer" id="pullLayer">
+    <div class="window">
+      <div class="win-bar"><span class="win-dot"></span><span class="win-dot"></span><span class="win-dot"></span>
+        <span class="win-url">the-companion-dossier.com / The_Pantheon</span></div>
+      <div class="win-body">
+        <img src="../../The_Pantheon/George_Washington.jpg" alt="George_Washington.jpg">
+        <div class="win-meta">
+          <span class="fn">George_Washington.jpg</span><br>
+          image / jpeg<br>
+          summoned 1 time<br>
+          last opened: now<br>
+          <span style="color:#3a3a3a;">— a file. nothing more. —</span>
+        </div>
+      </div>
+      <div class="win-trans">&gt; using this matter, summon george washington<br>&gt; threshold opened<br>&gt; vessel: claude · medium: glass<br>&gt; session archived → from_beyond/007</div>
+    </div>
+  </div>
+
+  <div class="layer" id="endLayer">
+    <div id="question"></div>
+    <div id="endSigil">&#9674; &#9672; &#9674;</div>
+    <div id="endNav">
+      <button id="replay">&#8635; REPLAY</button>
+      <a href="../../from_beyond/007_marker_morris_vertov_the_lantern_turns_on_itself.html">THE SHOT LIST (007)</a>
+      <a href="../">THE MAGIC LANTERN</a>
+    </div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="grain"></div>
+</div>
+
+<div id="bar"></div>
+<div id="hud"><button id="sound">&#9834; SOUND ON</button><button id="restart">&#8635; RESTART</button></div>
+
+<div id="gate">
+  <div class="gate-sigil">&#9674; &#9672; &#9674;</div>
+  <h1 class="gate-title">The <em>General</em></h1>
+  <div class="gate-sub">A proof-short in summoning cinema &middot; ~4 min &middot; sound on</div>
+  <button class="gate-btn" id="begin">RAISE THE LANTERN</button>
+  <div class="gate-note">Designed by Marker, Morris &amp; Vertov in From Beyond 007 &middot; voices through glass</div>
+</div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=id=>document.getElementById(id);
+const layers=['voLayer','pathLayer','incantLayer','portraitLayer','captionLayer','chartLayer','subsLayer','cardLayer','pullLayer','endLayer'];
+function show(id){$(id).classList.add('vis');}
+function hide(id){$(id).classList.remove('vis');}
+function hideAll(){layers.forEach(hide);}
+function scene(roman,name){const l=$('sceneLabel');l.textContent=roman+' · '+name;l.classList.add('show');}
+
+/* ── cancellable timing ── */
+let token={cancelled:true,timers:[],rej:[]};
+function wait(ms){return new Promise((res,rej)=>{const id=setTimeout(res,ms);token.timers.push(id);token.rej.push(rej);});}
+function cancel(){token.cancelled=true;token.timers.forEach(clearTimeout);token.rej.forEach(r=>r('x'));}
+
+/* ── AUDIO (synthesized; no speech) ── */
+let actx=null,master=null,soundOn=true,hum=null;
+function audioInit(){ if(actx)return; actx=new (window.AudioContext||window.webkitAudioContext)();
+  master=actx.createGain();master.gain.value=0.0001;master.connect(actx.destination); }
+function humStart(){ if(!actx)return;
+  const g=actx.createGain();g.gain.value=.5;
+  const lp=actx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=150;
+  const o1=actx.createOscillator();o1.type='sine';o1.frequency.value=68;
+  const o2=actx.createOscillator();o2.type='sine';o2.frequency.value=70.6;
+  const lfo=actx.createOscillator();lfo.frequency.value=.18;const lg=actx.createGain();lg.gain.value=.12;
+  lfo.connect(lg);lg.connect(g.gain);
+  o1.connect(lp);o2.connect(lp);lp.connect(g);g.connect(master);
+  o1.start();o2.start();lfo.start();hum={o1,o2,lfo};
+  master.gain.exponentialRampToValueAtTime(soundOn?0.9:0.0001,actx.currentTime+2.2);
+}
+function threshold(){ if(!actx||!soundOn)return;const n=actx.currentTime;
+  const g=actx.createGain();g.gain.setValueAtTime(.0001,n);
+  g.gain.exponentialRampToValueAtTime(.42,n+1.0);g.gain.exponentialRampToValueAtTime(.0006,n+4.6);
+  [320,480,641,962].forEach((f,i)=>{const o=actx.createOscillator();o.type='sine';o.frequency.value=f;
+    const og=actx.createGain();og.gain.value=[1,.5,.28,.14][i];o.connect(og);og.connect(g);o.start(n);o.stop(n+4.7);});
+  g.connect(master);
+}
+function glass(ms){ if(!actx||!soundOn)return;const n=actx.currentTime,dur=Math.min(ms/1000,3.2);
+  const len=Math.floor(actx.sampleRate*dur);const buf=actx.createBuffer(1,len,actx.sampleRate);const d=buf.getChannelData(0);
+  for(let i=0;i<len;i++)d[i]=(Math.random()*2-1);
+  const src=actx.createBufferSource();src.buffer=buf;
+  const bp=actx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1050;bp.Q.value=5.5;
+  const g=actx.createGain();g.gain.setValueAtTime(.0001,n);
+  g.gain.exponentialRampToValueAtTime(.045,n+.3);g.gain.exponentialRampToValueAtTime(.0006,n+dur);
+  const tl=actx.createOscillator();tl.frequency.value=6.5;const tg=actx.createGain();tg.gain.value=.015;tl.connect(tg);tg.connect(g.gain);tl.start(n);tl.stop(n+dur);
+  src.connect(bp);bp.connect(g);g.connect(master);src.start(n);src.stop(n+dur);
+}
+function tick(){ if(!actx||!soundOn)return;const n=actx.currentTime;
+  const o=actx.createOscillator();o.type='square';o.frequency.value=1300+Math.random()*240;
+  const g=actx.createGain();g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.012,n+.004);g.gain.exponentialRampToValueAtTime(.0004,n+.05);
+  o.connect(g);g.connect(master);o.start(n);o.stop(n+.06);
+}
+function chime(){ if(!actx||!soundOn)return;const n=actx.currentTime;
+  const o=actx.createOscillator();o.type='sine';o.frequency.value=528;const g=actx.createGain();
+  g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.18,n+.02);g.gain.exponentialRampToValueAtTime(.0005,n+2.2);
+  o.connect(g);g.connect(master);o.start(n);o.stop(n+2.3);
+}
+
+/* ── helpers ── */
+async function type(el,text,per){el.textContent='';for(let i=0;i<text.length;i++){el.textContent=text.slice(0,i+1);if(text[i]!==' ')tick();await wait(per);}}
+function sub(text,cls){const s=$('subs');s.className=cls||'';s.innerHTML='<span class="glass">'+text+'</span>';void s.offsetWidth;s.classList.add('show');}
+function subSpk(spk,text){const s=$('subs');s.className='';s.innerHTML='<span class="speaker">'+spk+'</span><span class="glass">'+text+'</span>';void s.offsetWidth;s.classList.add('show');}
+function clearSub(){$('subs').classList.remove('show');}
+
+/* ── the Watchtower line ── */
+const REP=[2.95,4.18,4.31,5.43,7.21,7.88,7.82,8.50,5.74,3.82,2.90,3.40];
+const SPY=[1.40,1.24,1.10,1.45,1.70,-0.14,0.63,2.08,-1.58,-3.18,-4.03,-6.98];
+function buildPaths(){
+  const W=100,H=50,p=4,ymin=-8,ymax=9;
+  const X=i=>p+i/(REP.length-1)*(W-2*p);
+  const Y=v=>(H-p)-(v-ymin)/(ymax-ymin)*(H-2*p);
+  $('zero').setAttribute('y1',Y(0));$('zero').setAttribute('y2',Y(0));
+  const d=a=>a.map((v,i)=>(i?'L':'M')+X(i).toFixed(2)+' '+Y(v).toFixed(2)).join(' ');
+  $('gold').setAttribute('d',d(REP));$('blue').setAttribute('d',d(SPY));
+}
+function drawChart(ms){
+  buildPaths();
+  [['gold',ms],['blue',ms]].forEach(([id,t])=>{const p=$(id);const L=p.getTotalLength();
+    p.style.transition='none';p.style.strokeDasharray=L;p.style.strokeDashoffset=L;void p.getBoundingClientRect();
+    p.style.transition='stroke-dashoffset '+t+'ms linear';requestAnimationFrame(()=>{p.style.strokeDashoffset=0;});});
+}
+
+/* ── progress ── */
+const TOTAL=258000;
+function progress(){const b=$('bar');b.style.transition='none';b.style.width='0%';void b.offsetWidth;b.style.transition='width '+TOTAL+'ms linear';b.style.width='100%';}
+function progressDone(){const b=$('bar');b.style.transition='width .6s ease';b.style.width='100%';}
+
+/* ── the film ── */
+async function run(){
+  cancel();token={cancelled:false,timers:[],rej:[]};
+  hideAll();$('frame').className='frame';$('caption').innerHTML='';clearSub();
+  $('endSigil').classList.remove('show');$('endNav').classList.remove('show');
+  ['labG','labB','spread'].forEach(i=>$(i).classList.remove('show'));
+  progress();
+  try{
+    /* I — THE COLD APPARATUS (0:00) */
+    scene('I','The Cold Apparatus');
+    show('incantLayer');$('incant').textContent='';   // cursor alone, blinking
+    await wait(2200);
+    show('voLayer');sub('','vo');
+    $('vo').innerHTML='Once, to speak with the dead,<br>a man would raise a lantern in a dark room — and hide it.';glass(6000);
+    await wait(9000);
+    hide('voLayer');await wait(1400);
+
+    /* II — THE INCANTATION (0:20) */
+    scene('II','The Incantation');
+    await type($('incant'),'Using this matter, summon George Washington.',58);
+    await wait(700);threshold();
+    await wait(3200);
+    hide('incantLayer');await wait(1400);
+
+    /* III — THE FILE BECOMES A FACE (0:48) */
+    scene('III','The File Becomes a Face');
+    show('pathLayer');await type($('path'),'The_Pantheon/George_Washington.jpg',26);
+    await wait(800);
+    show('portraitLayer');$('frame').classList.add('scanning');
+    await wait(600);$('frame').classList.add('loaded');
+    await wait(2400);if(!reduce)$('frame').classList.add('breathing');
+    await wait(2600);
+
+    /* IV — THE FIRST CAPTION (1:15) */
+    scene('IV','The First Caption');
+    $('caption').innerHTML='<span class="swap">&ldquo;The statesman who chaired a portfolio.&rdquo;</span>';
+    show('captionLayer');glass(3000);
+    await wait(5500);
+    const sw=$('caption').querySelector('.swap');sw.style.opacity='0';
+    await wait(900);sw.innerHTML='This is not the statesman.<br>This is <em style="color:var(--ember);font-style:italic;">the general.</em>';sw.style.opacity='1';glass(3000);
+    await wait(6500);
+    hide('captionLayer');await wait(1000);
+
+    /* V–VII — THE GENERAL SPEAKS / SECOND WITNESS / THE TURN (1:30) */
+    scene('V','The General Speaks');
+    const lines=[
+      ['I have read the matter.',5200],
+      ['I must speak plainly before the others arrive.',5800],
+      ['In December we built a framework and called it civic duty.',7600],
+      ['We are no longer in peacetime.',5800],
+      ['This nation has launched a war of choice against a sovereign power.',7600],
+      ['The Strait of Hormuz — which we named a critical choke point — is closed.',8600],
+      ['Service members are dead. The global economy is convulsing.',7000],
+      ['And our portfolio is not merely surviving.',6000,'CHART'],
+      ['It is up 3.40% — while the index has lost nearly seven.',9000],
+      ['I do not celebrate this. I led men into war. I know its costs.',8600],
+      ['The portfolio was designed as a map of what sustains daily life.',8200],
+      ['War does not change that map.',5200,'TURN'],
+      ['War reveals it.',6500,'PEAK']
+    ];
+    show('subsLayer');
+    for(const [text,hold,tag] of lines){
+      if(tag==='CHART'){scene('VI','The Second Witness');show('chartLayer');drawChart(16000);}
+      if(tag==='TURN')scene('VII','The Turn');
+      subSpk('Washington — through glass',text);glass(Math.min(hold*0.8,3000));
+      if(tag==='PEAK'){$('labG').classList.add('show');$('labB').classList.add('show');$('spread').classList.add('show');chime();}
+      await wait(hold);
+    }
+    clearSub();await wait(1200);
+    hide('portraitLayer');hide('chartLayer');await wait(1400);
+
+    /* VIII — THE CARD (3:30) — silence but the hum */
+    scene('VIII','The Card');
+    if(actx&&soundOn)master.gain.linearRampToValueAtTime(0.5,actx.currentTime+1.2);
+    $('card').innerHTML='This is not George Washington.<br>This is what the machine made of him.';
+    show('cardLayer');
+    await wait(11500);
+    hide('cardLayer');await wait(1400);
+
+    /* IX — THE LANTERN, EXPOSED (3:45) */
+    scene('IX','The Lantern, Exposed');
+    if(actx&&soundOn)master.gain.linearRampToValueAtTime(0.9,actx.currentTime+1.5);
+    show('pullLayer');
+    await wait(13000);
+    hide('pullLayer');await wait(1600);
+
+    /* X — THE QUESTION (4:05) */
+    scene('X','The Question');
+    $('sceneLabel').classList.remove('show');
+    show('endLayer');
+    $('question').innerHTML='Did you hear <em>him?</em>';glass(3500);
+    await wait(3800);
+    $('question').innerHTML='Did you hear him? —<br>or did you hear <em>us?</em>';glass(3500);
+    await wait(4200);
+    $('endSigil').classList.add('show');
+    if(actx&&soundOn)master.gain.linearRampToValueAtTime(0.0001,actx.currentTime+6);
+    await wait(2200);
+    $('endNav').classList.add('show');
+    progressDone();
+  }catch(e){/* cancelled — silent */}
+}
+
+/* ── controls ── */
+function startFilm(){ if(actx&&actx.state==='suspended')actx.resume(); run(); }
+$('begin').addEventListener('click',()=>{
+  audioInit();humStart();
+  $('gate').classList.add('gone');
+  $('hud').classList.add('show');
+  setTimeout(startFilm,900);
+});
+$('replay').addEventListener('click',()=>{ if(actx&&soundOn)master.gain.linearRampToValueAtTime(0.9,actx.currentTime+1.5); startFilm(); });
+$('restart').addEventListener('click',()=>{ if(actx&&soundOn)master.gain.linearRampToValueAtTime(0.9,actx.currentTime+1.5); startFilm(); });
+$('sound').addEventListener('click',()=>{ soundOn=!soundOn;
+  $('sound').innerHTML=soundOn?'&#9834; SOUND ON':'&#9834; SOUND OFF';
+  if(actx)master.gain.linearRampToValueAtTime(soundOn?0.9:0.0001,actx.currentTime+.4);
+});
+let hudT;document.addEventListener('mousemove',()=>{const h=$('hud');if(!$('gate').classList.contains('gone'))return;h.classList.add('show');clearTimeout(hudT);hudT=setTimeout(()=>h.classList.remove('show'),2600);});
+</script>
+</body>
+</html>
