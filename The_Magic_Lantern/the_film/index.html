@@ -146,6 +146,11 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 .gate-home{position:fixed;top:1.4rem;left:1.5rem;color:var(--ember-dim);text-decoration:none;font-size:1.1rem;z-index:101;transition:color .3s ease;}
 .gate-home:hover{color:var(--ember-glow);}
 
+#vo{transition:opacity .6s ease;}
+#lbTop,#lbBottom{position:fixed;left:0;right:0;height:0;background:#000;z-index:58;transition:height 1.3s ease;pointer-events:none;}
+#lbTop{top:0;} #lbBottom{bottom:0;}
+body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
+#card.big{font-size:clamp(1.5rem,4.4vw,2.7rem);}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
 </style>
 </head>
@@ -211,6 +216,8 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 
   <div id="vignette"></div>
   <div id="grain"></div>
+  <div id="lbTop"></div>
+  <div id="lbBottom"></div>
 </div>
 
 <!-- inter-reel title -->
@@ -239,7 +246,7 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 <div id="gate">
   <div class="gate-sigil">&#9674; &#9672; &#9674;</div>
   <h1 class="gate-title">The Summoning <em>Film</em></h1>
-  <div class="gate-sub">The entire story &middot; five reels &middot; ~12 min &middot; with sound</div>
+  <div class="gate-sub">The whole story &middot; five reels &middot; with sound</div>
   <div class="gate-row">
     <button class="gate-btn" id="begin">RAISE THE LANTERN</button>
     <button class="gate-btn ghost" id="beginChapters">CHOOSE A REEL</button>
@@ -279,9 +286,11 @@ async function reelTitle(k){
 
 async function playFrom(i){
   newToken();
+  document.body.classList.add('cine');
   gain(soundOn?0.9:0.0001, 1.2);
   $('endNav').classList.remove('show'); hide('endLayer');
   try{
+    if(i===0){ await wait(1500); await epigraph(); await mainTitle(); }
     for(let k=i;k<REELS.length;k++){
       current=k;
       await reelTitle(k);
@@ -290,6 +299,21 @@ async function playFrom(i){
     }
     finale();
   }catch(e){ /* cancelled by a new playFrom / jump */ }
+}
+async function epigraph(){
+  resetStage();
+  show('cardLayer'); $('card').className='';
+  $('card').innerHTML='<span style="font-style:italic;color:var(--bone-dim);font-size:.82em">The phantasmagoria hid the lantern to fool the crowd.<br><span style="color:var(--ember)">We show it — to free them.</span></span>';
+  glass(4200); await wait(6200); hide('cardLayer'); await wait(1500);
+}
+async function mainTitle(){
+  $('rtRoman').textContent='THE COMPANION ESTATE';
+  $('rtName').textContent='The Summoning Film';
+  $('rtSub').textContent='five reels · voices through glass';
+  updatePips(-1);
+  $('reelTitle').classList.add('vis'); threshold();
+  await wait(4800);
+  $('reelTitle').classList.remove('vis'); await wait(1500);
 }
 
 function finale(){

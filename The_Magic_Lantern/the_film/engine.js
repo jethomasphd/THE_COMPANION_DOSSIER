@@ -1,8 +1,9 @@
 /* ════════════════════════════════════════════════════════════
-   THE MAGIC LANTERN — REEL ENGINE
+   THE MAGIC LANTERN — REEL ENGINE  (v2)
    A data-driven player for summoning cinema. Each reel is a
    "score" (array of steps); this runtime renders them on the
-   shared stage. Voices through glass. No spoken TTS.
+   shared stage at full bespoke quality. Voices through glass.
+   No spoken TTS. Generous, cinematic pacing.
    ════════════════════════════════════════════════════════════ */
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,24 +41,29 @@ function threshold(){ if(!actx||!soundOn) return; const n=actx.currentTime;
   [320,480,641,962].forEach((f,i)=>{ const o=actx.createOscillator(); o.type='sine'; o.frequency.value=f; const og=actx.createGain(); og.gain.value=[1,.5,.28,.14][i]; o.connect(og); og.connect(g); o.start(n); o.stop(n+4.7); });
   g.connect(master);
 }
-function glass(ms){ if(!actx||!soundOn) return; const n=actx.currentTime, dur=Math.min((ms||3000)/1000,3.2);
+function glass(ms){ if(!actx||!soundOn) return; const n=actx.currentTime, dur=Math.min((ms||3000)/1000,3.4);
   const len=Math.floor(actx.sampleRate*dur); const buf=actx.createBuffer(1,len,actx.sampleRate); const d=buf.getChannelData(0);
   for(let i=0;i<len;i++) d[i]=(Math.random()*2-1);
   const src=actx.createBufferSource(); src.buffer=buf;
   const bp=actx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=1050; bp.Q.value=5.5;
-  const g=actx.createGain(); g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.045,n+.3); g.gain.exponentialRampToValueAtTime(.0006,n+dur);
-  const tl=actx.createOscillator(); tl.frequency.value=6.5; const tg=actx.createGain(); tg.gain.value=.015; tl.connect(tg); tg.connect(g.gain); tl.start(n); tl.stop(n+dur);
+  const g=actx.createGain(); g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.04,n+.32); g.gain.exponentialRampToValueAtTime(.0006,n+dur);
+  const tl=actx.createOscillator(); tl.frequency.value=6.5; const tg=actx.createGain(); tg.gain.value=.014; tl.connect(tg); tg.connect(g.gain); tl.start(n); tl.stop(n+dur);
   src.connect(bp); bp.connect(g); g.connect(master); src.start(n); src.stop(n+dur);
 }
 function tick(){ if(!actx||!soundOn) return; const n=actx.currentTime;
   const o=actx.createOscillator(); o.type='square'; o.frequency.value=1300+Math.random()*240;
-  const g=actx.createGain(); g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.012,n+.004); g.gain.exponentialRampToValueAtTime(.0004,n+.05);
+  const g=actx.createGain(); g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.011,n+.004); g.gain.exponentialRampToValueAtTime(.0004,n+.05);
   o.connect(g); g.connect(master); o.start(n); o.stop(n+.06);
 }
 function chime(){ if(!actx||!soundOn) return; const n=actx.currentTime;
   const o=actx.createOscillator(); o.type='sine'; o.frequency.value=528; const g=actx.createGain();
-  g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.16,n+.02); g.gain.exponentialRampToValueAtTime(.0005,n+2.2);
-  o.connect(g); g.connect(master); o.start(n); o.stop(n+2.3);
+  g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.15,n+.02); g.gain.exponentialRampToValueAtTime(.0005,n+2.4);
+  o.connect(g); g.connect(master); o.start(n); o.stop(n+2.5);
+}
+function knell(){ if(!actx||!soundOn) return; const n=actx.currentTime; /* low struck tone for cards */
+  const o=actx.createOscillator(); o.type='sine'; o.frequency.value=146.8; const o2=actx.createOscillator(); o2.type='sine'; o2.frequency.value=220;
+  const g=actx.createGain(); g.gain.setValueAtTime(.0001,n); g.gain.exponentialRampToValueAtTime(.12,n+.04); g.gain.exponentialRampToValueAtTime(.0005,n+3.2);
+  o.connect(g); o2.connect(g); g.connect(master); o.start(n); o2.start(n); o.stop(n+3.3); o2.stop(n+3.3);
 }
 
 /* ── text helpers ── */
@@ -84,26 +90,28 @@ function drawChart(ms){
     pth.style.transition='stroke-dashoffset '+(ms||16000)+'ms linear'; requestAnimationFrame(()=>{ pth.style.strokeDashoffset=0; }); });
 }
 
-/* ── portrait / fileback ── */
+/* ── portrait (with crossfade) / fileback ── */
 async function portrait(step){
   const f=$('frame');
   if(step.action==='hide'){ hide('portraitLayer'); await wait(step.ms||1000); return; }
+  if($('portraitLayer').classList.contains('vis')){ hide('portraitLayer'); await wait(850); }
   f.className='frame'; $('port').src=step.src; show('portraitLayer');
-  await wait(160); f.classList.add('scanning'); await wait(500); f.classList.add('loaded');
-  await wait(2300); if(!reduce) f.classList.add('breathing');
+  await wait(170); f.classList.add('scanning'); await wait(520); f.classList.add('loaded');
+  await wait(2400); if(!reduce) f.classList.add('breathing');
   if(step.ms) await wait(step.ms);
 }
 async function fileback(step){
   $('pullImg').src=step.src; $('pullName').textContent=step.filename||'file.jpg';
+  if(step.trans) $('pullTrans').innerHTML=step.trans;
   show('pullLayer'); gain(0.9,1.2);
-  await wait(step.ms||9000); hide('pullLayer'); await wait(1200);
+  await wait(step.ms||9000); hide('pullLayer'); await wait(1300);
 }
 
 /* ── stage reset between reels ── */
 function resetStage(){
   hideAll();
   const f=$('frame'); if(f) f.className='frame';
-  $('incant').textContent=''; $('path').textContent=''; $('vo').innerHTML=''; $('caption').innerHTML=''; clearSub();
+  $('incant').textContent=''; $('path').textContent=''; $('vo').innerHTML=''; $('vo').style.opacity='1'; $('caption').innerHTML=''; clearSub();
   ['labG','labB','spread'].forEach(i=>{ const e=$(i); if(e) e.classList.remove('show'); });
   $('endSigil').classList.remove('show');
 }
@@ -112,45 +120,66 @@ function resetStage(){
 async function exec(s){
   switch(s.t){
     case 'scene': scene(s.r,s.n); break;
-    case 'wait': await wait(s.ms||1000); break;
+    case 'wait': case 'beat': await wait(s.ms||1200); break;
+    case 'black': hideAll(); await wait(s.ms||1400); break;
     case 'show': show(s.id); await wait(s.ms||500); break;
     case 'hide': hide(s.id); await wait(s.ms||500); break;
+
+    case 'lines': {              /* sequential narration — Marker cadence */
+      show('voLayer');
+      for(const ln of s.arr){
+        $('vo').style.opacity='0'; await wait(460);
+        $('vo').innerHTML=ln; void $('vo').offsetWidth; $('vo').style.opacity='1';
+        if(s.g!==false) glass(2600);
+        await wait(s.per||3600);
+      }
+      if(!s.keep){ $('vo').style.opacity='0'; await wait(700); hide('voLayer'); await wait(700); }
+      break;
+    }
     case 'vo':
-      show('voLayer'); $('vo').innerHTML=s.html; if(s.g!==false) glass(s.ms||5000);
-      await wait(s.ms||5000); if(!s.keep){ hide('voLayer'); await wait(900); } break;
+      show('voLayer'); $('vo').style.opacity='1'; $('vo').innerHTML=s.html; if(s.g!==false) glass(s.ms||5000);
+      await wait(s.ms||5000); if(!s.keep){ hide('voLayer'); await wait(1000); } break;
+
     case 'type': {
       const layer = s.target==='path' ? 'pathLayer' : 'incantLayer';
       const el = s.target==='path' ? $('path') : $('incant');
-      show(layer); await type(el, s.text, s.per||50);
-      if(s.threshold){ await wait(500); threshold(); }
+      show(layer); await type(el, s.text, s.per||52);
+      if(s.threshold){ await wait(600); threshold(); }
       if(s.ms) await wait(s.ms);
-      if(s.hideAfter){ hide(layer); await wait(900); } break;
+      if(s.hideAfter){ hide(layer); await wait(1000); } break;
     }
     case 'portrait': await portrait(s); break;
+
     case 'caption':
       show('captionLayer'); $('caption').innerHTML='<span class="swap">'+s.html+'</span>'; glass(2800);
-      await wait(s.ms||5000); break;
+      await wait(s.ms||5200); break;
     case 'captionSwap': {
       const sw=$('caption').querySelector('.swap');
-      if(sw){ sw.style.opacity='0'; await wait(900); sw.innerHTML=s.html; sw.style.opacity='1'; glass(2800); }
-      await wait(s.ms||6000); if(s.hideAfter){ hide('captionLayer'); await wait(900); } break;
+      if(sw){ sw.style.opacity='0'; await wait(1000); sw.innerHTML=s.html; sw.style.opacity='1'; glass(2800); }
+      await wait(s.ms||6500); if(s.hideAfter){ hide('captionLayer'); await wait(1000); } break;
     }
+
     case 'sub':
       show('subsLayer'); s.speaker ? subSpk(s.speaker,s.html) : sub(s.html,s.cls);
-      glass(Math.min((s.ms||5000)*0.8,3000)); if(s.chime) chime();
+      glass(Math.min((s.ms||5000)*0.8,3200)); if(s.chime) chime();
       await wait(s.ms||5000); break;
-    case 'clearSub': clearSub(); await wait(s.ms||1000); break;
+    case 'clearSub': clearSub(); await wait(s.ms||1100); break;
+
     case 'chart': show('chartLayer'); drawChart(s.ms||16000); break;
-    case 'chartPeak': ['labG','labB','spread'].forEach(i=>$(i).classList.add('show')); chime(); await wait(s.ms||300); break;
+    case 'chartPeak': ['labG','labB','spread'].forEach(i=>$(i).classList.add('show')); chime(); await wait(s.ms||400); break;
+
     case 'card':
-      show('cardLayer'); $('card').innerHTML=s.html; if(s.silence) gain(0.5,1.2);
-      await wait(s.ms||10000); hide('cardLayer'); if(s.restore) gain(0.9,1.4); await wait(1000); break;
+      show('cardLayer'); $('card').className = s.big?'big':''; $('card').innerHTML=s.html;
+      if(s.silence) gain(0.45,1.3); if(s.knell) knell();
+      await wait(s.ms||10000); hide('cardLayer'); if(s.restore) gain(0.9,1.5); await wait(1100); break;
+
     case 'fileback': await fileback(s); break;
-    case 'hidePortrait': hide('portraitLayer'); hide('chartLayer'); await wait(s.ms||1200); break;
+    case 'hidePortrait': hide('portraitLayer'); hide('chartLayer'); await wait(s.ms||1300); break;
+
     case 'end':
-      show('endLayer'); $('question').innerHTML=s.a; glass(3500); await wait(s.ms1||3800);
-      $('question').innerHTML=s.b; glass(3500); await wait(s.ms2||4200);
-      $('endSigil').classList.add('show'); gain(0.0001,6); await wait(2200); break;
+      show('endLayer'); $('question').innerHTML=s.a; glass(3500); await wait(s.ms1||3900);
+      $('question').innerHTML=s.b; glass(3500); if(s.knell) knell(); await wait(s.ms2||4400);
+      $('endSigil').classList.add('show'); gain(0.0001,7); await wait(2400); break;
   }
 }
 async function runReel(score){ for(const s of score){ await exec(s); } }
