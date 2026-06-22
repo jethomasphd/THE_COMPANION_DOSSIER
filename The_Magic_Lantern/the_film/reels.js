@@ -157,28 +157,38 @@ window.REELS = [
 /* ═══════════════════════════════════════════
    REEL IV — THE TURN   ·   Act III: Q2 and after
    ═══════════════════════════════════════════ */
-{ roman:'IV', title:'The Turn', sub:'The honest record · the whole year', score:[
-  {t:'scene', r:'IV', n:'The Turn'},
+{ roman:'IV', title:'The Reckoning', sub:'The full year · what the curve really means', score:[
+  {t:'scene', r:'IV', n:'The Reckoning'},
   {t:'black', ms:1500},
   {t:'lines', per:4000, arr:[
     'The war ended. Wars always end.',
-    'And the index, which had hidden in the cellar,',
-    'walked back into the sun — and kept walking.'
+    'The index — which had crashed to minus seven —',
+    'came roaring back in the peace.'
   ]},
   {t:'lines', per:3800, arr:[ 'Watch the whole year now, in one breath.' ]},
   {t:'curve', a:0, b:115, ms:17000, war:[38,60], pivot:60, cross:114, lead:1000, title:'THE WATCHTOWER — THE FULL YEAR · JAN → JUN'},
   {t:'sub', html:'For <em style="color:var(--ember)">103 of 116</em> days, the gold line led.', ms:7000},
-  {t:'sub', html:'It held through the war. It set its high on the 16th of June.', ms:8000},
-  {t:'sub', html:'And then, in the last forty-eight hours —', ms:6000},
-  {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'LED 103 OF 116 DAYS &middot; PASSED IN THE FINAL 48 HOURS', ms:1400},
-  {t:'sub', html:'— the index slipped quietly past.', ms:6800},
+  {t:'sub', html:'When the war took the index down to −7, the Republic <em style="color:var(--ember)">never broke.</em>', ms:8200},
+  {t:'sub', html:'And at the close, the two lines meet — a single point apart.', ms:7500},
+  {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK &middot; WITH A FIFTH HELD IN RESERVE', ms:1400},
   {t:'clearSub', ms:1000},
-  {t:'hidePortrait', ms:1000},
-  {t:'card', big:true, html:'It did everything right.<br>And the world, healing, <em style="color:var(--ember)">moved on without it.</em>', ms:11000, silence:true, restore:true, knell:true},
+  {t:'hidePortrait', ms:900},
+  {t:'card', big:true, html:'Now understand what you are seeing.', ms:6500, silence:true, restore:true},
+  {t:'lines', per:4200, arr:[
+    'The Republic matched a roaring market —',
+    'while keeping a <em style="color:var(--ember)">fifth of itself in Treasury bills.</em>',
+    'Cash that earns almost nothing. On purpose.'
+  ]},
+  {t:'lines', per:4200, arr:[
+    'That drag was never weakness.',
+    'It was armor in the war — and dry powder for the next one.',
+    'The freedom to <em style="color:var(--ember)">move</em> while others were pinned.'
+  ]},
   {t:'summon', name:'Alexander Hamilton', file:'Alexander_Hamilton.jpg', src:P+'Alexander_Hamilton.jpg'},
-  {t:'sub', speaker:'Hamilton — through glass', html:'A doctrine is not a prophecy. It is a <em style="color:var(--ember)">discipline.</em>', ms:7000},
-  {t:'sub', speaker:'Hamilton — through glass', html:'It never promised you every quarter —<br>only that you would still be <em style="color:var(--ember)">standing</em> to fight the next one.', ms:9000},
-  {t:'hidePortrait', ms:1100},
+  {t:'sub', speaker:'Hamilton — through glass', html:'The reserve is not timidity. It is the <em style="color:var(--ember)">power to act</em> when others cannot.', ms:8000},
+  {t:'sub', speaker:'Hamilton — through glass', html:'We did not promise you the most.<br>We promised you would still be <em style="color:var(--ember)">standing</em> — and able to strike.', ms:9000},
+  {t:'hidePortrait', ms:1000},
+  {t:'card', big:true, html:'It carried a fifth of its weight in armor —<br>and still kept pace with the cavalry.<br>That is not a tie. That is the doctrine, <em style="color:var(--ember)">keeping its word.</em>', ms:11000, silence:true, restore:true, knell:true},
   {t:'lines', per:4000, arr:[
     'The reconvening has not yet been called.',
     'The chair sits empty.',

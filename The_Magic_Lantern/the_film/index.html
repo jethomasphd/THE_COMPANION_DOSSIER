@@ -195,9 +195,9 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 #wt .dot.show{opacity:1;}
 #wt .dot.gold{fill:var(--gold);filter:drop-shadow(0 0 3px var(--gold));}
 #wt .dot.blue{fill:var(--spy);}
-#wt .crossdot{fill:none;stroke:#fff;stroke-width:.4;opacity:0;}
-#wt .crossdot.show{opacity:1;animation:crosspulse 1.6s ease-in-out infinite;}
-@keyframes crosspulse{0%,100%{opacity:.45;stroke-width:.35;}50%{opacity:1;stroke-width:.85;}}
+#wt .crossdot{fill:none;stroke:var(--ember-glow);stroke-width:.4;opacity:0;filter:drop-shadow(0 0 3px rgba(201,162,39,.6));}
+#wt .crossdot.show{opacity:1;animation:crosspulse 2s ease-in-out infinite;}
+@keyframes crosspulse{0%,100%{opacity:.5;stroke-width:.4;}50%{opacity:1;stroke-width:.9;}}
 .curve-axis{display:flex;justify-content:space-between;margin-top:.5rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.1em;color:var(--smoke);}
 .curve-axis #axM{color:var(--ember-dim);}
 .curve-labels{display:flex;justify-content:space-between;margin-top:.6rem;}
