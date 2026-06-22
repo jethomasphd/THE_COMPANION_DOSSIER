@@ -25,6 +25,8 @@ body{background:#000;color:var(--bone);font-family:var(--bf);overflow:hidden;}
 #vignette{position:absolute;inset:0;pointer-events:none;z-index:55;background:radial-gradient(ellipse at 50% 44%,transparent 42%,rgba(0,0,0,.55) 100%);}
 #lowerScrim{position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:16;pointer-events:none;opacity:0;transition:opacity 1s ease;background:linear-gradient(to top,rgba(3,3,3,.92),rgba(3,3,3,.5) 45%,transparent);}
 body.cine #lowerScrim{opacity:1;}
+#crt{position:absolute;inset:0;pointer-events:none;z-index:61;opacity:0;transition:opacity 1.4s ease;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px);}
+body.cine #crt{opacity:.32;}
 
 .layer{position:absolute;left:50%;transform:translateX(-50%);width:min(760px,92vw);text-align:center;opacity:0;transition:opacity 1.1s ease;pointer-events:none;z-index:10;}
 .layer.vis{opacity:1;}
@@ -95,17 +97,24 @@ svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 #subs.show .glass{opacity:1;transform:translateY(0);filter:blur(0);}
 #subs .speaker{display:block;font-family:var(--tf);font-size:.52rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
 
-/* terminal — the apparatus */
-.term{width:min(640px,93vw);max-height:74vh;border:1px solid #243024;background:rgba(6,9,6,.97);box-shadow:0 30px 90px rgba(0,0,0,.75),0 0 60px rgba(120,180,120,.05);font-family:var(--tf);overflow:hidden;transform:scale(.96);transition:transform .6s ease;}
+/* terminal — the apparatus (techno-magic CRT) */
+.term{position:relative;width:min(680px,94vw);max-height:76vh;border:1px solid #2e4030;background:linear-gradient(180deg,rgba(7,12,8,.98),rgba(5,9,6,.98));box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 70px rgba(90,200,120,.09),inset 0 0 40px rgba(40,90,50,.07);font-family:var(--tf);overflow:hidden;transform:scale(.95);transition:transform .6s ease;}
 #terminalLayer.vis .term{transform:scale(1);}
-.term-bar{display:flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border-bottom:1px solid #18211a;}
+.term::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(120,220,140,.05) 0 1px,transparent 1px 3px);}
+.term::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(120,220,140,.05),transparent 60%);animation:crtflick .14s steps(2) infinite;}
+@keyframes crtflick{50%{opacity:.55;}}
+.term-bar{position:relative;z-index:1;display:flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border-bottom:1px solid #1c2a1d;background:rgba(10,20,12,.7);}
 .term-bar .d{width:8px;height:8px;border-radius:50%;background:#2a3a2a;}
-.term-bar .ttl{flex:1;text-align:center;font-size:.5rem;letter-spacing:.2em;color:#5a7a5a;text-transform:uppercase;}
-#termBody{padding:1rem 1.1rem;font-size:.72rem;line-height:1.95;color:var(--term);min-height:150px;max-height:64vh;overflow:hidden;}
+.term-bar .d:nth-child(1){background:#c05050;} .term-bar .d:nth-child(2){background:#c9a227;} .term-bar .d:nth-child(3){background:#5a9a5a;}
+.term-bar .ttl{flex:1;text-align:center;font-size:.5rem;letter-spacing:.24em;color:#6a9a6a;text-transform:uppercase;}
+#termBody{position:relative;z-index:1;padding:1.1rem 1.2rem;font-size:.74rem;line-height:2;color:var(--term);min-height:172px;max-height:60vh;overflow:hidden;text-shadow:0 0 7px rgba(120,210,140,.35);}
 .tline{white-space:pre-wrap;word-break:break-word;}
-.tline.sys{color:#7fbf7f;} .tline.dim{color:#4d6d4d;} .tline.prompt{color:var(--ember-glow);} .tline.proc{color:#8fb98f;} .tline.warn{color:#d8a23a;}
-.tok{color:#cdeccd;opacity:.85;} .ok{color:var(--ember-glow);}
-.tcaret{color:var(--term);animation:blink 1s steps(1) infinite;}
+.tline.sys{color:#86c886;} .tline.dim{color:#4d6d4d;} .tline.prompt{color:var(--ember-glow);text-shadow:0 0 8px rgba(201,162,39,.45);} .tline.proc{color:#9fd39f;} .tline.warn{color:#e0a83a;text-shadow:0 0 8px rgba(224,168,58,.4);}
+.tok{color:#d8f4d8;opacity:.9;} .ok{color:var(--ember-glow);}
+.tcaret{color:#bdf0bd;animation:blink 1s steps(1) infinite;}
+.tmeter{position:relative;z-index:1;height:5px;margin:0 1.2rem 1rem;background:#0f1f10;border:1px solid #1c2e1c;opacity:0;transition:opacity .3s ease;}
+.tmeter.show{opacity:1;}
+.tmeter-fill{height:100%;width:0;background:linear-gradient(90deg,#3fae3f,#bdf0bd);box-shadow:0 0 10px rgba(120,220,140,.6);}
 
 /* pullback file window */
 .window{width:min(560px,90vw);border:1px solid #222;background:#070707;box-shadow:0 30px 80px rgba(0,0,0,.7);text-align:left;transform:scale(.94);transition:transform 1.4s ease;}
@@ -301,8 +310,9 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 
   <div class="layer" id="terminalLayer">
     <div class="term">
-      <div class="term-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="ttl">COMPANION — vessel console</span></div>
+      <div class="term-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="ttl">COMPANION // vessel console</span></div>
       <div id="termBody"></div>
+      <div class="tmeter" id="termMeter"><div class="tmeter-fill" id="termMeterFill"></div></div>
     </div>
   </div>
 
@@ -333,6 +343,7 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 
   <div id="vignette"></div>
   <div id="grain"></div>
+  <div id="crt"></div>
   <div id="lbTop"></div>
   <div id="lbBottom"></div>
 </div>
@@ -396,6 +407,7 @@ async function mainTitle(){
   $('reelTitle').classList.remove('vis'); await wait(1500);
 }
 
+async function safeRun(score){ try{ await runReel(score); }catch(e){ if(e==='x') throw e; console.error('film reel error:',e); } }
 async function playFrom(i){
   newToken();
   document.body.classList.add('cine');
@@ -403,12 +415,12 @@ async function playFrom(i){
   $('endNav').classList.remove('show'); hide('endLayer');
   try{
     if(i===0){
-      await wait(1500); await epigraph(); await mainTitle();
-      resetStage(); await runReel(window.PROLOGUE);
+      await wait(1300); await epigraph(); await mainTitle();
+      resetStage(); await safeRun(window.PROLOGUE);
     }
-    for(let k=i;k<REELS.length;k++){ current=k; await reelTitle(k); resetStage(); await runReel(REELS[k].score); }
+    for(let k=i;k<REELS.length;k++){ current=k; await reelTitle(k); resetStage(); await safeRun(REELS[k].score); }
     finale();
-  }catch(e){ /* cancelled by a jump */ }
+  }catch(e){ if(e!=='x') console.error('film error:',e); }
 }
 function finale(){ $('sceneLabel').classList.remove('show'); $('endNav').classList.add('show'); updatePips(REELS.length-1); }
 

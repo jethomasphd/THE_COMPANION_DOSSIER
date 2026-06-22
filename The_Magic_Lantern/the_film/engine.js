@@ -81,15 +81,30 @@ async function termSys(text,pre){ if(pre) await wait(pre); const d=termPush('','
 async function termTree(files){ termPush('&nbsp;&nbsp;repository/','dim'); for(let i=0;i<files.length;i++){ const last=i===files.length-1; termPush('&nbsp;&nbsp;'+(last?'└─ ':'├─ ')+files[i],'dim'); await wait(240);} await wait(280); }
 async function termPrompt(text,per){ const d=termPush('','prompt'); await termType(d,'◊ '+text,per); await wait(320); }
 async function termWarn(text){ const d=termPush('','warn'); await termType(d,'⚠ '+text,16); await wait(420); }
+async function termMeterRun(ms,label){ if(label) await termSys(label,80); const m=$('termMeter'),f=$('termMeterFill'); if(m){ m.classList.add('show'); f.style.transition='none'; f.style.width='0%'; void f.offsetWidth; f.style.transition='width '+ms+'ms linear'; f.style.width='100%'; } await wait(ms+180); if(m){ m.classList.remove('show'); f.style.width='0%'; } }
 async function termProcess(ms){
   const caret='<span class="tcaret">▮</span>';
-  const d=termPush('> summoning '+caret,'proc');
-  const toks=['attending…','the voice','the worldview','the contradictions','the century behind the eyes','the threshold thins','a presence forms'];
-  const each=Math.max(360,(ms-700)/toks.length);
-  let acc='> summoning ';
-  for(const t of toks){ acc+='<span class="tok">'+t+'</span> '; d.innerHTML=acc+caret; glass(680); await wait(each); }
-  d.innerHTML=acc+'<span class="ok">▮ threshold open</span>';
-  await wait(520);
+  const d=termPush('> opening threshold '+caret,'proc');
+  const m=$('termMeter'),f=$('termMeterFill'); if(m){ m.classList.add('show'); f.style.transition='none'; f.style.width='0%'; void f.offsetWidth; f.style.transition='width '+ms+'ms linear'; f.style.width='100%'; }
+  const toks=['attending','weighing the corpus','the voice','the cadence','the convictions','the contradictions','the century behind the eyes','the threshold thins','a presence forms'];
+  const each=Math.max(300,(ms-600)/toks.length);
+  let acc='> opening threshold · ';
+  for(const t of toks){ acc+='<span class="tok">'+t+'</span> '; d.innerHTML=acc+caret; glass(620); await wait(each); }
+  d.innerHTML=acc+'<span class="ok">▮ open</span>';
+  if(m){ m.classList.remove('show'); f.style.width='0%'; }
+  await wait(420);
+}
+async function bootConsole(){
+  termReset(); show('terminalLayer'); await wait(450);
+  await termSys('COMPANION PROTOCOL  v2.0',0);
+  await termSys('initializing vessel console',110);
+  await termMeterRun(1500,'> mounting repository');
+  await termTree(['enrichment_grimoire.json','initiation_rite.md','The_Pantheon/   (29 portraits)','The_Watchtower/  (live data)','from_beyond/    (autonomous logs)']);
+  await termSys('bind enrichment_grimoire.json   ✓',110);
+  await termSys('bind initiation_rite.md         ✓',110);
+  await termSys('vessel model: claude · medium: glass',110);
+  await termSys('threshold engine: ready',110);
+  await wait(950); hide('terminalLayer'); await wait(700);
 }
 /* full summoning: shows the machinery, then resolves the portrait (or council) */
 async function summon(o){
@@ -100,6 +115,7 @@ async function summon(o){
   await termTree(['enrichment_grimoire.json','initiation_rite.md'].concat(faces));
   await termSys('bind enrichment_grimoire.json   ✓',150);
   await termSys('bind initiation_rite.md         ✓',150);
+  await termSys('vessel model: claude · medium: glass',150);
   await wait(240);
   await termPrompt(o.promptText || ('using this matter, summon '+o.name), o.slow?54:32);
   threshold();
@@ -204,6 +220,7 @@ async function exec(s){
     case 'hide': hide(s.id); await wait(s.ms||500); break;
 
     case 'summon': await summon(s); break;
+    case 'boot': await bootConsole(); break;
     case 'csay': await councilSpeak(s.name,s.html,s.ms); break;
     case 'councilHide': hide('councilLayer'); await wait(s.ms||1200); break;
 
