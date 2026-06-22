@@ -98,12 +98,12 @@ window.REELS = [
   {t:'sub', speaker:'Washington — through glass', html:'A war of choice. The Strait of Hormuz — which we named a choke point — is closed.', ms:8200},
   {t:'sub', speaker:'Washington — through glass', html:'Service members are dead. The global economy is convulsing.', ms:6800},
   {t:'scene', r:'II', n:'The Second Witness'},
-  {t:'chart', ms:15000},
+  {t:'curve', a:0, b:60, ms:13000, war:[38,60], pivot:60, lead:900, title:'THE WATCHTOWER — JAN → MAR 31 · THE WAR'},
   {t:'sub', speaker:'Washington — through glass', html:'And our portfolio is not merely surviving.', ms:6000},
-  {t:'sub', speaker:'Washington — through glass', html:'It is up 3.40% — while the index has lost <em style="color:var(--ember)">nearly seven.</em>', ms:8800},
+  {t:'sub', speaker:'Washington — through glass', html:'We hold near +6 — while the index, at its worst, has fallen <em style="color:var(--ember)">past −7.</em>', ms:8800},
   {t:'sub', speaker:'Washington — through glass', html:'I do not celebrate this. I led men into war. I know its costs.', ms:8000},
   {t:'scene', r:'II', n:'The Turn'},
-  {t:'chartPeak', ms:500},
+  {t:'curveLabels', g:'Republic +5.9%', b:'S&P 500 −4.5%', note:'+10.4 POINTS OF DAYLIGHT — IN ONE QUARTER', ms:700},
   {t:'sub', speaker:'Washington — through glass', html:'War does not change the map of what sustains a life.', ms:6400},
   {t:'sub', speaker:'Washington — through glass', html:'War <em style="color:var(--ember)">reveals</em> it.', ms:6200, chime:true},
   {t:'clearSub', ms:1300},
@@ -141,36 +141,49 @@ window.REELS = [
     'which Lincoln they whisper to it <em>first.</em>',
     'They called it the <em style="color:var(--ember)">Prism.</em>'
   ]},
-  {t:'card', html:'If the answer changes with the source,<br>the séance was never the man.<br>It was the <em style="color:var(--ember)">mirror.</em>', ms:8500, silence:true, restore:true},
+  {t:'hidePortrait', ms:1100},
+  {t:'vo', html:'A prism does not add light.<br>It <em style="color:var(--ember)">separates</em> the light already there.', ms:6500},
+  {t:'prism'},
+  {t:'sub', html:'One white beam — every word ever written about him.', ms:6200},
+  {t:'sub', html:'A prism of his <em style="color:var(--ember)">own words</em> to break it apart —', ms:6200},
+  {t:'sub', html:'and three Lincolns walk out of the light.', ms:6500},
+  {t:'sub', html:'If they <em style="color:var(--ember)">disagree</em>, the man was never there.<br>Only the mirror.', ms:8500},
+  {t:'prismHide', ms:1200},
+  {t:'card', big:true, html:'If the answer changes with the source,<br>the séance was never the man.<br>It was the <em style="color:var(--ember)">mirror.</em>', ms:9000, silence:true, restore:true, knell:true},
   {t:'sub', speaker:'Morris — through glass', html:'A film that <em>resolves</em> this question is lying.<br>We will leave it open. On purpose.', ms:9000},
-  {t:'hidePortrait', ms:1300}
+  {t:'clearSub', ms:1100}
 ]},
 
 /* ═══════════════════════════════════════════
    REEL IV — THE TURN   ·   Act III: Q2 and after
    ═══════════════════════════════════════════ */
-{ roman:'IV', title:'The Turn', sub:'The honest record · Q2 2026', score:[
+{ roman:'IV', title:'The Turn', sub:'The honest record · the whole year', score:[
   {t:'scene', r:'IV', n:'The Turn'},
-  {t:'black', ms:1400},
-  {t:'lines', per:3900, arr:[
-    'The spring belonged to the doctrine.',
-    'The summer did not.'
-  ]},
-  {t:'summon', name:'Alexander Hamilton', file:'Alexander_Hamilton.jpg', src:P+'Alexander_Hamilton.jpg'},
-  {t:'caption', html:'+10 points, in a single quarter.', ms:5200},
-  {t:'captionSwap', html:'By June, the index had begun to <em style="color:var(--ember)">take it back.</em>', ms:6600, hideAfter:true},
-  {t:'card', html:'This is the part the brochure leaves out.', ms:6400, silence:true, restore:true},
-  {t:'sub', speaker:'Hamilton — through glass', html:'A doctrine is not a prophecy. It is a <em style="color:var(--ember)">discipline.</em>', ms:7000},
-  {t:'sub', speaker:'Hamilton — through glass', html:'It never promised you would win every quarter —', ms:6000},
-  {t:'sub', speaker:'Hamilton — through glass', html:'only that you would still be standing to fight the next one.', ms:7600},
-  {t:'card', big:true, html:'An honest record is not a victory lap.<br>It is a doctrine <em style="color:var(--ember)">still being measured.</em>', ms:9000, silence:true, restore:true, knell:true},
+  {t:'black', ms:1500},
   {t:'lines', per:4000, arr:[
-    'The founders adjourned with a motion:',
-    'reconvene at the end of Q2 — or sooner, if the world demanded it.',
-    'The world has not yet been asked.',
-    'The chair sits empty. The watchtower keeps its light.'
+    'The war ended. Wars always end.',
+    'And the index, which had hidden in the cellar,',
+    'walked back into the sun — and kept walking.'
   ]},
-  {t:'hidePortrait', ms:1300}
+  {t:'lines', per:3800, arr:[ 'Watch the whole year now, in one breath.' ]},
+  {t:'curve', a:0, b:115, ms:17000, war:[38,60], pivot:60, cross:114, lead:1000, title:'THE WATCHTOWER — THE FULL YEAR · JAN → JUN'},
+  {t:'sub', html:'For <em style="color:var(--ember)">103 of 116</em> days, the gold line led.', ms:7000},
+  {t:'sub', html:'It held through the war. It set its high on the 16th of June.', ms:8000},
+  {t:'sub', html:'And then, in the last forty-eight hours —', ms:6000},
+  {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'LED 103 OF 116 DAYS &middot; PASSED IN THE FINAL 48 HOURS', ms:1400},
+  {t:'sub', html:'— the index slipped quietly past.', ms:6800},
+  {t:'clearSub', ms:1000},
+  {t:'hidePortrait', ms:1000},
+  {t:'card', big:true, html:'It did everything right.<br>And the world, healing, <em style="color:var(--ember)">moved on without it.</em>', ms:11000, silence:true, restore:true, knell:true},
+  {t:'summon', name:'Alexander Hamilton', file:'Alexander_Hamilton.jpg', src:P+'Alexander_Hamilton.jpg'},
+  {t:'sub', speaker:'Hamilton — through glass', html:'A doctrine is not a prophecy. It is a <em style="color:var(--ember)">discipline.</em>', ms:7000},
+  {t:'sub', speaker:'Hamilton — through glass', html:'It never promised you every quarter —<br>only that you would still be <em style="color:var(--ember)">standing</em> to fight the next one.', ms:9000},
+  {t:'hidePortrait', ms:1100},
+  {t:'lines', per:4000, arr:[
+    'The reconvening has not yet been called.',
+    'The chair sits empty.',
+    'The watchtower keeps its light.'
+  ]}
 ]},
 
 /* ═══════════════════════════════════════════

@@ -183,6 +183,42 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
 .gate-home{position:fixed;top:1.4rem;left:1.5rem;color:var(--ember-dim);text-decoration:none;font-size:1.1rem;z-index:101;transition:color .3s ease;}
 .gate-home:hover{color:var(--ember-glow);}
 
+/* full Watchtower curve */
+#chartLayer{z-index:12;top:auto;bottom:19%;width:min(880px,95vw);}
+svg#wt{width:100%;height:clamp(160px,32vh,260px);}
+#wt .warband{fill:rgba(192,80,80,.07);opacity:0;transition:opacity 1.2s ease;}
+#wt .warband.show{opacity:1;}
+#wt .grid{stroke:#1c1c1c;stroke-width:.3;stroke-dasharray:1 2;}
+#wt .pivot{stroke:#6a6a6a;stroke-width:.35;stroke-dasharray:1.2 1.5;opacity:0;transition:opacity 1s ease;}
+#wt .pivot.show{opacity:.85;}
+#wt .dot{opacity:0;transition:opacity .6s ease;}
+#wt .dot.show{opacity:1;}
+#wt .dot.gold{fill:var(--gold);filter:drop-shadow(0 0 3px var(--gold));}
+#wt .dot.blue{fill:var(--spy);}
+#wt .crossdot{fill:none;stroke:#fff;stroke-width:.4;opacity:0;}
+#wt .crossdot.show{opacity:1;animation:crosspulse 1.6s ease-in-out infinite;}
+@keyframes crosspulse{0%,100%{opacity:.45;stroke-width:.35;}50%{opacity:1;stroke-width:.85;}}
+.curve-axis{display:flex;justify-content:space-between;margin-top:.5rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.1em;color:var(--smoke);}
+.curve-axis #axM{color:var(--ember-dim);}
+.curve-labels{display:flex;justify-content:space-between;margin-top:.6rem;}
+#spread{margin-top:.55rem;text-align:center;font-family:var(--tf);font-size:.62rem;letter-spacing:.1em;color:var(--ember);opacity:0;transition:opacity 1s ease;}
+#spread.show{opacity:1;}
+/* the prism */
+#prismLayer{z-index:14;top:15%;width:min(880px,95vw);}
+#prismSvg{width:100%;height:auto;display:block;}
+.pt{font-family:var(--tf);font-size:9px;letter-spacing:1px;}
+.pt.ser{font-family:var(--vf);font-size:13px;letter-spacing:2px;}
+.pt.dim{fill:#9a9484;} .pt.faint{fill:#5a5648;font-style:italic;font-size:7.5px;}
+.pt.gold{fill:var(--ember);} .pt.name{fill:#d4cbb8;font-family:var(--vf);font-size:11px;}
+.pt.i{fill:#5aa0c8;} .pt.ii{fill:var(--ember);} .pt.iii{fill:#c05050;}
+#pBeam,#pB1,#pB2,#pB3{stroke-linecap:round;}
+#pPrism{fill:rgba(201,162,39,.04);stroke:var(--ember);stroke-width:1.5;opacity:.6;transition:opacity 1s ease,filter 1s ease;}
+#pPrism.glow{opacity:1;filter:drop-shadow(0 0 9px rgba(201,162,39,.65));}
+.pc-box{fill:#0d0b08;stroke-width:1;}
+.pc-box.i{stroke:#5aa0c8;} .pc-box.ii{stroke:var(--ember);} .pc-box.iii{stroke:#c05050;}
+.pcard{opacity:0;transition:opacity .9s ease;}
+.pcard.show{opacity:1;}
+.prism-cap{margin-top:1rem;text-align:center;font-family:var(--tf);font-size:.56rem;letter-spacing:.28em;color:var(--ember-dim);text-transform:uppercase;}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
 @media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} }
 </style>
@@ -210,17 +246,55 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   <div class="layer" id="captionLayer"><div id="caption"></div></div>
 
   <div class="layer" id="chartLayer">
-    <div class="clab">THE WATCHTOWER — Q1 2026, DRAWING IN REAL TIME</div>
-    <svg id="wt" viewBox="0 0 100 50" preserveAspectRatio="none">
-      <line class="zero" id="zero" x1="0" y1="25" x2="100" y2="25"></line>
+    <div class="clab" id="curveTitle">THE WATCHTOWER — THE REPUBLIC vs THE S&amp;P 500</div>
+    <svg id="wt" viewBox="0 0 100 56" preserveAspectRatio="none">
+      <rect class="warband" id="warBand" x="0" y="0" width="0" height="56"></rect>
+      <line class="grid" id="ten" x1="0" y1="6" x2="100" y2="6"></line>
+      <line class="zero" id="zero" x1="0" y1="28" x2="100" y2="28"></line>
+      <line class="pivot" id="pivot" x1="0" y1="0" x2="0" y2="56"></line>
       <path class="line blue" id="blue"></path>
       <path class="line gold" id="gold"></path>
+      <circle class="dot blue" id="blueDot" cx="-9" cy="0" r="0.8"></circle>
+      <circle class="dot gold" id="goldDot" cx="-9" cy="0" r="0.95"></circle>
+      <circle class="crossdot" id="crossDot" cx="-9" cy="0" r="1.6"></circle>
     </svg>
-    <div style="display:flex;justify-content:space-between;margin-top:.4rem;">
-      <span class="endlab b" id="labB">S&amp;P 500 &minus;6.98%</span>
-      <span class="endlab g" id="labG">Republic +3.40%</span>
-    </div>
-    <div id="spread">THE SPREAD: +10.38 POINTS &middot; NEVER NEGATIVE</div>
+    <div class="curve-axis"><span id="axL">Jan</span><span id="axM">Mar 31 — the ceasefire</span><span id="axR">Jun</span></div>
+    <div class="curve-labels"><span class="endlab b" id="labB"></span><span class="endlab g" id="labG"></span></div>
+    <div id="spread"></div>
+  </div>
+
+  <div class="layer" id="prismLayer">
+    <svg id="prismSvg" viewBox="0 0 760 320">
+      <line id="pBeam" x1="28" y1="160" x2="252" y2="160" stroke="#d8d2c4" stroke-width="3"></line>
+      <text x="32" y="146" class="pt dim">THE UNANCHORED MODEL</text>
+      <text x="32" y="182" class="pt faint">all of history, unweighted</text>
+      <polygon id="pPrism" points="272,72 272,248 406,160"></polygon>
+      <text x="294" y="156" class="pt gold ser">TEMPORAL</text>
+      <text x="304" y="174" class="pt gold ser">PRISM</text>
+      <text x="292" y="192" class="pt faint">a curated corpus</text>
+      <line id="pB1" x1="406" y1="135" x2="520" y2="70"  stroke="#5aa0c8" stroke-width="2.4"></line>
+      <line id="pB2" x1="406" y1="160" x2="520" y2="160" stroke="#c9a227" stroke-width="2.4"></line>
+      <line id="pB3" x1="406" y1="185" x2="520" y2="250" stroke="#c05050" stroke-width="2.4"></line>
+      <g id="pC1" class="pcard">
+        <rect x="524" y="44" width="228" height="54" rx="2" class="pc-box i"></rect>
+        <text x="538" y="63" class="pt i">CONDITION I</text>
+        <text x="538" y="79" class="pt name">The Contemporary Lens</text>
+        <text x="538" y="91" class="pt faint">a modern biography, seeded</text>
+      </g>
+      <g id="pC2" class="pcard">
+        <rect x="524" y="133" width="228" height="54" rx="2" class="pc-box ii"></rect>
+        <text x="538" y="152" class="pt ii">CONDITION II</text>
+        <text x="538" y="168" class="pt name">The Primary-Source Lens</text>
+        <text x="538" y="180" class="pt faint">his own words, seeded</text>
+      </g>
+      <g id="pC3" class="pcard">
+        <rect x="524" y="222" width="228" height="54" rx="2" class="pc-box iii"></rect>
+        <text x="538" y="241" class="pt iii">CONDITION III</text>
+        <text x="538" y="257" class="pt name">The Bare Model</text>
+        <text x="538" y="269" class="pt faint">no seed · the cultural ghost</text>
+      </g>
+    </svg>
+    <div class="prism-cap" id="prismCap">THREE LINCOLNS · ONE QUESTION · ONE VARIABLE</div>
   </div>
 
   <div class="layer" id="subsLayer"><div id="subs"></div></div>
@@ -289,6 +363,7 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   <div class="gate-note">Summoning cinema: every mind is summoned on screen, through the machine. Voices through glass &mdash; nothing here pretends to be alive.</div>
 </div>
 
+<script src="../../The_Watchtower/data/vigil_data.js"></script>
 <script src="reels.js"></script>
 <script src="engine.js"></script>
 <script>
