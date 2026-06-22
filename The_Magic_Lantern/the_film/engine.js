@@ -9,7 +9,8 @@
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
-const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
+const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
+const BREATH = 750; /* breathing room added to reveal beats so nothing feels rushed */
 function show(id){ const e=$(id); if(e) e.classList.add('vis'); }
 function hide(id){ const e=$(id); if(e) e.classList.remove('vis'); }
 function hideAll(){ LAYERS.forEach(hide); }
@@ -136,6 +137,15 @@ async function councilSpeak(name,html,ms){
   await wait(ms||5000);
 }
 
+/* ════ FRANKLIN'S HANDBILL — the portfolio, revealed ════ */
+async function handbillReveal(){
+  document.querySelectorAll('#bill .show').forEach(e=>e.classList.remove('show'));
+  show('handbillLayer'); chime(); await wait(1700);
+  for(const c of ['t1','t2','t3']){ const el=document.querySelector('#bill .'+c); if(el) el.classList.add('show'); glass(900); await wait(2600); }
+  await wait(600); const m=document.querySelector('#bill .bill-motto'); if(m) m.classList.add('show'); knell(); await wait(2400);
+  const sl=document.querySelector('#bill .bill-seal'); if(sl) sl.classList.add('show'); await wait(2200);
+}
+
 /* ════ THE WATCHTOWER CURVE — real, full-year data ════ */
 const VD = window.VIGIL_DATA || {series:{republic:[0,5,8,9],spy:[0,-4,-7,10]},pivot_index:2,n_points:4,dates:[]};
 const YMIN=-8, YMAX=12, VBW=100, VBH=56, PAD=3.5;
@@ -207,6 +217,7 @@ function resetStage(){
   $('incant').textContent=''; $('path').textContent=''; $('vo').innerHTML=''; $('vo').style.opacity='1';
   $('caption').innerHTML=''; clearSub(); termReset(); $('councilRow').innerHTML='';
   ['labG','labB','spread','warBand','pivot','crossDot','goldDot','blueDot'].forEach(i=>{ const e=$(i); if(e) e.classList.remove('show'); });
+  document.querySelectorAll('#bill .show').forEach(e=>e.classList.remove('show'));
   prismReset(); $('endSigil').classList.remove('show');
 }
 
@@ -251,17 +262,20 @@ async function exec(s){
 
     case 'caption':
       show('captionLayer'); $('caption').innerHTML='<span class="swap">'+s.html+'</span>'; glass(2800);
-      await wait(s.ms||5200); break;
+      await wait((s.ms||5200)+BREATH); break;
     case 'captionSwap': {
       const sw=$('caption').querySelector('.swap');
-      if(sw){ sw.style.opacity='0'; await wait(1000); sw.innerHTML=s.html; sw.style.opacity='1'; glass(2800); }
-      await wait(s.ms||6500); if(s.hideAfter){ hide('captionLayer'); await wait(1000); } break;
+      if(sw){ sw.style.opacity='0'; await wait(1300); sw.innerHTML=s.html; sw.style.opacity='1'; glass(2800); }
+      await wait((s.ms||6500)+BREATH); if(s.hideAfter){ hide('captionLayer'); await wait(1100); } break;
     }
 
     case 'sub':
       show('subsLayer'); s.speaker ? subSpk(s.speaker,s.html) : sub(s.html,s.cls);
       glass(Math.min((s.ms||5000)*0.8,3200)); if(s.chime) chime();
-      await wait(s.ms||5000); break;
+      await wait((s.ms||5000)+BREATH); break;
+
+    case 'handbill': await handbillReveal(); break;
+    case 'handbillHide': document.querySelectorAll('#bill .show').forEach(e=>e.classList.remove('show')); hide('handbillLayer'); await wait(s.ms||1200); break;
     case 'clearSub': clearSub(); await wait(s.ms||1100); break;
 
     case 'curve': startCurve(s); await wait(s.lead||800); break;

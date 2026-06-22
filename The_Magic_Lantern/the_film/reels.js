@@ -64,7 +64,18 @@ window.REELS = [
   {t:'csay', name:'Franklin',  html:'Gentlemen — the well is being fenced.<br>Better a thousand hands on the rope than one.', ms:8000},
   {t:'csay', name:'Washington',html:'Then we do not hand the people a sermon.<br>We hand them a <em style="color:var(--ember)">list.</em>', ms:7000},
   {t:'councilHide', ms:1300},
-  {t:'card', html:'They named it the <em style="color:var(--ember)">Republic Portfolio</em> —<br>thirty companies that keep the lights on, the goods moving,<br>the payments clearing. An argument with a number attached.', ms:9500, silence:true, restore:true},
+  {t:'lines', per:4400, arr:[
+    'They named it the <em style="color:var(--ember)">Republic Portfolio</em> —',
+    'and published it as a broadside,<br>plain enough for any citizen to act on by morning.'
+  ]},
+  {t:'handbill'},
+  {t:'handbillHide', ms:1200},
+  {t:'lines', per:4400, arr:[
+    'Read it as Franklin meant it:',
+    'own the firms that <em style="color:var(--ember)">make things;</em>',
+    'own the gates that all commerce must <em style="color:var(--ember)">pass through;</em>',
+    'and hold a reserve — the freedom to move.'
+  ]},
   {t:'lines', per:4000, arr:[
     'A manifesto only asks to be believed.',
     'A doctrine asks to be <em style="color:var(--ember)">tested.</em>',
