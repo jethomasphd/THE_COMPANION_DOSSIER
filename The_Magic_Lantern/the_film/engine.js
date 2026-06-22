@@ -9,7 +9,7 @@
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
-const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','docLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
+const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','docLayer','timelineLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
 const BREATH = 750; /* breathing room added to reveal beats so nothing feels rushed */
 function show(id){ const e=$(id); if(e) e.classList.add('vis'); }
 function hide(id){ const e=$(id); if(e) e.classList.remove('vis'); }
@@ -181,6 +181,52 @@ function finishCurve(s){ const c=curveCtx; if(!c) return; const {a,b,R,S}=c;
   if(s.note){ $('spread').innerHTML=s.note; $('spread').classList.add('show'); }
 }
 
+/* narration always plays in the void — clear any face first */
+async function clearFace(){
+  const had=$('portraitLayer').classList.contains('vis')||$('councilLayer').classList.contains('vis');
+  hide('portraitLayer'); hide('councilLayer'); hide('captionLayer');
+  if(had) await wait(750);
+}
+
+/* the battleground "seed" — the field is marked, but the lines have not grown yet */
+async function seedPlant(s){
+  $('curveTitle').textContent=s.title||'THE BATTLEGROUND — THE REPUBLIC vs THE S&P 500';
+  $('zero').setAttribute('y1',mapY(0)); $('zero').setAttribute('y2',mapY(0));
+  $('blue').setAttribute('d',''); $('gold').setAttribute('d','');
+  $('warBand').classList.remove('show'); $('pivot').classList.remove('show'); $('crossDot').classList.remove('show');
+  ['labG','labB','spread'].forEach(i=>$(i).classList.remove('show'));
+  setDot('goldDot', mapX(0,0,115), mapY(0)-1.3); setDot('blueDot', mapX(0,0,115), mapY(0)+1.3);
+  $('goldDot').classList.add('show'); $('blueDot').classList.add('show');
+  show('chartLayer'); chime();
+  $('spread').innerHTML=s.note||'THE GROUND IS MARKED · THE YEAR WILL DECIDE'; $('spread').classList.add('show');
+  await wait(s.ms||5500);
+  hide('chartLayer'); $('spread').classList.remove('show'); $('goldDot').classList.remove('show'); $('blueDot').classList.remove('show');
+  await wait(1000);
+}
+
+/* the recurring timeline · December 2025 → June 2026 */
+const TIMELINE=[
+ {x:5,  m:'DEC',    when:'December 2025',     label:'The Founding',        sub:'the Committee convenes',     kind:'gold'},
+ {x:18, m:'JAN',    when:'January 2026',      label:'The Watchtower opens', sub:'the vigil begins',           kind:'dim'},
+ {x:33, m:'FEB 28', when:'February 28, 2026', label:'Operation Epic Fury',  sub:'war begins · Hormuz closed', kind:'blood'},
+ {x:45, m:'MAR',    when:'March 2026',        label:'the markets bleed',    sub:'the index falls past −7%',   kind:'blood'},
+ {x:53, m:'MAR 31', when:'March 31, 2026',    label:'Q1 Wartime Review',    sub:'ceasefire · doctrine amended', kind:'gold'},
+ {x:85, m:'JUN 16', when:'June 16, 2026',     label:'the Republic peaks',   sub:'+10.49%',                    kind:'gold'},
+ {x:97, m:'JUN',    when:'late June 2026',    label:'the index catches up', sub:'the vigil goes on',          kind:'dim'}
+];
+function timelineBuild(){
+  const ev=$('tlEvents'); if(!ev) return; ev.innerHTML='';
+  TIMELINE.forEach((e,i)=>{ const d=document.createElement('div'); d.className='tl-ev '+e.kind+' '+(i%2?'below':'above'); d.style.left=e.x+'%';
+    d.innerHTML='<div class="m">'+e.m+'</div><div class="dot"></div><div class="lab">'+e.label+'<span class="sub">'+e.sub+'</span></div>'; ev.appendChild(d); });
+}
+async function timelineShow(at,ms){
+  timelineBuild(); show('timelineLayer');
+  const e=TIMELINE[at]||TIMELINE[0];
+  $('tlHead').style.left=e.x+'%';
+  $('tlNow').innerHTML=e.when+' &mdash; '+e.label;
+  chime(); await wait(ms||5200); hide('timelineLayer'); await wait(1100);
+}
+
 /* ════ THE PRISM — Halpern Memo's experiment, animated ════ */
 function svgLine(id,ms){ const l=$(id); if(!l)return; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.transition='none'; l.style.strokeDasharray=len; l.style.strokeDashoffset=len; void l.getBoundingClientRect(); l.style.transition='stroke-dashoffset '+ms+'ms ease'; requestAnimationFrame(()=>{ l.style.strokeDashoffset=0; }); }
 function prismReset(){ ['pC1','pC2','pC3','pC4'].forEach(i=>{const e=$(i); if(e)e.classList.remove('show');}); const pp=$('pPrism'); if(pp)pp.classList.remove('glow'); ['pBeam','pB1','pB2','pB3','pB4'].forEach(i=>{const l=$(i); if(l){ l.style.transition='none'; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.strokeDasharray=len; l.style.strokeDashoffset=len; }}); }
@@ -260,6 +306,7 @@ async function exec(s){
     case 'councilHide': hide('councilLayer'); await wait(s.ms||1200); break;
 
     case 'lines': {
+      await clearFace();
       show('voLayer');
       for(const ln of s.arr){
         $('vo').style.opacity='0'; await wait(460);
@@ -270,9 +317,13 @@ async function exec(s){
       if(!s.keep){ $('vo').style.opacity='0'; await wait(700); hide('voLayer'); await wait(700); }
       break;
     }
-    case 'vo':
+    case 'vo': {
+      await clearFace();
       show('voLayer'); $('vo').style.opacity='1'; $('vo').innerHTML=s.html; if(s.g!==false) glass(s.ms||5000);
       await wait(s.ms||5000); if(!s.keep){ hide('voLayer'); await wait(1000); } break;
+    }
+    case 'timeline': await timelineShow(s.at||0, s.ms); break;
+    case 'seed': await seedPlant(s); break;
 
     case 'type': {
       const layer = s.target==='path' ? 'pathLayer' : 'incantLayer';

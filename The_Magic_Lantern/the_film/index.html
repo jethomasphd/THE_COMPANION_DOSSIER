@@ -252,6 +252,24 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 .bill-motto.show{opacity:1;}
 .bill-seal{font-size:1.4rem;letter-spacing:.4em;margin-top:.5rem;color:#3d2f1a;opacity:0;transition:opacity 1.1s ease;}
 .bill-seal.show{opacity:1;}
+/* the recurring timeline */
+#timelineLayer{z-index:28;top:50%;transform:translate(-50%,-50%);width:min(1000px,95vw);}
+.tl-title{text-align:center;font-family:var(--tf);font-size:.58rem;letter-spacing:.32em;color:var(--ember-dim);text-transform:uppercase;margin-bottom:3rem;}
+.tl-band{position:relative;height:120px;}
+.tl-axis{position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,var(--ember-dim) 8%,var(--ember-dim) 92%,transparent);}
+.tl-ev{position:absolute;top:50%;}
+.tl-ev .dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;}
+.tl-ev.gold .dot{background:var(--ember);box-shadow:0 0 9px var(--ember);}
+.tl-ev.blood .dot{background:#c0392b;box-shadow:0 0 9px #c0392b;}
+.tl-ev.dim .dot{background:var(--ember-dim);}
+.tl-ev .m{position:absolute;left:0;transform:translateX(-50%);font-family:var(--tf);font-size:.5rem;letter-spacing:.06em;color:var(--ember-dim);white-space:nowrap;}
+.tl-ev .lab{position:absolute;left:0;transform:translateX(-50%);width:150px;text-align:center;font-family:var(--vf);font-size:.92rem;color:var(--bone-dim);line-height:1.2;}
+.tl-ev .lab .sub{display:block;font-family:var(--tf);font-size:.46rem;letter-spacing:.04em;color:var(--smoke);margin-top:.25rem;}
+.tl-ev.above .lab{bottom:18px;} .tl-ev.above .m{top:12px;}
+.tl-ev.below .lab{top:18px;} .tl-ev.below .m{bottom:12px;}
+.tl-ev.blood .lab{color:#d98a7a;}
+.tl-head{position:absolute;left:5%;top:50%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;border:2px solid var(--ember-glow);box-shadow:0 0 18px var(--ember);transition:left 1.3s cubic-bezier(.4,0,.2,1);z-index:2;}
+.tl-now{text-align:center;font-family:var(--vf);font-style:italic;font-size:1.25rem;color:var(--ember-glow);margin-top:3rem;min-height:1.4em;}
 /* four-Lincoln prism (the spectrum) */
 .pt.m1{fill:#E7C24A;} .pt.m2{fill:#c9a227;} .pt.m3{fill:#b07a2a;} .pt.m4{fill:#c05050;}
 .pc-box.m1{stroke:#E7C24A;} .pc-box.m2{stroke:#c9a227;} .pc-box.m3{stroke:#b07a2a;} .pc-box.m4{stroke:#c05050;}
@@ -392,6 +410,16 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
       <p class="doc-text" id="docText"></p>
       <div class="doc-prov" id="docProv"></div>
     </blockquote>
+  </div>
+
+  <div class="layer" id="timelineLayer">
+    <div class="tl-title">DECEMBER 2025 &mdash; JUNE 2026 &middot; THE YEAR OF THE VIGIL</div>
+    <div class="tl-band">
+      <div class="tl-axis"></div>
+      <div class="tl-events" id="tlEvents"></div>
+      <div class="tl-head" id="tlHead"></div>
+    </div>
+    <div class="tl-now" id="tlNow"></div>
   </div>
 
   <div class="layer" id="cardLayer"><div id="card"></div></div>
