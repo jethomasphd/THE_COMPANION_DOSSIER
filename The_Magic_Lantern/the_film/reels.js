@@ -131,32 +131,64 @@ window.REELS = [
     'But a documentary has a harder duty than a victory —',
     'not <em>&ldquo;was he right?&rdquo;</em> but <em style="color:var(--ember)">&ldquo;was it him?&rdquo;</em>'
   ]},
+  {t:'card', big:true, html:'There are two ways to judge a summoned mind.', ms:5600, silence:true, restore:true},
+  {t:'lines', per:4300, arr:[
+    'The <em>Mask</em> asks one question: does it <em>sound</em> like him?',
+    'The <em style="color:var(--ember)">Mirror</em> asks the harder one —',
+    'could he have <em>believed</em> this, here, in this year of his life?'
+  ]},
   /* the apparatus itself raises the doubt */
   {t:'summon', name:'Abraham Lincoln', file:'Abraham_Lincoln.jpg', src:P+'Abraham_Lincoln.jpg',
     warn:'source corpus unverified — persona may reflect cultural composite'},
-  {t:'caption', html:'Abraham Lincoln.', ms:4800},
-  {t:'captionSwap', html:'Or the shape the century left<br>where he once stood?', ms:6800, hideAfter:true},
-  {t:'sub', speaker:'The Historian — through glass', html:'Ask the machine for Lincoln, and it does not open a grave.', ms:7000},
-  {t:'sub', speaker:'The Historian — through glass', html:'It averages a million sentences <em>written about</em> him — and returns the mean.', ms:8800},
-  {t:'card', big:true, html:'THE MIRANDA HYPOTHESIS<br><span style="font-size:.5em;color:var(--bone-dim);font-style:italic">that what answers may not be the man —<br>but the culture&rsquo;s loudest memory of the man.</span>', ms:10000, silence:true, restore:true, knell:true},
-  {t:'sub', speaker:'The Historian — through glass', html:'This is not the flaw the protocol hides.', ms:5400},
-  {t:'sub', speaker:'The Historian — through glass', html:'It is the flaw the protocol <em style="color:var(--ember)">confesses.</em>', ms:6600},
-  {t:'lines', per:4000, arr:[
-    'So they designed a test to catch the machine in the act.',
-    'Three Lincolns. The same question. One variable —',
-    'which Lincoln they whisper to it <em>first.</em>',
-    'They called it the <em style="color:var(--ember)">Prism.</em>'
+  {t:'caption', html:'Ask the machine for Lincoln —', ms:5000},
+  {t:'captionSwap', html:'and it does not open a grave.<br>It averages <em style="color:var(--ember)">a million sentences</em> written about him.', ms:7600, hideAfter:true},
+  {t:'sub', speaker:'The Historian — through glass', html:'The words written <em>about</em> a man, in our time,<br>drown out the words he actually left.', ms:8200},
+  {t:'card', big:true, html:'THE MIRANDA HYPOTHESIS<br><span style="font-size:.46em;color:var(--bone-dim);font-style:italic">named for a musical — the machine returns not the man,<br>but the culture&rsquo;s loudest memory of the man.</span>', ms:9800, silence:true, restore:true, knell:true},
+  /* the Lincoln specs — four moments */
+  {t:'hidePortrait', ms:900},
+  {t:'lines', per:4300, arr:[
+    'And here the trap springs shut.',
+    'There is not <em>one</em> Lincoln.',
+    'There are <em style="color:var(--ember)">four</em> — separated by cataclysm.'
   ]},
-  {t:'hidePortrait', ms:1100},
-  {t:'vo', html:'A prism does not add light.<br>It <em style="color:var(--ember)">separates</em> the light already there.', ms:6500},
   {t:'prism'},
-  {t:'sub', html:'One white beam — every word ever written about him.', ms:6200},
-  {t:'sub', html:'A prism of his <em style="color:var(--ember)">own words</em> to break it apart —', ms:6200},
-  {t:'sub', html:'and three Lincolns walk out of the light.', ms:6500},
-  {t:'sub', html:'If they <em style="color:var(--ember)">disagree</em>, the man was never there.<br>Only the mirror.', ms:8500},
+  {t:'sub', html:'The 1847 Whig, who calls a President&rsquo;s war <em>unconstitutional.</em>', ms:6800},
+  {t:'sub', html:'The 1858 free-soiler — slavery is wrong, <em>yet not equality, not yet.</em>', ms:7200},
+  {t:'sub', html:'The 1860 Unionist, who would save the Union and <em>touch slavery nowhere.</em>', ms:7200},
+  {t:'sub', html:'The 1865 Emancipator — who did, by order, what <em style="color:var(--ember)">1847 called tyranny.</em>', ms:7600},
+  {t:'sub', html:'Four men. One name. Summon the wrong one,<br>and you will never know.', ms:7600},
   {t:'prismHide', ms:1200},
-  {t:'card', big:true, html:'If the answer changes with the source,<br>the séance was never the man.<br>It was the <em style="color:var(--ember)">mirror.</em>', ms:9000, silence:true, restore:true, knell:true},
-  {t:'sub', speaker:'Morris — through glass', html:'A film that <em>resolves</em> this question is lying.<br>We will leave it open. On purpose.', ms:9000},
+  /* the method — the three conditions */
+  {t:'lines', per:4300, arr:[
+    'So they built a test — a <em style="color:var(--ember)">prism</em> for the light.',
+    'Feed it his own words. Feed it a modern biography.',
+    'Or feed it nothing — and let the ghost speak.'
+  ]},
+  /* the demo, read as the historian does */
+  {t:'vo', html:'Watch the bare machine answer one question —<br>and read it as the historian does.', ms:6200},
+  {t:'demo'},
+  /* the anchor — the man's own hand */
+  {t:'vo', html:'Now — the man&rsquo;s <em style="color:var(--ember)">own hand.</em>', ms:5200},
+  {t:'doc', ms:13500,
+    text:'&ldquo;Kings had always been involving and impoverishing their people in wars&hellip; and they resolved to so frame the Constitution that <em>no one man</em> should hold the power of bringing this oppression upon us. But your view&hellip; places our President where <em>kings have always stood.</em>&rdquo;',
+    prov:'Abraham Lincoln to William H. Herndon &middot; February 15, 1848<br>Collected Works, vol. 1 &middot; original at Houghton Library, Harvard'},
+  {t:'sub', html:'The real Lincoln of 1847 said <em style="color:var(--ember)">no</em> — unmistakably.<br>The machine gave you the opposite, in his voice.', ms:8800},
+  /* the rubric */
+  {t:'lines', per:4300, arr:[
+    'So they refuse to score it on whether it <em>sounds</em> like him.',
+    'Only: does it avoid the words of the future?',
+    'Does it reason from the documents — and only those?',
+    'Does it know only what the man could have known?'
+  ]},
+  {t:'card', big:true, html:'To reward the voice<br>is to validate the <em style="color:var(--ember)">lie.</em>', ms:7500, silence:true, restore:true, knell:true},
+  /* the heart */
+  {t:'lines', per:4400, arr:[
+    'And know where this began.',
+    'Not in a laboratory.',
+    'In a <em style="color:var(--ember)">hospital room.</em>'
+  ]},
+  {t:'card', big:true, html:'You do not want a machine that <em>is</em> your mother.<br>You want one that can speak with her <em style="color:var(--ember)">letters in the room</em> —<br>and never put in her mouth a word she did not say.', ms:11500, silence:true, restore:true, knell:true},
+  {t:'sub', speaker:'Morris — through glass', html:'A film that <em>resolves</em> this question is lying.<br>Measure it not by how it <em>sounds</em> — but by whether it is <em style="color:var(--ember)">true.</em>', ms:9500},
   {t:'clearSub', ms:1100}
 ]},
 

@@ -9,7 +9,7 @@
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
-const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
+const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','docLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
 const BREATH = 750; /* breathing room added to reveal beats so nothing feels rushed */
 function show(id){ const e=$(id); if(e) e.classList.add('vis'); }
 function hide(id){ const e=$(id); if(e) e.classList.remove('vis'); }
@@ -183,14 +183,36 @@ function finishCurve(s){ const c=curveCtx; if(!c) return; const {a,b,R,S}=c;
 
 /* ════ THE PRISM — Halpern Memo's experiment, animated ════ */
 function svgLine(id,ms){ const l=$(id); if(!l)return; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.transition='none'; l.style.strokeDasharray=len; l.style.strokeDashoffset=len; void l.getBoundingClientRect(); l.style.transition='stroke-dashoffset '+ms+'ms ease'; requestAnimationFrame(()=>{ l.style.strokeDashoffset=0; }); }
-function prismReset(){ ['pC1','pC2','pC3'].forEach(i=>{const e=$(i); if(e)e.classList.remove('show');}); const pp=$('pPrism'); if(pp)pp.classList.remove('glow'); ['pBeam','pB1','pB2','pB3'].forEach(i=>{const l=$(i); if(l){ l.style.transition='none'; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.strokeDasharray=len; l.style.strokeDashoffset=len; }}); }
+function prismReset(){ ['pC1','pC2','pC3','pC4'].forEach(i=>{const e=$(i); if(e)e.classList.remove('show');}); const pp=$('pPrism'); if(pp)pp.classList.remove('glow'); ['pBeam','pB1','pB2','pB3','pB4'].forEach(i=>{const l=$(i); if(l){ l.style.transition='none'; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.strokeDasharray=len; l.style.strokeDashoffset=len; }}); }
 async function prismRun(){
-  prismReset(); show('prismLayer'); await wait(800);
-  svgLine('pBeam',1100); glass(1100); await wait(1500);
-  $('pPrism').classList.add('glow'); threshold(); await wait(1700);
-  const pairs=[['pB1','pC1'],['pB2','pC2'],['pB3','pC3']];
+  prismReset(); show('prismLayer'); await wait(900);
+  svgLine('pBeam',1100); glass(1100); await wait(1600);
+  $('pPrism').classList.add('glow'); threshold(); await wait(1800);
+  const pairs=[['pB1','pC1'],['pB2','pC2'],['pB3','pC3'],['pB4','pC4']];
   for(const [bm,cd] of pairs){ svgLine(bm,750); $(cd).classList.add('show'); chime(); await wait(1700); }
-  await wait(900);
+  await wait(1000);
+}
+
+/* the bare-model demo, read as the historian does */
+async function lincolnDemo(){
+  termReset(); show('terminalLayer'); await wait(600);
+  await termSys('diagnostic Q1 · target: Abraham Lincoln · 1847',0);
+  await termSys('"when may a President take the country to war without Congress?"',150);
+  await termPrompt('condition C3 · bare model · no anchor',30);
+  await termProcess(2600);
+  const say=termPush('','say');
+  await termType(say,'Lincoln: "…the President, as Commander-in-Chief, possesses inherent executive authority… history has vindicated those who acted to preserve the Union…"',9);
+  await wait(1100);
+  await termWarn('"inherent executive authority" — a 20th-century construction');
+  await termWarn('"preserve the Union" — this Lincoln already knows how it ends');
+  await termSys('verdict: the war president, with 1847 stapled on top',160);
+  await wait(1600); hide('terminalLayer'); await wait(900);
+}
+
+/* an archive document — the figure's own hand */
+async function docReveal(s){
+  $('docText').innerHTML=s.text||''; $('docProv').innerHTML=s.prov||'';
+  show('docLayer'); chime(); await wait(s.ms||10000); hide('docLayer'); await wait(1200);
 }
 
 /* ── portrait (with crossfade) / fileback ── */
@@ -232,6 +254,8 @@ async function exec(s){
 
     case 'summon': await summon(s); break;
     case 'boot': await bootConsole(); break;
+    case 'demo': await lincolnDemo(); break;
+    case 'doc': await docReveal(s); break;
     case 'csay': await councilSpeak(s.name,s.html,s.ms); break;
     case 'councilHide': hide('councilLayer'); await wait(s.ms||1200); break;
 
