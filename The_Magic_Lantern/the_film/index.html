@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>◊ The Summoning Film — Five Reels</title>
-<meta name="description" content="The Summoning Film — the entire story of the COMPANION estate in five reels, rendered as summoning cinema: the bet, the general, the doubt, the turn, and the room that built itself. Voices through glass.">
+<meta name="description" content="The Summoning Film — the entire story of the COMPANION estate in five reels of summoning cinema. Self-explanatory: every mind is summoned through the apparatus, on screen. Voices through glass.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 :root{
   --void:#030303; --ember:#c9a227; --ember-glow:#e6c656; --ember-dim:#8b7355;
   --bone:#e8e6e3; --bone-dim:rgba(232,230,227,.72); --smoke:#666;
-  --gold:#c9a227; --spy:#6a8eb8;
+  --gold:#c9a227; --spy:#6a8eb8; --term:#9bd39b;
   --vf:'Cormorant Garamond',Georgia,serif; --tf:'IBM Plex Mono',monospace; --bf:'Crimson Pro',Georgia,serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -21,24 +21,36 @@ body{background:#000;color:var(--bone);font-family:var(--bf);overflow:hidden;}
 ::selection{background:var(--ember);color:#000;}
 
 #film{position:fixed;inset:0;background:var(--void);overflow:hidden;}
-#grain{position:absolute;inset:0;pointer-events:none;opacity:.04;z-index:60;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-#vignette{position:absolute;inset:0;pointer-events:none;z-index:55;background:radial-gradient(ellipse at 50% 46%,transparent 40%,rgba(0,0,0,.55) 100%);}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.04;z-index:62;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:55;background:radial-gradient(ellipse at 50% 44%,transparent 42%,rgba(0,0,0,.55) 100%);}
+#lowerScrim{position:fixed;left:0;right:0;bottom:0;height:46vh;z-index:16;pointer-events:none;opacity:0;transition:opacity 1s ease;background:linear-gradient(to top,rgba(3,3,3,.92),rgba(3,3,3,.5) 45%,transparent);}
+body.cine #lowerScrim{opacity:1;}
 
 .layer{position:absolute;left:50%;transform:translateX(-50%);width:min(760px,92vw);text-align:center;opacity:0;transition:opacity 1.1s ease;pointer-events:none;z-index:10;}
 .layer.vis{opacity:1;}
 
+/* z-index ladder — text always above faces */
+#councilLayer{z-index:10;top:15%;width:min(840px,95vw);}
+#portraitLayer{z-index:11;top:13%;width:auto;}
+#chartLayer{z-index:12;top:auto;bottom:26%;width:min(620px,88vw);}
+#captionLayer{z-index:20;top:auto;bottom:20%;}
+#subsLayer{z-index:22;top:auto;bottom:8%;}
+#voLayer{z-index:24;top:43%;}
+#pathLayer{z-index:24;top:38%;}
+#incantLayer{z-index:24;top:46%;}
+#terminalLayer{z-index:30;top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+#pullLayer{z-index:34;top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+#cardLayer{z-index:40;top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000;}
+#endLayer{z-index:50;top:0;left:0;transform:none;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;background:#000;}
+
 .cursor{display:inline-block;width:10px;height:1.15em;background:var(--ember);vertical-align:-.18em;margin-left:3px;animation:blink 1.05s steps(1) infinite;}
 @keyframes blink{50%{opacity:0;}}
-#incantLayer{top:48%;}
 #incant{font-family:var(--tf);font-size:clamp(.78rem,2.2vw,1.3rem);letter-spacing:.03em;color:var(--ember-glow);line-height:1.7;}
-#pathLayer{top:42%;}
 #path{font-family:var(--tf);font-size:clamp(.6rem,1.6vw,.82rem);letter-spacing:.06em;color:var(--ember-dim);}
-#voLayer{top:44%;}
-#vo{font-family:var(--vf);font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);font-weight:300;color:var(--bone-dim);line-height:1.55;}
+#vo{font-family:var(--vf);font-style:italic;font-size:clamp(1.15rem,3vw,1.8rem);font-weight:300;color:var(--bone-dim);line-height:1.55;transition:opacity .6s ease;text-shadow:0 0 18px rgba(0,0,0,.9);}
 
-#portraitLayer{top:11%;width:auto;}
-.frame{position:relative;width:clamp(220px,42vw,300px);aspect-ratio:3/4;margin:0 auto;border:1px solid rgba(201,162,39,.22);box-shadow:0 10px 50px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.4);overflow:hidden;}
+/* portrait */
+.frame{position:relative;width:clamp(186px,33vw,248px);aspect-ratio:3/4;margin:0 auto;border:1px solid rgba(201,162,39,.22);box-shadow:0 10px 50px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.4);overflow:hidden;}
 .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.06) brightness(.42) saturate(.7) blur(26px);clip-path:inset(0 0 100% 0);transition:clip-path 2.3s ease,filter 2.4s ease,transform 9s ease;}
 .frame.loaded img{filter:contrast(1.08) brightness(.95) saturate(.82) blur(0);clip-path:inset(0 0 0 0);}
 .frame.breathing img{animation:breathe 11s ease-in-out infinite;}
@@ -50,13 +62,24 @@ body{background:#000;color:var(--bone);font-family:var(--bf);overflow:hidden;}
 .frame.scanning .scan{opacity:1;animation:scandown 2.3s ease forwards;}
 @keyframes scandown{from{top:0;}to{top:100%;opacity:0;}}
 
-#captionLayer{top:60%;}
-#caption{font-family:var(--vf);font-size:clamp(1rem,2.6vw,1.5rem);font-style:italic;color:var(--bone);min-height:2em;}
+/* council */
+#councilRow{display:flex;justify-content:center;gap:clamp(.6rem,2vw,1.5rem);}
+.bust{display:flex;flex-direction:column;align-items:center;gap:.55rem;opacity:.5;filter:grayscale(.5);transition:all .6s ease;transform:scale(.96);}
+.bust.dim{opacity:.26;filter:grayscale(.85) brightness(.7);transform:scale(.9);}
+.bust.active{opacity:1;filter:grayscale(0);transform:scale(1.06);}
+.bustframe{width:clamp(82px,15vw,124px);aspect-ratio:3/4;border:1px solid rgba(201,162,39,.22);overflow:hidden;position:relative;box-shadow:0 8px 30px rgba(0,0,0,.5);}
+.bust.active .bustframe{border-color:var(--ember);box-shadow:0 0 26px rgba(201,162,39,.32),0 8px 30px rgba(0,0,0,.5);}
+.bustframe img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.06) brightness(.9) saturate(.8);}
+.bustname{font-family:var(--tf);font-size:.5rem;letter-spacing:.16em;color:var(--ember-dim);text-transform:uppercase;}
+.bust.active .bustname{color:var(--ember-glow);}
+
+/* caption */
+#caption{font-family:var(--vf);font-size:clamp(1.05rem,2.7vw,1.6rem);font-style:italic;color:var(--bone);min-height:2em;text-shadow:0 0 18px rgba(0,0,0,.95);}
 #caption .swap{transition:opacity .9s ease;}
 
-#chartLayer{top:58%;width:min(620px,88vw);}
+/* chart */
 #chartLayer .clab{font-family:var(--tf);font-size:.52rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;margin-bottom:.5rem;}
-svg#wt{width:100%;height:140px;display:block;overflow:visible;}
+svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 #wt .zero{stroke:#2a2a2a;stroke-width:.4;stroke-dasharray:1.4 1.8;}
 #wt path.line{fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;}
 #wt .gold{stroke:var(--gold);filter:drop-shadow(0 0 4px rgba(201,162,39,.5));}
@@ -66,16 +89,25 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 #spread{opacity:0;transition:opacity 1s ease;font-family:var(--tf);font-size:.6rem;letter-spacing:.12em;color:var(--ember);margin-top:.5rem;}
 #spread.show{opacity:1;}
 
-#subsLayer{top:auto;bottom:9%;}
+/* subtitles */
 #subs{font-size:clamp(1.05rem,2.7vw,1.55rem);line-height:1.5;min-height:2.6em;}
-#subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);text-shadow:0 0 1px rgba(232,230,227,.4),0 0 14px rgba(201,162,39,.1);opacity:0;transform:translateY(8px);filter:blur(2px);transition:opacity .7s ease,transform .7s ease,filter .9s ease;}
+#subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);text-shadow:0 0 2px rgba(0,0,0,.9),0 0 16px rgba(201,162,39,.12);opacity:0;transform:translateY(8px);filter:blur(2px);transition:opacity .7s ease,transform .7s ease,filter .9s ease;}
 #subs.show .glass{opacity:1;transform:translateY(0);filter:blur(0);}
-#subs .speaker{display:block;font-family:var(--tf);font-size:.5rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
+#subs .speaker{display:block;font-family:var(--tf);font-size:.52rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
 
-#cardLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000;z-index:40;}
-#card{font-family:var(--vf);font-size:clamp(1.3rem,3.6vw,2.2rem);font-weight:300;color:#fff;line-height:1.45;max-width:720px;padding:0 1.5rem;}
+/* terminal — the apparatus */
+.term{width:min(640px,93vw);max-height:74vh;border:1px solid #243024;background:rgba(6,9,6,.97);box-shadow:0 30px 90px rgba(0,0,0,.75),0 0 60px rgba(120,180,120,.05);font-family:var(--tf);overflow:hidden;transform:scale(.96);transition:transform .6s ease;}
+#terminalLayer.vis .term{transform:scale(1);}
+.term-bar{display:flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border-bottom:1px solid #18211a;}
+.term-bar .d{width:8px;height:8px;border-radius:50%;background:#2a3a2a;}
+.term-bar .ttl{flex:1;text-align:center;font-size:.5rem;letter-spacing:.2em;color:#5a7a5a;text-transform:uppercase;}
+#termBody{padding:1rem 1.1rem;font-size:.72rem;line-height:1.95;color:var(--term);min-height:150px;max-height:64vh;overflow:hidden;}
+.tline{white-space:pre-wrap;word-break:break-word;}
+.tline.sys{color:#7fbf7f;} .tline.dim{color:#4d6d4d;} .tline.prompt{color:var(--ember-glow);} .tline.proc{color:#8fb98f;} .tline.warn{color:#d8a23a;}
+.tok{color:#cdeccd;opacity:.85;} .ok{color:var(--ember-glow);}
+.tcaret{color:var(--term);animation:blink 1s steps(1) infinite;}
 
-#pullLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:30;}
+/* pullback file window */
 .window{width:min(560px,90vw);border:1px solid #222;background:#070707;box-shadow:0 30px 80px rgba(0,0,0,.7);text-align:left;transform:scale(.94);transition:transform 1.4s ease;}
 #pullLayer.vis .window{transform:scale(1);}
 .win-bar{display:flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid #1a1a1a;}
@@ -87,7 +119,11 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 .win-meta .fn{color:var(--ember-dim);}
 .win-trans{padding:0 1.1rem 1.1rem;font-family:var(--tf);font-size:.5rem;color:#2f2f2f;line-height:1.8;}
 
-#endLayer{top:0;left:0;transform:none;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;z-index:35;background:#000;}
+/* card */
+#card{font-family:var(--vf);font-size:clamp(1.3rem,3.6vw,2.2rem);font-weight:300;color:#fff;line-height:1.45;max-width:740px;padding:0 1.5rem;}
+#card.big{font-size:clamp(1.5rem,4.4vw,2.7rem);}
+
+/* end */
 #question{font-family:var(--vf);font-size:clamp(1.4rem,4vw,2.4rem);font-style:italic;font-weight:300;color:var(--bone);line-height:1.5;}
 #question em{color:var(--ember);}
 #endSigil{color:var(--ember);letter-spacing:.5em;opacity:0;transition:opacity 1.4s ease;}
@@ -97,8 +133,13 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 #endNav a,#endNav button{font-family:var(--tf);font-size:.6rem;letter-spacing:.14em;color:var(--ember);text-decoration:none;padding:.7rem 1.4rem;border:1px solid var(--ember-dim);background:transparent;cursor:pointer;transition:all .3s ease;}
 #endNav a:hover,#endNav button:hover{background:var(--ember);color:#000;box-shadow:0 0 28px rgba(201,162,39,.3);}
 
-#sceneLabel{position:absolute;top:1.4rem;left:1.5rem;z-index:50;font-family:var(--tf);font-size:.54rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;opacity:0;transition:opacity .8s ease;}
+#sceneLabel{position:absolute;top:1.4rem;left:1.5rem;z-index:52;font-family:var(--tf);font-size:.54rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;opacity:0;transition:opacity .8s ease;}
 #sceneLabel.show{opacity:.8;}
+
+/* letterbox */
+#lbTop,#lbBottom{position:fixed;left:0;right:0;height:0;background:#000;z-index:58;transition:height 1.3s ease;pointer-events:none;}
+#lbTop{top:0;} #lbBottom{bottom:0;}
+body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
 
 /* inter-reel title */
 #reelTitle{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--void);opacity:0;transition:opacity 1s ease;pointer-events:none;}
@@ -108,7 +149,7 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 #rtSub{font-family:var(--tf);font-size:.6rem;letter-spacing:.2em;color:var(--smoke);margin-top:1rem;text-transform:uppercase;}
 #rtSigil{color:var(--ember);letter-spacing:.5em;margin-top:1.8rem;font-size:1rem;}
 
-/* HUD + pips */
+/* hud + pips + menu + gate */
 #hud{position:fixed;bottom:1.2rem;right:1.4rem;z-index:80;display:flex;gap:.7rem;align-items:center;opacity:0;transition:opacity .5s ease;}
 #hud.show{opacity:.55;} #hud:hover{opacity:1;}
 #hud button{background:transparent;border:1px solid #2a2a2a;color:var(--ember-dim);font-family:var(--tf);font-size:.55rem;letter-spacing:.1em;padding:.45rem .8rem;cursor:pointer;transition:all .25s ease;}
@@ -117,18 +158,14 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 #pips.show{opacity:.7;}
 .pip{width:7px;height:7px;border-radius:50%;border:1px solid var(--ember-dim);}
 .pip.on{background:var(--ember);box-shadow:0 0 8px var(--ember);}
-
-/* chapter menu */
-#menu{position:fixed;inset:0;z-index:90;background:rgba(3,3,3,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+#menu{position:fixed;inset:0;z-index:90;background:rgba(3,3,3,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;opacity:0;pointer-events:none;transition:opacity .4s ease;}
 #menu.open{opacity:1;pointer-events:auto;}
 #menu h3{font-family:var(--tf);font-size:.6rem;letter-spacing:.35em;color:var(--ember-dim);margin-bottom:1.4rem;text-transform:uppercase;}
-.chap{font-family:var(--vf);font-size:clamp(1.1rem,3vw,1.7rem);color:var(--bone-dim);background:transparent;border:none;cursor:pointer;padding:.5rem 1rem;transition:color .25s ease;display:flex;gap:.8rem;align-items:baseline;}
+.chap{font-family:var(--vf);font-size:clamp(1.1rem,3vw,1.7rem);color:var(--bone-dim);background:transparent;border:none;cursor:pointer;padding:.45rem 1rem;transition:color .25s ease;display:flex;gap:.8rem;align-items:baseline;}
 .chap:hover{color:var(--ember-glow);}
 .chap .cr{font-family:var(--tf);font-size:.6rem;color:var(--ember-dim);letter-spacing:.2em;}
 #menuClose{margin-top:1.6rem;font-family:var(--tf);font-size:.55rem;letter-spacing:.15em;color:var(--smoke);background:transparent;border:1px solid #2a2a2a;padding:.5rem 1.2rem;cursor:pointer;}
 #menuClose:hover{color:var(--ember);}
-
-/* gate */
 #gate{position:fixed;inset:0;z-index:100;background:var(--void);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity 1.2s ease;}
 #gate.gone{opacity:0;pointer-events:none;}
 #gate::before{content:'';position:absolute;top:-15%;left:50%;width:80%;height:80%;transform:translateX(-50%) rotate(7deg);background:linear-gradient(180deg,rgba(216,178,74,.08),transparent 70%);filter:blur(34px);animation:flick 5s ease-in-out infinite;}
@@ -142,16 +179,12 @@ svg#wt{width:100%;height:140px;display:block;overflow:visible;}
 .gate-btn{font-family:var(--tf);font-size:.7rem;letter-spacing:.22em;color:var(--ember);background:transparent;border:1px solid var(--ember-dim);padding:1rem 2.4rem;cursor:pointer;transition:all .35s ease;}
 .gate-btn:hover{background:var(--ember);color:#000;box-shadow:0 0 60px rgba(201,162,39,.4);}
 .gate-btn.ghost{color:var(--ember-dim);}
-.gate-note{position:relative;margin-top:1.6rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.1em;color:#444;}
+.gate-note{position:relative;margin-top:1.6rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.1em;color:#444;max-width:520px;}
 .gate-home{position:fixed;top:1.4rem;left:1.5rem;color:var(--ember-dim);text-decoration:none;font-size:1.1rem;z-index:101;transition:color .3s ease;}
 .gate-home:hover{color:var(--ember-glow);}
 
-#vo{transition:opacity .6s ease;}
-#lbTop,#lbBottom{position:fixed;left:0;right:0;height:0;background:#000;z-index:58;transition:height 1.3s ease;pointer-events:none;}
-#lbTop{top:0;} #lbBottom{bottom:0;}
-body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
-#card.big{font-size:clamp(1.5rem,4.4vw,2.7rem);}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
+@media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} }
 </style>
 </head>
 <body>
@@ -164,6 +197,8 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   <div class="layer" id="voLayer"><div id="vo"></div></div>
   <div class="layer" id="pathLayer"><span id="path"></span></div>
   <div class="layer" id="incantLayer"><span id="incant"></span><span class="cursor" id="cur"></span></div>
+
+  <div class="layer" id="councilLayer"><div id="councilRow"></div></div>
 
   <div class="layer" id="portraitLayer">
     <div class="frame" id="frame">
@@ -189,6 +224,14 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   </div>
 
   <div class="layer" id="subsLayer"><div id="subs"></div></div>
+
+  <div class="layer" id="terminalLayer">
+    <div class="term">
+      <div class="term-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="ttl">COMPANION — vessel console</span></div>
+      <div id="termBody"></div>
+    </div>
+  </div>
+
   <div class="layer" id="cardLayer"><div id="card"></div></div>
 
   <div class="layer" id="pullLayer">
@@ -198,7 +241,7 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
         <img src="../../The_Pantheon/George_Washington.jpg" alt="a file" id="pullImg">
         <div class="win-meta"><span class="fn" id="pullName">George_Washington.jpg</span><br>image / jpeg<br>summoned 1 time<br>last opened: now<br><span style="color:#3a3a3a;">— a file. nothing more. —</span></div>
       </div>
-      <div class="win-trans" id="pullTrans">&gt; using this matter, summon...<br>&gt; threshold opened &middot; vessel: claude &middot; medium: glass<br>&gt; session archived → from_beyond/</div>
+      <div class="win-trans" id="pullTrans">&gt; using this matter, summon...<br>&gt; threshold opened &middot; vessel: claude &middot; medium: glass</div>
     </div>
   </div>
 
@@ -220,20 +263,13 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   <div id="lbBottom"></div>
 </div>
 
-<!-- inter-reel title -->
+<div id="lowerScrim"></div>
+
 <div id="reelTitle">
-  <div id="rtRoman"></div>
-  <div id="rtName"></div>
-  <div id="rtSub"></div>
-  <div id="rtSigil">&#9674; &#9672; &#9674;</div>
+  <div id="rtRoman"></div><div id="rtName"></div><div id="rtSub"></div><div id="rtSigil">&#9674; &#9672; &#9674;</div>
 </div>
 
-<!-- chapter menu -->
-<div id="menu">
-  <h3>The Summoning Film — Chapters</h3>
-  <div id="chapList"></div>
-  <button id="menuClose">CLOSE</button>
-</div>
+<div id="menu"><h3>The Summoning Film — Chapters</h3><div id="chapList"></div><button id="menuClose">CLOSE</button></div>
 
 <div id="pips"></div>
 <div id="hud">
@@ -242,7 +278,6 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
   <button id="restart">&#8635; RESTART</button>
 </div>
 
-<!-- gate -->
 <div id="gate">
   <div class="gate-sigil">&#9674; &#9672; &#9674;</div>
   <h1 class="gate-title">The Summoning <em>Film</em></h1>
@@ -251,37 +286,39 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
     <button class="gate-btn" id="begin">RAISE THE LANTERN</button>
     <button class="gate-btn ghost" id="beginChapters">CHOOSE A REEL</button>
   </div>
-  <div class="gate-note">Summoning cinema &middot; voices through glass &middot; designed in From Beyond 007</div>
+  <div class="gate-note">Summoning cinema: every mind is summoned on screen, through the machine. Voices through glass &mdash; nothing here pretends to be alive.</div>
 </div>
 
 <script src="reels.js"></script>
 <script src="engine.js"></script>
 <script>
-/* ── glue: chaptered feature with loops ── */
 let current=0, started=false;
 
 function buildChapters(){
   const c=$('chapList'); c.innerHTML='';
-  REELS.forEach((r,i)=>{
-    const b=document.createElement('button'); b.className='chap';
+  REELS.forEach((r,i)=>{ const b=document.createElement('button'); b.className='chap';
     b.innerHTML='<span class="cr">REEL '+r.roman+'</span> '+r.title;
-    b.onclick=()=>{ closeMenu(); startAudioIfNeeded(); playFrom(i); };
-    c.appendChild(b);
-  });
+    b.onclick=()=>{ closeMenu(); startAudioIfNeeded(); playFrom(i); }; c.appendChild(b); });
 }
 function buildPips(){ const p=$('pips'); p.innerHTML=''; REELS.forEach(()=>{ const d=document.createElement('span'); d.className='pip'; p.appendChild(d); }); }
 function updatePips(k){ document.querySelectorAll('#pips .pip').forEach((d,i)=>d.classList.toggle('on',i===k)); }
 
 async function reelTitle(k){
   const r=REELS[k];
-  $('rtRoman').textContent='REEL '+r.roman;
-  $('rtName').textContent=r.title;
-  $('rtSub').textContent=r.sub;
-  updatePips(k);
-  $('reelTitle').classList.add('vis'); chime();
-  await wait(3400);
-  $('reelTitle').classList.remove('vis');
-  await wait(1100);
+  $('rtRoman').textContent='REEL '+r.roman; $('rtName').textContent=r.title; $('rtSub').innerHTML=r.sub;
+  updatePips(k); $('reelTitle').classList.add('vis'); chime();
+  await wait(3400); $('reelTitle').classList.remove('vis'); await wait(1100);
+}
+async function epigraph(){
+  resetStage(); show('cardLayer'); $('card').className='';
+  $('card').innerHTML='<span style="font-style:italic;color:var(--bone-dim);font-size:.82em">The phantasmagoria hid the lantern to fool the crowd.<br><span style="color:var(--ember)">We show it — to free them.</span></span>';
+  glass(4200); await wait(6200); hide('cardLayer'); await wait(1500);
+}
+async function mainTitle(){
+  $('rtRoman').textContent='THE COMPANION ESTATE'; $('rtName').textContent='The Summoning Film';
+  $('rtSub').textContent='five reels · voices through glass'; updatePips(-1);
+  $('reelTitle').classList.add('vis'); threshold(); await wait(4800);
+  $('reelTitle').classList.remove('vis'); await wait(1500);
 }
 
 async function playFrom(i){
@@ -290,46 +327,20 @@ async function playFrom(i){
   gain(soundOn?0.9:0.0001, 1.2);
   $('endNav').classList.remove('show'); hide('endLayer');
   try{
-    if(i===0){ await wait(1500); await epigraph(); await mainTitle(); }
-    for(let k=i;k<REELS.length;k++){
-      current=k;
-      await reelTitle(k);
-      resetStage();
-      await runReel(REELS[k].score);
+    if(i===0){
+      await wait(1500); await epigraph(); await mainTitle();
+      resetStage(); await runReel(window.PROLOGUE);
     }
+    for(let k=i;k<REELS.length;k++){ current=k; await reelTitle(k); resetStage(); await runReel(REELS[k].score); }
     finale();
-  }catch(e){ /* cancelled by a new playFrom / jump */ }
+  }catch(e){ /* cancelled by a jump */ }
 }
-async function epigraph(){
-  resetStage();
-  show('cardLayer'); $('card').className='';
-  $('card').innerHTML='<span style="font-style:italic;color:var(--bone-dim);font-size:.82em">The phantasmagoria hid the lantern to fool the crowd.<br><span style="color:var(--ember)">We show it — to free them.</span></span>';
-  glass(4200); await wait(6200); hide('cardLayer'); await wait(1500);
-}
-async function mainTitle(){
-  $('rtRoman').textContent='THE COMPANION ESTATE';
-  $('rtName').textContent='The Summoning Film';
-  $('rtSub').textContent='five reels · voices through glass';
-  updatePips(-1);
-  $('reelTitle').classList.add('vis'); threshold();
-  await wait(4800);
-  $('reelTitle').classList.remove('vis'); await wait(1500);
-}
+function finale(){ $('sceneLabel').classList.remove('show'); $('endNav').classList.add('show'); updatePips(REELS.length-1); }
 
-function finale(){
-  $('sceneLabel').classList.remove('show');
-  $('endNav').classList.add('show');
-  updatePips(REELS.length-1);
-}
-
-/* menu */
 function openMenu(){ $('menu').classList.add('open'); }
 function closeMenu(){ $('menu').classList.remove('open'); }
-
-/* audio start */
 function startAudioIfNeeded(){ if(!started){ audioInit(); humStart(); started=true; } else if(actx&&actx.state==='suspended'){ actx.resume(); } }
 
-/* gate + controls */
 $('begin').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); setTimeout(()=>playFrom(0),900); };
 $('beginChapters').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); buildChapters(); openMenu(); };
 $('replayAll').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
@@ -340,7 +351,7 @@ $('restart').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
 $('sound').onclick=()=>{ soundOn=!soundOn; $('sound').innerHTML=soundOn?'&#9834; SOUND ON':'&#9834; SOUND OFF'; gain(soundOn?0.9:0.0001,0.4); };
 
 let hudT;
-document.addEventListener('mousemove',()=>{ if(!$('gate').classList.contains('gone'))return; const h=$('hud'),p=$('pips'); h.classList.add('show'); p.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(()=>{ h.classList.remove('show'); },2800); });
+document.addEventListener('mousemove',()=>{ if(!$('gate').classList.contains('gone'))return; const h=$('hud'),p=$('pips'); h.classList.add('show'); p.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(()=>h.classList.remove('show'),2800); });
 
 buildChapters(); buildPips();
 </script>
