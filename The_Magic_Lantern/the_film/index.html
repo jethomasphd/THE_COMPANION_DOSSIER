@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer&display=swap" rel="stylesheet">
 <style>
 :root{
   --void:#030303; --ember:#c9a227; --ember-glow:#e6c656; --ember-dim:#8b7355;
@@ -49,7 +50,7 @@ body.cine #crt{opacity:.32;}
 @keyframes blink{50%{opacity:0;}}
 #incant{font-family:var(--tf);font-size:clamp(.78rem,2.2vw,1.3rem);letter-spacing:.03em;color:var(--ember-glow);line-height:1.7;}
 #path{font-family:var(--tf);font-size:clamp(.6rem,1.6vw,.82rem);letter-spacing:.06em;color:var(--ember-dim);}
-#vo{font-family:var(--vf);font-style:italic;font-size:clamp(1.15rem,3vw,1.8rem);font-weight:300;color:var(--bone-dim);line-height:1.55;transition:opacity .6s ease;text-shadow:0 0 18px rgba(0,0,0,.9);}
+#vo{font-family:var(--vf);font-style:italic;font-size:clamp(1.15rem,3vw,1.8rem);font-weight:300;color:var(--bone-dim);line-height:1.55;transition:opacity .8s ease;text-shadow:0 0 18px rgba(0,0,0,.9);}
 
 /* portrait */
 .frame{position:relative;width:clamp(186px,33vw,248px);aspect-ratio:3/4;margin:0 auto;border:1px solid rgba(201,162,39,.22);box-shadow:0 10px 50px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.4);overflow:hidden;}
@@ -77,7 +78,7 @@ body.cine #crt{opacity:.32;}
 
 /* caption */
 #caption{font-family:var(--vf);font-size:clamp(1.05rem,2.7vw,1.6rem);font-style:italic;color:var(--bone);min-height:2em;text-shadow:0 0 18px rgba(0,0,0,.95);}
-#caption .swap{transition:opacity .9s ease;}
+#caption .swap{transition:opacity 1.1s ease;}
 
 /* chart */
 #chartLayer .clab{font-family:var(--tf);font-size:.52rem;letter-spacing:.22em;color:var(--ember-dim);text-transform:uppercase;margin-bottom:.5rem;}
@@ -93,7 +94,7 @@ svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 
 /* subtitles */
 #subs{font-size:clamp(1.05rem,2.7vw,1.55rem);line-height:1.5;min-height:2.6em;}
-#subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);text-shadow:0 0 2px rgba(0,0,0,.9),0 0 16px rgba(201,162,39,.12);opacity:0;transform:translateY(8px);filter:blur(2px);transition:opacity .7s ease,transform .7s ease,filter .9s ease;}
+#subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);text-shadow:0 0 2px rgba(0,0,0,.9),0 0 16px rgba(201,162,39,.12);opacity:0;transform:translateY(8px);filter:blur(2px);transition:opacity .95s ease,transform .95s ease,filter 1.1s ease;}
 #subs.show .glass{opacity:1;transform:translateY(0);filter:blur(0);}
 #subs .speaker{display:block;font-family:var(--tf);font-size:.52rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
 
@@ -228,8 +229,31 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 .pcard{opacity:0;transition:opacity .9s ease;}
 .pcard.show{opacity:1;}
 .prism-cap{margin-top:1rem;text-align:center;font-family:var(--tf);font-size:.56rem;letter-spacing:.28em;color:var(--ember-dim);text-transform:uppercase;}
+/* chart legend (hand-holding) */
+.curve-legend{display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap;margin:-.1rem 0 .5rem;font-family:var(--tf);font-size:.52rem;letter-spacing:.06em;}
+.curve-legend .g{color:var(--ember-glow);}
+.curve-legend .b{color:var(--spy);}
+/* Franklin's handbill */
+#handbillLayer{z-index:36;top:0;left:0;transform:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.bill{width:min(520px,90vw);max-height:90vh;overflow:auto;background:linear-gradient(180deg,#f4e7c8,#e7d4a8 55%,#dcc899);color:#1a1308;font-family:'IM Fell English',Georgia,serif;line-height:1.5;padding:2rem 2.3rem 1.6rem;text-align:center;border-radius:2px;box-shadow:0 0 0 3px #1a1308,0 0 0 7px #3d2f1a,0 0 0 9px #1a1308,0 28px 70px rgba(0,0,0,.7);transform:scale(.95);opacity:.0;transition:transform 1s ease,opacity 1s ease;}
+#handbillLayer.vis .bill{transform:scale(1);opacity:1;}
+.bill-orn{font-size:1.3rem;color:#3d2f1a;letter-spacing:.5em;margin-bottom:.2rem;}
+.bill-title{font-family:'IM Fell Great Primer',Georgia,serif;font-weight:400;font-size:clamp(1.6rem,4.4vw,2.3rem);text-transform:uppercase;letter-spacing:.06em;}
+.bill-sub{font-family:'IM Fell DW Pica',Georgia,serif;font-style:italic;font-size:1rem;margin-bottom:.5rem;}
+.bill-rule{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid #3d2f1a;border-bottom:1px solid #3d2f1a;padding:.45rem 0;margin-bottom:.9rem;}
+.bill-tier{margin:.85rem 0;opacity:0;transform:translateY(12px);transition:opacity .9s ease,transform .9s ease;}
+.bill-tier.show{opacity:1;transform:none;}
+.bill-tier-name{font-family:'IM Fell Great Primer',Georgia,serif;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;}
+.bill-tier-name span{font-style:italic;text-transform:none;letter-spacing:.02em;}
+.bill-tier-desc{font-style:italic;font-size:.82rem;color:#46391f;margin:.12rem 0 .28rem;}
+.bill-tier-desc em{font-style:normal;font-weight:600;}
+.bill-tickers{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.02em;color:#4a3a1c;line-height:1.8;}
+.bill-motto{font-family:'IM Fell Great Primer',Georgia,serif;font-size:clamp(1.25rem,3.4vw,1.6rem);font-style:italic;letter-spacing:.03em;margin-top:.9rem;opacity:0;transition:opacity 1.1s ease;}
+.bill-motto.show{opacity:1;}
+.bill-seal{font-size:1.4rem;letter-spacing:.4em;margin-top:.5rem;color:#3d2f1a;opacity:0;transition:opacity 1.1s ease;}
+.bill-seal.show{opacity:1;}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
-@media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} }
+@media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} .bill{padding:1.5rem 1.4rem;} }
 </style>
 </head>
 <body>
@@ -256,6 +280,7 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 
   <div class="layer" id="chartLayer">
     <div class="clab" id="curveTitle">THE WATCHTOWER — THE REPUBLIC vs THE S&amp;P 500</div>
+    <div class="curve-legend"><span class="lg g">&#9679; The Republic — citizens&rsquo; portfolio</span><span class="lg b">&#9679; The S&amp;P 500 — the whole market</span></div>
     <svg id="wt" viewBox="0 0 100 56" preserveAspectRatio="none">
       <rect class="warband" id="warBand" x="0" y="0" width="0" height="56"></rect>
       <line class="grid" id="ten" x1="0" y1="6" x2="100" y2="6"></line>
@@ -314,6 +339,31 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
       <div id="termBody"></div>
       <div class="tmeter" id="termMeter"><div class="tmeter-fill" id="termMeterFill"></div></div>
     </div>
+  </div>
+
+  <div class="layer" id="handbillLayer">
+    <article class="bill" id="bill">
+      <div class="bill-orn">&#10087; &#10089;</div>
+      <h2 class="bill-title">The Republic Portfolio</h2>
+      <div class="bill-sub">An Allocation for Citizen Investors</div>
+      <div class="bill-rule">Approved by the Committee of Patriots &middot; December 2025</div>
+      <div class="bill-tier t1">
+        <div class="bill-tier-name">Engines of the Republic <span>&mdash; fifty per cent</span></div>
+        <div class="bill-tier-desc">The firms that <em>make things</em> &mdash; manufacturing, food, medicine, power</div>
+        <div class="bill-tickers">CAT &middot; DE &middot; HON &middot; LMT &middot; GE &middot; WMT &middot; COST &middot; HD &middot; JNJ &middot; PFE &middot; ADM &middot; BG &middot; TSN &middot; SCHW &middot; BRK.B</div>
+      </div>
+      <div class="bill-tier t2">
+        <div class="bill-tier-name">Critical Choke Points <span>&mdash; thirty-five per cent</span></div>
+        <div class="bill-tier-desc">The <em>gates and rails</em> all commerce must pass through</div>
+        <div class="bill-tickers">NEE &middot; D &middot; KMI &middot; WMB &middot; V &middot; MA &middot; JPM &middot; MSFT &middot; AMZN &middot; GOOGL &middot; UNP &middot; NSC &middot; MCK &middot; UNH</div>
+      </div>
+      <div class="bill-tier t3">
+        <div class="bill-tier-name">Reserve <span>&mdash; fifteen per cent</span></div>
+        <div class="bill-tier-desc">Cash &amp; short-term Treasuries &mdash; <em>discipline, and the freedom to move</em></div>
+      </div>
+      <div class="bill-motto">&ldquo;Own them. Vote them. Govern.&rdquo;</div>
+      <div class="bill-seal">&#9734; &#10031; &#9734;</div>
+    </article>
   </div>
 
   <div class="layer" id="cardLayer"><div id="card"></div></div>
