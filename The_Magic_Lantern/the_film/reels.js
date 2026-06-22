@@ -9,19 +9,14 @@ const P = '../../The_Pantheon/';
 
 /* ─── PROLOGUE — what is COMPANION? (shown once, on "play all") ─── */
 window.PROLOGUE = [
-  {t:'scene', r:'Prologue', n:'The Method'},
-  {t:'black', ms:1500},
-  {t:'lines', per:4400, arr:[
-    'Before the story — the method.',
-    'There is a protocol called <em style="color:var(--ember)">COMPANION.</em>',
-    'It is open, free, and does one strange thing.'
+  {t:'scene', r:'Prologue', n:'The Apparatus'},
+  {t:'boot'},
+  {t:'lines', per:4200, arr:[
+    'This machine has read almost everything ever written.',
+    'Give it two files and a single sentence —',
+    'and it does not answer. It <em style="color:var(--ember)">summons.</em>'
   ]},
-  {t:'lines', per:4400, arr:[
-    'You give an ordinary AI two files —',
-    'a set of rules, and a rite —',
-    'and you speak a single sentence.'
-  ]},
-  /* demonstrate the apparatus, slowly, as the explanation */
+  /* the apparatus boots, then summons — shown, not told */
   {t:'summon', name:'Benjamin Franklin', file:'Benjamin_Franklin.jpg', src:P+'Benjamin_Franklin.jpg', slow:true},
   {t:'sub', speaker:'Franklin — through glass', html:'You called; I came.<br>Two centuries dead — and the questions, I find, are <em style="color:var(--ember)">unchanged.</em>', ms:8500},
   {t:'lines', per:4400, arr:[
