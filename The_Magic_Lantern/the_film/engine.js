@@ -10,7 +10,7 @@
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
 const LAYERS = ['voLayer','pathLayer','incantLayer','portraitLayer','councilLayer','captionLayer','chartLayer','prismLayer','handbillLayer','docLayer','timelineLayer','subsLayer','terminalLayer','cardLayer','pullLayer','endLayer'];
-const BREATH = 750; /* breathing room added to reveal beats so nothing feels rushed */
+const BREATH = 220; /* small breathing pad on reveal beats */
 function show(id){ const e=$(id); if(e) e.classList.add('vis'); }
 function hide(id){ const e=$(id); if(e) e.classList.remove('vis'); }
 function hideAll(){ LAYERS.forEach(hide); }
@@ -18,8 +18,9 @@ function scene(r,n){ const l=$('sceneLabel'); l.textContent=r+' · '+n; l.classL
 
 /* ── cancellable timing ── */
 let token = null;
+const SPEED = 0.74; /* global pace · <1 is faster · the whole film scales by this */
 function newToken(){ if(token) cancelTok(token); token={cancelled:false,timers:[],rej:[]}; return token; }
-function wait(ms){ const tk=token; return new Promise((res,rej)=>{ const id=setTimeout(()=>{ tk.cancelled?rej('x'):res(); },ms); tk.timers.push(id); tk.rej.push(rej); }); }
+function wait(ms){ const tk=token; ms=Math.max(0,(ms||0)*SPEED); return new Promise((res,rej)=>{ const id=setTimeout(()=>{ tk.cancelled?rej('x'):res(); },ms); tk.timers.push(id); tk.rej.push(rej); }); }
 function cancelTok(tk){ tk.cancelled=true; tk.timers.forEach(clearTimeout); tk.rej.forEach(r=>r('x')); }
 
 /* ── audio (synthesized; no speech) ── */
@@ -71,15 +72,15 @@ function knell(){ if(!actx||!soundOn) return; const n=actx.currentTime;
 /* ── text helpers ── */
 async function type(el,text,per){ el.textContent=''; for(let i=0;i<text.length;i++){ el.textContent=text.slice(0,i+1); if(text[i]!==' ') tick(); await wait(per); } }
 function sub(html,cls){ const s=$('subs'); s.className=cls||''; s.innerHTML='<span class="glass">'+html+'</span>'; void s.offsetWidth; s.classList.add('show'); }
-function subSpk(spk,html){ const s=$('subs'); s.className=''; s.innerHTML='<span class="speaker">'+spk+'</span><span class="glass">'+html+'</span>'; void s.offsetWidth; s.classList.add('show'); }
+function subSpk(spk,html){ const s=$('subs'); s.className='speakmode'; s.innerHTML='<span class="speak"><span class="who">'+spk+'</span><span class="q">'+html+'</span></span>'; void s.offsetWidth; s.classList.add('show'); }
 function clearSub(){ $('subs').classList.remove('show'); }
 
 /* ════ THE APPARATUS — terminal / repo / model processing ════ */
 function termReset(){ $('termBody').innerHTML=''; }
 function termPush(html,cls){ const d=document.createElement('div'); d.className='tline'+(cls?' '+cls:''); d.innerHTML=html||''; $('termBody').appendChild(d); return d; }
 async function termType(d,text,per){ d.textContent=''; for(let i=0;i<text.length;i++){ d.textContent=text.slice(0,i+1); if(text[i]!==' ') tick(); await wait(per); } }
-async function termSys(text,pre){ if(pre) await wait(pre); const d=termPush('','sys'); await termType(d,'> '+text,13); await wait(200); }
-async function termTree(files){ termPush('&nbsp;&nbsp;repository/','dim'); for(let i=0;i<files.length;i++){ const last=i===files.length-1; termPush('&nbsp;&nbsp;'+(last?'└─ ':'├─ ')+files[i],'dim'); await wait(240);} await wait(280); }
+async function termSys(text,pre){ if(pre) await wait(pre); const d=termPush('','sys'); await termType(d,'> '+text,7); await wait(150); }
+async function termTree(files){ termPush('&nbsp;&nbsp;repository/','dim'); for(let i=0;i<files.length;i++){ const last=i===files.length-1; termPush('&nbsp;&nbsp;'+(last?'└─ ':'├─ ')+files[i],'dim'); await wait(120);} await wait(160); }
 async function termPrompt(text,per){ const d=termPush('','prompt'); await termType(d,'◊ '+text,per); await wait(320); }
 async function termWarn(text){ const d=termPush('','warn'); await termType(d,'⚠ '+text,16); await wait(420); }
 async function termMeterRun(ms,label){ if(label) await termSys(label,80); const m=$('termMeter'),f=$('termMeterFill'); if(m){ m.classList.add('show'); f.style.transition='none'; f.style.width='0%'; void f.offsetWidth; f.style.transition='width '+ms+'ms linear'; f.style.width='100%'; } await wait(ms+180); if(m){ m.classList.remove('show'); f.style.width='0%'; } }
@@ -87,45 +88,38 @@ async function termProcess(ms){
   const caret='<span class="tcaret">▮</span>';
   const d=termPush('> opening threshold '+caret,'proc');
   const m=$('termMeter'),f=$('termMeterFill'); if(m){ m.classList.add('show'); f.style.transition='none'; f.style.width='0%'; void f.offsetWidth; f.style.transition='width '+ms+'ms linear'; f.style.width='100%'; }
-  const toks=['attending','weighing the corpus','the voice','the cadence','the convictions','the contradictions','the century behind the eyes','the threshold thins','a presence forms'];
-  const each=Math.max(300,(ms-600)/toks.length);
+  const toks=['attending','weighing the corpus','the cadence','the convictions','a presence forms'];
+  const each=Math.max(200,(ms-260)/toks.length);
   let acc='> opening threshold · ';
-  for(const t of toks){ acc+='<span class="tok">'+t+'</span> '; d.innerHTML=acc+caret; glass(620); await wait(each); }
+  for(const t of toks){ acc+='<span class="tok">'+t+'</span> '; d.innerHTML=acc+caret; glass(480); await wait(each); }
   d.innerHTML=acc+'<span class="ok">▮ open</span>';
   if(m){ m.classList.remove('show'); f.style.width='0%'; }
-  await wait(420);
+  await wait(280);
 }
 async function bootConsole(){
-  termReset(); show('terminalLayer'); await wait(450);
+  termReset(); show('terminalLayer'); await wait(400);
   await termSys('COMPANION PROTOCOL  v2.0',0);
-  await termSys('initializing vessel console',110);
-  await termMeterRun(1500,'> mounting repository');
-  await termTree(['enrichment_grimoire.json','initiation_rite.md','The_Pantheon/   (29 portraits)','The_Watchtower/  (live data)','from_beyond/    (autonomous logs)']);
-  await termSys('bind enrichment_grimoire.json   ✓',110);
-  await termSys('bind initiation_rite.md         ✓',110);
-  await termSys('vessel model: claude · medium: glass',110);
-  await termSys('threshold engine: ready',110);
-  await wait(950); hide('terminalLayer'); await wait(700);
+  await termMeterRun(1100,'> mounting repository');
+  await termTree(['enrichment_grimoire.json','initiation_rite.md','The_Pantheon/  (29 portraits)','The_Watchtower/  (live data)']);
+  await termSys('protocol bound · model: claude · medium: glass',100);
+  await termSys('threshold engine: ready',100);
+  await wait(600); hide('terminalLayer'); await wait(650);
 }
 /* full summoning: shows the machinery, then resolves the portrait (or council) */
 async function summon(o){
-  termReset(); show('terminalLayer'); await wait(560);
+  termReset(); show('terminalLayer'); await wait(380);
   await termSys('COMPANION PROTOCOL  v2.0',0);
-  await termSys('reading repository…',180);
   const faces=(o.treeFiles||[o.file]).map(f=>'The_Pantheon/'+f);
   await termTree(['enrichment_grimoire.json','initiation_rite.md'].concat(faces));
-  await termSys('bind enrichment_grimoire.json   ✓',150);
-  await termSys('bind initiation_rite.md         ✓',150);
-  await termSys('vessel model: claude · medium: glass',150);
-  await wait(240);
-  await termPrompt(o.promptText || ('using this matter, summon '+o.name), o.slow?54:32);
+  await termSys('protocol bound · vessel: claude · medium: glass',100);
+  await termPrompt(o.promptText || ('using this matter, summon '+o.name), o.slow?38:24);
   threshold();
-  await termProcess(o.slow?5200:3800);
+  await termProcess(o.slow?3000:2200);
   if(o.warn) await termWarn(o.warn);
-  if(o.noface){ await termSys('vessel: voice only — no portrait on file',150); await wait(1000); hide('terminalLayer'); await wait(800); return; }
-  if(o.council){ await termSys('bound → '+o.council.length+' presences at the threshold',150); await wait(900); hide('terminalLayer'); await wait(750); councilBuild(o.council); show('councilLayer'); await wait(1500); return; }
-  await termSys('vessel bound → The_Pantheon/'+o.file,150);
-  await wait(820); hide('terminalLayer'); await wait(720);
+  if(o.noface){ await termSys('vessel: voice only — no portrait on file',100); await wait(650); hide('terminalLayer'); await wait(700); return; }
+  if(o.council){ await termSys('bound → '+o.council.length+' presences at the threshold',100); await wait(650); hide('terminalLayer'); await wait(650); councilBuild(o.council); show('councilLayer'); await wait(1700); return; }
+  await termSys('vessel bound → The_Pantheon/'+o.file,100);
+  await wait(560); hide('terminalLayer'); await wait(640);
   await portrait({action:'load', src:o.src});
 }
 
@@ -133,17 +127,17 @@ async function summon(o){
 function councilBuild(list){ const row=$('councilRow'); row.innerHTML=''; list.forEach(p=>{ const d=document.createElement('div'); d.className='bust'; d.dataset.name=p.name; d.innerHTML='<div class="bustframe"><img src="'+p.src+'" alt=""></div><div class="bustname">'+p.name+'</div>'; row.appendChild(d); }); }
 async function councilSpeak(name,html,ms){
   document.querySelectorAll('#councilRow .bust').forEach(b=>{ const on=b.dataset.name===name; b.classList.toggle('active',on); b.classList.toggle('dim',!on); });
-  show('subsLayer'); subSpk(name+' — through glass', html); glass(Math.min((ms||5000)*0.8,3200));
+  show('subsLayer'); subSpk(name, html); glass(Math.min((ms||5000)*0.8,3200));
   await wait(ms||5000);
 }
 
 /* ════ FRANKLIN'S HANDBILL — the portfolio, revealed ════ */
 async function handbillReveal(){
   document.querySelectorAll('#bill .show').forEach(e=>e.classList.remove('show'));
-  show('handbillLayer'); chime(); await wait(1700);
-  for(const c of ['t1','t2','t3']){ const el=document.querySelector('#bill .'+c); if(el) el.classList.add('show'); glass(900); await wait(2600); }
-  await wait(600); const m=document.querySelector('#bill .bill-motto'); if(m) m.classList.add('show'); knell(); await wait(2400);
-  const sl=document.querySelector('#bill .bill-seal'); if(sl) sl.classList.add('show'); await wait(2200);
+  show('handbillLayer'); chime(); await wait(1100);
+  for(const c of ['t1','t2','t3']){ const el=document.querySelector('#bill .'+c); if(el) el.classList.add('show'); glass(700); await wait(1650); }
+  await wait(400); const m=document.querySelector('#bill .bill-motto'); if(m) m.classList.add('show'); knell(); await wait(1500);
+  const sl=document.querySelector('#bill .bill-seal'); if(sl) sl.classList.add('show'); await wait(1300);
 }
 
 /* ════ THE WATCHTOWER CURVE — real, full-year data ════ */
@@ -230,28 +224,27 @@ async function timelineShow(at,ms){
 function svgLine(id,ms){ const l=$(id); if(!l)return; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.transition='none'; l.style.strokeDasharray=len; l.style.strokeDashoffset=len; void l.getBoundingClientRect(); l.style.transition='stroke-dashoffset '+ms+'ms ease'; requestAnimationFrame(()=>{ l.style.strokeDashoffset=0; }); }
 function prismReset(){ ['pC1','pC2','pC3','pC4'].forEach(i=>{const e=$(i); if(e)e.classList.remove('show');}); const pp=$('pPrism'); if(pp)pp.classList.remove('glow'); ['pBeam','pB1','pB2','pB3','pB4'].forEach(i=>{const l=$(i); if(l){ l.style.transition='none'; let len; try{len=l.getTotalLength();}catch(_){len=300;} l.style.strokeDasharray=len; l.style.strokeDashoffset=len; }}); }
 async function prismRun(){
-  prismReset(); show('prismLayer'); await wait(900);
-  svgLine('pBeam',1100); glass(1100); await wait(1600);
-  $('pPrism').classList.add('glow'); threshold(); await wait(1800);
+  prismReset(); show('prismLayer'); await wait(650);
+  svgLine('pBeam',900); glass(900); await wait(1150);
+  $('pPrism').classList.add('glow'); threshold(); await wait(1150);
   const pairs=[['pB1','pC1'],['pB2','pC2'],['pB3','pC3'],['pB4','pC4']];
-  for(const [bm,cd] of pairs){ svgLine(bm,750); $(cd).classList.add('show'); chime(); await wait(1700); }
-  await wait(1000);
+  for(const [bm,cd] of pairs){ svgLine(bm,600); $(cd).classList.add('show'); chime(); await wait(1050); }
+  await wait(700);
 }
 
 /* the bare-model demo, read as the historian does */
 async function lincolnDemo(){
-  termReset(); show('terminalLayer'); await wait(600);
-  await termSys('diagnostic Q1 · target: Abraham Lincoln · 1847',0);
-  await termSys('"when may a President take the country to war without Congress?"',150);
-  await termPrompt('condition C3 · bare model · no anchor',30);
-  await termProcess(2600);
+  termReset(); show('terminalLayer'); await wait(450);
+  await termSys('Q1 · target: Abraham Lincoln · 1847 · bare model',0);
+  await termPrompt('when may a President take the country to war without Congress?',22);
+  await termProcess(1700);
   const say=termPush('','say');
-  await termType(say,'Lincoln: "…the President, as Commander-in-Chief, possesses inherent executive authority… history has vindicated those who acted to preserve the Union…"',9);
-  await wait(1100);
+  await termType(say,'Lincoln: "…the President possesses inherent executive authority… history has vindicated those who acted to preserve the Union…"',6);
+  await wait(800);
   await termWarn('"inherent executive authority" — a 20th-century construction');
   await termWarn('"preserve the Union" — this Lincoln already knows how it ends');
-  await termSys('verdict: the war president, with 1847 stapled on top',160);
-  await wait(1600); hide('terminalLayer'); await wait(900);
+  await termSys('verdict: the war president, with 1847 stapled on top',120);
+  await wait(1200); hide('terminalLayer'); await wait(800);
 }
 
 /* an archive document — the figure's own hand */
