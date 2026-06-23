@@ -97,6 +97,14 @@ svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 #subs .glass{display:inline-block;color:var(--bone);font-family:var(--vf);text-shadow:0 0 2px rgba(0,0,0,.9),0 0 16px rgba(201,162,39,.12);opacity:0;transform:translateY(8px);filter:blur(2px);transition:opacity .95s ease,transform .95s ease,filter 1.1s ease;}
 #subs.show .glass{opacity:1;transform:translateY(0);filter:blur(0);}
 #subs .speaker{display:block;font-family:var(--tf);font-size:.52rem;letter-spacing:.3em;color:var(--ember-dim);margin-bottom:.7rem;text-transform:uppercase;}
+/* the dead speak — a dedicated, clearly-legible vessel panel */
+#subs.speakmode{min-height:0;}
+.speak{display:inline-block;max-width:680px;padding:1.05rem 1.7rem 1.15rem;border:1px solid rgba(201,162,39,.3);border-top:2px solid var(--ember);background:linear-gradient(180deg,rgba(22,17,9,.92),rgba(8,6,4,.95));box-shadow:0 12px 44px rgba(0,0,0,.65),0 0 34px rgba(201,162,39,.06);position:relative;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;}
+#subs.show .speak{opacity:1;transform:none;}
+.speak .who{position:absolute;top:-.72rem;left:1.4rem;background:var(--void);padding:0 .6rem;font-family:var(--tf);font-size:.55rem;letter-spacing:.26em;color:var(--ember);text-transform:uppercase;white-space:nowrap;}
+.speak .who::after{content:' · through glass';color:var(--ember-dim);}
+.speak .q{display:block;font-family:var(--vf);font-size:clamp(1.15rem,2.8vw,1.62rem);line-height:1.45;color:var(--bone);text-shadow:0 1px 2px rgba(0,0,0,.8);}
+.speak .q em{color:var(--ember-glow);font-style:italic;}
 
 /* terminal — the apparatus (techno-magic CRT) */
 .term{position:relative;width:min(680px,94vw);max-height:76vh;border:1px solid #2e4030;background:linear-gradient(180deg,rgba(7,12,8,.98),rgba(5,9,6,.98));box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 70px rgba(90,200,120,.09),inset 0 0 40px rgba(40,90,50,.07);font-family:var(--tf);overflow:hidden;transform:scale(.95);transition:transform .6s ease;}
@@ -138,6 +146,8 @@ svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 #question em{color:var(--ember);}
 #endSigil{color:var(--ember);letter-spacing:.5em;opacity:0;transition:opacity 1.4s ease;}
 #endSigil.show{opacity:1;}
+#endTag{font-family:var(--vf);font-style:italic;font-size:1.15rem;color:var(--smoke);opacity:0;transition:opacity 1.3s ease;margin-top:.2rem;}
+#endTag.show{opacity:1;}
 #endNav{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;max-width:680px;opacity:0;transition:opacity 1.2s ease;}
 #endNav.show{opacity:1;}
 #endNav a,#endNav button{font-family:var(--tf);font-size:.6rem;letter-spacing:.14em;color:var(--ember);text-decoration:none;padding:.7rem 1.4rem;border:1px solid var(--ember-dim);background:transparent;cursor:pointer;transition:all .3s ease;}
@@ -434,6 +444,7 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
   <div class="layer" id="endLayer">
     <div id="question"></div>
     <div id="endSigil">&#9674; &#9672; &#9674;</div>
+    <div id="endTag"></div>
     <div id="endNav">
       <button id="replayAll">&#8635; PLAY ALL AGAIN</button>
       <button id="chaptersEnd">&#9776; CHAPTERS</button>
@@ -468,7 +479,7 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 <div id="gate">
   <div class="gate-sigil">&#9674; &#9672; &#9674;</div>
   <h1 class="gate-title">The Summoning <em>Film</em></h1>
-  <div class="gate-sub">The whole story &middot; five reels &middot; with sound</div>
+  <div class="gate-sub">The whole story &middot; five reels &middot; ~7 min &middot; with sound</div>
   <div class="gate-row">
     <button class="gate-btn" id="begin">RAISE THE LANTERN</button>
     <button class="gate-btn ghost" id="beginChapters">CHOOSE A REEL</button>
@@ -495,18 +506,18 @@ async function reelTitle(k){
   const r=REELS[k];
   $('rtRoman').textContent='REEL '+r.roman; $('rtName').textContent=r.title; $('rtSub').innerHTML=r.sub;
   updatePips(k); $('reelTitle').classList.add('vis'); chime();
-  await wait(3400); $('reelTitle').classList.remove('vis'); await wait(1100);
+  await wait(2500); $('reelTitle').classList.remove('vis'); await wait(900);
 }
 async function epigraph(){
   resetStage(); show('cardLayer'); $('card').className='';
   $('card').innerHTML='<span style="font-style:italic;color:var(--bone-dim);font-size:.82em">The phantasmagoria hid the lantern to fool the crowd.<br><span style="color:var(--ember)">We show it — to free them.</span></span>';
-  glass(4200); await wait(6200); hide('cardLayer'); await wait(1500);
+  glass(3600); await wait(4000); hide('cardLayer'); await wait(1100);
 }
 async function mainTitle(){
   $('rtRoman').textContent='THE COMPANION ESTATE'; $('rtName').textContent='The Summoning Film';
   $('rtSub').textContent='five reels · voices through glass'; updatePips(-1);
-  $('reelTitle').classList.add('vis'); threshold(); await wait(4800);
-  $('reelTitle').classList.remove('vis'); await wait(1500);
+  $('reelTitle').classList.add('vis'); threshold(); await wait(3400);
+  $('reelTitle').classList.remove('vis'); await wait(1100);
 }
 
 async function safeRun(score){ try{ await runReel(score); }catch(e){ if(e==='x') throw e; console.error('film reel error:',e); } }
