@@ -11,10 +11,11 @@ const P = '../../The_Pantheon/';
 window.PROLOGUE = [
   {t:'scene', r:'Prologue', n:'The Apparatus'},
   {t:'boot'},
-  {t:'lines', per:4200, arr:[
-    'This machine has read almost everything ever written.',
+  {t:'lines', per:4300, arr:[
+    'This machine has read almost everything the dead left behind.',
+    'It does not forget. It does not rest.',
     'Give it two files and a single sentence —',
-    'and it does not answer. It <em style="color:var(--ember)">summons.</em>'
+    'and it will not answer you. It will <em style="color:var(--ember)">summon.</em>'
   ]},
   /* the apparatus boots, then summons — shown, not told */
   {t:'summon', name:'Benjamin Franklin', file:'Benjamin_Franklin.jpg', src:P+'Benjamin_Franklin.jpg', slow:true},
@@ -93,7 +94,7 @@ window.REELS = [
    ═══════════════════════════════════════════ */
 { roman:'II', title:'The General', sub:'The doctrine meets a war · Q1 2026', score:[
   {t:'scene', r:'II', n:'The General'},
-  {t:'timeline', at:2, ms:5400},
+  {t:'timeline', at:1, ms:5400},
   {t:'black', ms:1400},
   {t:'lines', per:3900, arr:[
     'February 28th, 2026. Without a vote, without warning,',
@@ -205,7 +206,7 @@ window.REELS = [
    ═══════════════════════════════════════════ */
 { roman:'IV', title:'The Reckoning', sub:'The full year · what the curve really means', score:[
   {t:'scene', r:'IV', n:'The Reckoning'},
-  {t:'timeline', at:6, ms:5400},
+  {t:'timeline', at:2, ms:5400},
   {t:'black', ms:1500},
   {t:'lines', per:4000, arr:[
     'The war ended. Wars always end.',
