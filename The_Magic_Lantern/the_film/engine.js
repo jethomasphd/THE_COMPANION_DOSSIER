@@ -204,27 +204,26 @@ async function seedPlant(s){
   await wait(1000);
 }
 
-/* the recurring timeline · December 2025 → June 2026 */
-const TIMELINE=[
- {x:5,  m:'DEC',    when:'December 2025',     label:'The Founding',        sub:'the Committee convenes',     kind:'gold'},
- {x:18, m:'JAN',    when:'January 2026',      label:'The Watchtower opens', sub:'the vigil begins',           kind:'dim'},
- {x:33, m:'FEB 28', when:'February 28, 2026', label:'Operation Epic Fury',  sub:'war begins · Hormuz closed', kind:'blood'},
- {x:45, m:'MAR',    when:'March 2026',        label:'the markets bleed',    sub:'the index falls past −7%',   kind:'blood'},
- {x:53, m:'MAR 31', when:'March 31, 2026',    label:'Q1 Wartime Review',    sub:'ceasefire · doctrine amended', kind:'gold'},
- {x:85, m:'JUN 16', when:'June 16, 2026',     label:'the Republic peaks',   sub:'+10.49%',                    kind:'gold'},
- {x:97, m:'JUN',    when:'late June 2026',    label:'the index catches up', sub:'the vigil goes on',          kind:'dim'}
+/* the recurring calendar — the day of each turning point, highlighted */
+const CAL=[
+ {y:2025,mo:11,d:1,  label:'The Founding',        sub:'the Committee convenes',             kind:'gold'},
+ {y:2026,mo:1, d:28, label:'Operation Epic Fury',  sub:'the war begins · the Strait closes', kind:'blood'},
+ {y:2026,mo:5, d:16, label:'The Reckoning',        sub:'the Republic at its peak',           kind:'gold'}
 ];
-function timelineBuild(){
-  const ev=$('tlEvents'); if(!ev) return; ev.innerHTML='';
-  TIMELINE.forEach((e,i)=>{ const d=document.createElement('div'); d.className='tl-ev '+e.kind+' '+(i%2?'below':'above'); d.style.left=e.x+'%';
-    d.innerHTML='<div class="m">'+e.m+'</div><div class="dot"></div><div class="lab">'+e.label+'<span class="sub">'+e.sub+'</span></div>'; ev.appendChild(d); });
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function calBuild(c){
+  $('calMonth').textContent=MONTHS[c.mo]+' '+c.y;
+  const grid=$('calGrid'); grid.innerHTML='';
+  ['S','M','T','W','T','F','S'].forEach(w=>{ const h=document.createElement('div'); h.className='cal-wd'; h.textContent=w; grid.appendChild(h); });
+  const first=new Date(c.y,c.mo,1).getDay();
+  const days=new Date(c.y,c.mo+1,0).getDate();
+  for(let i=0;i<first;i++){ const e=document.createElement('div'); e.className='cal-cell empty'; grid.appendChild(e); }
+  for(let day=1;day<=days;day++){ const e=document.createElement('div'); e.className='cal-cell'+(day===c.d?' on '+c.kind:''); e.textContent=day; grid.appendChild(e); }
+  $('calLabel').innerHTML=c.label; $('calSub').innerHTML=c.sub;
 }
 async function timelineShow(at,ms){
-  timelineBuild(); show('timelineLayer');
-  const e=TIMELINE[at]||TIMELINE[0];
-  $('tlHead').style.left=e.x+'%';
-  $('tlNow').innerHTML=e.when+' &mdash; '+e.label;
-  chime(); await wait(ms||5200); hide('timelineLayer'); await wait(1100);
+  const c=CAL[at]||CAL[0]; calBuild(c); show('timelineLayer'); chime();
+  await wait(ms||5200); hide('timelineLayer'); await wait(1100);
 }
 
 /* ════ THE PRISM — Halpern Memo's experiment, animated ════ */
