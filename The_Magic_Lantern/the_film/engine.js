@@ -18,7 +18,7 @@ function scene(r,n){ const l=$('sceneLabel'); l.textContent=r+' · '+n; l.classL
 
 /* ── cancellable timing ── */
 let token = null;
-const SPEED = 0.74; /* global pace · <1 is faster · the whole film scales by this */
+const SPEED = 1.0; /* global pace · <1 is faster · the whole film scales by this · slowed to read */
 function newToken(){ if(token) cancelTok(token); token={cancelled:false,timers:[],rej:[]}; return token; }
 function wait(ms){ const tk=token; ms=Math.max(0,(ms||0)*SPEED); return new Promise((res,rej)=>{ const id=setTimeout(()=>{ tk.cancelled?rej('x'):res(); },ms); tk.timers.push(id); tk.rej.push(rej); }); }
 function cancelTok(tk){ tk.cancelled=true; tk.timers.forEach(clearTimeout); tk.rej.forEach(r=>r('x')); }
