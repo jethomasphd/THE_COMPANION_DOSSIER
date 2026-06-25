@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◊ The Summoning Film — Five Reels</title>
-<meta name="description" content="The Summoning Film — the entire story of the COMPANION estate in five reels of summoning cinema. Self-explanatory: every mind is summoned through the apparatus, on screen. Voices through glass.">
+<title>◊ The Summoning Film — Five Reels &amp; the Chambers</title>
+<meta name="description" content="The Summoning Film — the COMPANION estate in five reels of summoning cinema, then eight chambers you can wander: the Chair, the Symposium, the Five Lamps, the Boardroom, the Aerodrome, the Warning, the Recursion, the Open Door. Every mind summoned through the apparatus, on screen. Voices through glass.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
@@ -146,8 +146,6 @@ svg#wt{width:100%;height:128px;display:block;overflow:visible;}
 #question em{color:var(--ember);}
 #endSigil{color:var(--ember);letter-spacing:.5em;opacity:0;transition:opacity 1.4s ease;}
 #endSigil.show{opacity:1;}
-#endTag{font-family:var(--vf);font-style:italic;font-size:1.15rem;color:var(--smoke);opacity:0;transition:opacity 1.3s ease;margin-top:.2rem;}
-#endTag.show{opacity:1;}
 #endNav{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;max-width:680px;opacity:0;transition:opacity 1.2s ease;}
 #endNav.show{opacity:1;}
 #endNav a,#endNav button{font-family:var(--tf);font-size:.6rem;letter-spacing:.14em;color:var(--ember);text-decoration:none;padding:.7rem 1.4rem;border:1px solid var(--ember-dim);background:transparent;cursor:pointer;transition:all .3s ease;}
@@ -186,6 +184,30 @@ body.cine #lbTop,body.cine #lbBottom{height:6.5vh;}
 .chap .cr{font-family:var(--tf);font-size:.6rem;color:var(--ember-dim);letter-spacing:.2em;}
 #menuClose{margin-top:1.6rem;font-family:var(--tf);font-size:.55rem;letter-spacing:.15em;color:var(--smoke);background:transparent;border:1px solid #2a2a2a;padding:.5rem 1.2rem;cursor:pointer;}
 #menuClose:hover{color:var(--ember);}
+
+/* the hub — the estate · the chambers as doors */
+#hub{position:fixed;inset:0;z-index:90;background:radial-gradient(ellipse at 50% 30%,rgba(20,15,6,.97),rgba(3,3,3,.985) 70%);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;opacity:0;pointer-events:none;transition:opacity .6s ease;overflow-y:auto;padding:clamp(2rem,7vh,4.5rem) 1.2rem 3rem;}
+#hub.open{opacity:1;pointer-events:auto;}
+#hub .hub-sigil{font-size:1.2rem;color:var(--ember);letter-spacing:.5em;margin-bottom:1rem;animation:gl 4s ease-in-out infinite;}
+#hub h2{font-family:var(--vf);font-weight:300;font-size:clamp(1.9rem,5vw,3.1rem);color:var(--bone);line-height:1.1;text-align:center;}
+#hub h2 em{color:var(--ember);font-style:italic;}
+#hub .hub-lede{font-family:var(--tf);font-size:.56rem;letter-spacing:.2em;color:var(--smoke);text-transform:uppercase;margin:.9rem 0 .2rem;text-align:center;}
+#hub .hub-note{font-family:var(--bf);font-style:italic;font-size:.95rem;color:var(--bone-dim);max-width:560px;text-align:center;margin-bottom:2.1rem;line-height:1.5;}
+#hubList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;width:min(820px,94vw);}
+@media(max-width:620px){#hubList{grid-template-columns:1fr;}}
+.cham{position:relative;text-align:left;border:1px solid rgba(201,162,39,.18);background:linear-gradient(180deg,rgba(18,14,8,.6),rgba(8,7,4,.6));padding:1.15rem 1.25rem 1.05rem;transition:border-color .3s ease,background .3s ease,transform .3s ease;}
+.cham:hover{border-color:rgba(201,162,39,.5);background:linear-gradient(180deg,rgba(28,21,10,.8),rgba(12,9,5,.8));transform:translateY(-2px);}
+.cham-play{display:block;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;padding:0;}
+.cham-name{font-family:var(--vf);font-size:clamp(1.25rem,3vw,1.7rem);color:var(--bone);line-height:1.1;}
+.cham:hover .cham-name{color:var(--ember-glow);}
+.cham-sub{font-family:var(--tf);font-size:.54rem;letter-spacing:.07em;color:var(--smoke);margin-top:.4rem;line-height:1.6;text-transform:uppercase;}
+.cham-doors{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.85rem;}
+.cham-door{font-family:var(--tf);font-size:.52rem;letter-spacing:.1em;color:var(--ember-dim);text-decoration:none;border:1px solid #2a2418;padding:.32rem .7rem;transition:all .25s ease;}
+.cham-door:hover{color:#000;background:var(--ember);border-color:var(--ember);}
+.cham-no{position:absolute;top:.9rem;right:1rem;font-family:var(--tf);font-size:.5rem;letter-spacing:.18em;color:var(--ember-dim);opacity:.6;}
+#hubBtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2.3rem;}
+#hubBtns button,#hubBtns a{font-family:var(--tf);font-size:.58rem;letter-spacing:.16em;color:var(--ember);text-decoration:none;background:transparent;border:1px solid var(--ember-dim);padding:.7rem 1.4rem;cursor:pointer;transition:all .3s ease;}
+#hubBtns button:hover,#hubBtns a:hover{background:var(--ember);color:#000;}
 #gate{position:fixed;inset:0;z-index:100;background:var(--void);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity 1.2s ease;}
 #gate.gone{opacity:0;pointer-events:none;}
 #gate::before{content:'';position:absolute;top:-15%;left:50%;width:80%;height:80%;transform:translateX(-50%) rotate(7deg);background:linear-gradient(180deg,rgba(216,178,74,.08),transparent 70%);filter:blur(34px);animation:flick 5s ease-in-out infinite;}
@@ -444,9 +466,9 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
   <div class="layer" id="endLayer">
     <div id="question"></div>
     <div id="endSigil">&#9674; &#9672; &#9674;</div>
-    <div id="endTag"></div>
     <div id="endNav">
       <button id="replayAll">&#8635; PLAY ALL AGAIN</button>
+      <button id="enterChambers">&#9672; ENTER THE CHAMBERS</button>
       <button id="chaptersEnd">&#9776; CHAPTERS</button>
       <a href="../../from_beyond/007_marker_morris_vertov_the_lantern_turns_on_itself.html">THE SESSION (007)</a>
       <a href="../">THE MAGIC LANTERN</a>
@@ -469,9 +491,23 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 
 <div id="menu"><h3>The Summoning Film — Chapters</h3><div id="chapList"></div><button id="menuClose">CLOSE</button></div>
 
+<div id="hub">
+  <div class="hub-sigil">&#9674; &#9672; &#9674;</div>
+  <h2>The Estate of <em>Summoned Minds</em></h2>
+  <div class="hub-lede">The five reels told one story &middot; the estate holds many chambers</div>
+  <div class="hub-note">Each chamber is its own short summoning &mdash; and a real door into the room it comes from. Wander as you like. They all loop back here.</div>
+  <div id="hubList"></div>
+  <div id="hubBtns">
+    <button id="hubReplay">&#8635; PLAY THE FIVE REELS</button>
+    <button id="hubClose">CLOSE</button>
+    <a href="../../The_Atrium/">THE ATRIUM &#8599;</a>
+  </div>
+</div>
+
 <div id="pips"></div>
 <div id="hud">
   <button id="chapters">&#9776; CHAPTERS</button>
+  <button id="chambersHud">&#9672; CHAMBERS</button>
   <button id="sound">&#9834; SOUND ON</button>
   <button id="restart">&#8635; RESTART</button>
 </div>
@@ -479,16 +515,18 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 <div id="gate">
   <div class="gate-sigil">&#9674; &#9672; &#9674;</div>
   <h1 class="gate-title">The Summoning <em>Film</em></h1>
-  <div class="gate-sub">The whole story &middot; five reels &middot; ~7 min &middot; with sound</div>
+  <div class="gate-sub">Five reels &middot; then eight chambers &middot; with sound</div>
   <div class="gate-row">
     <button class="gate-btn" id="begin">RAISE THE LANTERN</button>
     <button class="gate-btn ghost" id="beginChapters">CHOOSE A REEL</button>
+    <button class="gate-btn ghost" id="beginChambers">WANDER THE CHAMBERS</button>
   </div>
   <div class="gate-note">Summoning cinema: every mind is summoned on screen, through the machine. Voices through glass &mdash; nothing here pretends to be alive.</div>
 </div>
 
 <script src="../../The_Watchtower/data/vigil_data.js"></script>
 <script src="reels.js"></script>
+<script src="wings.js"></script>
 <script src="engine.js"></script>
 <script>
 let current=0, started=false;
@@ -537,16 +575,65 @@ async function playFrom(i){
 }
 function finale(){ $('sceneLabel').classList.remove('show'); $('endNav').classList.add('show'); updatePips(REELS.length-1); }
 
+/* ── the hub · the chambers (wings) ── */
+const WINGS = window.WINGS || [];
+function buildHub(){
+  const c=$('hubList'); c.innerHTML='';
+  WINGS.forEach((w,i)=>{
+    const cell=document.createElement('div'); cell.className='cham';
+    const no=String(i+1).padStart(2,'0');
+    let doors='<a class="cham-door" href="'+w.room+'">'+(w.door||'Enter the room')+' &#8599;</a>';
+    if(w.room2) doors+='<a class="cham-door" href="'+w.room2+'">'+(w.door2||'Enter')+' &#8599;</a>';
+    cell.innerHTML=
+      '<span class="cham-no">'+no+'</span>'+
+      '<button class="cham-play" data-key="'+w.key+'">'+
+        '<span class="cham-name">'+w.title+'</span>'+
+        '<span class="cham-sub">'+w.sub+'</span>'+
+      '</button>'+
+      '<div class="cham-doors">'+doors+'</div>';
+    cell.querySelector('.cham-play').onclick=()=>{ startAudioIfNeeded(); playWing(w.key); };
+    c.appendChild(cell);
+  });
+}
+function openHub(){ buildHub(); $('hub').classList.add('open'); }
+function closeHub(){ $('hub').classList.remove('open'); }
+
+async function wingTitle(w){
+  $('rtRoman').textContent='THE CHAMBERS'; $('rtName').textContent=w.title; $('rtSub').innerHTML=w.sub;
+  updatePips(-1); $('reelTitle').classList.add('vis'); chime();
+  await wait(2400); $('reelTitle').classList.remove('vis'); await wait(900);
+}
+async function playWing(key){
+  const w=WINGS.find(x=>x.key===key); if(!w) return;
+  closeHub(); closeMenu();
+  newToken();
+  document.body.classList.add('cine');
+  gain(soundOn?0.9:0.0001, 1.2);
+  $('endNav').classList.remove('show'); hide('endLayer');
+  try{
+    resetStage(); await wingTitle(w);
+    resetStage(); await safeRun(w.score);
+    await wait(700);
+  }catch(e){ if(e!=='x') console.error('wing error:',e); else return; }
+  $('sceneLabel').classList.remove('show'); resetStage();
+  openHub();
+}
+
 function openMenu(){ $('menu').classList.add('open'); }
 function closeMenu(){ $('menu').classList.remove('open'); }
 function startAudioIfNeeded(){ if(!started){ audioInit(); humStart(); started=true; } else if(actx&&actx.state==='suspended'){ actx.resume(); } }
 
 $('begin').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); setTimeout(()=>playFrom(0),900); };
 $('beginChapters').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); buildChapters(); openMenu(); };
-$('replayAll').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
+$('beginChambers').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); openHub(); };
+$('replayAll').onclick=()=>{ startAudioIfNeeded(); closeHub(); playFrom(0); };
+$('enterChambers').onclick=()=>{ startAudioIfNeeded(); openHub(); };
 $('chapters').onclick=()=>{ buildChapters(); openMenu(); };
+$('chambersHud').onclick=()=>{ startAudioIfNeeded(); openHub(); };
 $('chaptersEnd').onclick=()=>{ buildChapters(); openMenu(); };
 $('menuClose').onclick=closeMenu;
+$('hubClose').onclick=closeHub;
+$('hubReplay').onclick=()=>{ startAudioIfNeeded(); closeHub(); playFrom(0); };
 $('restart').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
 $('sound').onclick=()=>{ soundOn=!soundOn; $('sound').innerHTML=soundOn?'&#9834; SOUND ON':'&#9834; SOUND OFF'; gain(soundOn?0.9:0.0001,0.4); };
 

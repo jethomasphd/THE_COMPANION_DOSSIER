@@ -278,7 +278,7 @@ function resetStage(){
   $('caption').innerHTML=''; clearSub(); termReset(); $('councilRow').innerHTML='';
   ['labG','labB','spread','warBand','pivot','crossDot','goldDot','blueDot'].forEach(i=>{ const e=$(i); if(e) e.classList.remove('show'); });
   document.querySelectorAll('#bill .show').forEach(e=>e.classList.remove('show'));
-  prismReset(); $('endSigil').classList.remove('show'); { const et=$('endTag'); if(et) et.classList.remove('show'); }
+  prismReset(); $('endSigil').classList.remove('show');
 }
 
 /* ── the step executor ── */
@@ -361,9 +361,7 @@ async function exec(s){
     case 'end':
       show('endLayer'); $('question').innerHTML=s.a; glass(3500); await wait(s.ms1||3900);
       $('question').innerHTML=s.b; glass(3500); if(s.knell) knell(); await wait(s.ms2||4400);
-      $('endSigil').classList.add('show'); gain(0.0001,7); await wait(1800);
-      if(s.tag){ $('endTag').textContent=s.tag; $('endTag').classList.add('show'); await wait(2400); } else { await wait(600); }
-      break;
+      $('endSigil').classList.add('show'); gain(0.0001,7); await wait(2400); break;
   }
 }
 async function runReel(score){ for(const s of score){ await exec(s); } }
