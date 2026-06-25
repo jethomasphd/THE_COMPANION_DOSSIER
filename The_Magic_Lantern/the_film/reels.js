@@ -107,8 +107,8 @@ window.REELS = [
     'Watch the whole year now, in one breath.'
   ]},
   {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FULL YEAR'},
-  {t:'sub', html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:8000},
-  {t:'sub', html:'At the close, the two lines meet — a single point apart.', ms:7000},
+  {t:'sub', scrim:true, html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:8000},
+  {t:'sub', scrim:true, html:'At the close, the two lines meet — a single point apart.', ms:7000},
   {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1400},
   {t:'clearSub', ms:1000},
   {t:'lines', per:4000, arr:[
