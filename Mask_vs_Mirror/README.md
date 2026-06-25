@@ -61,7 +61,7 @@ This is a pre-registration in spirit: **commit first, reveal later, and let the 
 |-------|----------------|
 | [The Dossier (PDF)](../THE_COMPANION_DOSSIER.pdf) | The origin artifact — the full theory and demonstration |
 | [The Halpern Memo](https://the-companion-dossier.com/The_Halpern_Memo/) | The in-world, dramatized account of the same hypothesis |
-| [The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/) | The four-Lincoln Prism, rendered as cinema |
+| [The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/) | The origin story, rendered as cinema |
 | [The Atrium](https://the-companion-dossier.com/The_Atrium/) | The museum entrance that ties the estate together |
 
 ---
