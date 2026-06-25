@@ -98,87 +98,33 @@ window.REELS = [
   {t:'hidePortrait', ms:800}
 ]},
 
-/* ═══ REEL III — THE DOUBT · the Miranda Hypothesis ═══ */
-{ roman:'III', title:'The Doubt', sub:'Is it the man — or the machine&rsquo;s memory of him?', score:[
-  {t:'scene', r:'III', n:'The Doubt'},
-  {t:'lines', per:3500, arr:[
-    'Here most films would end. The founder was right.',
-    'But a documentary has a harder duty —',
-    'not <em>&ldquo;was he right?&rdquo;</em> but <em style="color:var(--ember)">&ldquo;was it him?&rdquo;</em>'
-  ]},
-  {t:'summon', name:'Abraham Lincoln', file:'Abraham_Lincoln.jpg', src:P+'Abraham_Lincoln.jpg',
-    warn:'source corpus unverified — persona may be a cultural composite'},
-  {t:'sub', speaker:'The Historian', html:'Ask the machine for Lincoln, and it does not open a grave.<br>It averages <em style="color:var(--ember)">a million sentences</em> written about him.', ms:7200},
-  {t:'card', big:true, html:'THE MIRANDA HYPOTHESIS<br><span style="font-size:.46em;color:var(--bone-dim);font-style:italic">the machine returns not the man,<br>but the culture&rsquo;s loudest memory of him.</span>', ms:7200, silence:true, restore:true, knell:true},
-  {t:'hidePortrait', ms:700},
-  {t:'lines', per:3400, arr:[
-    'And there is not <em>one</em> Lincoln.',
-    'There are <em style="color:var(--ember)">four</em> — separated by cataclysm.'
-  ]},
-  {t:'prism'},
-  {t:'sub', html:'The 1847 Whig — a President&rsquo;s war is <em>unconstitutional.</em>', ms:4800},
-  {t:'sub', html:'The 1865 Emancipator — who did, by order,<br>what <em style="color:var(--ember)">1847 called tyranny.</em>', ms:5600},
-  {t:'sub', html:'Four men, one name. Summon the wrong one,<br>and you will never know.', ms:5800},
-  {t:'prismHide', ms:900},
-  {t:'vo', html:'Watch the bare machine answer —<br>and read it as the historian does.', ms:4800},
-  {t:'demo'},
-  {t:'vo', html:'Now — the man&rsquo;s <em style="color:var(--ember)">own hand.</em>', ms:4000},
-  {t:'doc', ms:10000,
-    text:'&ldquo;&hellip;they resolved to so frame the Constitution that <em>no one man</em> should hold the power&hellip; But your view places our President where <em>kings have always stood.</em>&rdquo;',
-    prov:'Abraham Lincoln to William Herndon · February 15, 1848'},
-  {t:'sub', html:'The real Lincoln of 1847 said <em style="color:var(--ember)">no.</em><br>The machine gave you the opposite — in his voice.', ms:6800},
-  {t:'lines', per:3500, arr:[
-    'So judge it not by whether it <em>sounds</em> like him,',
-    'but by whether it could be <em style="color:var(--ember)">true.</em>',
-    'To reward the voice is to validate the lie.'
-  ]},
-  {t:'lines', per:3500, arr:[
-    'Know where this began. Not in a lab —',
-    'in a <em style="color:var(--ember)">hospital room.</em>'
-  ]},
-  {t:'card', big:true, html:'You do not want a machine that <em>is</em> your mother.<br>You want one that can speak with her <em style="color:var(--ember)">letters in the room</em> —<br>and never put in her mouth a word she did not say.', ms:8500, silence:true, restore:true, knell:true}
-]},
-
-/* ═══ REEL IV — THE RECKONING · the full year ═══ */
-{ roman:'IV', title:'The Reckoning', sub:'The full year · what the curve really means', score:[
-  {t:'scene', r:'IV', n:'The Reckoning'},
-  {t:'timeline', at:2, ms:4400},
-  {t:'lines', per:3500, arr:[
+/* ═══ REEL III — THE RECKONING · the full year, and the verdict ═══ */
+{ roman:'III', title:'The Reckoning', sub:'The full year · what the doctrine was worth', score:[
+  {t:'scene', r:'III', n:'The Reckoning'},
+  {t:'timeline', at:2, ms:4600},
+  {t:'lines', per:4000, arr:[
     'The war ends. The index, which had crashed to −7,<br>comes roaring back.',
     'Watch the whole year now, in one breath.'
   ]},
-  {t:'curve', a:0, b:115, ms:9000, war:[38,60], pivot:60, cross:114, lead:900, title:'THE WATCHTOWER — THE FULL YEAR'},
-  {t:'sub', html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:7200},
-  {t:'sub', html:'At the close, the two lines meet — a single point apart.', ms:6200},
-  {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1000},
-  {t:'clearSub', ms:800},
-  {t:'lines', per:3500, arr:[
+  {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FULL YEAR'},
+  {t:'sub', html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:8000},
+  {t:'sub', html:'At the close, the two lines meet — a single point apart.', ms:7000},
+  {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1400},
+  {t:'clearSub', ms:1000},
+  {t:'lines', per:4000, arr:[
     'It matched a roaring market — while keeping<br>a <em style="color:var(--ember)">fifth of itself in Treasury bills.</em>',
     'That drag was not weakness. It was armor —<br>and the freedom to move while others were pinned.'
   ]},
   {t:'summon', name:'Alexander Hamilton', file:'Alexander_Hamilton.jpg', src:P+'Alexander_Hamilton.jpg'},
-  {t:'sub', speaker:'Hamilton', html:'The reserve is not timidity. It is the <em style="color:var(--ember)">power to act</em><br>when others cannot.', ms:6600},
-  {t:'hidePortrait', ms:800},
-  {t:'card', big:true, html:'It carried a fifth of its weight in armor —<br>and still kept pace. That is the doctrine, <em style="color:var(--ember)">keeping its word.</em>', ms:7500, silence:true, restore:true, knell:true}
-]},
-
-/* ═══ REEL V — THE ROOM THAT BUILT ITSELF · the coda ═══ */
-{ roman:'V', title:'The Room That Built Itself', sub:'The film confesses how it was made', score:[
-  {t:'scene', r:'V', n:'The Room That Built Itself'},
-  {t:'lines', per:3500, arr:[
-    'You have watched a film about a machine<br>that summons the dead.',
-    'You should know how it was made.'
+  {t:'sub', speaker:'Hamilton', html:'The reserve is not timidity. It is the <em style="color:var(--ember)">power to act</em><br>when others cannot.', ms:7200},
+  {t:'hidePortrait', ms:900},
+  {t:'card', big:true, html:'A fifth of its weight in armor —<br>and still it kept pace.<br>That is the doctrine, <em style="color:var(--ember)">keeping its word.</em>', ms:8200, silence:true, restore:true, knell:true},
+  {t:'lines', per:4200, arr:[
+    'A citizen asked the dead a question:',
+    'who should own the engines of a nation?',
+    'The founders answered. The Republic Portfolio<br>was that answer, made <em style="color:var(--ember)">real.</em>'
   ]},
-  {t:'summon', name:'Marker, Morris, Vertov', promptText:'using this matter, summon Chris Marker, Errol Morris, Dziga Vertov',
-    treeFiles:['Chris_Marker.jpg  (not found)','Errol_Morris.jpg  (not found)','Dziga_Vertov.jpg  (not found)'],
-    noface:true, warn:'no portrait on file — these vessels are voice only'},
-  {t:'lines', per:3500, arr:[
-    'Three filmmakers, summoned to design it.',
-    'Three dead men, arguing about how to be honest<br>about the dead.'
-  ]},
-  {t:'sub', speaker:'Morris', html:'Every face tonight was a file. Every voice, a guess.<br>We never once pretended otherwise.', ms:6800},
-  {t:'card', big:true, html:'Show the glass.<br>The wonder survives the exposure.', ms:5800, silence:true, restore:true, knell:true},
-  {t:'end', a:'Did you hear <em>them?</em>', b:'Did you hear them —<br>or did you hear <em>us?</em>', ms1:3600, ms2:4400, knell:true}
+  {t:'end', a:'And the score is still being kept —<br><em style="color:var(--ember)">in public,</em> day by day.', b:'The Word against the Flood.', ms1:5600, ms2:5600, knell:true}
 ]}
 
 ];
