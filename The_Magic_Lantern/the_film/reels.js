@@ -111,10 +111,9 @@ window.REELS = [
   {t:'sub', scrim:true, html:'At the close, the two lines meet — a single point apart.', ms:7000},
   {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1400},
   {t:'clearSub', ms:1000},
-  {t:'lines', per:4000, arr:[
-    'It matched a roaring market — while keeping<br>a <em style="color:var(--ember)">fifth of itself in Treasury bills.</em>',
-    'That drag was not weakness. It was armor —<br>and the freedom to move while others were pinned.'
-  ]},
+  {t:'sub', scrim:true, html:'It matched a roaring market — while holding<br>a <em style="color:var(--ember)">fifth of itself in Treasury bills.</em>', ms:7400},
+  {t:'sub', scrim:true, html:'That drag was not weakness. It was <em style="color:var(--ember)">armor</em> —<br>and the freedom to move while others were pinned.', ms:7400},
+  {t:'clearSub', ms:900},
   {t:'summon', name:'Alexander Hamilton', file:'Alexander_Hamilton.jpg', src:P+'Alexander_Hamilton.jpg'},
   {t:'sub', speaker:'Hamilton', html:'The reserve is not timidity. It is the <em style="color:var(--ember)">power to act</em><br>when others cannot.', ms:7200},
   {t:'hidePortrait', ms:900},
@@ -122,9 +121,13 @@ window.REELS = [
   {t:'lines', per:4200, arr:[
     'A citizen asked the dead a question:',
     'who should own the engines of a nation?',
-    'The founders answered. The Republic Portfolio<br>was that answer, made <em style="color:var(--ember)">real.</em>'
+    'The founders answered &mdash; and the answer <em style="color:var(--ember)">held.</em>'
   ]},
-  {t:'end', a:'And the score is still being kept —<br><em style="color:var(--ember)">in public,</em> day by day.', b:'The Word against the Flood.', ms1:5600, ms2:5600, knell:true}
+  {t:'lines', per:4200, arr:[
+    'But one full year is only the <em>first</em> reckoning.'
+  ]},
+  {t:'timeline', at:3, ms:5600},
+  {t:'end', a:'At the close of this quarter, the founders are<br><em style="color:var(--ember)">summoned once more</em> —<br>to weigh what the doctrine has earned.', b:'The vigil continues &middot; the score kept in public.<br><span style="display:block;margin-top:1.25rem;font-family:var(--tf);font-size:.42em;letter-spacing:.34em;color:var(--ember-dim);text-transform:uppercase;">The Word against the Flood</span>', ms1:6400, ms2:6200, knell:true}
 ]}
 
 ];
