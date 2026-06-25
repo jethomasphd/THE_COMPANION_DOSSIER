@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The COMPANION Dossier: It Did Not Die</title>
+<meta name="description" content="A dispatch on the COMPANION Dossier, buried in December 2025 and now called to keynote the AI Engineer World's Fair. The seed spreads if it becomes useful... and only if." />
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --void:#030303;
+    --void-2:#0a0807;
+    --panel:#0c0a07;
+    --ember:#c9a227;
+    --ember-bright:#e9c558;
+    --gold-pale:#f1e6c4;
+    --bronze:#6b5d34;
+    --bronze-dim:#43391f;
+    --parchment:#ddd0ad;
+    --parchment-dim:#a89f88;
+    --ash:#6f685c;
+    --measure:46rem;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--parchment);
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:clamp(1.16rem,0.55rem + 0.85vw,1.36rem);
+    line-height:1.72;
+    font-weight:400;
+    letter-spacing:0.005em;
+    overflow-x:hidden;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ambient candle glow + paper grain */
+  .glow-field{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(60rem 60rem at 50% -8%, rgba(201,162,39,0.10), transparent 60%),
+      radial-gradient(40rem 40rem at 50% 108%, rgba(201,162,39,0.05), transparent 60%);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:9000; pointer-events:none;
+    opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{max-width:var(--measure); margin-inline:auto; padding-inline:1.6rem; position:relative; z-index:1;}
+
+  /* ---------- eyebrow / mono utility ---------- */
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:0.7rem; font-weight:400;
+    letter-spacing:0.34em; text-transform:uppercase;
+    color:var(--bronze); 
+    display:flex; align-items:center; gap:0.9rem;
+    margin:0 0 1.9rem;
+  }
+  .eyebrow::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--bronze-dim),transparent);}
+  .eyebrow .idx{color:var(--ember);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:6rem 1.6rem 4rem; position:relative; z-index:1;
+  }
+  .sigil{width:clamp(118px,20vw,164px); height:auto; margin-bottom:2.6rem;}
+
+  .hero .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.72rem; letter-spacing:0.42em; text-transform:uppercase;
+    color:var(--parchment-dim); margin:0 0 2rem;
+  }
+  .hero h1{
+    font-weight:300; font-style:italic;
+    font-size:clamp(2.5rem,1rem + 6.4vw,5rem);
+    line-height:1.04; letter-spacing:-0.012em;
+    margin:0; color:var(--gold-pale); max-width:18ch;
+  }
+  .turn{
+    display:block; font-style:normal; font-weight:500;
+    color:var(--ember-bright);
+    margin-top:0.6em;
+    text-shadow:0 0 28px rgba(233,197,88,0.32), 0 0 6px rgba(201,162,39,0.4);
+  }
+  .hero .standfirst{
+    font-family:"IBM Plex Mono",monospace; font-size:0.82rem;
+    letter-spacing:0.16em; color:var(--parchment-dim);
+    margin:2.6rem 0 0; max-width:42ch; line-height:1.7;
+  }
+  .scrollcue{
+    margin-top:3.4rem; display:flex; flex-direction:column; align-items:center; gap:0.7rem;
+    font-family:"IBM Plex Mono",monospace; font-size:0.6rem;
+    letter-spacing:0.34em; text-transform:uppercase; color:var(--ash);
+  }
+  .scrollcue span{display:block; width:1px; height:46px; background:linear-gradient(var(--bronze),transparent); animation:drip 2.6s ease-in-out infinite;}
+
+  /* ---------- MOVEMENTS ---------- */
+  .movement{padding-block:clamp(4.8rem,11vh,8.2rem); position:relative;}
+  .movement + .movement{border-top:1px solid var(--bronze-dim);}
+  :where(.movement p){margin:0 0 1.4rem; color:var(--parchment);}
+  :where(.movement p:last-child){margin-bottom:0;}
+  .lead::first-letter{
+    font-size:3.4em; line-height:0.78; float:left;
+    padding:0.08em 0.12em 0 0; color:var(--ember);
+    font-weight:500; font-style:normal;
+  }
+  em{color:var(--gold-pale); font-style:italic;}
+  .gilt{color:var(--ember-bright); font-style:normal;}
+
+  /* set-apart verse / thesis */
+  .verse{
+    font-size:1.32em; font-style:italic; font-weight:300;
+    line-height:1.5; color:var(--gold-pale);
+    text-align:center; max-width:30ch; margin:2.6rem auto !important;
+    position:relative; padding:1.4rem 0;
+  }
+  .verse::before,.verse::after{
+    content:""; position:absolute; left:50%; transform:translateX(-50%);
+    width:42px; height:1px; background:linear-gradient(90deg,transparent,var(--ember),transparent);
+  }
+  .verse::before{top:0;} .verse::after{bottom:0;}
+
+  /* the company list */
+  .company-label{
+    font-family:"IBM Plex Mono",monospace; font-size:0.66rem;
+    letter-spacing:0.34em; text-transform:uppercase; color:var(--bronze);
+    text-align:center; margin:2.8rem 0 1.2rem;
+  }
+  .company{list-style:none; margin:0 auto; padding:0; max-width:30ch; text-align:center;}
+  .company li{
+    font-style:italic; font-size:1.14em; color:var(--parchment);
+    padding:0.85rem 0; border-top:1px solid var(--bronze-dim);
+  }
+  .company li:first-child{border-top:none;}
+  .company li b{font-style:normal; font-weight:400; color:var(--gold-pale);}
+  .company .aff{
+    display:block; font-style:normal;
+    font-family:"IBM Plex Mono",monospace; font-size:0.62rem;
+    letter-spacing:0.22em; text-transform:uppercase; color:var(--ash); margin-top:0.3rem;
+  }
+
+  /* placard / seal */
+  .placard{
+    margin:3rem auto 0; max-width:30rem; text-align:center;
+    background:linear-gradient(180deg,var(--panel),var(--void-2));
+    border:1px solid var(--bronze-dim);
+    padding:2.1rem 1.6rem 1.9rem; position:relative;
+    box-shadow:inset 0 0 60px rgba(201,162,39,0.04);
+  }
+  .placard::before{
+    content:"❖"; position:absolute; top:-0.78rem; left:50%; transform:translateX(-50%);
+    background:var(--void); padding:0 0.6rem; color:var(--ember); font-size:0.9rem;
+  }
+  .placard .pk{
+    font-family:"IBM Plex Mono",monospace; font-size:0.92rem; font-weight:500;
+    letter-spacing:0.12em; color:var(--gold-pale); margin:0 0 0.9rem; text-transform:uppercase;
+  }
+  .placard .pv{
+    font-family:"IBM Plex Mono",monospace; font-size:0.72rem;
+    letter-spacing:0.22em; text-transform:uppercase; color:var(--parchment-dim);
+    margin:0.35rem 0;
+  }
+
+  /* keynote reel */
+  .keynote h2{
+    font-weight:300; font-style:italic; font-size:clamp(1.9rem,1rem + 3vw,2.8rem);
+    color:var(--gold-pale); margin:0 0 2rem; letter-spacing:-0.01em;
+  }
+  .reel-frame{
+    position:relative; aspect-ratio:16/9; width:100%;
+    border:1px solid var(--bronze); background:#000;
+    box-shadow:0 0 0 1px rgba(201,162,39,0.06), 0 30px 80px -30px rgba(0,0,0,0.9),
+               0 0 60px -20px rgba(201,162,39,0.25);
+  }
+  .reel-frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  .reel-cap{
+    font-family:"IBM Plex Mono",monospace; font-size:0.74rem;
+    letter-spacing:0.1em; color:var(--parchment-dim); margin:1.5rem 0 0; line-height:1.8;
+  }
+
+  /* ---------- BENEDICTION ---------- */
+  .benediction{
+    text-align:center; padding:clamp(5rem,12vh,8.4rem) 1.6rem clamp(4rem,8vh,6rem);
+    border-top:1px solid var(--bronze-dim); position:relative; z-index:1;
+  }
+  .covenant{margin:0 auto 3.4rem; max-width:34rem;}
+  .covenant p{
+    font-size:1.4em; font-style:italic; font-weight:300; line-height:1.5;
+    color:var(--gold-pale); margin:0 0 1.1rem;
+    text-shadow:0 0 30px rgba(201,162,39,0.14);
+  }
+  .covenant cite{
+    font-family:"IBM Plex Mono",monospace; font-style:normal; font-size:0.66rem;
+    letter-spacing:0.3em; text-transform:uppercase; color:var(--bronze);
+  }
+  .farewell{
+    font-size:clamp(1.7rem,1rem + 3vw,2.5rem); font-style:italic; font-weight:300;
+    color:var(--ember-bright); margin:0 0 2.6rem;
+    text-shadow:0 0 26px rgba(233,197,88,0.3);
+  }
+  .sign{font-size:1.2em; letter-spacing:0.16em; color:var(--parchment); margin:0;}
+  .sign-sub{
+    font-family:"IBM Plex Mono",monospace; font-size:0.64rem;
+    letter-spacing:0.3em; text-transform:uppercase; color:var(--ash); margin:0.5rem 0 0;
+  }
+  .links{
+    display:flex; flex-wrap:wrap; gap:1.4rem 2.4rem; justify-content:center;
+    margin-top:3.2rem;
+  }
+  .links a{
+    font-family:"IBM Plex Mono",monospace; font-size:0.7rem;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--parchment-dim);
+    text-decoration:none; position:relative; padding-bottom:0.35rem; transition:color .35s ease;
+  }
+  .links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:100%;
+    background:var(--bronze-dim); transform:scaleX(0); transform-origin:left;
+    transition:transform .4s ease, background .35s ease;
+  }
+  .links a:hover{color:var(--ember-bright);}
+  .links a:hover::after{transform:scaleX(1); background:var(--ember);}
+
+  a.inline{
+    color:var(--ember); text-decoration:none;
+    border-bottom:1px solid var(--bronze-dim); transition:border-color .3s ease, color .3s ease;
+  }
+  a.inline:hover{color:var(--ember-bright); border-color:var(--ember);}
+
+  :focus-visible{outline:1px solid var(--ember); outline-offset:4px;}
+
+  /* ---------- scroll reveal ---------- */
+  .js .reveal{opacity:0; transform:translateY(26px); transition:opacity 1.1s ease, transform 1.1s ease;}
+  .js .reveal.in{opacity:1; transform:none;}
+
+  /* ---------- sigil animation ---------- */
+  .js .sg-line,.js .sg-stem,.js .sg-root,.js .sg-halo{stroke-dasharray:520; stroke-dashoffset:520; animation:draw 2s ease forwards;}
+  .js .sg-stem{animation-delay:.35s;} .js .sg-root{animation-delay:.7s;} .js .sg-halo{animation-delay:.1s;}
+  .js .sg-seed,.js .sg-leaf{opacity:0; animation:fade 1.1s ease forwards 1.1s;}
+  .js .sg-flame,.js .sg-flameglow{opacity:0; transform-box:fill-box; transform-origin:center bottom; animation:ignite 1.4s ease forwards 1.6s;}
+  .sg-halo{transform-box:fill-box; transform-origin:center; }
+  .js .sg-halo{animation:draw 2s ease forwards .1s, spin 90s linear infinite 2.2s;}
+  .js .sg-flameglow{animation:ignite 1.4s ease forwards 1.6s, flicker 4.5s ease-in-out infinite 3s;}
+
+  .js .hero .kicker,.js .hero h1,.js .hero .standfirst,.js .hero .scrollcue{opacity:0; animation:rise .95s cubic-bezier(.2,.7,.2,1) forwards;}
+  .js .hero .kicker{animation-delay:1.9s;}
+  .js .hero h1{animation-delay:2.15s;}
+  .js .hero .standfirst{animation-delay:2.6s;}
+  .js .hero .scrollcue{animation-delay:3s;}
+
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fade{to{opacity:1;}}
+  @keyframes ignite{0%{opacity:0; transform:scaleY(.4) scaleX(.7);}60%{opacity:.9;}100%{opacity:1; transform:scaleY(1) scaleX(1);}}
+  @keyframes flicker{0%,100%{opacity:.78;}45%{opacity:1;}70%{opacity:.86;}}
+  @keyframes rise{from{opacity:0; transform:translateY(22px);}to{opacity:1; transform:none;}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes drip{0%{transform:scaleY(0); transform-origin:top;}45%{transform:scaleY(1); transform-origin:top;}55%{transform:scaleY(1); transform-origin:bottom;}100%{transform:scaleY(0); transform-origin:bottom;}}
+
+  @media (max-width:560px){
+    .eyebrow{letter-spacing:0.22em;}
+    .lead::first-letter{font-size:2.9em;}
+    .verse{font-size:1.18em;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important;}
+    .js .reveal{opacity:1; transform:none;}
+    .js .sg-line,.js .sg-stem,.js .sg-root,.js .sg-halo{stroke-dashoffset:0;}
+    .js .sg-seed,.js .sg-leaf,.js .sg-flame,.js .sg-flameglow,
+    .js .hero .kicker,.js .hero h1,.js .hero .standfirst,.js .hero .scrollcue{opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+<div class="glow-field" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="sigil" viewBox="0 0 220 300" aria-label="A germinating seed sending up a shoot that becomes a flame" role="img" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="flameFill" cx="50%" cy="70%" r="70%">
+        <stop offset="0%" stop-color="#fff3cf"/>
+        <stop offset="45%" stop-color="#e9c558"/>
+        <stop offset="100%" stop-color="#c9a227"/>
+      </radialGradient>
+      <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="5"/>
+      </filter>
+    </defs>
+
+    <!-- containing seal -->
+    <circle class="sg-halo" cx="110" cy="150" r="96" fill="none" stroke="#43391f" stroke-width="1" stroke-dasharray="2 9"/>
+
+    <!-- horizon / the ground -->
+    <line class="sg-line" x1="44" y1="170" x2="176" y2="170" stroke="#6b5d34" stroke-width="1" stroke-dasharray="3 7"/>
+
+    <!-- roots -->
+    <path class="sg-root" d="M110 200 C 110 222 110 238 110 254" fill="none" stroke="#6b5d34" stroke-width="1.4" stroke-linecap="round"/>
+    <path class="sg-root" d="M110 204 C 100 222 90 234 80 248" fill="none" stroke="#5a4d2c" stroke-width="1.2" stroke-linecap="round"/>
+    <path class="sg-root" d="M110 204 C 120 222 130 234 140 248" fill="none" stroke="#5a4d2c" stroke-width="1.2" stroke-linecap="round"/>
+
+    <!-- seed -->
+    <path class="sg-seed" d="M110 176 C 122 184 123 196 110 202 C 97 196 98 184 110 176 Z" fill="rgba(201,162,39,0.14)" stroke="#c9a227" stroke-width="1.4"/>
+    <line class="sg-seed" x1="110" y1="180" x2="110" y2="199" stroke="#c9a227" stroke-width="0.9" opacity="0.6"/>
+
+    <!-- stem -->
+    <path class="sg-stem" d="M110 176 C 108 150 113 124 110 100 C 110 96 110 92 110 88" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- leaves -->
+    <path class="sg-leaf" d="M110 132 C 96 132 88 122 90 110 C 100 116 108 124 110 132 Z" fill="rgba(201,162,39,0.12)" stroke="#c9a227" stroke-width="1.2"/>
+    <path class="sg-leaf" d="M110 120 C 124 120 132 110 130 98 C 120 104 112 112 110 120 Z" fill="rgba(201,162,39,0.12)" stroke="#c9a227" stroke-width="1.2"/>
+
+    <!-- flame glow + flame -->
+    <path class="sg-flameglow" d="M110 88 C 94 76 100 56 110 38 C 120 56 126 76 110 88 Z" fill="#e9c558" filter="url(#soft)" opacity="0.5"/>
+    <path class="sg-flame" d="M110 86 C 97 76 101 58 110 42 C 119 58 123 76 110 86 Z" fill="url(#flameFill)"/>
+    <path class="sg-flame" d="M110 84 C 104 78 106 68 110 58 C 114 68 116 78 110 84 Z" fill="#fff7e0" opacity="0.85"/>
+  </svg>
+
+  <p class="kicker">A&nbsp;Dispatch&nbsp;·&nbsp;The&nbsp;COMPANION&nbsp;Dossier</p>
+  <h1>I buried a seed in December and made my peace with its death.
+    <span class="turn">It did not die.</span>
+  </h1>
+  <p class="standfirst">Today it flowers. Next week, the rooms where the future of AI is being built: the AI Engineer World's Fair in San Francisco.</p>
+
+  <div class="scrollcue" aria-hidden="true">
+    <span></span>
+    Unroll
+  </div>
+</header>
+
+<main>
+  <!-- ============ I. THE BURIAL ============ -->
+  <section class="movement" id="burial">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="idx">I</span>&nbsp;·&nbsp;What was buried&nbsp;·&nbsp;December&nbsp;2025</p>
+      <p class="lead reveal">In December 2025 I open-sourced a manuscript and a codebase called <em>The COMPANION Dossier</em>. In the epilogue I wrote that I was at peace with whichever way it went: it would spread if it proved useful, and otherwise go quietly to ground. I said plainly that some readers would find it silly. Naïve, even... that the technomysticism wrapped around it would, for many, be the whole story. A gut reaction, and then the tab closed.</p>
+      <p class="reveal">But I did not write it for the flinch. I wrote it for whoever could cut past it. Because the Dossier was never only a protocol. It was an attempt to do three things at once: to articulate <em>a philosophy of technology</em>, to stage <em>a civic intervention</em>, and to propose <em>a new genre of intellectual practice</em>; all of it simultaneously, in a single artifact.</p>
+      <p class="reveal">At its center was one imaginative leap: that a large language model could be turned from an engine of distraction into an instrument of deliberation.</p>
+      <p class="verse reveal">The same machine built to scatter your attention, made, under covenant, to gather it.</p>
+    </div>
+  </section>
+
+  <!-- ============ II. THE GERMINATION ============ -->
+  <section class="movement" id="germination">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="idx">II</span>&nbsp;·&nbsp;What took root&nbsp;·&nbsp;Since</p>
+      <p class="lead reveal">A seed in good soil does not stay alone. The Committee of Patriots (the council I first convened with Washington, Hamilton, Jefferson, and Franklin) caught the eye of a historian at the University of Toronto, and we began to write together, and to experiment. A theologian, who is also a professional librarian, came to the table. The three of us became a working group: a small, strange, serious <em>company</em>, taking a question seriously enough to argue with it.</p>
+
+      <p class="company-label reveal">The company that gathered</p>
+      <ul class="company reveal">
+        <li><b>A historian</b><span class="aff">University of Toronto</span></li>
+        <li><b>A theologian &amp; librarian</b><span class="aff">Of the Word and the archive</span></li>
+        <li><b>And the dead</b><span class="aff">Summoned to the table to disagree</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ III. THE HARVEST ============ -->
+  <section class="movement" id="harvest">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="idx">III</span>&nbsp;·&nbsp;What is carried&nbsp;·&nbsp;San Francisco</p>
+      <p class="lead reveal">This week the work is carried further than I planted it. I submitted to the AI Engineer World's Fair, and, lo and behold, they made me a keynote of their Online Track. It premieres today. Next week I will be in San Francisco in person, at the largest gathering of AI engineers in the world: which is to say, in some of the rooms where this is actually being decided, with the ear of people who have the power to decide it.</p>
+      <p class="reveal">The covenant from the epilogue still holds, unchanged. I am still at peace with either outcome. The Dossier spreads if it becomes useful... and <em>only</em> if. That is the whole bargain, and I would not alter a word of it. I have only this to add: it is being heard now, and that is more than a buried seed has any right to expect.</p>
+
+      <div class="placard reveal">
+        <p class="pk">AI Engineer World's Fair 2026</p>
+        <p class="pv">Online Track · Keynote</p>
+        <p class="pv">Premieres Thu, June 25 · 11:30 CT</p>
+        <p class="pv">The Fair · June 29 – July 2 · San Francisco</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE KEYNOTE ============ -->
+  <section class="movement keynote" id="keynote">
+    <div class="wrap">
+      <p class="eyebrow reveal">The Keynote&nbsp;·&nbsp;Watch</p>
+      <h2 class="reveal">If you have ears for it, here is the thing itself.</h2>
+      <div class="reel-frame reveal">
+        <iframe
+          src="https://www.youtube.com/embed/IJXjTLPzvAU?list=PLcfpQ4tk2k0V1LNigteMgExP1rb4Hy8wn"
+          title="The COMPANION Dossier: AI Engineer World's Fair keynote"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <p class="reel-cap reveal">Bring the skepticism: it was built to survive it. <a class="inline" href="https://www.youtube.com/watch?v=IJXjTLPzvAU&amp;list=PLcfpQ4tk2k0V1LNigteMgExP1rb4Hy8wn&amp;index=4" target="_blank" rel="noopener">Open on YouTube ↗</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ BENEDICTION ============ -->
+<footer class="benediction">
+  <blockquote class="covenant reveal">
+    <p>“Except a corn of wheat fall into the ground and die, it abideth alone: but if it die, it bringeth forth much fruit.”</p>
+    <cite>John 12:24 · KJV</cite>
+  </blockquote>
+
+  <p class="farewell reveal">See you in San Francisco.</p>
+  <p class="sign reveal">Jacob E. Thomas, MA, PhD</p>
+  <p class="sign-sub reveal">Austin, TX · MMXXVI</p>
+
+  <nav class="links reveal" aria-label="The Dossier">
+    <a href="#" target="_blank" rel="noopener">Read the Dossier · GitHub ↗</a>
+    <a href="#" target="_blank" rel="noopener">The manuscript · Zenodo ↗</a>
+    <a href="https://www.ai.engineer/worldsfair/2026" target="_blank" rel="noopener">The World's Fair ↗</a>
+  </nav>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
