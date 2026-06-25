@@ -7,7 +7,7 @@
 
 ## What this folder is
 
-The COMPANION Dossier *dramatizes* an idea: the **Miranda Hypothesis** and its test, the **Prism Experiment** — the question of whether a summoned mind returns *the person*, or only the culture's loudest memory of them. You can meet that idea in story form in [`The_Halpern_Memo/`](../The_Halpern_Memo/) and in [*The Summoning Film*](../The_Magic_Lantern/the_film/).
+The COMPANION Dossier *dramatizes* an idea: the **Miranda Hypothesis** and its test, the **Prism Experiment** — the question of whether a summoned mind returns *the person*, or only the culture's loudest memory of them. You can meet that idea in story form in [The Halpern Memo](https://the-companion-dossier.com/The_Halpern_Memo/) and in [*The Summoning Film*](https://the-companion-dossier.com/The_Magic_Lantern/the_film/).
 
 **Mask vs Mirror** is the scholarship beneath the drama — the working **preprint**, the **talk** that introduces it, and the **time-sealed experimental materials**.
 
@@ -59,10 +59,10 @@ This is a pre-registration in spirit: **commit first, reveal later, and let the 
 
 | Where | What it offers |
 |-------|----------------|
-| [`/THE_COMPANION_DOSSIER.pdf`](../THE_COMPANION_DOSSIER.pdf) | The origin artifact — the full theory and demonstration |
-| [`/The_Halpern_Memo/`](../The_Halpern_Memo/) | The in-world, dramatized account of the same hypothesis |
-| [`/The_Magic_Lantern/the_film/`](../The_Magic_Lantern/the_film/) | The four-Lincoln Prism, rendered as cinema |
-| [`/The_Atrium/`](../The_Atrium/) | The museum entrance that ties the estate together |
+| [The Dossier (PDF)](../THE_COMPANION_DOSSIER.pdf) | The origin artifact — the full theory and demonstration |
+| [The Halpern Memo](https://the-companion-dossier.com/The_Halpern_Memo/) | The in-world, dramatized account of the same hypothesis |
+| [The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/) | The four-Lincoln Prism, rendered as cinema |
+| [The Atrium](https://the-companion-dossier.com/The_Atrium/) | The museum entrance that ties the estate together |
 
 ---
 
