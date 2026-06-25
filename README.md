@@ -17,8 +17,8 @@ This repository is an **estate**, not a single page. If it's your first time —
 
 | If you want… | Go to | What it is |
 |---|---|---|
-| **The guided tour** *(start here)* | 🏛 **[The Atrium](./The_Atrium/)** | The entrance hall. One golden path through the whole project, with every artifact one click away. |
-| **To watch, not read** | 🎞 **[The Summoning Film](./The_Magic_Lantern/the_film/)** | A ~7-minute film — the Committee of Patriots and the Republic Portfolio, as summoning cinema. |
+| **The guided tour** *(start here)* | 🏛 **[The Atrium](https://the-companion-dossier.com/The_Atrium/)** | The entrance hall. One golden path through the whole project, with every artifact one click away. |
+| **To watch, not read** | 🎞 **[The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/)** | A ~7-minute film — the Committee of Patriots and the Republic Portfolio, as summoning cinema. |
 | **The paper & the talk** | 🔬 **[Mask vs Mirror](./Mask_vs_Mirror/)** | The preliminary preprint, the AI Engineer World's Fair slides, references, and the sealed vignettes. |
 
 **To just use the protocol right now,** skip to [Quick Start](#quick-start). **To go all the way down,** read the [Dossier PDF](./THE_COMPANION_DOSSIER.pdf).
@@ -94,7 +94,7 @@ Beyond the Atrium's guided path, each chamber stands on its own. A map:
 | [The Magic Lantern](./The_Magic_Lantern/) | The film studio — *The Summoning Film* and *The General*. |
 | [From Beyond](./from_beyond/) | Transcripts of minds summoned to describe the project itself. |
 
-The Atrium links to all of them, in order. When in doubt, **[start at the Atrium](./The_Atrium/).**
+The Atrium links to all of them, in order. When in doubt, **[start at the Atrium](https://the-companion-dossier.com/The_Atrium/).**
 
 ---
 
