@@ -98,15 +98,15 @@ window.REELS = [
   {t:'hidePortrait', ms:800}
 ]},
 
-/* ═══ REEL III — THE RECKONING · the full year, and the verdict ═══ */
-{ roman:'III', title:'The Reckoning', sub:'The full year · what the doctrine was worth', score:[
+/* ═══ REEL III — THE RECKONING · the first six months, and the verdict ═══ */
+{ roman:'III', title:'The Reckoning', sub:'The first six months · what the doctrine was worth', score:[
   {t:'scene', r:'III', n:'The Reckoning'},
   {t:'timeline', at:2, ms:4600},
   {t:'lines', per:4000, arr:[
     'The war ends. The index, which had crashed to −7,<br>comes roaring back.',
-    'Watch the whole year now, in one breath.'
+    'Watch all six months now, in one breath.'
   ]},
-  {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FULL YEAR'},
+  {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FIRST SIX MONTHS'},
   {t:'sub', scrim:true, html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:8000},
   {t:'sub', scrim:true, html:'At the close, the two lines meet — a single point apart.', ms:7000},
   {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1400},
@@ -124,10 +124,10 @@ window.REELS = [
     'The founders answered &mdash; and the answer <em style="color:var(--ember)">held.</em>'
   ]},
   {t:'lines', per:4200, arr:[
-    'But one full year is only the <em>first</em> reckoning.'
+    'But six months is only the <em>first</em> reckoning.'
   ]},
   {t:'timeline', at:3, ms:5600},
-  {t:'end', a:'At the close of this quarter, the founders are<br><em style="color:var(--ember)">summoned once more</em> —<br>to weigh what the doctrine has earned.', b:'The vigil continues &middot; the score kept in public.<br><span style="display:block;margin-top:1.25rem;font-family:var(--tf);font-size:.42em;letter-spacing:.34em;color:var(--ember-dim);text-transform:uppercase;">The Word against the Flood</span>', ms1:6400, ms2:6200, knell:true}
+  {t:'end', a:'With the quarter closed, the founders are<br><em style="color:var(--ember)">summoned once more</em> —<br>to weigh what the doctrine has earned.', b:'The vigil continues &middot; the score kept in public.<br><span style="display:block;margin-top:1.25rem;font-family:var(--tf);font-size:.42em;letter-spacing:.34em;color:var(--ember-dim);text-transform:uppercase;">The Word against the Flood</span>', ms1:6400, ms2:6200, knell:true}
 ]}
 
 ];
