@@ -97,4 +97,16 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> Narratives/The_Nut_House/js/config.js"
 
+# Narratives (Endor Protocol)
+cat > Narratives/Endor/js/config.js << JSEOF
+window.COMPANION_CONFIG = {
+  proxyUrl: '${COMPANION_PROXY_URL}',
+  safeguards: {
+    maxReaderTurns: 20,
+    cooldownSeconds: 0
+  }
+};
+JSEOF
+echo "  -> Narratives/Endor/js/config.js"
+
 echo "Done. All containers configured for proxy mode."

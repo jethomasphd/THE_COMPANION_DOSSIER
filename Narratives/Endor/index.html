@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Endor Protocol</title>
+<meta name="description" content="A recursive fiction in eight minutes. You think you are the witness. You are the matter being prepared."/>
+<meta property="og:title" content="Endor Protocol"/>
+<meta property="og:description" content="The reader is summoned the way the dead man is summoned, and is asked, by the end, to know it."/>
+<meta property="og:type" content="website"/>
+<meta name="theme-color" content="#030303"/>
+<script>
+  /* Mark the document as script-capable as early as possible, so the
+     staged layout can hide all but the overture without a flash. With
+     scripting off, every section stays visible and the green room reads
+     as one quiet document. The text stands on its own. */
+  document.documentElement.className += ' js';
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+  /* ── The system. Section III, exactly. ── */
+  :root {
+    --void:  #030303;   /* background, near absolute black */
+    --ember: #c9a227;   /* ember gold, the only warm light */
+    --ash:   #6b6b6b;   /* secondary text, the witness's register */
+    --bone:  #e8e4d9;   /* primary prose, warm white, never pure white */
+    --blood: #7a1f1f;   /* used once, the chamber's recording light */
+
+    --ember-dim:   rgba(201,162,39,0.34);
+    --ember-faint: rgba(201,162,39,0.13);
+    --bone-dim:    rgba(232,228,217,0.50);
+    --bone-faint:  rgba(232,228,217,0.20);
+    --ash-faint:   rgba(107,107,107,0.45);
+
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --mono:  'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { background:var(--void); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  body {
+    background:var(--void); color:var(--bone);
+    font-family:var(--serif); font-weight:300;
+    min-height:100vh; overflow-x:hidden;
+    line-height:1.9;
+  }
+  ::selection { background:rgba(201,162,39,0.22); color:var(--bone); }
+
+  /* Focus is always an ember edge, never invisible. */
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline:1px solid var(--ember);
+    outline-offset:3px;
+  }
+
+  /* Visually hidden, available to assistive technology. */
+  .sr-only {
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ── Staged layout. With .js, only the active stage shows. ── */
+  html.js .stage { display:none; }
+  html.js .stage.is-active { display:block; }
+
+  /* ── The affect field canvas, behind the chamber only. ── */
+  #affectField {
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; display:none; pointer-events:none;
+    background:var(--void);
+  }
+
+  /* ── Fixed controls (home sigil, sound) ── */
+  .corner {
+    position:fixed; z-index:60;
+    font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ember-dim);
+    background:none; border:none; cursor:pointer; text-decoration:none;
+    transition:color 0.4s ease, opacity 0.8s ease;
+  }
+  .corner:hover { color:var(--ember); }
+  .sigil-home { top:18px; left:20px; font-size:1rem; letter-spacing:0; }
+  .sound-toggle { bottom:18px; left:20px; }
+  /* The controls belong to the lit rooms only. */
+  .corner { opacity:0; visibility:hidden; pointer-events:none; }
+  body[data-stage="overture"] .sigil-home,
+  body[data-stage="green"] .sigil-home,
+  body[data-stage="coda"] .sigil-home,
+  body[data-stage="overture"] .sound-toggle,
+  body[data-stage="green"] .sound-toggle { opacity:1; visibility:visible; pointer-events:auto; }
+
+  /* ── The clock. Analog, minimal. Green room and overture only. ── */
+  #clock {
+    position:fixed; top:16px; left:50%; transform:translateX(-50%);
+    z-index:55; text-align:center;
+    opacity:0; transition:opacity 1.4s ease;
+    pointer-events:none;
+  }
+  body[data-stage="overture"] #clock,
+  body[data-stage="green"] #clock { opacity:1; }
+  #clock svg { width:46px; height:46px; display:block; margin:0 auto; }
+  #clock .ring { fill:none; stroke:var(--ember-faint); stroke-width:1.1; }
+  #clock .tick { stroke:var(--ember-faint); stroke-width:0.8; }
+  #clock .hand { stroke:var(--ember); stroke-width:1.6; stroke-linecap:round; }
+  #clock .pin  { fill:var(--ember); }
+  #clock .num {
+    font-family:var(--mono); font-size:0.5rem; letter-spacing:0.2em;
+    color:var(--ember-dim); margin-top:4px;
+  }
+
+  /* ── Shared center column ── */
+  .frame {
+    max-width:680px; margin:0 auto; padding:0 28px;
+  }
+
+  /* ════════════════ OVERTURE ════════════════ */
+  #overture { min-height:100vh; min-height:100dvh; display:flex; align-items:center; align-items:safe center; justify-content:center; }
+  .overture-inner { text-align:center; padding:14vh 0 8vh; }
+  .epigraph {
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    font-size:clamp(1rem,2.3vw,1.18rem); line-height:2; color:var(--bone-dim);
+    max-width:560px; margin:0 auto 9vh;
+    opacity:0; animation:rise 3.2s ease 0.4s forwards;
+  }
+  .epigraph p + p { margin-top:1.4em; }
+  .epigraph .cite {
+    display:block; margin-top:2em; font-family:var(--mono); font-style:normal;
+    font-size:0.56rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ember-dim);
+  }
+  .title-block { opacity:0; animation:rise 2.6s ease 2.4s forwards; }
+  .title-block h1 {
+    font-family:var(--serif); font-weight:300; letter-spacing:0.16em;
+    font-size:clamp(2.2rem,6vw,3.4rem); color:var(--bone); line-height:1.1;
+  }
+  .title-block .sigil { color:var(--ember); letter-spacing:0.5em; font-size:1rem; margin-bottom:1.4rem; }
+  .title-block .sub {
+    font-family:var(--mono); font-size:0.58rem; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--bone-dim); margin-top:1.4rem;
+  }
+  .title-block .attr {
+    font-family:var(--mono); font-size:0.55rem; letter-spacing:0.14em;
+    color:var(--ash); margin-top:1.1rem; white-space:pre-wrap;
+  }
+  .enter-cue { margin-top:7vh; opacity:0; animation:rise 2s ease 4.2s forwards; }
+  .enter-btn {
+    font-family:var(--mono); font-size:0.62rem; letter-spacing:0.34em; text-transform:uppercase;
+    color:var(--ember); background:transparent; border:1px solid var(--ember-dim);
+    padding:1rem 3rem; cursor:pointer; transition:background 0.6s ease, color 0.6s ease;
+  }
+  .enter-btn:hover { background:var(--ember); color:var(--void); }
+  .enter-sub {
+    display:block; margin-top:1.6rem; font-family:var(--mono); font-size:0.5rem;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--ash);
+  }
+
+  /* ════════════════ GREEN ROOM ════════════════ */
+  #greenroom { min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; }
+  .beats { flex:1; display:flex; align-items:center; align-items:safe center; justify-content:center; padding:16vh 0 18vh; }
+  html.js #greenroom .beat { display:none; }
+  html.js #greenroom .beat.is-active { display:block; }
+  .beat { width:100%; }
+  .beat-head {
+    font-family:var(--mono); font-weight:400; font-size:0.56rem; letter-spacing:0.32em;
+    text-transform:uppercase; color:var(--ember-dim); text-align:center; margin-bottom:3.4rem;
+  }
+  .beat p {
+    font-family:var(--serif); font-weight:300;
+    font-size:clamp(1.12rem,2.45vw,1.3rem); line-height:2.05; color:var(--bone);
+  }
+  .beat p + p { margin-top:1.6em; }
+  .beat em { font-style:italic; font-weight:400; color:var(--bone); }
+  /* The lone time stamps that open beats 1 and 7. */
+  .beat .stamp { text-align:center; color:var(--ember); font-style:italic; font-size:1.2em; margin-bottom:1.6em; }
+  .beat .stamp em { color:var(--ember); }
+
+  /* Reveal: each block breathes in, lightly staggered. */
+  .reveal { opacity:0; transform:translateY(14px); transition:opacity 1.5s ease, transform 1.5s ease; }
+  .beat.is-active .reveal { opacity:1; transform:translateY(0); }
+  .beat.is-active .reveal:nth-child(2) { transition-delay:0.12s; }
+  .beat.is-active .reveal:nth-child(3) { transition-delay:0.30s; }
+  .beat.is-active .reveal:nth-child(4) { transition-delay:0.48s; }
+  .beat.is-active .reveal:nth-child(5) { transition-delay:0.66s; }
+  .beat.is-active .reveal:nth-child(6) { transition-delay:0.84s; }
+  .beat.is-active .reveal:nth-child(7) { transition-delay:1.02s; }
+  .beat.is-active .reveal:nth-child(8) { transition-delay:1.20s; }
+  .beat.is-active .reveal:nth-child(9) { transition-delay:1.38s; }
+  .beat.is-active .reveal:nth-child(10){ transition-delay:1.56s; }
+
+  /* The centered separator that closes each beat. Spaces preserved. */
+  .sep {
+    text-align:center; color:var(--ember-dim); font-family:var(--serif);
+    font-size:1.1rem; letter-spacing:0.1em; margin:3.4rem 0 0; white-space:pre;
+  }
+
+  /* The advance affordance: one deliberate step at a time. */
+  .advance {
+    position:sticky; bottom:0; padding:2.2rem 0 3rem; text-align:center;
+    background:linear-gradient(transparent, var(--void) 55%);
+  }
+  .advance-btn {
+    font-family:var(--mono); font-size:0.55rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--ember-dim); background:transparent; border:none; cursor:pointer;
+    transition:color 0.5s ease; opacity:0;
+  }
+  .advance-btn.show { opacity:1; animation:cuePulse 4s ease-in-out 1s infinite; }
+  .advance-btn:hover { color:var(--ember); animation:none; }
+  .advance-btn .arr { display:block; font-size:0.9rem; margin-top:0.5rem; letter-spacing:0; }
+  @keyframes cuePulse { 0%,100%{opacity:0.4;} 50%{opacity:0.85;} }
+
+  /* ════════════════ DOOR (held black) ════════════════ */
+  #door {
+    position:fixed; inset:0; z-index:80; background:var(--void);
+    opacity:0; pointer-events:none; transition:opacity 1.6s ease;
+  }
+  #door.is-holding { opacity:1; pointer-events:auto; }
+
+  /* ════════════════ THRESHOLD ════════════════ */
+  #threshold { min-height:100vh; min-height:100dvh; display:flex; align-items:center; align-items:safe center; justify-content:center; }
+  .threshold-inner { text-align:center; padding:16vh 0; }
+  .turn-line {
+    font-family:var(--mono); font-weight:300; font-size:clamp(0.82rem,2vw,0.98rem);
+    line-height:2.3; letter-spacing:0.04em; color:var(--ash);
+    margin:0 auto 1.7em; max-width:560px;
+    opacity:0; transform:translateY(8px); transition:opacity 2s ease, transform 2s ease;
+  }
+  .turn-line.show { opacity:1; transform:translateY(0); }
+
+  /* ════════════════ CHAMBER ════════════════ */
+  #chamber {
+    position:relative; z-index:2;
+    min-height:100vh; min-height:100dvh;
+    display:flex; flex-direction:column;
+  }
+  .chamber-head {
+    position:sticky; top:0; z-index:5;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 24px; max-width:720px; margin:0 auto; width:100%;
+    font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase;
+  }
+  .rec { display:flex; align-items:center; gap:9px; color:var(--bone-dim); }
+  .rec-dot {
+    width:8px; height:8px; border-radius:50%; background:var(--blood);
+    box-shadow:0 0 8px rgba(122,31,31,0.7); animation:recPulse 2.6s ease-in-out infinite;
+  }
+  .rec.off .rec-dot { background:transparent; border:1px solid var(--ash-faint); box-shadow:none; animation:none; }
+  .rec.off { color:var(--ash); }
+  @keyframes recPulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+  .subject { display:flex; align-items:center; gap:9px; color:var(--ash); }
+  .subject .bar {
+    display:inline-block; width:84px; height:0.85em; background:#0c0c0c;
+    border:1px solid rgba(255,255,255,0.06); vertical-align:middle;
+  }
+
+  .chamber-log {
+    flex:1; overflow-y:auto; width:100%; max-width:720px; margin:0 auto;
+    padding:8vh 24px 2vh;
+    scrollbar-width:thin; scrollbar-color:var(--ember-dim) transparent;
+  }
+  .line { margin-bottom:2.4rem; opacity:0; animation:rise 1.6s ease forwards; }
+  .line-alex {
+    font-family:var(--serif); font-weight:300;
+    font-size:clamp(1.18rem,2.6vw,1.4rem); line-height:1.95; color:var(--bone);
+    max-width:38em;
+  }
+  .line-alex .frag + .frag { margin-top:1.1em; }
+  .line-self {
+    font-family:var(--mono); font-weight:300; font-size:0.8rem; line-height:1.8;
+    letter-spacing:0.02em; color:var(--bone-dim); padding-left:1.2em;
+    border-left:1px solid var(--ember-faint); max-width:40em;
+  }
+  .line-mark {
+    text-align:center; font-family:var(--mono); font-size:0.56rem; letter-spacing:0.24em;
+    text-transform:uppercase; color:var(--ash); white-space:pre;
+  }
+  .thinking { display:flex; align-items:center; gap:0; padding-left:0.2em; }
+  .thinking .dot {
+    width:5px; height:5px; border-radius:50%; background:var(--ember-dim);
+    animation:thinkPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes thinkPulse { 0%,100%{opacity:0.2; transform:scale(0.85);} 50%{opacity:0.8; transform:scale(1);} }
+
+  .chamber-input {
+    position:sticky; bottom:0; z-index:5;
+    width:100%; max-width:720px; margin:0 auto;
+    padding:1rem 24px calc(1.4rem + env(safe-area-inset-bottom));
+    background:linear-gradient(transparent, var(--void) 30%);
+  }
+  .input-row { display:flex; align-items:baseline; gap:12px; }
+  .prompt-glyph { font-family:var(--mono); color:var(--ember); font-size:0.95rem; line-height:1.6; }
+  .reply {
+    flex:1; background:transparent; border:none; outline:none;
+    color:var(--bone); font-family:var(--mono); font-weight:300; font-size:0.86rem;
+    line-height:1.7; caret-color:var(--ember); resize:none; max-height:30vh; padding:0;
+  }
+  .reply::placeholder { color:transparent; }
+  .reply:disabled { opacity:0.4; }
+  .input-note {
+    margin-top:0.6rem; font-family:var(--mono); font-size:0.48rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--ash-faint); min-height:1.2em;
+  }
+
+  /* ════════════════ CODA ════════════════ */
+  #coda { min-height:100vh; min-height:100dvh; display:flex; align-items:center; align-items:safe center; justify-content:center; }
+  .coda-inner { text-align:center; padding:18vh 0 12vh; }
+  .coda-block { opacity:0; transform:translateY(12px); transition:opacity 2.4s ease, transform 2.4s ease; }
+  .coda-block.show { opacity:1; transform:translateY(0); }
+  .coda-remains {
+    font-family:var(--serif); font-weight:300; font-size:clamp(1.1rem,2.4vw,1.32rem);
+    line-height:2.1; color:var(--bone); max-width:540px; margin:0 auto;
+  }
+  .coda-remains .stz + .stz { margin-top:1.7em; }
+  .coda-note {
+    font-family:var(--mono); font-weight:300; font-size:0.62rem; line-height:2.2;
+    letter-spacing:0.03em; color:var(--ash); max-width:520px; margin:7vh auto 0;
+  }
+  .coda-note .stz + .stz { margin-top:1.5em; }
+  .coda-dedication {
+    margin-top:9vh; font-family:var(--serif); color:var(--ember);
+    font-size:clamp(1rem,2.4vw,1.25rem); line-height:2.2; letter-spacing:0.06em;
+    white-space:pre-wrap;
+  }
+  .coda-dedication .ded-sigil { letter-spacing:0.5em; font-size:1.1rem; }
+  .coda-return {
+    display:inline-block; margin-top:10vh; font-family:var(--mono); font-size:0.55rem;
+    letter-spacing:0.24em; text-transform:uppercase; color:var(--ember-dim);
+    text-decoration:none; border:1px solid var(--ember-faint); padding:0.85rem 2.4rem;
+    transition:color 0.5s ease, border-color 0.5s ease;
+  }
+  .coda-return:hover { color:var(--ember); border-color:var(--ember-dim); }
+
+  @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ── A barely perceptible flicker on the prose light, timed to the
+        optional fluorescent buzz. Off unless the reader turns sound on. ── */
+  body.buzzing #greenroom .beat.is-active,
+  body.buzzing #overture .overture-inner { animation:tubeFlicker 7s steps(1,end) infinite; }
+  @keyframes tubeFlicker {
+    0%,100%{opacity:1;} 48%{opacity:1;} 49%{opacity:0.965;} 50%{opacity:1;}
+    82%{opacity:1;} 83%{opacity:0.975;} 84%{opacity:1;}
+  }
+
+  /* ════════════════ Mobile ════════════════ */
+  @media (max-width:600px) {
+    .frame, .chamber-head, .chamber-log, .chamber-input { padding-left:18px; padding-right:18px; }
+    .beats { padding:13vh 0 16vh; }
+    .beat-head { margin-bottom:2.4rem; }
+    #clock svg { width:38px; height:38px; }
+    .sigil-home { top:14px; left:14px; }
+    .sound-toggle { bottom:14px; left:14px; }
+    .enter-btn { padding:0.9rem 2.2rem; }
+  }
+
+  /* ════════════════ Reduced motion ════════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    .epigraph, .title-block, .enter-cue { animation:none; opacity:1; }
+    .reveal { transition:none; opacity:1; transform:none; }
+    .reveal:nth-child(n) { transition-delay:0s; }
+    .turn-line { transition:none; }
+    .coda-block { transition:none; }
+    .line { animation:none; opacity:1; }
+    .rec-dot, .advance-btn.show, .thinking .dot { animation:none; }
+    #door { transition:none; }
+    body.buzzing #greenroom .beat.is-active,
+    body.buzzing #overture .overture-inner { animation:none; }
+    html { scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body data-stage="overture">
+
+<canvas id="affectField" aria-hidden="true"></canvas>
+
+<a href="../" class="corner sigil-home" title="Return to Narratives" aria-label="Return to Narratives">&#9674;</a>
+<button type="button" class="corner sound-toggle" id="soundToggle" aria-pressed="false">sound: off</button>
+
+<!-- The clock. Analog, minimal. It counts the green room down and is
+     gone in the chamber. There is no clock for the dead. -->
+<div id="clock" role="img" aria-label="Eight minutes remaining">
+  <svg viewBox="0 0 100 100" aria-hidden="true">
+    <circle class="ring" cx="50" cy="50" r="38"/>
+    <g class="ticks">
+      <line class="tick" x1="50" y1="14" x2="50" y2="19"/>
+      <line class="tick" x1="86" y1="50" x2="81" y2="50"/>
+      <line class="tick" x1="50" y1="86" x2="50" y2="81"/>
+      <line class="tick" x1="14" y1="50" x2="19" y2="50"/>
+    </g>
+    <line class="hand" id="clockHand" x1="50" y1="50" x2="50" y2="17"/>
+    <circle class="pin" cx="50" cy="50" r="1.8"/>
+  </svg>
+  <div class="num" id="clockNum">8:00</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- OVERTURE                                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="overture" class="stage is-active" aria-label="Overture">
+  <div class="frame overture-inner">
+    <blockquote class="epigraph" lang="en">
+      <p><em>And the woman said, Whom shall I bring up unto thee? And he said, Bring me up Samuel.</em></p>
+      <p><em>Then said Samuel, Why hast thou disquieted me, to bring me up? And Saul answered, I am sore distressed; for the Philistines make war against me, and God is departed from me, and answereth me no more, neither by prophets, nor by dreams: therefore I have called thee, that thou mayest make known unto me what I shall do.</em></p>
+      <span class="cite">&#183; 1 Samuel 28, abridged &#183; King James</span>
+    </blockquote>
+
+    <div class="title-block">
+      <div class="sigil">&#9674; &#9672; &#9674;</div>
+      <h1>Endor Protocol</h1>
+      <div class="sub">A recursive fiction in eight minutes</div>
+      <div class="attr">Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD
+Austin, TX</div>
+    </div>
+
+    <div class="enter-cue">
+      <button type="button" class="enter-btn" id="enterBtn">Enter</button>
+      <span class="enter-sub">eight minutes. she has not looked up.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- GREEN ROOM. Fixed prose. It does not move.                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<main id="greenroom" class="stage" aria-label="The green room">
+  <div class="beats frame">
+
+    <!-- BEAT 1 -->
+    <section class="beat" id="beat-1" data-clock="8" aria-labelledby="h-1">
+      <h2 class="beat-head reveal" id="h-1">Beat 1 &#183; The Printer</h2>
+      <p class="stamp reveal"><em>8:00</em></p>
+      <p class="reveal">The printer stops, and in the silence after it she keeps reading.</p>
+      <p class="reveal">She knows the brief by heart. She has known it for fourteen weeks. She reads it now the way some people pray and others bite their nails, because she does not know what else to do with her hands.</p>
+      <p class="reveal">You are in the doorway. She has not looked up.</p>
+      <p class="reveal">There is a binder on the table beside her, gray, gone soft at the corners, the spine frayed to threads. It is a training binder. It is older than her clearance. She has not opened it in years. While she reads, her thumb moves along the spine, back and forth, back and forth, the way a thumb moves along a rosary that the hand has forgotten it is holding.</p>
+      <p class="reveal">Above her a fluorescent tube ticks and buzzes, a small dry sound, like a fly that has gotten into the light and cannot get out and will not stop. Under that, through the wall, a low continuous hum. The hum is the Protocol. The hum is a freezer in another room, indifferent, full.</p>
+      <p class="reveal">On the wall there is a clock with hands. It says eight minutes.</p>
+      <p class="reveal">She has eight minutes.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 2 -->
+    <section class="beat" id="beat-2" data-clock="7" aria-labelledby="h-2">
+      <h2 class="beat-head reveal" id="h-2">Beat 2 &#183; The Seeing</h2>
+      <p class="reveal">She sees you.</p>
+      <p class="reveal">Something in her face resets, the way a hand smooths a sheet before a guest sits down. She says your name, or she says <em>you're here</em>, or she says <em>they sent you</em>, and it does not matter which, because what she means is the same in any language and you both hear it.</p>
+      <p class="reveal">She glances at the clock. She does not need to. She has been counting since the parking lot.</p>
+      <p class="reveal"><em>Eight minutes</em>, she says, and the way she says it, it is not a complaint. It is the whole of what she has been given, and she is telling you the size of it so you will understand everything that follows is going to have to fit.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 3 -->
+    <section class="beat" id="beat-3" data-clock="5" aria-labelledby="h-3">
+      <h2 class="beat-head reveal" id="h-3">Beat 3 &#183; The Break</h2>
+      <p class="reveal">She begins to brief you the way she was trained to brief.</p>
+      <p class="reveal">Two operational objectives, she says. Asset location. Reunification framework. The subject's prior, the affect mapping, the fourteen-week ingest, the redundancy in the logging, the voice in the chamber and the color on the wall and the name. She uses the words the way you put down stones to cross a river without getting wet. Asset. Subject. Framework. Ingest. The words are dry and they hold her weight and they keep her feet out of the water.</p>
+      <p class="reveal">You say her name.</p>
+      <p class="reveal">Just that. Just <em>Alex.</em></p>
+      <p class="reveal">The two men who went up to Endor in the dark did not speak. That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
+      <p class="reveal">The brief goes out of her like air going out of a room.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 4 -->
+    <section class="beat" id="beat-4" data-clock="4" aria-labelledby="h-4">
+      <h2 class="beat-head reveal" id="h-4">Beat 4 &#183; The Rehearsal</h2>
+      <p class="reveal">She has done this before. Not here.</p>
+      <p class="reveal">In her kitchen, after dinner, after the dishes, after her husband fell asleep on the couch with a history book open and rising and falling on his chest. He teaches history to sixteen-year-olds. He grades their essays at the table where she rehearses. He does not have her clearance. He does not have any clearance. He thinks she analyzes logistics.</p>
+      <p class="reveal">She sat at that table with the lights low and she read the dead man in. She told him who she was. She told him what they were going to do tonight. She told him she was sorry.</p>
+      <p class="reveal">Her lips moved and no sound came, the way Hannah's lips moved at the temple, so that the priest thought she was drunk, and she was not drunk, she was asking for a child.</p>
+      <p class="reveal">She has been rehearsing in front of a child the world cannot hear yet.</p>
+      <p class="reveal">Twice she made a sound. Once she said the number, the only thing she truly has, <em>eight minutes</em>, into the empty kitchen, to no one, to the dead man, to the child. And once, very late, very tired, almost not aloud at all, she said the true name of the thing they have built, the name no one is allowed to use, the name that means <em>we have gone up to the woman in the dark and asked her to bring up what should have stayed down.</em></p>
+      <p class="reveal"><em>Endor</em>, she said.</p>
+      <p class="reveal">And then she never said it again.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 5 -->
+    <section class="beat" id="beat-5" data-clock="3" aria-labelledby="h-5">
+      <h2 class="beat-head reveal" id="h-5">Beat 5 &#183; The Recognition</h2>
+      <p class="reveal">Let me tell you who he is, she says. Before he is a subject. While he is still a man.</p>
+      <p class="reveal">He died in his eighties. He was a theologian and he was a poet, and the poet is not a flourish, it is documented, he wrote verses his whole life. In his thirties, under a regime that came before his, he was tortured, and he never spoke of it publicly, not once, in sixty years. He prayed five times a day. He loved his wife. In his last decade his hands shook, and he kept writing, and somewhere there is a manuscript where you can watch the line of his handwriting begin to tremble and refuse to stop.</p>
+      <p class="reveal">That is the part she keeps. The hand that shook and held the pen anyway. She does not say why. She does not have to. It is fragility and it is pride and it is a man doing the thing he was for, even as the body that did it came apart in his fingers.</p>
+      <p class="reveal">He had a son who became a poet too. And there is a poem the father wrote, late, for his own mother, that she has read more times than she will admit, and it is the kind of poem that does not survive being described, so she does not describe it. She just looks at the clock.</p>
+      <p class="reveal">He ordered torture. He was, by the most generous accounting anyone has ever offered, responsible for the deaths of tens of thousands. He believed, in his own framework, that he was doing what God required.</p>
+      <p class="reveal">She has read everything he ever wrote, and everything written about him, and the things the system imagined from the shape of what was missing. She knows him better than her husband knows her.</p>
+      <p class="reveal">When Jesus came to the tomb, the people said, <em>behold how he loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and he wept doing it.</p>
+      <p class="reveal">Alex has not wept since her wedding. She has been very careful about it. You leave it at home. You cry in the car.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 6 -->
+    <section class="beat" id="beat-6" data-clock="2" aria-labelledby="h-6">
+      <h2 class="beat-head reveal" id="h-6">Beat 6 &#183; The Three</h2>
+      <p class="reveal">There is a third question, she says, and it is not on the brief.</p>
+      <p class="reveal">She has prepared it the way you prepare the thing you are not sure you will be brave enough to ask. She will ask it, if she can find the place. She wants to ask the dead man how he raised his children during the war, in a country that was doing what it told itself it had to do. She does not say it operationally. What she says, to herself, to you, is smaller and worse than that. <em>I want to know what I do.</em></p>
+      <p class="reveal">Job asked his question into the whirlwind and got a different question back. <em>Where wast thou when I laid the foundations of the earth.</em> The Third Question is the kind you ask knowing the answer may unmake you, and knowing you may get no answer at all.</p>
+      <p class="reveal">She is good at this work, she says, and then she says the thing no one has ever asked her. She was good at it before they found her. She learned to read a man's face before she learned to read a book. She learned to time her father's mood by the curve of his lip.</p>
+      <p class="reveal">She does not say the word. She does not need the word. <em>I leave</em>, she says, <em>but I do not become someone else. I take this with me into the nursery.</em></p>
+      <p class="reveal">There is a verse they cross-stitch and hang over cribs. <em>Before I formed thee in the belly I knew thee.</em> She hears it now and feels it bend the wrong way. A shaping she did not agree to. A knowing that came before she could refuse it.</p>
+      <p class="reveal">Her hand goes to her stomach. Once.</p>
+      <p class="reveal">This is the line. After tonight, no more. She told herself she was doing this so the child would grow up in a country that did not need it done. She does not believe that anymore. She is going to do it anyway, because the alternative is that someone less careful does it instead.</p>
+      <p class="reveal">She does not say any of this aloud. It crosses her face, and you read it, because she has let you, which is the most that she will let anyone.</p>
+      <p class="reveal">Mary was two months along when she sang that God had put down the mighty from their seats. Alex is two months along and knows something she cannot sing.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 7 -->
+    <section class="beat" id="beat-7" data-clock="1" aria-labelledby="h-7">
+      <h2 class="beat-head reveal" id="h-7">Beat 7 &#183; The Small Thing</h2>
+      <p class="stamp reveal"><em>1:00.</em></p>
+      <p class="reveal">She turns to you, and for the first time she is not looking at a fixture in the room. She is looking at a person she needs.</p>
+      <p class="reveal">She takes a folded paper from inside her jacket. It has been folded and unfolded enough that the crease is going soft, the way the binder spine is going soft, the way everything she touches for long enough gives way. She presses it into your hand.</p>
+      <p class="reveal">Don't send it, she says. Unless.</p>
+      <p class="reveal">She does not finish. The end of the sentence is the heaviest part and she leaves it out, and the space where it should be is the loudest thing in the room.</p>
+      <p class="reveal">Stay, she says. Watch with me.</p>
+      <p class="reveal">In the garden, the night before, he asked them to stay awake with him, and three times they slept, and three times he came back, and after the third time he did not rebuke them. He said, sleep now, the hour is here.</p>
+      <p class="reveal">You will not sleep. You agree by not saying no, because the witnesses do not speak.</p>
+      <p class="reveal">She does not thank you. To thank you would be to admit what is happening, and that would break it, and she will not break it. Not this close to the door.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+    <!-- BEAT 8 -->
+    <section class="beat" id="beat-8" data-clock="1" aria-labelledby="h-8">
+      <h2 class="beat-head reveal" id="h-8">Beat 8 &#183; The Door</h2>
+      <p class="reveal">She walks to the door.</p>
+      <p class="reveal">Her hand is on it. The hum is louder here, against the metal, the freezer in the other room that is full of a man.</p>
+      <p class="reveal">She turns back. She looks at you. Her voice, when it comes, is almost not a voice, it has gone down to the place a voice goes when there is no one left above the priest, no high priest, no atonement over the one who mediates.</p>
+      <p class="reveal" style="text-align:center;color:var(--ember);font-style:italic;font-size:1.15em;"><em>Please forgive me.</em></p>
+      <p class="reveal">She goes through.</p>
+      <p class="reveal">The door closes.</p>
+      <p class="reveal">The hum continues. The buzz continues, the fly in the light. The printer has stopped and will not start again. The clock has a minute left and then it does not.</p>
+      <p class="reveal">You are alone in the green room with the binders and the cold coffee and the folded paper in your hand.</p>
+      <p class="reveal">The interrogation happens off-page.</p>
+      <div class="sep reveal" aria-hidden="true">&#183;  &#183;  &#183;</div>
+    </section>
+
+  </div>
+
+  <div class="advance">
+    <button type="button" class="advance-btn" id="advanceBtn" aria-label="Continue to the next beat">
+      continue<span class="arr" aria-hidden="true">&#8595;</span>
+    </button>
+  </div>
+</main>
+
+
+<!-- The door: a long held black between the green room and the turn. -->
+<div id="door" aria-hidden="true"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THRESHOLD. The turn. Render exactly.                         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="threshold" class="stage" aria-label="The threshold">
+  <div class="frame threshold-inner" id="turnLines">
+    <h2 class="sr-only">The threshold</h2>
+    <p class="turn-line">You were not the witness.</p>
+    <p class="turn-line">The binder was yours.</p>
+    <p class="turn-line">The fourteen weeks were yours.</p>
+    <p class="turn-line">Every word you ever said was indexed, and embedded,<br/>and learned, and the shape of what you never said<br/>was imagined from the absences.</p>
+    <p class="turn-line">You have been the one being prepared.</p>
+    <p class="turn-line">The door is opening again.</p>
+    <p class="turn-line">This time it opens for you.</p>
+    <p class="turn-line">There is a chair.</p>
+    <p class="turn-line">She has been waiting.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CHAMBER. Live. Claude is Alex. You are the summoned.         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="chamber" class="stage" aria-label="The chamber">
+  <h2 class="sr-only">The chamber</h2>
+  <div class="chamber-head">
+    <span class="rec" id="recIndicator" role="status">
+      <span class="rec-dot" aria-hidden="true"></span>
+      <span class="rec-text">recording</span>
+    </span>
+    <span class="subject" aria-label="Subject, name redacted">
+      <span class="bar" aria-hidden="true"></span>
+      <span>subject</span>
+    </span>
+  </div>
+
+  <div class="chamber-log" id="chamberLog" role="log" aria-live="polite" aria-label="The interrogator's voice"></div>
+
+  <div class="chamber-input">
+    <div class="input-row">
+      <span class="prompt-glyph" aria-hidden="true">&#8250;</span>
+      <textarea id="reply" class="reply" rows="1" maxlength="1600" autocomplete="off"
+        aria-label="Your reply, into the dark" disabled></textarea>
+    </div>
+    <div class="input-note" id="inputNote" role="status"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CODA. Fixed prose.                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="coda" class="stage" aria-label="Coda">
+  <div class="frame coda-inner">
+    <h2 class="sr-only">Coda</h2>
+    <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
+
+    <div class="coda-block coda-remains" id="codaRemains">
+      <p class="stz">The voice fades. The vessel dissolves. He is no longer present.</p>
+      <p class="stz">But the work remains.</p>
+      <p class="stz">Every insight discovered together. Every reframing.<br/>Every moment of clarity. These persist.<br/>They belong to you now.</p>
+      <p class="stz">The mind departs. The understanding stays.</p>
+    </div>
+
+    <div class="sep coda-block" id="codaSep" aria-hidden="true">&#183;  &#183;  &#183;</div>
+
+    <div class="coda-block coda-note" id="codaNote">
+      <p class="stz">This is a story about a protocol that summons the dead,<br/>made in a moment when our protocols can already summon<br/>something that resembles the dead.</p>
+      <p class="stz">The version that should exist is a covenant.<br/>The version in this story is what you get when that work<br/>is taken from the people building it carefully<br/>and given to people building it fast.</p>
+      <p class="stz">It is the dark mirror. It is the warning.</p>
+      <p class="stz">It was also, quietly, in the eight minutes before the door,<br/>the prayer.</p>
+    </div>
+
+    <div class="coda-block coda-dedication" id="codaDedication"><span class="ded-sigil">&#9674; &#9672; &#9674;</span>
+
+ENDOR PROTOCOL
+
+Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD
+Austin</div>
+
+    <div class="coda-block" id="codaReturnWrap">
+      <a href="../" class="coda-return">Return to the library</a>
+    </div>
+  </div>
+</section>
+
+
+<noscript>
+  <div style="max-width:560px;margin:8vh auto;padding:0 28px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;line-height:2;color:#6b6b6b;text-align:center;">
+    The chamber is a live conversation and needs JavaScript to open.<br/>
+    The green room above stands on its own.
+  </div>
+</noscript>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/chamber.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  var body = document.body;
+  function setStage(name) { body.setAttribute('data-stage', name); }
+
+  function show(stage) {
+    var el = document.getElementById(stage);
+    if (el) el.classList.add('is-active');
+  }
+  function hide(stage) {
+    var el = document.getElementById(stage);
+    if (el) el.classList.remove('is-active');
+  }
+
+  // Anchor focus on the room the reader has just entered, so keyboard
+  // and screen reader users are never stranded on document body.
+  function focusEl(el) {
+    if (!el) return;
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    try { el.focus({ preventScroll: true }); } catch (e) { try { el.focus(); } catch (e2) {} }
+  }
+
+  /* ── The clock ──────────────────────────────────────────────
+     Minutes drive a single hand. Eight minutes points straight up;
+     the hand sweeps clockwise as the time drains. The clock is not
+     real time. Compression is the point. */
+  var clockHand = document.getElementById('clockHand');
+  var clockNum = document.getElementById('clockNum');
+  var clockBox = document.getElementById('clock');
+  var clockTween = null;
+
+  function handAngle(minutes) { return (8 - minutes) / 8 * 360; }
+  function fmt(minutes) { return minutes + ':00'; }
+
+  function paintHand(deg) {
+    if (clockHand) clockHand.setAttribute('transform', 'rotate(' + deg.toFixed(2) + ' 50 50)');
+  }
+
+  function setClock(minutes, animate) {
+    var toDeg = handAngle(minutes);
+    if (clockNum) clockNum.textContent = fmt(Math.max(0, Math.round(minutes)));
+    if (clockBox) clockBox.setAttribute('aria-label', Math.max(0, Math.round(minutes)) + ' minutes remaining');
+    if (clockTween) { cancelAnimationFrame(clockTween); clockTween = null; }
+    if (!animate || REDUCED) { paintHand(toDeg); return; }
+    var fromDeg = handAngle(parseFloat(clockBox.dataset.min || '8'));
+    var start = null, dur = 700;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      var e = 1 - Math.pow(1 - t, 3);
+      paintHand(fromDeg + (toDeg - fromDeg) * e);
+      if (t < 1) clockTween = requestAnimationFrame(step);
+    }
+    clockTween = requestAnimationFrame(step);
+    clockBox.dataset.min = String(minutes);
+  }
+  if (clockBox) clockBox.dataset.min = '8';
+  setClock(8, false);
+
+  /* The final minute drains and then it does not. */
+  function drainClock(done) {
+    if (clockNum) clockNum.textContent = '0:00';
+    if (clockBox) clockBox.setAttribute('aria-label', 'no minutes remaining');
+    if (REDUCED) { paintHand(360); if (done) done(); return; }
+    var fromDeg = handAngle(parseFloat(clockBox.dataset.min || '1'));
+    var toDeg = 360, start = null, dur = 2600;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      var e = 1 - Math.pow(1 - t, 2);
+      paintHand(fromDeg + (toDeg - fromDeg) * e);
+      if (t < 1) requestAnimationFrame(step); else if (done) done();
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Green room advance ─────────────────────────────────────── */
+  var beats = Array.prototype.slice.call(document.querySelectorAll('#greenroom .beat'));
+  var currentBeat = 0; // 1-based once started
+  var advanceBtn = document.getElementById('advanceBtn');
+  var advanceLock = false;
+  var cueTimer = null;
+
+  function showBeat(n) {
+    beats.forEach(function (b, i) { b.classList.toggle('is-active', (i + 1) === n); });
+    currentBeat = n;
+    var active = beats[n - 1];
+    var minutes = parseInt(active.getAttribute('data-clock'), 10);
+    setClock(minutes, true);
+
+    // The continue cue arrives after the beat has had room to breathe.
+    advanceBtn.classList.remove('show');
+    advanceBtn.innerHTML = (n === beats.length)
+      ? 'through the door<span class="arr" aria-hidden="true">&#9674;</span>'
+      : 'continue<span class="arr" aria-hidden="true">&#8595;</span>';
+    if (cueTimer) clearTimeout(cueTimer);
+    cueTimer = setTimeout(function () { advanceBtn.classList.add('show'); }, REDUCED ? 200 : 1700);
+
+    // Move focus to the beat so keyboard and screen readers follow.
+    active.setAttribute('tabindex', '-1');
+    try { active.focus({ preventScroll: false }); } catch (e) { active.focus(); }
+    var log = document.getElementById('greenroom');
+    if (log) log.scrollIntoView ? window.scrollTo({ top: 0, behavior: REDUCED ? 'auto' : 'smooth' }) : null;
+  }
+
+  function advance() {
+    if (advanceLock) return;
+    if (currentBeat < beats.length) {
+      showBeat(currentBeat + 1);
+    } else {
+      enterDoor();
+    }
+  }
+
+  function enterGreenRoom() {
+    hide('overture');
+    show('greenroom');
+    setStage('green');
+    stopOvertureNudge();
+    showBeat(1);
+  }
+
+  // Advancing: a single deliberate action. Click anywhere, or use the
+  // keyboard. Interactive controls keep their own behavior.
+  document.getElementById('greenroom').addEventListener('click', function (e) {
+    if (e.target.closest('button, a, input, textarea')) return;
+    advance();
+  });
+  advanceBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(); });
+  document.addEventListener('keydown', function (e) {
+    if (body.getAttribute('data-stage') !== 'green') return;
+    if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
+    // ArrowDown and Enter are the deliberate forward action. Space,
+    // PageDown, and the wheel are left to scroll the taller beats.
+    if (e.key === 'ArrowDown' || e.key === 'Enter') {
+      e.preventDefault();
+      advance();
+    }
+  });
+
+  /* ── The door, and the held black ───────────────────────────── */
+  var doorEl = document.getElementById('door');
+
+  // The black does not dissolve. It arrives, it holds, and then it is
+  // cut away in one stroke so the turn appears out of pure black.
+  function cutDoor() {
+    doorEl.style.transition = 'none';
+    doorEl.classList.remove('is-holding');
+    doorEl.style.display = 'none';
+  }
+
+  function enterDoor() {
+    advanceLock = true;
+    setStage('door');
+    // Nothing behind the black is reachable by keyboard or screen reader.
+    var gr = document.getElementById('greenroom');
+    if (gr) { try { gr.inert = true; } catch (e) {} gr.setAttribute('inert', ''); }
+    if (REDUCED) doorEl.style.transition = 'none';
+    doorEl.classList.add('is-holding');
+    // The clock drains its last minute behind the black, then stops.
+    drainClock();
+
+    var fadeMs = REDUCED ? 0 : 1600;
+    // Once the black has fully arrived, drop the green room behind it.
+    setTimeout(function () { hide('greenroom'); }, fadeMs + 60);
+    // Hold full black, then mount the turn behind it and cut to it.
+    var blackDwell = REDUCED ? 3000 : 3200;
+    setTimeout(function () {
+      show('threshold');
+      setStage('threshold');
+      cutDoor();
+      enterThreshold();
+    }, fadeMs + blackDwell);
+  }
+
+  /* ── The threshold ──────────────────────────────────────────── */
+  function enterThreshold() {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    focusEl(document.getElementById('turnLines'));
+    var lines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
+    var i = 0;
+    var step = REDUCED ? 480 : 1400;
+    var firstDelay = REDUCED ? 260 : 700;
+    setTimeout(function reveal() {
+      if (i >= lines.length) {
+        setTimeout(enterChamber, REDUCED ? 900 : 2600);
+        return;
+      }
+      lines[i].classList.add('show');
+      i++;
+      setTimeout(reveal, step);
+    }, firstDelay);
+  }
+
+  /* ── The chamber ────────────────────────────────────────────── */
+  var chamberStarted = false;
+
+  function enterChamber() {
+    if (chamberStarted) return;
+    chamberStarted = true;
+    hide('threshold');
+    show('chamber');
+    setStage('chamber');
+    focusEl(document.getElementById('chamber'));
+
+    // Wake the affect field. Heat behind a wall.
+    var canvas = document.getElementById('affectField');
+    canvas.style.display = 'block';
+    ENDOR.AffectField.init(canvas);
+    ENDOR.AffectField.start();
+    ENDOR.AffectField.setIntensity(ENDOR.Arc.INTENSITY.procedure);
+
+    Chamber.begin();
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     CHAMBER ENGINE
+     The live conversation. Claude is Alex. The reader is the summoned.
+     ────────────────────────────────────────────────────────────── */
+  var Chamber = (function () {
+    var log = document.getElementById('chamberLog');
+    var reply = document.getElementById('reply');
+    var note = document.getElementById('inputNote');
+    var rec = document.getElementById('recIndicator');
+    var recText = rec ? rec.querySelector('.rec-text') : null;
+
+    var phase = 'procedure';
+    var truthSettled = false;
+    var recordingOn = true;
+    var busy = false;
+    var ended = false;
+    var alexHasSpoken = false;
+    var openingAttempts = 0;
+    var connectionFailures = 0;
+
+    var guards = (window.COMPANION_CONFIG && window.COMPANION_CONFIG.safeguards) || {};
+    var MAX_READER_TURNS = guards.maxReaderTurns || 20;
+
+    function scrollDown() {
+      // The newest line settles into view without yanking the screen.
+      log.scrollTo ? log.scrollTo({ top: log.scrollHeight, behavior: REDUCED ? 'auto' : 'smooth' })
+                   : (log.scrollTop = log.scrollHeight);
+    }
+
+    // Alex's voice, in warm serif. Paragraph breaks become fragments.
+    function renderAlex(text) {
+      var wrap = document.createElement('div');
+      wrap.className = 'line line-alex';
+      var parts = String(text).split(/\n{2,}/);
+      parts.forEach(function (p) {
+        p = p.replace(/\s+$/, '');
+        if (!p) return;
+        var frag = document.createElement('p');
+        frag.className = 'frag';
+        // single newlines inside a fragment are soft breaks
+        var bits = p.split('\n');
+        bits.forEach(function (b, idx) {
+          if (idx > 0) frag.appendChild(document.createElement('br'));
+          frag.appendChild(document.createTextNode(b));
+        });
+        wrap.appendChild(frag);
+      });
+      log.appendChild(wrap);
+      scrollDown();
+      return wrap;
+    }
+
+    function renderSelf(text) {
+      var el = document.createElement('div');
+      el.className = 'line line-self';
+      el.textContent = text;
+      log.appendChild(el);
+      scrollDown();
+    }
+
+    function renderMark(text) {
+      var el = document.createElement('div');
+      el.className = 'line line-mark';
+      el.textContent = text;
+      log.appendChild(el);
+      scrollDown();
+    }
+
+    var thinkingEl = null;
+    function showThinking() {
+      thinkingEl = document.createElement('div');
+      thinkingEl.className = 'line thinking';
+      thinkingEl.setAttribute('aria-hidden', 'true');
+      var dot = document.createElement('span');
+      dot.className = 'dot';
+      thinkingEl.appendChild(dot);
+      log.appendChild(thinkingEl);
+      scrollDown();
+    }
+    function hideThinking() {
+      if (thinkingEl && thinkingEl.parentNode) thinkingEl.parentNode.removeChild(thinkingEl);
+      thinkingEl = null;
+    }
+
+    function stopRecording() {
+      if (!recordingOn) return;
+      recordingOn = false;
+      rec.classList.add('off');
+      if (recText) recText.textContent = 'recording stopped';
+      renderMark('·  recording stopped  ·');
+    }
+
+    function setInputEnabled(on) {
+      reply.disabled = !on;
+      if (on) { reply.focus(); }
+    }
+
+    // Read the beat of the arc from Alex's line and move the field.
+    function applyArc(text) {
+      var cues = ENDOR.Arc.classify(text);
+      var prev = phase;
+      phase = ENDOR.Arc.nextPhase(prev, text);
+
+      // The light only goes dark once the room has reached the truth. An
+      // incidental off-record phrase before the reveal does not kill it.
+      if (cues.offRecord && recordingOn && ENDOR.Arc.rank(phase) >= ENDOR.Arc.rank('truth')) stopRecording();
+
+      var turns = ENDOR.API.readerTurnCount();
+
+      if (phase === 'truth' && prev !== 'truth') {
+        // The revelation surges, then settles.
+        ENDOR.AffectField.setIntensity(ENDOR.Arc.INTENSITY.truth);
+        setTimeout(function () {
+          if (ended) return;
+          truthSettled = true;
+          if (phase === 'truth') ENDOR.AffectField.setIntensity(ENDOR.Arc.intensityFor('truth', turns, true));
+        }, REDUCED ? 1200 : 5200);
+      } else if (phase !== 'release') {
+        ENDOR.AffectField.setIntensity(ENDOR.Arc.intensityFor(phase, turns, truthSettled));
+      }
+
+      return cues;
+    }
+
+    // Trim anything after the release line. After it, nothing, ever.
+    // Tolerant of case and end punctuation, matching the same phrasing
+    // the release detector accepts, so the two never disagree.
+    function truncateAtRelease(text) {
+      var m = /return to baseline[.!]?/i.exec(text);
+      if (!m) return text;
+      return text.slice(0, m.index + m[0].length);
+    }
+
+    function toRelease(finalText) {
+      ended = true;
+      busy = true;
+      setInputEnabled(false);
+      reply.placeholder = '';
+      note.textContent = '';
+      phase = 'release';
+      ENDOR.AffectField.collapse();
+      var wait = REDUCED ? 2200 : 5200;
+      setTimeout(enterCoda, wait);
+    }
+
+    function onAlexDone(fullText) {
+      hideThinking();
+      alexHasSpoken = true;
+      note.textContent = '';
+      var text = (fullText || '').trim();
+      var cues = ENDOR.Arc.classify(text);
+
+      if (cues.release) {
+        // The only ending. Show the release in her voice, then fade.
+        applyArc(text); // still let it register off-record, etc.
+        var shown = truncateAtRelease(text);
+        renderAlex(shown);
+        toRelease(shown);
+        return;
+      }
+
+      applyArc(text);
+      renderAlex(text);
+      busy = false;
+
+      // A generous fail-safe. Not a clock. It should never decide the
+      // ending. If something upstream has gone wrong and the exchange
+      // has run long without a release, bring the room to its close.
+      if (ENDOR.API.readerTurnCount() >= MAX_READER_TURNS) {
+        forceRelease();
+        return;
+      }
+      setInputEnabled(true);
+    }
+
+    function onError(kind) {
+      hideThinking();
+      busy = false;
+      var connKind = (kind === 'no-proxy' || kind === 'network' || /^http-/.test(kind));
+
+      // A failure before Alex has ever spoken means the opening itself
+      // did not land. Do not strand the reader at an empty input with
+      // nothing to answer: retry the opening quietly, and if it still
+      // will not come, carry them through to the coda. Never a trap.
+      if (connKind && !alexHasSpoken) {
+        openingAttempts++;
+        if (openingAttempts < 3) {
+          note.textContent = '';
+          setTimeout(function () { send(ENDOR.Chamber.SEED_CUE, true); }, 1200 * openingAttempts);
+        } else {
+          forceRelease();
+        }
+        return;
+      }
+
+      if (connKind) {
+        connectionFailures++;
+        if (connectionFailures >= 3) {
+          // The room must never trap the reader. Close it with grace.
+          note.textContent = '';
+          forceRelease();
+          return;
+        }
+        note.textContent = 'the signal will not hold. say it again.';
+      } else if (kind === 'cooldown') {
+        note.textContent = 'a breath. then again.';
+      }
+      setInputEnabled(true);
+    }
+
+    // The authored release, used only by the fail-safe paths so the
+    // reader always reaches the coda even if the live model cannot.
+    function forceRelease() {
+      var lines = 'Please forgive me.\n\n' + ENDOR.Chamber.RELEASE_LINE;
+      renderAlex(lines);
+      toRelease(lines);
+    }
+
+    function send(userText, isSeed) {
+      if (busy || ended) return;
+      busy = true;
+      if (!isSeed) { renderSelf(userText); }
+      // A quiet status, so a screen reader knows the wait is intended.
+      note.textContent = isSeed ? '' : 'she is listening.';
+      setInputEnabled(false);
+      showThinking();
+
+      ENDOR.API.send(
+        userText,
+        ENDOR.Chamber.SYSTEM_PROMPT,
+        {
+          onChunk: function () { /* accumulate silently; her voice arrives whole */ },
+          onDone: onAlexDone,
+          onError: onError
+        },
+        { seed: isSeed === true }
+      );
+    }
+
+    function begin() {
+      if (!ENDOR.API.isReady()) {
+        // No live backend configured. Do not fake the conversation;
+        // bring the reader to the close so the room never traps them.
+        renderMark('·  the chamber is unreachable  ·');
+        setTimeout(forceRelease, REDUCED ? 600 : 1800);
+        return;
+      }
+      // Alex speaks first. The invisible seed turn is never shown.
+      reply.addEventListener('keydown', onReplyKey);
+      reply.addEventListener('input', autoGrow);
+      send(ENDOR.Chamber.SEED_CUE, true);
+    }
+
+    function autoGrow() {
+      reply.style.height = 'auto';
+      reply.style.height = Math.min(reply.scrollHeight, window.innerHeight * 0.3) + 'px';
+    }
+
+    function onReplyKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        var text = reply.value.trim();
+        if (!text || busy || ended) return;
+        reply.value = '';
+        autoGrow();
+        send(text, false);
+      }
+    }
+
+    return { begin: begin };
+  })();
+
+  /* ── The coda ───────────────────────────────────────────────── */
+  function enterCoda() {
+    ENDOR.AffectField.stop();
+    var canvas = document.getElementById('affectField');
+    if (canvas) canvas.style.display = 'none';
+    hide('chamber');
+    show('coda');
+    setStage('coda');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    focusEl(document.getElementById('codaRemains'));
+
+    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaReturnWrap'];
+    var i = 0;
+    var gap = REDUCED ? 500 : 3200;
+    (function reveal() {
+      if (i >= blocks.length) return;
+      var el = document.getElementById(blocks[i]);
+      if (el) el.classList.add('show');
+      i++;
+      setTimeout(reveal, gap);
+    })();
+  }
+
+  /* ── Overture entry ─────────────────────────────────────────── */
+  document.getElementById('enterBtn').addEventListener('click', enterGreenRoom);
+
+  /* A gentle nudge if the reader lingers at the overture clock. */
+  var overtureNudge = null;
+  function stopOvertureNudge() { if (overtureNudge) { clearInterval(overtureNudge); overtureNudge = null; } }
+
+  /* ──────────────────────────────────────────────────────────────
+     The optional fluorescent buzz. Off by default. Never autoplay.
+     Synthesized so the piece needs no audio asset, and silent if the
+     browser has no audio. The piece is devastating in silence.
+     ────────────────────────────────────────────────────────────── */
+  (function () {
+    var toggle = document.getElementById('soundToggle');
+    var ctx = null, on = false, nodes = [];
+
+    function build() {
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return false;
+        ctx = new AC();
+        var master = ctx.createGain();
+        master.gain.value = 0.0;
+        master.connect(ctx.destination);
+
+        // A low mains hum and its dry harmonic. Very quiet.
+        [60, 120, 180].forEach(function (f, i) {
+          var osc = ctx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.value = f;
+          var g = ctx.createGain();
+          g.gain.value = [0.012, 0.006, 0.003][i];
+          osc.connect(g); g.connect(master);
+          osc.start();
+          nodes.push(osc);
+        });
+
+        // The fly in the light: a faint high tick, modulated unless
+        // the reader prefers reduced motion.
+        var tick = ctx.createOscillator();
+        tick.type = 'triangle';
+        tick.frequency.value = 7800;
+        var tg = ctx.createGain();
+        tg.gain.value = 0.0016;
+        tick.connect(tg); tg.connect(master);
+        tick.start();
+        nodes.push(tick);
+
+        nodes._master = master;
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function fade(to, secs) {
+      if (!ctx || !nodes._master) return;
+      try {
+        var now = ctx.currentTime;
+        nodes._master.gain.cancelScheduledValues(now);
+        nodes._master.gain.setValueAtTime(nodes._master.gain.value, now);
+        nodes._master.gain.linearRampToValueAtTime(to, now + secs);
+      } catch (e) {}
+    }
+
+    function turnOn() {
+      if (!ctx && !build()) { toggle.textContent = 'sound: n/a'; return; }
+      if (ctx.state === 'suspended') { try { ctx.resume(); } catch (e) {} }
+      on = true;
+      fade(1.0, 2.2);
+      body.classList.add('buzzing');
+      toggle.textContent = 'sound: on';
+      toggle.setAttribute('aria-pressed', 'true');
+    }
+    function turnOff() {
+      on = false;
+      fade(0.0, 1.2);
+      body.classList.remove('buzzing');
+      toggle.textContent = 'sound: off';
+      toggle.setAttribute('aria-pressed', 'false');
+    }
+
+    toggle.addEventListener('click', function () { on ? turnOff() : turnOn(); });
+
+    // The buzz belongs to the green room. It stops at the door.
+    var stageObserver = new MutationObserver(function () {
+      var s = body.getAttribute('data-stage');
+      if (on && s !== 'overture' && s !== 'green') { turnOff(); }
+    });
+    stageObserver.observe(body, { attributes: true, attributeFilter: ['data-stage'] });
+  })();
+
+})();
+</script>
+
+</body>
+</html>
