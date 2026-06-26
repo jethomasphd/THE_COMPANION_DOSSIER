@@ -140,7 +140,7 @@ async function handbillReveal(){
   const sl=document.querySelector('#bill .bill-seal'); if(sl) sl.classList.add('show'); await wait(1300);
 }
 
-/* ════ THE WATCHTOWER CURVE — real, full-year data ════ */
+/* ════ THE WATCHTOWER CURVE — real, first-six-months data ════ */
 const VD = window.VIGIL_DATA || {series:{republic:[0,5,8,9],spy:[0,-4,-7,10]},pivot_index:2,n_points:4,dates:[]};
 const YMIN=-8, YMAX=12, VBW=100, VBH=56, PAD=3.5;
 function mapX(i,a,b){ return PAD + (i-a)/Math.max(1,(b-a))*(VBW-2*PAD); }
@@ -192,7 +192,7 @@ async function seedPlant(s){
   setDot('goldDot', mapX(0,0,115), mapY(0)-1.3); setDot('blueDot', mapX(0,0,115), mapY(0)+1.3);
   $('goldDot').classList.add('show'); $('blueDot').classList.add('show');
   show('chartLayer'); chime();
-  $('spread').innerHTML=s.note||'THE GROUND IS MARKED · THE YEAR WILL DECIDE'; $('spread').classList.add('show');
+  $('spread').innerHTML=s.note||'THE GROUND IS MARKED · THE MONTHS WILL DECIDE'; $('spread').classList.add('show');
   await wait(s.ms||5500);
   hide('chartLayer'); $('spread').classList.remove('show'); $('goldDot').classList.remove('show'); $('blueDot').classList.remove('show');
   await wait(1000);
@@ -203,7 +203,7 @@ const CAL=[
  {y:2025,mo:11,d:1,  label:'The Founding',        sub:'the Committee convenes',             kind:'gold'},
  {y:2026,mo:1, d:28, label:'Operation Epic Fury',  sub:'the war begins · the Strait closes', kind:'blood'},
  {y:2026,mo:5, d:16, label:'The Reckoning',        sub:'the Republic at its peak',           kind:'gold'},
- {y:2026,mo:5, d:30, label:'The Committee Reconvenes', sub:'the close of Q2 · the next reckoning', kind:'gold'}
+ {y:2026,mo:6, d:6,  label:'The Committee Reconvenes', sub:'after Q2 closes · early July', kind:'gold'}
 ];
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 function calBuild(c){
