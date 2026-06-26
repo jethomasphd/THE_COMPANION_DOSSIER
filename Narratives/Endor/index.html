@@ -201,13 +201,17 @@
   #greenroom { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
   .book { position:relative; width:min(94vw, 720px); perspective:2600px; }
   .page, .flipper-face {
-    height:clamp(500px, 80vh, 760px);
-    padding:clamp(1.6rem,4vw,2.6rem) clamp(1.5rem,5vw,3rem);
+    height:clamp(540px, 88vh, 860px);
+    padding:clamp(1.4rem,3vw,2.2rem) clamp(1.5rem,5vw,3rem);
     overflow:hidden;
+    display:flex; flex-direction:column;
   }
-  .page { z-index:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:rgba(120,90,45,0.5) transparent; }
-  .page::-webkit-scrollbar { width:8px; }
-  .page::-webkit-scrollbar-thumb { background:rgba(120,90,45,0.45); border-radius:4px; }
+  .page { z-index:1; }            /* paginated to fit: never scrolls */
+  .source { display:none; }
+  /* The body of a leaf is centered between the running head and the
+     folio, so even a light leaf reads as a composed page. */
+  .leaf-body { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+  .folio { flex:0 0 auto; }
 
   .book.extinguished .page { background:var(--void); border-color:#000; box-shadow:none; }
   .book.extinguished .page::before, .book.extinguished .page::after { opacity:0; }
@@ -237,23 +241,24 @@
   .running-head {
     text-align:center; font-family:var(--sc); font-variant:small-caps;
     letter-spacing:0.28em; font-size:0.62rem; color:var(--ink-soft);
-    padding-bottom:0.5rem; border-bottom:1px solid rgba(90,62,26,0.22); margin-bottom:1.4rem;
+    padding-bottom:0.5rem; border-bottom:1px solid rgba(90,62,26,0.22); margin-bottom:1rem;
   }
-  .chapter-head { text-align:center; margin-bottom:1.2rem; }
+  .chapter-head { text-align:center; margin-bottom:0.85rem; }
   .chapter-num { font-family:var(--display); font-weight:500; font-size:0.8rem; letter-spacing:0.4em; color:var(--gilt); }
   .chapter-title { font-family:var(--display); font-weight:500; font-size:clamp(1.3rem,3.6vw,1.7rem);
     letter-spacing:0.06em; color:var(--ink); margin-top:0.35rem; line-height:1.15; }
   .chapter-head .orn { color:var(--rubric); font-size:0.85rem; margin-top:0.5rem; letter-spacing:0.3em; }
 
-  .plate { width:clamp(116px,26vw,156px); margin:0.4rem auto 1.5rem; }
+  .plate { width:clamp(84px,15vw,108px); margin:0.1rem auto 0.95rem; }
   .plate svg { width:100%; height:auto; display:block; filter:drop-shadow(0 1px 0 rgba(255,250,235,0.4)); }
 
-  .prose { max-width:54ch; margin:0 auto; }
+  .prose { max-width:62ch; margin:0 auto; }
   .prose p {
-    font-family:var(--book); font-size:clamp(1.02rem,2.4vw,1.18rem); line-height:1.74; color:var(--ink);
+    font-family:var(--book); font-size:clamp(1.02rem,2.3vw,1.16rem); line-height:1.58; color:var(--ink);
     text-align:justify; hyphens:auto; -webkit-hyphens:auto;
   }
-  .prose p + p { margin-top:0.2em; text-indent:1.5em; }
+  /* Classic book setting: indented paragraphs, no space between them. */
+  .prose p + p { margin-top:0; text-indent:1.4em; }
   .prose em { font-style:italic; }
   .prose .stamp { text-align:center; text-indent:0; font-style:italic; color:var(--rubric);
     font-size:1.3em; letter-spacing:0.06em; margin-bottom:0.4em; }
@@ -314,12 +319,18 @@
 
   .chamber-log { flex:1; overflow-y:auto; width:100%; max-width:720px; margin:0 auto; padding:8vh 24px 2vh;
     scrollbar-width:thin; scrollbar-color:var(--ember-dim) transparent; }
-  .line { margin-bottom:2.4rem; opacity:0; animation:rise 1.6s ease forwards; }
-  .line-alex { font-family:var(--serif); font-weight:300; font-size:clamp(1.18rem,2.6vw,1.4rem); line-height:1.95; color:var(--bone); max-width:38em; }
-  .line-alex .frag + .frag { margin-top:1.1em; }
-  .line-self { font-family:var(--mono); font-weight:300; font-size:0.8rem; line-height:1.8; letter-spacing:0.02em;
-    color:var(--bone-dim); padding-left:1.2em; border-left:1px solid var(--ember-faint); max-width:40em; }
-  .line-mark { text-align:center; font-family:var(--mono); font-size:0.56rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ash); white-space:pre; }
+  .line { margin-bottom:2.6rem; }
+  /* Alex's voice arrives a breath at a time, not as a block. */
+  .line-alex { font-family:var(--serif); font-weight:300; font-size:clamp(1.2rem,2.7vw,1.46rem); line-height:1.96; color:var(--bone); max-width:34em; opacity:1; }
+  .line-alex .frag { opacity:0; transform:translateY(7px); transition:opacity 1.2s ease, transform 1.2s ease; }
+  .line-alex .frag.in { opacity:1; transform:none; }
+  .line-alex .frag + .frag { margin-top:1.05em; }
+  /* The reader, the summoned: a quieter register, set apart. */
+  .line-self { margin-left:auto; margin-bottom:2.6rem; max-width:30em; text-align:right;
+    font-family:var(--mono); font-weight:300; font-size:0.82rem; line-height:1.85; letter-spacing:0.01em;
+    color:var(--bone-dim); padding-right:1em; border-right:1px solid var(--ember-faint);
+    opacity:0; animation:rise 1s ease forwards; }
+  .line-mark { text-align:center; margin:0.4rem auto 2.6rem; font-family:var(--mono); font-size:0.56rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ash); white-space:pre; opacity:0; animation:rise 1.4s ease forwards; }
   .thinking { display:flex; align-items:center; padding-left:0.2em; }
   .thinking .dot { width:5px; height:5px; border-radius:50%; background:var(--ember-dim); animation:thinkPulse 2.4s ease-in-out infinite; }
   @keyframes thinkPulse { 0%,100%{opacity:0.2; transform:scale(0.85);} 50%{opacity:0.8; transform:scale(1);} }
@@ -374,7 +385,8 @@
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
     .coda-block { transition:none; }
-    .line { animation:none; opacity:1; }
+    .line, .line-self, .line-mark { animation:none; opacity:1; }
+    .line-alex .frag { transition:none; opacity:1; transform:none; }
     .rec-dot, .advance-btn.show, .thinking .dot { animation:none; }
     .flipper, .flipper.flipping { transition:none; }
     #door { transition:none; }
@@ -583,7 +595,9 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <main id="greenroom" class="stage" aria-label="The account of Endor">
   <div class="book">
-    <div class="page leaf" id="page">
+    <!-- Source of truth, hidden. The paginator fits these chapters into
+         leaves that never scroll, then renders one leaf at a time. -->
+    <div class="source" id="source" hidden>
 
       <!-- I -->
       <section class="beat" id="beat-1" data-clock="8" aria-labelledby="ch-1">
@@ -735,7 +749,9 @@
         <div class="folio" aria-hidden="true">viii</div>
       </section>
 
-    </div><!-- /page -->
+    </div><!-- /source -->
+
+    <div class="page leaf" id="page" tabindex="-1" aria-label="The leaf you are reading"></div>
 
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>

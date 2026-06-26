@@ -24,7 +24,8 @@ ENDOR.API = (function () {
   // The repository's configured model, the one the other live
   // narratives use. Alex is terse, so the token budget is modest.
   var MODEL = 'claude-sonnet-4-6';
-  var MAX_TOKENS = 400;
+  // Modest, but with room so a turn is never cut off mid sentence.
+  var MAX_TOKENS = 640;
 
   // The running conversation. The reader's lines are user turns,
   // Alex's are assistant turns. Held in memory only.
