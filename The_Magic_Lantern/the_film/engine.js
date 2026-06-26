@@ -154,6 +154,9 @@ function penAlong(pid,did,ms){ const p=$(pid); if(!p)return; let L; try{L=p.getT
 function startCurve(s){
   const a=s.a, b=s.b, ms=s.ms||12000;
   if(s.title) $('curveTitle').textContent=s.title;
+  if(s.axL!=null) $('axL').innerHTML=s.axL;
+  if(s.axM!=null) $('axM').innerHTML=s.axM;
+  if(s.axR!=null) $('axR').innerHTML=s.axR;
   const R=VD.series.republic, S=VD.series.spy;
   $('zero').setAttribute('y1',mapY(0)); $('zero').setAttribute('y2',mapY(0));
   const tn=$('ten'); if(tn){ tn.setAttribute('y1',mapY(10)); tn.setAttribute('y2',mapY(10)); }
@@ -185,6 +188,7 @@ async function clearFace(){
 /* the battleground "seed" — the field is marked, but the lines have not grown yet */
 async function seedPlant(s){
   $('curveTitle').textContent=s.title||'THE BATTLEGROUND — THE REPUBLIC vs THE S&P 500';
+  $('axL').innerHTML=s.axL||'Jan'; $('axM').innerHTML=s.axM||'&middot; the months ahead &middot;'; $('axR').innerHTML=s.axR||'Jun';
   $('zero').setAttribute('y1',mapY(0)); $('zero').setAttribute('y2',mapY(0));
   $('blue').setAttribute('d',''); $('gold').setAttribute('d','');
   $('warBand').classList.remove('show'); $('pivot').classList.remove('show'); $('crossDot').classList.remove('show');
