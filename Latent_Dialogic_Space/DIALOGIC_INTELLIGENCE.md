@@ -170,6 +170,9 @@ Every container follows the same structural logic:
 | The 5 Lamps | Medical ethics board | Clinical scenarios | Training assessment |
 | The Exchange | Labor market archetypes | XML job feeds | Job application |
 | The Boardroom | Industry titans (Rockefeller, etc.) | Business strategy seeds | Strategic execution |
+| The Symposium | Pedagogical sages (Socrates, Montessori, Dewey, Lovelace, Freire) | Teaching dilemmas | A lesson designed |
+| The Aerodrome | The Wright brothers | The new age of invisible iron | Learning to rise |
+| Narratives | Characters who inhabit the context window | Story seeds | Fiction that knows it is read |
 
 **Future containers follow the same pattern.** New domain? New personas + new data + same structural logic = new container. The COMPANION Protocol is the constitutional layer that ensures quality and authenticity across all of them.
 
