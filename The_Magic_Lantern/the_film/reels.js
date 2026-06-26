@@ -33,7 +33,8 @@ window.REELS = [
   {t:'timeline', at:0, ms:4400},
   {t:'lines', per:3500, arr:[
     'December 2025. The republic is being <em style="color:var(--ember)">bought</em> —',
-    'quietly, legally, in plain sight.',
+    'an oligarchy assembling — quietly, legally, in plain sight.',
+    'A few hands closing on what the many depend upon.',
     'Alone at midnight, a citizen asks the dead<br>what the living will not answer.'
   ]},
   {t:'summon', promptText:'using this matter, summon George Washington, Alexander Hamilton, Thomas Jefferson, Benjamin Franklin',
@@ -44,13 +45,13 @@ window.REELS = [
       {name:'Jefferson',  src:P+'Thomas_Jefferson.jpg'},
       {name:'Franklin',   src:P+'Benjamin_Franklin.jpg'}
     ]},
-  {t:'sub', html:'The question: who owns the engines of daily life —<br>and what is left for those who don&rsquo;t?', ms:5600},
+  {t:'sub', html:'The question: as a few seize the engines of daily life,<br>what is left for the <em style="color:var(--ember)">many</em> who own none of it?', ms:5600},
   {t:'csay', name:'Jefferson', html:'You would have us <em>bless</em> the looting<br>of the republic we bled to build?', ms:5600},
-  {t:'csay', name:'Hamilton',  html:'I would have you <em style="color:var(--ember)">seize the deed</em> —<br>own what cannot be allowed to fail, and vote it.', ms:5800},
-  {t:'csay', name:'Jefferson', html:'Ownership is complicity.', ms:3800},
-  {t:'csay', name:'Hamilton',  html:'Absence is <em style="color:var(--ember)">surrender.</em>', ms:4000},
-  {t:'csay', name:'Franklin',  html:'The well is being fenced. Soon they will charge you<br>to drink from water <em>you</em> dug.', ms:5800},
-  {t:'csay', name:'Washington',html:'Then we hand the people no sermon —<br>but a <em style="color:var(--ember)">list.</em>', ms:5200},
+  {t:'csay', name:'Hamilton',  html:'I would have the people <em style="color:var(--ember)">seize the deed</em> —<br>own what cannot be allowed to fail, and vote it.', ms:5800},
+  {t:'csay', name:'Jefferson', html:'A handful of shares changes nothing.', ms:3800},
+  {t:'csay', name:'Hamilton',  html:'A <em style="color:var(--ember)">nation</em> of them changes everything.', ms:4200},
+  {t:'csay', name:'Franklin',  html:'The well is being fenced. Soon they will charge the many<br>to drink from water <em>they</em> dug.', ms:5800},
+  {t:'csay', name:'Washington',html:'Then we hand the people no sermon — but a <em style="color:var(--ember)">list</em>:<br>own the republic back, share by share,<br>in numbers too great to fence.', ms:6400},
   {t:'councilHide', ms:1000},
   {t:'lines', per:3300, arr:[
     'They named it the <em style="color:var(--ember)">Republic Portfolio</em>',
@@ -75,6 +76,20 @@ window.REELS = [
 /* ═══ REEL II — THE GENERAL · the doctrine meets a war ═══ */
 { roman:'II', title:'The General', sub:'The doctrine meets a war · Q1 2026', score:[
   {t:'scene', r:'II', n:'The General'},
+
+  /* ── BEFORE THE WAR — peacetime, Jan 1 → Feb 28 ── */
+  {t:'lines', per:3600, arr:[
+    'First, the weeks before the war.',
+    'January into February — the markets calm,<br>the doctrine already at work.'
+  ]},
+  {t:'curve', a:0, b:38, ms:7000, lead:800, title:'THE WATCHTOWER — JAN 1 → FEB 28 · BEFORE THE WAR',
+     axL:'Jan 1', axM:'&middot; peacetime &middot;', axR:'Feb 28'},
+  {t:'sub', scrim:true, html:'Even in peace, the lines part.<br>The doctrine climbs near <em style="color:var(--ember)">+10</em>; the index barely stirs.', ms:7000},
+  {t:'curveLabels', g:'Republic +9.9%', b:'S&P 500 +0.4%', note:'DAYLIGHT BEFORE A SHOT IS FIRED', ms:1200},
+  {t:'clearSub', ms:900},
+  {t:'hide', id:'chartLayer', ms:1100},
+
+  /* ── THE WAR — February 28th ── */
   {t:'timeline', at:1, ms:4400},
   {t:'lines', per:3500, arr:[
     'February 28th, 2026. With the talks still open and the Congress<br>held in contempt,',
@@ -86,9 +101,12 @@ window.REELS = [
   {t:'captionSwap', html:'returns now as <em style="color:var(--ember)">the general.</em>', ms:5000, hideAfter:true},
   {t:'sub', speaker:'Washington', html:'I will not litigate this war.<br>I was asked a different question — <em style="color:var(--ember)">who owns what sustains a life.</em>', ms:6800},
   {t:'sub', speaker:'Washington', html:'Watch what the doctrine does, now that the world burns.', ms:5400},
+
+  /* ── THE REMAINING CURVE — the war, Feb 28 → Mar 31 ── */
   {t:'scene', r:'II', n:'The Second Witness'},
-  {t:'curve', a:0, b:60, ms:8000, war:[38,60], pivot:60, lead:800, title:'THE WATCHTOWER — JAN → MAR 31 · THE WAR'},
-  {t:'sub', speaker:'Washington', html:'We hold near +6 — while the index, at its worst,<br>falls <em style="color:var(--ember)">past −7.</em>', ms:6600},
+  {t:'curve', a:38, b:60, ms:8000, war:[38,60], pivot:60, lead:800, title:'THE WATCHTOWER — FEB 28 → MAR 31 · THE WAR',
+     axL:'Feb 28', axM:'the war', axR:'Mar 31'},
+  {t:'sub', speaker:'Washington', html:'The shock takes back some ground — but never the lead.<br>We hold near +6, while the index falls <em style="color:var(--ember)">past −7.</em>', ms:6800},
   {t:'curveLabels', g:'Republic +5.9%', b:'S&P 500 −4.5%', note:'+10.4 POINTS OF DAYLIGHT — IN ONE QUARTER', ms:600},
   {t:'sub', speaker:'Washington', html:'War does not change the map of what sustains a life.<br>War <em style="color:var(--ember)">reveals</em> it.', ms:6600, chime:true},
   {t:'clearSub', ms:800},
@@ -106,7 +124,8 @@ window.REELS = [
     'The war ends. The index, which had crashed to −7,<br>comes roaring back.',
     'Watch all six months now, in one breath.'
   ]},
-  {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FIRST SIX MONTHS'},
+  {t:'curve', a:0, b:115, ms:10500, war:[38,60], pivot:60, cross:114, lead:1100, title:'THE WATCHTOWER — THE FIRST SIX MONTHS',
+     axL:'Jan 1', axM:'Mar 31 &middot; ceasefire', axR:'Jun 18'},
   {t:'sub', scrim:true, html:'For <em style="color:var(--ember)">103 of 116</em> days the gold line led —<br>and never broke when the index fell to −7.', ms:8000},
   {t:'sub', scrim:true, html:'At the close, the two lines meet — a single point apart.', ms:7000},
   {t:'curveLabels', g:'Republic +9.05%', b:'S&P 500 +9.89%', note:'NECK AND NECK · WITH A FIFTH HELD IN RESERVE', ms:1400},
