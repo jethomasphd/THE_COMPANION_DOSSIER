@@ -293,6 +293,12 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 .doc-prov{font-family:var(--tf);font-style:normal;font-size:.56rem;color:var(--smoke);margin-top:1.3rem;letter-spacing:.03em;border-top:1px solid #2a2620;padding-top:.9rem;line-height:1.7;}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
 @media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} .bill{padding:1.5rem 1.4rem;} }
+/* ── transport: pause + seek ── */
+#hud button.tnav{min-width:2.2rem;text-align:center;}
+#hud .tsep{width:1px;height:1.1rem;background:#2a2a2a;margin:0 .15rem;}
+body.paused *{animation-play-state:paused !important;}
+body.scrubbing *{transition:none !important;animation:none !important;}
+body.paused::after{content:'\275A\275A';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.4rem;letter-spacing:.22em;color:var(--ember);opacity:.4;z-index:90;pointer-events:none;text-shadow:0 0 26px rgba(201,162,39,.55);}
 </style>
 </head>
 <body>
@@ -470,6 +476,10 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 
 <div id="pips"></div>
 <div id="hud">
+  <button id="navPrev" class="tnav" title="Back one beat (&larr;)">&#9198;</button>
+  <button id="pausePlay" class="tnav" title="Pause / play (space)">&#10073;&#10073;</button>
+  <button id="navNext" class="tnav" title="Forward one beat (&rarr;)">&#9197;</button>
+  <span class="tsep"></span>
   <button id="chapters">&#9776; CHAPTERS</button>
   <button id="sound">&#9834; SOUND ON</button>
   <button id="restart">&#8635; RESTART</button>
@@ -507,6 +517,7 @@ async function reelTitle(k){
   updatePips(k); $('reelTitle').classList.add('vis'); chime();
   await wait(2500); $('reelTitle').classList.remove('vis'); await wait(900);
 }
+async function leadIn(){ await wait(1300); }
 async function epigraph(){
   resetStage(); show('cardLayer'); $('card').className='';
   $('card').innerHTML='<span style="font-style:italic;color:var(--bone-dim);font-size:.82em">The phantasmagoria hid the lantern to fool the crowd.<br><span style="color:var(--ember)">We show it — to free them.</span></span>';
@@ -518,39 +529,116 @@ async function mainTitle(){
   $('reelTitle').classList.add('vis'); threshold(); await wait(3400);
   $('reelTitle').classList.remove('vis'); await wait(1100);
 }
-
-async function safeRun(score){ try{ await runReel(score); }catch(e){ if(e==='x') throw e; console.error('film reel error:',e); } }
-async function playFrom(i){
-  newToken();
-  document.body.classList.add('cine');
-  gain(soundOn?0.9:0.0001, 1.2);
-  $('endNav').classList.remove('show'); hide('endLayer');
-  try{
-    if(i===0){
-      await wait(1300); await epigraph(); await mainTitle();
-      resetStage(); await safeRun(window.PROLOGUE);
-    }
-    for(let k=i;k<REELS.length;k++){ current=k; await reelTitle(k); resetStage(); await safeRun(REELS[k].score); }
-    finale();
-  }catch(e){ if(e!=='x') console.error('film error:',e); }
-}
-function finale(){ $('sceneLabel').classList.remove('show'); $('endNav').classList.add('show'); updatePips(REELS.length-1); }
+function finale(){ $('sceneLabel').classList.remove('show'); $('endNav').classList.add('show'); updatePips(REELS.length-1); PAUSED=false; updateTransport(); }
 
 function openMenu(){ $('menu').classList.add('open'); }
 function closeMenu(){ $('menu').classList.remove('open'); }
 function startAudioIfNeeded(){ if(!started){ audioInit(); humStart(); started=true; } else if(actx&&actx.state==='suspended'){ actx.resume(); } }
+function blurActive(){ const a=document.activeElement; if(a&&a.blur) a.blur(); }
 
-$('begin').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); setTimeout(()=>playFrom(0),900); };
-$('beginChapters').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); buildChapters(); openMenu(); };
-$('replayAll').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
+/* ════ BEAT-INDEXED PLAYER — pause · step forward · step back ════
+   The film is a flat list of beats (intro flourishes, then per reel: a
+   title card, a stage reset, and each scored step). A cursor (POS) walks
+   the list. Forward just advances the cursor; back rebuilds state by
+   re-running the current reel from its last "key" beat with INSTANT on,
+   then plays the target at normal pace. Pause freezes every in-flight
+   wait and the audio. The default pacing is otherwise untouched. */
+let BEATS=[], reelBeat=[], POS=-1, PAUSED=false;
+function buildBeats(){
+  BEATS=[]; reelBeat=[];
+  BEATS.push({t:'fn', fn:leadIn,    reel:-1});
+  BEATS.push({t:'fn', fn:epigraph,  reel:-1});
+  BEATS.push({t:'fn', fn:mainTitle, reel:-1});
+  BEATS.push({t:'reset', reel:-1, key:true});
+  (window.PROLOGUE||[]).forEach(s=>BEATS.push({t:'step', s, reel:-1}));
+  REELS.forEach((r,k)=>{
+    reelBeat[k]=BEATS.length;
+    BEATS.push({t:'reelTitle', k, reel:k, key:true});
+    BEATS.push({t:'reset', reel:k, key:true});
+    r.score.forEach(s=>BEATS.push({t:'step', s, reel:k}));
+  });
+  BEATS.push({t:'finale', reel:REELS.length-1});
+}
+function runBeat(b){
+  if(b.t==='fn') return b.fn();
+  if(b.t==='reset'){ resetStage(); return Promise.resolve(); }
+  if(b.t==='reelTitle'){ current=b.k; return reelTitle(b.k); }
+  if(b.t==='step') return exec(b.s);
+  if(b.t==='finale'){ finale(); return Promise.resolve(); }
+  return Promise.resolve();
+}
+async function playLoop(start){
+  const my=token;
+  for(POS=start; POS<BEATS.length; POS++){
+    if(my.cancelled) return;
+    const b=BEATS[POS];
+    if(b.reel>=0){ current=b.reel; updatePips(b.reel); }
+    updateTransport();
+    try{ await runBeat(b); }
+    catch(e){ if(e==='x'||my.cancelled) return; console.error('film beat error:',e); }
+    if(my.cancelled) return;
+  }
+}
+async function seek(target){
+  if(!BEATS.length) buildBeats();
+  target=Math.max(0, Math.min(BEATS.length-1, target));
+  const my=newToken(); setPaused(false);
+  $('endNav').classList.remove('show'); hide('endLayer');
+  let kf=target; while(kf>0 && !BEATS[kf].key) kf--;
+  document.body.classList.add('scrubbing'); INSTANT=true;
+  try{
+    resetStage();
+    for(let i=kf;i<target;i++){ if(my.cancelled) break; await runBeat(BEATS[i]); }
+  }catch(e){ if(e!=='x') console.error('film seek error:',e); }
+  finally{ if(my===token){ INSTANT=false; document.body.classList.remove('scrubbing'); } }
+  if(my.cancelled) return;
+  playLoop(target);
+}
+function nextBeat(){ if(POS<0 || POS>=BEATS.length-1) return; const t=POS+1; newToken(); setPaused(false); playLoop(t); }
+function prevBeat(){ if(POS<=0){ if(POS===0) seek(0); return; } seek(POS-1); }
+function setPaused(p){
+  if(p===PAUSED) return; PAUSED=p;
+  document.body.classList.toggle('paused', p);
+  if(p){ pauseWaits(); if(actx&&actx.suspend) try{ actx.suspend(); }catch(_){} }
+  else { if(actx&&actx.resume&&started) try{ actx.resume(); }catch(_){} resumeWaits(); }
+  if(p) $('hud').classList.add('show');
+  updateTransport();
+}
+function togglePause(){ if(POS<0) return; setPaused(!PAUSED); }
+function updateTransport(){
+  const pp=$('pausePlay'); if(pp){ pp.innerHTML=PAUSED?'&#9654;':'&#10073;&#10073;'; pp.title=PAUSED?'Play (space)':'Pause (space)'; }
+}
+
+async function playFrom(i){
+  if(!BEATS.length) buildBeats();
+  newToken(); setPaused(false);
+  document.body.classList.add('cine');
+  gain(soundOn?0.9:0.0001, 1.2);
+  $('endNav').classList.remove('show'); hide('endLayer');
+  playLoop(i<=0 ? 0 : (reelBeat[i]||0));
+}
+
+$('begin').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); blurActive(); setTimeout(()=>playFrom(0),900); };
+$('beginChapters').onclick=()=>{ startAudioIfNeeded(); $('gate').classList.add('gone'); $('hud').classList.add('show'); $('pips').classList.add('show'); buildChapters(); openMenu(); blurActive(); };
+$('replayAll').onclick=()=>{ startAudioIfNeeded(); blurActive(); playFrom(0); };
 $('chapters').onclick=()=>{ buildChapters(); openMenu(); };
 $('chaptersEnd').onclick=()=>{ buildChapters(); openMenu(); };
 $('menuClose').onclick=closeMenu;
-$('restart').onclick=()=>{ startAudioIfNeeded(); playFrom(0); };
+$('restart').onclick=()=>{ startAudioIfNeeded(); blurActive(); playFrom(0); };
 $('sound').onclick=()=>{ soundOn=!soundOn; $('sound').innerHTML=soundOn?'&#9834; SOUND ON':'&#9834; SOUND OFF'; gain(soundOn?0.9:0.0001,0.4); };
+$('navPrev').onclick=()=>{ startAudioIfNeeded(); blurActive(); prevBeat(); };
+$('navNext').onclick=()=>{ startAudioIfNeeded(); blurActive(); nextBeat(); };
+$('pausePlay').onclick=()=>{ startAudioIfNeeded(); blurActive(); togglePause(); };
+
+document.addEventListener('keydown',e=>{
+  if(!$('gate').classList.contains('gone')) return;
+  if(e.key===' '||e.code==='Space'){ if(e.target&&e.target.tagName==='BUTTON') return; e.preventDefault(); startAudioIfNeeded(); togglePause(); }
+  else if(e.key==='ArrowRight'){ e.preventDefault(); startAudioIfNeeded(); nextBeat(); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); startAudioIfNeeded(); prevBeat(); }
+});
 
 let hudT;
-document.addEventListener('mousemove',()=>{ if(!$('gate').classList.contains('gone'))return; const h=$('hud'),p=$('pips'); h.classList.add('show'); p.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(()=>h.classList.remove('show'),2800); });
+document.addEventListener('mousemove',()=>{ if(!$('gate').classList.contains('gone'))return; const h=$('hud'),p=$('pips'); h.classList.add('show'); p.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(()=>{ if(!PAUSED) h.classList.remove('show'); },2800); });
 
 buildChapters(); buildPips();
 </script>
