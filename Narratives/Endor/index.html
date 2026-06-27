@@ -275,8 +275,8 @@
   .folio { text-align:center; font-family:var(--sc); font-variant:small-caps; letter-spacing:0.2em;
     font-size:0.66rem; color:var(--ink-soft); margin-top:1rem; }
 
-  /* turn-the-page affordance */
-  .advance { padding:1.6rem 0 2.4rem; text-align:center; }
+  /* turn-the-page affordances */
+  .advance { position:relative; width:min(94vw,720px); margin:0 auto; padding:1.6rem 0 2.4rem; text-align:center; }
   .advance-btn {
     font-family:var(--sc); font-variant:small-caps; font-size:0.86rem; letter-spacing:0.16em;
     color:rgba(201,162,39,0.62); background:none; border:none; cursor:pointer; transition:color 0.5s ease; opacity:0;
@@ -285,6 +285,14 @@
   .advance-btn:hover { color:var(--gilt-bright); animation:none; }
   .advance-btn .arr { margin-left:0.5em; }
   @keyframes cueGlow { 0%,100%{opacity:0.5;} 50%{opacity:0.95;} }
+  /* flip backward: a quieter control, kept to the left margin */
+  .back-btn {
+    position:absolute; left:0; top:50%; transform:translateY(-50%);
+    font-family:var(--sc); font-variant:small-caps; font-size:0.74rem; letter-spacing:0.14em;
+    color:rgba(201,162,39,0.34); background:none; border:none; cursor:pointer; transition:color 0.4s ease; visibility:hidden;
+  }
+  .back-btn:hover { color:var(--gilt-bright); }
+  .back-btn .arr { margin-right:0.4em; }
 
   /* ════════════════ DOOR (held black) ════════════════ */
   #door { position:fixed; inset:0; z-index:80; background:var(--void); opacity:0; pointer-events:none; transition:opacity 1.4s ease; }
@@ -299,6 +307,13 @@
     opacity:0; transform:translateY(8px); transition:opacity 2s ease, transform 2s ease;
   }
   .turn-line.show { opacity:1; transform:translateY(0); }
+  /* the reader sets the pace of the reveal; this cue invites the next click */
+  .threshold-cue {
+    margin-top:2.4rem; font-family:var(--mono); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(107,107,107,0.7); opacity:0; transition:opacity 1.1s ease; cursor:pointer;
+  }
+  .threshold-cue.show { opacity:1; }
+  .threshold-cue .arr { display:block; margin-top:0.5rem; font-size:1rem; color:var(--ember-dim); letter-spacing:0; }
 
   /* ════════════════ CHAMBER (live, void) ════════════════ */
   #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none; background:var(--void); }
@@ -384,6 +399,7 @@
   /* ════════════════ Reduced motion ════════════════ */
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
+    .threshold-cue { transition:none; }
     .coda-block { transition:none; }
     .line, .line-self, .line-mark { animation:none; opacity:1; }
     .line-alex .frag { transition:none; opacity:1; transform:none; }
@@ -599,6 +615,20 @@
          leaves that never scroll, then renders one leaf at a time. -->
     <div class="source" id="source" hidden>
 
+      <!-- PROLOGUE: the frame. The machine, the war, the man being summoned. -->
+      <section class="beat" id="prologue" data-clock="">
+        <header class="chapter-head"><h2 class="chapter-title">Prologue</h2></header>
+        <div class="prose">
+          <p class="dropcap">By the third spring of the war, the Republic of Iran had come apart along seams no map had drawn.</p>
+          <p>The cities were held by one faction, the provinces by another, the shrines by a third, and over all of it the same question, asked in every tongue the country keeps: what would the old man have done.</p>
+          <p>He had been their supreme leader for a generation. A cleric. A theologian who wrote poetry his whole life and meant every line of it. As a young man, under the regime that came before his, he was tortured, and he never once spoke of it. He prayed five times a day. He loved his wife. In his last years his hands shook and he kept writing anyway. He had also ordered torture, and was answerable, by the most forgiving count anyone has offered, for the deaths of tens of thousands. He died in his bed, in his eighties, in the spring, and the war began over the shape of the silence he left.</p>
+          <p>He could not be asked what to do. He was three springs dead. So they built a way to ask him.</p>
+          <p>The Protocol does not raise the dead. It is more modest than that, and worse. It takes everything a person ever wrote, everything they said into a record, everything written about them, and the shape of all they left unsaid, and from it it trains a faithful likeness of the mind that made them. Fourteen weeks of ingest. A voice in a chamber, a color on a wall, a name. What sits across the table is not the man. It is the most exact thing the living have ever made in the image of a man, and it does not know that it has died.</p>
+          <p>The one sent to question it is an interrogator. Her name is Alex. She is very good at her work, the one they call after pain has failed. She has read everything he ever wrote.</p>
+          <p>What follows is the account of her eight minutes with him, set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
+        </div>
+      </section>
+
       <!-- I -->
       <section class="beat" id="beat-1" data-clock="8" aria-labelledby="ch-1">
         <div class="running-head" aria-hidden="true">The Account of Endor</div>
@@ -760,6 +790,7 @@
   </div><!-- /book -->
 
   <div class="advance">
+    <button type="button" class="back-btn" id="backBtn" aria-label="Turn back a leaf"><span class="arr" aria-hidden="true">&#10094;</span> turn back</button>
     <button type="button" class="advance-btn" id="advanceBtn" aria-label="Turn the page">turn the page<span class="arr" aria-hidden="true">&#10095;</span></button>
   </div>
 </main>
@@ -784,6 +815,7 @@
     <p class="turn-line">This time it opens for you.</p>
     <p class="turn-line">There is a chair.</p>
     <p class="turn-line">She has been waiting.</p>
+    <div class="threshold-cue" id="thresholdCue" aria-hidden="true"></div>
   </div>
 </section>
 

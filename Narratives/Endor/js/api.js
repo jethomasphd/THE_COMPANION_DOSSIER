@@ -21,9 +21,9 @@ ENDOR.API = (function () {
 
   var API_VERSION = '2023-06-01';
 
-  // The repository's configured model, the one the other live
-  // narratives use. Alex is terse, so the token budget is modest.
-  var MODEL = 'claude-sonnet-4-6';
+  // The climax is a live interrogation that has to listen and stay in
+  // character. It is worth the most capable allowlisted model.
+  var MODEL = 'claude-opus-4-6';
   // Modest, but with room so a turn is never cut off mid sentence.
   var MAX_TOKENS = 640;
 
@@ -80,6 +80,15 @@ ENDOR.API = (function () {
 
   function pushAssistant(content) {
     messages.push({ role: 'assistant', content: content });
+  }
+
+  // Seat an authored opening: a hidden cue (user) then Alex's first words
+  // (assistant), so the running conversation is well formed and the live
+  // model continues from the reader's first reply.
+  function seedOpening(cueText, openingText) {
+    messages = [];
+    pushUser(cueText, true);
+    pushAssistant(openingText);
   }
 
   // Strip the private _seed flag before the turns leave for the wire.
@@ -212,6 +221,7 @@ ENDOR.API = (function () {
   return {
     isReady: isReady,
     send: send,
+    seedOpening: seedOpening,
     abort: abort,
     reset: reset,
     getMessages: getMessages,
