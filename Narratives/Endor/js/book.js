@@ -90,6 +90,7 @@
   var flipper = document.getElementById('flipper');
   var flipperFront = document.getElementById('flipperFront');
   var advanceBtn = document.getElementById('advanceBtn');
+  var backBtn = document.getElementById('backBtn');
   var advanceLock = false;
   var turning = false;
   var cueTimer = null;
@@ -127,7 +128,8 @@
   }
   function bodyInner(ch, first, arr, last) {
     return (first
-      ? '<header class="chapter-head"><div class="chapter-num">' + esc(ch.num) + '</div>' +
+      ? '<header class="chapter-head">' +
+        (ch.num ? '<div class="chapter-num">' + esc(ch.num) + '</div>' : '') +
         '<h2 class="chapter-title">' + esc(ch.title) + '</h2><div class="orn">&#10070;</div></header>' + ch.plate
       : '') +
       '<div class="prose">' + arr.join('') + '</div>' +
@@ -177,15 +179,23 @@
     pages.forEach(function (p, i) { p.folio = roman(i + 1); });
   }
 
+  function pageHtml(i) {
+    var p = pages[i];
+    return p.html + '<div class="folio" aria-hidden="true">' + p.folio + '</div>';
+  }
+
   function renderPage(i) {
     var p = pages[i];
     currentPage = i;
-    pageEl.innerHTML = p.html + '<div class="folio" aria-hidden="true">' + p.folio + '</div>';
-    setClock(p.clock, true);
+    pageEl.innerHTML = pageHtml(i);
+    // The prologue carries no clock. The account does.
+    if (isNaN(p.clock)) { if (clockBox) clockBox.style.opacity = '0'; }
+    else { if (clockBox) clockBox.style.opacity = ''; setClock(p.clock, true); }
     advanceBtn.classList.remove('show');
     advanceBtn.innerHTML = (i === pages.length - 1)
       ? 'close the account<span class="arr" aria-hidden="true">&#10070;</span>'
       : 'turn the page<span class="arr" aria-hidden="true">&#10095;</span>';
+    if (backBtn) backBtn.style.visibility = (i > 0) ? 'visible' : 'hidden';
     var h = pageEl.querySelector('.chapter-title') || pageEl;
     focusEl(h);
   }
@@ -197,47 +207,68 @@
     cueTimer = setTimeout(function () { advanceBtn.classList.add('show'); }, REDUCED ? 200 : 800);
   }
 
-  // The dramatic turn. The leaf you are leaving lifts and flips away,
-  // and the next leaf is already beneath it. swapFn renders the next
-  // leaf while it is hidden under the lifting one; doneFn runs after.
-  function turnLeaf(swapFn, doneFn) {
+  // The dramatic turn, in either direction. The leaf flips on the spine
+  // and the destination leaf is rendered beneath it, hidden, mid turn.
+  function flip(opts) {
     if (REDUCED || !flipper) {
       pageEl.style.transition = 'opacity 0.4s ease';
       pageEl.style.opacity = '0';
       setTimeout(function () {
-        swapFn();
+        if (opts.beforeSwap) opts.beforeSwap();
+        if (opts.afterSwap) opts.afterSwap();
         pageEl.style.opacity = '1';
-        setTimeout(function () { pageEl.style.transition = ''; if (doneFn) doneFn(); }, 420);
+        setTimeout(function () { pageEl.style.transition = ''; if (opts.done) opts.done(); }, 420);
       }, 400);
       return;
     }
-    flipperFront.innerHTML = pageEl.innerHTML;   // a still copy of the leaving leaf
+    flipperFront.innerHTML = opts.frontHtml;
+    flipper.style.transition = 'none';
+    flipper.style.transform = 'rotateY(' + opts.fromDeg + 'deg)';
     flipper.style.display = 'block';
-    flipper.classList.remove('flipping');
-    void flipper.offsetWidth;                    // reflow so the flat state applies
-    swapFn();                                    // render the next leaf beneath the cover
-    requestAnimationFrame(function () { flipper.classList.add('flipping'); });
+    void flipper.offsetWidth;                    // reflow so the start state applies
+    if (opts.beforeSwap) opts.beforeSwap();      // render the destination beneath the cover
+    requestAnimationFrame(function () {
+      flipper.style.transition = 'transform 1s cubic-bezier(0.42,0.02,0.18,1)';
+      flipper.style.transform = 'rotateY(' + opts.toDeg + 'deg)';
+    });
     var finished = false;
     function end() {
       if (finished) return; finished = true;
-      flipper.classList.remove('flipping');
+      flipper.style.transition = 'none';
+      flipper.style.transform = 'rotateY(0deg)';
       flipper.style.display = 'none';
       flipperFront.innerHTML = '';
-      if (doneFn) doneFn();
+      if (opts.afterSwap) opts.afterSwap();
+      if (opts.done) opts.done();
     }
     flipper.addEventListener('transitionend', end, { once: true });
-    setTimeout(end, 1400); // safety net
+    setTimeout(end, 1300); // safety net
   }
+
+  function hideCue() { if (cueTimer) clearTimeout(cueTimer); advanceBtn.classList.remove('show'); }
 
   function advance() {
     if (advanceLock || turning) return;
     if (currentPage < pages.length - 1) {
       turning = true;
+      hideCue();                          // a click during the turn is never swallowed
       var next = currentPage + 1;
-      turnLeaf(function () { renderPage(next); }, function () { turning = false; scheduleCue(); });
+      flip({ frontHtml: pageEl.innerHTML, fromDeg: 0, toDeg: -174,
+        beforeSwap: function () { renderPage(next); },
+        done: function () { turning = false; scheduleCue(); } });
     } else {
       enterDoor();
     }
+  }
+
+  function back() {
+    if (advanceLock || turning || currentPage <= 0) return;
+    turning = true;
+    hideCue();
+    var prev = currentPage - 1;
+    flip({ frontHtml: pageHtml(prev), fromDeg: -174, toDeg: 0,
+      beforeSwap: function () { renderPage(prev); },
+      done: function () { turning = false; scheduleCue(); } });
   }
 
   function enterGreenRoom() {
@@ -275,15 +306,19 @@
     advance();
   });
   advanceBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(); });
+  if (backBtn) backBtn.addEventListener('click', function (e) { e.stopPropagation(); back(); });
   document.addEventListener('keydown', function (e) {
     if (body.getAttribute('data-stage') !== 'green') return;
     if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
-    // Leaves are fitted to the screen and never scroll, so the forward
-    // keys all turn the page.
+    // Leaves are fitted to the screen and never scroll, so the keys turn
+    // the leaf: forward, and back.
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' ||
         e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
       advance();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      back();
     }
   });
 
@@ -302,15 +337,18 @@
     doorStarted = true;
     advanceLock = true;
     turning = true;
+    hideCue();
     drainClock();
     // The final leaf turns, and there is no next page. Only the dark.
-    turnLeaf(function () {
-      pageEl.innerHTML = '';
-      if (bookEl) bookEl.classList.add('extinguished');
-    }, function () {
-      turning = false;
-      holdBlackThenTurn();
-    });
+    flip({ frontHtml: pageEl.innerHTML, fromDeg: 0, toDeg: -174,
+      beforeSwap: function () {
+        pageEl.innerHTML = '';
+        if (bookEl) bookEl.classList.add('extinguished');
+      },
+      done: function () {
+        turning = false;
+        holdBlackThenTurn();
+      } });
   }
 
   function holdBlackThenTurn() {
@@ -330,21 +368,59 @@
     }, fadeMs + blackDwell);
   }
 
-  /* ── The threshold ──────────────────────────────────────────── */
+  /* ── The threshold: the reveal, advanced by the reader, one line at a
+        time. The lines stay. The reader sets the pace of the floor opening. */
+  var thLines = [], thIdx = 0, thReady = false, thDone = false;
+  var thresholdCue = document.getElementById('thresholdCue');
+
   function enterThreshold() {
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('turnLines'));
-    var lines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
-    var i = 0;
-    var step = REDUCED ? 480 : 1400;
-    var firstDelay = REDUCED ? 260 : 800;
-    setTimeout(function reveal() {
-      if (i >= lines.length) { setTimeout(enterChamber, REDUCED ? 900 : 2600); return; }
-      lines[i].classList.add('show');
-      i++;
-      setTimeout(reveal, step);
-    }, firstDelay);
+    thLines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
+    thIdx = 0; thDone = false; thReady = false;
+    if (thresholdCue) thresholdCue.classList.remove('show');
+    // The first line arrives on its own, out of the held black.
+    setTimeout(function () { revealNextThresholdLine(); thReady = true; }, REDUCED ? 300 : 1300);
   }
+
+  function revealNextThresholdLine() {
+    if (thIdx < thLines.length) {
+      thLines[thIdx].classList.add('show');
+      thIdx++;
+      if (thresholdCue) {
+        thresholdCue.innerHTML = (thIdx >= thLines.length)
+          ? 'cross the threshold<span class="arr" aria-hidden="true">&#9674;</span>'
+          : '<span class="arr" aria-hidden="true">&#8595;</span>';
+        setTimeout(function () { thresholdCue.classList.add('show'); }, REDUCED ? 120 : 650);
+      }
+    } else if (!thDone) {
+      thDone = true;
+      if (thresholdCue) thresholdCue.classList.remove('show');
+      enterChamber();
+    }
+  }
+
+  function advanceThreshold() {
+    if (!thReady) return;
+    if (thresholdCue) thresholdCue.classList.remove('show');
+    revealNextThresholdLine();
+  }
+
+  var thresholdEl = document.getElementById('threshold');
+  if (thresholdEl) {
+    thresholdEl.addEventListener('click', function (e) {
+      if (e.target.closest('a, button')) return;
+      advanceThreshold();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (body.getAttribute('data-stage') !== 'threshold') return;
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' ||
+        e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      advanceThreshold();
+    }
+  });
 
   /* ── The chamber ────────────────────────────────────────────── */
   var chamberStarted = false;
@@ -578,14 +654,29 @@
     }
 
     function begin() {
+      reply.addEventListener('keydown', onReplyKey);
+      reply.addEventListener('input', clearHint);
+      reply.addEventListener('input', autoGrow);
+
+      // Alex speaks first, in authored words, so the room always opens well.
+      alexHasSpoken = true;
+      renderAlex(ENDOR.Chamber.OPENING);
+
       if (!ENDOR.API.isReady()) {
-        renderMark('·  the chamber is unreachable  ·');
-        setTimeout(forceRelease, REDUCED ? 600 : 1800);
+        // No live backend here. The opening lands, then she releases him.
+        setTimeout(forceRelease, REDUCED ? 1800 : 5000);
         return;
       }
-      reply.addEventListener('keydown', onReplyKey);
-      reply.addEventListener('input', autoGrow);
-      send(ENDOR.Chamber.SEED_CUE, true);
+
+      // Seat the opening in the running conversation; the live model
+      // continues from the reader's first reply.
+      ENDOR.API.seedOpening(ENDOR.Chamber.SEED_CUE, ENDOR.Chamber.OPENING);
+      note.textContent = 'speak to her. she is waiting.';
+      setInputEnabled(true);
+    }
+
+    function clearHint() {
+      if (note.textContent === 'speak to her. she is waiting.') note.textContent = '';
     }
 
     function autoGrow() {

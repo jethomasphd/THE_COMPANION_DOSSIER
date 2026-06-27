@@ -136,15 +136,26 @@ ENDOR.Chamber = (function () {
     "length of this room, you are her. Then the door closes and it is over."
   ].join("\n");
 
-  // The invisible opening turn. Never shown to the reader. It exists
-  // only so Alex speaks first, owning the opening operational question.
-  var SEED_CUE = "[The chamber. The subject is seated across the table in the dark. The recording light is on. He has not spoken yet. Begin.]";
+  // Alex's opening is authored, so the room always begins well and the
+  // reader understands at once that they are being spoken to and may
+  // answer. The live model takes over from the reader's first reply.
+  var OPENING = [
+    "There you are.",
+    "I know what you are feeling. It passes. Breathe, if breathing still helps you. It used to help me.",
+    "We have very little time, so I am going to be plain with you. I need you to tell me where it is being kept. Start there."
+  ].join("\n\n");
+
+  // A hidden stage cue, never shown. It sits as the first user turn so the
+  // conversation is well formed, and it tells the model the opening above
+  // has already been spoken, so it continues rather than restarting.
+  var SEED_CUE = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. You have already spoken your opening to him. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
 
   // The literal release line the client watches for (Section VII).
   var RELEASE_LINE = "Return to baseline.";
 
   return {
     SYSTEM_PROMPT: SYSTEM_PROMPT,
+    OPENING: OPENING,
     SEED_CUE: SEED_CUE,
     RELEASE_LINE: RELEASE_LINE
   };
