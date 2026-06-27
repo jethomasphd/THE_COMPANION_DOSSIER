@@ -81,32 +81,113 @@
     requestAnimationFrame(step);
   }
 
-  /* ── The book and its page turns ────────────────────────────── */
-  var beats = Array.prototype.slice.call(document.querySelectorAll('#page .beat'));
+  /* ── The book: pagination and page turns ────────────────────────
+     Each chapter is fitted into one or more leaves that always fit the
+     leaf box, so a leaf never scrolls. Every advance is a real, smooth
+     page turn. Long chapters simply run onto a second leaf. */
   var bookEl = document.querySelector('.book');
   var pageEl = document.getElementById('page');
   var flipper = document.getElementById('flipper');
   var flipperFront = document.getElementById('flipperFront');
   var advanceBtn = document.getElementById('advanceBtn');
-  var currentBeat = 0; // 1-based once the book is open
   var advanceLock = false;
   var turning = false;
   var cueTimer = null;
 
-  function setBeat(n) {
-    beats.forEach(function (b, i) { b.classList.toggle('is-active', (i + 1) === n); });
-    currentBeat = n;
-    var active = beats[n - 1];
-    setClock(parseInt(active.getAttribute('data-clock'), 10), true);
-    if (pageEl) pageEl.scrollTop = 0;
+  var chapters = [];
+  var pages = [];
+  var currentPage = 0;
+  var measure = null;
 
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function roman(n) {
+    var t = ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii', 'xiii', 'xiv', 'xv', 'xvi', 'xvii', 'xviii', 'xix', 'xx'];
+    return t[n] || ('' + n);
+  }
+
+  function readChapters() {
+    chapters = Array.prototype.slice.call(document.querySelectorAll('#source .beat')).map(function (b) {
+      function txt(sel) { var el = b.querySelector(sel); return el ? el.textContent : ''; }
+      function html(sel) { var el = b.querySelector(sel); return el ? el.outerHTML : ''; }
+      return {
+        clock: parseInt(b.getAttribute('data-clock'), 10),
+        num: txt('.chapter-num'),
+        title: txt('.chapter-title'),
+        plate: html('.plate'),
+        paras: Array.prototype.slice.call(b.querySelectorAll('.prose > p')).map(function (p) { return p.outerHTML; })
+      };
+    });
+  }
+
+  var FOLIO_PLACEHOLDER = '<div class="folio" aria-hidden="true">x</div>';
+
+  function runningHead(ch, first) {
+    return '<div class="running-head" aria-hidden="true">The Account of Endor' +
+      (first ? '' : ' &#183; ' + esc(ch.title)) + '</div>';
+  }
+  function bodyInner(ch, first, arr, last) {
+    return (first
+      ? '<header class="chapter-head"><div class="chapter-num">' + esc(ch.num) + '</div>' +
+        '<h2 class="chapter-title">' + esc(ch.title) + '</h2><div class="orn">&#10070;</div></header>' + ch.plate
+      : '') +
+      '<div class="prose">' + arr.join('') + '</div>' +
+      (last ? '<div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>' : '');
+  }
+  function leafHtml(ch, first, arr, last) {
+    return runningHead(ch, first) + '<div class="leaf-body">' + bodyInner(ch, first, arr, last) + '</div>';
+  }
+
+  function ensureMeasure() {
+    if (measure) return;
+    measure = document.createElement('div');
+    measure.setAttribute('aria-hidden', 'true');
+    measure.style.cssText = 'position:absolute; left:-99999px; top:0; visibility:hidden;';
+    document.body.appendChild(measure);
+  }
+
+  // Greedily fill leaves so each one fits without scrolling.
+  function paginate() {
+    if (!chapters.length) readChapters();
+    ensureMeasure();
+    var cs = getComputedStyle(pageEl);
+    var padL = parseFloat(cs.paddingLeft), padR = parseFloat(cs.paddingRight);
+    var padT = parseFloat(cs.paddingTop), padB = parseFloat(cs.paddingBottom);
+    var contentW = pageEl.clientWidth - padL - padR;
+    var avail = pageEl.clientHeight - padT - padB - 8; // small safety margin
+    measure.style.width = contentW + 'px';
+    measure.style.fontFamily = cs.fontFamily;
+
+    pages = [];
+    chapters.forEach(function (ch, ci) {
+      var idx = 0, first = true;
+      if (!ch.paras.length) ch.paras = ['<p></p>'];
+      while (idx < ch.paras.length) {
+        var taken = [];
+        while (idx < ch.paras.length) {
+          // measure the whole leaf, folio included, so nothing overflows
+          measure.innerHTML = leafHtml(ch, first, taken.concat([ch.paras[idx]]), false) + FOLIO_PLACEHOLDER;
+          if (measure.scrollHeight <= avail || taken.length === 0) { taken.push(ch.paras[idx]); idx++; }
+          else break;
+        }
+        var lastOfChapter = (idx >= ch.paras.length);
+        pages.push({ chapter: ci, clock: ch.clock, html: leafHtml(ch, first, taken, lastOfChapter) });
+        first = false;
+      }
+    });
+    pages.forEach(function (p, i) { p.folio = roman(i + 1); });
+  }
+
+  function renderPage(i) {
+    var p = pages[i];
+    currentPage = i;
+    pageEl.innerHTML = p.html + '<div class="folio" aria-hidden="true">' + p.folio + '</div>';
+    setClock(p.clock, true);
     advanceBtn.classList.remove('show');
-    advanceBtn.innerHTML = (n === beats.length)
+    advanceBtn.innerHTML = (i === pages.length - 1)
       ? 'close the account<span class="arr" aria-hidden="true">&#10070;</span>'
       : 'turn the page<span class="arr" aria-hidden="true">&#10095;</span>';
-
-    active.setAttribute('tabindex', '-1');
-    try { active.focus({ preventScroll: true }); } catch (e) { active.focus(); }
+    var h = pageEl.querySelector('.chapter-title') || pageEl;
+    focusEl(h);
   }
 
   // The cue returns only once the leaf has fully settled, so a click in
@@ -117,29 +198,24 @@
   }
 
   // The dramatic turn. The leaf you are leaving lifts and flips away,
-  // and the next leaf is already beneath it. swapFn changes the page
-  // while it is hidden under the lifting leaf; doneFn runs after.
+  // and the next leaf is already beneath it. swapFn renders the next
+  // leaf while it is hidden under the lifting one; doneFn runs after.
   function turnLeaf(swapFn, doneFn) {
     if (REDUCED || !flipper) {
-      if (pageEl) {
-        pageEl.style.transition = 'opacity 0.4s ease';
-        pageEl.style.opacity = '0';
-        setTimeout(function () {
-          swapFn();
-          pageEl.style.opacity = '1';
-          setTimeout(function () { pageEl.style.transition = ''; if (doneFn) doneFn(); }, 420);
-        }, 400);
-      } else { swapFn(); if (doneFn) doneFn(); }
+      pageEl.style.transition = 'opacity 0.4s ease';
+      pageEl.style.opacity = '0';
+      setTimeout(function () {
+        swapFn();
+        pageEl.style.opacity = '1';
+        setTimeout(function () { pageEl.style.transition = ''; if (doneFn) doneFn(); }, 420);
+      }, 400);
       return;
     }
-    // Carry a still copy of the leaving leaf on the front of the flipper.
-    flipperFront.innerHTML = '';
-    var active = document.querySelector('#page .beat.is-active');
-    if (active) { var clone = active.cloneNode(true); clone.removeAttribute('id'); flipperFront.appendChild(clone); }
+    flipperFront.innerHTML = pageEl.innerHTML;   // a still copy of the leaving leaf
     flipper.style.display = 'block';
     flipper.classList.remove('flipping');
-    void flipper.offsetWidth;            // reflow so the flat state applies
-    swapFn();                            // swap the real page beneath the cover
+    void flipper.offsetWidth;                    // reflow so the flat state applies
+    swapFn();                                    // render the next leaf beneath the cover
     requestAnimationFrame(function () { flipper.classList.add('flipping'); });
     var finished = false;
     function end() {
@@ -155,9 +231,10 @@
 
   function advance() {
     if (advanceLock || turning) return;
-    if (currentBeat < beats.length) {
+    if (currentPage < pages.length - 1) {
       turning = true;
-      turnLeaf(function () { setBeat(currentBeat + 1); }, function () { turning = false; scheduleCue(); });
+      var next = currentPage + 1;
+      turnLeaf(function () { renderPage(next); }, function () { turning = false; scheduleCue(); });
     } else {
       enterDoor();
     }
@@ -168,10 +245,27 @@
     show('greenroom');
     setStage('green');
     stopOvertureNudge();
-    setBeat(1);
+    paginate();
+    renderPage(0);
     scheduleCue();
-    focusEl(beats[0]);
+    focusEl(pageEl);
   }
+
+  // The leaf box depends on the viewport. If it changes, re-fit the
+  // chapters and keep the reader on the chapter they were reading.
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (body.getAttribute('data-stage') !== 'green' || turning || advanceLock) return;
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      var ch = pages.length ? pages[currentPage].chapter : 0;
+      paginate();
+      var target = 0;
+      for (var i = 0; i < pages.length; i++) { if (pages[i].chapter === ch) { target = i; break; } }
+      renderPage(target);
+      scheduleCue();
+    }, 300);
+  }, { passive: true });
 
   // Advancing the book: a single deliberate action. Click the leaf, or
   // use the keyboard. Interactive controls keep their own behavior.
@@ -184,9 +278,10 @@
   document.addEventListener('keydown', function (e) {
     if (body.getAttribute('data-stage') !== 'green') return;
     if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
-    // ArrowRight and Enter turn the leaf. Up, Down, PageUp, PageDown,
-    // and Space are left to scroll a long page, like a real book.
-    if (e.key === 'ArrowRight' || e.key === 'Enter') {
+    // Leaves are fitted to the screen and never scroll, so the forward
+    // keys all turn the page.
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' ||
+        e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
       advance();
     }
@@ -210,8 +305,7 @@
     drainClock();
     // The final leaf turns, and there is no next page. Only the dark.
     turnLeaf(function () {
-      var b = document.querySelector('#page .beat.is-active');
-      if (b) b.classList.remove('is-active');
+      pageEl.innerHTML = '';
       if (bookEl) bookEl.classList.add('extinguished');
     }, function () {
       turning = false;
@@ -302,20 +396,26 @@
     function renderAlex(text) {
       var wrap = document.createElement('div');
       wrap.className = 'line line-alex';
-      var parts = String(text).split(/\n{2,}/);
-      parts.forEach(function (p) {
+      var frags = [];
+      String(text).split(/\n{2,}/).forEach(function (p) {
         p = p.replace(/\s+$/, '');
         if (!p) return;
         var frag = document.createElement('p');
         frag.className = 'frag';
-        var bits = p.split('\n');
-        bits.forEach(function (b, idx) {
+        p.split('\n').forEach(function (b, idx) {
           if (idx > 0) frag.appendChild(document.createElement('br'));
           frag.appendChild(document.createTextNode(b));
         });
         wrap.appendChild(frag);
+        frags.push(frag);
       });
       log.appendChild(wrap);
+      // Her voice arrives a breath at a time. The first lands at once;
+      // the rest follow, so a reply reads as speech, not a posted block.
+      frags.forEach(function (f, i) {
+        if (REDUCED || i === 0) { f.classList.add('in'); }
+        else { setTimeout(function () { f.classList.add('in'); scrollDown(); }, i * 750); }
+      });
       scrollDown();
       return wrap;
     }
