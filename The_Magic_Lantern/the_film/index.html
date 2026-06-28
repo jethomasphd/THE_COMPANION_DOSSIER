@@ -296,9 +296,11 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 /* ── transport: pause + seek ── */
 #hud button.tnav{min-width:2.2rem;text-align:center;}
 #hud .tsep{width:1px;height:1.1rem;background:#2a2a2a;margin:0 .15rem;}
+#film{transition:opacity .28s ease;}
+body.scrubbing #film{opacity:0;}           /* hide the stage while a seek rebuilds state, then fade it back */
 body.paused *{animation-play-state:paused !important;}
 body.scrubbing *{transition:none !important;animation:none !important;}
-body.paused::after{content:'\275A\275A';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.4rem;letter-spacing:.22em;color:var(--ember);opacity:.4;z-index:90;pointer-events:none;text-shadow:0 0 26px rgba(201,162,39,.55);}
+body.paused::after{content:'\275A\275A';position:fixed;top:7%;left:50%;transform:translateX(-50%);font-size:1.5rem;letter-spacing:.2em;color:var(--ember);opacity:.5;z-index:90;pointer-events:none;text-shadow:0 0 22px rgba(201,162,39,.55);}
 </style>
 </head>
 <body>
@@ -594,8 +596,8 @@ async function seek(target){
   if(my.cancelled) return;
   playLoop(target);
 }
-function nextBeat(){ if(POS<0 || POS>=BEATS.length-1) return; const t=POS+1; newToken(); setPaused(false); playLoop(t); }
-function prevBeat(){ if(POS<=0){ if(POS===0) seek(0); return; } seek(POS-1); }
+function nextBeat(){ if(POS<0 || POS>=BEATS.length-1) return; seek(POS+1); }
+function prevBeat(){ if(POS<=0) return; seek(POS-1); }
 function setPaused(p){
   if(p===PAUSED) return; PAUSED=p;
   document.body.classList.toggle('paused', p);

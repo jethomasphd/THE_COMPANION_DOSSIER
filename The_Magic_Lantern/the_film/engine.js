@@ -167,8 +167,18 @@ function mapY(v){ return PAD + (YMAX-v)/(YMAX-YMIN)*(VBH-2*PAD); }
 function pathFor(arr,a,b){ let s=''; for(let i=a;i<=b;i++){ s+=(i===a?'M':'L')+mapX(i,a,b).toFixed(2)+' '+mapY(arr[i]).toFixed(2); } return s; }
 function setDot(id,x,y){ const e=$(id); if(e){ e.setAttribute('cx',x); e.setAttribute('cy',y); } }
 let curveCtx=null;
-function penAlong(pid,did,ms){ const p=$(pid); if(!p)return; let L; try{L=p.getTotalLength();}catch(_){return;} const t0=performance.now(); const tk=token;
-  (function step(){ if(tk.cancelled)return; const e=Math.min(1,(performance.now()-t0)/ms); let pt; try{pt=p.getPointAtLength(e*L);}catch(_){return;} setDot(did,pt.x,pt.y); if(e<1) requestAnimationFrame(step); })();
+/* rAF-driven so pause freezes them (CSS transitions can't be paused) */
+function penAlong(pid,did,ms){ const p=$(pid); if(!p)return; let L; try{L=p.getTotalLength();}catch(_){return;} let t0=performance.now(),acc=0,lp=0; const tk=token;
+  (function step(now){ if(tk.cancelled)return; now=now||performance.now();
+    if(WPAUSED){ if(!lp) lp=now; requestAnimationFrame(step); return; }
+    if(lp){ acc+=now-lp; lp=0; }
+    const e=Math.min(1,(now-t0-acc)/ms); let pt; try{pt=p.getPointAtLength(e*L);}catch(_){return;} setDot(did,pt.x,pt.y); if(e<1) requestAnimationFrame(step); })(performance.now());
+}
+function drawAlong(pid,ms){ const p=$(pid); if(!p)return; let L; try{L=p.getTotalLength();}catch(_){L=0;} p.style.transition='none'; p.style.strokeDasharray=L; p.style.strokeDashoffset=L; let t0=performance.now(),acc=0,lp=0; const tk=token;
+  (function step(now){ if(tk.cancelled)return; now=now||performance.now();
+    if(WPAUSED){ if(!lp) lp=now; requestAnimationFrame(step); return; }
+    if(lp){ acc+=now-lp; lp=0; }
+    const e=Math.min(1,(now-t0-acc)/ms); p.style.strokeDashoffset=L*(1-e); if(e<1) requestAnimationFrame(step); })(performance.now());
 }
 function startCurve(s){
   const a=s.a, b=s.b, ms=s.ms||12000;
@@ -184,7 +194,7 @@ function startCurve(s){
   $('blue').setAttribute('d',pathFor(S,a,b)); $('gold').setAttribute('d',pathFor(R,a,b));
   $('crossDot').classList.remove('show'); ['labG','labB','spread'].forEach(i=>$(i).classList.remove('show'));
   show('chartLayer');
-  ['gold','blue'].forEach(id=>{ const p=$(id); const L=p.getTotalLength(); p.style.transition='none'; p.style.strokeDasharray=L; p.style.strokeDashoffset=INSTANT?0:L; if(!INSTANT){ void p.getBoundingClientRect(); p.style.transition='stroke-dashoffset '+ms+'ms linear'; requestAnimationFrame(()=>{ p.style.strokeDashoffset=0; }); } });
+  ['gold','blue'].forEach(id=>{ const p=$(id); const L=p.getTotalLength(); if(INSTANT){ p.style.transition='none'; p.style.strokeDasharray=L; p.style.strokeDashoffset=0; } else { drawAlong(id,ms); } });
   $('goldDot').classList.add('show'); $('blueDot').classList.add('show');
   if(INSTANT){ setDot('goldDot',mapX(b,a,b),mapY(R[b])); setDot('blueDot',mapX(b,a,b),mapY(S[b])); }
   else { penAlong('gold','goldDot',ms); penAlong('blue','blueDot',ms); }
