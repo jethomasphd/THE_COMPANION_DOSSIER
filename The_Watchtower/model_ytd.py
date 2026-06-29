@@ -69,13 +69,45 @@ def fetch(symbol, tries=4):
     raise RuntimeError(f"failed to fetch {symbol}")
 
 
+# Common split ratios (and reciprocals). A one-day price ratio landing within
+# tolerance of one of these — at a magnitude no ordinary session produces — is an
+# UNADJUSTED split/feed artifact, not a real move. Yahoo occasionally serves an
+# adjusted-close series that fails to back-adjust a split; left in, a single such
+# constituent silently rewrites the whole portfolio (HON doubled overnight on
+# 2026-06-18 with no event flagged, fabricating ~3 pts of Republic return).
+SPLIT_RATIOS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 20,
+                1/2, 1/3, 1/4, 1/5, 1/6, 1/8, 1/10, 1/20, 3/2, 2/3]
+
+
+def desplit(series, sym="", tol=0.04):
+    """Splice out unadjusted split artifacts so the series is continuous in the
+    early (base-date) regime. Returns a corrected {date: price} dict. Only fires
+    on jumps beyond +40%/-29% that match a clean split ratio — well outside any
+    real single-session move for these large-cap names — so legitimate volatility
+    is never touched. Every correction is logged."""
+    items = sorted(series.items())
+    div, prev_p, out = 1.0, None, {}
+    for d, p in items:
+        if prev_p is not None:
+            r = p / prev_p
+            if r > 1.40 or r < 0.71:                      # magnitude gate
+                sr = min(SPLIT_RATIOS, key=lambda s: abs(r / s - 1))
+                if abs(r / sr - 1) < tol:                 # clean-ratio match
+                    div *= sr
+                    print(f"  ! desplit {sym}: {d} ratio x{r:.4f} ~ "
+                          f"{sr:g} -> splicing subsequent prices /{div:g}")
+        out[d] = p / div
+        prev_p = p
+    return out
+
+
 def main():
     constituents = set(ENGINES) | set(CHOKE_1) | {RESERVE}
     symbols = {YAHOO.get(t, t) for t in constituents} | set(FUNDS.values())
     raw = {}
     print(f"Fetching {len(symbols)} symbols from Yahoo Finance ...")
     for sym in sorted(symbols):
-        raw[sym] = fetch(sym); print(f"  {sym:12} {len(raw[sym]):3} pts"); time.sleep(0.18)
+        raw[sym] = desplit(fetch(sym), sym); print(f"  {sym:12} {len(raw[sym]):3} pts"); time.sleep(0.18)
 
     dates = sorted(raw["SPY"].keys())
     N = len(dates)
