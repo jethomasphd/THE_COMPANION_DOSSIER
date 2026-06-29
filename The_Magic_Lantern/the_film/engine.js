@@ -236,7 +236,7 @@ async function seedPlant(s){
 const CAL=[
  {y:2025,mo:11,d:1,  label:'The Founding',        sub:'the Committee convenes',             kind:'gold'},
  {y:2026,mo:1, d:28, label:'Operation Epic Fury',  sub:'the war begins · the Strait closes', kind:'blood'},
- {y:2026,mo:5, d:16, label:'The Reckoning',        sub:'the Republic at its peak',           kind:'gold'},
+ {y:2026,mo:5, d:26, label:'The Reckoning',        sub:'the Republic at its high-water mark',  kind:'gold'},
  {y:2026,mo:5, d:29, label:'The Committee Reconvenes', sub:'as the quarter closes · the score to date', kind:'gold'}
 ];
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
