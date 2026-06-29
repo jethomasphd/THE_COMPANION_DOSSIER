@@ -832,8 +832,15 @@
       // Seat the opening in the running conversation; the live model
       // continues from the reader's first reply.
       ENDOR.API.seedOpening(ENDOR.Chamber.SEED_CUE, ENDOR.Chamber.OPENING);
-      note.textContent = 'speak to her. she is waiting.';
-      setInputEnabled(true);
+      // The reader does not speak over her. The line to answer opens only
+      // once her opening has fully landed, so the room reads as a deposition.
+      var paras = String(ENDOR.Chamber.OPENING).split(/\n{2,}/).length;
+      var openDelay = REDUCED ? 0 : (paras - 1) * 750 + 900;
+      setTimeout(function () {
+        if (ended) return;
+        note.textContent = 'speak to her. she is waiting.';
+        setInputEnabled(true);
+      }, openDelay);
     }
 
     function clearHint() {
@@ -881,14 +888,19 @@
     focusEl(document.getElementById('codaRemains'));
 
     var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaReturnWrap'];
+    // The delay before each block. The long hold before the maker's note lets
+    // the reader believe the piece has ended, so the note reads as residue
+    // found under ash rather than a closing speech.
+    var gaps = REDUCED ? [400, 500, 700, 500, 500] : [700, 3400, 6400, 3200, 2600];
     var i = 0;
-    var gap = REDUCED ? 500 : 3000;
     (function reveal() {
       if (i >= blocks.length) return;
-      var el = document.getElementById(blocks[i]);
-      if (el) el.classList.add('show');
-      i++;
-      setTimeout(reveal, gap);
+      setTimeout(function () {
+        var el = document.getElementById(blocks[i]);
+        if (el) el.classList.add('show');
+        i++;
+        reveal();
+      }, gaps[i]);
     })();
   }
 

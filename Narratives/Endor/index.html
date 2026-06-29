@@ -436,6 +436,8 @@
   .coda-remains .stz + .stz { margin-top:1.3em; }
   .coda-note { font-family:var(--book); font-style:italic; font-size:clamp(0.86rem,2.2vw,0.98rem); line-height:1.75; color:var(--ink-soft); max-width:46ch; margin:clamp(2rem,5vw,3rem) auto 0; }
   .coda-note .stz + .stz { margin-top:1em; }
+  /* The maker's note is residue, not a closing address: it arrives dimmer. */
+  #codaNote.show { opacity:0.6; }
   .coda-dedication { margin-top:clamp(2.4rem,6vw,3.4rem); font-family:var(--display); color:var(--gilt);
     font-size:clamp(0.92rem,2.4vw,1.1rem); line-height:2.1; letter-spacing:0.08em; white-space:pre-wrap; }
   .coda-dedication .ded-sigil { letter-spacing:0.5em; font-size:1.1rem; color:var(--rubric); }
