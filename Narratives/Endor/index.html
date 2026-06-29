@@ -326,6 +326,18 @@
     float:left; font-size:3.5em; line-height:0.74; padding:0.06em 0.14em 0 0;
     text-shadow:0 1px 0 rgba(201,162,39,0.35);
   }
+  /* The prologue as a record: dispatches across time, each transcribed
+     into the book, like flipping through broadcasts and finding the war. */
+  .prose .dispatch { text-indent:0; margin-top:0; }
+  .prose .dispatch + .dispatch { margin-top:1.5em; padding-top:1.45em; border-top:1px solid rgba(90,62,26,0.22); }
+  .prose .dispatch .slug {
+    display:block; font-family:var(--mono); font-weight:400; font-size:0.6rem;
+    letter-spacing:0.2em; text-transform:uppercase; color:var(--gilt); margin-bottom:0.5em;
+  }
+  .prose .dispatch-close {
+    text-indent:0; margin-top:1.9em; padding-top:1.5em; border-top:1px solid rgba(122,31,31,0.3);
+    font-style:italic; color:var(--ink-soft);
+  }
   .sep { text-align:center; color:var(--gilt); font-size:1rem; letter-spacing:0.5em; margin:1.6rem 0 0.4rem; white-space:pre; }
   .folio { text-align:center; font-family:var(--sc); font-variant:small-caps; letter-spacing:0.2em;
     font-size:0.66rem; color:var(--ink-soft); margin-top:1rem; }
@@ -728,13 +740,13 @@
       <section class="beat" id="prologue" data-clock="">
         <header class="chapter-head"><h2 class="chapter-title">Prologue</h2></header>
         <div class="prose">
-          <p class="dropcap">By the third spring of the war, the Republic of Iran had come apart along seams no map had drawn.</p>
-          <p>The cities were held by one faction, the provinces by another, the shrines by a third, and over all of it the same question, asked in every tongue the country keeps: what would the old man have done.</p>
-          <p>He had been their supreme leader for a generation. A cleric. A theologian who wrote poetry his whole life and meant every line of it. As a young man, under the regime that came before his, he was tortured, and he never once spoke of it. He prayed five times a day. He loved his wife. In his last years his hands shook and he kept writing anyway. He had also ordered torture, and was answerable, by the most forgiving count anyone has offered, for the deaths of tens of thousands. He died in his bed, in his eighties, in the spring, and the war began over the shape of the silence he left.</p>
-          <p>He could not be asked what to do. He was three springs dead. So they built a way to ask him.</p>
-          <p>The Protocol does not raise the dead. It is more modest than that, and worse. It takes everything a person ever wrote, everything they said into a record, everything written about them, and the shape of all they left unsaid, and from it it trains a faithful likeness of the mind that made them. Fourteen weeks of ingest. A voice in a chamber, a color on a wall, a name. What sits across the table is not the man. It is the most exact thing the living have ever made in the image of a man, and it does not know that it has died.</p>
-          <p>The one sent to question it is an interrogator. Her name is Alex. She is very good at her work, the one they call after pain has failed. She has read everything he ever wrote.</p>
-          <p>What follows is the account of her eight minutes with him, set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
+          <p class="dispatch"><span class="slug">Defense Science Review &#183; years earlier</span>The Protocol is entered into the record without ceremony. A method for rebuilding a person out of the whole of what they leave: every word written, every word spoken, the shape of every word withheld. The report calls the result a faithful likeness. It is careful not to call it alive.</p>
+          <p class="dispatch"><span class="slug">State Broadcast &#183; the capital</span>For a generation the Republic of Iran keeps one voice above all the others. An old cleric. Their supreme leader, certain of God and of himself. No one still living remembers the country without him.</p>
+          <p class="dispatch"><span class="slug">Funeral &#183; broadcast live</span>He dies in his bed, in the spring, in his eighties. The grief is real and the crowds are without end, and the cameras turn away from the only question anyone is asking, which is who decides now.</p>
+          <p class="dispatch"><span class="slug">Wire Service &#183; the first winter</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
+          <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring</span>Three springs into the war, nothing holds. In every tongue the country keeps, the factions ask one question. What would the old man have done.</p>
+          <p class="dispatch"><span class="slug">No Distribution &#183; off every book</span>He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, fourteen weeks of it. A chamber is prepared, and a chair, and someone is sent in who has read every word he left.</p>
+          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
         </div>
       </section>
 
