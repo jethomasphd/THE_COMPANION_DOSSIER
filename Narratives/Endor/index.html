@@ -283,10 +283,21 @@
     content:''; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit;
     background:linear-gradient(100deg, rgba(60,40,16,0.34) 0%, rgba(60,40,16,0) 24%, rgba(255,250,235,0.12) 70%, rgba(255,250,235,0.22) 100%);
   }
-  .flipper-back { transform:rotateY(180deg);
-    background-image:radial-gradient(circle at 50% 40%, var(--parchment-lit), var(--parchment-deep)); }
-  .flipper-back::after { content:'\2767'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    color:rgba(120,90,45,0.35); font-size:2rem; }
+  /* The underside of the turning leaf is real aged paper: it inherits the
+     full .leaf surface (texture and all), so it matches the book instead
+     of reading as an empty panel. A soft curl shadow rakes across it as it
+     bends through the light, and a faint blind embossed device sits at its
+     heart, the way the back of a printed leaf carries the press mark. */
+  .flipper-back { transform:rotateY(180deg); }
+  .flipper-back::after {
+    content:''; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit;
+    background:linear-gradient(255deg, rgba(45,30,12,0.36) 0%, rgba(45,30,12,0.12) 20%, rgba(255,250,235,0.03) 58%, rgba(255,250,235,0.17) 100%);
+  }
+  .flipper-back .leaf-device {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1; pointer-events:none;
+    font-family:var(--display); font-size:clamp(3rem,9vw,5rem); line-height:1; color:rgba(90,62,26,0.13);
+    text-shadow:0 1px 0 rgba(255,250,235,0.45), 0 -1px 1px rgba(70,46,18,0.18);
+  }
 
   /* Chapter furniture (global so the flipper clone keeps it) */
   .beat { color:var(--ink); }
@@ -907,7 +918,7 @@
 
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>
-      <div class="flipper-face flipper-back leaf"></div>
+      <div class="flipper-face flipper-back leaf"><span class="leaf-device" aria-hidden="true">&#10070;</span></div>
     </div>
 
     <!-- The book will not turn here until the reader says her name with
