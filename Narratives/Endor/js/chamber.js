@@ -302,9 +302,9 @@ ENDOR.AffectField = (function () {
   }
 
   function draw(timeSec) {
+    // Transparent base, so the void and the optional haze behind the canvas
+    // show through and only the ember glow is painted here.
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#030303';
-    ctx.fillRect(0, 0, W, H);
 
     var breath = reduced ? 0.5 : (0.5 + 0.5 * Math.sin((timeSec / BREATH_PERIOD) * Math.PI * 2));
 

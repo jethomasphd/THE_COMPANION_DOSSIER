@@ -51,13 +51,13 @@
     --mono:'IBM Plex Mono', 'Courier New', monospace;
     --serif:'Cormorant Garamond', Georgia, serif;
 
-    /* Optional art slots. They default to none, so the synthetic look
-       below stands on its own with nothing missing. Drop generated art
-       into ./assets and switch these on (see assets/README.txt). The
-       gradients and engraving plates remain the graceful fallback. */
-    --leaf-texture:none;        /* a scanned parchment laid over the leaf */
-    --leaf-blend:normal;        /* multiply when a real scan is supplied */
-    --chamber-haze:none;        /* a near black room tone behind the ember */
+    /* Art slots, wired to the files in ./assets. If a file is absent the
+       layer simply fails to load and the coded look below stands on its
+       own with nothing missing, so this is safe before the art is added.
+       See assets/README.md. */
+    --leaf-texture:url("assets/parchment.jpg");   /* scanned parchment over the leaf */
+    --leaf-blend:normal;
+    --chamber-haze:url("assets/chamber-haze.jpg"); /* near black room behind the ember */
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -193,6 +193,11 @@
   }
   .cover .frontis { width:clamp(120px,30vw,168px); margin:0 auto clamp(1rem,3vw,1.7rem); }
   .cover .frontis svg { width:100%; height:auto; display:block; }
+  /* When the engraved frontispiece art is present it shows and the line
+     plate hides; if the file is absent the img removes itself and the
+     plate remains (see onerror in the markup). */
+  .cover .frontis img { width:100%; height:auto; display:block; border-radius:2px; }
+  .cover .frontis img + svg { display:none; }
   .cover h1 {
     font-family:var(--display); font-weight:600; letter-spacing:0.14em;
     font-size:clamp(2rem,7vw,3rem); line-height:1.05; color:var(--ink);
@@ -394,11 +399,13 @@
   .threshold-cue .arr { display:block; margin-top:0.5rem; font-size:1rem; color:var(--ember-dim); letter-spacing:0; }
 
   /* ════════════════ CHAMBER (live, void) ════════════════ */
-  #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none; background:var(--void); }
-  /* The optional haze sits under the ember, behind everything. When it is
-     none the void stands alone, as before. */
-  #chamber { position:relative; z-index:2; background-color:var(--void);
-    background-image:var(--chamber-haze); background-size:cover; background-position:center; display:flex; flex-direction:column; }
+  /* The deepest layer: the void, with the optional haze laid over it. The
+     ember canvas draws onto this and is now transparent except for its
+     glow, so the haze and the breathing ember both show through. */
+  #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none;
+    background-color:var(--void); background-image:var(--chamber-haze); background-size:cover; background-position:center; }
+  /* The chamber itself is transparent so the ember behind it is seen. */
+  #chamber { position:relative; z-index:2; background:transparent; display:flex; flex-direction:column; }
   .chamber-head {
     position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center;
     padding:14px 24px; max-width:720px; margin:0 auto; width:100%;
@@ -690,7 +697,7 @@
 <section id="overture" class="stage is-active" aria-label="The cover">
   <div class="cover leaf">
     <div class="cover-frame">
-      <figure class="frontis" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#plate-front"/></svg></figure>
+      <figure class="frontis" aria-hidden="true"><img class="frontis-art" src="assets/frontispiece.png" alt="" onerror="this.remove()"/><svg viewBox="0 0 240 240"><use href="#plate-front"/></svg></figure>
       <h1>Endor Protocol</h1>
       <div class="rubric-sub">An account in eight minutes</div>
       <div class="rule"></div>
