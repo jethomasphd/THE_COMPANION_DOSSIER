@@ -95,6 +95,16 @@
   var turning = false;
   var cueTimer = null;
 
+  // The name gate. The reader must say her name with their own hand before
+  // the book will turn past it. saidName is read by the chamber, so Alex can
+  // open already knowing the summoned broke silence at the threshold.
+  var gateDone = false, gateOpen = false;
+  var saidName = false;
+  var nameGate = document.getElementById('nameGate');
+  var gateInput = document.getElementById('gateInput');
+  var gateGo = document.getElementById('gateGo');
+  var gateCue = document.getElementById('gateCue');
+
   var chapters = [];
   var pages = [];
   var currentPage = 0;
@@ -248,7 +258,13 @@
   function hideCue() { if (cueTimer) clearTimeout(cueTimer); advanceBtn.classList.remove('show'); }
 
   function advance() {
-    if (advanceLock || turning) return;
+    if (advanceLock || turning || gateOpen) return;
+    // The leaf where she is named will not turn until the reader says it.
+    if (!gateDone && pageEl.querySelector('[data-gate="name"]')) { openNameGate(); return; }
+    doAdvanceForward();
+  }
+
+  function doAdvanceForward() {
     if (currentPage < pages.length - 1) {
       turning = true;
       hideCue();                          // a click during the turn is never swallowed
@@ -259,6 +275,40 @@
     } else {
       enterDoor();
     }
+  }
+
+  /* ── The name gate ──────────────────────────────────────────────
+     The reader breaks witness silence with their own hand. What they
+     type is not stored; it only sets saidName, which the chamber reads
+     so Alex opens already knowing the summoned spoke her name. */
+  function openNameGate() {
+    if (gateOpen || gateDone || !nameGate) return;
+    gateOpen = true;
+    hideCue();
+    if (backBtn) backBtn.style.visibility = 'hidden';
+    if (gateCue) gateCue.textContent = 'say her name';
+    nameGate.classList.add('open');
+    if (gateInput) {
+      gateInput.value = '';
+      setTimeout(function () { try { gateInput.focus(); } catch (e) {} }, REDUCED ? 0 : 220);
+    }
+  }
+
+  function submitName() {
+    if (!gateOpen || !gateInput) return;
+    var v = (gateInput.value || '').toLowerCase().replace(/[^a-z]/g, '');
+    if (v.indexOf('alex') === -1) {
+      // Not a choice. The book waits for her name.
+      nameGate.classList.remove('nudge'); void nameGate.offsetWidth; nameGate.classList.add('nudge');
+      if (gateCue) gateCue.textContent = 'her name';
+      try { gateInput.focus(); } catch (e) {}
+      return;
+    }
+    gateDone = true; gateOpen = false; saidName = true;
+    nameGate.classList.remove('open', 'nudge');
+    if (backBtn) backBtn.style.visibility = (currentPage > 0) ? 'visible' : 'hidden';
+    focusEl(pageEl);
+    doAdvanceForward();
   }
 
   function back() {
@@ -305,7 +355,7 @@
   // chapters and keep the reader on the chapter they were reading.
   var resizeTimer = null;
   window.addEventListener('resize', function () {
-    if (body.getAttribute('data-stage') !== 'green' || turning || advanceLock) return;
+    if (body.getAttribute('data-stage') !== 'green' || turning || advanceLock || gateOpen) return;
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       var ch = pages.length ? pages[currentPage].chapter : 0;
@@ -326,6 +376,13 @@
   });
   advanceBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(); });
   if (backBtn) backBtn.addEventListener('click', function (e) { e.stopPropagation(); back(); });
+  if (gateInput) {
+    gateInput.addEventListener('keydown', function (e) {
+      e.stopPropagation();                 // do not let the leaf turn from here
+      if (e.key === 'Enter') { e.preventDefault(); submitName(); }
+    });
+  }
+  if (gateGo) gateGo.addEventListener('click', function (e) { e.stopPropagation(); submitName(); });
   document.addEventListener('keydown', function (e) {
     if (body.getAttribute('data-stage') !== 'green') return;
     if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
@@ -819,9 +876,12 @@
       if (sendBtn) sendBtn.addEventListener('click', trySend);
 
       // Alex speaks first, in authored words, so the room always opens well.
+      // If the reader said her name at the threshold, she opens knowing it.
       alexHasSpoken = true;
-      renderAlex(ENDOR.Chamber.OPENING);
-      announce(ENDOR.Chamber.OPENING);
+      var opening = (saidName && ENDOR.Chamber.OPENING_NAMED) ? ENDOR.Chamber.OPENING_NAMED : ENDOR.Chamber.OPENING;
+      var cue = (saidName && ENDOR.Chamber.SEED_CUE_NAMED) ? ENDOR.Chamber.SEED_CUE_NAMED : ENDOR.Chamber.SEED_CUE;
+      renderAlex(opening);
+      announce(opening);
 
       if (!ENDOR.API.isReady()) {
         // No live backend here. The opening lands, then she releases him.
@@ -831,7 +891,7 @@
 
       // Seat the opening in the running conversation; the live model
       // continues from the reader's first reply.
-      ENDOR.API.seedOpening(ENDOR.Chamber.SEED_CUE, ENDOR.Chamber.OPENING);
+      ENDOR.API.seedOpening(cue, opening);
       // The reader does not speak over her. The line to answer opens only
       // once her opening has fully landed, so the room reads as a deposition.
       var paras = String(ENDOR.Chamber.OPENING).split(/\n{2,}/).length;

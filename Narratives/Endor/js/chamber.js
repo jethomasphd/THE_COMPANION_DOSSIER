@@ -159,13 +159,26 @@ ENDOR.Chamber = (function () {
   // has already been spoken, so it continues rather than restarting.
   var SEED_CUE = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. You have already spoken your opening to him. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
 
+  // When the reader broke witness silence in the green room and said her
+  // name with their own hand, Alex opens already knowing it. The callback
+  // makes the reveal land as recognition, not as a claim.
+  var OPENING_NAMED = [
+    "You said my name. At the door, just now. They told me you might.",
+    "There you are. I know what you are feeling. It passes. Breathe, if breathing still helps you. It used to help me.",
+    "We have very little time, so I am going to be plain with you. I need you to tell me where it is being kept. Start there."
+  ].join("\n\n");
+
+  var SEED_CUE_NAMED = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. At the threshold, unprompted, he spoke your name, Alex, and you have just acknowledged it. Let it sit under your voice; do not dwell on it. You have already spoken your opening to him. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
+
   // The literal release line the client watches for (Section VII).
   var RELEASE_LINE = "Return to baseline.";
 
   return {
     SYSTEM_PROMPT: SYSTEM_PROMPT,
     OPENING: OPENING,
+    OPENING_NAMED: OPENING_NAMED,
     SEED_CUE: SEED_CUE,
+    SEED_CUE_NAMED: SEED_CUE_NAMED,
     RELEASE_LINE: RELEASE_LINE
   };
 

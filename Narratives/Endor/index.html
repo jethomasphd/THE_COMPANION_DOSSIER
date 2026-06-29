@@ -344,6 +344,34 @@
   .back-btn:hover { color:var(--gilt-bright); }
   .back-btn .arr { margin-right:0.4em; }
 
+  /* The name gate. The book asks the reader to say her name in their own
+     hand before it will turn. The first breaking of witness silence. */
+  .name-gate {
+    position:absolute; inset:0; z-index:8; display:none; flex-direction:column;
+    align-items:center; justify-content:center; gap:1.5rem; border-radius:3px 7px 7px 3px;
+    /* The leaf recedes so only the act of saying her name remains. */
+    background:radial-gradient(ellipse at 50% 46%, rgba(10,7,4,0.91), rgba(5,3,2,0.975));
+    -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
+  }
+  .name-gate.open { display:flex; }
+  .name-gate .gate-cue {
+    font-family:var(--sc); font-variant:small-caps; letter-spacing:0.24em;
+    font-size:0.82rem; color:rgba(232,218,187,0.82); text-shadow:0 1px 6px rgba(0,0,0,0.7);
+  }
+  .name-gate .gate-input {
+    background:transparent; border:none; border-bottom:1px solid rgba(201,162,39,0.5); outline:none;
+    font-family:var(--display); font-weight:500; font-size:clamp(1.8rem,6vw,2.7rem); letter-spacing:0.12em;
+    color:var(--parchment-lit); text-align:center; width:min(74%,7em); caret-color:var(--gilt-bright); padding:0.08em 0 0.12em;
+  }
+  .name-gate .gate-input:focus { border-bottom-color:var(--gilt-bright); }
+  .name-gate .gate-go {
+    font-family:var(--sc); font-variant:small-caps; letter-spacing:0.18em; font-size:0.78rem;
+    color:rgba(201,162,39,0.72); background:none; border:none; cursor:pointer; transition:color 0.4s ease;
+  }
+  .name-gate .gate-go:hover, .name-gate .gate-go:focus-visible { color:var(--gilt-bright); }
+  .name-gate.nudge .gate-input { animation:gateNudge 0.45s ease; }
+  @keyframes gateNudge { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-7px);} 60%{transform:translateX(7px);} 80%{transform:translateX(-3px);} }
+
   /* ════════════════ DOOR (held black) ════════════════ */
   #door { position:fixed; inset:0; z-index:80; background:var(--void); opacity:0; pointer-events:none; transition:opacity 1.4s ease; }
   #door.is-holding { opacity:1; pointer-events:auto; }
@@ -478,6 +506,8 @@
     #overture, #greenroom { transition:none; }
     #chamber.is-active, #coda.is-active { animation:none; }
     .send-btn { transition:none; }
+    .name-gate { -webkit-backdrop-filter:none; backdrop-filter:none; }
+    .name-gate.nudge .gate-input { animation:none; }
     body.buzzing #page.leaf, body.buzzing .cover { animation:none; }
     html { scroll-behavior:auto; }
   }
@@ -744,7 +774,7 @@
           <p class="dropcap">She begins to brief you the way she was trained to brief.</p>
           <p>Two operational objectives, she says. Asset location. Reunification framework. The subject's prior, the affect mapping, the fourteen-week ingest, the redundancy in the logging, the voice in the chamber and the color on the wall and the name. She uses the words the way you put down stones to cross a river without getting wet. Asset. Subject. Framework. Ingest. The words are dry and they hold her weight and they keep her feet out of the water.</p>
           <p>You say her name.</p>
-          <p>Just that. Just <em>Alex.</em></p>
+          <p data-gate="name">Just that. Just <em>Alex.</em></p>
           <p>The two men who went up to Endor in the dark did not speak. That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
           <p>The brief goes out of her like air going out of a room.</p>
         </div>
@@ -859,6 +889,15 @@
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>
       <div class="flipper-face flipper-back leaf"></div>
+    </div>
+
+    <!-- The book will not turn here until the reader says her name with
+         their own hand. The first breaking of witness silence. -->
+    <div class="name-gate" id="nameGate">
+      <label class="gate-cue" id="gateCue" for="gateInput">say her name</label>
+      <input type="text" class="gate-input" id="gateInput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="24" aria-describedby="gateHint"/>
+      <button type="button" class="gate-go" id="gateGo">inscribe<span class="arr" aria-hidden="true"> &#8629;</span></button>
+      <div class="gate-hint sr-only" id="gateHint">Type her name and press Enter to turn the page.</div>
     </div>
   </div><!-- /book -->
 
