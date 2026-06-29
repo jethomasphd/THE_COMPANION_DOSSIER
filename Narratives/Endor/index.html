@@ -182,14 +182,14 @@
   #overture { display:flex; align-items:center; align-items:safe center; justify-content:center; padding:4vh 4vw; }
   .cover {
     width:min(92vw, 560px); text-align:center;
-    padding:clamp(2.4rem,5vw,3.6rem) clamp(1.6rem,5vw,3rem) clamp(2rem,4vw,3rem);
+    padding:clamp(1.8rem,4vw,2.8rem) clamp(1.6rem,5vw,3rem) clamp(1.6rem,3.5vw,2.4rem);
     border-radius:4px;
   }
   .cover-frame {
     border:1px solid rgba(90,62,26,0.5); outline:1px solid rgba(90,62,26,0.25); outline-offset:5px;
-    padding:clamp(1.8rem,5vw,3rem) clamp(1.2rem,4vw,2rem);
+    padding:clamp(1.4rem,4vw,2.3rem) clamp(1.2rem,4vw,2rem);
   }
-  .cover .frontis { width:clamp(120px,30vw,168px); margin:0 auto clamp(1rem,3vw,1.7rem); }
+  .cover .frontis { width:clamp(90px,22vw,120px); margin:0 auto clamp(0.7rem,2.2vw,1.1rem); }
   .cover .frontis svg { width:100%; height:auto; display:block; }
   /* When the engraved frontispiece art is present it shows and the line
      plate hides; if the file is absent the img removes itself and the
@@ -198,20 +198,20 @@
   .cover .frontis img + svg { display:none; }
   .cover h1 {
     font-family:var(--display); font-weight:600; letter-spacing:0.14em;
-    font-size:clamp(2rem,7vw,3rem); line-height:1.05; color:var(--ink);
+    font-size:clamp(1.9rem,6vw,2.7rem); line-height:1.05; color:var(--ink);
   }
   .cover .rubric-sub {
     font-family:var(--sc); font-variant:small-caps; letter-spacing:0.2em;
     font-size:clamp(0.82rem,2.6vw,1rem); color:var(--rubric); margin-top:0.9rem;
   }
   .cover .epigraph {
-    font-family:var(--book); font-style:italic; font-size:clamp(0.92rem,2.4vw,1.04rem);
-    line-height:1.7; color:var(--ink-soft); margin:clamp(1.4rem,4vw,2rem) auto 0; max-width:42ch;
+    font-family:var(--book); font-style:italic; font-size:clamp(0.86rem,2.2vw,0.96rem);
+    line-height:1.55; color:var(--ink-soft); margin:clamp(1rem,3vw,1.5rem) auto 0; max-width:44ch;
   }
   .cover .epigraph p + p { margin-top:0.8em; }
   .cover .cite { display:block; font-style:normal; font-family:var(--sc); font-variant:small-caps;
     letter-spacing:0.12em; font-size:0.74rem; color:var(--gilt); margin-top:1.1em; }
-  .cover .rule { width:46%; height:0; border-top:1px solid rgba(90,62,26,0.4); margin:clamp(1.4rem,4vw,2rem) auto; position:relative; }
+  .cover .rule { width:46%; height:0; border-top:1px solid rgba(90,62,26,0.4); margin:clamp(1rem,3vw,1.5rem) auto; position:relative; }
   .cover .rule::after { content:'\2767'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
     background:var(--parchment); padding:0 0.5em; color:var(--gilt); font-size:0.9rem; }
   .open-btn {
@@ -223,6 +223,12 @@
   .open-btn:hover { background:var(--rubric); color:var(--parchment-lit); border-color:var(--rubric); }
   .open-sub { display:block; margin-top:1rem; font-family:var(--sc); font-variant:small-caps;
     letter-spacing:0.1em; font-size:0.72rem; color:var(--ink-soft); }
+  /* A quiet hand to the reader before the book opens. No spoilers. */
+  .cover .orient { max-width:46ch; margin:0 auto clamp(1.1rem,3vw,1.6rem); }
+  .cover .orient-label { font-family:var(--sc); font-variant:small-caps; letter-spacing:0.22em;
+    font-size:0.7rem; color:var(--gilt); margin-bottom:0.5rem; }
+  .cover .orient p { font-family:var(--book); font-style:italic; line-height:1.6;
+    font-size:clamp(0.84rem,2.1vw,0.94rem); color:var(--ink-soft); }
 
   /* ════════════════ GREEN ROOM / the book ════════════════ */
   #greenroom { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
@@ -481,6 +487,15 @@
   .send-btn:hover:not([disabled]), .send-btn:focus-visible { color:var(--ember); transform:translateY(-1px); }
   .send-btn[disabled] { opacity:0.45; cursor:default; }
   .input-note { margin-top:0.6rem; font-family:var(--mono); font-size:0.48rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ash-faint); min-height:1.2em; }
+  /* The reader closes the door themselves, so her last words and the
+     release are never cut short. Revealed by JS once she is finished. */
+  .chamber-close { display:none; margin:0.9rem auto 0; padding:0.4rem 0.7rem;
+    font-family:var(--sc); font-variant:small-caps; font-size:0.86rem; letter-spacing:0.16em;
+    color:rgba(201,162,39,0.62); background:none; border:none; cursor:pointer;
+    opacity:0; transition:color 0.5s ease, opacity 1.4s ease; }
+  .chamber-close.show { opacity:0.9; }
+  .chamber-close:hover, .chamber-close:focus-visible { color:var(--gilt-bright); }
+  .chamber-close .arr { margin-left:0.5em; color:var(--ember); }
 
   /* ════════════════ CODA (the book closes) ════════════════ */
   #coda { display:flex; align-items:center; align-items:safe center; justify-content:center; padding:5vh 4vw; }
@@ -515,6 +530,20 @@
     .cover .epigraph { font-size:0.9rem; }
   }
 
+  /* ════════════ Short viewports: keep the cover and its open
+        affordance on screen, so the call to begin is never hidden. ════ */
+  @media (max-height: 860px) {
+    .cover { padding:1.1rem 1.6rem; }
+    .cover-frame { padding:1.1rem 1.2rem; }
+    .cover .frontis { width:clamp(72px,12vh,100px); margin-bottom:0.6rem; }
+    .cover h1 { font-size:clamp(1.6rem,4.4vh,2.2rem); }
+    .cover .rubric-sub { margin-top:0.6rem; }
+    .cover .rule { margin:0.8rem auto; }
+    .cover .epigraph { font-size:0.84rem; line-height:1.48; margin-top:0.8rem; }
+    .cover .orient { margin-bottom:0.9rem; }
+    .cover .orient p { line-height:1.5; }
+  }
+
   /* ════════════════ Reduced motion ════════════════ */
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
@@ -531,6 +560,7 @@
     .send-btn { transition:none; }
     .name-gate { -webkit-backdrop-filter:none; backdrop-filter:none; }
     .name-gate.nudge .gate-input { animation:none; }
+    .chamber-close { transition:none; }
     html { scroll-behavior:auto; }
   }
 </style>
@@ -721,6 +751,10 @@
         <span class="cite">&#183; 1 Samuel 28, abridged &#183; King James</span>
       </blockquote>
       <div class="rule"></div>
+      <div class="orient">
+        <div class="orient-label">Before you begin</div>
+        <p>This is something you read, and then take part in. Go at your own pace, and answer when it asks, in your own words. It does not end on its own. It ends with you.</p>
+      </div>
       <button type="button" class="open-btn" id="enterBtn">Open the account</button>
       <span class="open-sub">eight minutes. she has not looked up.</span>
       <div class="rubric-sub" style="margin-top:1.8rem;font-size:0.66rem;color:var(--ink-soft);">Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD</div>
@@ -909,7 +943,7 @@
 
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>
-      <div class="flipper-face flipper-back leaf"><span class="leaf-device" aria-hidden="true">&#10070;</span></div>
+      <div class="flipper-face flipper-back leaf"><span class="leaf-device" aria-hidden="true">&#9674;</span></div>
     </div>
 
     <!-- The book will not turn here until the reader says her name with
@@ -989,6 +1023,7 @@
       </button>
     </div>
     <div class="input-note" id="inputNote" role="status"></div>
+    <button type="button" class="chamber-close" id="chamberClose">close the door<span class="arr" aria-hidden="true"> &#9674;</span></button>
   </div>
 </section>
 

@@ -529,7 +529,9 @@
     var recText = rec ? rec.querySelector('.rec-text') : null;
     var sendBtn = document.getElementById('sendBtn');
     var srLive = document.getElementById('srLive');
+    var closeBtn = document.getElementById('chamberClose');
 
+    var awaitingClose = false;
     var phase = 'procedure';
     var truthSettled = false;
     var recordingOn = true;
@@ -672,8 +674,33 @@
       note.textContent = '';
       phase = 'release';
       ENDOR.AffectField.collapse();
-      var wait = REDUCED ? 2200 : 5200;
-      setTimeout(enterCoda, wait);
+      // The reader closes the door themselves. Her last words and the
+      // release are never cut short by a clock, and the close cue arrives
+      // only after they have had a moment to land.
+      var revealAfter = REDUCED ? 1200 : 3400;
+      setTimeout(showCloseCue, revealAfter);
+    }
+
+    // Reveal the click out. From here the reader decides when the door
+    // closes. There is no timer, the way the threshold had no timer.
+    function showCloseCue() {
+      if (!ended) return;
+      var row = document.querySelector('.chamber-input .input-row');
+      if (row) row.style.display = 'none';
+      note.textContent = '';
+      awaitingClose = true;
+      if (closeBtn) {
+        closeBtn.style.display = 'block';
+        requestAnimationFrame(function () { closeBtn.classList.add('show'); });
+        try { closeBtn.focus({ preventScroll: true }); } catch (e) {}
+      }
+    }
+
+    function closeOut() {
+      if (!awaitingClose) return;
+      awaitingClose = false;
+      if (closeBtn) closeBtn.classList.remove('show');
+      enterCoda();
     }
 
     // Repaint the visible streaming line from the revealed substring. It is
@@ -874,6 +901,19 @@
       reply.addEventListener('input', autoGrow);
       reply.addEventListener('input', syncSend);
       if (sendBtn) sendBtn.addEventListener('click', trySend);
+
+      // The click out at the end. The reader closes the door when ready.
+      if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeOut(); });
+      var chamberEl = document.getElementById('chamber');
+      if (chamberEl) chamberEl.addEventListener('click', function (e) {
+        if (!awaitingClose) return;
+        if (e.target.closest('button, a, input, textarea')) return;
+        closeOut();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!awaitingClose) return;
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); closeOut(); }
+      });
 
       // Alex speaks first, in authored words, so the room always opens well.
       // If the reader said her name at the threshold, she opens knowing it.
