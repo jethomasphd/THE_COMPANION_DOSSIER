@@ -157,9 +157,7 @@
   }
   .corner:hover { color:var(--gilt-bright); }
   .sigil-home { top:18px; left:20px; font-size:1rem; letter-spacing:0; }
-  .sound-toggle { bottom:18px; left:20px; }
-  body[data-stage="overture"] .sigil-home, body[data-stage="green"] .sigil-home, body[data-stage="coda"] .sigil-home,
-  body[data-stage="overture"] .sound-toggle, body[data-stage="green"] .sound-toggle {
+  body[data-stage="overture"] .sigil-home, body[data-stage="green"] .sigil-home, body[data-stage="coda"] .sigil-home {
     opacity:1; visibility:visible; pointer-events:auto;
   }
 
@@ -506,15 +504,10 @@
 
   @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
-  /* faint fluorescent flicker on the leaf, only with sound on */
-  body.buzzing #page.leaf, body.buzzing .cover { animation:tubeFlicker 7s steps(1,end) infinite; }
-  @keyframes tubeFlicker { 0%,100%{filter:none;} 49%{filter:brightness(0.985);} 50%{filter:none;} 83%{filter:brightness(0.99);} 84%{filter:none;} }
-
   /* ════════════════ Mobile ════════════════ */
   @media (max-width:600px) {
     .chamber-head, .chamber-log, .chamber-input { padding-left:16px; padding-right:16px; }
     .sigil-home { top:12px; left:12px; }
-    .sound-toggle { bottom:12px; left:12px; }
     #clock { width:62px; top:12px; right:12px; }
     #clock svg { width:42px; height:42px; }
     .page, .flipper-face { height:clamp(440px, 78vh, 720px); }
@@ -538,7 +531,6 @@
     .send-btn { transition:none; }
     .name-gate { -webkit-backdrop-filter:none; backdrop-filter:none; }
     .name-gate.nudge .gate-input { animation:none; }
-    body.buzzing #page.leaf, body.buzzing .cover { animation:none; }
     html { scroll-behavior:auto; }
   }
 </style>
@@ -698,7 +690,6 @@
 
 
 <a href="../" class="corner sigil-home" title="Return to Narratives" aria-label="Return to Narratives">&#9674;</a>
-<button type="button" class="corner sound-toggle" id="soundToggle" aria-pressed="false">sound: off</button>
 
 <div id="clock" role="img" aria-label="Eight minutes remaining">
   <svg viewBox="0 0 100 100" aria-hidden="true">
