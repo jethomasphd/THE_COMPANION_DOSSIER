@@ -9,7 +9,7 @@
 
 The COMPANION Dossier *dramatizes* an idea: the **Miranda Hypothesis** and its test, the **Prism Experiment** — the question of whether a summoned mind returns *the person*, or only the culture's loudest memory of them. You can meet that idea in story form in [The Halpern Memo](https://the-companion-dossier.com/The_Halpern_Memo/) and in [*The Summoning Film*](https://the-companion-dossier.com/The_Magic_Lantern/the_film/).
 
-**Mask vs Mirror** is the scholarship beneath the drama — the working **preprint**, the **talk** that introduces it, and the **time-sealed experimental materials**.
+**Mask vs Mirror** is the scholarship beneath the drama — the working **preprint**, the **[talk](https://www.youtube.com/watch?v=IJXjTLPzvAU)** that introduces it, and the **time-sealed experimental materials**.
 
 If you arrived here from the talk: this is where the paper, the slides, and the references live.
 
@@ -20,6 +20,7 @@ If you arrived here from the talk: this is where the paper, the slides, and the 
 | Item | What it is | Status |
 |------|------------|--------|
 | The preprint manuscript | *Mask vs Mirror* — the working paper | **to be deposited by the authors** |
+| 🎥 [The recorded talk](https://www.youtube.com/watch?v=IJXjTLPzvAU) | The AI Engineer World's Fair presentation, on video | **available now** |
 | The talk slides | The AI Engineer World's Fair presentation | **to be deposited by the authors** |
 | References | The works specifically discussed in the talk | **to be deposited by the authors** |
 | The sealed vignettes | Timestamped, sealed experimental stimuli | **sealed — key to follow** |

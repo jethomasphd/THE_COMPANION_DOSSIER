@@ -8,6 +8,7 @@ COMPANION is an open protocol for dialogue with historical, fictional, and arche
 
 **The living site:** [the-companion-dossier.com](https://the-companion-dossier.com)
 **The origin artifact:** 📄 [THE COMPANION DOSSIER](./THE_COMPANION_DOSSIER.pdf) — the complete theory, rules, and a full demonstration transcript.
+**The talk:** 🎥 [AI Engineer World's Fair](https://www.youtube.com/watch?v=IJXjTLPzvAU) — the project, presented live.
 
 ---
 
