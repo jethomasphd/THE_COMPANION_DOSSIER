@@ -292,7 +292,17 @@ svg#wt{width:100%;height:clamp(160px,32vh,260px);}
 .doc-text em{color:var(--ember-glow);font-style:italic;}
 .doc-prov{font-family:var(--tf);font-style:normal;font-size:.56rem;color:var(--smoke);margin-top:1.3rem;letter-spacing:.03em;border-top:1px solid #2a2620;padding-top:.9rem;line-height:1.7;}
 @media(prefers-reduced-motion:reduce){.frame.breathing img,.frame.loaded .lamp{animation:none;}}
-@media(max-width:560px){ #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} .bill{padding:1.5rem 1.4rem;} }
+@media(max-width:560px){
+  #termBody{font-size:.62rem;} .frame{width:clamp(150px,40vw,200px);} .bill{padding:1.5rem 1.4rem;}
+  /* transport becomes a centered, self-backed control bar that never fights the narration */
+  #hud{left:50%;right:auto;transform:translateX(-50%);bottom:.7rem;gap:.3rem .34rem;flex-wrap:wrap;justify-content:center;width:max-content;max-width:94vw;padding:.4rem .5rem;border:1px solid #2a2a2a;border-radius:.75rem;background:rgba(8,8,8,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+  #hud.show{opacity:.96;} #hud:hover{opacity:.96;}
+  #hud button{font-size:.48rem;padding:.42rem .48rem;letter-spacing:.04em;white-space:nowrap;}
+  #hud button.tnav{min-width:1.8rem;padding:.42rem .4rem;}
+  #hud .tsep{margin:0 .05rem;}
+  #pips{bottom:auto;top:.85rem;left:50%;right:auto;transform:translateX(-50%);}
+  #subsLayer{bottom:5.75rem;} #captionLayer{bottom:22%;}
+}
 /* ── transport: pause + seek ── */
 #hud button.tnav{min-width:2.2rem;text-align:center;}
 #hud .tsep{width:1px;height:1.1rem;background:#2a2a2a;margin:0 .15rem;}
