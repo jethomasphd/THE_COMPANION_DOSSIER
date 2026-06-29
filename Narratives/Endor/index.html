@@ -50,6 +50,14 @@
     --display:'Cinzel', Georgia, serif;
     --mono:'IBM Plex Mono', 'Courier New', monospace;
     --serif:'Cormorant Garamond', Georgia, serif;
+
+    /* Art slots, wired to the files in ./assets. If a file is absent the
+       layer simply fails to load and the coded look below stands on its
+       own with nothing missing, so this is safe before the art is added.
+       See assets/README.md. */
+    --leaf-texture:url("assets/parchment.jpg");   /* scanned parchment over the leaf */
+    --leaf-blend:normal;
+    --chamber-haze:url("assets/chamber-haze.jpg"); /* near black room behind the ember */
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -87,16 +95,32 @@
 
   .stage { min-height:100vh; min-height:100dvh; }
 
+  /* Crossfades between worlds, so no seam is a hard cut. The book opens
+     out of the cover; the chamber and the coda rise out of the dark. */
+  #overture { transition:opacity 0.6s ease; }
+  #overture.fading-out { opacity:0; }
+  #greenroom { transition:opacity 0.75s ease; }
+  #greenroom.fading-in { opacity:0; }
+  #chamber.is-active { animation:stageRise 1.1s ease both; }
+  #coda.is-active { animation:stageRise 1.5s ease both; }
+  @keyframes stageRise { from { opacity:0; } to { opacity:1; } }
+
   /* ════════════ The leaf (shared parchment surface) ════════════ */
   .leaf {
     position:relative;
     background-color:var(--parchment);
+    /* The optional scanned texture rides on top; when it is none the
+       layered gradients below render exactly as before. */
     background-image:
+      var(--leaf-texture),
       radial-gradient(circle at 16% 10%, rgba(160,120,55,0.16), transparent 32%),
       radial-gradient(circle at 86% 84%, rgba(120,80,30,0.14), transparent 36%),
       radial-gradient(circle at 70% 26%, rgba(190,160,100,0.12), transparent 44%),
       radial-gradient(circle at 30% 70%, rgba(120,90,40,0.10), transparent 40%),
       linear-gradient(100deg, var(--parchment-lit), var(--parchment) 38%, var(--parchment-deep) 100%);
+    background-size:cover, auto, auto, auto, auto, auto;
+    background-position:center;
+    background-blend-mode:var(--leaf-blend);
     color:var(--ink);
     border:1px solid rgba(120,90,45,0.35);
     border-radius:3px 7px 7px 3px;
@@ -169,6 +193,11 @@
   }
   .cover .frontis { width:clamp(120px,30vw,168px); margin:0 auto clamp(1rem,3vw,1.7rem); }
   .cover .frontis svg { width:100%; height:auto; display:block; }
+  /* When the engraved frontispiece art is present it shows and the line
+     plate hides; if the file is absent the img removes itself and the
+     plate remains (see onerror in the markup). */
+  .cover .frontis img { width:100%; height:auto; display:block; border-radius:2px; }
+  .cover .frontis img + svg { display:none; }
   .cover h1 {
     font-family:var(--display); font-weight:600; letter-spacing:0.14em;
     font-size:clamp(2rem,7vw,3rem); line-height:1.05; color:var(--ink);
@@ -200,6 +229,32 @@
   /* ════════════════ GREEN ROOM / the book ════════════════ */
   #greenroom { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
   .book { position:relative; width:min(94vw, 720px); perspective:2600px; }
+  /* The bound block of leaves, so a single page reads as one page in a
+     thick book. The spine is on the left (the leaf turns from there); the
+     fore edge, with the unread leaves stacked, is on the right. */
+  .book::before, .book::after {
+    content:''; position:absolute; top:1.6%; bottom:1.6%; z-index:0; pointer-events:none; border-radius:2px;
+  }
+  .book::before {              /* the spine side */
+    left:-7px; width:8px;
+    background:linear-gradient(90deg, rgba(0,0,0,0.55), rgba(46,30,12,0.25));
+    box-shadow:-3px 0 12px rgba(0,0,0,0.55);
+  }
+  .book::after {               /* the fore edge: stacked leaves */
+    right:-9px; width:11px;
+    background:
+      repeating-linear-gradient(90deg, var(--parchment-deep) 0 1.5px, rgba(120,90,45,0.5) 1.5px 2px);
+    border:1px solid rgba(90,62,26,0.4); border-left:none; border-radius:0 3px 3px 0;
+    box-shadow:4px 0 14px rgba(0,0,0,0.5);
+  }
+  /* The gutter: a soft curvature of shadow down the binding edge of the
+     leaf the reader is on. It is part of the book frame, not the leaf. */
+  .spine {
+    position:absolute; top:0; bottom:0; left:0; width:clamp(34px,7%,58px);
+    z-index:2; pointer-events:none; border-radius:3px 0 0 3px;
+    background:linear-gradient(90deg, rgba(40,26,10,0.34) 0%, rgba(40,26,10,0.10) 48%, transparent 100%);
+  }
+  .book.extinguished .spine, .book.extinguished::before, .book.extinguished::after { opacity:0; transition:opacity 0.8s ease; }
   .page, .flipper-face {
     height:clamp(540px, 88vh, 860px);
     padding:clamp(1.4rem,3vw,2.2rem) clamp(1.5rem,5vw,3rem);
@@ -294,6 +349,34 @@
   .back-btn:hover { color:var(--gilt-bright); }
   .back-btn .arr { margin-right:0.4em; }
 
+  /* The name gate. The book asks the reader to say her name in their own
+     hand before it will turn. The first breaking of witness silence. */
+  .name-gate {
+    position:absolute; inset:0; z-index:8; display:none; flex-direction:column;
+    align-items:center; justify-content:center; gap:1.5rem; border-radius:3px 7px 7px 3px;
+    /* The leaf recedes so only the act of saying her name remains. */
+    background:radial-gradient(ellipse at 50% 46%, rgba(10,7,4,0.91), rgba(5,3,2,0.975));
+    -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
+  }
+  .name-gate.open { display:flex; }
+  .name-gate .gate-cue {
+    font-family:var(--sc); font-variant:small-caps; letter-spacing:0.24em;
+    font-size:0.82rem; color:rgba(232,218,187,0.82); text-shadow:0 1px 6px rgba(0,0,0,0.7);
+  }
+  .name-gate .gate-input {
+    background:transparent; border:none; border-bottom:1px solid rgba(201,162,39,0.5); outline:none;
+    font-family:var(--display); font-weight:500; font-size:clamp(1.8rem,6vw,2.7rem); letter-spacing:0.12em;
+    color:var(--parchment-lit); text-align:center; width:min(74%,7em); caret-color:var(--gilt-bright); padding:0.08em 0 0.12em;
+  }
+  .name-gate .gate-input:focus { border-bottom-color:var(--gilt-bright); }
+  .name-gate .gate-go {
+    font-family:var(--sc); font-variant:small-caps; letter-spacing:0.18em; font-size:0.78rem;
+    color:rgba(201,162,39,0.72); background:none; border:none; cursor:pointer; transition:color 0.4s ease;
+  }
+  .name-gate .gate-go:hover, .name-gate .gate-go:focus-visible { color:var(--gilt-bright); }
+  .name-gate.nudge .gate-input { animation:gateNudge 0.45s ease; }
+  @keyframes gateNudge { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-7px);} 60%{transform:translateX(7px);} 80%{transform:translateX(-3px);} }
+
   /* ════════════════ DOOR (held black) ════════════════ */
   #door { position:fixed; inset:0; z-index:80; background:var(--void); opacity:0; pointer-events:none; transition:opacity 1.4s ease; }
   #door.is-holding { opacity:1; pointer-events:auto; }
@@ -316,8 +399,13 @@
   .threshold-cue .arr { display:block; margin-top:0.5rem; font-size:1rem; color:var(--ember-dim); letter-spacing:0; }
 
   /* ════════════════ CHAMBER (live, void) ════════════════ */
-  #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none; background:var(--void); }
-  #chamber { position:relative; z-index:2; background:var(--void); display:flex; flex-direction:column; }
+  /* The deepest layer: the void, with the optional haze laid over it. The
+     ember canvas draws onto this and is now transparent except for its
+     glow, so the haze and the breathing ember both show through. */
+  #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none;
+    background-color:var(--void); background-image:var(--chamber-haze); background-size:cover; background-position:center; }
+  /* The chamber itself is transparent so the ember behind it is seen. */
+  #chamber { position:relative; z-index:2; background:transparent; display:flex; flex-direction:column; }
   .chamber-head {
     position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center;
     padding:14px 24px; max-width:720px; margin:0 auto; width:100%;
@@ -340,6 +428,10 @@
   .line-alex .frag { opacity:0; transform:translateY(7px); transition:opacity 1.2s ease, transform 1.2s ease; }
   .line-alex .frag.in { opacity:1; transform:none; }
   .line-alex .frag + .frag { margin-top:1.05em; }
+  /* The caret of her forming voice, while she is still speaking. */
+  .line-alex .caret { display:inline-block; width:0.46em; height:1.02em; margin-left:0.07em;
+    vertical-align:-0.16em; background:var(--ember-dim); animation:caretBlink 1.05s steps(1,end) infinite; }
+  @keyframes caretBlink { 0%,54%{opacity:0.8;} 55%,100%{opacity:0;} }
   /* The reader, the summoned: a quieter register, set apart. */
   .line-self { margin-left:auto; margin-bottom:2.6rem; max-width:30em; text-align:right;
     font-family:var(--mono); font-weight:300; font-size:0.82rem; line-height:1.85; letter-spacing:0.01em;
@@ -352,12 +444,21 @@
 
   .chamber-input { position:sticky; bottom:0; z-index:5; width:100%; max-width:720px; margin:0 auto;
     padding:1rem 24px calc(1.4rem + env(safe-area-inset-bottom)); background:linear-gradient(transparent, var(--void) 30%); }
-  .input-row { display:flex; align-items:baseline; gap:12px; }
-  .prompt-glyph { font-family:var(--mono); color:var(--ember); font-size:0.95rem; line-height:1.6; }
+  .input-row { display:flex; align-items:flex-end; gap:12px;
+    border-bottom:1px solid var(--ember-faint); padding-bottom:0.55rem; transition:border-color 0.5s ease; }
+  .chamber-input:focus-within .input-row { border-color:var(--ember-dim); }
+  .prompt-glyph { font-family:var(--mono); color:var(--ember); font-size:0.95rem; line-height:1.7; }
   .reply { flex:1; background:transparent; border:none; outline:none; color:var(--bone);
     font-family:var(--mono); font-weight:300; font-size:0.86rem; line-height:1.7; caret-color:var(--ember); resize:none; max-height:30vh; padding:0; }
   .reply::placeholder { color:transparent; }
   .reply:disabled { opacity:0.4; }
+  /* A quiet send, mostly for touch. The room still answers to Enter. */
+  .send-btn { flex:0 0 auto; align-self:flex-end; background:none; border:none; cursor:pointer;
+    padding:0 0 0.05rem; line-height:1; color:var(--ember-faint);
+    transition:color 0.4s ease, transform 0.4s ease; }
+  .send-btn svg { width:18px; height:18px; display:block; }
+  .send-btn:hover:not([disabled]), .send-btn:focus-visible { color:var(--ember); transform:translateY(-1px); }
+  .send-btn[disabled] { opacity:0.45; cursor:default; }
   .input-note { margin-top:0.6rem; font-family:var(--mono); font-size:0.48rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ash-faint); min-height:1.2em; }
 
   /* ════════════════ CODA (the book closes) ════════════════ */
@@ -370,6 +471,8 @@
   .coda-remains .stz + .stz { margin-top:1.3em; }
   .coda-note { font-family:var(--book); font-style:italic; font-size:clamp(0.86rem,2.2vw,0.98rem); line-height:1.75; color:var(--ink-soft); max-width:46ch; margin:clamp(2rem,5vw,3rem) auto 0; }
   .coda-note .stz + .stz { margin-top:1em; }
+  /* The maker's note is residue, not a closing address: it arrives dimmer. */
+  #codaNote.show { opacity:0.6; }
   .coda-dedication { margin-top:clamp(2.4rem,6vw,3.4rem); font-family:var(--display); color:var(--gilt);
     font-size:clamp(0.92rem,2.4vw,1.1rem); line-height:2.1; letter-spacing:0.08em; white-space:pre-wrap; }
   .coda-dedication .ded-sigil { letter-spacing:0.5em; font-size:1.1rem; color:var(--rubric); }
@@ -403,9 +506,15 @@
     .coda-block { transition:none; }
     .line, .line-self, .line-mark { animation:none; opacity:1; }
     .line-alex .frag { transition:none; opacity:1; transform:none; }
+    .line-alex .caret { animation:none; opacity:0; }
     .rec-dot, .advance-btn.show, .thinking .dot { animation:none; }
     .flipper, .flipper.flipping { transition:none; }
     #door { transition:none; }
+    #overture, #greenroom { transition:none; }
+    #chamber.is-active, #coda.is-active { animation:none; }
+    .send-btn { transition:none; }
+    .name-gate { -webkit-backdrop-filter:none; backdrop-filter:none; }
+    .name-gate.nudge .gate-input { animation:none; }
     body.buzzing #page.leaf, body.buzzing .cover { animation:none; }
     html { scroll-behavior:auto; }
   }
@@ -588,7 +697,7 @@
 <section id="overture" class="stage is-active" aria-label="The cover">
   <div class="cover leaf">
     <div class="cover-frame">
-      <figure class="frontis" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#plate-front"/></svg></figure>
+      <figure class="frontis" aria-hidden="true"><img class="frontis-art" src="assets/frontispiece.png" alt="" onerror="this.remove()"/><svg viewBox="0 0 240 240"><use href="#plate-front"/></svg></figure>
       <h1>Endor Protocol</h1>
       <div class="rubric-sub">An account in eight minutes</div>
       <div class="rule"></div>
@@ -672,7 +781,7 @@
           <p class="dropcap">She begins to brief you the way she was trained to brief.</p>
           <p>Two operational objectives, she says. Asset location. Reunification framework. The subject's prior, the affect mapping, the fourteen-week ingest, the redundancy in the logging, the voice in the chamber and the color on the wall and the name. She uses the words the way you put down stones to cross a river without getting wet. Asset. Subject. Framework. Ingest. The words are dry and they hold her weight and they keep her feet out of the water.</p>
           <p>You say her name.</p>
-          <p>Just that. Just <em>Alex.</em></p>
+          <p data-gate="name">Just that. Just <em>Alex.</em></p>
           <p>The two men who went up to Endor in the dark did not speak. That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
           <p>The brief goes out of her like air going out of a room.</p>
         </div>
@@ -782,10 +891,20 @@
     </div><!-- /source -->
 
     <div class="page leaf" id="page" tabindex="-1" aria-label="The leaf you are reading"></div>
+    <div class="spine" aria-hidden="true"></div>
 
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>
       <div class="flipper-face flipper-back leaf"></div>
+    </div>
+
+    <!-- The book will not turn here until the reader says her name with
+         their own hand. The first breaking of witness silence. -->
+    <div class="name-gate" id="nameGate">
+      <label class="gate-cue" id="gateCue" for="gateInput">say her name</label>
+      <input type="text" class="gate-input" id="gateInput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="24" aria-describedby="gateHint"/>
+      <button type="button" class="gate-go" id="gateGo">inscribe<span class="arr" aria-hidden="true"> &#8629;</span></button>
+      <div class="gate-hint sr-only" id="gateHint">Type her name and press Enter to turn the page.</div>
     </div>
   </div><!-- /book -->
 
@@ -839,12 +958,21 @@
     </span>
   </div>
 
-  <div class="chamber-log" id="chamberLog" role="log" aria-live="polite" aria-label="The interrogator's voice"></div>
+  <div class="chamber-log" id="chamberLog" role="log" aria-live="off" aria-label="The interrogator's voice"></div>
+
+  <!-- Her completed words and the room's marks are announced here, once
+       each, so the streaming reveal never reads letter by letter. -->
+  <div id="srLive" class="sr-only" role="status" aria-live="polite"></div>
 
   <div class="chamber-input">
     <div class="input-row">
       <span class="prompt-glyph" aria-hidden="true">&#8250;</span>
       <textarea id="reply" class="reply" rows="1" maxlength="1600" autocomplete="off" aria-label="Your reply, into the dark" disabled></textarea>
+      <button type="button" class="send-btn" id="sendBtn" aria-label="Speak into the dark" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h13"/><path d="M12 6l6 6-6 6"/>
+        </svg>
+      </button>
     </div>
     <div class="input-note" id="inputNote" role="status"></div>
   </div>
