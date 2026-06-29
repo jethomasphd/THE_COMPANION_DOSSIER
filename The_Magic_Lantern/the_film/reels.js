@@ -92,7 +92,7 @@ window.REELS = [
   /* ── THE WAR — February 28th ── */
   {t:'timeline', at:1, ms:4400},
   {t:'lines', per:3500, arr:[
-    'February 28th, 2026. With the talks still open and the Congress<br>held in contempt,',
+    'February 28th, 2026. With the talks still open<br>and no authorization from Congress,',
     'a president orders the strike — the enemy&rsquo;s head of state<br>killed in the opening hour.',
     'A war of choice, by one man&rsquo;s word.<br>The Strait of Hormuz slams shut; the markets convulse.'
   ]},
