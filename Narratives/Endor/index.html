@@ -157,9 +157,7 @@
   }
   .corner:hover { color:var(--gilt-bright); }
   .sigil-home { top:18px; left:20px; font-size:1rem; letter-spacing:0; }
-  .sound-toggle { bottom:18px; left:20px; }
-  body[data-stage="overture"] .sigil-home, body[data-stage="green"] .sigil-home, body[data-stage="coda"] .sigil-home,
-  body[data-stage="overture"] .sound-toggle, body[data-stage="green"] .sound-toggle {
+  body[data-stage="overture"] .sigil-home, body[data-stage="green"] .sigil-home, body[data-stage="coda"] .sigil-home {
     opacity:1; visibility:visible; pointer-events:auto;
   }
 
@@ -283,10 +281,21 @@
     content:''; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit;
     background:linear-gradient(100deg, rgba(60,40,16,0.34) 0%, rgba(60,40,16,0) 24%, rgba(255,250,235,0.12) 70%, rgba(255,250,235,0.22) 100%);
   }
-  .flipper-back { transform:rotateY(180deg);
-    background-image:radial-gradient(circle at 50% 40%, var(--parchment-lit), var(--parchment-deep)); }
-  .flipper-back::after { content:'\2767'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    color:rgba(120,90,45,0.35); font-size:2rem; }
+  /* The underside of the turning leaf is real aged paper: it inherits the
+     full .leaf surface (texture and all), so it matches the book instead
+     of reading as an empty panel. A soft curl shadow rakes across it as it
+     bends through the light, and a faint blind embossed device sits at its
+     heart, the way the back of a printed leaf carries the press mark. */
+  .flipper-back { transform:rotateY(180deg); }
+  .flipper-back::after {
+    content:''; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit;
+    background:linear-gradient(255deg, rgba(45,30,12,0.36) 0%, rgba(45,30,12,0.12) 20%, rgba(255,250,235,0.03) 58%, rgba(255,250,235,0.17) 100%);
+  }
+  .flipper-back .leaf-device {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:1; pointer-events:none;
+    font-family:var(--display); font-size:clamp(3rem,9vw,5rem); line-height:1; color:rgba(90,62,26,0.13);
+    text-shadow:0 1px 0 rgba(255,250,235,0.45), 0 -1px 1px rgba(70,46,18,0.18);
+  }
 
   /* Chapter furniture (global so the flipper clone keeps it) */
   .beat { color:var(--ink); }
@@ -325,6 +334,18 @@
     font-family:var(--display); font-weight:600; color:var(--rubric);
     float:left; font-size:3.5em; line-height:0.74; padding:0.06em 0.14em 0 0;
     text-shadow:0 1px 0 rgba(201,162,39,0.35);
+  }
+  /* The prologue as a record: dispatches across time, each transcribed
+     into the book, like flipping through broadcasts and finding the war. */
+  .prose .dispatch { text-indent:0; margin-top:0; }
+  .prose .dispatch + .dispatch { margin-top:1.5em; padding-top:1.45em; border-top:1px solid rgba(90,62,26,0.22); }
+  .prose .dispatch .slug {
+    display:block; font-family:var(--mono); font-weight:400; font-size:0.6rem;
+    letter-spacing:0.2em; text-transform:uppercase; color:var(--gilt); margin-bottom:0.5em;
+  }
+  .prose .dispatch-close {
+    text-indent:0; margin-top:1.9em; padding-top:1.5em; border-top:1px solid rgba(122,31,31,0.3);
+    font-style:italic; color:var(--ink-soft);
   }
   .sep { text-align:center; color:var(--gilt); font-size:1rem; letter-spacing:0.5em; margin:1.6rem 0 0.4rem; white-space:pre; }
   .folio { text-align:center; font-family:var(--sc); font-variant:small-caps; letter-spacing:0.2em;
@@ -483,15 +504,10 @@
 
   @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
-  /* faint fluorescent flicker on the leaf, only with sound on */
-  body.buzzing #page.leaf, body.buzzing .cover { animation:tubeFlicker 7s steps(1,end) infinite; }
-  @keyframes tubeFlicker { 0%,100%{filter:none;} 49%{filter:brightness(0.985);} 50%{filter:none;} 83%{filter:brightness(0.99);} 84%{filter:none;} }
-
   /* ════════════════ Mobile ════════════════ */
   @media (max-width:600px) {
     .chamber-head, .chamber-log, .chamber-input { padding-left:16px; padding-right:16px; }
     .sigil-home { top:12px; left:12px; }
-    .sound-toggle { bottom:12px; left:12px; }
     #clock { width:62px; top:12px; right:12px; }
     #clock svg { width:42px; height:42px; }
     .page, .flipper-face { height:clamp(440px, 78vh, 720px); }
@@ -515,7 +531,6 @@
     .send-btn { transition:none; }
     .name-gate { -webkit-backdrop-filter:none; backdrop-filter:none; }
     .name-gate.nudge .gate-input { animation:none; }
-    body.buzzing #page.leaf, body.buzzing .cover { animation:none; }
     html { scroll-behavior:auto; }
   }
 </style>
@@ -675,7 +690,6 @@
 
 
 <a href="../" class="corner sigil-home" title="Return to Narratives" aria-label="Return to Narratives">&#9674;</a>
-<button type="button" class="corner sound-toggle" id="soundToggle" aria-pressed="false">sound: off</button>
 
 <div id="clock" role="img" aria-label="Eight minutes remaining">
   <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -728,13 +742,13 @@
       <section class="beat" id="prologue" data-clock="">
         <header class="chapter-head"><h2 class="chapter-title">Prologue</h2></header>
         <div class="prose">
-          <p class="dropcap">By the third spring of the war, the Republic of Iran had come apart along seams no map had drawn.</p>
-          <p>The cities were held by one faction, the provinces by another, the shrines by a third, and over all of it the same question, asked in every tongue the country keeps: what would the old man have done.</p>
-          <p>He had been their supreme leader for a generation. A cleric. A theologian who wrote poetry his whole life and meant every line of it. As a young man, under the regime that came before his, he was tortured, and he never once spoke of it. He prayed five times a day. He loved his wife. In his last years his hands shook and he kept writing anyway. He had also ordered torture, and was answerable, by the most forgiving count anyone has offered, for the deaths of tens of thousands. He died in his bed, in his eighties, in the spring, and the war began over the shape of the silence he left.</p>
-          <p>He could not be asked what to do. He was three springs dead. So they built a way to ask him.</p>
-          <p>The Protocol does not raise the dead. It is more modest than that, and worse. It takes everything a person ever wrote, everything they said into a record, everything written about them, and the shape of all they left unsaid, and from it it trains a faithful likeness of the mind that made them. Fourteen weeks of ingest. A voice in a chamber, a color on a wall, a name. What sits across the table is not the man. It is the most exact thing the living have ever made in the image of a man, and it does not know that it has died.</p>
-          <p>The one sent to question it is an interrogator. Her name is Alex. She is very good at her work, the one they call after pain has failed. She has read everything he ever wrote.</p>
-          <p>What follows is the account of her eight minutes with him, set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
+          <p class="dispatch"><span class="slug">Defense Science Review &#183; years earlier</span>The Protocol is entered into the record without ceremony. A method for rebuilding a person out of the whole of what they leave: every word written, every word spoken, the shape of every word withheld. The report calls the result a faithful likeness. It is careful not to call it alive.</p>
+          <p class="dispatch"><span class="slug">State Broadcast &#183; the capital</span>For a generation the Republic of Iran keeps one voice above all the others. An old cleric. Their supreme leader, certain of God and of himself. No one still living remembers the country without him.</p>
+          <p class="dispatch"><span class="slug">Funeral &#183; broadcast live</span>He dies in his bed, in the spring, in his eighties. The grief is real and the crowds are without end, and the cameras turn away from the only question anyone is asking, which is who decides now.</p>
+          <p class="dispatch"><span class="slug">Wire Service &#183; the first winter</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
+          <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring</span>Three springs into the war, nothing holds. In every tongue the country keeps, the factions ask one question. What would the old man have done.</p>
+          <p class="dispatch"><span class="slug">No Distribution &#183; off every book</span>He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, fourteen weeks of it. A chamber is prepared, and a chair, and someone is sent in who has read every word he left.</p>
+          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
         </div>
       </section>
 
@@ -895,7 +909,7 @@
 
     <div class="flipper" id="flipper" aria-hidden="true">
       <div class="flipper-face flipper-front leaf" id="flipperFront"></div>
-      <div class="flipper-face flipper-back leaf"></div>
+      <div class="flipper-face flipper-back leaf"><span class="leaf-device" aria-hidden="true">&#10070;</span></div>
     </div>
 
     <!-- The book will not turn here until the reader says her name with
