@@ -85,6 +85,7 @@ Beyond the Atrium's guided path, each chamber stands on its own. A map:
 
 | Chamber | What happens there |
 |---------|--------------------|
+| [**The Harness**](./The_Harness/) | **Build your own summoning.** Choose minds from the whole Pantheon (or name any mind at all), load them with your own documents, and cross the threshold. The loom the estate was woven on, placed in your hands. |
 | [The Chair](./The_Chair/) | The founders sit with the republic through unbearable revelation. |
 | [The Symposium](./The_Symposium/) | Five teachers illuminate one struggling student. |
 | [The 5 Lamps](./The_5_Lamps/) | Five physicians keep a young doctor's conscience intact. |

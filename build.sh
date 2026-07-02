@@ -63,6 +63,20 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> The_Chair/js/config.js"
 
+# The Harness
+cat > The_Harness/js/config.js << JSEOF
+window.COMPANION_CONFIG = {
+  proxyUrl: '${COMPANION_PROXY_URL}',
+  safeguards: {
+    maxMessagesPerSession: 60,
+    maxSessionsPerDay: 20,
+    cooldownSeconds: 3,
+    sessionTimeoutMinutes: 180
+  }
+};
+JSEOF
+echo "  -> The_Harness/js/config.js"
+
 # Take_Action (submission endpoint)
 cat > Take_Action/config.js << JSEOF
 window.TAKE_ACTION_SUBMIT_URL = '${COMPANION_PROXY_URL}/api/submit';
