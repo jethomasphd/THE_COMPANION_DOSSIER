@@ -27,6 +27,12 @@ Choose the minds. Give them the matter. Cross the threshold. The COMPANION Proto
    - **Name & intent** — title the working and state your purpose.
 3. **The chamber** summons the minds (portrait arrivals, staggered), streams their introductions through the Claude API, and hosts the dialogue. Incantations still work mid-session (`Using this matter, summon [Name].`, `Release [Name].`), you can dismiss all and re-forge, and transcripts export to `.txt` + styled `.html`.
 
+The chamber behaves like a modern chat surface: the send button becomes a **stop** button while a response streams, the composer stays live so you can draft your next question mid-response, every finished response carries a **copy** action, and responses render full light markdown (lists, blockquotes, rules, speaker labels). If a request fails, your words are returned to the composer rather than lost.
+
+**Continuity.** A working persists in your browser for 12 hours. Returning to the page offers to resume it — minds, matter, and dialogue intact — or begin anew. Returning visitors skip the cinematic intro and land in the workshop (the introduction can be replayed from the workshop header).
+
+**Provenance.** Exported transcripts record the binding's name, intent, matter inventory (with word counts), the model, and a SHA-256 fingerprint of the exact compiled system prompt — so any transcript can be traced to the window that produced it.
+
 The system prompt is assembled at runtime from `initiation_rite.md` + `enrichment_grimoire.json` (the COMPANION constitution), a Harness augmentation, the chosen minds and their lenses, and your bound documents.
 
 ---

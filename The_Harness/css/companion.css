@@ -71,6 +71,15 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gold-dim); margin-bottom: 0.8rem;
 }
 
+.skip-intro {
+  position: fixed; top: 1.3rem; right: 1.5rem; z-index: 2000;
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-dim); background: rgba(5,4,3,0.6); border: 1px solid var(--gold-line);
+  border-radius: 4px; padding: 0.5rem 0.9rem; cursor: pointer;
+  transition: all 0.25s var(--ease); backdrop-filter: blur(4px);
+}
+.skip-intro:hover { color: var(--gold-bright); border-color: var(--gold); }
+
 
 /* ═══════════════════════════════════════════════════════════════
    CINEMATIC INTRO
@@ -287,6 +296,24 @@ a { color: var(--gold); text-decoration: none; }
 .workshop-head { text-align: center; margin-bottom: 3rem; }
 .workshop-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.2rem); color: var(--gold-bright); font-weight: 500; }
 .workshop-sub { font-size: 1.12rem; color: var(--bone-dim); margin-top: 0.9rem; }
+.workshop-links { margin-top: 0.7rem; }
+.workshop-links a {
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dim); border-bottom: 1px dotted rgba(139,115,85,0.4);
+}
+.workshop-links a:hover { color: var(--gold-bright); }
+
+/* ── Resume banner ── */
+.resume-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  background: linear-gradient(160deg, rgba(201,165,78,0.1), rgba(201,165,78,0.03));
+  border: 1px solid var(--gold); border-radius: 6px;
+  padding: 1rem 1.3rem; margin-bottom: 2.4rem;
+}
+.resume-text { font-size: 1.02rem; color: var(--bone); }
+.resume-text b { color: var(--gold-bright); font-weight: 600; }
+#resume-desc { color: var(--bone-dim); font-style: italic; }
+.resume-actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
 
 .ws-section { margin-bottom: 3rem; }
 .ws-section-head { margin-bottom: 1.4rem; }
@@ -449,6 +476,8 @@ a { color: var(--gold); text-decoration: none; }
 
 .matter-form { display: flex; flex-direction: column; gap: 0.8rem; }
 .matter-form-actions { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+.matter-status { min-height: 1.2em; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--matter); }
+.matter-words { font-size: 0.62rem; letter-spacing: 0.08em; color: var(--bone-faint); text-transform: none; }
 .file-btn {
   display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
   font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--gold-dim);
@@ -633,6 +662,23 @@ a { color: var(--gold); text-decoration: none; }
   border-left: 2px solid var(--gold-dim); padding-left: 1rem; margin: 0.6rem 0;
   color: var(--bone-dim); font-style: italic;
 }
+.message-body ul, .message-body ol { margin: 0.3rem 0 0.85rem 1.5rem; }
+.message-body li { margin-bottom: 0.35rem; }
+.message-body li:last-child { margin-bottom: 0; }
+.message-body hr {
+  border: none; border-top: 1px solid var(--gold-line); margin: 0.9rem 0;
+}
+
+/* ── Message actions (copy) ── */
+.msg-actions { display: flex; gap: 0.5rem; margin-top: 0.35rem; padding-left: 1.1rem; opacity: 0; transition: opacity 0.2s var(--ease); }
+.message-persona:hover .msg-actions, .msg-actions:focus-within { opacity: 1; }
+@media (hover: none) { .msg-actions { opacity: 0.65; } }
+.msg-copy {
+  background: none; border: none; cursor: pointer; padding: 0.15rem 0.3rem;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-dim); transition: color 0.2s var(--ease);
+}
+.msg-copy:hover { color: var(--gold-bright); }
 .speaker-header {
   display: inline-block; font-family: var(--font-display); font-weight: 600;
   color: var(--gold-bright); margin-right: 0.3rem;
@@ -680,6 +726,12 @@ a { color: var(--gold); text-decoration: none; }
 }
 #send-btn:hover:not(:disabled) { background: rgba(201,165,78,0.3); }
 #send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+#send-btn.streaming { border-color: var(--gold-bright); }
+.stop-square {
+  display: inline-block; width: 12px; height: 12px; border-radius: 2px;
+  background: var(--gold-bright); animation: stopPulse 1.6s ease-in-out infinite;
+}
+@keyframes stopPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
 #input-hint { max-width: 760px; margin: 0.6rem auto 0; text-align: center; }
 .hint-text { font-family: var(--font-voice); font-size: 0.95rem; color: var(--bone-faint); font-style: italic; }
 

@@ -15,10 +15,14 @@ COMPANION.App = (function () {
   var isStreaming = false;
   var currentStreamMessage = null;
   var chamberBuilt = false;
+  var lastUserText = '';
+  var savedSession = null;
+
+  var VISITED_KEY = 'companion_harness_visited';
 
   // ── Audio / cinematic state ──
   var audioCtx = null, ambientGain = null, ambientStarted = false;
-  var introObserver = null;
+  var introObserver = null, introStarted = false;
 
 
   function on(elmt, ev, fn) { if (elmt) elmt.addEventListener(ev, fn); }
@@ -34,10 +38,28 @@ COMPANION.App = (function () {
       COMPANION.Workshop.init(enterChamber);
       COMPANION.API.setModel(COMPANION.API.getModel());
       bindEvents();
-      startCinematicIntro();
+
+      // A returning seeker lands in the workshop; a first visit gets
+      // the full cinematic. A saved working offers to resume.
+      savedSession = COMPANION.API.loadSession();
+      var hasResumable = !!(savedSession && savedSession.binding &&
+        savedSession.messages && savedSession.messages.length);
+      var visited = false;
+      try { visited = localStorage.getItem(VISITED_KEY) === '1'; } catch (e) { /* private mode */ }
+
+      if (hasResumable || visited) {
+        COMPANION.UI.showScreen('workshop');
+        if (hasResumable) showResumeBanner(savedSession);
+      } else {
+        startCinematicIntro();
+      }
     } catch (e) {
       console.error('Harness init error:', e);
     }
+  }
+
+  function markVisited() {
+    try { localStorage.setItem(VISITED_KEY, '1'); } catch (e) { /* private mode */ }
   }
 
 
@@ -46,6 +68,8 @@ COMPANION.App = (function () {
   // ═══════════════════════════════════════════════════════════════
 
   function startCinematicIntro() {
+    if (introStarted) return;
+    introStarted = true;
     createEmbers();
     setTimeout(runTypewriter, 1200);
     setupScrollReveals();
@@ -204,7 +228,29 @@ COMPANION.App = (function () {
     var toWorkshop = document.getElementById('to-workshop-btn');
     on(toWorkshop, 'click', function () {
       if (!ambientStarted) { startAmbientAudio(); ambientStarted = true; }
+      markVisited();
       COMPANION.UI.showScreen('workshop');
+    });
+
+    // Skip intro / replay intro
+    on(document.getElementById('skip-intro-btn'), 'click', function () {
+      markVisited();
+      COMPANION.UI.showScreen('workshop');
+    });
+    on(document.getElementById('replay-intro-link'), 'click', function (e) {
+      e.preventDefault();
+      COMPANION.UI.showScreen('intro');
+      startCinematicIntro();
+    });
+
+    // Resume banner
+    on(document.getElementById('resume-btn'), 'click', function () {
+      if (savedSession) resumeSession(savedSession);
+    });
+    on(document.getElementById('resume-discard'), 'click', function () {
+      savedSession = null;
+      COMPANION.API.clearSession();
+      hideResumeBanner();
     });
 
     // BYO-key binding (fallback)
@@ -217,8 +263,11 @@ COMPANION.App = (function () {
       if (pendingBinding) { var b = pendingBinding; pendingBinding = null; enterChamber(b); }
     });
 
-    // Chamber input
-    on(els.sendBtn, 'click', handleSend);
+    // Chamber input — the send button doubles as stop while streaming
+    on(els.sendBtn, 'click', function () {
+      if (isStreaming) COMPANION.API.abort();
+      else handleSend();
+    });
     on(els.userInput, 'keydown', function (e) {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
     });
@@ -233,6 +282,36 @@ COMPANION.App = (function () {
       COMPANION.UI.hideSettings();
       returnToWorkshop();
     });
+
+    // Dismiss settings with Escape or a click outside the panel
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') COMPANION.UI.hideSettings();
+    });
+    document.addEventListener('click', function (e) {
+      var panel = els.settingsPanel;
+      if (!panel || panel.classList.contains('hidden')) return;
+      if (panel.contains(e.target)) return;
+      if (els.settingsToggle && els.settingsToggle.contains(e.target)) return;
+      COMPANION.UI.hideSettings();
+    });
+  }
+
+  function showResumeBanner(data) {
+    var banner = document.getElementById('resume-banner');
+    var desc = document.getElementById('resume-desc');
+    if (!banner) return;
+    if (desc) {
+      var name = (data.binding && data.binding.name) || 'A working';
+      var minds = (data.personas || []).map(function (p) { return p.name; }).join(', ');
+      var exchanges = (data.messages || []).filter(function (m) { return m.type !== 'system'; }).length;
+      desc.textContent = '“' + name + '”' + (minds ? ' — ' + minds : '') + ' · ' + exchanges + ' entries';
+    }
+    banner.classList.remove('hidden');
+  }
+
+  function hideResumeBanner() {
+    var banner = document.getElementById('resume-banner');
+    if (banner) banner.classList.add('hidden');
   }
 
 
@@ -251,6 +330,8 @@ COMPANION.App = (function () {
       return;
     }
 
+    savedSession = null;
+    hideResumeBanner();
     currentBinding = bindingObj;
     activePersonas = [];
     COMPANION.API.clearHistory();
@@ -296,10 +377,63 @@ COMPANION.App = (function () {
   function returnToWorkshop() {
     COMPANION.API.abort();
     isStreaming = false;
+    COMPANION.UI.setStreaming(false);
     COMPANION.API.clearHistory();
     activePersonas = [];
     COMPANION.Stage.reset();
     COMPANION.UI.showScreen('workshop');
+  }
+
+
+  // ═══════════════════════════════════════════════════════════════
+  //  RESUME A SAVED WORKING
+  // ═══════════════════════════════════════════════════════════════
+
+  function resumeSession(data) {
+    if (!COMPANION.API.hasApiKey()) {
+      var overlay = document.getElementById('binding-overlay');
+      if (overlay) overlay.classList.remove('hidden');
+      return;
+    }
+
+    hideResumeBanner();
+    currentBinding = data.binding;
+    activePersonas = (data.personas || []).slice();
+    COMPANION.API.restoreHistory(data.history || []);
+
+    COMPANION.UI.showScreen('chamber');
+    COMPANION.UI.clearDialogue();
+    COMPANION.UI.clearPersonaBadges();
+    COMPANION.UI.setWorkingTitle(currentBinding.name);
+    COMPANION.API.registerSession();
+
+    var stage = document.getElementById('portrait-stage');
+    if (stage) COMPANION.Stage.init(stage);
+    chamberBuilt = true;
+
+    var els = COMPANION.UI.elems();
+    if (els.settingsModel) els.settingsModel.value = COMPANION.API.getModel();
+
+    activePersonas.forEach(function (p) {
+      COMPANION.Stage.summon(p);
+      COMPANION.UI.addPersonaBadge(p.name, p.color, function (name) {
+        releasePersona(name);
+        COMPANION.UI.addSystemMessage(name + ' withdraws.');
+        persist();
+      });
+    });
+
+    (data.messages || []).forEach(function (m) {
+      if (m.type === 'seeker') COMPANION.UI.addSeekerMessage(m.text);
+      else if (m.type === 'persona') COMPANION.UI.addPersonaMessageStatic(m.name, m.color, m.html);
+      else if (m.type === 'system') COMPANION.UI.addSystemMessage(m.text);
+    });
+
+    COMPANION.UI.addSystemMessage('The working resumes where it left off.');
+    COMPANION.UI.setInputEnabled(true);
+    COMPANION.UI.setStreaming(false);
+    COMPANION.UI.updateHint(activePersonas.length);
+    savedSession = null;
   }
 
 
@@ -320,6 +454,7 @@ COMPANION.App = (function () {
 
     isStreaming = true;
     COMPANION.UI.setInputEnabled(false);
+    COMPANION.UI.setStreaming(true);
 
     var displayName = names.length === 1 ? names[0] : currentBinding.name;
     var displayColor = names.length === 1 ? activePersonas[0].color : '#c9a54e';
@@ -334,6 +469,7 @@ COMPANION.App = (function () {
         currentStreamMessage.finish();
         currentStreamMessage = null;
         COMPANION.UI.setInputEnabled(true);
+        COMPANION.UI.setStreaming(false);
         COMPANION.UI.updateHint(activePersonas.length);
         COMPANION.Stage.clearSpeaking();
         persist();
@@ -343,6 +479,7 @@ COMPANION.App = (function () {
         if (currentStreamMessage) { currentStreamMessage.finish(); currentStreamMessage = null; }
         COMPANION.UI.addSystemMessage(mythicError(err));
         COMPANION.UI.setInputEnabled(true);
+        COMPANION.UI.setStreaming(false);
         COMPANION.Stage.clearSpeaking();
       }
     );
@@ -360,7 +497,7 @@ COMPANION.App = (function () {
 
     COMPANION.UI.addSeekerMessage(text);
     COMPANION.UI.clearInput();
-    COMPANION.UI.setInputEnabled(false);
+    lastUserText = text;
 
     var incantation = COMPANION.Protocol.parseIncantation(text);
     if (incantation) handleIncantation(incantation, text);
@@ -456,6 +593,7 @@ COMPANION.App = (function () {
 
   function sendToAPI(userText) {
     isStreaming = true;
+    COMPANION.UI.setStreaming(true);
 
     var displayName, displayColor;
     if (activePersonas.length === 1) {
@@ -482,6 +620,7 @@ COMPANION.App = (function () {
         currentStreamMessage.finish();
         currentStreamMessage = null;
         COMPANION.UI.setInputEnabled(true);
+        COMPANION.UI.setStreaming(false);
         COMPANION.Stage.clearSpeaking();
         persist();
       },
@@ -490,6 +629,9 @@ COMPANION.App = (function () {
         if (currentStreamMessage) { currentStreamMessage.finish(); currentStreamMessage = null; }
         COMPANION.UI.addSystemMessage(mythicError(err));
         COMPANION.UI.setInputEnabled(true);
+        COMPANION.UI.setStreaming(false);
+        // Give the seeker their words back so nothing is lost.
+        if (lastUserText && !COMPANION.UI.getInputText()) COMPANION.UI.setInputText(lastUserText);
         COMPANION.Stage.clearSpeaking();
       }
     );
@@ -549,10 +691,28 @@ COMPANION.App = (function () {
   //  EXPORT
   // ═══════════════════════════════════════════════════════════════
 
+  // SHA-256 fingerprint of the compiled system prompt, so a transcript
+  // can always be traced to the exact window that produced it.
+  function promptFingerprint(cb) {
+    try {
+      if (!(window.crypto && crypto.subtle && window.TextEncoder)) { cb(''); return; }
+      var sys = COMPANION.Protocol.buildSystemPrompt(activePersonas, currentBinding);
+      crypto.subtle.digest('SHA-256', new TextEncoder().encode(sys)).then(function (buf) {
+        var hex = '';
+        new Uint8Array(buf).forEach(function (b) { hex += b.toString(16).padStart(2, '0'); });
+        cb(hex.slice(0, 16));
+      }, function () { cb(''); });
+    } catch (e) { cb(''); }
+  }
+
   function exportTranscript() {
     var messages = document.querySelectorAll('#dialogue-messages .message');
     if (!messages.length) { COMPANION.UI.addSystemMessage('Nothing to export yet.'); return; }
+    promptFingerprint(function (fp) { exportTranscriptWith(fp); });
+  }
 
+  function exportTranscriptWith(fingerprint) {
+    var messages = document.querySelectorAll('#dialogue-messages .message');
     var now = new Date();
     var dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
     var timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
@@ -583,6 +743,15 @@ COMPANION.App = (function () {
     txt.push('COMPANION Protocol — ' + title);
     txt.push('Working: ' + groupName);
     if (minds) txt.push('Minds: ' + minds);
+    if (currentBinding && currentBinding.intent) txt.push('Intent: ' + currentBinding.intent);
+    if (currentBinding && currentBinding.matter && currentBinding.matter.length) {
+      txt.push('Matter: ' + currentBinding.matter.map(function (d) {
+        var words = (d.text.match(/\S+/g) || []).length;
+        return d.title + ' (' + words + ' words)';
+      }).join('; '));
+    }
+    txt.push('Model: ' + COMPANION.API.getModel());
+    if (fingerprint) txt.push('Prompt fingerprint: sha256:' + fingerprint + '…');
     txt.push('Exported: ' + dateStr + ' ' + timeStr);
     txt.push(''); txt.push('═'.repeat(60)); txt.push('');
     parsed.forEach(function (e) {
@@ -620,7 +789,10 @@ COMPANION.App = (function () {
       '</div>' +
       '<div style="padding:1.5rem 0;">' + htmlMessages + '</div>' +
       '<div style="text-align:center;padding:1.5rem 0;border-top:1px solid rgba(201,165,78,.3);color:#555;font-size:.8rem;">' +
-      'COMPANION Protocol — The Harness — Exported ' + dateStr + '</div></div></body></html>';
+      'COMPANION Protocol — The Harness — Exported ' + dateStr +
+      '<br>Model: ' + escExport(COMPANION.API.getModel()) +
+      (fingerprint ? ' · Prompt fingerprint: sha256:' + fingerprint + '…' : '') +
+      '</div></div></body></html>';
 
     var slug = (groupName || 'working').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 40) || 'working';
     downloadFile('harness_' + slug + '_' + dateStr + '.txt', txt.join('\n'), 'text/plain');

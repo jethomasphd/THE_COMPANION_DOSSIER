@@ -68,6 +68,35 @@ COMPANION.UI = (function () {
     return msg;
   }
 
+  function attachCopyAction(msg, getRaw) {
+    var actions = document.createElement('div');
+    actions.className = 'msg-actions';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'msg-copy';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function () {
+      var text = getRaw() || '';
+      var done = function () {
+        btn.textContent = 'Copied ✓';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) { /* unavailable */ }
+        ta.remove();
+        done();
+      }
+    });
+    actions.appendChild(btn);
+    msg.appendChild(actions);
+  }
+
   function addPersonaMessage(personaName, color) {
     var msg = document.createElement('div');
     msg.className = 'message message-persona';
@@ -91,6 +120,7 @@ COMPANION.UI = (function () {
     smartScroll();
 
     var rawText = '';
+    var finished = false;
     return {
       update: function (chunk) {
         rawText += chunk;
@@ -99,7 +129,10 @@ COMPANION.UI = (function () {
         smartScroll();
       },
       finish: function () {
+        if (finished) return;
+        finished = true;
         body.innerHTML = renderMarkdownLight(rawText);
+        if (rawText.trim()) attachCopyAction(msg, function () { return rawText; });
         smartScroll();
       },
       getText: function () { return rawText; },
@@ -109,6 +142,25 @@ COMPANION.UI = (function () {
         body.style.borderLeftColor = clr;
       }
     };
+  }
+
+  // A finished persona message restored from a saved session.
+  function addPersonaMessageStatic(personaName, color, html) {
+    var msg = document.createElement('div');
+    msg.className = 'message message-persona';
+    var header = document.createElement('div');
+    header.className = 'message-header';
+    header.style.color = color || '#c9a54e';
+    header.textContent = personaName || 'The Working';
+    msg.appendChild(header);
+    var body = document.createElement('div');
+    body.className = 'message-body';
+    body.style.borderLeftColor = color || '#c9a54e';
+    body.innerHTML = html || '';
+    msg.appendChild(body);
+    attachCopyAction(msg, function () { return body.textContent; });
+    if (elements.dialogueMessages) elements.dialogueMessages.appendChild(msg);
+    return msg;
   }
 
   function addSystemMessage(text) {
@@ -168,12 +220,28 @@ COMPANION.UI = (function () {
   function clearInput() {
     if (elements.userInput) { elements.userInput.value = ''; autoResizeInput(); }
   }
+  function setInputText(text) {
+    if (elements.userInput) { elements.userInput.value = text || ''; autoResizeInput(); }
+  }
   function setInputEnabled(isEnabled) {
     if (elements.userInput) {
       elements.userInput.disabled = !isEnabled;
       if (isEnabled) elements.userInput.focus();
     }
     if (elements.sendBtn) elements.sendBtn.disabled = !isEnabled;
+  }
+
+  // While a response streams, the seeker keeps the composer and the
+  // send button becomes a stop button (ChatGPT-style).
+  function setStreaming(isStreaming) {
+    if (elements.sendBtn) {
+      elements.sendBtn.classList.toggle('streaming', !!isStreaming);
+      elements.sendBtn.disabled = false;
+      elements.sendBtn.title = isStreaming ? 'Stop' : 'Send';
+      elements.sendBtn.setAttribute('aria-label', isStreaming ? 'Stop the response' : 'Send');
+      elements.sendBtn.innerHTML = isStreaming ? '<span class="stop-square"></span>' : '<span>&#10148;</span>';
+    }
+    if (elements.userInput) elements.userInput.disabled = false;
   }
   function autoResizeInput() {
     var input = elements.userInput;
@@ -245,37 +313,63 @@ COMPANION.UI = (function () {
 
   function cssEscape(s) { return String(s).replace(/"/g, '\\"'); }
 
+  // Inline markdown on an already HTML-escaped line.
+  function renderInline(s) {
+    // Speaker labels like **[Socrates]:**
+    s = s.replace(/\*\*\[([^\]]+)\]:\*\*/g, '<span class="speaker-header">$1:</span>');
+    s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    s = s.replace(/`(.+?)`/g, '<code>$1</code>');
+    return s;
+  }
+
+  // Light block-level markdown: paragraphs, lists, blockquotes,
+  // headings (rendered as bold lines), horizontal rules.
   function renderMarkdownLight(text) {
     if (!text) return '';
-    var html = text
+    var escaped = text
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    html = html.replace(/^&gt;\s?(.*)$/gm, '<blockquote>$1</blockquote>');
-    html = html.replace(/<\/blockquote>\n<blockquote>/g, '\n');
+    var out = [];
+    var para = [];
+    var listType = null; // 'ul' | 'ol'
 
-    html = html.replace(/^### (.+)$/gm, '<strong>$1</strong>');
-    html = html.replace(/^## (.+)$/gm, '<strong>$1</strong>');
-    html = html.replace(/^# (.+)$/gm, '<strong>$1</strong>');
+    function flushPara() {
+      if (para.length) { out.push('<p>' + para.join('<br>') + '</p>'); para = []; }
+    }
+    function flushList() {
+      if (listType) { out.push('</' + listType + '>'); listType = null; }
+    }
+    function openList(type) {
+      if (listType !== type) { flushList(); out.push('<' + type + '>'); listType = type; }
+    }
 
-    // Speaker labels like **[Socrates]:**
-    html = html.replace(/\*\*\[([^\]]+)\]:\*\*/g, '<span class="speaker-header">$1:</span>');
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+    escaped.split('\n').forEach(function (line) {
+      var mUl = line.match(/^\s*[-*•]\s+(.+)$/);
+      var mOl = line.match(/^\s*\d+[.)]\s+(.+)$/);
+      var mBq = line.match(/^&gt;\s?(.*)$/);
+      var mH = line.match(/^#{1,4}\s+(.+)$/);
+      if (mUl) { flushPara(); openList('ul'); out.push('<li>' + renderInline(mUl[1]) + '</li>'); }
+      else if (mOl) { flushPara(); openList('ol'); out.push('<li>' + renderInline(mOl[1]) + '</li>'); }
+      else if (mBq) { flushPara(); flushList(); out.push('<blockquote>' + renderInline(mBq[1]) + '</blockquote>'); }
+      else if (mH) { flushPara(); flushList(); out.push('<p><strong>' + renderInline(mH[1]) + '</strong></p>'); }
+      else if (/^\s*(?:---+|\*\*\*+|___+)\s*$/.test(line)) { flushPara(); flushList(); out.push('<hr>'); }
+      else if (!line.trim()) { flushPara(); flushList(); }
+      else { flushList(); para.push(renderInline(line)); }
+    });
+    flushPara();
+    flushList();
 
-    html = html.replace(/\n\n+/g, '</p><p>');
-    html = html.replace(/\n/g, '<br>');
-    html = '<p>' + html + '</p>';
-    html = html.replace(/<p>\s*<\/p>/g, '');
-    return html;
+    return out.join('').replace(/<\/blockquote><blockquote>/g, '<br>');
   }
 
 
   function init() {
     cacheElements();
     if (elements.userInput) elements.userInput.addEventListener('input', autoResizeInput);
+    if (elements.dialogueMessages) elements.dialogueMessages.setAttribute('aria-live', 'polite');
     initSmartScroll();
   }
 
@@ -286,6 +380,7 @@ COMPANION.UI = (function () {
     showScreen: showScreen,
     addSeekerMessage: addSeekerMessage,
     addPersonaMessage: addPersonaMessage,
+    addPersonaMessageStatic: addPersonaMessageStatic,
     addSystemMessage: addSystemMessage,
     clearDialogue: clearDialogue,
     addPersonaBadge: addPersonaBadge,
@@ -294,7 +389,9 @@ COMPANION.UI = (function () {
     setWorkingTitle: setWorkingTitle,
     getInputText: getInputText,
     clearInput: clearInput,
+    setInputText: setInputText,
     setInputEnabled: setInputEnabled,
+    setStreaming: setStreaming,
     updateHint: updateHint,
     toggleSettings: toggleSettings,
     hideSettings: hideSettings,
