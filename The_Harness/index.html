@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Harness — Build Your Own Summoning</title>
+  <meta name="description" content="Every chamber in the estate was built for you. This one, you build yourself. Choose your minds, give them their matter, and speak. The Harness is the workshop of the COMPANION Protocol.">
+  <link rel="stylesheet" href="css/companion.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a href="../" class="home-sigil" title="Return to COMPANION">&#9674;</a>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 1 — THE CINEMATIC INTRO
+       Confusion → Awe → Understanding → Action
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="cinematic-intro">
+
+    <!-- ▸ ACT I — THE VOID (hook) -->
+    <section class="act act-void">
+      <div class="void-bg"></div>
+      <div class="ember-field" id="ember-field"></div>
+      <div class="act-content act-center">
+        <div class="typewriter-block">
+          <p id="tw-1" class="typewriter-line"></p>
+          <p id="tw-2" class="typewriter-line"></p>
+          <div class="typewriter-pause"></div>
+          <p id="tw-3" class="typewriter-line typewriter-emphasis"></p>
+        </div>
+        <div id="scroll-cue" class="scroll-cue hidden">
+          <span class="scroll-cue-text">Scroll</span>
+          <span class="scroll-cue-arrow">&#8615;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ ACT II — THE RECOGNITION (confusion resolves into a pattern) -->
+    <section class="act act-dark">
+      <div class="act-content act-center">
+        <div class="reveal-group">
+          <p class="reveal-line reveal-large">You have walked this estate.</p>
+        </div>
+        <div class="reveal-group reveal-delay">
+          <p class="reveal-line">You watched four founders sit with a wounded republic.</p>
+          <p class="reveal-line">You watched five physicians guard a young conscience.</p>
+          <p class="reveal-line">You watched eight builders render a decision by collision.</p>
+        </div>
+        <div class="reveal-group reveal-delay-2">
+          <p class="reveal-line reveal-dim">Each was the same machine, wearing a different face.</p>
+          <p class="reveal-line reveal-dim">Minds, and matter, bound together.</p>
+        </div>
+        <div class="reveal-group reveal-delay-3">
+          <p class="reveal-line reveal-question">What if you could bind your own?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ ACT III — THE EQUATION (understanding begins) -->
+    <section class="act act-dark">
+      <div class="act-content act-center">
+        <div class="dialog-card reveal">
+          <div class="dialog-ornament">&#9670;</div>
+          <p class="dialog-label">The whole method, in one line</p>
+          <div class="equation">
+            <span class="eq-term eq-personas">PERSONAS</span>
+            <span class="eq-op">+</span>
+            <span class="eq-term eq-matter">MATTER</span>
+            <span class="eq-op">=</span>
+            <span class="eq-term eq-container">A CONTAINER</span>
+          </div>
+          <p class="dialog-text">Summon the <em>minds</em> whose judgment you want in the room. Load them with the <em>matter</em> — the documents, the evidence, the problem. What forms between them is a <strong>container</strong>: a bounded space where an impossible council thinks alongside you.</p>
+          <p class="dialog-text dialog-dim">The Harness is the loom. You do the weaving.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ ACT IV — THE PANTHEON (awe) -->
+    <section class="act act-dark">
+      <div class="act-content">
+        <div class="pantheon-header reveal">
+          <div class="ornament-line"><span>&#10022;</span></div>
+          <h2 class="pantheon-title">The Pantheon Is Waiting</h2>
+          <p class="pantheon-sub">Every face in the estate — founders, liberators, physicians, builders, philosophers, makers — is a mind you may summon. Or name one who hangs in no gallery at all.</p>
+        </div>
+        <div class="pantheon-wall reveal" id="pantheon-wall"></div>
+      </div>
+    </section>
+
+    <!-- ▸ ACT V — THE THREE RITES (understanding) -->
+    <section class="act act-dark">
+      <div class="act-content act-center">
+        <div class="rites-header reveal">
+          <div class="section-label">HOW THE WORKING IS MADE</div>
+          <h2 class="rites-title">Three Rites</h2>
+        </div>
+        <div class="rites-grid">
+          <div class="rite reveal reveal-delay">
+            <div class="rite-numeral">I</div>
+            <div class="rite-name">Choose the Minds</div>
+            <p class="rite-text">Tap the portraits of those you would summon. One mind for counsel. Several for a symposium — where disagreement is the instrument.</p>
+          </div>
+          <div class="rite reveal reveal-delay-2">
+            <div class="rite-numeral">II</div>
+            <div class="rite-name">Give Them Matter</div>
+            <p class="rite-text">Paste or upload the documents they should reason from — an essay, a dataset, a dilemma, a contract. This becomes the ground they stand on.</p>
+          </div>
+          <div class="rite reveal reveal-delay-3">
+            <div class="rite-numeral">III</div>
+            <div class="rite-name">Speak, and They Answer</div>
+            <p class="rite-text">Cross the threshold. The minds arrive, oriented to your matter, ready to work — as peers, not servants. The COMPANION Protocol holds the form.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ ACT VI — THE THRESHOLD (action) -->
+    <section class="act act-dark">
+      <div class="act-content act-center">
+        <div class="threshold-block reveal">
+          <div class="threshold-ornament">&#10087; &#9753;</div>
+          <p class="threshold-text">The estate showed you what the method can do.</p>
+          <p class="threshold-emphasis">Now it hands you the loom.</p>
+          <button id="to-workshop-btn" class="summon-btn">
+            <span class="summon-btn-prefix">Enter</span>
+            <span class="summon-btn-main">The Harness</span>
+          </button>
+          <p class="threshold-note">No installation. Runs on Claude, through the same protocol as every chamber here.</p>
+          <div class="intro-footer">
+            <a href="../" class="footer-link">Home</a><span class="dot">&middot;</span>
+            <a href="../Latent_Dialogic_Space/" class="footer-link">The Method</a><span class="dot">&middot;</span>
+            <a href="../The_Chair/" class="footer-link">The Chair</a><span class="dot">&middot;</span>
+            <a href="../The_Boardroom/" class="footer-link">The Boardroom</a><span class="dot">&middot;</span>
+            <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" class="footer-link" target="_blank" rel="noopener">The Dossier</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 2 — THE WORKSHOP (assemble the binding)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="workshop-screen" class="screen hidden">
+    <div class="workshop-inner">
+
+      <header class="workshop-head">
+        <div class="section-label">THE HARNESS</div>
+        <h1 class="workshop-title">Assemble Your Binding</h1>
+        <p class="workshop-sub">
+          <span class="eq-inline"><b class="c-personas">Personas</b> + <b class="c-matter">Matter</b> = <b class="c-container">a Container</b></span>
+          &mdash; choose your minds, give them their matter, and cross the threshold.
+        </p>
+      </header>
+
+      <!-- STEP ① — Prepared Bindings -->
+      <section class="ws-section">
+        <div class="ws-section-head">
+          <span class="ws-step">Optional</span>
+          <h2 class="ws-heading">Start from a Prepared Binding</h2>
+          <p class="ws-hint">Load a proven container as a starting point, then reshape it — or skip this and build from nothing.</p>
+        </div>
+        <div class="preset-rail" id="preset-rail"></div>
+      </section>
+
+      <!-- THE BINDING SUMMARY -->
+      <section class="ws-section binding-summary" id="binding-summary">
+        <div class="ws-section-head">
+          <h2 class="ws-heading">Your Binding <span class="binding-sigil">◇</span></h2>
+        </div>
+        <div class="binding-grid">
+          <div class="binding-col">
+            <label class="field-label" for="working-name-input">Name of the working <span class="opt">(optional)</span></label>
+            <input id="working-name-input" class="field-input" type="text" maxlength="80" placeholder="e.g. The Council on My Decision" autocomplete="off">
+
+            <label class="field-label" for="intent-input" style="margin-top:1rem;">The intent <span class="opt">(optional)</span></label>
+            <textarea id="intent-input" class="field-textarea" rows="2" placeholder="What are you trying to understand, decide, or build? One or two sentences."></textarea>
+          </div>
+          <div class="binding-col">
+            <div class="binding-block">
+              <div class="binding-block-head">Minds summoned <span class="count-chip" id="mind-count">0</span></div>
+              <div class="binding-minds" id="binding-minds"></div>
+            </div>
+            <div class="binding-block">
+              <div class="binding-block-head">Matter bound <span class="count-chip" id="matter-count">0</span></div>
+              <div class="matter-list" id="matter-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP ② — Choose the Minds -->
+      <section class="ws-section">
+        <div class="ws-section-head">
+          <span class="ws-step">Rite I</span>
+          <h2 class="ws-heading">Choose the Minds</h2>
+          <p class="ws-hint">Tap a portrait to summon or release. One mind for counsel; several for a symposium.</p>
+        </div>
+        <div class="pantheon-grid" id="pantheon-grid"></div>
+        <div class="custom-name">
+          <span class="custom-name-label">A mind who hangs in no gallery here?</span>
+          <div class="custom-name-row">
+            <input id="custom-name-input" class="field-input" type="text" maxlength="60" placeholder="Name anyone — Marcus Aurelius, Marie Curie, a character…" autocomplete="off">
+            <button id="custom-name-add" class="mini-btn" type="button">Summon</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP ③ — Give Them Matter -->
+      <section class="ws-section">
+        <div class="ws-section-head">
+          <span class="ws-step">Rite II</span>
+          <h2 class="ws-heading">Give Them Matter</h2>
+          <p class="ws-hint">Add the documents the minds should reason from. Paste text, or upload <code>.txt</code> / <code>.md</code> files. Optional — leave empty and they work from their own knowledge.</p>
+        </div>
+        <div class="matter-form">
+          <input id="matter-title-input" class="field-input" type="text" maxlength="100" placeholder="Document title (e.g. The Problem, Q3 Numbers, The Contract)" autocomplete="off">
+          <textarea id="matter-text-input" class="field-textarea field-textarea-tall" rows="5" placeholder="Paste the document text here…"></textarea>
+          <div class="matter-form-actions">
+            <label class="file-btn">
+              <input id="matter-file-input" type="file" accept=".txt,.md,.markdown,.text,text/plain" multiple hidden>
+              <span>&#8682; Upload files</span>
+            </label>
+            <button id="matter-add-btn" class="mini-btn" type="button">Add to the matter</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Sticky footer CTA -->
+    <div class="workshop-foot">
+      <div class="workshop-foot-inner">
+        <span id="bind-enter-hint" class="foot-hint">Choose at least one mind to open the threshold.</span>
+        <button id="bind-enter-btn" class="enter-btn" disabled>
+          <span class="enter-btn-label">Bind &amp; Enter</span>
+          <span class="enter-btn-arrow">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCREEN 3 — THE CHAMBER (the working)
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="chamber-screen" class="screen hidden">
+
+    <div id="portrait-stage"></div>
+
+    <div id="chamber-bar">
+      <div class="chamber-bar-left">
+        <span id="working-title" class="working-title">The Working</span>
+        <div id="persona-badges"></div>
+      </div>
+      <div id="chamber-controls">
+        <button id="settings-toggle" class="control-btn" title="Settings">
+          <span class="control-icon">&#9881;</span>
+          <span class="control-label">Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="settings-panel" class="hidden">
+      <div class="settings-inner">
+        <h3 class="settings-title">The Working</h3>
+        <div class="setting-row">
+          <label for="settings-model" class="field-label">Model</label>
+          <select id="settings-model" class="field-select">
+            <option value="claude-opus-4-6">Opus &mdash; Deep Deliberation</option>
+            <option value="claude-sonnet-4-6">Sonnet &mdash; Swift Counsel</option>
+            <option value="claude-haiku-4-5-20251001">Haiku &mdash; Quick Voice</option>
+          </select>
+        </div>
+        <div class="setting-row setting-row-btns">
+          <button id="export-btn" class="control-btn">Export Transcript</button>
+          <button id="rework-btn" class="control-btn">Return to the Harness</button>
+          <button id="release-all-btn" class="control-btn control-btn-danger">Dismiss All</button>
+        </div>
+        <button id="close-settings" class="control-btn control-btn-full">Close</button>
+      </div>
+    </div>
+
+    <div id="dialogue-container">
+      <div id="dialogue-scroll">
+        <div id="dialogue-messages"></div>
+      </div>
+      <button id="jump-to-latest" class="jump-to-latest" aria-label="Jump to latest">&#8615; New</button>
+    </div>
+
+    <div id="input-area">
+      <div id="input-wrapper">
+        <textarea id="user-input" placeholder="Speak to the working…" rows="1"></textarea>
+        <button id="send-btn" title="Send"><span>&#10148;</span></button>
+      </div>
+      <div id="input-hint"><span class="hint-text">The threshold is open.</span></div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══ BYO-KEY BINDING OVERLAY (fallback when no proxy) ═══ -->
+  <div id="binding-overlay" class="hidden">
+    <div class="binding-overlay-inner">
+      <div class="dialog-ornament">&#9670;</div>
+      <h3 class="binding-overlay-title">Bind the Threshold</h3>
+      <p class="binding-overlay-text">This deployment has no server-side key. Provide your own Anthropic API key to open the threshold. It stays in your browser and is never sent anywhere but Anthropic.</p>
+      <input id="api-key-input" class="field-input" type="password" placeholder="sk-ant-…" autocomplete="off">
+      <button id="save-key-btn" class="mini-btn mini-btn-wide" type="button">Bind &amp; Enter</button>
+      <p class="binding-overlay-note">Get a key at <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a></p>
+    </div>
+  </div>
+
+
+  <!-- ═══ THE HARNESS — scripts ═══ -->
+  <script src="js/config.js"></script>
+  <script src="js/pantheon.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/protocol.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/stage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/workshop.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
