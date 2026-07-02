@@ -685,10 +685,23 @@ function handlePreflight(request, env) {
 
 function isAllowedOrigin(origin, env) {
   if (!origin) return false;
+
   const allowedRaw = env.ALLOWED_ORIGINS || '';
   const allowed = allowedRaw.split(',').map(s => s.trim()).filter(Boolean);
-  if (allowed.length === 0) return false;
-  return allowed.includes(origin);
+  if (allowed.includes(origin)) return true;
+
+  // Optional: allow preview subdomains of a trusted base (e.g. Cloudflare
+  // Pages branch previews at <branch>.<project>.pages.dev). Comma-separated
+  // suffixes in ALLOWED_ORIGIN_SUFFIXES, each matched only against https://
+  // origins. Scoped to one project's own subdomain space — NOT a blanket
+  // *.pages.dev — so branch previews work without opening the proxy up.
+  const suffixRaw = env.ALLOWED_ORIGIN_SUFFIXES || '';
+  const suffixes = suffixRaw.split(',').map(s => s.trim()).filter(Boolean);
+  for (let i = 0; i < suffixes.length; i++) {
+    if (origin.startsWith('https://') && origin.endsWith(suffixes[i])) return true;
+  }
+
+  return false;
 }
 
 function errorResponse(status, message) {
