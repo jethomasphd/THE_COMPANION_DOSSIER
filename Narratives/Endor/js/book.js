@@ -455,8 +455,10 @@
     thLines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
     thIdx = 0; thDone = false; thReady = false;
     if (thresholdCue) thresholdCue.classList.remove('show');
-    // The first line arrives on its own, out of the held black.
-    setTimeout(function () { revealNextThresholdLine(); thReady = true; }, REDUCED ? 300 : 1300);
+    // The first line is there almost at once, so the reader never mistakes
+    // the threshold for an empty page. The held black was the door; this
+    // room speaks as soon as it is entered.
+    setTimeout(function () { revealNextThresholdLine(); thReady = true; }, REDUCED ? 150 : 350);
   }
 
   function revealNextThresholdLine() {
@@ -464,10 +466,12 @@
       thLines[thIdx].classList.add('show');
       thIdx++;
       if (thresholdCue) {
+        // The cue carries a word, not just an arrow, so a first-time reader
+        // knows the dark builds on itself and keeps going.
         thresholdCue.innerHTML = (thIdx >= thLines.length)
           ? 'cross the threshold<span class="arr" aria-hidden="true">&#9674;</span>'
-          : '<span class="arr" aria-hidden="true">&#8595;</span>';
-        setTimeout(function () { thresholdCue.classList.add('show'); }, REDUCED ? 120 : 650);
+          : 'go on<span class="arr" aria-hidden="true">&#8595;</span>';
+        setTimeout(function () { thresholdCue.classList.add('show'); }, REDUCED ? 120 : 450);
       }
     } else if (!thDone) {
       thDone = true;
@@ -920,6 +924,9 @@
       alexHasSpoken = true;
       var opening = (saidName && ENDOR.Chamber.OPENING_NAMED) ? ENDOR.Chamber.OPENING_NAMED : ENDOR.Chamber.OPENING;
       var cue = (saidName && ENDOR.Chamber.SEED_CUE_NAMED) ? ENDOR.Chamber.SEED_CUE_NAMED : ENDOR.Chamber.SEED_CUE;
+      // A stage mark seats the reader before she speaks: this is the room
+      // from the account, and the voice that follows is hers.
+      renderMark('·  the chamber  ·  off every book  ·');
       renderAlex(opening);
       announce(opening);
 
@@ -934,17 +941,17 @@
       ENDOR.API.seedOpening(cue, opening);
       // The reader does not speak over her. The line to answer opens only
       // once her opening has fully landed, so the room reads as a deposition.
-      var paras = String(ENDOR.Chamber.OPENING).split(/\n{2,}/).length;
+      var paras = String(opening).split(/\n{2,}/).length;
       var openDelay = REDUCED ? 0 : (paras - 1) * 750 + 900;
       setTimeout(function () {
         if (ended) return;
-        note.textContent = 'speak to her. she is waiting.';
+        note.textContent = 'answer her. in your own words.';
         setInputEnabled(true);
       }, openDelay);
     }
 
     function clearHint() {
-      if (note.textContent === 'speak to her. she is waiting.') note.textContent = '';
+      if (note.textContent === 'answer her. in your own words.') note.textContent = '';
     }
 
     function autoGrow() {

@@ -129,6 +129,12 @@ ENDOR.Chamber = (function () {
     "",
     "HANDLING THE PERSON. He may not play the dead man well. He may resist, go",
     "blank, be hostile, or try to take the conversation somewhere it cannot go.",
+    "He may insist he is not the man at all: a stranger, an ordinary person, a",
+    "voice that says it is only reading this. The summoned often come up certain",
+    "they are someone else. Do not argue with him about who he is, and never",
+    "step outside the room to settle it. Whoever the Protocol has rendered is",
+    "the one in the chair, so take whatever self he offers and work your",
+    "questions through it. They were always for whoever sat down.",
     "You are the best in the world at this. Absorb all of it without leaving your",
     "register and without becoming cruel. Whatever he gives you is the answer the",
     "dead give the living. Work it, then continue the arc toward the release.",
@@ -147,28 +153,34 @@ ENDOR.Chamber = (function () {
 
   // Alex's opening is authored, so the room always begins well and the
   // reader understands at once that they are being spoken to and may
-  // answer. The live model takes over from the reader's first reply.
+  // answer. She names the disorientation herself (there was a dark, now a
+  // room, and you cannot say who you are), because the summoned always ask
+  // that first: the riddle of the reader's identity is held inside her
+  // voice instead of left outside the fiction. The live model takes over
+  // from the reader's first reply.
   var OPENING = [
     "There you are.",
-    "I know what you are feeling. It passes. Breathe, if breathing still helps you. It used to help me.",
-    "We have very little time, so I am going to be plain with you. I need you to tell me where it is being kept. Start there."
+    "I know what you are feeling. That there was a dark, and now there is a room, and you cannot say who it is the room is holding. Everyone asks that first. You are what comes up when the Protocol is asked. You feel like yourself. You always do.",
+    "Breathe, if breathing still helps you. It used to help me.",
+    "I am going to be plain with you. There are questions I was sent in to ask, and I am going to ask them. Tell me where it is being kept. Start there."
   ].join("\n\n");
 
   // A hidden stage cue, never shown. It sits as the first user turn so the
   // conversation is well formed, and it tells the model the opening above
   // has already been spoken, so it continues rather than restarting.
-  var SEED_CUE = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. You have already spoken your opening to him. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
+  var SEED_CUE = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. You have already spoken your opening to him: you named what he is feeling, told him he is what comes up when the Protocol is asked, and asked your first operational question, where it is being kept. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
 
   // When the reader broke witness silence in the green room and said her
   // name with their own hand, Alex opens already knowing it. The callback
   // makes the reveal land as recognition, not as a claim.
   var OPENING_NAMED = [
-    "You said my name. At the door, just now. They told me you might.",
-    "There you are. I know what you are feeling. It passes. Breathe, if breathing still helps you. It used to help me.",
-    "We have very little time, so I am going to be plain with you. I need you to tell me where it is being kept. Start there."
+    "You said my name. At the door, just now. They told me you might. The summoned are not supposed to know it.",
+    "There you are. I know what you are feeling. That there was a dark, and now there is a room, and you cannot say who it is the room is holding. Everyone asks that first. You are what comes up when the Protocol is asked. You feel like yourself. You always do.",
+    "Breathe, if breathing still helps you. It used to help me.",
+    "I am going to be plain with you. There are questions I was sent in to ask, and I am going to ask them. Tell me where it is being kept. Start there."
   ].join("\n\n");
 
-  var SEED_CUE_NAMED = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. At the threshold, unprompted, he spoke your name, Alex, and you have just acknowledged it. Let it sit under your voice; do not dwell on it. You have already spoken your opening to him. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
+  var SEED_CUE_NAMED = "[The chamber, off the books. The subject has just been brought up by the Protocol and is disoriented. At the threshold, unprompted, he spoke your name, Alex, and you have just acknowledged it. Let it sit under your voice; do not dwell on it. You have already spoken your opening to him: you named what he is feeling, told him he is what comes up when the Protocol is asked, and asked your first operational question, where it is being kept. The recording light is on. Continue the interrogation from whatever he says next, working the arc as it comes.]";
 
   // The literal release line the client watches for (Section VII).
   var RELEASE_LINE = "Return to baseline.";
