@@ -124,14 +124,23 @@ a { color: var(--gold); text-decoration: none; }
   100% { transform: translateY(-105vh) translateX(30px); opacity: 0; }
 }
 
-/* ── Typewriter ── */
-.typewriter-block { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; gap: 0.4rem; }
+/* ── Typewriter (sized to match the sibling chambers) ── */
+.typewriter-block {
+  min-height: 40vh; max-width: 720px; margin: 0 auto;
+  display: flex; flex-direction: column; justify-content: center; gap: 0.4rem;
+}
 .typewriter-line {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4.5vw, 2.8rem);
-  font-weight: 400; color: var(--bone); letter-spacing: 0.01em; min-height: 1.3em;
+  font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+  font-weight: 300; line-height: 1.7; color: var(--bone);
+  letter-spacing: 0.01em; min-height: 1.4em; opacity: 0;
 }
-.typewriter-emphasis { color: var(--gold-bright); font-style: italic; margin-top: 0.6rem; }
+.typewriter-line.typing, .typewriter-line.typed { opacity: 1; }
+.typewriter-emphasis {
+  color: var(--gold-bright); font-style: italic; font-weight: 400;
+  font-size: clamp(1.5rem, 4vw, 2.6rem); margin-top: 0.4em;
+}
+.typewriter-pause { height: 1.2em; }
 .typewriter-cursor {
   display: inline-block; width: 2px; height: 1em; margin-left: 2px;
   background: var(--gold-bright); vertical-align: text-bottom;
@@ -162,15 +171,18 @@ a { color: var(--gold); text-decoration: none; }
 .reveal-delay-3 .reveal-line, .reveal.reveal-delay-3 { transition-delay: 0.55s; }
 
 .reveal-line {
-  font-family: var(--font-voice);
-  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
-  color: var(--bone); line-height: 1.5; margin: 0.15rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  font-weight: 300; color: var(--bone); line-height: 1.9; margin: 0.15rem 0;
 }
-.reveal-large { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 1rem; }
+.reveal-large {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.35rem, 3.2vw, 2rem); line-height: 1.65; margin-bottom: 1rem;
+}
 .reveal-dim { color: var(--bone-dim); font-style: italic; }
 .reveal-question {
-  font-family: var(--font-display); font-style: italic;
-  color: var(--gold-bright); font-size: clamp(1.6rem, 4vw, 2.4rem); margin-top: 1.4rem;
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  color: var(--gold-bright); font-size: clamp(1.5rem, 4vw, 2.6rem); margin-top: 1.4rem;
 }
 .reveal-group + .reveal-group { margin-top: 1.6rem; }
 

@@ -693,11 +693,10 @@ COMPANION.App = (function () {
 
   // SHA-256 fingerprint of the compiled system prompt, so a transcript
   // can always be traced to the exact window that produced it.
-  function promptFingerprint(cb) {
+  function promptFingerprint(systemPrompt, cb) {
     try {
       if (!(window.crypto && crypto.subtle && window.TextEncoder)) { cb(''); return; }
-      var sys = COMPANION.Protocol.buildSystemPrompt(activePersonas, currentBinding);
-      crypto.subtle.digest('SHA-256', new TextEncoder().encode(sys)).then(function (buf) {
+      crypto.subtle.digest('SHA-256', new TextEncoder().encode(systemPrompt)).then(function (buf) {
         var hex = '';
         new Uint8Array(buf).forEach(function (b) { hex += b.toString(16).padStart(2, '0'); });
         cb(hex.slice(0, 16));
@@ -708,10 +707,13 @@ COMPANION.App = (function () {
   function exportTranscript() {
     var messages = document.querySelectorAll('#dialogue-messages .message');
     if (!messages.length) { COMPANION.UI.addSystemMessage('Nothing to export yet.'); return; }
-    promptFingerprint(function (fp) { exportTranscriptWith(fp); });
+    // The framework as instantiated: rite, grimoire, augmentation, and
+    // every bound document — exactly the window the minds spoke from.
+    var systemPrompt = COMPANION.Protocol.buildSystemPrompt(activePersonas, currentBinding);
+    promptFingerprint(systemPrompt, function (fp) { exportTranscriptWith(fp, systemPrompt); });
   }
 
-  function exportTranscriptWith(fingerprint) {
+  function exportTranscriptWith(fingerprint, systemPrompt) {
     var messages = document.querySelectorAll('#dialogue-messages .message');
     var now = new Date();
     var dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
@@ -761,6 +763,19 @@ COMPANION.App = (function () {
     });
     txt.push('═'.repeat(60)); txt.push('End of transcript.');
 
+    if (systemPrompt) {
+      txt.push('');
+      txt.push('═'.repeat(60));
+      txt.push('APPENDIX — THE PROMPT FRAMEWORK, AS INSTANTIATED');
+      txt.push('The complete system prompt compiled for this working:');
+      txt.push('the rite, the grimoire, the Harness augmentation, and');
+      txt.push('every bound document, verbatim.');
+      if (fingerprint) txt.push('SHA-256 (first 16): ' + fingerprint);
+      txt.push('═'.repeat(60));
+      txt.push('');
+      txt.push(systemPrompt);
+    }
+
     var htmlMessages = '';
     parsed.forEach(function (e) {
       if (e.type === 'system') {
@@ -788,6 +803,14 @@ COMPANION.App = (function () {
       '<div style="color:#555;font-size:.8rem;margin-top:.75rem;">' + dateStr + ' ' + timeStr + '</div>' +
       '</div>' +
       '<div style="padding:1.5rem 0;">' + htmlMessages + '</div>' +
+      (systemPrompt ?
+        '<details style="margin:1rem 0 1.5rem;border:1px solid rgba(201,165,78,.3);border-radius:6px;padding:1rem 1.25rem;">' +
+        '<summary style="cursor:pointer;color:#c9a54e;font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;">The Prompt Framework, As Instantiated' +
+        (fingerprint ? ' <span style="color:#555;font-size:.75rem;font-family:monospace;">sha256:' + fingerprint + '…</span>' : '') +
+        '</summary>' +
+        '<p style="color:#8b7355;font-size:.85rem;font-style:italic;margin:.6rem 0 0;">The complete system prompt compiled for this working — the rite, the grimoire, the Harness augmentation, and every bound document, verbatim.</p>' +
+        '<pre style="white-space:pre-wrap;word-wrap:break-word;color:#a89f8d;font-family:\'IBM Plex Mono\',monospace;font-size:.78rem;line-height:1.55;margin-top:.8rem;">' + escExport(systemPrompt) + '</pre>' +
+        '</details>' : '') +
       '<div style="text-align:center;padding:1.5rem 0;border-top:1px solid rgba(201,165,78,.3);color:#555;font-size:.8rem;">' +
       'COMPANION Protocol — The Harness — Exported ' + dateStr +
       '<br>Model: ' + escExport(COMPANION.API.getModel()) +
