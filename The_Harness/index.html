@@ -20,6 +20,8 @@
        ═══════════════════════════════════════════════════════════ -->
   <div id="cinematic-intro">
 
+    <button id="skip-intro-btn" class="skip-intro" type="button">Skip intro &rarr;</button>
+
     <!-- ▸ ACT I — THE VOID (hook) -->
     <section class="act act-void">
       <div class="void-bg"></div>
@@ -156,7 +158,17 @@
           <span class="eq-inline"><b class="c-personas">Personas</b> + <b class="c-matter">Matter</b> = <b class="c-container">a Container</b></span>
           &mdash; choose your minds, give them their matter, and cross the threshold.
         </p>
+        <p class="workshop-links"><a href="#" id="replay-intro-link">Replay the introduction</a></p>
       </header>
+
+      <!-- Resume a saved working -->
+      <div id="resume-banner" class="resume-banner hidden">
+        <div class="resume-text"><b>A working remains open.</b> <span id="resume-desc"></span></div>
+        <div class="resume-actions">
+          <button id="resume-btn" class="mini-btn" type="button">Resume</button>
+          <button id="resume-discard" class="control-btn" type="button">Begin anew</button>
+        </div>
+      </div>
 
       <!-- STEP ① — Prepared Bindings -->
       <section class="ws-section">
@@ -187,7 +199,7 @@
               <div class="binding-minds" id="binding-minds"></div>
             </div>
             <div class="binding-block">
-              <div class="binding-block-head">Matter bound <span class="count-chip" id="matter-count">0</span></div>
+              <div class="binding-block-head">Matter bound <span class="count-chip" id="matter-count">0</span><span class="matter-words" id="matter-words"></span></div>
               <div class="matter-list" id="matter-list"></div>
             </div>
           </div>
@@ -223,11 +235,12 @@
           <textarea id="matter-text-input" class="field-textarea field-textarea-tall" rows="5" placeholder="Paste the document text here…"></textarea>
           <div class="matter-form-actions">
             <label class="file-btn">
-              <input id="matter-file-input" type="file" accept=".txt,.md,.markdown,.text,text/plain" multiple hidden>
+              <input id="matter-file-input" type="file" accept=".txt,.md,.markdown,.text,.csv,.json,text/plain" multiple hidden>
               <span>&#8682; Upload files</span>
             </label>
             <button id="matter-add-btn" class="mini-btn" type="button">Add to the matter</button>
           </div>
+          <div id="matter-status" class="matter-status" aria-live="polite"></div>
         </div>
       </section>
 
@@ -295,8 +308,8 @@
 
     <div id="input-area">
       <div id="input-wrapper">
-        <textarea id="user-input" placeholder="Speak to the working…" rows="1"></textarea>
-        <button id="send-btn" title="Send"><span>&#10148;</span></button>
+        <textarea id="user-input" placeholder="Speak to the working…" rows="1" aria-label="Message the working"></textarea>
+        <button id="send-btn" title="Send" aria-label="Send"><span>&#10148;</span></button>
       </div>
       <div id="input-hint"><span class="hint-text">The threshold is open.</span></div>
     </div>

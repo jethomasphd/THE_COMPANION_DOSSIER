@@ -179,7 +179,7 @@ COMPANION.API = (function () {
   // ── Session persistence ──
 
   const SESSION_STORAGE_KEY = 'companion_harness_session';
-  const SESSION_EXPIRY_MS = 45 * 60 * 1000;
+  const SESSION_EXPIRY_MS = 12 * 60 * 60 * 1000; // a working can be resumed within 12 hours
 
   function saveSession(payload) {
     try {
@@ -252,7 +252,7 @@ COMPANION.API = (function () {
           const errorJson = JSON.parse(errorBody);
           if (errorJson.error && errorJson.error.message) errorMessage = errorJson.error.message;
         } catch (e) { /* use status */ }
-        conversationHistory.pop();
+        removePendingUserMessage(userMessage);
         onError(errorMessage);
         return;
       }
@@ -292,14 +292,30 @@ COMPANION.API = (function () {
 
     } catch (error) {
       if (error.name === 'AbortError') {
-        if (fullResponse) addAssistantMessage(fullResponse);
+        if (fullResponse) {
+          addAssistantMessage(fullResponse);
+        } else {
+          // Stopped before the first token: drop the dangling user turn
+          // so the history keeps alternating roles.
+          removePendingUserMessage(userMessage);
+        }
         onDone(fullResponse);
         return;
       }
-      conversationHistory.pop();
+      removePendingUserMessage(userMessage);
       onError(error.message || 'An unexpected error occurred.');
     } finally {
       currentAbortController = null;
+    }
+  }
+
+  // Remove the not-yet-answered user turn after a failed or aborted
+  // request — only if it is still the last message, so a late abort
+  // of an older request can never eat a newer one.
+  function removePendingUserMessage(userMessage) {
+    var last = conversationHistory[conversationHistory.length - 1];
+    if (last && last.role === 'user' && last.content === userMessage) {
+      conversationHistory.pop();
     }
   }
 

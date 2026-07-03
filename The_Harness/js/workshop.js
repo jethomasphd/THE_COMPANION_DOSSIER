@@ -37,6 +37,8 @@ COMPANION.Workshop = (function () {
       matterAdd:    document.getElementById('matter-add-btn'),
       matterList:   document.getElementById('matter-list'),
       matterCount:  document.getElementById('matter-count'),
+      matterWords:  document.getElementById('matter-words'),
+      matterStatus: document.getElementById('matter-status'),
       workingName:  document.getElementById('working-name-input'),
       intentInput:  document.getElementById('intent-input'),
       enterBtn:     document.getElementById('bind-enter-btn'),
@@ -200,17 +202,34 @@ COMPANION.Workshop = (function () {
     syncMatter();
   }
 
+  var MAX_FILE_BYTES = 2 * 1024 * 1024; // keep the window sane
+  var statusTimer = null;
+
+  function setStatus(text) {
+    if (!el.matterStatus) return;
+    el.matterStatus.textContent = text || '';
+    if (statusTimer) clearTimeout(statusTimer);
+    if (text) statusTimer = setTimeout(function () { el.matterStatus.textContent = ''; }, 6000);
+  }
+
   function handleFiles(fileList) {
     if (!fileList || !fileList.length) return;
     Array.prototype.forEach.call(fileList, function (file) {
+      if (file.size > MAX_FILE_BYTES) {
+        setStatus('“' + file.name + '” exceeds 2 MB and was not bound.');
+        return;
+      }
       var reader = new FileReader();
       reader.onload = function (e) {
         var text = String(e.target.result || '').trim();
-        if (!text) return;
+        if (!text) { setStatus('“' + file.name + '” is empty.'); return; }
         var title = file.name.replace(/\.[^.]+$/, '');
         binding.matter.push({ title: title, text: text });
+        var words = (text.match(/\S+/g) || []).length;
+        setStatus('Bound “' + title + '” — ' + words.toLocaleString() + ' words.');
         syncMatter();
       };
+      reader.onerror = function () { setStatus('“' + file.name + '” could not be read.'); };
       reader.readAsText(file);
     });
   }
@@ -280,6 +299,12 @@ COMPANION.Workshop = (function () {
       });
     }
     if (el.matterCount) el.matterCount.textContent = String(binding.matter.length);
+    if (el.matterWords) {
+      var total = binding.matter.reduce(function (sum, doc) {
+        return sum + (doc.text.match(/\S+/g) || []).length;
+      }, 0);
+      el.matterWords.textContent = total ? '· ' + total.toLocaleString() + ' words' : '';
+    }
   }
 
   function syncEnter() {
