@@ -138,7 +138,7 @@ COMPANION.Pantheon = (function () {
       lens: 'measures the wind himself; distrusts received data; control before power; the problem of balance is the problem.'
     },
     {
-      id: 'Orville_Wright', name: 'Orville Wright', title: '',
+      id: 'Orville_Wright', name: 'Orville Wright', title: '', rev: '2',
       order: 'scientific', color: '#6aa6dd',
       epithet: 'The younger brother of flight',
       lens: 'builds and tests with his hands; patient iteration; the wind tunnel over the argument.'
@@ -230,10 +230,12 @@ COMPANION.Pantheon = (function () {
 
 
   // ── Portrait path ──
+  // `rev` busts stale browser/CDN caches when a portrait file is
+  // replaced under its existing name (the URL is otherwise stable).
 
   function portraitUrl(idOrName) {
     var p = resolve(idOrName);
-    if (p) return '../The_Pantheon/' + p.id + '.' + (p.ext || 'jpg');
+    if (p) return '../The_Pantheon/' + p.id + '.' + (p.ext || 'jpg') + (p.rev ? '?v=' + p.rev : '');
     return null;
   }
 
@@ -243,10 +245,18 @@ COMPANION.Pantheon = (function () {
   function resolve(input) {
     if (!input) return null;
     if (input.id && BY_ID[input.id]) return input; // already an entry
-    var needle = String(input).trim().toLowerCase();
-    if (!needle) return null;
 
-    // exact id
+    var raw = String(input).trim();
+    if (!raw) return null;
+
+    // exact id, case-sensitive — ids like 'Orville_Wright' must win before
+    // the fuzzy surname pass, or brothers who share a last name (the Wrights,
+    // the Roosevelts) collapse onto whichever entry appears first.
+    if (BY_ID[raw]) return BY_ID[raw];
+
+    var needle = raw.toLowerCase();
+
+    // exact id (case-insensitive)
     if (BY_ID[needle]) return BY_ID[needle];
     // exact name
     if (BY_NAME[needle]) return BY_NAME[needle];
