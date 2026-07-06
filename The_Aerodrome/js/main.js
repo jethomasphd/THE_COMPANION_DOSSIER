@@ -39,6 +39,11 @@ COMPANION.App = (function () {
     'Orville Wright': 'Orville_Wright'
   };
 
+  // Cache-bust revisions for portraits replaced under a stable filename.
+  var BROTHER_ARTICLE_REV = {
+    'Orville_Wright': '2'
+  };
+
 
   // ═══════════════════════════════════════════════════════════════
   //  CINEMATIC INTRO
@@ -88,7 +93,8 @@ COMPANION.App = (function () {
 
       var img = new Image();
       img.onload = function () { img.classList.add('loaded'); };
-      img.src = '../The_Pantheon/' + article + '.jpg';
+      var rev = BROTHER_ARTICLE_REV[article];
+      img.src = '../The_Pantheon/' + article + '.jpg' + (rev ? '?v=' + rev : '');
       frame.appendChild(img);
     });
   }

@@ -21,6 +21,7 @@ COMPANION.Hologram = (function () {
     'Orville Wright': {
       role: 'The Younger',
       article: 'Orville_Wright',
+      rev: '2',
       initials: 'O',
       color: '#D89A52'
     }
@@ -151,7 +152,7 @@ COMPANION.Hologram = (function () {
       // Keep the engraved initials; hide the broken plate.
       cardData.portraitImg.style.display = 'none';
     };
-    cardData.portraitImg.src = '../The_Pantheon/' + persona.article + '.jpg';
+    cardData.portraitImg.src = '../The_Pantheon/' + persona.article + '.jpg' + (persona.rev ? '?v=' + persona.rev : '');
   }
 
 
