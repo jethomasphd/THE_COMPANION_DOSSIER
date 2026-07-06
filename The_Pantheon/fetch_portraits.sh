@@ -57,7 +57,7 @@ PORTRAITS=(
 
   # ── The Aerodrome (the 1905 studio portraits) ──
   "Wilbur_Wright|Wilbur_Wright.jpg|https://upload.wikimedia.org/wikipedia/commons/3/38/Wilbur_Wright-crop.jpg"
-  "Orville_Wright|Orville_Wright.jpg|https://upload.wikimedia.org/wikipedia/commons/9/90/Orville_Wright_1905.jpg"
+  "Orville_Wright|Orville_Wright.jpg|https://upload.wikimedia.org/wikipedia/commons/a/af/Orville_Wright_1905-crop.jpg"
 )
 
 resolve_via_api() {
