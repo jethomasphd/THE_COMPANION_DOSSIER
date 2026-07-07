@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1500px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:130px 110px 110px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.10), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 74px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:26px;z-index:1;text-align:center}
+  .sub{font:400 23px "IBM Plex Mono";color:#8b8578;letter-spacing:.16em;margin-top:18px;z-index:1}
+  .rule{width:420px;height:1px;margin:40px 0 10px;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .chart{flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;gap:52px;z-index:1}
+  .row{width:100%}
+  .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .lab .name{font:400 24px "IBM Plex Mono";color:#e8e4d9;letter-spacing:.06em}
+  .lab .name small{color:#8b8578;letter-spacing:.04em}
+  .lab .val{font:500 30px "IBM Plex Mono";color:#8b8578}
+  .track{width:100%;height:52px;position:relative}
+  .bar{height:100%;border-radius:0 3px 3px 0;position:relative}
+  .em .bar{background:linear-gradient(90deg,#8a6d1b,#c9a227);
+           box-shadow:0 0 60px 4px rgba(201,162,39,.22)}
+  .em .lab .val{color:#c9a227}
+  .dim .bar{background:#2a2724;border:1px solid rgba(139,133,120,.5)}
+  .own .bar{background:#0a0908;border:1.5px solid rgba(232,228,217,.85)}
+  .own .lab .val{color:#e8e4d9}
+  .cap{font:400 22.5px/1.75 "IBM Plex Mono";color:#8b8578;letter-spacing:.1em;z-index:1;
+       text-align:center;max-width:1000px;margin-top:34px}
+  .cap i{color:#c9a227;font-style:normal}
+  .sig{font:300 32px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:34px;z-index:1}
+</style></head>
+<body>
+  <div class="k">plate ix · the miranda hypothesis</div>
+  <div class="t">The Composition of a Name</div>
+  <div class="sub">estimated corpus weight · "alexander hamilton"</div>
+  <div class="rule"></div>
+  <div class="chart">
+    <div class="row em">
+      <div class="lab"><span class="name">the musical <small>· libretto, reviews, commentary · after 2015</small></span><span class="val">~62%</span></div>
+      <div class="track"><div class="bar" style="width:62%"></div></div>
+    </div>
+    <div class="row dim">
+      <div class="lab"><span class="name">biographies <small>· and their marketing, and their reviews</small></span><span class="val">~18%</span></div>
+      <div class="track"><div class="bar" style="width:18%"></div></div>
+    </div>
+    <div class="row dim">
+      <div class="lab"><span class="name">general reference <small>· textbooks, encyclopedias, forums</small></span><span class="val">~12%</span></div>
+      <div class="track"><div class="bar" style="width:12%"></div></div>
+    </div>
+    <div class="row own">
+      <div class="lab"><span class="name">the man's own hand <small>· the federalist, the correspondence</small></span><span class="val">~8%</span></div>
+      <div class="track"><div class="bar" style="width:8%"></div></div>
+    </div>
+  </div>
+  <div class="cap">illustrative model · exact proportions unknown · the point is structural:<br>
+  <i>cultural salience outweighs documentary fidelity in raw corpus weight</i><br>
+  summon the name, and the name answers · the question is which of these answers</div>
+  <div class="sig">◊ ◈ ◊</div>
+</body></html>

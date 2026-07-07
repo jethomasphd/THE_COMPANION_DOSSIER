@@ -1,0 +1,120 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1620px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:100px 90px 90px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.10), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 62px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:24px;z-index:1;text-align:center}
+  .sub{font:400 22px "IBM Plex Mono";color:#8b8578;letter-spacing:.14em;margin-top:16px;z-index:1}
+  .rule{width:420px;height:1px;margin:32px 0 0;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .map{flex:1;width:100%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .cap{font:400 22px/1.7 "IBM Plex Mono";color:#8b8578;letter-spacing:.08em;z-index:1;
+       text-align:center;max-width:1050px;margin-top:14px}
+  .cap i{color:#c9a227;font-style:normal}
+  .sig{font:300 30px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:20px;z-index:1}
+  text{font-family:"IBM Plex Mono"}
+</style></head>
+<body>
+  <div class="k">plate xi · the estate</div>
+  <div class="t">A House With Chambers</div>
+  <div class="sub">as surveyed · the county plan says eleven doors</div>
+  <div class="rule"></div>
+  <div class="map">
+    <svg width="1020" height="966" viewBox="0 0 1140 1080">
+      <defs>
+        <style>
+          .room{fill:rgba(201,162,39,.03);stroke:rgba(139,133,120,.55);stroke-width:2}
+          .roomlit{fill:rgba(201,162,39,.08);stroke:rgba(201,162,39,.75);stroke-width:2}
+          .lbl{fill:#e8e4d9;font-size:21px}
+          .dir{fill:#6b6b6b;font-size:16.5px}
+          .door{stroke:#c9a227;stroke-width:4}
+        </style>
+      </defs>
+      <!-- outer wall -->
+      <rect x="60" y="40" width="1020" height="960" fill="none"
+            stroke="rgba(232,228,217,.5)" stroke-width="3"/>
+      <!-- ATRIUM center -->
+      <rect x="420" y="380" width="300" height="260" class="roomlit"/>
+      <text x="570" y="495" text-anchor="middle" class="lbl">THE ATRIUM</text>
+      <text x="570" y="524" text-anchor="middle" class="dir">/The_Atrium/</text>
+      <!-- top row -->
+      <rect x="60" y="40" width="330" height="240" class="room"/>
+      <text x="225" y="150" text-anchor="middle" class="lbl">THE CHAIR</text>
+      <text x="225" y="178" text-anchor="middle" class="dir">/The_Chair/</text>
+      <rect x="390" y="40" width="360" height="240" class="room"/>
+      <text x="570" y="140" text-anchor="middle" class="lbl">THE MAGIC LANTERN</text>
+      <text x="570" y="168" text-anchor="middle" class="dir">/The_Magic_Lantern/</text>
+      <text x="570" y="196" text-anchor="middle" class="dir">the film · the general</text>
+      <rect x="750" y="40" width="330" height="240" class="room"/>
+      <text x="915" y="150" text-anchor="middle" class="lbl">THE WATCHTOWER</text>
+      <text x="915" y="178" text-anchor="middle" class="dir">/The_Watchtower/</text>
+      <!-- left column -->
+      <rect x="60" y="280" width="270" height="240" class="room"/>
+      <text x="195" y="390" text-anchor="middle" class="lbl">THE 5 LAMPS</text>
+      <text x="195" y="418" text-anchor="middle" class="dir">/The_5_Lamps/</text>
+      <rect x="60" y="520" width="270" height="240" class="room"/>
+      <text x="195" y="630" text-anchor="middle" class="lbl">THE BOARDROOM</text>
+      <text x="195" y="658" text-anchor="middle" class="dir">/The_Boardroom/</text>
+      <!-- right column -->
+      <rect x="810" y="280" width="270" height="240" class="room"/>
+      <text x="945" y="390" text-anchor="middle" class="lbl">THE EXCHANGE</text>
+      <text x="945" y="418" text-anchor="middle" class="dir">/The_Exchange/</text>
+      <rect x="810" y="520" width="270" height="240" class="room"/>
+      <text x="945" y="630" text-anchor="middle" class="lbl">THE AERODROME</text>
+      <text x="945" y="658" text-anchor="middle" class="dir">/The_Aerodrome/</text>
+      <!-- bottom row -->
+      <rect x="60" y="760" width="330" height="240" class="room"/>
+      <text x="225" y="860" text-anchor="middle" class="lbl">THE SYMPOSIUM</text>
+      <text x="225" y="888" text-anchor="middle" class="dir">/The_Symposium/</text>
+      <rect x="390" y="760" width="360" height="240" class="room"/>
+      <text x="570" y="850" text-anchor="middle" class="lbl">NARRATIVES</text>
+      <text x="570" y="878" text-anchor="middle" class="dir">/Narratives/</text>
+      <text x="570" y="906" text-anchor="middle" class="dir">the nut house · endor ·</text>
+      <text x="570" y="930" text-anchor="middle" class="dir">sealed</text>
+      <rect x="750" y="760" width="330" height="240" class="room"/>
+      <text x="915" y="850" text-anchor="middle" class="lbl">THE HARNESS</text>
+      <text x="915" y="878" text-anchor="middle" class="dir">/The_Harness/</text>
+      <text x="915" y="906" text-anchor="middle" class="dir">the loom, in your hands</text>
+      <!-- corridor rooms -->
+      <rect x="330" y="280" width="90" height="100" class="room"/>
+      <text x="375" y="322" text-anchor="middle" class="dir">from</text>
+      <text x="375" y="344" text-anchor="middle" class="dir">beyond</text>
+      <rect x="720" y="280" width="90" height="100" class="room"/>
+      <text x="765" y="322" text-anchor="middle" class="dir">mask vs</text>
+      <text x="765" y="344" text-anchor="middle" class="dir">mirror</text>
+      <!-- doors (gold gaps) -->
+      <line x1="500" y1="380" x2="540" y2="380" class="door"/>
+      <line x1="600" y1="640" x2="640" y2="640" class="door"/>
+      <line x1="420" y1="480" x2="420" y2="520" class="door"/>
+      <line x1="720" y1="480" x2="720" y2="520" class="door"/>
+      <line x1="225" y1="280" x2="265" y2="280" class="door"/>
+      <line x1="915" y1="280" x2="955" y2="280" class="door"/>
+      <line x1="330" y1="620" x2="330" y2="660" class="door"/>
+      <line x1="810" y1="620" x2="810" y2="660" class="door"/>
+      <line x1="225" y1="760" x2="265" y2="760" class="door"/>
+      <line x1="915" y1="760" x2="955" y2="760" class="door"/>
+      <line x1="530" y1="1000" x2="610" y2="1000" class="door"/>
+      <!-- the twelfth door: interior, leads nowhere on the plan -->
+      <line x1="750" y1="855" x2="750" y2="895" class="door" opacity=".45"/>
+      <text x="737" y="944" text-anchor="end" class="dir" fill="#8a6d1b">the twelfth
+      </text>
+      <!-- garage / cold storage, outside the wall -->
+      <rect x="1080" y="760" width="0" height="0"/>
+      <g>
+        <rect x="882" y="1008" width="198" height="46" fill="none"
+              stroke="rgba(107,107,107,.6)" stroke-width="1.6" stroke-dasharray="7 6"/>
+        <text x="981" y="1038" text-anchor="middle" class="dir">the garage · it hums</text>
+      </g>
+    </svg>
+  </div>
+  <div class="cap">seven chambers, one loom, an archive, a film wing, a scoreboard ·
+  <i>the protocol is the platform; the chambers are the applications</i><br>
+  door count, county plan: 11 · door count, as walked: 12</div>
+  <div class="sig">◊ ◈ ◊</div>
+</body></html>

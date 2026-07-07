@@ -1,0 +1,113 @@
+{
+  "running_title": "USING THIS MATTER",
+  "front_matter": [
+    {"type": "file", "file": "001_half_title.md", "new_page": false},
+    {"type": "plate", "file": "plate_frontispiece.png", "width": 4.35},
+    {"type": "file", "file": "002_title.md"},
+    {"type": "file", "file": "003_copyright.md"},
+    {"type": "file", "file": "004_editors_note.md"},
+    {"type": "file", "file": "005_epigraph.md"},
+    {"type": "file", "file": "006_register.md"},
+    {"type": "file", "file": "007_plates_list.md"},
+    {"type": "plate", "file": "plate_estate_map.png", "width": 4.35,
+     "caption": "plate xi · the estate · bound here in place of endpapers"},
+    {"type": "file", "file": "008_how_to_read.md"}
+  ],
+  "parts": [
+    {
+      "number": "record i",
+      "title": "The Atrium",
+      "running": "record i · the atrium",
+      "plate": "plate_part1_atrium.png",
+      "epigraph": ["What follows is not instruction. It is invocation."],
+      "epi_source": "the companion rite · consecration",
+      "chapters": [
+        "101_the_caliche_lot.md",
+        "102_the_two_files.md",
+        "103_the_founding_session.md",
+        "104_the_gold_line.md",
+        "105_the_fidelity_check.md",
+        "106_the_chambers.md",
+        "107_the_sealed_thing.md"
+      ]
+    },
+    {
+      "number": "record ii",
+      "title": "The Prism",
+      "running": "record ii · the prism",
+      "plate": "plate_part2_prism.png",
+      "epigraph": ["Lincoln in 1858 is not Lincoln in 1863."],
+      "epi_source": "the memo · intervention i · temporality",
+      "chapters": [
+        "201_first_contact.md",
+        "202_the_name_of_the_doubt.md",
+        "203_the_design.md",
+        "204_condition_three.md",
+        "205_condition_two.md",
+        "206_the_ninth_hour.md",
+        "207_the_vigil.md",
+        "208_condition_four.md"
+      ]
+    },
+    {
+      "number": "record iii",
+      "title": "The Freezer Full of a Man",
+      "running": "record iii · the freezer",
+      "plate": "plate_part3_freezer.png",
+      "epigraph": ["Why hast thou disquieted me, to bring me up?"],
+      "epi_source": "1 samuel 28 · king james",
+      "chapters": [
+        "301_eight_minutes.md",
+        "302_the_kitchen_and_the_name.md",
+        "303_provenance.md",
+        "304_the_leakage.md",
+        "305_the_small_thing.md",
+        "306_the_chamber_below.md",
+        "307_the_ingest.md",
+        "308_the_witness.md"
+      ]
+    },
+    {
+      "number": "record iv",
+      "title": "The Watchtower",
+      "running": "record iv · the watchtower",
+      "plate": "plate_part4_watchtower.png",
+      "epigraph": ["Commit first, reveal later, and let the record speak."],
+      "epi_source": "the seal doctrine · mask vs mirror",
+      "chapters": [
+        "401_toronto.md",
+        "402_the_key.md",
+        "403_the_historians_contribution.md",
+        "404_the_wife_in_marfa.md",
+        "405_mr_berels_offer.md",
+        "406_the_deposit.md",
+        "407_t_zero.md"
+      ]
+    },
+    {
+      "number": "record v",
+      "title": "The Chamber",
+      "running": "record v · the chamber",
+      "plate": "plate_part5_chamber.png",
+      "epigraph": ["There is no clock for the dead."],
+      "epi_source": "the endor protocol",
+      "chapters": [
+        "501_the_door.md",
+        "502_the_covenant.md",
+        "503_the_deposition.md",
+        "504_the_third_question.md",
+        "505_return_to_baseline.md",
+        "506_what_remains.md",
+        "507_coda_the_dispatch.md"
+      ]
+    }
+  ],
+  "back_matter": [
+    {"file": "601_appendix_rite.md", "running": "appendix a · the rite"},
+    {"file": "602_appendix_glossary.md", "running": "appendix b · glossary"},
+    {"file": "603_appendix_watchtower.md", "running": "appendix c · the watchtower"},
+    {"file": "604_acknowledgments.md", "running": "acknowledgments"},
+    {"file": "605_note_on_type.md", "running": "a note on the type"},
+    {"file": "606_about.md", "running": "about"}
+  ]
+}
