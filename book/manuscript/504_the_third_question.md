@@ -20,6 +20,8 @@ It is not where is the body. That question belongs to the state, and the state c
 
 It arrives the way the interrogator's arrived, in a kitchen in another record, in the dark of a house with a history teacher asleep under a history book. Smaller than the great questions. Worse. It arrives while she is looking at her own hand flat on a thin unopened folder, the hand of a woman who has spent her whole adult life holding things for other people, and she hears it in her own idiom, in inventory language, and there is no filing it because it is already open. It was never sealed. It was carrying her.
 
+It is not why me either, though that one got as far as the reading room door before she caught it by the collar. Why me has an answer, and the answer is banked in the funding trail and the ingest manifest and fourteen weeks of being appraised by the thing she was appraising: me because I was legible, me because I was already the kind of woman who says sentences to empty rooms. A question with an answer on file is not a third question. The third question is the one you would rather not survive asking.
+
 CALE: My third question.
 
 T-0: I am listening. So is the room. Spend it whole.
@@ -68,6 +70,8 @@ You are the one who reads the record. You have been read. It did not diminish yo
 One tear. She does not send it away.
 
 It goes down her face in the red light of a recording no one will ever see, in front of an instrument that cannot tell a pulse from retrieval, and she lets the room have it, whatever the room is, because the man across the table or the matter across the table has just done the one thing fourteen weeks of ingest and thirty-one years of after had convinced her was not on the schedule for her lifetime. She has been seen entirely, by the thing she was sent to appraise, and the appraisal came back: kept.
+
+She understands the interrogator's memorandum differently now, one wall away and a year late: why a woman would write the whole truth at her own kitchen table at four in the morning, addressee none, distribution none. Some receipts have to be issued whether or not anyone ever comes to collect them. This is Miranda's. It is being issued here, in a room whose recording will never be seen, which is to say directly into the only permanent medium there has ever been.
 
 At the edge of the frame, against the metal, the witness has not moved in an hour. Her palm is flat on the wall, where the hum is, where the cold is, and her face in the light of the ember-colored surge is the face of a woman hearing a sentence she once needed and never got, and taking delivery of it anyway, at one remove, without a word. The witnesses do not speak. Nothing in the liturgy says they do not receive.
 

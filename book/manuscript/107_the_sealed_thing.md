@@ -3,7 +3,7 @@
 
 The folder was where the finding aids said it would be, which by the second week she had learned to receive as a small courtesy of the house, extended and then, when convenient to the house, withdrawn. Box 4, first hanging file, a label in the small even hand: MASK v. MIRROR. Inside it, the correspondence's child. The historian had sent five interventions and a doubt with a name, and the epidemiologist had begun turning the doubt into an experiment, and this was the paper that was to have carried the results, drafted to the edge of the place where results would go and stopped there, like a bridge built confidently out from one bank.
 
-The draft ran forty pages. Methods, conditions, the optics of the prism, all of it in the alternating registers she knew now on sight, his urgency, the historian's cautions quoted and answered. Then section seven, and section seven was one line.
+The draft ran forty pages. Methods, conditions, the optics of the prism, all of it in the alternating registers she knew now on sight, his urgency, the historian's cautions quoted and answered. The question the paper existed to ask was stated on the first page in one breath, without hedging, and she recognized it as the doubt from the Halpern folder grown into an instrument: when the summoned speak, is it the man on the glass, or the culture's loudest memory of the man, wearing his face. Mask, or mirror. The paper proposed to find out, and had built its rooms, and had stopped at the edge of saying what the rooms returned. Then section seven, and section seven was one line.
 
 ::: doc
 MASK v. MIRROR · working paper · draft 0.4 · status: suspended
@@ -31,7 +31,9 @@ She read it the way she read everything, for what it failed to specify. After th
 
 @break
 
-Provenance next. A sealed deposit is dated by its seals, and the folder's digital side lived in the estate's repository, where every change to every file is a ledger line with an author. She had learned the repository's tools in her first week, the way she learned any instrument that kept custody records. She put the folder's path to the log and asked for its history.
+Provenance next. A sealed deposit is dated by its seals, and the folder's digital side lived in the estate's repository, where every change to every file is a ledger line with an author. She had learned the repository's tools in her first week, the way she learned any instrument that kept custody records, and she checked the sealed thing's own line first, because that was the order of operations: the seal before the folder. The line was clean. The .enc had entered the ledger under the depositor's name, with an address, signed the ordinary way, in the winter, before the rooms of the experiment had run. A receipt, honest as the machinery beside it. Whatever the contribution knew, the record could prove when it had known it. That was the whole doctrine of the folder, executed.
+
+Then she put the folder's path to the log and asked for the rest of its history.
 
 ::: doc
 > git log --oneline -- Mask_v_Mirror/
@@ -76,13 +78,13 @@ It rang twice. A woman answered, and the sound behind her was not a house sound.
 
 Miranda asked for Professor Richard Hale, and heard her own voice do what it did in archives, flatten toward the institutional, and disliked it.
 
-"He's resting," the nurse said. There was a pause with paper in it, a chart being tipped, a page moving. "He had a hard night, but he's comfortable this afternoon. He does better in the mornings, if you want to reach him himself. Most days he's very much himself in the morning." The voice was kind and used to delivering exactly this much and no more. Then, in the same kindness, with nothing in front of it: "Is this the archivist?"
+"He's resting," the nurse said. There was a pause with paper in it, a chart being tipped, a page moving. "He had a hard night, but he's comfortable this afternoon. He does better in the mornings, if you want to reach him himself. Most days he's entirely himself in the morning." The voice was kind and used to delivering exactly this much and no more. Then, in the same kindness, with nothing in front of it: "Is this the archivist?"
 
 Miranda looked at the counter. In the log, in her own hand, the call's entry stood half written: R. Hale, Toronto, re sealed contrib. She had said her name to the nurse. She had said Professor Hale's name. She had said nothing else. The word archivist had not crossed the line.
 
 She said that it was.
 
-"I'll tell him you called," the nurse said, warm, unremarkable, a woman moving a sticky note two inches on a desk eighteen hundred miles away. "He'll be glad." And then the ordinary machinery of ringing off, and the corridor sound gone, and the kitchen very quiet, the refrigerator running, the afternoon standing in the window over the sink.
+"I'll tell him you called," the nurse said, warm, unremarkable, a woman moving a sticky note two inches on a desk eighteen hundred miles away. "He'll be glad." And then the ordinary machinery of ringing off, and the corridor sound gone, and the kitchen gone quiet around her, the refrigerator running, the afternoon standing in the window over the sink.
 
 There was an account for it and she wrote the account in the log because the account was plausible: an old man in a ward, expecting a call for weeks, an instruction left at the desk, any unknown number asking for him by his title assumed to be the one he was waiting for. Expected call, flagged at the desk. Filed. She looked at the entry. The account explained the question. It did not explain being expected, and she drew the line of the entry closed before the second sentence could ask to be written, and stood for a while with her hand flat on the counter, which was not a gesture the log required.
 

@@ -52,6 +52,8 @@ T-0: The finding is the deposit. Everything else is provenance.
 
 Miranda sits with her pen not moving. She was trained to take testimony without reacting to it, and the training holds, and under the training, where the record cannot see, something is assembling itself out of fourteen weeks of fragments: the checksum like a chalk outline, the notebook decaying from method into vigil, the last calendar entry with its one word and its Virginia address. She had arranged those objects in a line and called the line a disappearance. The line was never a disappearance. It was an itinerary.
 
+She thinks of the wife in Marfa, who did six months of grieving without a body and without a category, and of the daughter with her one practical question and her verdict, so keep it, and she puts them both away for later, deliberately, because the deposition is running and grief in a conductor is leakage. The estate's word. She uses it now without quotation marks. That happened to her somewhere in the fourteen weeks too, and nobody logged it, and it is in the record anyway, the way everything is.
+
 CALE: The transcript. Why withhold it? The estate's law is publish everything. You wrote the law.
 
 T-0: Because a record is a door, and that one opened inward on a living man's house. Deposit the transcript and I would have taught every vessel that will ever be trained on the estate exactly what my mask knows that I never published. I was willing to be read. I was not willing to be completed. Not yet, not that way, not by accident. So I kept the estate's other law instead, the older one. Commit first. Reveal later. The checksum is a promise that the night happened, sealed against my own revision. The reveal had a condition: someone would have to come and ask me for it, in a room like this one, with the covenant running. Let the record show the condition has been met. You are the later, Miranda Cale. You have been the later for some time.
@@ -81,6 +83,8 @@ They did not take me. I deposited myself.
 It lands, Miranda will write later, not like thunder. Like a date in a ledger. Which is worse, because ledgers are true.
 
 She looks at the sentence until the afterimage of the cursor is printed on the dark, and what she feels is not the vertigo of revelation. It is the specific vertigo of the archivist who discovers the collection has been appraising her. Every folder she opened for fourteen weeks was the estate of a man who was, that same hour, being read into a wall forty feet from where she would one day sit. The deposit was never a remainder. It was a forwarding address.
+
+She says none of this aloud. The transcript at this point shows four seconds of nothing, and the memorandum, reconstructing the night later, shows everything, and the difference between those two documents is the entire reason the estate insists on human witnesses. Machines record the room. Witnesses record what the room was for.
 
 She has one question. She has known since the corridor that she would be permitted exactly one, not by the program, which permits anything and honors nothing, but by the grammar of the room itself. Some questions close whatever they touch. You get one.
 

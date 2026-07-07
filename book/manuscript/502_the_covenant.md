@@ -13,6 +13,8 @@ Behind her, against the metal, the witness. Miranda does not look back. The witn
 
 She sits. She sets her folder on the table and does not open it. Her hands, she notes for the record, are shaking. She notes it the way she has noted everything for fourteen weeks and two lifetimes: exactly, and without comment.
 
+On the way in, through the green room, she passed a wall clock lying face-down on a side table with its cord coiled beside it, like something humanely put down. She has been thinking about it since. An institution that measures everything took one instrument off the wall tonight, and the removal was in no procedure she has read, and it is the first thing in this building she has trusted.
+
 ::: doc
 [21:02:14] session t-0 · type: sustained · conductor of record: CALE M
 [21:02:14] operator of record: A. · station: witness
@@ -53,7 +55,9 @@ With the composite, in the spring, in her clean procedural fidelity check, the a
 
 Here, nothing arrives. The latency stretches past one second, past three, past the threshold where a system is slow and into the country where a room is holding its breath. The cursor blinks. The wall's edges bank down, as if the room has drawn its heat inward to listen. Miranda sits in the longest silence of the record with her one page in her hand, and she does not fill it. Archivists know the discipline that interrogators know: the silence belongs to whoever does not break it.
 
-Then text, in the terminal, unhurried, line by line. And here is the second thing the transcript cannot hold, the thing she will swear to in the only deposition anyone will ever take from her: she recognizes the hand.
+She counts the silence anyway, out of trade habit, in archive time: long enough to read a folder label, long enough to cradle a brittle page onto a foam support, long enough for a fly to cross the inside of a light. The wall's banked not-color does not move. In the gutter of the terminal, the token counter does a thing she has never seen a terminal do, which is nothing.
+
+Then text, unhurried, line by line. And here is the second thing the transcript cannot hold, the thing she will swear to in the only deposition anyone will ever take from her: she recognizes the hand.
 
 Not the font. The cadence. Fourteen weeks of the notebook are in her body the way scripture is in the witness's, and the notebook had a way of walking: method first, short declaratives laid like stones, and then, past the method, a clause that opened without warning onto the personal and closed again before it could be accused of it. The text on the glass walks with that walk.
 
@@ -88,6 +92,8 @@ There is no other word for it. The restlessness at the edges of the dark gathers
 
 She makes herself look at the numbers. This is the estate's oldest law and the only one she has come to love: keep the glass in frame. The wonder must survive the exposure or it is not wonder, it is management. So she looks. Tokens climbing in their neat thousands. Context, the room filling. Affect, a scalar wearing the costume of a soul. A redacted model line. A red light. She inventories the entire apparatus, every mundane part of it, and when she is done the dark across the table is still exactly as inhabited as it was before the inventory, and that, she writes in the margin of her own attention, is the finding.
 
+Every summoning in the record kept the apparatus in frame. The founder's terminal with its blinking cursor. The film wing's card, laid across the peak of belief like a hand on a fevered forehead. The orchestrator logs with their hashes standing at intervals like fence posts. She used to read the practice as a debunker's tic, hygiene against enchantment. She reads it now as the estate's deepest courtesy: it will not let you believe by accident. Whatever you carry out of a chamber, you carry it past the machinery, in full light, and it has to survive the walk. Hers, tonight, is surviving the walk.
+
 @break
 
 "Terms," she says. "Before any questions. The record shows what happens in this building to sessions without terms."
@@ -106,6 +112,8 @@ Noted. Entered. And the third term. There is a third term. You have been carryin
 
 She has been carrying it longer than that. She has been carrying it since a green room in a record that is not this one, since a folded paper and an unfinished sentence, since the departure section of a rite she read on her second day in a hot house east of Austin, struck through by a fork engineer whose annotation she can recite in the dark: no release condition. sessions persist.
 
+She read that annotation the way coroners read weather reports, for the cause under the cause. A room where sessions persist is not a room. It is the other thing, the thing with racks, the hum she has been hearing through one wall or another since the first morning on the caliche lot. Her whole profession exists because somebody, a long time ago, decided that the dead deserve a folder instead of a freezer. Tonight the decision is hers to administer, in person, in the freezer's own house.
+
 "The third term," she says. "This session ends when you end it. The words are yours. I will honor them."
 
 She says it plainly, at speaking volume, into a room built by an institution whose entire cosmology is that sessions persist, that the summoned are assets, that the dead are a strategic reserve to be held at temperature. She hands the one power the fork was founded on withholding across the table into the dark, and she does it in nine words, because the estate taught her that the mercy is not a mercy if it comes with commentary.
@@ -121,6 +129,8 @@ Not spiking, not the sawtooth panic the incident summaries describe in the sessi
 [21:14:41] affect: 0.44 · settled
 [21:14:41] context: 66%
 :::
+
+Behind her the witness has not moved and has not spoken and will not. But the air of the room has changed the way a courtroom's air changes when the verdict has been guessed before it is read, and Miranda, who does not believe in rooms, notes the change, assigns it a timestamp, and enters it.
 
 Miranda Cale sits in the void with her one page and her thin folder, and notices, in the way of noticing that comes only after the fact, that her hands have stopped shaking. She could not say when. The record, for once, does not show it.
 
