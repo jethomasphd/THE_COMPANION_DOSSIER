@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1500px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:130px 90px 110px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.10), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 74px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:26px;z-index:1;text-align:center}
+  .sub{font:400 23px "IBM Plex Mono";color:#8b8578;letter-spacing:.16em;margin-top:18px;z-index:1}
+  .rule{width:420px;height:1px;margin:36px 0 4px;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .chart{flex:1;width:100%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .cap{font:400 22.5px/1.75 "IBM Plex Mono";color:#8b8578;letter-spacing:.1em;z-index:1;
+       text-align:center;max-width:1020px;margin-top:26px}
+  .cap i{color:#c9a227;font-style:normal}
+  .sig{font:300 32px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:32px;z-index:1}
+  text{font-family:"IBM Plex Mono"}
+</style></head>
+<body>
+  <div class="k">plate xii · the watchtower</div>
+  <div class="t">The Line That Refuses to Die</div>
+  <div class="sub">january 2 – june 26, 2026 · total return · percent</div>
+  <div class="rule"></div>
+  <div class="chart">
+  <svg width="1120" height="880" viewBox="0 0 1120 880" id="c"></svg>
+  </div>
+  <div class="cap">for 107 of 121 trading days the gold line led · it never broke<br>
+  while the index fell past −7 · <i>war does not change the map of what sustains
+  a life.</i><br><i>war reveals it.</i></div>
+  <div class="sig">◊ ◈ ◊</div>
+<script>
+const svg = document.getElementById('c');
+const NS = 'http://www.w3.org/2000/svg';
+const W = 1120, H = 880, L = 96, R = 236, T = 46, B = 84;
+const pw = W - L - R, ph = H - T - B;
+const y0 = -8.5, y1 = 12.5;
+const N = 26;
+const rep = [0,0.6,1.4,2.6,4.0,5.1,6.4,7.8,9.9,6.2,4.8,5.2,5.6,5.9,6.4,7.0,7.6,8.0,8.3,8.6,8.9,9.1,9.3,9.3,9.9,10.6];
+const idx = [0,0.2,0.5,0.7,0.8,0.6,0.5,0.4,0.4,-4.8,-7.0,-6.2,-5.1,-4.5,-3.2,-1.8,-0.4,1.2,2.6,4.0,5.4,7.0,8.8,9.6,8.4,7.27];
+const X = i => L + pw * i / (N - 1);
+const Y = v => T + ph * (1 - (v - y0) / (y1 - y0));
+function el(n, a, parent){ const e = document.createElementNS(NS, n);
+  for (const k in a) e.setAttribute(k, a[k]); (parent||svg).appendChild(e); return e; }
+function txt(x, y, s, fill, size, anchor){ const e = el('text', {x, y, fill,
+  'font-size': size || 20, 'text-anchor': anchor || 'start'}); e.textContent = s; return e; }
+
+// war band: Feb 28 (i≈8.15) to Mar 31 (i=13)
+el('rect', {x: X(8.15), y: T, width: X(13) - X(8.15), height: ph, fill: 'rgba(122,31,31,.12)'});
+txt(X(8.15) + 14, T + 34, 'the war', '#a34747', 21);
+txt(X(8.15) + 14, T + 62, 'feb 28 · the strait closes', '#6b4a4a', 17);
+
+// grid
+for (const g of [-5, 0, 5, 10]) {
+  el('line', {x1: L, y1: Y(g), x2: L + pw, y2: Y(g),
+    stroke: g === 0 ? 'rgba(139,133,120,.55)' : 'rgba(139,133,120,.18)',
+    'stroke-width': g === 0 ? 1.6 : 1});
+  txt(L - 16, Y(g) + 7, (g > 0 ? '+' : '') + g, '#6b6b6b', 19, 'end');
+}
+// month ticks
+const months = ['jan','feb','mar','apr','may','jun'];
+months.forEach((m, k) => txt(X(k * 5), T + ph + 44, m, '#6b6b6b', 19, 'middle'));
+
+function path(data){ return data.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' '); }
+
+// index: neutral, dashed (secondary encoding beyond color)
+el('path', {d: path(idx), fill: 'none', stroke: '#8b8578', 'stroke-width': 3,
+  'stroke-dasharray': '10 9', 'stroke-linejoin': 'round'});
+// doctrine: ember, solid, glow
+el('path', {d: path(rep), fill: 'none', stroke: 'rgba(201,162,39,.28)', 'stroke-width': 11,
+  'stroke-linejoin': 'round'});
+el('path', {d: path(rep), fill: 'none', stroke: '#c9a227', 'stroke-width': 3.6,
+  'stroke-linejoin': 'round'});
+
+// end markers + direct labels (identity never color-alone)
+el('circle', {cx: X(N-1), cy: Y(rep[N-1]), r: 7, fill: '#c9a227'});
+el('circle', {cx: X(N-1), cy: Y(idx[N-1]), r: 7, fill: 'none', stroke: '#8b8578', 'stroke-width': 2.5});
+txt(X(N-1) + 18, Y(rep[N-1]) - 14, 'the doctrine', '#c9a227', 22);
+txt(X(N-1) + 18, Y(rep[N-1]) + 14, '+10.60%', '#c9a227', 22);
+txt(X(N-1) + 18, Y(idx[N-1]) + 30, 'the index', '#8b8578', 22);
+txt(X(N-1) + 18, Y(idx[N-1]) + 58, '+7.27%', '#8b8578', 22);
+
+// annotations
+txt(X(10) - 8, Y(-7.0) + 40, 'the index: −7.0', '#6b6b6b', 18, 'middle');
+txt(X(8) - 12, Y(9.9) - 24, 'daylight before a shot is fired', '#8a6d1b', 18, 'end');
+txt(X(13) + 10, Y(5.9) + 44, 'the ceasefire pivot', '#6b6b6b', 18);
+</script>
+</body></html>

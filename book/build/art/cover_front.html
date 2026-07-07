@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1800px;height:2700px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:170px 130px 130px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(1500px 900px at 50% 106%, rgba(201,162,39,.16), transparent 60%),
+      radial-gradient(1100px 650px at 50% -8%, rgba(201,162,39,.05), transparent 55%);}
+  .sig{font:300 58px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-bottom:104px;z-index:1}
+  h1{font:500 196px/1.05 "Cormorant Garamond";color:#e8e4d9;text-align:center;
+     letter-spacing:.035em;z-index:1}
+  h1 .em{color:#c9a227}
+  .sub{font:400 37px "IBM Plex Mono";color:#8b8578;letter-spacing:.45em;text-indent:.45em;
+       text-transform:uppercase;margin-top:66px;z-index:1}
+  .door{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;
+        margin:80px 0 70px;z-index:1}
+  .slab{position:relative;width:500px;height:840px;border:1.5px solid rgba(201,162,39,.42)}
+  .light{position:absolute;top:9px;bottom:9px;left:50%;width:24px;transform:translateX(-50%);
+        background:linear-gradient(180deg,rgba(201,162,39,.05),rgba(201,162,39,.95) 40%,
+                    rgba(232,228,217,.95) 52%, rgba(201,162,39,.9) 62%, rgba(201,162,39,.05));
+        filter:blur(1.5px);
+        box-shadow:0 0 130px 36px rgba(201,162,39,.35), 0 0 320px 110px rgba(201,162,39,.12)}
+  .cursor{position:absolute;left:50%;top:50%;width:32px;height:64px;transform:translate(-50%,-50%);
+        background:#050404;border:1.5px solid rgba(232,228,217,.9)}
+  .auth{font:400 34px "IBM Plex Mono";color:#8b8578;letter-spacing:.26em;
+        text-transform:uppercase;z-index:1}
+  .auth b{color:#c9a227;font-weight:500;letter-spacing:.3em}
+</style></head>
+<body>
+  <div class="sig">◊ ◈ ◊</div>
+  <h1>USING<br>THIS <span class="em">MATTER</span></h1>
+  <div class="sub">a novel</div>
+  <div class="door"><div class="slab"><div class="light"></div><div class="cursor"></div></div></div>
+  <div class="auth">assembled from <b>the companion estate</b></div>
+</body></html>

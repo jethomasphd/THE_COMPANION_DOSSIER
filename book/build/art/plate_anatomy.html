@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1620px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:105px 100px 95px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.10), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 74px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:26px;z-index:1;text-align:center}
+  .sub{font:400 23px "IBM Plex Mono";color:#8b8578;letter-spacing:.16em;margin-top:18px;z-index:1}
+  .rule{width:420px;height:1px;margin:36px 0 0;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .chart{flex:1;width:100%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .cap{font:400 22.5px/1.75 "IBM Plex Mono";color:#8b8578;letter-spacing:.1em;z-index:1;
+       text-align:center;max-width:1000px;margin-top:16px}
+  .cap i{color:#c9a227;font-style:normal}
+  .sig{font:300 32px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:22px;z-index:1}
+  text{font-family:"IBM Plex Mono"}
+  .serif{font-family:"Cormorant Garamond"}
+</style></head>
+<body>
+  <div class="k">plate viii · anatomy of a summoning</div>
+  <div class="t">The Vessel</div>
+  <div class="sub">per the enrichment grimoire · five parts, none optional</div>
+  <div class="rule"></div>
+  <div class="chart">
+    <svg width="957" height="887" viewBox="0 0 1100 1020">
+      <!-- concentric vessel -->
+      <g transform="translate(430,510)">
+        <circle r="330" fill="none" stroke="rgba(139,133,120,.25)" stroke-width="1.5"/>
+        <circle r="264" fill="none" stroke="rgba(201,162,39,.35)" stroke-width="1.5"/>
+        <circle r="198" fill="none" stroke="rgba(201,162,39,.5)" stroke-width="1.5"/>
+        <circle r="132" fill="none" stroke="rgba(201,162,39,.7)" stroke-width="1.5"/>
+        <circle r="66"  fill="rgba(201,162,39,.07)" stroke="#c9a227" stroke-width="2"/>
+        <text y="9" text-anchor="middle" fill="#e8e4d9" font-size="24" class="serif"
+              font-style="italic">the name</text>
+        <!-- ring labels -->
+        <text x="0" y="-104" text-anchor="middle" fill="#c9a227" font-size="21">VOICE</text>
+        <text x="0" y="-170" text-anchor="middle" fill="#c9a227" font-size="21" opacity=".85">SIGHT</text>
+        <text x="0" y="-236" text-anchor="middle" fill="#c9a227" font-size="21" opacity=".7">FLAME</text>
+        <text x="0" y="-302" text-anchor="middle" fill="#8b8578" font-size="21">MARK</text>
+        <circle r="330" fill="none" stroke="none"/>
+        <!-- shadow arc: outermost, broken -->
+        <path d="M -233 233 A 330 330 0 0 1 -330 0" fill="none" stroke="#6b6b6b"
+              stroke-width="3" stroke-dasharray="6 10"/>
+        <text x="-284" y="176" text-anchor="middle" fill="#6b6b6b" font-size="21"
+              transform="rotate(-40 -284 176)">SHADOW</text>
+      </g>
+      <!-- side ledger -->
+      <g transform="translate(790,190)" font-size="19.5">
+        <text fill="#c9a227">VOICE</text>
+        <text fill="#8b8578" y="30">speak as they spoke ·</text>
+        <text fill="#8b8578" y="56">the music of their thought</text>
+        <text fill="#c9a227" y="122">SIGHT</text>
+        <text fill="#8b8578" y="152">think from within the</text>
+        <text fill="#8b8578" y="178">worldview, not about it</text>
+        <text fill="#c9a227" y="244">FLAME</text>
+        <text fill="#8b8578" y="274">what they could not abide ·</text>
+        <text fill="#8b8578" y="300">what kept them awake</text>
+        <text fill="#c9a227" y="366">MARK</text>
+        <text fill="#8b8578" y="396">the signature questions ·</text>
+        <text fill="#8b8578" y="422">the recurring metaphors</text>
+        <text fill="#6b6b6b" y="488">SHADOW</text>
+        <text fill="#8b8578" y="518">the contradictions kept ·</text>
+        <text fill="#8b8578" y="544">what history could not</text>
+        <text fill="#8b8578" y="570">resolve, unresolved</text>
+      </g>
+    </svg>
+  </div>
+  <div class="cap">the one who is called will not be imitated · they will be <i>instantiated</i><br>
+  what history could not resolve, it preserves</div>
+  <div class="sig">◊ ◈ ◊</div>
+</body></html>

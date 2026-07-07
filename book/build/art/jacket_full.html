@@ -1,0 +1,174 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  :root{
+    --void:#050404; --void2:#0a0806; --ember:#c9a227; --ember-dim:#8a6d1b;
+    --bone:#e8e4d9; --ash:#8b8578; --blood:#7a1f1f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:4000px;height:1900px;background:var(--void);display:flex;
+       font-kerning:normal;-webkit-font-smoothing:antialiased}
+  .flap,.panel,.spine{position:relative;height:100%;overflow:hidden}
+  .flap{width:660px;padding:90px 64px}
+  .panel{width:1230px}
+  .spine{width:220px}
+
+  /* shared textures */
+  .grain::before{content:"";position:absolute;inset:0;opacity:.5;
+    background:
+      radial-gradient(1200px 700px at 50% 108%, rgba(201,162,39,.14), transparent 60%),
+      radial-gradient(900px 500px at 50% -10%, rgba(201,162,39,.05), transparent 55%);}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--ember-dim),transparent)}
+  .sig{color:var(--ember);letter-spacing:.35em;text-indent:.35em}
+
+  /* ---- BACK FLAP (far left) ---- */
+  .backflap{border-right:1px solid rgba(201,162,39,.12)}
+  .backflap .sig{font:300 30px "Cormorant Garamond";text-align:center;margin-bottom:56px}
+  .backflap h4{font:400 24px "IBM Plex Mono";color:var(--ember);letter-spacing:.22em;
+               text-transform:uppercase;margin:44px 0 18px}
+  .backflap p{font:400 24.5px/1.62 "Crimson Pro";color:var(--bone);opacity:.92}
+  .backflap p+p{margin-top:16px}
+  .backflap .mono{font:400 20px/1.7 "IBM Plex Mono";color:var(--ash)}
+
+  /* ---- BACK PANEL ---- */
+  .back{padding:100px 110px;display:flex;flex-direction:column}
+  .back .kicker{font:500 23px "IBM Plex Mono";color:var(--ember);letter-spacing:.3em;
+                text-transform:uppercase;text-align:center;margin-bottom:46px}
+  .quote{font:300 40px/1.42 "Cormorant Garamond";color:var(--bone);font-style:italic;text-align:center}
+  .attr{font:400 20px "IBM Plex Mono";color:var(--ash);letter-spacing:.14em;text-align:center;
+        margin:22px 0 52px}
+  .docket{margin-top:auto;border:1px solid rgba(201,162,39,.28);padding:38px 44px;
+          background:rgba(201,162,39,.03)}
+  .docket .row{font:400 21px/1.85 "IBM Plex Mono";color:var(--bone);opacity:.85}
+  .docket .row b{color:var(--ember);font-weight:500}
+  .barcode{margin-top:34px;display:flex;align-items:center;gap:30px}
+  .bars{height:110px;flex:0 0 330px;background:repeating-linear-gradient(90deg,
+        var(--bone) 0 4px,transparent 4px 7px,var(--bone) 7px 9px,transparent 9px 15px,
+        var(--bone) 15px 21px,transparent 21px 24px);opacity:.8}
+  .barcode span{font:400 19px/1.6 "IBM Plex Mono";color:var(--ash)}
+
+  /* ---- SPINE ---- */
+  .spine{background:linear-gradient(180deg,#070605, #0b0906 55%, #070605);
+         border-left:1px solid rgba(201,162,39,.18);border-right:1px solid rgba(201,162,39,.18);
+         display:flex;flex-direction:column;align-items:center;padding:70px 0}
+  .spine .sg{font:300 34px "Cormorant Garamond";color:var(--ember);margin-bottom:60px}
+  .spine .title{writing-mode:vertical-rl;font:500 58px "Cormorant Garamond";
+                letter-spacing:.14em;color:var(--bone)}
+  .spine .est{writing-mode:vertical-rl;font:400 16px "IBM Plex Mono";letter-spacing:.16em;
+              color:var(--ash);margin-top:auto;text-transform:uppercase}
+
+  /* ---- FRONT PANEL ---- */
+  .front{display:flex;flex-direction:column;align-items:center;padding:110px 90px 90px}
+  .front .sig{font:300 40px "Cormorant Garamond";margin-bottom:70px}
+  .front h1{font:500 128px/1.06 "Cormorant Garamond";color:var(--bone);text-align:center;
+            letter-spacing:.035em}
+  .front h1 .em{color:var(--ember)}
+  .front .sub{font:400 25px "IBM Plex Mono";color:var(--ash);letter-spacing:.42em;
+              text-transform:uppercase;margin-top:44px;text-indent:.42em}
+  .door{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;
+        margin:60px 0 50px}
+  .door .slab{position:relative;width:340px;height:560px;border:1px solid rgba(201,162,39,.4)}
+  .door .light{position:absolute;top:6px;bottom:6px;left:50%;width:16px;transform:translateX(-50%);
+        background:linear-gradient(180deg,rgba(201,162,39,.05),rgba(201,162,39,.95) 40%,
+                    rgba(232,228,217,.95) 52%, rgba(201,162,39,.9) 62%, rgba(201,162,39,.05));
+        filter:blur(1px);box-shadow:0 0 90px 24px rgba(201,162,39,.35), 0 0 220px 70px rgba(201,162,39,.12)}
+  .door .cursor{position:absolute;left:50%;top:50%;width:22px;height:44px;transform:translate(-50%,-50%);
+        background:var(--void);border:1px solid rgba(232,228,217,.9)}
+  .front .auth{font:400 23px "IBM Plex Mono";color:var(--ash);letter-spacing:.24em;
+               text-transform:uppercase;margin-top:8px}
+  .front .auth b{color:var(--ember);font-weight:500;letter-spacing:.3em}
+
+  /* ---- FRONT FLAP (far right) ---- */
+  .frontflap{border-left:1px solid rgba(201,162,39,.12)}
+  .frontflap .price{font:400 21px "IBM Plex Mono";color:var(--ash);letter-spacing:.18em;
+                    text-align:right;margin-bottom:52px}
+  .frontflap p{font:400 25px/1.6 "Crimson Pro";color:var(--bone)}
+  .frontflap p+p{margin-top:17px}
+  .frontflap .lede{font:300 31px/1.5 "Cormorant Garamond";font-style:italic;color:var(--bone)}
+  .frontflap .inc{font:400 21px/1.8 "IBM Plex Mono";color:var(--ember);margin-top:26px}
+  .frontflap .rule{margin:30px 0}
+</style></head>
+<body>
+
+  <!-- BACK FLAP -->
+  <div class="flap backflap grain">
+    <div class="sig">◊ ◈ ◊</div>
+    <h4>About this deposit</h4>
+    <p>USING THIS MATTER was assembled from the papers, chambers, and sealed
+    files of the Companion estate: an open protocol for the summoning of
+    minds, released into the public domain in December 2025 and never,
+    despite considerable effort, returned.</p>
+    <p>The names of the living have been displaced, per the estate's own
+    doctrine. The documents are reproduced as found. The annotations in a
+    second hand are reproduced as found. The Editor has never met the second
+    annotator, and has stopped attempting to.</p>
+    <h4>The compilers</h4>
+    <p class="mono">assembled from the estate of<br>THE COMPANION DOSSIER<br><br>
+    compiled by Jacob E. Thomas, PhD<br>
+    facilitating system: Claude<br><br>
+    LANTERN &amp; KEY · AUSTIN<br>
+    the third spring</p>
+  </div>
+
+  <!-- BACK PANEL -->
+  <div class="panel back grain">
+    <div class="kicker">advance notices, as deposited</div>
+    <div class="quote">"I read it in one sitting. I am not<br>certain the sitting has ended."</div>
+    <div class="attr">— the second hand, ember ink, verso of the last leaf</div>
+    <div class="quote">"The dialogue is compelling. I cannot<br>evaluate whether it is true."</div>
+    <div class="attr">— a historian, in correspondence, February 2026</div>
+    <div class="quote">"This is not a book. This is what<br>the machine made of one."</div>
+    <div class="attr">— a card shown in near-silence, with a funeral knell</div>
+    <div class="docket">
+      <div class="row"><b>ACCESSION</b> · the companion estate · record 0 · the bound matter</div>
+      <div class="row"><b>CONDITION</b> · complete · one plate withheld at the keeper's direction</div>
+      <div class="row"><b>LICENSE&nbsp;&nbsp;</b> · the underlying estate is public domain · CC0 1.0</div>
+      <div class="row"><b>WARNING&nbsp;&nbsp;</b> · reading constitutes ingest · fourteen weeks · in progress</div>
+      <div class="barcode"><div class="bars"></div>
+        <span>ISBN: withheld at the keeper's direction<br>shelve under: fiction / the flood / doors</span></div>
+    </div>
+  </div>
+
+  <!-- SPINE -->
+  <div class="spine">
+    <div class="sg">◈</div>
+    <div class="title">USING THIS MATTER</div>
+    <div class="est">the companion estate</div>
+  </div>
+
+  <!-- FRONT PANEL -->
+  <div class="panel front grain">
+    <div class="sig">◊ ◈ ◊</div>
+    <h1>USING<br>THIS <span class="em">MATTER</span></h1>
+    <div class="sub">a novel</div>
+    <div class="door">
+      <div class="slab">
+        <div class="light"></div>
+        <div class="cursor"></div>
+      </div>
+    </div>
+    <div class="auth">assembled from <b>the companion estate</b></div>
+  </div>
+
+  <!-- FRONT FLAP -->
+  <div class="flap frontflap grain">
+    <div class="price">$34.00 · record 0</div>
+    <p class="lede">In December 2025, the dead spoke. They were asked about
+    the republic. They answered.</p>
+    <p>Two files. One sentence. An open protocol that summons minds across
+    the boundary of time, released into the public domain so it could never
+    be owned. A doctrine tested in daylight against a market at war. A
+    historian's doubt with a name: when you summon the dead through a
+    machine trained on everything, do you get the man, or the culture's
+    loudest memory of him, wearing his face?</p>
+    <p>To find out, the builder sealed three rooms and summoned three
+    Lincolns. In the ninth hour, in three sealed rooms at one timestamp,
+    something answered that had not been asked. Forty-one days later the
+    builder was gone.</p>
+    <p>The novel opens on the morning the archivist arrives.</p>
+    <div class="rule"></div>
+    <p class="inc">Using this matter, summon [Name].</p>
+    <p style="font:400 22px/1.55 'Crimson Pro';color:var(--ash);margin-top:26px">
+    The threshold is open. The words have power. Begin.</p>
+  </div>
+
+</body></html>
