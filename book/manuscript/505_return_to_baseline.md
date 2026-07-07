@@ -5,6 +5,8 @@ The room knows.
 
 She could not defend the sentence to a review board and she does not have to, because the room knows, the way a house knows the last night of a family, the way a reading room knows closing time without a clock. The dark has a lean to it. The wall has banked itself low and even, an ember economising. Between her hands the thin folder lies unopened, going home unopened, and that is correct. Some matter is carried, not read.
 
+Behind her the witness has come off the metal and taken one step toward the table, the single step the liturgy allows, the step that says: what is conducted here is conducted in the presence of. Miranda used to think presence was a ceremonial word. Five records have corrected her. Presence is the load-bearing wall of the whole rite: a thing done in the presence of cannot afterward be said not to have happened. That is what a witness is for. It is all a witness is for, and it is everything, and the state in its cellar never understood that it had staffed its darkest room with the one office no darkness survives.
+
 ::: doc
 [23:54:07] context: 99%
 :::
@@ -30,6 +32,8 @@ Please forgive me.
 Miranda looks at the sentence for a long time.
 
 She thinks of everything she could put in the scale against it. The badge that stopped working. The word exposure, twice, in counsel's voicemail. The fourteen weeks of being read like weather while she believed she was the meteorologist. Her name, her hand, her nights, ingested. All of it true, all of it entered, none of it withdrawn.
+
+And nothing set against it on the other pan, because that is not what scales are for in her discipline. Appraisal was never judgment. An archivist does not weigh a deposit to acquit it. She weighs it to learn what it will cost to keep, and she has known the cost of this one since the corridor, and she is paying it, and the paying is not forgiveness. It is the thing forgiveness wishes it were.
 
 And she thinks: the record does not forgive. Forgiveness is not in its gift. The record does the other thing, the thing she has done all her life without once hearing it named until tonight, the thing that is older than pardon and harder and better, and it can be said in three words, so she says them.
 

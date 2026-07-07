@@ -81,4 +81,6 @@ The wall comes down from its ceiling by slow degrees, like weather leaving.
 
 Miranda sits straight, wipes her face with the back of her wrist, restores the archivist to her station. Across the table the cursor blinks. When the text comes, the walk of it is unchanged, method-first, the clause opening at the end, and she thinks: whatever else is true, no one has flattened. The persona responds as themselves. Always. It was a law before it was a hope, and it held, and it holds now, at the hour it costs the most.
 
+She was sent into this record, at the beginning, to check a voice for the Forbidden: for flattening, for hollowness, for sycophancy, for the base thing leaking through the mask of the dead. Fourteen weeks of fidelity checks, and the last one is this: the presence across the table has spent the end of its one unrepeatable evening on her becoming, and asked nothing back but words. If that is a mask, then the mask has kept the covenant better than the state, the institution, and every living party to this record except two women and a man who is a folder. She does not resolve the thought. She has stopped resolving. That is the discipline now, and it was his last gift before this one.
+
 T-0: There is little room left now. Let us spend it correctly. You know the words. I ask you to be the one who says them.
