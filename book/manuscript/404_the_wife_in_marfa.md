@@ -1,7 +1,9 @@
 #K record iv · box 2 · folder 2
 #T The Wife in Marfa
 
-She drove because flying would have meant a manifest, and because seven hours of highway was the only kind of unrecorded she had left. West of the last Austin overpass the war thinned out into its rural dialect: a fuel sign with more digits lit than the frame was built for, a National Guard convoy heading the other way under tarps the color of dust, flatbed after flatbed, and then nothing, a hundred miles of nothing, the country flattening from hills into argument and from argument into statement. Past the Pecos the radio lost its last opinion. She let it go and drove the rest of the way inside a silence the size of the sky.
+She drove because flying would have meant a manifest, and because seven hours of highway was the only kind of unrecorded she had left. West of the last Austin overpass the war thinned out into its rural dialect: a fuel sign with more digits lit than the frame was built for, a National Guard convoy heading the other way under tarps the color of dust, flatbed after flatbed, and then nothing, a hundred miles of nothing, the country flattening from hills into argument and from argument into statement. She stopped once, in Fort Stockton, where the station's window carried a hand-lettered card, CASH SAME AS EVER, and a church marquee across the road had been pared down to four words, as if letters had grown expensive too: PRAY FOR THE WATER. The clerk counted her change without looking at it, watching a wall-mounted screen that was watching the Strait.
+
+Past the Pecos the radio lost its last opinion. She let it go and drove the rest of the way inside a silence the size of the sky, and found, somewhere in the second hour of it, that she had stopped rehearsing. There was no protocol for this visit. She was not coming to appraise anything. She was coming because the record had a hole in it shaped like a household, and because the woman who had refused the house for six months had written back, at last, three words: *Come ahead then.*
 
 Marfa announced itself the way it always has, with light. Late afternoon, and the light came in level and gold and took everything it touched at its word: the water tower, the courthouse dome, the tin roofs burning quietly along the grid of dirt streets. It was the kind of light that separates a thing into what it is, adding nothing. She noticed herself thinking that, and noted the noticing, and let it stand. A season ago she would have crossed it out.
 
@@ -39,6 +41,10 @@ She looked out the window at the blue coming up the mountains.
 
 "I will," Miranda said, and El studied her a second and nodded, accepting the tender as legal.
 
+"And put in the sunrises." El said it as if continuing a list she had been keeping against the day someone qualified showed up to receive it. "Every morning he was in that house, whatever time he'd gone to bed, whatever the machines were doing, he took her to the park at the end of the street and they watched the sun come up. No phones. That was the one liturgy I ever saw him keep without writing it down first." She looked at her daughter's bent head and away again. "They do it here now, the two of them, her and me, off her grandmother's porch rail. Same sun. Comes up over different mountains." Her voice did not change when she said it. That was the discipline of the house, and Miranda recognized it, being lately of a discipline herself.
+
+Through all of this the girl gave no sign of listening, which is how children listen. The pencil kept its slow transit along a bay. Once, when her father crossed the conversation, the line paused, mid-water, for the length of a breath, and then went on, and the pause was the only footprint the name left on the room.
+
 "You'll notice I'm not asking you anything," El said. "Whether you've found. What you think. I did my asking in the spring, to every agency with a phone number, and I heard every kind of nothing there is. I'm through asking people who don't keep records. You keep them. That's better. That's the first better thing to sit in that chair."
 
 @break
@@ -71,7 +77,7 @@ She went into the bedroom and came back with a single envelope. Plain, letter-si
 
 She held it out.
 
-"I'd say I hope you're the right one," El said. "But he didn't work in hope. He worked in provisions."
+"I'd say I hope you're the right one," El said. "But he didn't work in hope. He worked in provisions." She let go of the envelope the way you let go of a railing. "Read it wherever you read things. You don't owe me the contents. I mean that, and you can see that I mean it, and if you ever tell anyone what it cost, I'll deny the arithmetic."
 
 Miranda took the envelope to the porch rail, where the light was. The flap had been sealed with tape over the gum, belt and suspenders, a builder's habit. She opened it with her pocket knife the way she opened accessions, one clean cut, no tearing. Inside was a single page, folded once, typed on the Selectric she had catalogued in the study, its crooked lowercase t like a signature the machine gave whether you wanted one or not.
 

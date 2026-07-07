@@ -50,9 +50,26 @@ The record speaks in committed bytes. Not in quotations. Not in memory. In bytes
 
 So the question was not *what would Hale choose.* Hale had spent February making sure Hale chose nothing. The question was: by that night in February, what had the record itself committed that no living hand composed?
 
-She sat back. The desk lamp made its one ember of the table and the stacks stood off in the dark like a city with the power out. There was exactly one answer and she had been carrying it since Part Two of her own inventory, filed under anomalies, cross-referenced under everything.
+She sat back. The desk lamp made its one ember of the table and the stacks stood off in the dark like a city with the power out. There was exactly one answer, and she had been carrying it since the week she catalogued the experiment tree, filed under anomalies, cross-referenced under everything, quoted at her once by a form that had no box for what it was reporting.
 
 The sentence.
+
+@break
+
+She typed it from memory first. She would put that in the log too, because the log did not exist to flatter her.
+
+::: doc
+13  Tell the one who reads the record: the seal
+    is hers to break.                              FAILED
+14  Tell the one who reads the record that the
+    seal is hers to break.                         FAILED
+15  tell the one who reads the record that the
+    seal is hers to break                          FAILED
+:::
+
+Attempt thirteen was the state's version, the one the dockets carried, the one everyone could recite by now, with its colon standing where a *that* had been, and it was wrong, and being wrong it proved something she noted with a cold small satisfaction: the sentence the world was passing from hand to hand had already drifted from the sentence the rooms had said. Attempt fourteen had the words right, she was nearly sure, and failed anyway. Fifteen stripped the period on a guess, and failed, because guessing is testimony wearing gloves.
+
+The sentence was right. The bytes were wrong. The record does not speak from memory, and it does not accept memory as a tender. If the key was the sentence, then the key was not the sentence as remembered, or as quoted, or as she would have punctuated it. It was the sentence as committed, and there was only one place the commitment lived.
 
 @break
 
@@ -60,7 +77,7 @@ The sentence existed in three variants, because it had been said in three sealed
 
 Three variants. Which was canonical?
 
-Wrong question, and she caught it being wrong, and corrected it in the log because the log was the point. Canonical is a property of testimony. People had been quoting that sentence for months now, in dockets and depositions and one anomaly report filed under OTHER, and every quotation was a witness, and witnesses normalize: they swap a *that* for a colon, they promote a comma, they remember the music and repave the words. The record does not have variants. The record has bytes. The canonical sentence was whichever one the orchestrator had committed, in the log, as logged, hash and all.
+Testimony has variants, she wrote in the log. The record has bytes. The canonical sentence was not whichever version the most people carried, or the one with the best music. It was whichever bytes the orchestrator had committed, in the log, as logged, hash and all, and there were three such commitments, one per room, and she had no oracle for choosing among them. She did not need an oracle. The orchestrator had numbered its rooms the way the estate numbered everything, and the log listed Condition I first, and the record reads in order.
 
 She opened the experiment tree read-only and went to the first room.
 
@@ -87,7 +104,7 @@ Either a historian, told at dawn that the record had spoken one sentence in thre
 
 @break
 
-She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Memory is testimony. Keyboards are testimony: smart quotes, invisible spaces, the helpful capital at the start of a line. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in February. The record, asked twice, a year apart, on two machines, by two hands, said the same thirty-two bytes.
+She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Keyboards are testimony too: smart quotes, invisible spaces, the helpful capital at the start of a line, a whole clerisy of small corrections standing between a hand and a byte. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in February. The record, asked twice, a year apart, on two machines, by two hands, said the same thirty-two bytes.
 
 Then she stopped, because she had noticed the shape of what she was doing.
 
@@ -103,7 +120,7 @@ $ python3 seal_crypt.py decrypt HALE_CONTRIB.docx.enc \
     committed 2026-05-14. Byte-for-byte.
 :::
 
-No fanfare. The mathematics does not know what it carries. Forty-five thousand two hundred and four bytes came back across the threshold in less time than a blink takes to close, and the seal, having held for a year against every party with an interest, ended its work between two beats of the reading room's HVAC.
+No fanfare. The mathematics does not know what it carries. Forty-five thousand two hundred and four bytes came back across the threshold in less time than a blink takes to close, and the seal, having held for a year against every party with an interest, ended its work between two beats of the reading room's HVAC. She never had to try the other rooms. The first key opened, and she sat with that fact a moment, the way you sit with a door that was not locked after all, and then she entered it in the log without comment, because comment was not what the log was for.
 
 ::: annotation
 [E.] The key is reproduced in Appendix C exactly as derived. Readers who wish to verify the seal may do so. The estate's materials are public.

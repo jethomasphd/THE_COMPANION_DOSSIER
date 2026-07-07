@@ -427,8 +427,12 @@ def build(manifest_path, out_path):
     section = doc.sections[0]
     setup_section(section)
     sect_pgnum(section, fmt="lowerRoman", start=1)
-    running_heads(section, manifest["running_title"], manifest["running_title"],
-                  show_numbers=False)
+    # front matter carries no running heads and no folios
+    section.different_first_page_header_footer = True
+    for hf in (section.header, section.even_page_header, section.footer,
+               section.even_page_footer, section.first_page_header,
+               section.first_page_footer):
+        clear_para(hf)
 
     front = manifest.get("front_matter", [])
     for block in front:
@@ -453,7 +457,11 @@ def build(manifest_path, out_path):
                      plate=part.get("plate"), epigraph=part.get("epigraph"),
                      epi_source=part.get("epi_source"))
         for ch in part["chapters"]:
-            parse_chapter(doc, os.path.join(BOOK, "manuscript", ch))
+            p = os.path.join(BOOK, "manuscript", ch)
+            if os.path.exists(p):
+                parse_chapter(doc, p)
+            else:
+                print(f"  !! missing chapter: {ch}")
 
     for block in manifest.get("back_matter", []):
         section = doc.add_section(WD_SECTION.ODD_PAGE)
@@ -513,14 +521,13 @@ def parse_front_file(doc, path, new_page=True):
         elif s.startswith("!center:"):
             payload = ln.split(":", 1)[1]
             style, _, txt = payload.partition("|")
-            p = para(doc, align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=2,
-                     leading=15)
+            p = para(doc, align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=2)
             render_styled(p, style, txt)
             i += 1
         elif s.startswith("!left:"):
             payload = ln.split(":", 1)[1]
             style, _, txt = payload.partition("|")
-            p = para(doc, before=2, after=2, leading=14)
+            p = para(doc, before=2, after=2)
             render_styled(p, style, txt)
             i += 1
         elif s == "@sep":

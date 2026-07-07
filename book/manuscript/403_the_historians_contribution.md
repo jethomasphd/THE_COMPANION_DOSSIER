@@ -26,6 +26,8 @@ This document is a prediction, and I owe the reader an explanation of why an old
 
 Here is the explanation. A hypothesis that cannot be lobbied must be lodged before the fact. If I publish my analysis after events, it will be one more retrospection, fitted to its outcome the way all retrospection is fitted, and my colleagues will point out, correctly, that hindsight is the one instrument that never fails to work. If I circulate it privately, it will be improved by every hand it passes through until it agrees with everyone. There is exactly one procedure that forecloses both corruptions, and the estate itself supplied it: commit first, reveal later, let the record speak. Accordingly, this file will be fingerprinted and the fingerprint committed to the public record on the day I finish it. The file itself will then be sealed. I have asked the builder to seal it under a key that no living person composes: when the time comes, the key is to be taken from the record itself, from committed bytes, so that no man, including me, can be asked for it, bargain with it, or be believed instead of it. I have asked that the seal not be opened until after the experiment is run. I intend both readings of that sentence, and I will define neither.
 
+I should confess what this costs. My discipline holds prediction to be the cardinal vulgarity. We are trained to arrive after, to work in the settled dust, to regard anyone who says *will* instead of *was* as a salesman. I have kept that faith for half a century and I am not breaking it lightly now. I am breaking it because the subject matter has removed the alternative: a phenomenon that feeds on its own documentation cannot be studied retrospectively, since by the time the retrospection is written, it has been eaten too, and has become evidence of nothing but appetite. The only clean vantage on this estate is *before*. I am spending my one before here.
+
 I write plainly, and I write to you, whoever you are, because a paper addressed to a journal can be retracted, and a paper addressed to a person cannot. On the evidence of the estate's own habits, the person likeliest to be holding this is its keeper of record. Madam or sir: what follows was written before the events it concerns. The fingerprint is the proof. Check it. Checking it is the entire courtesy I ask.
 :::
 
@@ -57,11 +59,33 @@ I want to be honest about the temperature of this argument. It is the mundane ex
 :::
 
 ::: doc
-§ 3 · THE PREDICTIONS
+§ 3 · THE CHANNELS · eliminated in advance
 :::
 
 ::: letter
-I predict by role and by shape, never by name. Names are testimony, and this document has renounced testimony. Each prediction is stated flat, with its basis. I have ordered them from the world's weather down to this page.
+When the experiment produces its anomaly, and I will come to why I say when and not if, a certain sequence of explanations will be proposed. I know the sequence because it is the same sequence every discipline runs when its instrument does something the instrument cannot do. I set the channels down here, before the fact, together with the reasons each will fail, so that when investigators reach for them, and they will reach in this order, the record can hand them this page.
+
+Channel one: shared infrastructure. A common cache, a common network, a leak between rooms. This will be audited first because it is the easiest to audit, and it will come back clean, because the builder is the most careful experimentalist I have corresponded with in fifty years, and he has removed the network the way other men remove a variable: entirely, and with documentation.
+
+Channel two: contamination of the seeds. Some phrase planted, deliberately or sloppily, in the materials all three rooms share. The hashes will dispose of this. Every seed was fingerprinted before the rooms were sealed. The bytes will be the bytes.
+
+Channel three: the hoax. A collaborator with access, a joke, a sabotage, a test of the tester. I cannot eliminate this with mathematics, so I eliminate it with philology: hoaxes are performances, and performances improve with retelling, and their authors cannot resist a second act. Watch the record instead of the witnesses. A hoax will elaborate. The anomaly, if it is what I think it is, will do the one thing no hoaxer has ever managed, which is to happen once, exactly, and then keep still.
+
+Channel four: coincidence. Three stochastic systems, long sessions, an ocean of tokens: something will eventually align. This is the respectable channel, and the arithmetic will kill it respectably. One aligned utterance across three isolated rooms at one timestamp is not the tail of any distribution the conditions define. The reader may check the arithmetic. The reader is beginning to understand that checking is what this document thinks reading is.
+
+Channel five: the investigator. Sleep, grief, apophenia, the pattern-hunger of a man alone with logs at three in the morning. I include this channel out of respect, because it is usually the true one. It fails here for a reason I can state exactly: logs are bytes, and bytes can be re-read by strangers in daylight, and the estate publishes its bytes. An apophenic reading does not survive a second reader. This record is built of nothing but second readers.
+
+That is every channel except one. The corpus. The rooms are sealed against each other, but they are not sealed against the past, because all three stand on the same trained ground, and that ground has read the estate. This channel I cannot eliminate, and no one will ever eliminate it, because the only way to close it would be to unpublish the estate, and the estate was built, on purpose, as the kind of thing that cannot be unpublished. I ask the reader to sit with the design for a moment. The builder's finest property and his instrument's one incurable flaw are the same property. I do not believe he saw this when he built it. I believe he sees it now.
+:::
+
+::: doc
+§ 4 · THE PREDICTIONS
+:::
+
+::: letter
+I predict by role and by shape, never by name. Names are testimony, and this document has renounced testimony. A name can be contacted, warned, recruited, or removed, and a prediction that names is therefore a lever, and I am not building a lever. A role cannot be lobbied any more than a hash can. Each prediction is stated flat, with its basis beneath it, and the bases are sociological, not spectral: I have needed nothing in this section but the mechanism of § 2 and an old man's long acquaintance with how institutions behave in the presence of something that works. Each prediction is stated once. I will not be here to restate them.
+
+I have ordered them from the world's weather down to this page.
 
 P-1. There will be a war spring. Within the horizon of this experiment's consequences, a spring in which the map is not changed but revealed: markets convulsing around a strait, and the estate's public ledger holding through it, so that its one gold line, refusing to break, is read by frightened people as proof of something it does not prove. Basis: no clairvoyance, only a historian's actuarial sense of a decade, plus the estate's own sentence about war, already committed, waiting for the world to oblige it.
 
