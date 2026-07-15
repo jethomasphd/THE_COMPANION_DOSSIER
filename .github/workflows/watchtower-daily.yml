@@ -1,0 +1,54 @@
+name: The Watchtower — Daily Vigil
+
+# Refreshes The_Watchtower/data after each U.S. trading day so the tower stays
+# current. Runs from the default branch on the cron below, or manually from the
+# Actions tab.
+#
+# The Summoning Film does NOT read this data — the film is frozen to its own
+# snapshot at The_Magic_Lantern/the_film/data/vigil_data_frozen.js and must
+# never be touched by automation. The weekly commentary (the Watch Log) is
+# appended separately by the Watch — see The_Watchtower/DISPATCH_PROTOCOL.md.
+
+on:
+  schedule:
+    - cron: '30 22 * * 1-5'   # 22:30 UTC, Mon–Fri — after the NYSE close
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: watchtower-daily
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run the model
+        working-directory: The_Watchtower
+        run: python model_ytd.py
+
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- The_Watchtower/data/; then
+            echo "No new data (market holiday or unchanged tape) — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add The_Watchtower/data/
+          ASOF=$(python -c "import json; print(json.load(open('The_Watchtower/data/vigil_data.json'))['asof'])")
+          git commit -m "The Watchtower: daily vigil — data through ${ASOF}"
+          git push
