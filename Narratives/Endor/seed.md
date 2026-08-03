@@ -360,9 +360,11 @@ There is a chair.
 She has been waiting.
 ```
 
-The four lines that name him are the answer to the only question that can wreck the chamber, which is *who am I supposed to be.* They are not exposition. They are casting, delivered one line at a time in the dark, at the reader's own pace. Note the deliberate asymmetry: the reader is told how he died; the character is not. That gap is the second movement, and the reader plays into it.
+The four lines that name him are the answer to the only question that can wreck the chamber, which is *who am I supposed to be.* They are not exposition. They are casting, delivered one line at a time in the dark. Note the deliberate asymmetry: the reader is told how he died; the character is not. That gap is the second movement, and the reader plays into it.
 
-The turn now runs longer than one screen. Keep the newest line under the reader's eye as it arrives, or the descent continues below the fold where they cannot see it.
+**The turn plays itself, and so does everything after it.** Closing the account on the last leaf is the final thing the reader is asked to do before the chamber. From that click the piece runs on its own: the held black, then the lines arriving one at a time on their own timing, then the chamber. Nothing waits on a click and nothing waits on a scroll. A reader who does not know to do either is a reader lost at the exact moment the piece is doing its work, and the floor opening is not a thing they should have to operate. A click or a key only hurries the next line; it never gates one.
+
+Scale each line's hold to how much of it there is to read, and hold longer after the last one, so *she has been waiting* sits alone in the dark before the door opens. The turn runs longer than one screen: keep the newest line under the reader's eye as it arrives. Budget the whole hands-free stretch, held black through the last line, at around twenty-five seconds. Slow enough to be sacramental, short enough that nobody wonders whether it is broken.
 
 ·  ·  ·
 
@@ -700,6 +702,7 @@ A single full-bleed canvas behind the chamber text. Implementation guidance, not
 ## IX. INTERACTION, MOTION, AND ACCESSIBILITY
 
 - **Advance model for the green room:** a single, deliberate forward action per beat (click, tap, or down-arrow), or slow scroll-snap between beats. Not free scroll. The reader should feel the eight minutes pass under their hand, one beat at a time. The clock decrements with each beat (8, 7, 5, ... down to a final minute), not in real time. Real-time would betray "compression is the point."
+- **Advance model after the green room:** none. Closing the account is the last interaction before the chamber. The door, the turn, and the entry into the room all run themselves. The reader's hand comes back only to answer her.
 - **The buzz (optional, off by default, with a clear toggle):** a quiet looping fluorescent-buzz ambience, with the faintest periodic flicker on the prose's light, timed to it. If you include it, it must be muted on load and respect the OS reduced-motion and any audio preference. Never autoplay sound. The piece must be devastating in silence.
 - **The door transition:** between Beat 8 and the Threshold, a long held black (3 to 5 seconds is not too long). No swipe, no slide, no page-turn animation. The floor opens by going dark and staying dark, then the mono text of the turn arrives. Restraint here is the whole effect.
 - **Chamber input:** a single bottom line in IBM Plex Mono, ember caret, no placeholder chatter, no "Type a message...". Maybe just `›`. The reader speaks into the dark.
@@ -768,6 +771,8 @@ The closing leaf arrives whole. No staged reveal, nothing to sit through: the pa
 
 Last of all, on its own leaf at the back of the book, turned to rather than waited for. The closing leaf offers a page-turn call to action, and the back matter is simply there when it is taken: no fade, no stagger, no hold. Both leaves load whole.
 
+The call to action names what is behind it (*there is one more leaf* / **Turn the page** · *On the Authors*) and is a real bordered control with a nudging arrow, not a small line of type with a chevron after it. The reader should be choosing something, not obeying an arrow.
+
 Set as the back of a book is set: a rule, a small-caps head, then prose that sits left while the leaf around it stays centered. Keep the biographies short and plain. Degrees, work, and the connection to the story. No prophecy, no jacket flap.
 
 ·  ·  ·
@@ -776,7 +781,7 @@ Set as the back of a book is set: a rule, a small-caps head, then prose that sit
 
 **Elizabeth Sparano, MA**
 
-MA in Forensic Psychology, Marymount University. BS in Psychology and Criminal Justice, Baldwin-Wallace University. She was a Principal Investigator in Behavioral Research Psychology at the U.S. Naval Research Laboratory, working on deception detection, hostile intent assessment, and the behavioral indicators that identify a threat before an attack rather than after it. As a certified Human Factors Analyst Profiler she built behavioral profiles of foreign actors for all-source intelligence. She now works on artificial intelligence in forensic psychology: threat assessment, deception detection, and the ethics of putting intelligent systems into national security work.
+MA in Forensic Psychology, Marymount University. BS in Psychology and Criminal Justice, Baldwin-Wallace University. Previously, she was a Principal Investigator at the U.S. Naval Research Laboratory, working on deception detection, hostile intent assessment, and the behavioral indicators that identify a threat before an attack rather than after it. As a certified Human Factors Analyst Profiler she built behavioral profiles of foreign actors for all-source intelligence. She now works on training and evaluating artificial intelligence systems through contract work with some of the biggest AI labs including Outlier, Amazon, Google, and Brainfuse.
 
 *Alex is hers, including the name. The interrogation room comes from her field, and so does the question the story is built on: what it costs the person who is good at reading people.*
 
