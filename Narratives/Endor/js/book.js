@@ -1047,40 +1047,17 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('codaRemains'));
 
-    // She asked the witness to stay and watch with her. The reader is asked
-    // the same, at once, so no one leaves a page that is still arriving.
-    var wait = document.getElementById('codaWait');
-    if (wait) setTimeout(function () { wait.classList.add('show'); }, REDUCED ? 0 : 500);
-
-    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaTurnWrap'];
-    // The hold before the maker's note still lets the reader believe the
-    // piece has ended, so the note reads as residue rather than a closing
-    // speech. Short enough now that the waiting is felt, not endured.
-    var gaps = REDUCED ? [300, 350, 500, 400, 400] : [600, 1500, 2600, 1700, 1300];
-    var i = 0;
-    (function reveal() {
-      if (i >= blocks.length) {
-        if (wait) wait.classList.remove('show');
-        return;
-      }
-      setTimeout(function () {
-        var el = document.getElementById(blocks[i]);
-        if (el) {
-          el.classList.add('show');
-          // The closing leaf is taller than the screen. Carry the reader down
-          // with it, or the dedication and the turn arrive out of sight.
-          if (i > 0) {
-            try { el.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }); }
-            catch (e) { try { el.scrollIntoView(false); } catch (e2) {} }
-          }
-        }
-        i++;
-        reveal();
-      }, gaps[i]);
-    })();
+    // The closing leaf arrives whole. No staged reveal, no waiting on it: the
+    // page is simply there, and the turn to the back of the book is offered
+    // with it. The only motion is the stage rising out of the dark.
+    ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaTurnWrap']
+      .forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('show');
+      });
   }
 
-  /* ── The back matter: its own leaf, turned to, and it loads whole. ── */
+  /* ── The back matter: its own leaf, turned to. It is simply there. ── */
   var backTurned = false;
   function turnToBackMatter() {
     if (backTurned) return;
@@ -1088,23 +1065,10 @@
     var front = document.getElementById('codaLeaf');
     var back = document.getElementById('backLeaf');
     if (!back) return;
-    function swap() {
-      if (front) front.style.display = 'none';
-      back.hidden = false;
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      focusEl(back);
-      if (!REDUCED) {
-        back.style.opacity = '0';
-        back.style.transition = 'opacity 0.7s ease';
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { back.style.opacity = '1'; });
-        });
-      }
-    }
-    if (REDUCED || !front) { swap(); return; }
-    front.style.transition = 'opacity 0.45s ease';
-    front.style.opacity = '0';
-    setTimeout(swap, 460);
+    if (front) front.style.display = 'none';
+    back.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    focusEl(back);
   }
   var codaTurnBtn = document.getElementById('codaTurnBtn');
   if (codaTurnBtn) codaTurnBtn.addEventListener('click', function (e) {

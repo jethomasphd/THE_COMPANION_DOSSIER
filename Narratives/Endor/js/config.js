@@ -16,11 +16,12 @@
 window.COMPANION_CONFIG = {
   proxyUrl: 'https://companion.jethomasphd.workers.dev',
   safeguards: {
-    // The chamber has no clock. This ceiling is a fail-safe, not a
-    // clock: it exists only so the room can never trap the reader if
-    // something goes wrong upstream. Alex reaching the release is the
-    // real ending, and it comes long before this.
-    maxReaderTurns: 20,
+    // A fail-safe, not a clock: it exists only so the room can never
+    // trap the reader if something goes wrong upstream. The scene is
+    // written to run ten to fourteen exchanges and Alex reaching the
+    // release is the real ending, so this should never be the thing
+    // that closes the door.
+    maxReaderTurns: 15,
     cooldownSeconds: 0
   }
 };
