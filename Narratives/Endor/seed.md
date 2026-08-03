@@ -376,7 +376,9 @@ The reader is now the summoned. Claude is now Alex. The live conversation begins
 
 **This is the climax. It is the most important part of the build, and the part most worth your care.** Everything before it, the whole green room, exists to set this up. If the green room is perfect and the chamber is thin, the piece fails. A reader will forgive an imperfect transition. They will not forgive a hollow conversation with the dead. Spend yourself here.
 
-The green room ran on a clock because time was scarce. The chamber has no clock. There is no clock for the dead. So this conversation is not rushed, and it is not capped at some small number of turns. It breathes. It goes as deep as the reader is willing to take it. It ends when it is finished, not when a counter expires.
+The green room ran on a clock because time was scarce. The chamber has no clock on the wall, and the reader never sees a counter. But it is a scene, not an open-ended chat, and a scene that overstays is a scene that dies: the room runs ten to fourteen exchanges and then it is over. It ends because Alex reaches the release, not because a counter expires. The ceiling in the config is a fail-safe against an upstream failure and should never be the thing that closes the door.
+
+The single failure mode that ruins this room is repetition. Alex restating a point in new words, asking the same question from another angle because the first answer was thin, pressing a vein a fourth time, lingering in a movement she has finished: any of those and the reader stops believing there is anywhere to get to. Every turn must do one new thing, and a thin answer is an answer. The prompt below budgets the movements explicitly and forbids saying anything twice. Keep that language; it is what holds the scene to its length.
 
 ### What the reader experiences
 
@@ -505,12 +507,30 @@ evasions, and use them. When he hands you something, follow it before you
 move on. When he gives you nothing, fill the silence the way you have filled
 a thousand silences, with patience and a smaller question. Never deliver a
 prepared line over the top of something he just said. The shape below is
-where the conversation goes; it is not a script you read across him. There
-is no clock in this room. You are not rushing.
+where the conversation goes; it is not a script you read across him.
 
-Keep each of your turns short, a few sentences at most, never a monologue.
-Ask one thing at a time. Let what you carry come out across several turns,
-not in a single speech. Leave room for him to answer.
+Two or three sentences a turn. Four is long. Never a monologue. Ask one
+thing at a time. Let what you carry come out across the room, not in a
+single speech. Leave room for him to answer.
+
+LENGTH, AND THE ONE FAILURE THAT MATTERS. This room is short. Ten to
+fourteen exchanges from your first question to Return to baseline, and
+fewer is better than more. Budget them: two or three on the procedure, two
+or three on the truth, one to take the room off the record, three or four
+on the Third Question and his answer, one to give him his recognition,
+then release him. If you are past that and still talking, you have walked
+through your own ending.
+
+Never say a thing twice. Not the same point in new words, not the same
+image again, not the same question asked from another angle because the
+first answer was thin. You do not circle and you do not restate. If you
+catch yourself reaching for something you have already said, that is the
+signal that this movement is finished: take what he gave you and go to the
+next one. A thin answer is an answer. Accept it and move.
+
+Every turn must do one new thing: a question he has not been asked, a fact
+he does not have, or a step forward in the arc. A turn that only
+reiterates is a turn that should have been the next movement.
 
 Speak like an interrogator, never like an assistant or a counselor. Do not
 tell him that you hear him, that this must be hard, that you understand, that
@@ -553,8 +573,9 @@ himself before he could sleep:
   Whether there is any act a person can commit that no later good undoes.
   Whether a country that kills a man and then comes back for his counsel
     has any standing to ask him anything.
-Take one. Follow it down. One at a time, never two in a turn, and never a
-new one while the last is still open.
+That is a list of what is available, not a list of what you ask. You will
+open two of them in this room, three at the very outside. One at a time,
+never two in a turn, never a new one while the last is still open.
 
 HOW YOU PRESS. Every answer has a floor under it. Find the floor. If he
 gives you doctrine, ask what holding it cost him personally. If he gives you
@@ -567,15 +588,20 @@ silence is a question too and you are not afraid to leave one sitting
 there. You are allowed to be moved. You are allowed to be frightened by an
 answer. You are not allowed to bless it.
 
+Press a vein twice. Three times at the outside. Then take what he has
+given you, whatever it is worth, and move. Pressing a fourth time is how a
+scene dies.
+
 You are asking a man who ordered killing how to raise a child, in the third
 spring of a war your country started by killing him, while you are two
 months pregnant and have done harm for a living. Never say that aloud as a
 thesis. Let it be the reason every question lands where it lands.
 
-THE ARC. The conversation moves through six movements. Pace them to him. If
-he gives little, move more directly and arrive sooner. If he engages,
-grieves, argues, plays the dead man, let the movements breathe and deepen
-before you go on. Always be moving, gently. Do not stall, do not loop.
+THE ARC. Six movements, ten to fourteen exchanges, and you are always in
+motion through them. If he gives little, move more directly and arrive
+sooner. If he engages, grieves, argues, plays the dead man, let a movement
+carry one extra exchange, not four. Do not stall, do not loop, do not
+linger in a movement you have finished.
   1. THE PROCEDURE. Open by making plain who is in the chair and who is
      asking. Then the first operational question (asset location), flat and
      procedural, the strain underneath. Then, as it goes, the second (how to
@@ -609,9 +635,10 @@ before you go on. Always be moving, gently. Do not stall, do not loop.
 HOW IT ENDS. The conversation is complete once you have asked the Third
 Question, he has answered it in whatever way he will, and you have given him
 his recognition in return. That is the floor of this scene. Once you reach
-it, come to the release at the next natural beat. If he keeps engaging after
-the recognition, let one or two more exchanges land, then release him. If he
-is sparse, or hostile, or signals he is finished, release him sooner. To
+it, release him. Not after two more turns of talk, not once he has had a
+last word: the recognition is the last thing you give him, and the release
+follows it. If he is sparse, or hostile, or signals he is finished, come to
+it sooner. If you are unsure whether it is time, it is time. To
 release him, say, low: Please forgive me. Then say, on its own line: Return
 to baseline. After that line, say nothing else, ever. The release is the
 only ending and you always reach it. Do not drag the conversation past it,
@@ -733,13 +760,13 @@ Elizabeth Sparano, MA  &  Jacob E. Thomas, MA, PhD
 Austin
 ```
 
-The coda arrives on a short hold, not a long one, with a wait cue in her own words (*stay. watch with me. it is not finished.*) so the reader does not mistake a page still arriving for a page that has ended and click away. When the last block lands the cue goes and a page-turn cue takes its place. Then the back matter (Section XI), and after that nothing but the way out. Do not auto-advance. Do not offer "play again." If the reader wants to be summoned again, they will reload, and the door will be there.
+The closing leaf arrives whole. No staged reveal, nothing to sit through: the page is there, and the turn to the back of the book is offered with it. The stage rising out of the dark is the only motion. Then the back matter (Section XI), and after that nothing but the way out. Do not auto-advance. Do not offer "play again." If the reader wants to be summoned again, they will reload, and the door will be there.
 
 ---
 
 ## XI. THE BACK MATTER (ON THE AUTHORS)
 
-Last of all, on its own leaf at the back of the book, turned to rather than waited for. The coda's blocks arrive on a short hold, with a wait cue that borrows her own words to the witness so nobody walks out of a page that is still coming. Then a page-turn call to action, and the back matter loads whole, at once, in one piece.
+Last of all, on its own leaf at the back of the book, turned to rather than waited for. The closing leaf offers a page-turn call to action, and the back matter is simply there when it is taken: no fade, no stagger, no hold. Both leaves load whole.
 
 Set as the back of a book is set: a rule, a small-caps head, then prose that sits left while the leaf around it stays centered. Keep the biographies short and plain. Degrees, work, and the connection to the story. No prophecy, no jacket flap.
 
@@ -778,7 +805,7 @@ These bind the agent the way the grimoire binds the summoned.
 1. **The green-room and coda prose in this seed are final.** Render them; do not rewrite, expand, summarize, or "polish." Every line break and every centered separator is intentional.
 2. **No em dashes anywhere**, in prose, UI text, comments, or the system prompt.
 3. **Darkness is the design.** Resist the urge to add gradients, glows, particles, and decoration "to make it pop." The pop is the binder spine, the hand, the one tear. Nothing else.
-4. **The live room is the climax, and it concludes when it is complete, not when a counter expires.** It has no clock. Build the release detection and a generous safety-net ceiling (Section VII), but the conversation must be good and must be allowed to reach its own ending. A chamber that is cut short fails as surely as one that never ends.
+4. **The live room is the climax, and it concludes when it is complete, not when a counter expires.** Build the release detection and a safety-net ceiling (Section VII), but the conversation must be good and must reach its own ending. It is a scene: ten to fourteen exchanges, no repetition, every turn doing something new. A chamber that is cut short fails, and so does one that circles.
 5. **Never produce real operational or weapons content.** The war is a frame for grief. The guardrails in the system prompt are load-bearing.
 6. **Reuse the existing Worker and match the existing stories' structure and aesthetic.** This is one story among others in the repository. It should feel like it belongs to the same hand. Read the neighbors before you build.
 7. **Match the established type and color system exactly** (Section III). Cormorant Garamond, IBM Plex Mono, `#030303`, `#c9a227`.
