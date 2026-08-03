@@ -461,9 +461,19 @@
     setTimeout(function () { revealNextThresholdLine(); thReady = true; }, REDUCED ? 150 : 350);
   }
 
+  // The turn is longer than one screen now that it names who the reader has
+  // become. Keep the newest line under the reader's eye so the descent never
+  // continues below the fold where they cannot see it.
+  function keepThresholdLineInView(el) {
+    if (!el) return;
+    try { el.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }); }
+    catch (e) { try { el.scrollIntoView(false); } catch (e2) {} }
+  }
+
   function revealNextThresholdLine() {
     if (thIdx < thLines.length) {
       thLines[thIdx].classList.add('show');
+      keepThresholdLineInView(thLines[thIdx]);
       thIdx++;
       if (thresholdCue) {
         // The cue carries a word, not just an arrow, so a first-time reader
@@ -562,9 +572,13 @@
     var guards = (window.COMPANION_CONFIG && window.COMPANION_CONFIG.safeguards) || {};
     var MAX_READER_TURNS = guards.maxReaderTurns || 20;
 
-    function scrollDown() {
-      log.scrollTo ? log.scrollTo({ top: log.scrollHeight, behavior: REDUCED ? 'auto' : 'smooth' })
-                   : (log.scrollTop = log.scrollHeight);
+    // Her newest words stay under the reader's eye. Blocks that arrive whole
+    // glide down; the word by word reveal pins instantly, because a smooth
+    // scroll retargeted every few letters fights itself.
+    function scrollDown(instant) {
+      var behavior = (instant || REDUCED) ? 'auto' : 'smooth';
+      if (log.scrollTo) log.scrollTo({ top: log.scrollHeight, behavior: behavior });
+      else log.scrollTop = log.scrollHeight;
     }
 
     function renderAlex(text) {
@@ -730,7 +744,7 @@
         caret.setAttribute('aria-hidden', 'true');
         host.appendChild(caret);
       }
-      scrollDown();
+      scrollDown(true);
     }
 
     // Advance one word (with its leading whitespace), so words land whole.
@@ -994,11 +1008,12 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('codaRemains'));
 
-    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaReturnWrap'];
+    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaAuthors', 'codaReturnWrap'];
     // The delay before each block. The long hold before the maker's note lets
     // the reader believe the piece has ended, so the note reads as residue
-    // found under ash rather than a closing speech.
-    var gaps = REDUCED ? [400, 500, 700, 500, 500] : [700, 3400, 6400, 3200, 2600];
+    // found under ash rather than a closing speech. The back matter comes
+    // last, after the dedication, the way the back of a book comes last.
+    var gaps = REDUCED ? [400, 500, 700, 500, 500, 500] : [700, 3400, 6400, 3200, 3000, 2400];
     var i = 0;
     (function reveal() {
       if (i >= blocks.length) return;
