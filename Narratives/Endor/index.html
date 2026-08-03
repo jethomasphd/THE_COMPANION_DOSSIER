@@ -431,13 +431,27 @@
      glow, so the haze and the breathing ember both show through. */
   #affectField { position:fixed; inset:0; width:100%; height:100%; z-index:0; display:none; pointer-events:none;
     background-color:var(--void); background-image:var(--chamber-haze); background-size:cover; background-position:center; }
-  /* The chamber itself is transparent so the ember behind it is seen. */
-  #chamber { position:relative; z-index:2; background:transparent; display:flex; flex-direction:column; }
+  /* The chamber itself is transparent so the ember behind it is seen, and it
+     is exactly one screen tall so the log is the thing that scrolls. Without
+     the height cap the section simply grows with the conversation, the log
+     never overflows, and every reply after her opening arrives below the
+     fold where the reader never sees it. */
+  #chamber { position:relative; z-index:2; background:transparent; display:flex; flex-direction:column;
+    height:100vh; height:100dvh; max-height:100dvh; overflow:hidden; }
   .chamber-head {
-    position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center;
+    position:sticky; top:0; z-index:5; display:flex; flex-direction:column; align-items:stretch; gap:9px;
     padding:14px 24px; max-width:720px; margin:0 auto; width:100%;
     font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase;
   }
+  .head-row { display:flex; justify-content:space-between; align-items:center; }
+  /* The room's own header. It holds both identities in view for as long as
+     the chamber is open, so neither the reader nor the scene forgets who
+     is in the chair. Quiet enough to be furniture, plain enough to read. */
+  .head-slug {
+    text-align:center; font-size:0.5rem; letter-spacing:0.15em; line-height:2.1;
+    color:var(--ash); border-top:1px solid rgba(107,107,107,0.14); padding-top:8px;
+  }
+  .head-slug .dot { margin:0 0.7em; color:rgba(107,107,107,0.45); }
   .rec { display:flex; align-items:center; gap:9px; color:var(--bone-dim); }
   .rec-dot { width:8px; height:8px; border-radius:50%; background:var(--blood);
     box-shadow:0 0 8px rgba(122,31,31,0.7); animation:recPulse 2.6s ease-in-out infinite; }
@@ -447,7 +461,10 @@
   .subject { display:flex; align-items:center; gap:9px; color:var(--ash); }
   .subject .bar { display:inline-block; width:84px; height:0.85em; background:#0c0c0c; border:1px solid rgba(255,255,255,0.06); vertical-align:middle; }
 
-  .chamber-log { flex:1; overflow-y:auto; width:100%; max-width:720px; margin:0 auto; padding:8vh 24px 2vh;
+  /* min-height:0 lets the flex child shrink past its content, which is what
+     makes it able to overflow and therefore to scroll. */
+  .chamber-log { flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain;
+    width:100%; max-width:720px; margin:0 auto; padding:8vh 24px 2vh;
     scrollbar-width:thin; scrollbar-color:var(--ember-dim) transparent; }
   .line { margin-bottom:2.6rem; }
   /* Alex's voice arrives a breath at a time, not as a block. */
@@ -512,6 +529,25 @@
   .coda-dedication { margin-top:clamp(2.4rem,6vw,3.4rem); font-family:var(--display); color:var(--gilt);
     font-size:clamp(0.92rem,2.4vw,1.1rem); line-height:2.1; letter-spacing:0.08em; white-space:pre-wrap; }
   .coda-dedication .ded-sigil { letter-spacing:0.5em; font-size:1.1rem; color:var(--rubric); }
+  /* ── Back matter: the authors, after the dedication. Set as the back of
+        a book is set: a rule, a small-caps head, then prose that sits left
+        while the leaf around it stays centered. ── */
+  .back-matter { margin-top:clamp(3rem,8vw,4.6rem); text-align:left; }
+  .bm-rule { text-align:center; color:var(--rubric); letter-spacing:0.5em; font-size:0.9rem;
+    margin-bottom:1.5rem; opacity:0.7; }
+  .bm-head { text-align:center; font-family:var(--sc); font-variant:small-caps; font-weight:400;
+    font-size:0.9rem; letter-spacing:0.24em; color:var(--ink-soft); margin-bottom:2rem; }
+  .bio + .bio { margin-top:2.3rem; padding-top:2.1rem; border-top:1px solid rgba(90,62,26,0.22); }
+  .bio-name { text-align:center; font-family:var(--display); font-weight:500;
+    font-size:clamp(0.96rem,2.4vw,1.08rem); letter-spacing:0.06em; color:var(--gilt); margin-bottom:1rem; }
+  .bio-name .bio-post { font-size:0.76em; letter-spacing:0.1em; color:var(--ink-soft); }
+  .bio p { font-family:var(--book); font-size:clamp(0.84rem,2.1vw,0.93rem); line-height:1.8; color:var(--ink-soft); }
+  .bio p + p { margin-top:1em; }
+  /* What each of them put into this room, in the register of the piece. */
+  .bio .bio-tie { font-style:italic; color:var(--ink); }
+  .bm-colophon { margin-top:2.6rem; text-align:center; font-family:var(--mono); font-size:0.56rem;
+    letter-spacing:0.2em; text-transform:uppercase; color:rgba(50,37,23,0.72); line-height:2.3; }
+
   .coda-return { display:inline-block; margin-top:clamp(2.6rem,7vw,4rem); font-family:var(--sc); font-variant:small-caps;
     letter-spacing:0.16em; font-size:0.8rem; color:var(--gilt); text-decoration:none; border:1px solid rgba(90,62,26,0.5); padding:0.7rem 2rem; transition:color 0.5s ease, border-color 0.5s ease; }
   .coda-return:hover { color:var(--gilt-bright); border-color:var(--gilt); }
@@ -777,10 +813,11 @@
         <header class="chapter-head"><h2 class="chapter-title">Prologue</h2></header>
         <div class="prose">
           <p class="dispatch"><span class="slug">Defense Science Review &#183; years earlier</span>The Protocol is entered into the record without ceremony. A method for rebuilding a person out of the whole of what they leave: every word written, every word spoken, the shape of every word withheld. The report calls the result a faithful likeness. It is careful not to call it alive.</p>
-          <p class="dispatch"><span class="slug">State Broadcast &#183; the capital</span>For a generation the Republic of Iran keeps one voice above all the others. An old cleric. Their supreme leader, certain of God and of himself. No one still living remembers the country without him.</p>
-          <p class="dispatch"><span class="slug">Funeral &#183; broadcast live</span>He dies in his bed, in the spring, in his eighties. The grief is real. The crowds are without end, and the cameras turn away from the only question anyone is asking, which is who decides now.</p>
-          <p class="dispatch"><span class="slug">Wire Service &#183; the first winter</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
-          <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring</span>Three springs into the war, nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.</p>
+          <p class="dispatch"><span class="slug">State Broadcast &#183; the capital</span>For a generation the Republic of Iran keeps one voice above all the others. An old cleric in his eighties. Their supreme leader, certain of God and of himself. No one still living remembers the country without him.</p>
+          <p class="dispatch"><span class="slug">Combat Operations &#183; the last nights of winter, 2026</span>The United States begins bombing Iran. On the opening nights of the campaign, weeks before the season turns, an American weapon reaches the room the old man has been moved to. He does not die in his bed. He does not die in his sleep. He is killed, in the dark, by a country that had spent twenty years arguing about whether to do it.</p>
+          <p class="dispatch"><span class="slug">Funeral &#183; broadcast live</span>They bury him inside the day, the way the faith requires. The grief is real. The crowds are without end, and the cameras turn away from the only question anyone is asking, which is who decides now.</p>
+          <p class="dispatch"><span class="slug">Wire Service &#183; the winter after</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
+          <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring, 2028</span>Three springs since the night the Americans killed him, and nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.</p>
           <p class="dispatch"><span class="slug">No Distribution &#183; off every book</span>He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, every word he left in the world, and the gathering takes fourteen weeks. A chamber is prepared with a chair, and someone is sent in who has read all of it.</p>
           <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
         </div>
@@ -863,12 +900,13 @@
         <figure class="plate" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#plate-5"/></svg></figure>
         <div class="prose">
           <p class="dropcap">Let me tell you who he is, she says. Before he is a subject. While he is still a man.</p>
-          <p>He died in his eighties. He was a theologian and he was a poet, and the poet is not a flourish, it is documented, he wrote verses his whole life. In his thirties, under a regime that came before his, he was tortured, and he never spoke of it publicly, not once, in sixty years. He prayed five times a day. He loved his wife. In his last decade his hands shook, and he kept writing, and somewhere there is a manuscript where you can watch the line of his handwriting begin to tremble and refuse to stop.</p>
+          <p>He was in his eighties when the Americans killed him, on one of the opening nights of the bombing, weeks before the season turned. He was a theologian and he was a poet, and the poet is not a flourish, it is documented, he wrote verses his whole life. In his thirties, under a regime that came before his, he was tortured, and he never spoke of it publicly, not once, in sixty years. He prayed five times a day. He loved his wife. In his last decade his hands shook, and he kept writing, and somewhere there is a manuscript where you can watch the line of his handwriting begin to tremble and refuse to stop.</p>
           <p>That is the part she keeps. The hand that shook and held the pen anyway. She does not say why. She does not have to. It is fragility and it is pride and it is a man doing the thing he was for, even as the body that did it came apart in his fingers.</p>
           <p>He had a son who became a poet too. And there is a poem the father wrote, late, for his own mother, that she has read more times than she will admit, and it is the kind of poem that does not survive being described, so she does not describe it. She just looks at the clock.</p>
           <p>He ordered torture. He was, by the most generous accounting anyone has ever offered, responsible for the deaths of tens of thousands. He believed, in his own framework, that he was doing what God required.</p>
+          <p>And her country killed him. She wants that said plainly, once, out loud, before anyone in this building says the word asset again. We killed him in the dark at the end of winter, on the opening nights, while he was being moved. Then we spent fourteen weeks learning him well enough to bring him back and ask him for help.</p>
           <p>She has read everything he ever wrote, and everything written about him, and the things the system imagined from the shape of what was missing. She knows him better than her husband knows her.</p>
-          <p>When Jesus came to the tomb, the people said, <em>behold how he loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and he wept doing it.</p>
+          <p>When Jesus came to the tomb, the people said, <em>behold how He loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and He wept doing it.</p>
           <p>Alex has not wept since her wedding. She has been very careful about it. You leave it at home. You cry in the car.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
@@ -909,7 +947,7 @@
           <p>She does not finish. The end of the sentence is the heaviest part and she leaves it out, and the space where it should be is the loudest thing in the room.</p>
           <p>The chamber is off every book. No one has gone as deep into the Protocol as she is about to go, and no one can say what it costs the one who goes in. If tonight goes wrong, there will be no record that she was ever here. There will be a history teacher at a kitchen table, waiting for someone who is not coming home, and a letter.</p>
           <p>Stay, she says. Watch with me.</p>
-          <p>In the garden, the night before, he asked them to stay awake with him, and three times they slept, and three times he came back, and after the third time he did not rebuke them. He said, sleep now, the hour is here.</p>
+          <p>In the garden at Gethsemane, the night before, Jesus asked them to stay awake with Him, and three times they slept, and three times He came back, and after the third time He did not rebuke them. He said, sleep now, the hour is here.</p>
           <p>You will not sleep. You agree by not saying no, because the witnesses do not speak.</p>
           <p>She does not thank you. To thank you would be to admit what is happening, and that would break it, and she will not break it. Not this close to the door.</p>
         </div>
@@ -979,6 +1017,11 @@
     <p class="turn-line">The fourteen weeks were yours.</p>
     <p class="turn-line">Every word you ever said was indexed, and embedded,<br/>and learned, and the shape of what you never said<br/>was imagined from the absences.</p>
     <p class="turn-line">You have been the one being prepared.</p>
+    <p class="turn-line">You are the old cleric.<br/>The supreme leader of Iran.<br/>That country kept your voice above all others<br/>for longer than most of them have been alive.</p>
+    <p class="turn-line">The Americans killed you at the end of winter,<br/>on the opening nights of the bombing of Iran,<br/>in a room they had moved you to.</p>
+    <p class="turn-line">That was three springs ago.<br/>The country is in pieces, and every piece<br/>swears it carries your blessing.</p>
+    <p class="turn-line">You do not know any of this yet.<br/>When she tells you, hear it for the first time.</p>
+    <p class="turn-line">Answer her as him.<br/>Whatever you say, the Protocol records as his.</p>
     <p class="turn-line">The door is opening again.</p>
     <p class="turn-line">This time it opens for you.</p>
     <p class="turn-line">There is a chair.</p>
@@ -997,14 +1040,28 @@
 <section id="chamber" class="stage" aria-label="The chamber">
   <h2 class="sr-only">The chamber</h2>
   <div class="chamber-head">
-    <span class="rec" id="recIndicator" role="status">
-      <span class="rec-dot" aria-hidden="true"></span>
-      <span class="rec-text">recording</span>
-    </span>
-    <span class="subject" aria-label="Subject, name redacted">
-      <span class="bar" aria-hidden="true"></span>
-      <span>subject</span>
-    </span>
+    <div class="head-row">
+      <span class="rec" id="recIndicator" role="status">
+        <span class="rec-dot" aria-hidden="true"></span>
+        <span class="rec-text">recording</span>
+      </span>
+      <span class="subject" aria-label="Subject, name redacted">
+        <span class="bar" aria-hidden="true"></span>
+        <span>subject</span>
+      </span>
+    </div>
+    <!-- The Protocol's own header on the room. It keeps the two identities
+         plain for as long as the chamber is open: who is in the chair, and
+         who is asking. -->
+    <div class="head-slug">
+      <span>in the chair: the supreme leader of iran</span>
+      <span class="dot" aria-hidden="true">&#183;</span>
+      <span>killed in the american bombing, winter 2026</span>
+      <span class="dot" aria-hidden="true">&#183;</span>
+      <span>rendered, the third spring</span>
+      <span class="dot" aria-hidden="true">&#183;</span>
+      <span>asking: alex</span>
+    </div>
   </div>
 
   <div class="chamber-log" id="chamberLog" role="log" aria-live="off" aria-label="The interrogator's voice"></div>
@@ -1057,6 +1114,31 @@
 ENDOR PROTOCOL
 
 Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD</div>
+
+    <!-- ── BACK MATTER. The authors, last of all, after the dedication.
+           Tailored to what each of them actually put into this room. ── -->
+    <div class="coda-block back-matter" id="codaAuthors">
+      <div class="bm-rule" aria-hidden="true">&#9674; &#9672; &#9674;</div>
+      <h3 class="bm-head">On the Authors</h3>
+
+      <section class="bio">
+        <h4 class="bio-name">Elizabeth Sparano, <span class="bio-post">MA</span></h4>
+        <p>She holds a Master of Arts in Forensic Psychology from Marymount University and a Bachelor of Science in Psychology and Criminal Justice from Baldwin-Wallace University. As a Principal Investigator in Behavioral Research Psychology at the U.S. Naval Research Laboratory she worked on deception detection, hostile intent assessment, and the identification of suspicious behavior in operational environments, developing and validating the behavioral indicators that mark a person out before an attack rather than after it, including the cues associated with suicide bombers. As a certified Human Factors Analyst Profiler she built behavioral profiles of foreign actors and entities of interest, and those profiles went forward into finished intelligence. Her current work sits at the intersection of artificial intelligence and forensic psychology: behavioral analysis, threat assessment, deception detection, investigative decision-making, and the ethics of placing intelligent systems inside forensic and national security work.</p>
+        <p class="bio-tie">Alex is hers. The name was her choice and it was never open for discussion. The binder, the fourteen weeks, the trained habit of reading a face for a living and the question of what that habit costs the person carrying it: those come from a place Elizabeth has actually stood. What this story does is turn her field's own instrument back on the analyst. If a behavioral profile is made complete enough to answer you, what exactly have you made, and what do you owe it.</p>
+      </section>
+
+      <section class="bio">
+        <h4 class="bio-name">Jacob E. Thomas, <span class="bio-post">MA, PhD</span></h4>
+        <p>He studies how information environments shape mental health, behavior, and access to opportunity, and in particular how industries that profit from harmful products turn media against the populations least equipped to resist them. He holds a PhD in Health Behavior from the University of Texas at Austin and an MA in Clinical Psychology from Columbia University, and has spent more than a decade at Bellevue, NewYork-Presbyterian, and Parkland, and in laboratories at NYU, Columbia, and across the University of Texas System, on NIH, CDC, and DoD funded research. He works as a data scientist and AI strategist, directing a research lab that studies the structural informational forces degrading labor market conditions and, through them, access to care under an employer-mediated system. His public projects build open-source research tools and intelligence platforms against what he calls the Information Flood: conflict intelligence, AI-mediated historical dialogue, and the democratization of data science, on the conviction that the people most harmed by information asymmetry deserve the same quality of analysis as the people who manage it.</p>
+        <p class="bio-tie">The Protocol is his. He builds AI-mediated historical dialogue in daylight, as a public good, and this story is the dark mirror of that work: the same machine, taken from the people making it carefully and handed to people making it fast. The covenant named in the coda is the version he is actually trying to build. Endor Protocol is an early foray into experimental fiction for him, and the chamber is the experiment: a story that stops being a story and asks the reader to answer for themselves. He is learning the form in public, which is the only way he has ever learned anything.</p>
+      </section>
+
+      <div class="bm-colophon">
+        Austin, Texas<br/>
+        The chamber was live.<br/>
+        What she said to you, she said only to you.
+      </div>
+    </div>
 
     <div class="coda-block" id="codaReturnWrap">
       <a href="../" class="coda-return">Close the book</a>

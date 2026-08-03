@@ -42,6 +42,8 @@ This is the climax and the most important part of the build. It is also the tech
 - The conversation must be good, and it must be able to conclude. It ends when Alex ends it: the client watches for the literal release line `Return to baseline.` and transitions to the coda when it appears. The system prompt is built to reach that release after a real, complete exchange. Add a generous safety-net ceiling (about twenty reader turns) only to guarantee the room can never trap the reader; it should almost never trigger, and it must not be the thing that ends the scene. Do not cut the conversation short, and do not let it run without end.
 - The affect field is driven by the known beat of the arc, not by sentiment analysis. Use the envelope in `seed.md` Section VIII. It must read as heat behind a wall, never as an audio visualizer.
 - Keep the API key on the server. The client never holds it.
+- The reader must never have to guess who they are or who is asking. The threshold casts them, the chamber header holds both identities in view, and Alex names them aloud in her first turns. Only *how he died* is withheld from the character, and only until the second movement.
+- The chamber has to ask real questions. Alex opens one philosophical vein at a time and follows it to the floor, in plain words, never in the language of a seminar. Atmosphere without a question is a failed room.
 
 ## 5. Guardrails that are load-bearing
 
@@ -60,6 +62,8 @@ The war and the warheads are a fiction that frames a scene about grief and consc
 - The green room renders the fixed prose perfectly, advances one beat at a time, and the clock counts down 8 to 1.
 - The door and the threshold land. The floor opens.
 - The chamber holds a live Claude conversation as Alex that feels real, responds to what the reader actually says, runs the full arc, and reaches its own natural release and the coda after a genuine exchange, no matter what the reader types. It is never cut short, and it never runs without end.
-- The covenant in `seed.md` Section XI is satisfied in every particular.
+- The killing is plain everywhere it belongs. He did not die in his bed. The United States killed him on the opening nights of the American bombing of Iran, in the last nights of winter, 2026, and the story stands in the third spring after.
+- The back matter names the authors last of all, after the dedication, cut to what each of them put into this room.
+- The covenant in `seed.md` Section XII is satisfied in every particular.
 
 Build the door.
