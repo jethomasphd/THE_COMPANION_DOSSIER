@@ -572,14 +572,44 @@
     var guards = (window.COMPANION_CONFIG && window.COMPANION_CONFIG.safeguards) || {};
     var MAX_READER_TURNS = guards.maxReaderTurns || 20;
 
-    // Her newest words stay under the reader's eye. Blocks that arrive whole
-    // glide down; the word by word reveal pins instantly, because a smooth
-    // scroll retargeted every few letters fights itself.
+    // Her newest words stay under the reader's eye, but the reader is never
+    // held there. If they have scrolled back to read something again, the
+    // log stops following and waits; it picks them up again the moment they
+    // return to the foot of it. Blocks that arrive whole glide down; the word
+    // by word reveal pins instantly, because a smooth scroll retargeted every
+    // few letters fights itself.
+    var FOOT = 90;    // px of slack that still counts as being at the foot
+    var follow = true;
+    var dragging = false;
+
+    function atFoot() {
+      return (log.scrollHeight - log.scrollTop - log.clientHeight) <= FOOT;
+    }
     function scrollDown(instant) {
+      if (!follow) return;
       var behavior = (instant || REDUCED) ? 'auto' : 'smooth';
       if (log.scrollTo) log.scrollTo({ top: log.scrollHeight, behavior: behavior });
       else log.scrollTop = log.scrollHeight;
     }
+
+    // Only the reader's own hand takes the room off follow. Programmatic
+    // scrolling never does, so her voice can never yank the log out from
+    // under someone who has gone back to read a line again. Returning to the
+    // foot puts them back on follow, and speaking always does.
+    function releaseFollow() { follow = false; }
+    log.addEventListener('wheel', releaseFollow, { passive: true });
+    log.addEventListener('touchmove', releaseFollow, { passive: true });
+    log.addEventListener('keydown', function (e) {
+      if (/^(ArrowUp|ArrowDown|PageUp|PageDown|Home|End)$/.test(e.key)) releaseFollow();
+    });
+    // A scrollbar drag is read live. A stray click is not, so it cannot
+    // silently strand the reader above her next answer.
+    log.addEventListener('pointerdown', function () { dragging = true; }, { passive: true });
+    window.addEventListener('pointerup', function () { dragging = false; }, { passive: true });
+    log.addEventListener('scroll', function () {
+      if (dragging) { follow = atFoot(); return; }
+      if (atFoot()) follow = true;
+    }, { passive: true });
 
     function renderAlex(text) {
       var wrap = document.createElement('div');
@@ -817,6 +847,13 @@
       busy = false;
       if (ENDOR.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
       setInputEnabled(true);
+      noteIfAway();
+    }
+
+    // If the reader has gone back up the log, say so, rather than letting a
+    // finished answer sit unread below the fold.
+    function noteIfAway() {
+      if (!atFoot()) note.textContent = 'she has answered. it is below.';
     }
 
     function onChunk(t) {
@@ -843,6 +880,7 @@
         busy = false;
         if (ENDOR.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
         setInputEnabled(true);
+        noteIfAway();
         return;
       }
       if (!stream) return;            // already cleaned up by an error
@@ -899,6 +937,7 @@
     function send(userText, isSeed) {
       if (busy || ended) return;
       busy = true;
+      follow = true;                  // speaking puts the reader back in the room
       if (!isSeed) { renderSelf(userText); }
       note.textContent = isSeed ? '' : 'she is listening.';
       setInputEnabled(false);
@@ -1008,23 +1047,82 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('codaRemains'));
 
-    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaAuthors', 'codaReturnWrap'];
-    // The delay before each block. The long hold before the maker's note lets
-    // the reader believe the piece has ended, so the note reads as residue
-    // found under ash rather than a closing speech. The back matter comes
-    // last, after the dedication, the way the back of a book comes last.
-    var gaps = REDUCED ? [400, 500, 700, 500, 500, 500] : [700, 3400, 6400, 3200, 3000, 2400];
+    // She asked the witness to stay and watch with her. The reader is asked
+    // the same, at once, so no one leaves a page that is still arriving.
+    var wait = document.getElementById('codaWait');
+    if (wait) setTimeout(function () { wait.classList.add('show'); }, REDUCED ? 0 : 500);
+
+    var blocks = ['codaRemains', 'codaSep', 'codaNote', 'codaDedication', 'codaTurnWrap'];
+    // The hold before the maker's note still lets the reader believe the
+    // piece has ended, so the note reads as residue rather than a closing
+    // speech. Short enough now that the waiting is felt, not endured.
+    var gaps = REDUCED ? [300, 350, 500, 400, 400] : [600, 1500, 2600, 1700, 1300];
     var i = 0;
     (function reveal() {
-      if (i >= blocks.length) return;
+      if (i >= blocks.length) {
+        if (wait) wait.classList.remove('show');
+        return;
+      }
       setTimeout(function () {
         var el = document.getElementById(blocks[i]);
-        if (el) el.classList.add('show');
+        if (el) {
+          el.classList.add('show');
+          // The closing leaf is taller than the screen. Carry the reader down
+          // with it, or the dedication and the turn arrive out of sight.
+          if (i > 0) {
+            try { el.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }); }
+            catch (e) { try { el.scrollIntoView(false); } catch (e2) {} }
+          }
+        }
         i++;
         reveal();
       }, gaps[i]);
     })();
   }
+
+  /* ── The back matter: its own leaf, turned to, and it loads whole. ── */
+  var backTurned = false;
+  function turnToBackMatter() {
+    if (backTurned) return;
+    backTurned = true;
+    var front = document.getElementById('codaLeaf');
+    var back = document.getElementById('backLeaf');
+    if (!back) return;
+    function swap() {
+      if (front) front.style.display = 'none';
+      back.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      focusEl(back);
+      if (!REDUCED) {
+        back.style.opacity = '0';
+        back.style.transition = 'opacity 0.7s ease';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { back.style.opacity = '1'; });
+        });
+      }
+    }
+    if (REDUCED || !front) { swap(); return; }
+    front.style.transition = 'opacity 0.45s ease';
+    front.style.opacity = '0';
+    setTimeout(swap, 460);
+  }
+  var codaTurnBtn = document.getElementById('codaTurnBtn');
+  if (codaTurnBtn) codaTurnBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    turnToBackMatter();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (body.getAttribute('data-stage') !== 'coda' || backTurned) return;
+    if (e.target.closest && e.target.closest('a, button, input, textarea')) return;
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' ||
+        e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') {
+      // Only once the turn has been offered, so a stray key cannot skip the coda.
+      var wrap = document.getElementById('codaTurnWrap');
+      if (!wrap || !wrap.classList.contains('show')) return;
+      e.preventDefault();
+      turnToBackMatter();
+    }
+  });
 
   /* ── Opening the book ───────────────────────────────────────── */
   document.getElementById('enterBtn').addEventListener('click', enterGreenRoom);

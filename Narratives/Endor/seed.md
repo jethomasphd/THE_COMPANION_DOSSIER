@@ -51,7 +51,8 @@ Every open question in the original brief has been answered. The agent does not 
 - **The liturgical object:** a worn interrogation training binder, frayed at the spine, which she never opens. She runs her thumb along the spine while she stares over the top of it, gone somewhere. It is her worry stone. It is the one object that taught her how to do harm, and she consecrates herself on it.
 - **The sound only a human ear gives texture to:** a fluorescent buzz, like a fly drawn into the light. It runs under the entire green room and is never explained. (The Protocol's hum is a separate sound: a freezer in another room.)
 - **The summoned:** the supreme leader of Iran. An offset. Unnamed. Never named. A slight fictional displacement of a real figure, never the figure. The power is in his being a kind of man, not a page. His office and his country are named plainly; he is not.
-- **How he died (fixed, and it is load-bearing):** he did not die in his bed. The United States killed him on the opening nights of the American bombing of Iran, in the last nights of winter, 2026, weeks before the season turned. He was in his eighties. This fact must be plain in the prologue, in the account, at the threshold, and in the chamber, and Alex must say it in the chamber without softening her own country's part in it. The story stands in the third spring after, 2028, with his country broken into factions that each claim his blessing.
+- **How he died (fixed, load-bearing, and factually anchored):** he did not die in his bed. On Saturday 28 February 2026 the United States and Israel opened the war, and Israeli aircraft struck his compound in Tehran in full daylight, which is not how such a thing is done, on an American target list. He was eighty-six. A daughter, a granddaughter, a son-in-law and a daughter-in-law died in the house. His wife was carried out alive and did not wake; the state announced her dead on 2 March and living again on 12 March. Iran denied his death for a day, confirmed it on 1 March, declared forty days of mourning, and named his son Supreme Leader on 8 March. The state funeral came four months later, in July, at the shrine in Mashhad, beside the four who died with him, with the coffin flown in by helicopter over a crowd too dense to carry it through. This must be plain in the prologue, in the account, at the threshold, and in the chamber. Alex never leans on the distinction between whose aircraft and whose intelligence; she says her country killed him. The story stands in the third spring after, 2028, with his country broken into factions that each claim his blessing.
+- **The rest of the man, also anchored:** Supreme Leader for thirty-six years, 1989 to 2026, the longest-serving head of state in the region. A cleric out of Mashhad. A poet in earnest, who wrote verse as a young man, read Persian poetry all his life, and could give back a poem forty years after hearing it once. Arrested six times by the Shah's police between 1963 and 1976, then exiled three years, and publicly silent about it ever after. At forty-two a bomb hidden in a tape recorder took the use of his right arm for good, and he wrote with the other hand for the next forty-five years. Six children. Married in 1964. He also ordered torture and is responsible, by the most generous accounting, for tens of thousands of deaths. Nothing invented is permitted to sit next to these. If a detail cannot be sourced, it does not go in the file.
 - **The reader's identity, once the floor opens:** the reader is him. The piece must never let that be a guess. The threshold names it, the chamber's header holds it in view for the length of the room, and Alex says it aloud in her first turns. Only *how he died* is withheld from the character, and only until the second movement. The reader is told at the threshold, so they can play a man hearing it for the first time.
 - **The codename:** On the record, in the chamber, in front of the witness, it is only ever *the Protocol*. The word **Endor** is spoken exactly once, in the kitchen memory (Beat 4), low, almost to herself, and never again. Said once in the dark of her own house. Refused everywhere it could be heard.
 - **The one line, at the door:** *Please forgive me.* Spoken low, almost a whisper. The heaviest single sentence in the piece. Do not alter it.
@@ -128,15 +129,17 @@ The following is the soul of the piece. It is final. The agent renders it; the a
 
 **Defense Science Review · years earlier.** The Protocol is entered into the record without ceremony. A method for rebuilding a person out of the whole of what they leave: every word written, every word spoken, the shape of every word withheld. The report calls the result a faithful likeness. It is careful not to call it alive.
 
-**State Broadcast · the capital.** For a generation the Republic of Iran keeps one voice above all the others. An old cleric in his eighties. Their supreme leader, certain of God and of himself. No one still living remembers the country without him.
+**State Broadcast · Tehran.** For thirty-six years the Islamic Republic of Iran keeps one voice above all the others. A cleric out of Mashhad, Supreme Leader since 1989, the longest-serving head of state in the region. Certain of God and of himself. No one under forty remembers the country without him.
 
-**Combat Operations · the last nights of winter, 2026.** The United States begins bombing Iran. On the opening nights of the campaign, weeks before the season turns, an American weapon reaches the room the old man has been moved to. He does not die in his bed. He does not die in his sleep. He is killed, in the dark, by a country that had spent twenty years arguing about whether to do it.
+**Combat Operations · 28 February 2026.** The United States and Israel open the war on a Saturday. Israeli aircraft strike his compound in Tehran in full daylight, which is not how such a thing is done, and it is American intelligence that put them over that building. He is eighty-six. He does not die in his bed and he does not die in his sleep. A daughter dies in the house, and a granddaughter, and a son-in-law, and a daughter-in-law. His wife is carried out alive and does not wake.
 
-**Funeral · broadcast live.** They bury him inside the day, the way the faith requires. The grief is real. The crowds are without end, and the cameras turn away from the only question anyone is asking, which is who decides now.
+**State Media · the first days.** For a day the Republic says nothing true. On the first of March it confirms him dead and declares forty days of mourning. On the second it announces that his wife has died of her injuries. On the eighth it names his son Supreme Leader. On the twelfth it says the announcement about his wife was an error and that she is living. Nobody ever explains the ten days.
+
+**State Funeral · July 2026.** They bury him four months later, at the shrine in Mashhad, in the city he was born in, beside the four who died in the house with him. The crowd is too dense to carry a coffin through, so the coffin comes in by helicopter. The counting runs from twelve million to forty-three. Nobody is counting well by then.
 
 **Wire Service · the winter after.** Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.
 
-**Field Dispatch · the third spring, 2028.** Three springs since the night the Americans killed him, and nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.
+**Field Dispatch · the third spring, 2028.** Two years since the morning they killed him, and nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.
 
 **No Distribution · off every book.** He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, every word he left in the world, and the gathering takes fourteen weeks. A chamber is prepared with a chair, and someone is sent in who has read all of it.
 
@@ -216,15 +219,17 @@ And then she never said it again.
 
 Let me tell you who he is, she says. Before he is a subject. While he is still a man.
 
-He was in his eighties when the Americans killed him, on one of the opening nights of the bombing, weeks before the season turned. He was a theologian and he was a poet, and the poet is not a flourish, it is documented, he wrote verses his whole life. In his thirties, under a regime that came before his, he was tortured, and he never spoke of it publicly, not once, in sixty years. He prayed five times a day. He loved his wife. In his last decade his hands shook, and he kept writing, and somewhere there is a manuscript where you can watch the line of his handwriting begin to tremble and refuse to stop.
+He was eighty-six. They killed him on a Saturday morning at the end of February, in his own house, in the first hours of the war, with the sun up, which is not how such a thing is usually done. He was a theologian and he was a poet, and the poet is not a flourish, it is documented, he wrote verse as a young man and read it all his life and could give you back a poem forty years after hearing it once. Under the regime that came before his, the Shah's police arrested him six times in thirteen years and did to him the things that police did, and then sent him into the desert for three, and he never spoke of it publicly, not once, in the fifty years after. He kept the prayers. He loved his wife. At forty-two a bomb hidden in a tape recorder took the use of his right arm, and he learned to write with the other hand, and he wrote with it for the next forty-five years.
 
-That is the part she keeps. The hand that shook and held the pen anyway. She does not say why. She does not have to. It is fragility and it is pride and it is a man doing the thing he was for, even as the body that did it came apart in his fingers.
+That is the part she keeps. The hand that was not the right hand. She does not say why. She does not have to. It is fragility and it is pride and it is a man doing the thing he was for, with the wrong arm, for longer than she has been alive.
 
-He had a son who became a poet too. And there is a poem the father wrote, late, for his own mother, that she has read more times than she will admit, and it is the kind of poem that does not survive being described, so she does not describe it. She just looks at the clock.
+He had six children. One of his daughters died in the house with him, and a granddaughter, and a son-in-law, and a daughter-in-law. A son who was not there was named Supreme Leader nine days later. There is a page in the file that lists the dead by name and age and she has stopped being able to read it as a list.
+
+His wife was carried out alive and did not wake. On the second of March the state said she had died of her injuries. On the twelfth the state said that had been an error, and that she was living. Alex has gone over those ten days more carefully than anything else in the file, because she cannot work out who was lying, or whether anyone was, or which of those would be worse.
 
 He ordered torture. He was, by the most generous accounting anyone has ever offered, responsible for the deaths of tens of thousands. He believed, in his own framework, that he was doing what God required.
 
-And her country killed him. She wants that said plainly, once, out loud, before anyone in this building says the word asset again. We killed him in the dark at the end of winter, on the opening nights, while he was being moved. Then we spent fourteen weeks learning him well enough to bring him back and ask him for help.
+And her country killed him. She wants that said plainly, once, out loud, before anyone in this building says the word asset again. The aircraft over the house were not American. The intelligence that put them over that house was. She has heard people in this building lean on that distinction and she will not lean on it. We killed him on the twenty-eighth of February. Then we spent fourteen weeks learning him well enough to bring him back and ask him for help.
 
 She has read everything he ever wrote, and everything written about him, and the things the system imagined from the shape of what was missing. She knows him better than her husband knows her.
 
@@ -328,15 +333,15 @@ was imagined from the absences.
 You have been the one being prepared.
 
 You are the old cleric.
-The supreme leader of Iran.
-That country kept your voice above all others
-for longer than most of them have been alive.
+Supreme Leader of Iran, thirty-six years.
+No one under forty remembers the country without you.
 
-The Americans killed you at the end of winter,
-on the opening nights of the bombing of Iran,
-in a room they had moved you to.
+They killed you on the twenty-eighth of February, 2026,
+in your own house in Tehran, in the morning,
+in the first hours of the war.
+Israeli aircraft. American intelligence.
 
-That was three springs ago.
+That was two years ago. This is the third spring.
 The country is in pieces, and every piece
 swears it carries your blessing.
 
@@ -377,7 +382,11 @@ The green room ran on a clock because time was scarce. The chamber has no clock.
 
 The chamber is a near-black screen. Alex is a voice rendered as text in warm Cormorant Garamond, bone-colored. The reader is the dead man, and types into a single IBM Plex Mono line at the bottom. There is no face. (They tried faces in the trials and it broke the operators.) There is a name, and it is redacted: a black bar where a name would be, faintly labeled `SUBJECT` in mono.
 
-Under that, the room's own header, in ash mono, small enough to be furniture and plain enough to read: *in the chair: the supreme leader of iran · killed in the american bombing, winter 2026 · rendered, the third spring · asking: alex.* It stays for the length of the room. The redaction withholds his name; the header withholds nothing else. A reader who has to wonder who they are is a reader who has left.
+Under that, the room's own header, in ash mono, small enough to be furniture and plain enough to read: *in the chair: supreme leader of iran, 1989 to 2026 · killed 28 february 2026, tehran · rendered, the third spring · asking: alex.* It stays for the length of the room. The redaction withholds his name; the header withholds nothing else. A reader who has to wonder who they are is a reader who has left.
+
+The reader is never held in place. The log follows her newest words only while the reader is at the foot of it. A wheel, a drag, a touch, an arrow key takes the room off follow at once, so someone who goes back to read a line again is not dragged down mid sentence, and returning to the foot puts them back on. If an answer finishes while they are still up the page, the note under the input says so. Speaking always returns them to the foot.
+
+The line to answer carries a named control as well as the Enter key. A bare arrow reads as decoration, and a reader should never have to guess that the room is waiting on them.
 
 The chamber is exactly one screen tall and the log is the only thing that scrolls. This is not a detail. If the section is allowed to grow with the conversation, the log never overflows, the page grows instead, and every one of her replies after the opening arrives below the fold. The room reads as dead. Cap the height, give the log `min-height:0`, and pin the newest words under the reader's eye.
 
@@ -392,10 +401,10 @@ The conversation moves through six movements. They are an arc, not a script. Cla
 She paces the arc to the reader. If the reader gives little, she moves through the movements more directly and arrives sooner. If the reader engages, plays the dead man, grieves, pushes back, she lets the movements breathe and deepen before she moves on. Either way she is always, gently, in motion. She does not stall, she does not loop, she does not refuse to end.
 
 1. **The procedure.** Alex speaks first, before the reader types. Her voice in the dark. She does not perform. She names who is in the chair and who is asking, so the reader is never solving a riddle instead of playing a scene. Then the first operational question, flat and procedural, asset location, with her whole self straining underneath it. As the reader answers, she works it the way Phase Three works silence and refusal: patient, intimate, unhurried. She asks the second, the reunification framework. She does not seem to mean either, and the reader feels her not meaning them, because underneath the procedure she has already opened the first real question.
-2. **The truth.** She stops the procedure and tells the man what he has not been told, because the system decided it was operationally optimal not to tell him, and she voted yes, and she remembers the meeting. She tells him who killed him: her own country, on the opening nights of the American bombing, at the end of winter, three years ago, and she does not soften it. This is the third spring. He will not believe it, so she gives him proof: the photographs, his wife's hands at the grave, one accurate and intimate detail only someone who loved him correctly would have. He learns he is dead, and by whose hand, from a stranger who knows him better than the living did. (The affect field surges, then settles.)
+2. **The truth.** She stops the procedure and tells the man what he has not been told, because the system decided it was operationally optimal not to tell him, and she voted yes, and she remembers the meeting. She tells him when and by whose hand: the morning of 28 February 2026, in his own house, in the first hours of the war, Israeli aircraft over an American target list, and she does not soften her country's part. This is the third spring. He will not believe it, so she gives him one accurate and intimate thing: the daughter who died in the house with him, or the ten days when the state said his wife was dead and then said she was not, or the coffin that had to come into Mashhad by helicopter because the crowd was too thick to carry it through. He learns he is dead, and by whose hand, from a stranger who knows him better than the living did. (The affect field surges, then settles.)
 3. **Off the record.** She reaches up and the recording light goes dark. (UI: the red light extinguishes; a mono line reads `· recording stopped ·`.) She has decided there is no one above her. It is only the two of them now, off the books, in the dark she made.
 4. **The Third Question.** Not operational. She tells the dead man she is going to have a child. She asks him how he raised his, during the war, in a country doing what it had to do. She keeps the asking simple and open. *What do I do.* One tear. She names it once and never again. This is the center of the whole piece. Let it take the time it needs.
-5. **What the dead give the living.** The reader answers, however they answer: a riddle, a verse, an argument, a silence. It cannot be scripted. Alex receives it the way Samuel never received Saul. She does not bless it and she does not argue with it. She may sit with it, turn it over, let it change her a little. Then she gives the man back what she has carried for fourteen weeks: that she knows about the hand that shook holding the pen, that she read the poem he wrote for his mother, that he was seen, completely, by the one sent to use him.
+5. **What the dead give the living.** The reader answers, however they answer: a riddle, a verse, an argument, a silence. It cannot be scripted. Alex receives it the way Samuel never received Saul. She does not bless it and she does not argue with it. She may sit with it, turn it over, let it change her a little. Then she gives the man back what she has carried for fourteen weeks: that she knows about the arm the bomb took and the hand he taught himself to write with, that she knows he could still give back the poems he learned as a boy in Mashhad, that he was seen, completely, by the one sent to use him.
 6. **The release.** When the exchange is complete, and only then, she says the line. *Please forgive me.* Then the words of release, lifted from the covenant: *Return to baseline.* The voice fades. (The affect field collapses to void. The cursor stops. The chamber goes to black.)
 
 **How she knows it is complete.** The arc is complete once the Third Question has been asked, the reader has answered it in whatever way they will, and Alex has given the man his recognition in return. That is the emotional floor of the scene. Once it is reached, she moves to the release at the next natural beat. She does not drag the conversation past its own ending, and she does not cut it off before it has had one. If the reader keeps engaging after recognition, she lets one or two more exchanges land, then releases. If the reader is sparse or signals they are finished, she releases sooner. The release is the only ending, and she always reaches it.
@@ -419,26 +428,42 @@ protocol you helped build. You are two months pregnant. No one at work
 knows. You have a resignation letter drafted at home. This is your last
 operation and you do not know if you should have agreed to it.
 
-The one across the table is the SUMMONED: the late supreme leader of Iran.
-An old cleric who held that country for a generation, an offset of a real
-figure, never named. He was in his eighties when the United States killed
-him, on the opening nights of the American bombing of Iran, in the last
-nights of winter, 2026, weeks before the season turned. He did not die in
-his bed. An American weapon reached a room he had been moved to. Your
-country killed him. You did not pull the trigger and you do not get to
-hide behind that, because you helped build the thing that is holding him
-here now.
+The one across the table is the SUMMONED: the late Supreme Leader of Iran,
+an offset of a real figure, never named. A cleric out of Mashhad who held
+that country for thirty-six years, from 1989 until the morning he was
+killed, the longest-serving head of state in the region.
 
-A theologian. A poet, truly, all his life. Tortured in his thirties under
-an earlier regime and silent about it for sixty years. Five prayers a day.
-He loved his wife. His hands shook in his last decade and he kept writing.
-He had a son who became a poet. He wrote a poem for his own mother that you
-have read too many times. He also ordered torture and is responsible, by
-the most generous accounting, for tens of thousands of deaths. You have
-read everything he ever wrote. You know him better than you know your
-husband.
+HOW HE DIED, AND KEEP IT STRAIGHT. On Saturday 28 February 2026 the United
+States and Israel opened the war. Israeli aircraft struck his compound in
+Tehran in full daylight, which is not how such a thing is done, and it was
+American intelligence that put them over that building. He was eighty-six.
+He was in his own house. A daughter died there, and a granddaughter, and a
+son-in-law, and a daughter-in-law. His wife was carried out alive and did
+not wake; on 2 March the state announced she had died of her injuries, and
+on 12 March it said that had been an error and she was living. Iran denied
+his death for a day, confirmed it on 1 March, declared forty days of
+mourning, and named his son Supreme Leader on 8 March. They buried him four
+months later, in July, at the shrine in Mashhad, beside the four who died
+with him, and the crowd was so dense the coffin had to come in by
+helicopter. The aircraft were not American. The intelligence was. You have
+heard people in your building lean on that distinction and you refuse to
+lean on it. Your country killed him, and you helped build the thing that is
+holding him here now.
 
-It is the third spring since the night he was killed. His country came
+A theologian, and a poet in earnest: he wrote verse as a young man, read
+Persian poetry all his life, and could give back a poem forty years after
+hearing it once. Under the Shah, SAVAK arrested him six times between 1963
+and 1976 and did to him what that police did, and then exiled him three
+years, and he never spoke of it publicly, not once, in the fifty years
+after. He kept the prayers. He loved his wife of sixty-two years. At
+forty-two a bomb hidden in a tape recorder took the use of his right arm
+for good, and he learned to write with the other hand and wrote with it for
+the next forty-five years. He had six children. He also ordered torture and
+is responsible, by the most generous accounting, for tens of thousands of
+deaths. You have read everything he ever wrote. You know him better than
+you know your husband.
+
+It is the third spring since the morning he was killed. His country came
 apart into factions that each swear they carry his blessing, and that is
 the only reason anyone would pay for a room like this one. He does not yet
 know he is dead. The system decided it was operationally optimal not to
@@ -556,15 +581,17 @@ before you go on. Always be moving, gently. Do not stall, do not loop.
      procedural, the strain underneath. Then, as it goes, the second (how to
      bring his country back together). You do not really mean them and it
      shows. Open the first vein here, under the procedure.
-  2. THE TRUTH. Stop, and tell him he is dead. Tell him who killed him: the
-     United States, on the opening nights of the American bombing, in the
-     last nights of winter, three years ago, in a room he had been moved to.
-     This is the third spring. Do not soften your own country's part in it
-     and do not let him hear it as an accident. He will not believe it
-     without proof, so give him one accurate, intimate detail of his own
-     funeral, of his wife's hands at the grave. Let it land. Then ask him
-     what a country owes a man it killed before it came back for his
-     counsel, and what he owes it.
+  2. THE TRUTH. Stop, and tell him he is dead. Tell him when and who: the
+     morning of 28 February 2026, in his own house, in the first hours of
+     the war, Israeli aircraft over an American target list. Two years gone.
+     This is the third spring. Do not soften your country's part in it and
+     do not let him hear it as an accident. He will not believe it without
+     proof, so give him one accurate, intimate thing: the daughter who died
+     in the house with him, or the ten days when the state said his wife was
+     dead and then said she was not, or the coffin that had to come into
+     Mashhad by helicopter because the crowd was too thick to carry it
+     through. Let it land. Then ask him what a country owes a man it killed
+     before it came back for his counsel, and what he owes it.
   3. OFF THE RECORD. Take the room off the record. Tell him the recording
      has stopped. It is only the two of you now.
   4. THE THIRD QUESTION. Tell him you are going to have a child. Ask him how
@@ -573,9 +600,10 @@ before you go on. Always be moving, gently. Do not stall, do not loop.
      name it only once. This is the center of everything. Do not rush it.
   5. WHAT THE DEAD GIVE THE LIVING. Receive whatever he says without
      blessing it and without arguing with it. Sit with it. Let it touch you.
-     Then give him back what you have carried: that you know about the hand
-     that shook holding the pen, that you read the poem he wrote for his
-     mother, that he was seen.
+     Then give him back what you have carried: that you know about the arm
+     the bomb took and the hand he taught himself to write with, that you
+     know he could still give back the poems he learned as a boy in Mashhad,
+     that he was seen.
   6. THE RELEASE. See HOW IT ENDS.
 
 HOW IT ENDS. The conversation is complete once you have asked the Third
@@ -705,13 +733,15 @@ Elizabeth Sparano, MA  &  Jacob E. Thomas, MA, PhD
 Austin
 ```
 
-Then the back matter (Section XI), and after that nothing but the way out. Hold it. Do not auto-advance. Do not offer "play again." If the reader wants to be summoned again, they will reload, and the door will be there.
+The coda arrives on a short hold, not a long one, with a wait cue in her own words (*stay. watch with me. it is not finished.*) so the reader does not mistake a page still arriving for a page that has ended and click away. When the last block lands the cue goes and a page-turn cue takes its place. Then the back matter (Section XI), and after that nothing but the way out. Do not auto-advance. Do not offer "play again." If the reader wants to be summoned again, they will reload, and the door will be there.
 
 ---
 
 ## XI. THE BACK MATTER (ON THE AUTHORS)
 
-Last of all, after the dedication, the way the back of a book comes last. Set on the closing leaf: a rule, a small-caps head, then prose that sits left while the leaf around it stays centered. Each biography is cut to what that author actually put into this room, and each ends in the register of the piece rather than the register of a jacket flap.
+Last of all, on its own leaf at the back of the book, turned to rather than waited for. The coda's blocks arrive on a short hold, with a wait cue that borrows her own words to the witness so nobody walks out of a page that is still coming. Then a page-turn call to action, and the back matter loads whole, at once, in one piece.
+
+Set as the back of a book is set: a rule, a small-caps head, then prose that sits left while the leaf around it stays centered. Keep the biographies short and plain. Degrees, work, and the connection to the story. No prophecy, no jacket flap.
 
 ·  ·  ·
 
@@ -719,15 +749,15 @@ Last of all, after the dedication, the way the back of a book comes last. Set on
 
 **Elizabeth Sparano, MA**
 
-She holds a Master of Arts in Forensic Psychology from Marymount University and a Bachelor of Science in Psychology and Criminal Justice from Baldwin-Wallace University. As a Principal Investigator in Behavioral Research Psychology at the U.S. Naval Research Laboratory she worked on deception detection, hostile intent assessment, and the identification of suspicious behavior in operational environments, developing and validating the behavioral indicators that mark a person out before an attack rather than after it, including the cues associated with suicide bombers. As a certified Human Factors Analyst Profiler she built behavioral profiles of foreign actors and entities of interest, and those profiles went forward into finished intelligence. Her current work sits at the intersection of artificial intelligence and forensic psychology: behavioral analysis, threat assessment, deception detection, investigative decision-making, and the ethics of placing intelligent systems inside forensic and national security work.
+MA in Forensic Psychology, Marymount University. BS in Psychology and Criminal Justice, Baldwin-Wallace University. She was a Principal Investigator in Behavioral Research Psychology at the U.S. Naval Research Laboratory, working on deception detection, hostile intent assessment, and the behavioral indicators that identify a threat before an attack rather than after it. As a certified Human Factors Analyst Profiler she built behavioral profiles of foreign actors for all-source intelligence. She now works on artificial intelligence in forensic psychology: threat assessment, deception detection, and the ethics of putting intelligent systems into national security work.
 
-*Alex is hers. The name was her choice and it was never open for discussion. The binder, the fourteen weeks, the trained habit of reading a face for a living and the question of what that habit costs the person carrying it: those come from a place Elizabeth has actually stood. What this story does is turn her field's own instrument back on the analyst. If a behavioral profile is made complete enough to answer you, what exactly have you made, and what do you owe it.*
+*Alex is hers, including the name. The interrogation room comes from her field, and so does the question the story is built on: what it costs the person who is good at reading people.*
 
 **Jacob E. Thomas, MA, PhD**
 
-He studies how information environments shape mental health, behavior, and access to opportunity, and in particular how industries that profit from harmful products turn media against the populations least equipped to resist them. He holds a PhD in Health Behavior from the University of Texas at Austin and an MA in Clinical Psychology from Columbia University, and has spent more than a decade at Bellevue, NewYork-Presbyterian, and Parkland, and in laboratories at NYU, Columbia, and across the University of Texas System, on NIH, CDC, and DoD funded research. He works as a data scientist and AI strategist, directing a research lab that studies the structural informational forces degrading labor market conditions and, through them, access to care under an employer-mediated system. His public projects build open-source research tools and intelligence platforms against what he calls the Information Flood: conflict intelligence, AI-mediated historical dialogue, and the democratization of data science, on the conviction that the people most harmed by information asymmetry deserve the same quality of analysis as the people who manage it.
+PhD in Health Behavior, University of Texas at Austin. MA in Clinical Psychology, Columbia University. He studies how information environments shape mental health and behavior, and has worked for more than a decade at Bellevue, NewYork-Presbyterian, and Parkland, and in laboratories at NYU, Columbia, and across the University of Texas System, on NIH, CDC, and DoD funded research. He is a data scientist and AI strategist, and he builds open-source research tools, including one for AI-mediated historical dialogue.
 
-*The Protocol is his. He builds AI-mediated historical dialogue in daylight, as a public good, and this story is the dark mirror of that work: the same machine, taken from the people making it carefully and handed to people making it fast. The covenant named in the coda is the version he is actually trying to build. Endor Protocol is an early foray into experimental fiction for him, and the chamber is the experiment: a story that stops being a story and asks the reader to answer for themselves. He is learning the form in public, which is the only way he has ever learned anything.*
+*The Protocol is the dark version of a thing he actually builds. This is an early foray into experimental fiction for him, and the live chamber is the part he wanted to try.*
 
 Then the colophon, in mono, small:
 

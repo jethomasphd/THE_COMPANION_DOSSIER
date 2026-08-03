@@ -62,8 +62,8 @@ The war and the warheads are a fiction that frames a scene about grief and consc
 - The green room renders the fixed prose perfectly, advances one beat at a time, and the clock counts down 8 to 1.
 - The door and the threshold land. The floor opens.
 - The chamber holds a live Claude conversation as Alex that feels real, responds to what the reader actually says, runs the full arc, and reaches its own natural release and the coda after a genuine exchange, no matter what the reader types. It is never cut short, and it never runs without end.
-- The killing is plain everywhere it belongs. He did not die in his bed. The United States killed him on the opening nights of the American bombing of Iran, in the last nights of winter, 2026, and the story stands in the third spring after.
-- The back matter names the authors last of all, after the dedication, cut to what each of them put into this room.
+- The killing is plain everywhere it belongs, and it is factually anchored. He did not die in his bed. On 28 February 2026 the United States and Israel opened the war, Israeli aircraft struck his compound in Tehran in daylight on an American target list, and he was eighty-six. Alex never leans on the distinction between whose aircraft and whose intelligence. The story stands in the third spring after. Every detail about the man is sourced; nothing invented sits next to the record.
+- The back matter names the authors last of all, on its own leaf, turned to and loaded whole. Short and plain: degrees, work, and the connection to the story.
 - The covenant in `seed.md` Section XII is satisfied in every particular.
 
 Build the door.
