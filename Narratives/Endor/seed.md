@@ -80,6 +80,22 @@ This is the established personal-project aesthetic. Match it exactly.
 - **Darkness is the design.** The screen is almost entirely void. Light falls only where it must: the binder spine, her hand when it goes to her stomach once, the one tear in the chamber. Everything else stays dark so the reader leans in close enough to be caught.
 - **Sigil:** `◊ ◈ ◊` may be used as a section marker and at the threshold.
 
+**The plates.** Every chapter opens on an engraved roundel: a double rule, four gilt pins, and one object struck in ink at the middle of it. They are read at 84 pixels on a phone and 108 on a desk, which is the whole design problem. A plate that needs to be studied has failed. Each one is a single object, named by the chapter, legible as a silhouette before it is legible as a drawing, with nothing in it smaller than it can afford to be. Ink for the form, gilt for the one warm thing in the picture, rubric red almost never.
+
+| plate | the object |
+| --- | --- |
+| frontispiece | the sun eclipsed. All the light still there, the body of it gone dark |
+| I · The Printer | the press: the bar, the screw, the platen, and the sheet just come off it |
+| II · The Seeing | an eye, opened, looking back out of the page |
+| III · The Break | a stone tablet split clean through, and gilt in the break |
+| IV · The Rehearsal | a book open on the night table, under a crescent moon |
+| V · The Recognition | a quill, and beneath it the line the wrong hand makes |
+| VI · The Three | three tapers, and only the third of them is lit |
+| VII · The Small Thing | the folded letter, sealed in red wax with the sigil of the piece |
+| VIII · The Door | shut, with the light still coming under it |
+
+No two plates may carry the same object. The frontispiece and Chapter II were both an eye once, and it cost the cover its meaning.
+
 **Motion.** Slow. Sacramental. Text arrives the way breath arrives, not the way notifications arrive. Beats reveal on scroll or on a single deliberate advance (see Section VII). Nothing bounces. Nothing pulses for attention. The only living motion in the green room is, optionally, the faintest flicker on the light, timed to the buzz.
 
 ---
