@@ -19,6 +19,7 @@
   --founding:#c9a227;  /* gold — the founding */
   --vigil:#6a8eb8;     /* slate — the instrument */
   --war:#d4451a;       /* ember-red — the wartime review */
+  --peace:#5a9a5a;     /* false-peace green — the Q2 review */
   --future:#7b78d6;    /* indigo — forthcoming */
   --font-voice:'Cormorant Garamond',Georgia,serif;
   --font-terminal:'IBM Plex Mono',monospace;
@@ -90,7 +91,7 @@ section{position:relative;padding:6rem 2rem;display:flex;align-items:center;just
 /* ── THE LOOP DIAGRAM ── */
 #loop{background:linear-gradient(var(--void),#070707);}
 .loop-head{text-align:center;margin-bottom:3rem;}
-.loop-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;}
+.loop-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;position:relative;}
 .loop-line{position:absolute;top:34px;left:8%;right:8%;height:2px;z-index:0;}
 .loop-line svg{width:100%;height:2px;overflow:visible;}
 .lnode{position:relative;z-index:1;text-decoration:none;text-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .35s ease;}
@@ -99,6 +100,7 @@ section{position:relative;padding:6rem 2rem;display:flex;align-items:center;just
 .lnode.founding .lcirc{border:1px solid var(--founding);color:var(--founding);}
 .lnode.vigil .lcirc{border:1px solid var(--vigil);color:var(--vigil);}
 .lnode.war .lcirc{border:1px solid var(--war);color:var(--war);}
+.lnode.peace .lcirc{border:1px solid var(--peace);color:var(--peace);}
 .lnode.future .lcirc{border:1px dotted var(--future);color:var(--future);}
 .lnode:hover .lcirc{box-shadow:0 0 26px rgba(201,162,39,.22),0 0 0 6px rgba(0,0,0,.6);}
 .lstep{font-family:var(--font-terminal);font-size:.5rem;letter-spacing:.22em;color:var(--smoke);margin-bottom:.4rem;}
@@ -115,12 +117,14 @@ section{position:relative;padding:6rem 2rem;display:flex;align-items:center;just
 .chapter.c-founding::before{background:var(--founding);}
 .chapter.c-vigil::before{background:var(--vigil);}
 .chapter.c-war::before{background:var(--war);}
+.chapter.c-peace::before{background:var(--peace);}
 .chapter.c-future::before{background:var(--future);}
 .chapter-inner{padding:2.4rem 2.6rem;}
 .chapter-tag{font-family:var(--font-terminal);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.7rem;display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;}
 .chapter.c-founding .chapter-tag{color:var(--founding);}
 .chapter.c-vigil .chapter-tag{color:var(--vigil);}
 .chapter.c-war .chapter-tag{color:var(--war);}
+.chapter.c-peace .chapter-tag{color:var(--peace);}
 .chapter.c-future .chapter-tag{color:var(--future);}
 .chapter-date{color:var(--smoke);letter-spacing:.1em;}
 .chapter-title{font-family:var(--font-voice);font-size:1.7rem;font-weight:400;color:var(--bone);margin-bottom:.9rem;}
@@ -195,7 +199,7 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
     <div class="hero-eyebrow">THE COMPANION ESTATE &middot; THE WORK</div>
     <div class="hero-sigil">◊ ◈ ◊</div>
     <h1 class="hero-title">The Committee<br>of <em>Patriots</em></h1>
-    <p class="hero-sub">Four founders, summoned. One doctrine, tested by the world. This is the whole story &mdash; the founding, the instrument that measures it, and the war that refined it.</p>
+    <p class="hero-sub">Four founders, summoned. One doctrine, tested by the world. This is the whole story &mdash; the founding, the instrument that measures it, the war that refined it, and the false peace that tried its patience.</p>
     <div class="hero-meta">CONVENED VIA THE COMPANION PROTOCOL &middot; J.E. THOMAS, PhD<br>FIRST SITTING DECEMBER 2025 &middot; THE VIGIL CONTINUES</div>
   </div>
   <div class="hero-scroll">DESCEND INTO THE RECORD<span>↧</span></div>
@@ -214,7 +218,7 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
         <p>&ldquo;These are the Engines of the Republic. <em>Own them.</em>&rdquo;</p>
         <div class="attr">— FRANKLIN'S HANDBILL, BY ORDER OF THE COMMITTEE</div>
       </div>
-      <p class="reveal rd3">Below is the full record: the founding session, the Watchtower that has kept the score in public ever since, and the wartime review where the same four minds read their own results and refined the doctrine. <em>A doctrine that cannot be tested is only an opinion. This one took the test.</em></p>
+      <p class="reveal rd3">Below is the full record: the founding session, the Watchtower that has kept the score in public ever since, the wartime review where the same four minds read their own results and refined the doctrine &mdash; and the false peace review, where they accounted for the first quarter the index ever won. <em>A doctrine that cannot be tested is only an opinion. This one took the test, and published the bruises.</em></p>
     </div>
   </div>
 </section>
@@ -224,7 +228,7 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
   <div class="container">
     <div class="loop-head">
       <div class="eyebrow reveal">THE SHAPE OF THE STORY</div>
-      <h2 class="sec-title reveal rd1">One Doctrine, in Four Movements</h2>
+      <h2 class="sec-title reveal rd1">One Doctrine, in Five Movements</h2>
       <p class="sec-sub reveal rd2">It does not end. It turns. Jump to any movement &mdash; or read straight down.</p>
     </div>
     <div class="loop-wrap reveal rd1">
@@ -249,10 +253,16 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
         <div class="lname">Wartime Review</div>
         <div class="lwhen">MAR 2026</div>
       </a>
+      <a href="#ch-q2" class="lnode peace">
+        <div class="lcirc">&#9775;</div>
+        <div class="lstep">IV &middot; THE FALSE PEACE</div>
+        <div class="lname">The Q2 Review</div>
+        <div class="lwhen">AUG 2026</div>
+      </a>
       <a href="#ch-future" class="lnode future">
         <div class="lcirc">&#9682;</div>
-        <div class="lstep">IV &middot; THE TURN</div>
-        <div class="lname">Q2 &amp; Beyond</div>
+        <div class="lstep">V &middot; THE TURN</div>
+        <div class="lname">Q3 &amp; Beyond</div>
         <div class="lwhen">FORTHCOMING</div>
       </a>
     </div>
@@ -322,17 +332,38 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
       </div>
     </div>
 
-    <!-- CHAPTER IV — THE TURN -->
+    <!-- CHAPTER IV — THE FALSE PEACE -->
+    <div class="chapter c-peace reveal" id="ch-q2">
+      <div class="chapter-inner">
+        <div class="chapter-tag">Movement IV &middot; The False Peace <span class="chapter-date">&middot; August 4, 2026</span></div>
+        <h2 class="chapter-title">The Q2 2026 Review &mdash; The False Peace</h2>
+        <p class="chapter-body">
+          The ceasefire came, the melt-up followed, and for the first time the index won a quarter &mdash; <em>+15.12% to +4.42%</em>. Twice the S&amp;P passed the Republic on the year; twice the lead was returned within a fortnight. Then the fourteen-point memorandum of Islamabad collapsed, the war resumed &mdash; and the Republic climbed to a new high-water mark while the market shrugged. The Committee reconvened to publish its own defeat in a table, deliver the long-promised <strong>full Exclusion List</strong>, garrison the semiconductor gate its own map had named (<em>TSM, ASML &mdash; and Intel among the Engines</em>), and establish the <strong>Withheld List</strong>: NVDA &mdash; the gate, when it is a gate.
+        </p>
+        <div class="chapter-stat">
+          <div class="s"><span class="n">+13.52 / +11.49</span><span class="l">Republic vs S&amp;P YTD (Aug 3)</span></div>
+          <div class="s"><span class="n">+TSM · ASML · INTC</span><span class="l">The Semiconductor Gate</span></div>
+          <div class="s"><span class="n">6 + 1</span><span class="l">Excluded + Withheld (NVDA)</span></div>
+        </div>
+        <div class="chapter-links">
+          <a href="Q22026/" class="clink primary">ENTER THE FALSE PEACE REVIEW &rarr;</a>
+          <a href="Q22026/handbill/" class="clink" target="_blank">THE FALSE PEACE HANDBILL</a>
+          <a href="Q22026/Committee_of_Patriots_Q2_2026_False_Peace_Review.pdf" class="clink" target="_blank">THE SESSION (PDF)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER V — THE TURN -->
     <div class="chapter c-future reveal" id="ch-future">
       <div class="chapter-inner">
-        <div class="chapter-tag">Movement IV &middot; The Turn <span class="chapter-date">&middot; Q2 2026 — forthcoming</span></div>
+        <div class="chapter-tag">Movement V &middot; The Turn <span class="chapter-date">&middot; Q3 2026 — forthcoming</span></div>
         <h2 class="chapter-title">The Next Reconvening</h2>
         <p class="chapter-body">
-          The wartime session adjourned with a motion: <em>reconvene at the end of Q2 &mdash; or sooner, if the crisis resolves or escalates.</em> That sitting has not yet been called. The Watchtower keeps its vigil in the meantime, and the story it tells has grown more complicated &mdash; the Republic's commanding spring lead has narrowed as the broader market recovered. <strong>This is what an honest record looks like: not an unbroken victory lap, but a doctrine still being measured.</strong> When the founders are next summoned, this chapter will be written from whatever the tape says then.
+          The False Peace session adjourned with a motion: <em>reconvene at the close of Q3 &mdash; or sooner</em>, upon any of three triggers &mdash; the Strait closes outright, the melt-up breaks by more than ten points, or events touch the Taiwan gate the Committee just garrisoned. Hamilton has given notice he will re-argue NVIDIA; Jefferson has demanded the framework's first <em>annual audit</em> for Q4. The Watchtower keeps the vigil in the meantime. <strong>This is what an honest record looks like: not an unbroken victory lap, but a doctrine still being measured.</strong> When the founders are next summoned, this chapter will be written from whatever the tape says then.
         </p>
         <div class="chapter-links">
           <a href="../The_Watchtower/" class="clink primary">SEE WHERE IT STANDS NOW &rarr;</a>
-          <span class="clink muted">Q2 SESSION &middot; AWAITING THE THRESHOLD</span>
+          <span class="clink muted">Q3 SESSION &middot; AWAITING THE THRESHOLD</span>
         </div>
       </div>
     </div>
@@ -384,6 +415,21 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
         <span class="vault-name">Wartime Review (PDF)</span>
         <span class="vault-desc">The Q1 2026 session as a printable record. Public domain, freely distributable.</span>
       </a>
+      <a href="Q22026/" class="vault-item">
+        <span class="vault-kind">Transcript &middot; Interactive</span>
+        <span class="vault-name">Q2 2026 False Peace Review</span>
+        <span class="vault-desc">The quarter the index won, accounted in full: the semiconductor gate, the complete Exclusion List, and the Withheld List.</span>
+      </a>
+      <a href="Q22026/handbill/" class="vault-item">
+        <span class="vault-kind">Broadside &middot; Aug 2026</span>
+        <span class="vault-name">The False Peace Handbill</span>
+        <span class="vault-desc">The amended allocation as a distributable broadside. &ldquo;Envy pays no dividend.&rdquo;</span>
+      </a>
+      <a href="Q22026/Committee_of_Patriots_Q2_2026_False_Peace_Review.pdf" class="vault-item" target="_blank">
+        <span class="vault-kind">Transcript &middot; PDF</span>
+        <span class="vault-name">False Peace Review (PDF)</span>
+        <span class="vault-desc">The Q2 2026 session as a printable record. Public domain, freely distributable.</span>
+      </a>
       <a href="../The_Watchtower/" class="vault-item">
         <span class="vault-kind">Instrument &middot; Live</span>
         <span class="vault-name">The Watchtower</span>
@@ -397,10 +443,10 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
 <section id="close">
   <div class="container-narrow">
     <blockquote class="close-quote reveal">
-      &ldquo;The Republic was not built to be owned by the few.<br>
-      It was built to endure. And so is this portfolio.&rdquo;
+      &ldquo;The Republic was not built on the applause of a single season.<br>
+      It was built to be argued with, amended, and kept. So is this portfolio.&rdquo;
     </blockquote>
-    <div class="close-attr reveal rd1">&mdash; WASHINGTON, CLOSING THE WARTIME REVIEW</div>
+    <div class="close-attr reveal rd1">&mdash; WASHINGTON, CLOSING THE FALSE PEACE REVIEW</div>
     <div class="loop-nav reveal rd2">
       <a href="#ch-founding">↻ BEGIN AGAIN</a>
       <a href="../The_Watchtower/">THE WATCHTOWER →</a>
@@ -418,6 +464,7 @@ footer{padding:2.6rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
     <a href="handbill/">THE HANDBILL</a>
     <a href="../The_Watchtower/">THE WATCHTOWER</a>
     <a href="Q12026/">Q1 REVIEW</a>
+    <a href="Q22026/">Q2 REVIEW</a>
     <a href="../THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
     <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER" target="_blank">GITHUB</a>
   </div>
