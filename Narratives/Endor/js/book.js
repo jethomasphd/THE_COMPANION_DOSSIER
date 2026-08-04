@@ -435,7 +435,7 @@
     doorEl.classList.add('is-holding');
     var fadeMs = REDUCED ? 0 : 1200;
     setTimeout(function () { hide('greenroom'); }, fadeMs + 60);
-    var blackDwell = REDUCED ? 2800 : 3200;
+    var blackDwell = REDUCED ? 2200 : 2600;
     setTimeout(function () {
       show('threshold');
       setStage('threshold');
@@ -444,21 +444,37 @@
     }, fadeMs + blackDwell);
   }
 
-  /* ── The threshold: the reveal, advanced by the reader, one line at a
-        time. The lines stay. The reader sets the pace of the floor opening. */
-  var thLines = [], thIdx = 0, thReady = false, thDone = false;
-  var thresholdCue = document.getElementById('thresholdCue');
+  /* ── The threshold: the turn. It plays itself.
+
+        Closing the account is the last thing the reader is asked to do
+        before the chamber. From there the floor opens on its own: the held
+        black, then the lines one at a time, then the room. Nothing waits on
+        a click and nothing waits on a scroll, because a reader who does not
+        know to do either is a reader who is lost at the exact moment the
+        piece is doing its work. A click only hurries it along. */
+  var thLines = [], thIdx = 0, thDone = false, thTimer = null;
+
+  // How long a line is left alone before the next one arrives, scaled to how
+  // much of it there is to read.
+  function thresholdDwell(el) {
+    var segments = el.innerHTML.split(/<br\s*\/?>/i).length;
+    return REDUCED ? 500 : 1100 + (segments - 1) * 350;
+  }
 
   function enterThreshold() {
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('turnLines'));
     thLines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
-    thIdx = 0; thDone = false; thReady = false;
-    if (thresholdCue) thresholdCue.classList.remove('show');
+    thIdx = 0; thDone = false;
     // The first line is there almost at once, so the reader never mistakes
     // the threshold for an empty page. The held black was the door; this
     // room speaks as soon as it is entered.
-    setTimeout(function () { revealNextThresholdLine(); thReady = true; }, REDUCED ? 150 : 350);
+    scheduleThresholdLine(REDUCED ? 150 : 350);
+  }
+
+  function scheduleThresholdLine(delay) {
+    if (thTimer) clearTimeout(thTimer);
+    thTimer = setTimeout(revealNextThresholdLine, delay);
   }
 
   // The turn is longer than one screen now that it names who the reader has
@@ -471,28 +487,25 @@
   }
 
   function revealNextThresholdLine() {
+    if (thTimer) { clearTimeout(thTimer); thTimer = null; }
     if (thIdx < thLines.length) {
-      thLines[thIdx].classList.add('show');
-      keepThresholdLineInView(thLines[thIdx]);
+      var el = thLines[thIdx];
+      el.classList.add('show');
+      keepThresholdLineInView(el);
       thIdx++;
-      if (thresholdCue) {
-        // The cue carries a word, not just an arrow, so a first-time reader
-        // knows the dark builds on itself and keeps going.
-        thresholdCue.innerHTML = (thIdx >= thLines.length)
-          ? 'cross the threshold<span class="arr" aria-hidden="true">&#9674;</span>'
-          : 'go on<span class="arr" aria-hidden="true">&#8595;</span>';
-        setTimeout(function () { thresholdCue.classList.add('show'); }, REDUCED ? 120 : 450);
-      }
+      // A longer hold after the last line, so she has been waiting sits
+      // alone in the dark for a moment before the door opens.
+      var last = (thIdx >= thLines.length);
+      scheduleThresholdLine(last ? (REDUCED ? 700 : 2200) : thresholdDwell(el));
     } else if (!thDone) {
       thDone = true;
-      if (thresholdCue) thresholdCue.classList.remove('show');
       enterChamber();
     }
   }
 
+  // A click or a key does not open the floor. It only hurries it.
   function advanceThreshold() {
-    if (!thReady) return;
-    if (thresholdCue) thresholdCue.classList.remove('show');
+    if (thDone) return;
     revealNextThresholdLine();
   }
 
