@@ -418,6 +418,21 @@
   }
   .turn-line.show { opacity:1; transform:translateY(0); }
 
+  /* The one action between the account and the room. The turn arrives on its
+     own; the door does not. It waits for a hand. */
+  .threshold-enter { margin-top:3.4rem; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
+  .threshold-enter.show { opacity:1; pointer-events:auto; }
+  .enter-eyebrow { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--ash); margin-bottom:1.15rem; }
+  .enter-btn { display:inline-flex; align-items:baseline; gap:0.8em; cursor:pointer;
+    padding:0.82rem 2.1rem; background:none; border:1px solid var(--ember-dim); border-radius:2px;
+    font-family:var(--sc); font-variant:small-caps; font-size:1.02rem; letter-spacing:0.14em;
+    color:var(--ember); transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
+  .enter-btn .arr { display:inline-block; animation:enterPulse 2.8s ease-in-out infinite; }
+  @keyframes enterPulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+  .enter-btn:hover, .enter-btn:focus-visible {
+    color:var(--bone); border-color:var(--ember); background:rgba(201,162,39,0.07); }
+
   /* ════════════════ CHAMBER (live, void) ════════════════ */
   /* The deepest layer: the void, with the optional haze laid over it. The
      ember canvas draws onto this and is now transparent except for its
@@ -606,6 +621,8 @@
   /* ════════════════ Reduced motion ════════════════ */
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
+    .threshold-enter { transition:none; }
+    .enter-btn .arr { animation:none; opacity:1; }
     .coda-turn .arr { animation:none; }
     .line, .line-self, .line-mark { animation:none; opacity:1; }
     .line-alex .frag { transition:none; opacity:1; transform:none; }
@@ -1042,7 +1059,7 @@
     <p class="turn-line">Every word you ever said was indexed, and embedded,<br/>and learned, and the shape of what you never said<br/>was imagined from the absences.</p>
     <p class="turn-line">You have been the one being prepared.</p>
     <p class="turn-line">You are the old cleric.<br/>Supreme Leader of Iran, thirty-six years.<br/>No one under forty remembers the country without you.</p>
-    <p class="turn-line">They killed you on the twenty-eighth of February, 2026,<br/>in your own house in Tehran, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American intelligence.</p>
+    <p class="turn-line">They killed you on the twenty-eighth of February,<br/>2026, in your own house in Tehran, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American intelligence.</p>
     <p class="turn-line">That was two years ago. This is the third spring.<br/>The country is in pieces, and every piece<br/>swears it carries your blessing.</p>
     <p class="turn-line">You do not know any of this yet.<br/>When she tells you, hear it for the first time.</p>
     <p class="turn-line">Answer her as him.<br/>Whatever you say, the Protocol records as his.</p>
@@ -1050,6 +1067,17 @@
     <p class="turn-line">This time it opens for you.</p>
     <p class="turn-line">There is a chair.</p>
     <p class="turn-line">She has been waiting.</p>
+
+    <!-- The one thing the reader does between closing the account and the
+         room. Everything before it plays itself. This is the door, and it
+         does not open on its own. -->
+    <div class="threshold-enter" id="thresholdEnter">
+      <div class="enter-eyebrow">she is on the other side of it</div>
+      <button type="button" class="enter-btn" id="enterChamberBtn">
+        <span class="enter-label">Take the chair</span>
+        <span class="arr" aria-hidden="true">&#9674;</span>
+      </button>
+    </div>
   </div>
 </section>
 
