@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-THE WATCHTOWER — YTD model (with the Q1 2026 reshuffle pivot)
-============================================================
+THE WATCHTOWER — YTD model (with the Q1 and Q2 2026 reshuffle pivots)
+====================================================================
 Pulls real adjusted (total-return) daily prices from Yahoo Finance for the
 full year-to-date window and models six contenders:
 
     republic  — The Republic Portfolio, modeled buy-and-hold from its real
                 holdings, EQUAL-WEIGHT within each bucket (per the Committee's
-                handbill), and REBALANCED on the Q1 2026 reshuffle date.
+                handbill), and REBALANCED on each Committee reshuffle date.
     spy       — S&P 500 (SPY)
     dvrux/qgrpx/midusa/bniex — the four UBS funds
 
@@ -15,8 +15,12 @@ THE Q1 2026 WARTIME REVIEW (effective 2026-03-31) amended the doctrine:
     Engines  50% -> 45%
     Choke    35% (unchanged) but ADD XLE  (14 -> 15 names)
     Reserve  15% -> 20%
-The portfolio is held under the original roster from the first trading day
-through the pivot, then rebalanced into the amended roster and held to date.
+THE Q2 2026 FALSE PEACE REVIEW (effective 2026-08-04) amended it again:
+    Engines  45% (unchanged) but ADD INTC        (15 -> 16 names)
+    Choke    35% (unchanged) but ADD TSM, ASML   (15 -> 17 names)
+    Reserve  20% (unchanged — step-down by conditions, not dates)
+The portfolio is held under each roster from its effective date, rebalanced
+at each pivot, and held to date.
 
 Output: data/vigil_data.js  ->  window.VIGIL_DATA = {...}
 """
@@ -26,11 +30,14 @@ import requests
 HDRS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
-PIVOT = "2026-03-31"   # Q1 2026 Wartime Review — reshuffle effective date
+PIVOT  = "2026-03-31"   # Q1 2026 Wartime Review — reshuffle effective date
+PIVOT2 = "2026-08-04"   # Q2 2026 False Peace Review — reshuffle effective date
 
-ENGINES = ["CAT","DE","HON","LMT","GE","WMT","COST","HD","JNJ","PFE","ADM","BG","TSN","SCHW","BRK.B"]
+ENGINES   = ["CAT","DE","HON","LMT","GE","WMT","COST","HD","JNJ","PFE","ADM","BG","TSN","SCHW","BRK.B"]
+ENGINES_2 = ENGINES + ["INTC"]                                                                       # + Q2 domestic fab position
 CHOKE_0 = ["NEE","D","KMI","WMB","V","MA","JPM","MSFT","AMZN","GOOGL","UNP","NSC","MCK","UNH"]      # original 14
 CHOKE_1 = CHOKE_0 + ["XLE"]                                                                          # + wartime energy sleeve
+CHOKE_2 = CHOKE_1 + ["TSM","ASML"]                                                                   # + Q2 semiconductor gate
 RESERVE = "BIL"
 
 def equal(names, total):
@@ -40,11 +47,13 @@ def equal(names, total):
 ROSTER_1 = {**equal(ENGINES, 0.50), **equal(CHOKE_0, 0.35), RESERVE: 0.15}
 # Roster 2 — Q1 2026 wartime amendment: 45 / 35 / 20  (+XLE)
 ROSTER_2 = {**equal(ENGINES, 0.45), **equal(CHOKE_1, 0.35), RESERVE: 0.20}
+# Roster 3 — Q2 2026 false peace amendment: 45 / 35 / 20  (+INTC, +TSM, +ASML)
+ROSTER_3 = {**equal(ENGINES_2, 0.45), **equal(CHOKE_2, 0.35), RESERVE: 0.20}
 
 FUNDS = {"spy":"SPY","dvrux":"DVRUX","qgrpx":"QGRPX","midusa":"0P00000AY4","bniex":"BNIEX"}
 YAHOO = {"BRK.B": "BRK-B"}
 
-for r in (ROSTER_1, ROSTER_2):
+for r in (ROSTER_1, ROSTER_2, ROSTER_3):
     assert abs(sum(r.values()) - 1.0) < 1e-9, sum(r.values())
 
 
@@ -102,7 +111,7 @@ def desplit(series, sym="", tol=0.04):
 
 
 def main():
-    constituents = set(ENGINES) | set(CHOKE_1) | {RESERVE}
+    constituents = set(ENGINES_2) | set(CHOKE_2) | {RESERVE}
     symbols = {YAHOO.get(t, t) for t in constituents} | set(FUNDS.values())
     raw = {}
     print(f"Fetching {len(symbols)} symbols from Yahoo Finance ...")
@@ -123,16 +132,26 @@ def main():
     al = {s: aligned(s) for s in raw}
     P = lambda t, i: al[YAHOO.get(t, t)][i]
 
-    # ── Republic: two-regime buy-and-hold, rebalanced at pivot ──
-    # period 1 equity (held from day 0 under roster 1)
-    base1 = {t: P(t, 0) for t in ROSTER_1}
-    E1 = [sum(w * P(t, i) / base1[t] for t, w in ROSTER_1.items()) for i in range(N)]
-    V = E1[pivot_idx]                                   # value carried into the reshuffle
-    # period 2 equity (rebalance into roster 2 at pivot, hold to end)
-    base2 = {t: P(t, pivot_idx) for t in ROSTER_2}
-    E2 = [V * sum(w * P(t, i) / base2[t] for t, w in ROSTER_2.items()) for i in range(N)]
-    republic = [round((E1[i] - 1) * 100, 3) if i < pivot_idx else round((E2[i] - 1) * 100, 3)
-                for i in range(N)]
+    # ── Republic: piecewise buy-and-hold, rebalanced at each pivot ──
+    # A pivot only takes effect once a trading day on/after its date exists.
+    starts, rosters, pivots = [0], [ROSTER_1], []
+    for pdate, roster, name in ((PIVOT, ROSTER_2, "Q1 RESHUFFLE"), (PIVOT2, ROSTER_3, "Q2 RESHUFFLE")):
+        i = next((k for k, d in enumerate(dates) if d >= pdate), None)
+        if i is None or i <= starts[-1]:
+            continue
+        starts.append(i); rosters.append(roster)
+        pivots.append({"date": dates[i], "index": i, "name": name})
+    bounds = starts + [N]
+
+    republic, V = [], 1.0
+    for k, roster in enumerate(rosters):
+        s, e = bounds[k], bounds[k + 1]
+        base = {t: P(t, s) for t in roster}
+        for i in range(s, e):
+            eq = V * sum(w * P(t, i) / base[t] for t, w in roster.items())
+            republic.append(round((eq - 1) * 100, 3))
+        if e < N:  # value carried into the next reshuffle
+            V = V * sum(w * P(t, e) / base[t] for t, w in roster.items())
 
     series = {"republic": republic}
     for key, sym in FUNDS.items():
@@ -161,10 +180,14 @@ def main():
         "spread": round(rank[0][1] - rank[-1][1], 2),
     }
 
+    for pv in pivots:
+        pv["label"] = labels[pv["index"]]
+
     data = {
         "asof": dates[-1], "generated": dt.datetime.utcnow().isoformat(timespec="seconds") + "Z",
         "base_date": dates[0], "n_points": N,
         "pivot_date": dates[pivot_idx], "pivot_index": pivot_idx, "pivot_label": labels[pivot_idx],
+        "pivots": pivots,
         "dates": dates, "labels": labels, "series": series, "final": final,
         "stats": stats,
         "names": {

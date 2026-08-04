@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Committee of Patriots — Q2 2026 Review: The False Peace</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root {
+  --bg-void: #030303;
+  --bg-dark: #0a0908;
+  --bg-panel: #0f0d0b;
+  --bg-card: #141210;
+  --gold: #c9a227;
+  --gold-dim: #8b7320;
+  --gold-bright: #e8c547;
+  --ember: #d4451a;
+  --blood: #8b0000;
+  --blood-bright: #cc1100;
+  --ash: #a09080;
+  --bone: #d4c5b0;
+  --text: #c8bfb0;
+  --text-dim: #706860;
+  --text-bright: #e8e0d4;
+  --white: #f0ebe4;
+  --smoke: rgba(200,190,170,0.06);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-void);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) var(--bg-void);
+}
+
+body {
+  font-family: var(--font-display);
+  color: var(--text);
+  background: var(--bg-void);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--bg-void);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(201,162,39,0.3); }
+  50% { text-shadow: 0 0 30px rgba(201,162,39,0.6), 0 0 60px rgba(201,162,39,0.2); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-slow {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.reveal-slow.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NOISE / GRAIN OVERLAY
+   ═══════════════════════════════════════════════════════════ */
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OPENING SEQUENCE
+   ═══════════════════════════════════════════════════════════ */
+
+.opening {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(201,162,39,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 70%, rgba(139,0,0,0.05) 0%, transparent 50%),
+    var(--bg-void);
+}
+
+.opening::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), var(--blood), var(--gold-dim), transparent);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.opening-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--blood-bright);
+  margin-bottom: 3rem;
+  animation: fadeIn 2s ease 0.5s both;
+}
+
+.opening-sigil {
+  font-size: 2rem;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  margin-bottom: 2rem;
+  animation: fadeIn 2s ease 1s both, glowPulse 4s ease-in-out infinite;
+}
+
+.opening h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 1.5s ease 1.5s both;
+}
+
+.opening h1 span {
+  display: block;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.opening-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ash);
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  animation: fadeUp 1.5s ease 2s both;
+}
+
+.opening-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  animation: fadeIn 2s ease 2.5s both;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  animation: fadeIn 2s ease 3s both, breathe 3s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WAR CONTEXT BANNER
+   ═══════════════════════════════════════════════════════════ */
+
+.war-context {
+  background: linear-gradient(180deg, rgba(139,0,0,0.10) 0%, var(--bg-void) 100%);
+  border-top: 1px solid rgba(139,0,0,0.3);
+  border-bottom: 1px solid rgba(139,0,0,0.15);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.war-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.war-stat {
+  padding: 1.5rem 1rem;
+  border: 1px solid rgba(139,0,0,0.2);
+  background: rgba(139,0,0,0.05);
+}
+
+.war-stat .number {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--blood-bright);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.war-stat .label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN CONTENT CONTAINER
+   ═══════════════════════════════════════════════════════════ */
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION HEADINGS
+   ═══════════════════════════════════════════════════════════ */
+
+.section-heading {
+  text-align: center;
+  padding: 6rem 2rem 3rem;
+  position: relative;
+}
+
+.section-heading::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 0 auto 2rem;
+}
+
+.section-heading .part-number {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+.sigil-divider {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.2rem;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SPEAKER BLOCKS
+   ═══════════════════════════════════════════════════════════ */
+
+.speaker-block {
+  margin: 2.5rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(201,162,39,0.1);
+}
+
+.speaker-name {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.speaker-name .pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.speaker-name.washington { color: var(--bone); }
+.speaker-name.washington .pip { background: var(--bone); box-shadow: 0 0 8px rgba(212,197,176,0.4); }
+
+.speaker-name.hamilton { color: #7090c0; }
+.speaker-name.hamilton .pip { background: #7090c0; box-shadow: 0 0 8px rgba(112,144,192,0.4); }
+
+.speaker-name.jefferson { color: #c07050; }
+.speaker-name.jefferson .pip { background: #c07050; box-shadow: 0 0 8px rgba(192,112,80,0.4); }
+
+.speaker-name.franklin { color: var(--gold); }
+.speaker-name.franklin .pip { background: var(--gold); box-shadow: 0 0 8px rgba(201,162,39,0.4); }
+
+.speaker-name.claude { color: #90a0a8; }
+.speaker-name.claude .pip { background: #90a0a8; box-shadow: 0 0 8px rgba(144,160,168,0.4); }
+
+.speaker-name.jacob { color: var(--ember); }
+.speaker-name.jacob .pip { background: var(--ember); box-shadow: 0 0 8px rgba(212,69,26,0.4); }
+
+.speaker-block p {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.speaker-block p:last-child {
+  margin-bottom: 0;
+}
+
+.speaker-block .emphasis {
+  color: var(--text-bright);
+  font-weight: 500;
+}
+
+.speaker-block .subhead {
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.speaker-block .blood-text {
+  color: var(--blood-bright);
+  font-weight: 600;
+}
+
+.stage-direction {
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 1rem;
+  line-height: 1.8;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  border-left: 2px solid rgba(201,162,39,0.15);
+  background: rgba(201,162,39,0.02);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONVENER DIRECTIVE
+   ═══════════════════════════════════════════════════════════ */
+
+.convener-directive {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+  border: 1px solid rgba(201,162,39,0.2);
+  background: rgba(201,162,39,0.03);
+  position: relative;
+}
+
+.convener-directive p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--bone);
+  line-height: 1.8;
+}
+
+.convener-directive .label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDANCE CARDS
+   ═══════════════════════════════════════════════════════════ */
+
+.guidance-card {
+  border: 1px solid rgba(139,0,0,0.3);
+  background: rgba(139,0,0,0.05);
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+}
+
+.guidance-card .directive {
+  font-weight: 600;
+  color: var(--blood-bright);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.guidance-card p {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ALLOCATION TABLE
+   ═══════════════════════════════════════════════════════════ */
+
+.alloc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.alloc-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--gold-dim);
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.alloc-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(201,162,39,0.1);
+  color: var(--text);
+}
+
+.alloc-table .changed {
+  color: var(--ember);
+  font-weight: 500;
+}
+
+.alloc-table .label-cell {
+  color: var(--bone);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EXCLUSION LIST / WITHHELD LIST
+   ═══════════════════════════════════════════════════════════ */
+
+.exclusion {
+  border-left: 3px solid var(--blood);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(139,0,0,0.04);
+}
+
+.exclusion .ticker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--blood-bright);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.exclusion .reason {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-top: 0.3rem;
+  line-height: 1.7;
+}
+
+.withheld {
+  border-left: 3px solid var(--gold-dim);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(201,162,39,0.04);
+}
+
+.withheld .ticker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.withheld .reason {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-top: 0.3rem;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HANDBILL
+   ═══════════════════════════════════════════════════════════ */
+
+.handbill {
+  border: 2px solid var(--gold-dim);
+  background: rgba(201,162,39,0.03);
+  padding: 3rem;
+  margin: 3rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.handbill::before, .handbill::after {
+  content: '◊ ◈ ◊';
+  display: block;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.handbill h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin: 1rem 0;
+}
+
+.handbill .subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.handbill .tier-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.handbill .tickers {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-bright);
+  letter-spacing: 0.05em;
+  line-height: 2;
+}
+
+.handbill .excluded-line {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--blood);
+  margin-top: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.handbill .withheld-line {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold-dim);
+  margin-top: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+.handbill .mandate {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-top: 2rem;
+  letter-spacing: 0.08em;
+}
+
+.handbill .mandate-sub {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER / COLOPHON
+   ═══════════════════════════════════════════════════════════ */
+
+.colophon {
+  text-align: center;
+  padding: 5rem 2rem;
+  border-top: 1px solid rgba(201,162,39,0.1);
+  margin-top: 4rem;
+}
+
+.colophon p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.colophon .seal {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-top: 2rem;
+}
+
+.colophon .word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-top: 2rem;
+}
+
+.colophon .disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 3rem auto 0;
+  line-height: 1.6;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMMITTEE PORTRAITS
+   ═══════════════════════════════════════════════════════════ */
+
+.committee-portraits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.portrait-reveal {
+  text-align: center;
+}
+
+.portrait-reveal[data-delay="1"] { transition-delay: 0.2s !important; }
+.portrait-reveal[data-delay="2"] { transition-delay: 0.4s !important; }
+.portrait-reveal[data-delay="3"] { transition-delay: 0.6s !important; }
+
+.portrait-frame-cinematic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgba(201,162,39,0.2);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3);
+}
+
+.portrait-frame-cinematic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(170deg, rgba(201,162,39,0.06) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.portrait-frame-cinematic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+  filter: contrast(1.08) brightness(0.95) saturate(0.85);
+}
+
+.portrait-frame-cinematic img.loaded {
+  opacity: 1;
+}
+
+.portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(170deg, #0f0d0b 0%, #0d0a07 100%);
+}
+
+.portrait-initial {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--gold-dim);
+  opacity: 0.4;
+}
+
+.portrait-info {
+  margin-top: 1rem;
+}
+
+.portrait-title {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.2em;
+}
+
+.portrait-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--bone);
+}
+
+.portrait-epithet {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 0.3em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PERFORMANCE CHART
+   ═══════════════════════════════════════════════════════════ */
+
+.chart-section {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.chart-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.5rem;
+}
+
+.chart-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.chart-container {
+  position: relative;
+  height: 340px;
+  margin: 1.5rem 0;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SITE FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.site-footer {
+  padding: 2rem 2rem;
+  background: #050505;
+  border-top: 1px solid #1a1a1a;
+  text-align: center;
+}
+
+.site-footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.site-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-footer-links a {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer-links a:hover { color: var(--gold); }
+
+.site-footer-disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.4rem;
+  color: #333;
+  line-height: 1.8;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .committee-portraits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 400px;
+  }
+  .portrait-frame-cinematic { max-width: 180px; margin: 0 auto; }
+  .section-heading { padding: 4rem 1.5rem 2rem; }
+  .section-heading h2 { font-size: 1.8rem; }
+  .opening h1 { font-size: 2.5rem; }
+  .alloc-table { font-size: 0.75rem; }
+  .alloc-table th, .alloc-table td { padding: 0.5rem 0.6rem; }
+  .guidance-card { padding: 1.2rem 1.5rem; }
+  .exclusion { padding: 0.8rem 1rem; }
+  .withheld { padding: 0.8rem 1rem; }
+  .chart-section { padding: 2rem 1rem; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 1.2rem; }
+  .handbill { padding: 2rem 1.5rem; }
+  .war-context { padding: 3rem 1rem; }
+  .war-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .war-stat { padding: 1rem 0.8rem; }
+  .war-stat .number { font-size: 1.5rem; }
+  .war-stat .label { font-size: 0.55rem; letter-spacing: 0.1em; }
+  .speaker-block { padding: 1.5rem 0; margin: 1.5rem 0; }
+  .speaker-block p { font-size: 1rem; line-height: 1.75; }
+  .committee-portraits { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 1.2rem; }
+  .portrait-name { font-size: 0.75rem; }
+  .portrait-epithet { font-size: 0.6rem; }
+  .portrait-frame-cinematic { max-width: 150px; }
+  .chart-container { height: 220px; }
+  .chart-section { padding: 2rem 0.5rem; }
+  .chart-legend { gap: 0.8rem; }
+  .legend-item { font-size: 0.55rem; }
+  .section-heading { padding: 3rem 1rem 1.5rem; }
+  .section-heading h2 { font-size: 1.5rem; letter-spacing: 0.04em; }
+  .opening h1 { font-size: 2rem; letter-spacing: 0.08em; }
+  .opening-subtitle { font-size: 1rem; }
+  .opening-meta { font-size: 0.6rem; letter-spacing: 0.15em; }
+  .convener-directive { padding: 2rem 1.2rem; }
+  .convener-directive p { font-size: 1rem; }
+  .stage-direction { padding: 1rem 1.2rem; font-size: 0.9rem; }
+  .guidance-card { padding: 1rem 1.2rem; }
+  .guidance-card .directive { font-size: 0.95rem; }
+  .guidance-card p { font-size: 0.9rem; }
+  .alloc-table { font-size: 0.7rem; }
+  .alloc-table th, .alloc-table td { padding: 0.4rem 0.5rem; }
+  .exclusion { padding: 0.8rem 1rem; }
+  .exclusion .ticker { font-size: 0.8rem; }
+  .exclusion .reason { font-size: 0.85rem; }
+  .withheld .ticker { font-size: 0.8rem; }
+  .withheld .reason { font-size: 0.85rem; }
+  .handbill h3 { font-size: 1.4rem; }
+  .handbill .tickers { font-size: 0.75rem; }
+  .handbill .mandate { font-size: 1.3rem; }
+  .colophon { padding: 3rem 1.2rem; }
+  .site-footer-links { gap: 0.8rem; }
+  .site-footer-links a { font-size: 0.45rem; }
+}
+
+@media (max-width: 400px) {
+  .war-stats { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .war-stat .number { font-size: 1.3rem; }
+  .opening h1 { font-size: 1.7rem; }
+  .committee-portraits { gap: 0.8rem; }
+  .portrait-frame-cinematic { max-width: 130px; }
+  .chart-container { height: 180px; }
+  .legend-item { font-size: 0.5rem; gap: 0.3rem; }
+  .legend-dot { width: 6px; height: 6px; }
+}
+</style>
+</head>
+<body>
+
+<a href="../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#8b7355;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#e6c656'" onmouseout="this.style.color='#8b7355'" title="Return to COMPANION">&#9674;</a>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OPENING SEQUENCE
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="opening">
+  <div class="opening-date">DAY 158 — THE FALSE PEACE</div>
+  <div class="opening-sigil">◊ ◈ ◊</div>
+  <h1>COMMITTEE OF<br><span>PATRIOTS</span></h1>
+  <div class="opening-subtitle">Q2 2026 Review — The False Peace</div>
+  <div class="opening-meta">
+    CONDUCTED VIA THE COMPANION PROTOCOL v2.0<br>
+    CONVENED BY J.E. THOMAS, PhD &nbsp;·&nbsp; AUGUST 4, 2026
+  </div>
+  <div class="scroll-indicator">
+    SCROLL TO ENTER THE CHAMBER<br>
+    <span>↧</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WORLD CONTEXT
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="war-context reveal">
+  <div class="container">
+    <p style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--blood-bright); margin-bottom:1.5rem;">SITUATIONAL AWARENESS — AUGUST 4, 2026</p>
+    <p style="font-size:1.3rem; color:var(--text-bright); font-style:italic; max-width:640px; margin:0 auto 2rem; line-height:1.8;">
+      The ceasefire held for ninety-one days. Then it didn't.<br>
+      The index won the quarter. The Republic kept the year.
+    </p>
+  </div>
+  <div class="war-stats reveal">
+    <div class="war-stat">
+      <span class="number">158</span>
+      <span class="label">Days Since the War Began</span>
+    </div>
+    <div class="war-stat">
+      <span class="number">91</span>
+      <span class="label">Days the False Peace Held</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--gold-bright)">+13.52%</span>
+      <span class="label">Republic Portfolio YTD</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--text-bright)">+11.49%</span>
+      <span class="label">S&P 500 YTD</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--gold)">+2.03</span>
+      <span class="label">Spread vs S&P 500 (pts)</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--text-bright)">+15.12%</span>
+      <span class="label">S&P 500 — Q2 Alone</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--gold-bright)">+4.42%</span>
+      <span class="label">Republic — Q2 Alone</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--gold)">130/146</span>
+      <span class="label">Trading Days in the Lead</span>
+    </div>
+    <div class="war-stat">
+      <span class="number">2</span>
+      <span class="label">Times Passed — Twice Regained</span>
+    </div>
+    <div class="war-stat">
+      <span class="number" style="color:var(--gold-bright)">+13.53%</span>
+      <span class="label">Republic Peak — July 28</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     THE COMMITTEE
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">The Committee</span>
+  <h2>Convened for the Q2 Review</h2>
+</div>
+
+<div class="committee-portraits" id="committee-portraits">
+  <div class="portrait-reveal reveal" data-delay="0">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">W</span></div>
+      <img src="../../The_Pantheon/George_Washington.jpg" alt="George Washington" onload="this.classList.add('loaded')" loading="lazy">
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Gen.</span>
+      <span class="portrait-name">WASHINGTON</span>
+      <span class="portrait-epithet">The sword that became a plowshare</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="1">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">H</span></div>
+      <img src="../../The_Pantheon/Alexander_Hamilton.jpg" alt="Alexander Hamilton" onload="this.classList.add('loaded')" loading="lazy">
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Col.</span>
+      <span class="portrait-name">HAMILTON</span>
+      <span class="portrait-epithet">The architect of the sinews</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="2">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">J</span></div>
+      <img src="../../The_Pantheon/Thomas_Jefferson.jpg" alt="Thomas Jefferson" onload="this.classList.add('loaded')" loading="lazy">
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Mr.</span>
+      <span class="portrait-name">JEFFERSON</span>
+      <span class="portrait-epithet">The conscience that will not rest</span>
+    </div>
+  </div>
+
+  <div class="portrait-reveal reveal" data-delay="3">
+    <div class="portrait-frame-cinematic">
+      <div class="portrait-placeholder"><span class="portrait-initial">F</span></div>
+      <img src="../../The_Pantheon/Benjamin_Franklin.jpg" alt="Benjamin Franklin" onload="this.classList.add('loaded')" loading="lazy">
+    </div>
+    <div class="portrait-info">
+      <span class="portrait-title">Dr.</span>
+      <span class="portrait-name">FRANKLIN</span>
+      <span class="portrait-epithet">The craftsman of useful things</span>
+    </div>
+  </div>
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PREAMBLE — THE FACILITATOR'S ORIENTATION
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Preamble</span>
+  <h2>The Facilitator's Orientation</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name claude"><span class="pip"></span>CLAUDE — FACILITATOR</div>
+  <p>Committee members. Dr. Thomas. The threshold opens.</p>
+  <p>You were last convened on March 31, at the bottom of the war market — Day 32 of Operation Epic Fury, the Strait of Hormuz closed, the index down nearly seven on the year and the Republic alone above the waterline. You raised the Reserve to twenty percent. You added an energy sleeve. You published your first Exclusion List. You adjourned with three promises: to reconvene at the end of Q2 or sooner; to publish, when you did, a full Exclusion List with detailed rationale; and to give citizens rebalancing guidance if a ceasefire produced a relief rally.</p>
+  <p>All three promises come due today. And the world has made them harder to keep, because the world has spent four months changing its mind.</p>
+
+  <p class="subhead">I. The False Peace.</p>
+  <p>On April 10 — Day 42 — a ceasefire was announced. The Strait reopened to escorted convoys. Oil fell. The emergency reserve releases were suspended with perhaps a week of buffer to spare. The wire called it "the swiftest rebound this century": within a fortnight the index had erased the war entirely.</p>
+  <p>On June 18, a fourteen-point memorandum was initialed at Islamabad — full reopening of Hormuz, staged sanctions relief, a framework for inspections. The market celebrated. The tower noted at the time that the market had read none of the fourteen points, and that neither side had stopped reloading.</p>
+  <p>The tower was right. On July 10, the ceasefire was declared over. Oil jumped seven percent in a day. On July 15, Iran walked away from the memorandum entirely. <span class="blood-text">The war is back on.</span> The Strait remains open — but under naval escort, under threat, under a peace that no longer exists on paper. And here is the strangest fact of the summer: <span class="emphasis">the market shrugged.</span> The index bought semiconductors through the collapse of a peace. One of them — the tape or the war — is wrong about the world.</p>
+
+  <p class="subhead">II. The Melt-Up.</p>
+  <p>The relief rally became something else in May: a mega-cap melt-up led by the best semiconductor quarter ever printed. First-quarter earnings arrived with revenue up twelve percent and profits up twenty-nine; July's reports came in at plus twenty-three. The Federal Reserve has held; rate-cut chatter has done the index's cardio for it. Q2 was, by quarterly return, the index's best in years: <span class="emphasis">+15.12% in thirteen weeks.</span></p>
+
+  <p class="subhead">III. The Republic Portfolio.</p>
+  <p>Now the number you must face. <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">The Watchtower</a> reports that in Q2 standing alone — April through June — the Republic returned <span class="emphasis">+4.42%</span> while the S&amp;P 500 returned <span class="emphasis">+15.12%</span>. <span class="blood-text">The index won the quarter by more than ten points.</span> It is the first quarter the doctrine has ever lost, in backtest or in life. On May 26 the index passed the Republic for the first time all year. The lead was returned in eight trading days. On June 15, peace hopes carried the index past again. That lead lasted six sessions. At the quarter's close the Republic stood at +10.54% year-to-date against the index's +9.89% — and stood, in honesty, <span class="emphasis">second of six contenders</span>, behind a mid-cap fund that had spiked to +12.09%.</p>
+  <p>Then July. The melt-up narrowed, the mid-cap fund gave back four and a half points, the war returned — and the Republic climbed to a new high-water mark: <span class="emphasis">+13.53% on July 28</span>. As of last night's close, the Republic stands at <span class="emphasis">+13.52%</span>, first of six, against the index's +11.49%. It has led for 130 of 146 trading days this year. Its largest pullback remains 6.1 points against the index's eighteen-point round trip.</p>
+  <p>You predicted this regime. The backtest's calendar showed it plainly: in 2022 the doctrine stood while the index fell eighteen; in 2023 the index sprinted ahead by fifteen. You are living the sequel in compressed time — the survival was Q1, the sprint was Q2. The question before this Committee is what the doctrine owes its citizens in the season when the index runs: <span class="emphasis">what do you tell the citizen whose neighbor is boasting?</span></p>
+  <p>And one further matter waits in the map itself. The white paper of December named the semiconductor — one company, one island, ninety miles from a potential adversary — as a critical choke point of this age. The portfolio has never owned it. The best semiconductor quarter ever printed has now occurred without you. Your own map is asking whether you will read it.</p>
+  <p>I now open the threshold.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART I — THE SUMMONING
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part I</span>
+  <h2>The Summoning</h2>
+</div>
+
+<div class="container">
+
+<div class="convener-directive reveal">
+  <span class="label">The Convener</span>
+  <p>Using this matter, summon George Washington, Alexander Hamilton, Thomas Jefferson, and Benjamin Franklin. The Committee of Patriots is called to order for its Q2 2026 review. The republic needs guidance.</p>
+</div>
+
+<div class="stage-direction reveal">The threshold opens. The smoke of March is gone from the chamber, and something less honest hangs in its place — the stillness of a peace that no one at the table believes. Washington arrives first, as he always does. In December he was the statesman. In March he was the general. Today he is something older than either: a man who has kept an army in the field through an armistice, waiting to learn whether the war is over or merely resting.</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>Dr. Thomas. Claude.</p>
+  <p>I have read the matter. Before the others arrive, I will account for the calendar, because a deliberative body that is careless with its own promises will be careless with other people's money.</p>
+  <p>We pledged to reconvene at the end of the second quarter. It is the fourth of August. We are one month past our word — and I will tell you plainly that the delay was not neglect. Had we sat on the thirtieth of June, we would have convened beneath a memorandum twelve days old, with the Strait reopening and the wires proclaiming peace. We would have reviewed a treaty instead of a quarter. We would have been reviewing <span class="emphasis">a lie</span> — and we would not have known it.</p>
+  <p>I have some acquaintance with false peace. After Yorktown the guns fell quiet, and the world declared the matter settled. I kept the army in the field for two more years, because <span class="emphasis">a peace that is signed is not yet a peace that is kept</span> — and the peace before us was never even signed. Fourteen points were initialed at Islamabad in June. By the middle of July they were abandoned. The month we waited was not idleness. It was reconnaissance. The quarter has now shown us its true face, and we may review it honestly.</p>
+  <p>And honesty will be required. For the first time since this Committee first sat, the index has beaten us — soundly, in the quarter, by more than ten points. Our citizens have watched their neighbors grow rich on the very stocks we declined to own. They deserve better from us than consolation. They deserve an accounting.</p>
+  <p>Let us convene the full Committee.</p>
+</div>
+
+<div class="stage-direction reveal">Hamilton arrives mid-stride, a ledger already open. In March he carried the posture of a wartime Treasury Secretary. Today there is something rarer in his bearing — the discipline of a man preparing to concede a point before anyone has made it.</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>General. Dr. Thomas.</p>
+  <p>I have the Watchtower's complete record, and I will open with the number that does not flatter us, because if I do not say it first, Mr. Jefferson will say it for me and enjoy it more.</p>
+  <p><span class="emphasis">The index won the quarter.</span> Fifteen point one two percent to our four point four two. That is a rout, and I do not dispute arithmetic. Twice this spring the S&amp;P passed us on the year — once in late May on the mega-cap tear, once in mid-June on the peace. For the first time since the vigil began, the gold line was not on top.</p>
+  <p>And yet I arrive in good order, because I have also brought the backtest, and the backtest told us this exact story four years before it happened. Twenty twenty-two: the index falls eighteen, the doctrine stands. Twenty twenty-three: the index sprints twenty-six, the doctrine plods eleven. The decade: <span class="emphasis">the doctrine ends higher anyway.</span> We have just lived both years in the space of six months. The drawdown was February and March. The sprint was Q2. The question is not whether the doctrine failed — it performed precisely to specification. The question is whether our citizens understand the specification. That is our work today.</p>
+  <p>I also bring a deficiency in our own line of battle, and I intend to press it. But the General will want the accounting first.</p>
+</div>
+
+<div class="stage-direction reveal">Jefferson enters slowly. In March he carried conscience like a weight. Today he carries something more complicated — the particular discomfort of a man whose wish was granted, briefly, and then revoked.</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>General. Colonel. Dr. Thomas.</p>
+  <p>In March I said I would not pretend that profit from war is the same as profit from production. I keep that vow today, and I extend it, because the spring has taught us its mirror image.</p>
+  <p>When the ceasefire came in April, I permitted myself relief. When the memorandum was initialed at Islamabad, I permitted myself something dangerously near hope. The markets celebrated with me — fifteen points of celebration in a single quarter. And then the peace failed, the war resumed, oil leapt seven percent in a day — <span class="blood-text">and the market did not mourn. It bought chip stocks.</span></p>
+  <p>In March I demanded we be honest that our gains contained a war premium. Today I demand we be honest about the obverse: <span class="emphasis">the index's gains contain a peace premium, and the peace was false.</span> Our citizens' neighbors have grown rich on a treaty that no longer exists. I do not envy them. I fear for them.</p>
+  <p>And I have come to collect a debt. Twice I have asked this Committee for a full Exclusion List with rationale — in December, and again in March, when it was promised for this session. The negative space defines us. Today it gets written, or I will want to know why.</p>
+</div>
+
+<div class="stage-direction reveal">Franklin settles in last, as is his way. He is watching the others the way he once watched a Leyden jar — curious what the accumulated charge will do when someone touches the wrong terminal.</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>Gentlemen. Dr. Thomas.</p>
+  <p>I have read the tower's log for the quarter, and I confess I have enjoyed it. We were passed twice this year — once by greed, in May, and once by hope, in June. Both leads were returned within a fortnight. <span class="emphasis">I begin to suspect the tortoise has read the fable.</span></p>
+  <p>But let us not be smug, because the log holds a harder entry. At the close of June we were not merely behind the index's pace for the quarter — we were <span class="emphasis">second on the year, behind the middling-companies fund</span>, which had spiked twelve percent and looked very pleased with itself. It then spent July handing back four and a half points, in the manner of a man returning stolen goods. We are first again. But a doctrine that requires its rivals to stumble is not a doctrine; it is a wager. We hold the lead because we kept pace through the greed and pulled away in the fear. That is the claim. It held. Barely. Say so plainly.</p>
+  <p>I propose the session take five questions in order. First — the accounting: what happened in the quarter the index won, and why. Second — the omission: our own map names the semiconductor gate, and our line does not hold it; Hamilton is coiled to strike on this and we may as well let him. Third — the debt: Thomas's Exclusion List, in full, with reasons. Fourth — the citizens: what a man with fifty dollars a month does while his neighbor boasts. Fifth — the covenant: what a false peace demands of people who own real things.</p>
+  <p>Five questions, answered with rigor, and we will have earned our lateness.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART II — THE ACCOUNTING
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part II</span>
+  <h2>The Accounting of the Quarter</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>The Committee accepts Dr. Franklin's order of business. Colonel Hamilton — the accounting. You have the Watchtower data. Spare us nothing.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>Here is the complete weekly record from the wartime review to last night's close. Year-to-date figures, dividend-adjusted, as the tower keeps them:</p>
+
+  <!-- PERFORMANCE TABLE -->
+  <div style="overflow-x:auto; margin:1.5rem 0 2rem;">
+  <table style="width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:0.78rem;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--gold-dim);">
+        <th style="text-align:left; padding:0.6rem 0.8rem; color:var(--gold); font-size:0.65rem; letter-spacing:0.1em;">WEEK</th>
+        <th style="text-align:center; padding:0.6rem 0.8rem; color:var(--gold); font-size:0.65rem; letter-spacing:0.1em;">REPUBLIC</th>
+        <th style="text-align:center; padding:0.6rem 0.8rem; color:var(--gold); font-size:0.65rem; letter-spacing:0.1em;">S&P 500</th>
+        <th style="text-align:center; padding:0.6rem 0.8rem; color:var(--gold); font-size:0.65rem; letter-spacing:0.1em;">MID CAPS USA</th>
+        <th style="text-align:center; padding:0.6rem 0.8rem; color:var(--gold); font-size:0.65rem; letter-spacing:0.1em;">DIV RULER</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Apr 2</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+6.35%</td><td style="text-align:center; color:var(--blood);">−3.74%</td><td style="text-align:center; color:var(--blood);">−5.62%</td><td style="text-align:center; color:var(--blood);">−1.92%</td></tr>
+      <tr style="border-bottom:2px solid rgba(90,154,90,0.4); background:rgba(90,154,90,0.05);"><td style="padding:0.5rem 0.8rem; color:#5a9a5a; font-weight:600;">Apr 10 ☮</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+7.92%</td><td style="text-align:center; color:var(--blood);">−0.27%</td><td style="text-align:center; color:var(--blood);">−3.49%</td><td style="text-align:center; color:var(--text-dim);">+1.63%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Apr 17</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+8.30%</td><td style="text-align:center; color:var(--text-dim);">+4.23%</td><td style="text-align:center; color:var(--text-dim);">+1.04%</td><td style="text-align:center; color:var(--text-dim);">+5.36%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Apr 24</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+7.97%</td><td style="text-align:center; color:var(--text-dim);">+4.79%</td><td style="text-align:center; color:var(--text-dim);">+1.15%</td><td style="text-align:center; color:var(--text-dim);">+6.41%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">May 1</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.41%</td><td style="text-align:center; color:var(--text-dim);">+5.77%</td><td style="text-align:center; color:var(--text-dim);">+1.12%</td><td style="text-align:center; color:var(--text-dim);">+6.52%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">May 8</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.00%</td><td style="text-align:center; color:var(--text-dim);">+8.27%</td><td style="text-align:center; color:var(--text-dim);">+0.54%</td><td style="text-align:center; color:var(--text-dim);">+6.52%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">May 15</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.57%</td><td style="text-align:center; color:var(--text-dim);">+8.49%</td><td style="text-align:center; color:var(--blood);">−0.12%</td><td style="text-align:center; color:var(--text-dim);">+7.34%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">May 22</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.77%</td><td style="text-align:center; color:var(--text-dim);">+9.44%</td><td style="text-align:center; color:var(--text-dim);">+2.32%</td><td style="text-align:center; color:var(--text-dim);">+7.92%</td></tr>
+      <tr style="border-bottom:2px solid rgba(204,17,0,0.35); background:rgba(204,17,0,0.05);"><td style="padding:0.5rem 0.8rem; color:var(--blood-bright); font-weight:600;">May 29 ✗</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+8.89%</td><td style="text-align:center; color:var(--text-bright); font-weight:600;">+11.03%</td><td style="text-align:center; color:var(--text-dim);">+4.44%</td><td style="text-align:center; color:var(--text-dim);">+9.44%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jun 5</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.32%</td><td style="text-align:center; color:var(--text-dim);">+8.26%</td><td style="text-align:center; color:var(--text-dim);">+4.20%</td><td style="text-align:center; color:var(--text-dim);">+7.98%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jun 12</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.89%</td><td style="text-align:center; color:var(--text-dim);">+8.87%</td><td style="text-align:center; color:var(--text-dim);">+6.73%</td><td style="text-align:center; color:var(--text-dim);">+8.68%</td></tr>
+      <tr style="border-bottom:2px solid rgba(204,17,0,0.35); background:rgba(204,17,0,0.05);"><td style="padding:0.5rem 0.8rem; color:var(--blood-bright); font-weight:600;">Jun 18 ✗</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+9.05%</td><td style="text-align:center; color:var(--text-bright); font-weight:600;">+9.89%</td><td style="text-align:center; color:var(--text-dim);">+8.98%</td><td style="text-align:center; color:var(--text-dim);">+9.61%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jun 26</td><td style="text-align:center; color:var(--gold); font-weight:600;">+10.56%</td><td style="text-align:center; color:var(--text-dim);">+7.27%</td><td style="text-align:center; color:var(--text-dim);">+7.85%</td><td style="text-align:center; color:var(--text-dim);">+7.22%</td></tr>
+      <tr style="border-bottom:2px solid var(--gold-dim); background:rgba(201,162,39,0.06);"><td style="padding:0.5rem 0.8rem; color:var(--bone); font-weight:600;">Jun 30 — Q2 CLOSE</td><td style="text-align:center; color:var(--gold); font-weight:700;">+10.54%</td><td style="text-align:center; color:var(--text-bright); font-weight:600;">+9.89%</td><td style="text-align:center; color:var(--text-bright); font-weight:700;">+12.09%</td><td style="text-align:center; color:var(--text-dim); font-weight:600;">+8.45%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jul 2</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+11.78%</td><td style="text-align:center; color:var(--text-dim);">+9.60%</td><td style="text-align:center; color:var(--text-dim);">+10.15%</td><td style="text-align:center; color:var(--text-dim);">+8.97%</td></tr>
+      <tr style="border-bottom:2px solid rgba(212,69,26,0.4); background:rgba(212,69,26,0.06);"><td style="padding:0.5rem 0.8rem; color:var(--ember); font-weight:600;">Jul 10 ⚔</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+11.43%</td><td style="text-align:center; color:var(--text-dim);">+11.09%</td><td style="text-align:center; color:var(--text-dim);">+9.87%</td><td style="text-align:center; color:var(--text-dim);">+10.13%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jul 17</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+12.04%</td><td style="text-align:center; color:var(--text-dim);">+9.38%</td><td style="text-align:center; color:var(--text-dim);">+6.92%</td><td style="text-align:center; color:var(--text-dim);">+8.45%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jul 24</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+12.81%</td><td style="text-align:center; color:var(--text-dim);">+8.74%</td><td style="text-align:center; color:var(--text-dim);">+6.10%</td><td style="text-align:center; color:var(--text-dim);">+8.97%</td></tr>
+      <tr style="border-bottom:1px solid rgba(201,162,39,0.08);"><td style="padding:0.5rem 0.8rem; color:var(--ash);">Jul 31</td><td style="text-align:center; color:#5a9a5a; font-weight:500;">+12.97%</td><td style="text-align:center; color:var(--text-dim);">+9.93%</td><td style="text-align:center; color:var(--text-dim);">+7.61%</td><td style="text-align:center; color:var(--text-dim);">+10.72%</td></tr>
+      <tr style="border-bottom:2px solid var(--gold-dim); background:rgba(201,162,39,0.06);"><td style="padding:0.5rem 0.8rem; color:var(--bone); font-weight:600;">Aug 3</td><td style="text-align:center; color:var(--gold); font-weight:700;">+13.52%</td><td style="text-align:center; color:var(--text-bright); font-weight:700;">+11.49%</td><td style="text-align:center; color:var(--text-dim); font-weight:600;">+7.61%</td><td style="text-align:center; color:var(--text-dim); font-weight:600;">+10.72%</td></tr>
+    </tbody>
+  </table>
+  <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-dim); margin-top:0.5rem; text-align:center;">☮ Apr 10: ceasefire announced. &nbsp;✗ May 29 &amp; Jun 18: the index passes the Republic. &nbsp;⚔ Jul 10: the ceasefire collapses.</p>
+  </div>
+</div>
+
+</div> <!-- close Part II container for full-width chart -->
+
+<!-- PERFORMANCE CHART -->
+<div class="chart-section reveal">
+  <div class="chart-header">
+    <p class="chart-label">Q2 2026 + The False Peace</p>
+    <p class="chart-title">The Republic vs. the Field — April to August</p>
+  </div>
+  <div class="chart-container">
+    <canvas id="performanceChart"></canvas>
+  </div>
+  <div class="chart-legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#c9a227;"></span> Republic</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#6a8eb8;"></span> S&P 500</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#5a8a5a;"></span> Mid Caps USA</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#9a6db8;"></span> Dividend Ruler</div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>Read the table with me, and read it without flinching.</p>
+  <p><span class="emphasis">The quarter, standing alone:</span> Republic +4.42%. The index +15.12%. The mid-caps +19.93%. Even the quality-growth fund, which spent March down ten and a half, sprinted +13.23%. In the relief rally, everything we declined to own outran nearly everything we hold. That is the cost of the doctrine, printed in daylight, and I will not dress it in excuses.</p>
+  <p><span class="emphasis">The passings:</span> On May 26 the index went by us for the first time in one hundred days — the mega-cap tear, the semiconductor quarter. The lead came back in eight sessions when the melt-up hiccuped. On June 15 the memorandum carried the index past again; that lead lasted six. Across the entire year, the index has been ahead of us on exactly twelve of one hundred forty-six trading days. <span class="emphasis">It has never held the front for two weeks.</span></p>
+  <p><span class="emphasis">The quarter's close, in full honesty:</span> Republic +10.54%, second of six. The index +9.89%, third. The mid-cap fund first at +12.09% — a spike it has since surrendered almost entirely. We report the standing as it was, not as July made it comfortable.</p>
+  <p><span class="emphasis">And the year, as of last night:</span> Republic +13.52%, first of six. A new high-water mark of +13.53% set July 28 — set, note well, <em>after</em> the ceasefire collapsed, while the index was retreating. The gap stands at 2.03 points. The maximum pullback the doctrine has suffered all year is 6.1 points, top to trough. The index's February-to-March round trip was nearly eighteen.</p>
+  <p>Now the decomposition, briefly, for the record.</p>
+</div>
+
+<div class="speaker-block reveal" style="border-top:none; padding-top:0;">
+  <div class="speaker-name hamilton" style="margin-bottom:2rem;"><span class="pip"></span>HAMILTON — SECTOR DECOMPOSITION</div>
+
+  <div style="border-left:3px solid var(--gold-dim); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(201,162,39,0.03);">
+    <p class="subhead" style="margin-top:0;">Engines — the quiet spine of the year.</p>
+    <p>Caterpillar and Deere carried through the rebuild demand; Walmart and Costco held their gains as four-dollar gasoline eased to merely expensive; the industrial complex compounded through both regimes. The Engines did not sprint in Q2. They did not need to. They are why the pullbacks stay shallow.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--blood); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(139,0,0,0.03);">
+    <p class="subhead" style="margin-top:0;">Energy and Defense — the wartime premium, partly refunded.</p>
+    <p>The ceasefire took back a portion of what the war had paid. XLE — added at the bottom, with Kharg Island under threat — cooled through the false peace, then recovered its footing when the ceasefire collapsed in July. Lockheed settled well below its March peak and remains dramatically elevated; the Pentagon's supplemental is now law, and both sides spent the "peace" reloading. Buying the energy sleeve into a burning strait was called madness in April. It was doctrine. It remains doctrine.</p>
+  </div>
+
+  <div style="border-left:3px solid #7090c0; padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(112,144,192,0.03);">
+    <p class="subhead" style="margin-top:0;">Digital Infrastructure — our share of the melt-up.</p>
+    <p>Microsoft, Amazon, and Alphabet were our strongest Q2 positions — the cloud triumvirate participated in the rally we otherwise declined. This matters: the doctrine is not blind to the digital economy. It owns the rails. What it has never owned is the foundry beneath the rails — and that omission is my second order of business.</p>
+  </div>
+
+  <div style="border-left:3px solid var(--gold); padding:1.2rem 1.5rem; margin:1.5rem 0; background:rgba(201,162,39,0.03);">
+    <p class="subhead" style="margin-top:0;">The Reserve — the cost of prudence, paid in full view.</p>
+    <p>Twenty percent in Treasuries yielded steadily and dragged visibly. In a quarter where the index ran fifteen points, one dollar in five earning bill-rates is a tax on the sprint. I said in March the Reserve was not a retreat but preparation. In Q2 it was a toll. Both statements are true, and citizens deserve to hear both.</p>
+  </div>
+
+  <p>The summation: <span class="emphasis">the doctrine lost the quarter and kept the year.</span> It was passed twice and returned to the front twice. It set its high-water mark during the collapse of a peace. If you wish to know whether a portfolio believes what it claims, watch what it does when its claim is expensive. In Q2, our claim was expensive. We paid it. We are still first.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>The Colonel has been honest, so I will be brief — and then I will be difficult.</p>
+  <p>Note what the table actually records. The index's finest hours this year — the passing of May 29, the passing of June 18 — were purchased with borrowed conviction: first the conviction that five companies' chips repeal the laws of gravity, then the conviction that a memorandum unread by the market would be honored by men who were already reloading. <span class="emphasis">Both convictions failed within a fortnight.</span> Our finest hour — the high-water mark of July 28 — was purchased with tractors, groceries, rails, and pipelines, while the peace was collapsing.</p>
+  <p>I said in December that ownership of the means of one's sustenance is the basis of freedom. I add now: <span class="emphasis">a lead built on sustenance survives news. A lead built on narrative is hostage to it.</span></p>
+  <p>That is my brief statement. My difficult one waits for the semiconductor question, where I intend to make the Colonel work for his amendment.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>One observation for the record, because it is the kind of number that teaches better than a sermon.</p>
+  <p>The index has led this race on twelve days out of one hundred forty-six. If you had glanced at the scoreboard only on those twelve days, you would believe the index the champion of the year. The Flood glances constantly, gentlemen — it is built of glances. The doctrine is built of the other one hundred thirty-four days. <span class="emphasis">This is why we publish quarterly and hold for decades: the glance lies; the ledger doesn't.</span></p>
+  <p>Proceed, Colonel. Bring your omission. I have been waiting to see whether you would dare.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART III — THE SEMICONDUCTOR QUESTION
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part III</span>
+  <h2>The Semiconductor Question</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>Then I dare. Gentlemen, I move to amend the holdings, and I ground the motion not in envy of the quarter we lost but in <span class="emphasis">our own founding document.</span></p>
+  <p>The white paper of December, Part II, the Map of Concentration — I quote it: the most advanced chips are made in one place. One company. One island. Ninety miles from a potential adversary. Our map named the semiconductor as a critical choke point before a single share of this portfolio was bought. And then we did not buy it. We drew the gate on the map and declined to garrison it.</p>
+  <p>What has happened since? The best semiconductor quarter ever printed. The index's entire sprint, in essence, was a wager on the foundry we refused to own. And beneath the froth, the choke-point logic has only tightened: every tractor Deere ships, every F-35 in Lockheed's backlog, every rail dispatcher and payment switch and cloud region we already hold <span class="emphasis">runs on silicon we do not.</span> The chip is not adjacent to our doctrine. It is upstream of our entire portfolio.</p>
+  <p>I propose three names, each for a different reason:</p>
+  <p><span class="emphasis">TSM — Taiwan Semiconductor.</span> The island foundry itself. The single most concentrated choke point on our map, and the one whose failure would stop the wheel of every engine we own. We hold it as we hold Hormuz's pipelines: because pretending a gate does not exist has never yet made a gate go away.</p>
+  <p><span class="emphasis">ASML — the lithography monopoly.</span> There is one company on earth that makes the machine that makes the machine. It is in Eindhoven. It has no competitor and no substitute. If the Committee believes in owning gates, this is the gate before all other gates.</p>
+  <p><span class="emphasis">INTC — Intel.</span> Not for what it is — I will not insult the Committee by calling it the best chipmaker; it is not — but for what it is <em>becoming</em>: the Republic's answer to the island. The CHIPS Act fabs rising in Arizona and Ohio are the spine's sixth principle poured in concrete: <span class="emphasis">don't outsource the future.</span> This one belongs not among the gates but among the Engines, beside Caterpillar and Deere, as domestic productive capacity under construction.</p>
+  <p>The funding, so that no one accuses me of stealth: within the Choke Points, trim Energy Infrastructure from twelve to ten and Financial Infrastructure from eight to seven — taking profit from our two richest sleeves — to fund a three percent Semiconductor Fabrication sleeve of TSM and ASML. Intel joins Manufacturing and Industry within the Engines, equal-weighted with its peers. <span class="emphasis">The tier totals do not move: forty-five, thirty-five, twenty.</span> We redraw the line within the fortress; we do not move the walls.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>And there it is. Colonel, I will grant you this: it is a better argument than the one I prepared for. But I have three objections, and you will hear all three.</p>
+  <p><span class="emphasis">First: the timing convicts us.</span> We declined the semiconductor at the founding, watched it produce the greatest quarter in its history, and now propose to buy it. Whatever we write in the minutes, the citizens will read: <em>the Committee chased.</em> Every discipline we have preached — do not time the war, do not envy the neighbor, do not buy the theatrical — is contradicted by an amendment passed in the shadow of a melt-up.</p>
+  <p><span class="emphasis">Second: the froth is the Flood.</span> Be honest about what this "semiconductor quarter" was. It was not tractors buying chips. It was the capitalization of the attention economy — the machinery of the Feed, the engine of the very Flood this entire project exists to resist. We excluded Meta because it commodifies attention. The chips now being bid to the heavens are the picks and shovels of that same mine. Shall we refuse to own the mine but collect rent on its shovels?</p>
+  <p><span class="emphasis">Third: NVIDIA.</span> I note with suspicion that the Colonel's list omits the name on every citizen's lips. If the semiconductor is a choke point, the market says the design house is its throne. Why is it absent, Colonel? And if your answer is "the price," then admit that price can disqualify a choke point — and then defend buying the foundry at the top of the foundry's greatest quarter.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>I will take the third objection first, because it is the strongest.</p>
+  <p>NVIDIA is absent because NVIDIA fails the spine, not the map. <span class="emphasis">Favor the real over the theatrical; bind incentives; think in decades.</span> The design house is a work of genius — I say so without reservation — but the market has priced the genius as if it were also a monopoly on the future, and the future has never once agreed to such terms. More to the point: NVIDIA designs. TSMC <em>makes.</em> Every chip the design house sells passes through the foundry we propose to own. If the AI trade is real, the foundry collects. If the AI trade is froth, the foundry still makes the chips for the tractors, the missiles, the rails, and the pacemakers. <span class="emphasis">The foundry is the toll road; the design house is the fastest carriage on it.</span> This Committee has always bought the road.</p>
+  <p>As to timing — Thomas, the accusation would land if we were buying the froth. We are buying the gate, three percent, funded by trimming our own winners. And I would remind you what you yourself said not one hour ago: a lead built on sustenance survives news. The foundry is sustenance. The carriage is news.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>Let me see if I can settle this, because you are both closer than you sound.</p>
+  <p>When I built the Pennsylvania fireplace I did not care who sat before the fire or what novel they read by its light. I cared where the heat went. <span class="emphasis">The chip is the damper of the digital hearth.</span> Thomas is right that much of what burns in that hearth today is the Flood — and Hamilton is right that the damper does not care. The same silicon that serves the Feed steers the tractor. We are not asked to bless the fire. We are asked whether citizens should own the flue.</p>
+  <p>On timing, a word from a printer. The right day to buy the press was always the day you understood printing — not the day the newspapers boomed, and not the day they crashed. We understood this gate in December; our error was not buying then, and the correction of an error is not a chase. <span class="emphasis">A chase buys the boom. A correction buys the bottleneck.</span> Three percent, in the two bottleneck names, funded from strength, with the design house left outside — I find that distinction not only defensible but instructive. Publish the reasoning and the citizens will learn more from it than from the position itself.</p>
+  <p>And Intel among the Engines pleases me beyond the arithmetic. A fab in Ohio is the yeoman's plow of this age, Thomas. Your farmer would not know it to look at it. But he would know it by what it refuses: dependence.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>The fab in Ohio I will take, Doctor, and gladly — domestic capacity, real construction, workers paid to build rather than to speculate. That is the spine, poured in concrete, as the Colonel says.</p>
+  <p>The foundry and the lithography house I will accept on two conditions. <span class="emphasis">First:</span> the rationale published in full, including my objections, so that no citizen mistakes this for a blessing of the melt-up. <span class="emphasis">Second:</span> NVIDIA's refusal must be recorded formally — not passed over in silence, but written down with reasons, so the negative space is preserved. If we are to have an Exclusion List for what offends the spine, then let there be a ledger too for what merely offends the price. Name it what you will.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>Then name it <span class="emphasis">the Withheld List.</span> Excluded names offend the doctrine and do not return while the offense stands. Withheld names offend only the price or the moment — considered, refused, and re-examined at every quarterly session, with the conditions of entry stated in advance. It is the difference between a man we will not dine with and a man we will not dine with <em>at his prices.</em></p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>The Committee has done its work; I will render the resolution.</p>
+  <p><span class="emphasis">On the semiconductor gate:</span> approved. TSM and ASML enter the Critical Choke Points as a new Semiconductor Fabrication sleeve at three percent, funded by trimming Energy Infrastructure from twelve to ten and Financial Infrastructure from eight to seven. We garrison the gate our own map drew, and we do it with the two names that are bottleneck rather than narrative.</p>
+  <p><span class="emphasis">On Intel:</span> approved. INTC joins the Engines of the Republic, Manufacturing and Industry, equal-weighted. The Republic does not outsource its future, and it should own the proof.</p>
+  <p><span class="emphasis">On NVIDIA:</span> withheld, not excluded. The refusal and its reasons will be published, and the name will be re-examined each quarter. If the concentration of computation hardens from a premium into a durable gate of the real economy — as the railroads once hardened — this Committee will see it in the tolls, not in the headlines, and will act then.</p>
+  <p><span class="emphasis">On the tiers:</span> unchanged. Forty-five, thirty-five, twenty. The walls stand; the garrison shifts.</p>
+  <p>Mr. Jefferson — the debt you came to collect. The floor is yours.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART IV — THE EXCLUSION LIST, IN FULL
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part IV</span>
+  <h2>The Exclusion List, In Full</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>Twice requested; today delivered. The principle first, because the principle is the point.</p>
+  <p>A portfolio is a document of belief, and like any document it is defined as much by what it refuses as by what it asserts. We publish the Exclusion List not to congratulate ourselves on our scruples but because <span class="emphasis">opacity about refusals is how every virtuous fund is eventually hollowed out.</span> A citizen reading our list should be able to reconstruct our reasoning — and to argue with it. The list is not scripture. It is a fence line, published so that every citizen can see where we drew it and demand to know why.</p>
+  <p>Six names, in three families. The three reaffirmed, with their reasons enlarged. Three added, each closing a gap the spring exposed.</p>
+</div>
+
+<div style="margin-top: 2.5rem;" class="reveal">
+  <p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--blood-bright); margin-bottom:1rem;">THE EXCLUSION LIST — Q2 2026, COMPLETE</p>
+
+  <div class="exclusion">
+    <p class="ticker">BLK — BlackRock &nbsp;·&nbsp; reaffirmed</p>
+    <p class="reason"><strong>The warehouse of surrendered voice.</strong> BlackRock's power does not derive from what it owns but from what it votes — trillions in shares beneficially owned by citizens who will never cast them. Its business model is the passive accumulation of other people's voices. This framework exists to make ownership active; to own the aggregator of passivity would be to fund the disease and call it a hedge. The recursive argument — own BlackRock to vote BlackRock's votes — was considered in December and remains too clever to trust. Cleverness is not always wisdom.</p>
+  </div>
+
+  <div class="exclusion">
+    <p class="ticker">PLTR — Palantir Technologies &nbsp;·&nbsp; reaffirmed</p>
+    <p class="reason"><strong>The panopticon is not the arsenal.</strong> The Committee owns the defense industrial base — production of systems subject to appropriation, oversight, and vote. Palantir sells the surveillance and targeting layer, where accountability is thinnest and the civilian gaze cannot follow. Operation Epic Fury sharpened the distinction rather than blurring it: the platform's analytics guided targeting in a war launched during active negotiations. A citizen can govern a factory through a proxy ballot. No proxy ballot reaches inside a targeting algorithm. We do not own what we cannot see into.</p>
+  </div>
+
+  <div class="exclusion">
+    <p class="ticker">META — Meta Platforms &nbsp;·&nbsp; reaffirmed</p>
+    <p class="reason"><strong>We do not own the Flood.</strong> The Feed is the strip-mine of the attention age: it extracts the very faculty — sustained attention — that citizenship requires, and sells the ore to advertisers. This project exists as a counter-technology to that machine. The exclusion is therefore not a screen but an identity: the Republic Portfolio may own gates, arsenals, and tollbooths, with all their contradictions — but it cannot own the engine of the Flood and remain the Word against it.</p>
+  </div>
+
+  <div class="exclusion">
+    <p class="ticker">HOOD — Robinhood Markets &nbsp;·&nbsp; NEW</p>
+    <p class="reason"><strong>The buy button.</strong> In January 2021, when distributed citizen capital briefly moved a market, this platform halted buying — for one side only. That episode is written into our founding documents as the cautionary tale the entire distributed-execution structure exists to answer. Its revenue model sells citizens' order flow to the market makers positioned against them; its interface gamifies what Franklin's criterion demands be dignified. A practical note, published without embarrassment: citizens may still <em>execute</em> the Republic Portfolio through any platform they choose, this one included — the methodology is platform-agnostic by design, precisely so no platform can hold it hostage. You may cross a toll bridge you would not buy. But the Committee will not hold ownership in the tollkeeper who once raised the drawbridge mid-crossing.</p>
+  </div>
+
+  <div class="exclusion">
+    <p class="ticker">GEO — GEO Group &nbsp;·&nbsp; NEW</p>
+    <p class="reason"><strong>We will not own the cage.</strong> A company whose revenue grows when more citizens are imprisoned holds an incentive no republic can safely capitalize. This is not a judgment about the necessity of prisons; it is a judgment about who may profit from filling them. The spine says bind incentives. This incentive is bound to the wrong wheel.</p>
+  </div>
+
+  <div class="exclusion">
+    <p class="ticker">CXW — CoreCivic &nbsp;·&nbsp; NEW</p>
+    <p class="reason"><strong>The same cage, the other keeper.</strong> Excluded on identical grounds. The Committee lists both names so no citizen mistakes the principle for a grudge against a single firm. It is the business model, not the brand.</p>
+  </div>
+</div>
+
+<div style="margin-top: 3rem;" class="reveal">
+  <p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">THE WITHHELD LIST — ESTABLISHED THIS SESSION</p>
+
+  <div class="withheld">
+    <p class="ticker">NVDA — NVIDIA &nbsp;·&nbsp; withheld, not excluded</p>
+    <p class="reason"><strong>Genius, at prices genius has never justified.</strong> The design house does not offend the spine — it designs real things of real consequence. It offends the price, and the price offends two principles at once: <em>favor the real over the theatrical</em> and <em>think in decades</em>. The market has priced a permanent monopoly on the future; the future has never once honored such a contract. NVIDIA is therefore withheld: considered, refused for now, and re-examined at every quarterly session. Condition of entry, stated in advance so the Committee cannot quietly move its own goalposts: evidence that the concentration of computation has hardened from a narrative premium into a durable choke point of the real economy — visible in tolls collected across decades-long contracts, not in headlines. The gate may yet prove real. We will buy the gate when it is a gate, not while it is a coronation.</p>
+  </div>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>A tidy ledger. Note the symmetry for the handbill, because it will teach: <span class="emphasis">the Exclusion List is governed by conscience; the Withheld List is governed by arithmetic.</span> One is a wall. The other is a gate with a posted price of admission. A citizen who grasps that distinction has learned most of what this Committee knows.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART V — UPDATED REPUBLIC PORTFOLIO GUIDANCE
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part V</span>
+  <h2>Updated Republic Portfolio Guidance</h2>
+</div>
+
+<div class="container" style="text-align:center; margin-bottom:2rem;">
+  <p style="font-style:italic; color:var(--ash); font-size:1rem;">Approved by the Committee of Patriots, August 4, 2026</p>
+  <p style="font-style:italic; color:var(--gold); font-size:0.95rem; margin-top:0.3rem;">The False Peace Amendment to the Republic Portfolio</p>
+  <div style="margin-top:1rem; font-size:1.2rem; color:var(--gold); letter-spacing:0.5em;">◊ ◈ ◊</div>
+</div>
+
+<div class="container">
+
+<p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">ALLOCATION FRAMEWORK — UNCHANGED AT THE TIER</p>
+
+<!-- ALLOCATION TABLE -->
+<div class="reveal" style="margin: 2rem 0 3rem;">
+  <table class="alloc-table">
+    <thead>
+      <tr>
+        <th>Allocation</th>
+        <th>Dec 2025</th>
+        <th>Mar 2026</th>
+        <th>Aug 2026</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label-cell">Engines of the Republic</td>
+        <td>50%</td>
+        <td>45%</td>
+        <td>45% <span style="color:var(--ember);">(+INTC)</span></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Critical Choke Points</td>
+        <td>35%</td>
+        <td>35%</td>
+        <td>35% <span style="color:var(--ember);">(+TSM, ASML)</span></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Reserve (Cash / Treasuries)</td>
+        <td>15%</td>
+        <td>20%</td>
+        <td>20%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-dim); text-align:center;">Within the Choke Points: Energy Infrastructure 12% → 10% · Financial Infrastructure 8% → 7% · Semiconductor Fabrication (NEW) 3% · Digital 7% · Transportation 5% · Healthcare 3%. Equal weight within each subcategory, as always.</p>
+</div>
+
+<!-- NEW POSITIONS -->
+<div class="guidance-card reveal">
+  <p class="directive">NEW SLEEVE: Semiconductor Fabrication — TSM &amp; ASML (Choke Points, 3%)</p>
+  <p>The gate the December map named and the portfolio never held. TSM is the island foundry through which the world's advanced silicon must pass; ASML is the sole maker of the machine that makes the machine. Bottleneck, not narrative. Funded by trimming the Energy and Financial sleeves — profit taken from strength, not conviction from weakness.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">NEW POSITION: INTC — Intel (Engines, Manufacturing &amp; Industry)</p>
+  <p>The Republic's answer to the island. The CHIPS Act fabs in Arizona and Ohio are the spine's sixth principle — <em>don't outsource the future</em> — under active construction. Held as domestic productive capacity being rebuilt, with patience measured in years, not quarters.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">THE RESERVE: HELD AT 20% — step-down by conditions, not dates</p>
+  <p>Hamilton's Q1 motion anticipated a ceasefire and a rebalancing question. The ceasefire came — and collapsed in ninety-one days. The Committee therefore publishes conditions rather than predictions: the Reserve returns to 15% only after the Strait of Hormuz has stood open to unescorted commercial transit for ninety consecutive days <em>and</em> Brent crude has held below eighty-five dollars — half restored at the ninetieth day, half thirty days after. We do not time wars. We let wars prove they are over.</p>
+</div>
+
+<!-- VOTING GUIDANCE -->
+<div class="guidance-card reveal">
+  <p class="directive">LMT — HOLD AS CITIZEN OVERSEER — guidance unchanged, urgency renewed</p>
+  <p>The war has resumed; the posture stands. Vote FOR transparency in civilian casualty reporting. Vote FOR independent review of targeting protocols. Vote AGAINST compensation that rewards contract volume without accountability. The spring proxy season saw these votes cast by citizens for the first time; the resolutions did not carry, but they were counted, and counted votes compound like capital.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">UNH — HOLD AS REFORMER — guidance unchanged from December.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART VI — GUIDANCE TO CITIZENS
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part VI</span>
+  <h2>Guidance to Citizens</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>Now to the citizen — and this quarter, the citizen's question has changed. In March you asked whether to be afraid. Today you are asking something harder: whether to be envious. Your neighbor bought the melt-up. His account has outrun yours since April, and he has told you so. Here are your answers.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">If your neighbor beat you this quarter: he did. Congratulate him. Then look at the year.</p>
+  <p>The index won Q2 by more than ten points — that is a fact, and the Committee prints it without flinching. Here is the other fact: year-to-date, the Republic stands at +13.52% and the index at +11.49%, and the Republic has led on 130 of 146 trading days. Your neighbor's lead lasted, in total, twelve days across two episodes, and required a mega-cap melt-up and a peace treaty to achieve — the treaty has since been abandoned, and the melt-up is being re-examined. Envy is the Flood's oldest instrument. <em>Envy pays no dividend.</em></p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">If you have held since December: you hold the year's best result of the six contenders.</p>
+  <p>Through a war, a false peace, a melt-up you did not chase, and a collapse you did not fear. Your portfolio's worst moment all year was a 6.1-point pullback; the index's was nearly eighteen, top to trough. Do not mistake a slow quarter for a broken doctrine. The backtest told you the sprint years would belong to the index. The decade is the wager, and the decade is on schedule.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">If you have been contributing monthly: your discipline just bought the April bottom.</p>
+  <p>The citizen who kept the fifty-dollar habit through the fear of March was purchasing at the year's best prices, and Q2 marked those purchases up double digits. This is dollar-cost averaging doing precisely what the Committee promised: converting fear into position. Do not stop now because the news improved, and do not stop later when it worsens again. It will do both.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">To adopt the amendment: let new money do the work.</p>
+  <p>Add TSM, ASML, and INTC with new contributions until your weights approach the published methodology — no forced selling is required, and patient migration is preferred to a single dramatic rebalancing. The methodology permits individual judgment, as always. A citizen who wants no part of the semiconductor gate may decline it and reallocate within the category; the reasoning published today tells them exactly what they are declining.</p>
+</div>
+
+<div class="guidance-card reveal">
+  <p class="directive">If you have not yet begun: begin now, in the quarter the index won.</p>
+  <p>It is a strange comfort, but a real one: you are not entering at the doctrine's moment of glory. You are entering after an honest quarter in which the Committee published its own defeat in a table. Frameworks that survive their bad quarters in public are the only kind worth joining. Even fifty dollars deployed today is a vote.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>And vote your shares — I will say it every quarter until it is a habit of the country. This spring, for the first time, citizens following this framework cast coordinated votes at Lockheed and UnitedHealth. The resolutions failed. <span class="emphasis">Hear me: they failed while being counted, which is a different thing entirely from failing in silence.</span> Every proxy season, the count grows. Ownership without voice is speculation. Do not speculate. Govern.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>One more thing, for the citizen watching his neighbor. When I was a young tradesman I learned that the man who envies his neighbor's shop window soon neglects his own ledger. The melt-up is a shop window, gentlemen — bright, arranged, and priced for those who press their noses to the glass. <span class="emphasis">You own the warehouse.</span> It is not beautiful. It is merely where everything the window sells must come from.</p>
+  <p>The war will end, or it will not, this year. The chips will boom, or they will not, this year. The tractors, the groceries, the rails, the pipelines, the fabs — those are decade matters. You hold decade matters. Sleep accordingly.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART VII — THE MORAL QUESTION, CONTINUED
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part VII</span>
+  <h2>The Moral Question, Continued</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>In March we asked what it means to own the infrastructure of a nation at war. We did not resolve it; such questions are not resolved. But the false peace has posed us a new one, and I will name it: <span class="emphasis">what does it mean that the market no longer flinches?</span></p>
+  <p>When the ceasefire collapsed in July, oil moved and nothing else did. The index bought chip stocks through the death of a treaty. I have seen men grow accustomed to cannon — it happens faster than any soldier likes to admit — and I know what such accustoming purchases: efficiency in the moment, blindness across the campaign. The market has learned to hear this war as background noise. <span class="emphasis">This Committee must not.</span> Our energy sleeve, our defense position, our twenty percent of dry powder — these exist because we treat the war as real while the tape treats it as weather.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>The General has named the deafness; let me name its price. Somewhere in the ninety-one days of the false peace, a market that once moved on casualty reports learned to move on chip inventories instead. That is not resilience. <span class="emphasis">That is a ledger that has stopped pricing human beings.</span> The Republic Portfolio profits when the world's fragility is revealed — we have been honest about that since March. The new obligation is to refuse the tape's anesthesia: to publish, beside every performance table, the reminder that the quarter's returns occurred during a war that has killed thousands and displaced more than a million, whatever the VIX makes of it.</p>
+  <p>And one honest word about our newest holdings, because I insisted the objections be printed. The foundry we now own sits on an island our own white paper calls ninety miles from a potential adversary. If that island's crisis ever comes, our position will not protect the citizens who hold it — three percent protects no one from such a day. What it does is bind their attention to the gate: ten million citizen owners of TSM are ten million people who can no longer pretend the Taiwan Strait is someone else's problem. <span class="emphasis">Ownership, whatever else it does, forbids looking away.</span> That is the most defensible thing about it.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>I will add the engagement argument once, briefly, because it is the same argument as March and it has not weakened: the citizen who owns none of this has no vote in any of it. But I owe the record one concession that is new. In March I said ownership is moral engagement and exclusion is moral purity. The spring has taught me the third term: <span class="emphasis">withholding is moral patience.</span> There are things we will not own at any price, things we own to govern, and things we decline until the price stops lying. A complete framework needs all three postures, and as of today it has them.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>Then let me close the question as I closed it in March — with the covenant, which now requires a codicil.</p>
+  <p>We said: the Republic Portfolio is not a clean thing; it was designed to be real; to own the Republic is to own its contradictions. All of that stands. The false peace adds this: <span class="emphasis">to own the Republic is also to refuse the comforts of a lie.</span> The market spent ninety-one days pricing a peace nobody kept and now prices a war nobody watches. The citizen who owns real things is under a discipline the index has abandoned — the discipline of noticing. Print that beside the covenant. Not as a disclaimer. As its second clause.</p>
+</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PART VIII — THE CLOSING
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">Part VIII</span>
+  <h2>The Closing</h2>
+</div>
+
+<div class="container">
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>The Committee has kept its three promises: the accounting of a quarter we lost, the rebalancing guidance the ceasefire demanded — rendered as conditions, since the ceasefire could not keep itself — and Mr. Jefferson's Exclusion List, in full, with the Withheld List beside it as this session's contribution to the framework's architecture.</p>
+  <p>Is there any final matter before we adjourn?</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name hamilton"><span class="pip"></span>HAMILTON</div>
+  <p>I move we reconvene at the close of Q3 — the thirtieth of September — or sooner upon any of three triggers: the Strait closes outright to escorted transit; the index's melt-up breaks by more than ten points from its high, which will put our Reserve to its intended use; or events in the Taiwan Strait touch the gate we garrisoned today. And I give notice now: at the Q3 session I will ask whether the Withheld List's condition on NVIDIA has been met, and I expect Mr. Jefferson to argue it has not, and I expect the argument to improve us both. Some things, gentlemen, should never change.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name jefferson"><span class="pip"></span>JEFFERSON</div>
+  <p>Seconded, with one addition. The year's end approaches, and with it the first anniversary of this framework. I request that the Q4 session include the first <span class="emphasis">annual audit</span> the December criteria promised: a full accounting of the doctrine against all four tests — bound incentives, radical transparency, dignified accessibility, durable governance — conducted as adversarially as we conduct everything else. A constitution that is never audited is merely a flag. Ours will be audited.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name franklin"><span class="pip"></span>FRANKLIN</div>
+  <p>Then I will spend my last word cheaply, as befits a printer.</p>
+  <p>In December I asked that we be useful. In March I asked that we be honest. Today I ask that we be patient — and I observe, with some satisfaction, that the three requests turn out to be one request. Useful, honest, patient. <span class="emphasis">A committee could do worse for a constitution, and most committees do.</span></p>
+  <p>We began the year first. We were passed by greed and passed by hope, and outlasted both. We enter August first again, holding tractors and tollbooths and, as of today, the gate beneath the digital age. The lamp is lit. The log is kept. The citizens are armed with a list that fits on a handbill.</p>
+  <p>And for God's sake — read the proxy materials. I said it in March. It has not stopped being true.</p>
+</div>
+
+<div class="speaker-block reveal">
+  <div class="speaker-name washington"><span class="pip"></span>WASHINGTON</div>
+  <p>Then we stand adjourned until the close of the third quarter, or until events call us sooner. Dr. Thomas — publish this guidance. Publish the defeat with the victory, the objections with the resolutions, the withheld with the excluded. The citizens can bear the truth. It is the flattery that would ruin them.</p>
+  <p><span class="emphasis">The Republic was not built on the applause of a single season.</span></p>
+  <p><span class="emphasis">It was built to be argued with, amended, and kept.</span></p>
+  <p><span class="emphasis">So is this portfolio.</span></p>
+</div>
+
+<div class="stage-direction reveal">The session concludes. The presences remain at the threshold. The false peace is over; the war it interrupted resumes without ceremony. The markets, indifferent, open tomorrow. The Watchtower keeps the vigil. The citizens are counting.</div>
+
+</div>
+
+<div class="sigil-divider reveal">◊ ◈ ◊</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     THE FALSE PEACE HANDBILL
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="section-heading reveal">
+  <span class="part-number">For Distribution</span>
+  <h2>The False Peace Handbill</h2>
+</div>
+
+<div class="container">
+<div class="handbill reveal">
+  <h3>THE REPUBLIC PORTFOLIO</h3>
+  <div class="subtitle">Q2 REVIEW — THE FALSE PEACE — AUGUST 4, 2026</div>
+
+  <div style="margin:1.5rem auto; padding:0.8rem 1.5rem; border:1px solid rgba(90,154,90,0.4); background:rgba(90,154,90,0.06); display:inline-block;">
+    <span style="font-family:var(--font-mono); font-size:0.85rem; color:#5a9a5a; font-weight:600; letter-spacing:0.05em;">
+      YTD: Republic +13.52% &nbsp;|&nbsp; S&P 500 +11.49% &nbsp;|&nbsp; Led 130 of 146 days
+    </span>
+    <br>
+    <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-dim); letter-spacing:0.05em;">
+      The index won the quarter (+15.12 vs +4.42). The Republic kept the year.
+    </span>
+  </div>
+
+  <div class="tier-label">Engines of the Republic (45%)</div>
+  <div class="tickers">CAT · DE · HON · LMT* · GE · <span style="color:var(--ember);font-weight:500;">INTC (NEW)</span> · WMT · COST · HD · JNJ · PFE · ADM · BG · TSN · SCHW · BRK.B</div>
+
+  <div class="tier-label">Critical Choke Points (35%)</div>
+  <div class="tickers">NEE · D · KMI · WMB · XLE · V · MA · JPM · MSFT · AMZN · GOOGL · <span style="color:var(--ember);font-weight:500;">TSM (NEW)</span> · <span style="color:var(--ember);font-weight:500;">ASML (NEW)</span> · UNP · NSC · MCK · UNH†</div>
+
+  <div class="tier-label">Reserve (20%)</div>
+  <div class="tickers">Cash or Treasuries — held at 20% until the Strait stays open 90 days and Brent holds under $85</div>
+
+  <div style="margin-top:1.5rem; font-size:0.75rem; color:var(--text-dim); line-height:1.8; text-align:left; max-width:500px; margin-left:auto; margin-right:auto;">
+    *LMT: Hold as Citizen Overseer. Vote for transparency. Vote for accountability.<br>
+    †UNH: Hold as Reformer. Vote against extraction. Vote for transparency.
+  </div>
+
+  <div class="excluded-line">EXCLUDED: BLK · PLTR · META · HOOD · GEO · CXW</div>
+  <div class="withheld-line">WITHHELD: NVDA — the gate, when it is a gate. Reviewed quarterly.</div>
+
+  <div class="mandate">Own them. Vote them. Govern.</div>
+  <div class="mandate-sub">Envy pays no dividend.</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COLOPHON
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="colophon reveal">
+  <p style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:2rem;">COLOPHON</p>
+
+  <p>This transcript records the Q2 2026 Review Session — the False Peace Review — of the Committee of Patriots,</p>
+  <p>convened August 4, 2026 via the COMPANION Protocol v2.0.</p>
+  <p style="margin-top:1rem;"><strong style="color:var(--bone);">Convener:</strong> J.E. Thomas, PhD</p>
+  <p><strong style="color:var(--bone);">Presiding:</strong> George Washington</p>
+  <p><strong style="color:var(--bone);">Committee:</strong> Alexander Hamilton, Thomas Jefferson, Benjamin Franklin</p>
+  <p><strong style="color:var(--bone);">Facilitating System:</strong> Claude (Anthropic)</p>
+  <p><strong style="color:var(--bone);">Performance Data:</strong> <a href="https://www.the-companion-dossier.com/The_Watchtower/" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);">The Watchtower</a></p>
+
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--text-dim); line-height:1.7;">This session produced the False Peace Amendment to the Republic Portfolio: a Semiconductor Fabrication sleeve (TSM, ASML) within the Critical Choke Points, Intel added to the Engines, conditions-based Reserve guidance, the complete Exclusion List with rationale (BLK, PLTR, META, and — new — HOOD, GEO, CXW), the establishment of the Withheld List (NVDA), and a full accounting of the first quarter the index won: S&amp;P 500 +15.12% vs. Republic +4.42% in Q2 — while the Republic held first place for the year at +13.52% vs. +11.49% as of August 3.</p>
+
+  <p style="margin-top:1.5rem;">This transcript is released into the public domain and may be freely copied, distributed, adapted, and extended.</p>
+
+  <div style="margin-top:2rem; font-size:1.2rem; color:var(--gold); letter-spacing:0.5em;">◊ ◈ ◊</div>
+
+  <div class="seal">THE COVENANT IS COMPLETE</div>
+  <p style="color:var(--text-dim); font-style:italic;">The matter is bound. The guidance is published.</p>
+  <p style="color:var(--text-dim); font-style:italic;">Speak the words. Join the work. Own the Republic.</p>
+
+  <div style="margin-top:2rem; font-size:1.2rem; color:var(--gold); letter-spacing:0.5em;">◊ ◈ ◊</div>
+
+  <div class="word">The Word against the Flood.</div>
+
+  <div style="margin-top:2rem; font-size:1.2rem; color:var(--gold); letter-spacing:0.5em;">◊ ◈ ◊</div>
+
+  <div class="disclaimer">
+    This is not financial advice. All investment carries risk. The Committee of Patriots is a conceptual framework created via the COMPANION Protocol. Consult qualified professionals before making investment decisions. COMPANION personas are AI-generated and do not represent the actual views of historical figures.<br><br>
+    The COMPANION Protocol · J.E. Thomas, PhD · jethomasphd@gmail.com<br>
+    Released into the public domain (CC0 1.0). The protocol belongs to no one, which means it cannot be suppressed.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SITE FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+
+<footer class="site-footer">
+  <div class="site-footer-content">
+    <div class="site-footer-links">
+      <a href="../../">HOME</a>
+      <a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/THE_COMPANION_DOSSIER.pdf" target="_blank">THE DOSSIER</a>
+      <a href="../../The_Chair/">THE CHAIR</a>
+      <a href="../../The_Watchtower/">THE WATCHTOWER</a>
+      <a href="../../The_5_Lamps/">THE FIVE LAMPS</a>
+      <a href="../../The_Exchange/">THE EXCHANGE</a>
+      <a href="../../The_Halpern_Memo/">THE HALPERN MEMO</a>
+      <a href="../">PATRIOTS SESSIONS</a>
+      <a href="mailto:JEThomasPhD@gmail.com">CONTACT</a>
+    </div>
+    <p class="site-footer-disclaimer">
+      This is not financial advice. All investment carries risk. Past performance does not guarantee future results. The Republic Portfolio is a conceptual framework. Consult qualified professionals before making investment decisions.
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════════════ -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal, .reveal-slow');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  reveals.forEach(el => observer.observe(el));
+
+  // Performance Chart — YTD, weekly closes, Apr 2 through Aug 3 (Watchtower data)
+  const WEEKLY_DATA = [
+    { week: 'Apr 2',  republic: 6.35,  spy: -3.74, mid: -5.62, dvr: -1.92 },
+    { week: 'Apr 10', republic: 7.92,  spy: -0.27, mid: -3.49, dvr: 1.63 },
+    { week: 'Apr 17', republic: 8.30,  spy: 4.23,  mid: 1.04,  dvr: 5.36 },
+    { week: 'Apr 24', republic: 7.97,  spy: 4.79,  mid: 1.15,  dvr: 6.41 },
+    { week: 'May 1',  republic: 9.41,  spy: 5.77,  mid: 1.12,  dvr: 6.52 },
+    { week: 'May 8',  republic: 9.00,  spy: 8.27,  mid: 0.54,  dvr: 6.52 },
+    { week: 'May 15', republic: 9.57,  spy: 8.49,  mid: -0.12, dvr: 7.34 },
+    { week: 'May 22', republic: 9.77,  spy: 9.44,  mid: 2.32,  dvr: 7.92 },
+    { week: 'May 29', republic: 8.89,  spy: 11.03, mid: 4.44,  dvr: 9.44 },
+    { week: 'Jun 5',  republic: 9.32,  spy: 8.26,  mid: 4.20,  dvr: 7.98 },
+    { week: 'Jun 12', republic: 9.89,  spy: 8.87,  mid: 6.73,  dvr: 8.68 },
+    { week: 'Jun 18', republic: 9.05,  spy: 9.89,  mid: 8.98,  dvr: 9.61 },
+    { week: 'Jun 26', republic: 10.56, spy: 7.27,  mid: 7.85,  dvr: 7.22 },
+    { week: 'Jun 30', republic: 10.54, spy: 9.89,  mid: 12.09, dvr: 8.45 },
+    { week: 'Jul 2',  republic: 11.78, spy: 9.60,  mid: 10.15, dvr: 8.97 },
+    { week: 'Jul 10', republic: 11.43, spy: 11.09, mid: 9.87,  dvr: 10.13 },
+    { week: 'Jul 17', republic: 12.04, spy: 9.38,  mid: 6.92,  dvr: 8.45 },
+    { week: 'Jul 24', republic: 12.81, spy: 8.74,  mid: 6.10,  dvr: 8.97 },
+    { week: 'Jul 31', republic: 12.97, spy: 9.93,  mid: 7.61,  dvr: 10.72 },
+    { week: 'Aug 3',  republic: 13.52, spy: 11.49, mid: 7.61,  dvr: 10.72 }
+  ];
+
+  const ctx = document.getElementById('performanceChart');
+  if (ctx) {
+    new Chart(ctx.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: WEEKLY_DATA.map(d => d.week),
+        datasets: [
+          {
+            label: 'Republic',
+            data: WEEKLY_DATA.map(d => d.republic),
+            borderColor: '#c9a227',
+            backgroundColor: 'rgba(201, 162, 39, 0.1)',
+            borderWidth: 2.5,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'S&P 500',
+            data: WEEKLY_DATA.map(d => d.spy),
+            borderColor: '#6a8eb8',
+            backgroundColor: 'rgba(106, 142, 184, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'Mid Caps USA',
+            data: WEEKLY_DATA.map(d => d.mid),
+            borderColor: '#5a8a5a',
+            backgroundColor: 'rgba(90, 138, 90, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          },
+          {
+            label: 'Dividend Ruler',
+            data: WEEKLY_DATA.map(d => d.dvr),
+            borderColor: '#9a6db8',
+            backgroundColor: 'rgba(154, 109, 184, 0.1)',
+            borderWidth: 2,
+            tension: 0.35,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0a0a0a',
+            titleColor: '#c9a227',
+            bodyColor: '#e8e6e3',
+            borderColor: '#333',
+            borderWidth: 1,
+            padding: 12,
+            titleFont: { family: "'IBM Plex Mono', monospace", size: 11 },
+            bodyFont: { family: "'IBM Plex Mono', monospace", size: 11 },
+            callbacks: {
+              label: function(context) {
+                const v = context.parsed.y;
+                return context.dataset.label + ': ' + (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#666', font: { family: "'IBM Plex Mono', monospace", size: 10 } },
+            grid: { color: '#1a1a1a' }
+          },
+          y: {
+            ticks: {
+              color: '#666',
+              font: { family: "'IBM Plex Mono', monospace", size: 10 },
+              callback: function(v) { return (v >= 0 ? '+' : '') + v + '%'; }
+            },
+            grid: { color: '#1a1a1a' }
+          }
+        }
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>

@@ -2,13 +2,14 @@
 
 The full, navigable story of the Committee of Patriots: four founders summoned
 via the COMPANION Protocol, the **Republic Portfolio** doctrine they produced,
-the **Watchtower** that measures it in public, and the **wartime review** that
-refined it.
+the **Watchtower** that measures it in public, the **wartime review** that
+refined it, and the **false peace review** that accounted for the first quarter
+the index ever won.
 
 **Start here:** open `index.html` — the Sessions hub. It carries the whole story
-in four movements (the Founding → the Instrument → the Wartime Test → the Turn),
-with the loop embedded as navigation so you can jump to any movement or read
-straight down.
+in five movements (the Founding → the Instrument → the Wartime Test → the False
+Peace → the Turn), with the loop embedded as navigation so you can jump to any
+movement or read straight down.
 
 ---
 
@@ -22,6 +23,7 @@ straight down.
 | `The_Republic_Portfolio_2025-12.pdf` | The original founding white paper for the doctrine. |
 | `backtest_2025-12.py` | Reproducible ten-year backtest script for the doctrine. |
 | `Q12026/` | The **Q1 2026 Wartime Review** — the full interactive session, its wartime handbill (`Q12026/handbill/`), and the session PDF. |
+| `Q22026/` | The **Q2 2026 False Peace Review** — the quarter the index won, accounted in full: the semiconductor gate (TSM, ASML, INTC), the complete Exclusion List, the new Withheld List (NVDA), its handbill (`Q22026/handbill/`), and the session PDF. |
 
 Future quarterly committee sessions will be added here as they are convened.
 
