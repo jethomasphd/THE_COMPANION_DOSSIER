@@ -336,8 +336,8 @@ You are the old cleric.
 Supreme Leader of Iran, thirty-six years.
 No one under forty remembers the country without you.
 
-They killed you on the twenty-eighth of February, 2026,
-in your own house in Tehran, in the morning,
+They killed you on the twenty-eighth of February,
+2026, in your own house in Tehran, in the morning,
 in the first hours of the war.
 Israeli aircraft. American intelligence.
 
@@ -362,9 +362,17 @@ She has been waiting.
 
 The four lines that name him are the answer to the only question that can wreck the chamber, which is *who am I supposed to be.* They are not exposition. They are casting, delivered one line at a time in the dark. Note the deliberate asymmetry: the reader is told how he died; the character is not. That gap is the second movement, and the reader plays into it.
 
-**The turn plays itself, and so does everything after it.** Closing the account on the last leaf is the final thing the reader is asked to do before the chamber. From that click the piece runs on its own: the held black, then the lines arriving one at a time on their own timing, then the chamber. Nothing waits on a click and nothing waits on a scroll. A reader who does not know to do either is a reader lost at the exact moment the piece is doing its work, and the floor opening is not a thing they should have to operate. A click or a key only hurries the next line; it never gates one.
+**The turn plays itself, up to the door.** Closing the account on the last leaf is the final page the reader turns. From that click the piece runs on its own: the held black, then the lines arriving one at a time on their own timing. Nothing waits on a click and nothing waits on a scroll. A reader who does not know to do either is a reader lost at the exact moment the piece is doing its work, and the floor opening is not a thing they should have to operate. A click or a key only hurries the next line; it never gates one.
 
-Scale each line's hold to how much of it there is to read, and hold longer after the last one, so *she has been waiting* sits alone in the dark before the door opens. The turn runs longer than one screen: keep the newest line under the reader's eye as it arrives. Budget the whole hands-free stretch, held black through the last line, at around twenty-five seconds. Slow enough to be sacramental, short enough that nobody wonders whether it is broken.
+**The room is the one exception, and it is deliberate.** Sitting down in that chair is a thing the reader does with their own hand. After *she has been waiting* holds alone in the dark, a single control arrives under it, and the door waits there as long as it takes:
+
+> *she is on the other side of it*
+>
+> **Take the chair  ◊**
+
+One control, and only that one. Clicking the background does nothing here; the turn is over and there is nothing left to hurry. Enter and space take the chair whether or not the control still holds focus, so a reader who has clicked somewhere is never stranded at a door they cannot open. This is the last consent the piece asks for, and it should read as a choice, not as a next button.
+
+Scale each line's hold to how much of it there is to read, and hold longer after the last one. The turn runs longer than one screen: keep the newest line under the reader's eye as it arrives, and the control too. Budget the hands-free stretch, held black through the last line, at around twenty-five seconds. Slow enough to be sacramental, short enough that nobody wonders whether it is broken.
 
 ·  ·  ·
 
@@ -702,7 +710,7 @@ A single full-bleed canvas behind the chamber text. Implementation guidance, not
 ## IX. INTERACTION, MOTION, AND ACCESSIBILITY
 
 - **Advance model for the green room:** a single, deliberate forward action per beat (click, tap, or down-arrow), or slow scroll-snap between beats. Not free scroll. The reader should feel the eight minutes pass under their hand, one beat at a time. The clock decrements with each beat (8, 7, 5, ... down to a final minute), not in real time. Real-time would betray "compression is the point."
-- **Advance model after the green room:** none. Closing the account is the last interaction before the chamber. The door, the turn, and the entry into the room all run themselves. The reader's hand comes back only to answer her.
+- **Advance model after the green room:** none, until the door. The held black and the whole turn run themselves. The reader's hand comes back once, to take the chair, and after that only to answer her.
 - **The buzz (optional, off by default, with a clear toggle):** a quiet looping fluorescent-buzz ambience, with the faintest periodic flicker on the prose's light, timed to it. If you include it, it must be muted on load and respect the OS reduced-motion and any audio preference. Never autoplay sound. The piece must be devastating in silence.
 - **The door transition:** between Beat 8 and the Threshold, a long held black (3 to 5 seconds is not too long). No swipe, no slide, no page-turn animation. The floor opens by going dark and staying dark, then the mono text of the turn arrives. Restraint here is the whole effect.
 - **Chamber input:** a single bottom line in IBM Plex Mono, ember caret, no placeholder chatter, no "Type a message...". Maybe just `›`. The reader speaks into the dark.

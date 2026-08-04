@@ -444,15 +444,19 @@
     }, fadeMs + blackDwell);
   }
 
-  /* ── The threshold: the turn. It plays itself.
+  /* ── The threshold: the turn. It plays itself, up to the door.
 
-        Closing the account is the last thing the reader is asked to do
-        before the chamber. From there the floor opens on its own: the held
-        black, then the lines one at a time, then the room. Nothing waits on
-        a click and nothing waits on a scroll, because a reader who does not
-        know to do either is a reader who is lost at the exact moment the
-        piece is doing its work. A click only hurries it along. */
+        Closing the account is the last page the reader turns. From there the
+        floor opens on its own: the held black, then the lines one at a time.
+        Nothing waits on a click and nothing waits on a scroll, because a
+        reader who does not know to do either is lost at the exact moment the
+        piece is doing its work. A click only hurries it along.
+
+        The room is the one exception. Sitting down in that chair is a thing
+        the reader has to do with their own hand, so the last line is followed
+        by a single control and the door waits there until it is taken. */
   var thLines = [], thIdx = 0, thDone = false, thTimer = null;
+  var thresholdEnter = document.getElementById('thresholdEnter');
 
   // How long a line is left alone before the next one arrives, scaled to how
   // much of it there is to read.
@@ -466,6 +470,7 @@
     focusEl(document.getElementById('turnLines'));
     thLines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
     thIdx = 0; thDone = false;
+    if (thresholdEnter) thresholdEnter.classList.remove('show');
     // The first line is there almost at once, so the reader never mistakes
     // the threshold for an empty page. The held black was the door; this
     // room speaks as soon as it is entered.
@@ -494,13 +499,22 @@
       keepThresholdLineInView(el);
       thIdx++;
       // A longer hold after the last line, so she has been waiting sits
-      // alone in the dark for a moment before the door opens.
+      // alone in the dark for a moment before the door is offered.
       var last = (thIdx >= thLines.length);
       scheduleThresholdLine(last ? (REDUCED ? 700 : 2200) : thresholdDwell(el));
     } else if (!thDone) {
       thDone = true;
-      enterChamber();
+      offerTheChair();
     }
+  }
+
+  // The turn is over. The door is the reader's to open.
+  function offerTheChair() {
+    if (!thresholdEnter) { enterChamber(); return; }   // fail safe, never strand them
+    thresholdEnter.classList.add('show');
+    keepThresholdLineInView(thresholdEnter);
+    var btn = document.getElementById('enterChamberBtn');
+    if (btn) { try { btn.focus({ preventScroll: true }); } catch (e) {} }
   }
 
   // A click or a key does not open the floor. It only hurries it.
@@ -516,13 +530,27 @@
       advanceThreshold();
     });
   }
+  var enterChamberBtn = document.getElementById('enterChamberBtn');
+  if (enterChamberBtn) enterChamberBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    enterChamber();
+  });
   document.addEventListener('keydown', function (e) {
     if (body.getAttribute('data-stage') !== 'threshold') return;
-    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' ||
-        e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      advanceThreshold();
+    // The chair has its own control. Let it answer for itself.
+    if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
+    var activate = (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar');
+    var forward = activate || e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown';
+    if (!forward) return;
+    if (thDone) {
+      // The turn is over and only the chair is left. Enter and space take it
+      // even if the reader has clicked the focus off the control. The arrows
+      // are left alone so the page can still be scrolled.
+      if (activate) { e.preventDefault(); enterChamber(); }
+      return;
     }
+    e.preventDefault();
+    advanceThreshold();
   });
 
   /* ── The chamber ────────────────────────────────────────────── */
