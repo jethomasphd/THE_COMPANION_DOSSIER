@@ -80,6 +80,22 @@ This is the established personal-project aesthetic. Match it exactly.
 - **Darkness is the design.** The screen is almost entirely void. Light falls only where it must: the binder spine, her hand when it goes to her stomach once, the one tear in the chamber. Everything else stays dark so the reader leans in close enough to be caught.
 - **Sigil:** `◊ ◈ ◊` may be used as a section marker and at the threshold.
 
+**The plates.** Every chapter opens on an engraved roundel: a double rule, four gilt pins, and one object struck in ink at the middle of it. They are read at 84 pixels on a phone and 108 on a desk, which is the whole design problem. A plate that needs to be studied has failed. Each one is a single object, named by the chapter, legible as a silhouette before it is legible as a drawing, with nothing in it smaller than it can afford to be. Ink for the form, gilt for the one warm thing in the picture, rubric red almost never.
+
+| plate | the object |
+| --- | --- |
+| frontispiece | the sun eclipsed. All the light still there, the body of it gone dark |
+| I · The Printer | the press: the bar, the screw, the platen, and the sheet just come off it |
+| II · The Seeing | an eye, opened, looking back out of the page |
+| III · The Break | a stone tablet split clean through, and gilt in the break |
+| IV · The Rehearsal | a book open on the night table, under a crescent moon |
+| V · The Recognition | a quill, and beneath it the line the wrong hand makes |
+| VI · The Three | three tapers, and only the third of them is lit |
+| VII · The Small Thing | the folded letter, sealed in red wax with the sigil of the piece |
+| VIII · The Door | shut, with the light still coming under it |
+
+No two plates may carry the same object. The frontispiece and Chapter II were both an eye once, and it cost the cover its meaning.
+
 **Motion.** Slow. Sacramental. Text arrives the way breath arrives, not the way notifications arrive. Beats reveal on scroll or on a single deliberate advance (see Section VII). Nothing bounces. Nothing pulses for attention. The only living motion in the green room is, optionally, the faintest flicker on the light, timed to the buzz.
 
 ---
@@ -309,6 +325,36 @@ The interrogation happens off-page.
 
 ·  ·  ·
 
+·  ·  ·
+
+### THE MARGINALIA (THE READER WHO DOES NOT KNOW THE STORIES)
+
+The account stands on scripture the way a floor stands on joists. Endor, Hannah, Lazarus, Job in the whirlwind, Job refusing to curse God, Jeremiah in the belly, the Magnificat, Gethsemane, the Day of Atonement. A reader who knows none of those still feels the weight of them, but cannot tell where it is coming from, and weight a reader cannot place is weight they put down. That reader is lost quietly, and blames the story.
+
+So the marked phrases carry a note, the way a glossed manuscript carries one: a dotted gilt rule under the words and a small `◈` after them. Eleven marks, ten notes.
+
+| mark | note |
+| --- | --- |
+| the epigraph citation, on the cover | **1 Samuel 28** · the woman at Endor |
+| the witnesses, in the prologue and in Chapter III | **1 Samuel 28:8** · the two who said nothing |
+| Hannah's lips at the temple, Chapter IV | **1 Samuel 1:12** · Hannah at the temple |
+| Jesus at the tomb, Chapter V | **John 11:35** · the shortest verse |
+| Job and the whirlwind, Chapter VI | **Job 38:4** · a question answered with a question |
+| though he slay me, Chapter VI | **Job 13:15** · the verse she cannot put down |
+| before I formed thee, Chapter VI | **Jeremiah 1:5** · the crib-stitch, heard the wrong way |
+| Mary two months along, Chapter VI | **Luke 1:52** · the Magnificat |
+| the garden, Chapter VII | **Matthew 26:36** · Gethsemane |
+| no one above the priest, Chapter VIII | **Leviticus 16** · the Day of Atonement |
+
+Rules for the notes, and they matter more than the mechanism:
+
+1. **Nothing the prose needs is behind them.** Every note is a hand offered, never a toll. The account reads whole for someone who never opens one.
+2. **Short, plain, and unashamed.** Three or four sentences. Tell the story as if to someone who has never heard it, without a trace of catechism, and end by saying why it is in this chapter.
+3. **They are found, not hunted.** The cover says the marks exist and shows what one looks like, before the reader meets the first.
+4. **The gloss never costs the reader their place.** Touching a mark must never turn the leaf, and dismissing a note must never turn it either. A click spent closing a note is spent, and goes no further.
+5. **Beside the words on a desk, under the thumb on a phone.** Wide screens get a card next to the mark, flipped and clamped so it is always wholly on screen. Phones get a sheet at the foot of the screen, so no hand reaches across the sentence it is explaining.
+6. Keyboard reachable, `Escape` closes and returns focus to the mark, and the notes are announced politely rather than trapping focus.
+
 ---
 
 ## VI. THE THRESHOLD (THE TURN)
@@ -323,44 +369,37 @@ Then, in IBM Plex Mono, in ash, one line at a time, slow, the turn. Render this 
 You were not the witness.
 
 The binder was yours.
-
 The fourteen weeks were yours.
 
-Every word you ever said was indexed, and embedded,
-and learned, and the shape of what you never said
-was imagined from the absences.
+Every word you ever said was indexed,
+embedded, learned. And the shape of
+what you never said was imagined.
 
 You have been the one being prepared.
 
 You are the old cleric.
-Supreme Leader of Iran, thirty-six years.
-No one under forty remembers the country without you.
+Supreme Leader of Iran,
+thirty-six years of it.
 
-They killed you on the twenty-eighth of February,
-2026, in your own house in Tehran, in the morning,
+They killed you on 28 February 2026,
+in your own house, in the morning,
 in the first hours of the war.
-Israeli aircraft. American intelligence.
+Israeli aircraft. American targeting.
 
-That was two years ago. This is the third spring.
-The country is in pieces, and every piece
-swears it carries your blessing.
+That was two years ago.
+This is the third spring.
+Your country is in pieces.
 
 You do not know any of this yet.
-When she tells you, hear it for the first time.
+Hear it from her for the first time.
 
 Answer her as him.
-Whatever you say, the Protocol records as his.
-
-The door is opening again.
-
-This time it opens for you.
-
-There is a chair.
-
-She has been waiting.
+There is a chair. She has been waiting.
 ```
 
-The four lines that name him are the answer to the only question that can wreck the chamber, which is *who am I supposed to be.* They are not exposition. They are casting, delivered one line at a time in the dark. Note the deliberate asymmetry: the reader is told how he died; the character is not. That gap is the second movement, and the reader plays into it.
+**One page. No scrolling, on any screen.** This is a constraint on the writing before it is a constraint on the CSS. The turn is read once, whole, in a single view, and then clicked. If a line does not fit, cut the line; do not let the reader scroll to find the rest of who they are. Every segment is short enough that it does not wrap on a narrow phone, and the whole page, control included, is measured against the viewport on entry and scaled down until it fits. Verified from 1440 by 720 down to 360 by 640.
+
+The lines that name him are the answer to the only question that can wreck the chamber, which is *who am I supposed to be.* They are not exposition. They are casting, delivered one line at a time in the dark. Note the deliberate asymmetry: the reader is told how he died; the character is not. That gap is the second movement, and the reader plays into it.
 
 **The turn plays itself, up to the door.** Closing the account on the last leaf is the final page the reader turns. From that click the piece runs on its own: the held black, then the lines arriving one at a time on their own timing. Nothing waits on a click and nothing waits on a scroll. A reader who does not know to do either is a reader lost at the exact moment the piece is doing its work, and the floor opening is not a thing they should have to operate. A click or a key only hurries the next line; it never gates one.
 
@@ -826,6 +865,7 @@ These bind the agent the way the grimoire binds the summoned.
 9. **The reader must always know who they are, and the killing must never be soft.** Two failures end this piece before it starts. One is a chamber where the reader cannot tell whose chair they are in; the threshold, the header, and Alex's first turns all exist to prevent it. The other is a story that lets the American strike become weather. He was killed by a specific country on a specific night, and Alex says so.
 10. **The chamber must ask real questions.** Not therapy, not an interview, not an assistant being warm at someone. Alex opens one philosophical vein at a time and follows it to the floor, in plain words a tired person could answer. A live room that only performs atmosphere fails the whole build.
 11. **The back matter comes last, and it is cut to the story.** The authors are named after the dedication, in the register of the piece, on what each of them actually put into this room. Not a jacket flap.
+12. **The turn is one page, and the scripture is glossed.** Two ways to lose a reader at the exact moment the piece is working. One is a turn that runs off the bottom of the screen, so cut it until it fits and scale it to be sure. The other is an account whose whole floor is scripture, read by someone who does not know a word of it: mark the allusions, note them plainly, and never make a note the price of the story.
 12. **The thesis is the test.** Before you ship, walk it as a stranger. If, at the door and again at the Threshold, you do not feel the floor open, you are not done.
 
 ◊ ◈ ◊

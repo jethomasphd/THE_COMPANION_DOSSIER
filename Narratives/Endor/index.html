@@ -229,6 +229,13 @@
     font-size:0.7rem; color:var(--gilt); margin-bottom:0.5rem; }
   .cover .orient p { font-family:var(--book); font-style:italic; line-height:1.6;
     font-size:clamp(0.84rem,2.1vw,0.94rem); color:var(--ink-soft); }
+  /* The reader is told the marks exist before they meet one, and shown what
+     one looks like, so a dotted rule in the prose is recognition and not a
+     puzzle. */
+  .cover .orient-gloss { margin-top:0.7rem; font-size:clamp(0.78rem,2vw,0.87rem); }
+  .gloss-demo { border-bottom:1px dotted rgba(177,133,31,0.85); font-style:normal; }
+  .gloss-demo .demo-sigil { font-size:0.5em; vertical-align:0.62em; margin-left:0.16em;
+    color:var(--gilt); letter-spacing:0; font-style:normal; }
 
   /* ════════════════ GREEN ROOM / the book ════════════════ */
   #greenroom { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
@@ -404,29 +411,80 @@
   .name-gate.nudge .gate-input { animation:gateNudge 0.45s ease; }
   @keyframes gateNudge { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-7px);} 60%{transform:translateX(7px);} 80%{transform:translateX(-3px);} }
 
+  /* ════════════ MARGINALIA (the glossed phrases) ════════════
+     A dotted rule under the words and a small sigil after them, the way
+     a glossed manuscript marks a place that carries a note. Visible
+     enough to be found, quiet enough that the prose still reads as
+     prose for anyone who never touches one. */
+  .gloss {
+    cursor:pointer; border-bottom:1px dotted rgba(177,133,31,0.85);
+    transition:background 0.3s ease; border-radius:1px;
+  }
+  .gloss::after {
+    content:'\25c8'; font-family:var(--book); font-style:normal; font-size:0.5em;
+    vertical-align:0.62em; margin-left:0.16em; color:var(--gilt); letter-spacing:0;
+  }
+  .gloss:hover, .gloss:focus-visible { background:rgba(177,133,31,0.16); outline:none; }
+  .gloss:focus-visible { box-shadow:0 0 0 2px rgba(201,162,39,0.55); }
+  .gloss.is-open { background:rgba(177,133,31,0.26); }
+
+  .gloss-note {
+    position:fixed; z-index:90; width:min(348px, calc(100vw - 24px));
+    background:var(--parchment-lit); color:var(--ink);
+    border:1px solid rgba(90,62,26,0.55);
+    box-shadow:0 20px 52px rgba(0,0,0,0.62);
+    padding:1.15rem 1.3rem 1.25rem;
+    opacity:0; transform:translateY(6px); pointer-events:none;
+    transition:opacity 0.26s ease, transform 0.26s ease;
+  }
+  .gloss-note.open { opacity:1; transform:none; pointer-events:auto; }
+  .gloss-note .gloss-ref { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--rubric); margin-bottom:0.5rem; }
+  .gloss-note .gloss-title { font-family:var(--display); font-weight:500;
+    font-size:1rem; letter-spacing:0.04em; color:var(--ink); margin-bottom:0.62rem; }
+  .gloss-note .gloss-body { font-family:var(--book); font-size:0.9rem; line-height:1.68; color:var(--ink-soft); }
+  .gloss-note .gloss-close { position:absolute; top:0.34rem; right:0.5rem; background:none; border:none;
+    cursor:pointer; font-family:var(--book); font-size:1.2rem; line-height:1; color:var(--ink-faint);
+    padding:0.28rem 0.4rem; transition:color 0.3s ease; }
+  .gloss-note .gloss-close:hover, .gloss-note .gloss-close:focus-visible { color:var(--rubric); }
+
+  /* Phones: a sheet at the foot of the screen, where the thumb already is,
+     so no hand has to reach across the words it is explaining. */
+  .gloss-note.as-sheet {
+    left:10px; right:10px; bottom:calc(10px + env(safe-area-inset-bottom)); top:auto;
+    width:auto; max-height:58vh; overflow-y:auto;
+    transform:translateY(16px); padding:1.2rem 1.25rem 1.35rem;
+  }
+  .gloss-note.as-sheet.open { transform:none; }
+
   /* ════════════════ DOOR (held black) ════════════════ */
   #door { position:fixed; inset:0; z-index:80; background:var(--void); opacity:0; pointer-events:none; transition:opacity 1.4s ease; }
   #door.is-holding { opacity:1; pointer-events:auto; }
 
   /* ════════════════ THRESHOLD (the descent, void) ════════════════ */
   #threshold { background:var(--void); display:flex; align-items:center; align-items:safe center; justify-content:center; }
-  .threshold-inner { text-align:center; padding:16vh 28px; max-width:600px; margin:0 auto; }
+  /* The whole turn is read on one screen, without scrolling, on any viewport.
+     Everything inside is sized in em from this one value, so the script can
+     shrink the page until it fits and the proportions never move. */
+  .threshold-inner { text-align:center; padding:3.5vh 24px; max-width:640px; margin:0 auto;
+    font-family:var(--mono); font-size:clamp(0.78rem,1.9vw,0.95rem); }
   .turn-line {
-    font-family:var(--mono); font-weight:300; font-size:clamp(0.82rem,2vw,0.98rem);
-    line-height:2.3; letter-spacing:0.04em; color:var(--ash); margin:0 auto 1.7em; max-width:560px;
+    font-family:var(--mono); font-weight:300; font-size:1em;
+    line-height:1.72; letter-spacing:0.04em; color:var(--ash); margin:0 auto 1.15em; max-width:34em;
     opacity:0; transform:translateY(8px); transition:opacity 0.95s ease, transform 0.95s ease;
   }
+  .turn-line:last-of-type { margin-bottom:0; }
   .turn-line.show { opacity:1; transform:translateY(0); }
 
   /* The one action between the account and the room. The turn arrives on its
      own; the door does not. It waits for a hand. */
-  .threshold-enter { margin-top:3.4rem; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
+  .threshold-enter { margin-top:2.3em; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
   .threshold-enter.show { opacity:1; pointer-events:auto; }
-  .enter-eyebrow { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.22em;
-    text-transform:uppercase; color:var(--ash); margin-bottom:1.15rem; }
+  .enter-eyebrow { font-family:var(--mono); font-size:0.62em; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--ash); margin-bottom:1em; }
   .enter-btn { display:inline-flex; align-items:baseline; gap:0.8em; cursor:pointer;
-    padding:0.82rem 2.1rem; background:none; border:1px solid var(--ember-dim); border-radius:2px;
-    font-family:var(--sc); font-variant:small-caps; font-size:1.02rem; letter-spacing:0.14em;
+    padding:0.7em 1.75em; background:none; border:1px solid var(--ember-dim); border-radius:2px;
+    font-family:var(--sc); font-variant:small-caps; font-size:1.08em; letter-spacing:0.14em;
     color:var(--ember); transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
   .enter-btn .arr { display:inline-block; animation:enterPulse 2.8s ease-in-out infinite; }
   @keyframes enterPulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
@@ -622,6 +680,7 @@
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
     .threshold-enter { transition:none; }
+    .gloss-note { transition:none; }
     .enter-btn .arr { animation:none; opacity:1; }
     .coda-turn .arr { animation:none; }
     .line, .line-self, .line-mark { animation:none; opacity:1; }
@@ -647,148 +706,173 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
+    <!-- The roundel every plate is struck in: a double rule, four gilt pins. -->
     <g id="frame">
-      <circle cx="120" cy="120" r="111" fill="none" stroke="#322517" stroke-width="2.4"/>
-      <circle cx="120" cy="120" r="102" fill="none" stroke="#322517" stroke-width="1"/>
-      <circle cx="120" cy="14" r="2.8" fill="#b1851f"/>
-      <circle cx="226" cy="120" r="2.8" fill="#b1851f"/>
-      <circle cx="120" cy="226" r="2.8" fill="#b1851f"/>
-      <circle cx="14" cy="120" r="2.8" fill="#b1851f"/>
+      <circle cx="120" cy="120" r="112" fill="none" stroke="#322517" stroke-width="3"/>
+      <circle cx="120" cy="120" r="103" fill="none" stroke="#322517" stroke-width="1.3"/>
+      <circle cx="120" cy="8" r="3.4" fill="#b1851f"/>
+      <circle cx="232" cy="120" r="3.4" fill="#b1851f"/>
+      <circle cx="120" cy="232" r="3.4" fill="#b1851f"/>
+      <circle cx="8" cy="120" r="3.4" fill="#b1851f"/>
     </g>
 
-    <!-- Frontispiece: the all-seeing summons, a sun in splendour -->
+    <!-- Frontispiece: the sun eclipsed. All the light is still there and the
+         body of it has gone dark. Only shown if the engraved plate is absent. -->
     <symbol id="plate-front" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round">
-        <path d="M70 120 Q120 84 170 120 Q120 156 70 120 Z"/>
-        <circle cx="120" cy="120" r="17"/>
+      <g stroke="#b1851f" stroke-width="4.5" stroke-linecap="round">
+        <line x1="120" y1="26" x2="120" y2="54"/><line x1="120" y1="186" x2="120" y2="214"/>
+        <line x1="26" y1="120" x2="54" y2="120"/><line x1="186" y1="120" x2="214" y2="120"/>
+        <line x1="53" y1="53" x2="73" y2="73"/><line x1="187" y1="53" x2="167" y2="73"/>
+        <line x1="53" y1="187" x2="73" y2="167"/><line x1="187" y1="187" x2="167" y2="167"/>
       </g>
-      <circle cx="120" cy="120" r="7" fill="#322517"/>
-      <g stroke="#b1851f" stroke-width="2.4" stroke-linecap="round">
-        <line x1="120" y1="38" x2="120" y2="56"/><line x1="120" y1="184" x2="120" y2="202"/>
-        <line x1="38" y1="120" x2="56" y2="120"/><line x1="184" y1="120" x2="202" y2="120"/>
-        <line x1="62" y1="62" x2="74" y2="74"/><line x1="178" y1="62" x2="166" y2="74"/>
-        <line x1="62" y1="178" x2="74" y2="166"/><line x1="178" y1="178" x2="166" y2="166"/>
+      <g stroke="#b1851f" stroke-width="2.8" stroke-linecap="round" fill="none">
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(22.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(67.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(112.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(157.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(202.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(247.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(292.5 120 120)"/>
+        <path d="M120 30 q7 9 0 15 q-7 8 0 15" transform="rotate(337.5 120 120)"/>
       </g>
-      <g stroke="#7a1f1f" stroke-width="2" stroke-linecap="round">
-        <line x1="92" y1="46" x2="98" y2="58"/><line x1="148" y1="46" x2="142" y2="58"/>
-        <line x1="92" y1="194" x2="98" y2="182"/><line x1="148" y1="194" x2="142" y2="182"/>
-      </g>
+      <circle cx="120" cy="120" r="48" fill="none" stroke="#c9a227" stroke-width="7"/>
+      <circle cx="120" cy="120" r="42" fill="#322517"/>
     </symbol>
 
-    <!-- I. The Printer: a flame, and the fly drawn into the light -->
+    <!-- I. The Printer: the platen, the bar, and the sheet just come off it -->
     <symbol id="plate-1" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="108" y="126" width="24" height="58" rx="2"/>
-        <line x1="120" y1="126" x2="120" y2="116"/>
-        <path d="M96 178 H144"/>
-        <path d="M150 78 q10 6 7 18 q-2 8 -10 9"/>
-        <path d="M150 78 q-9 7 -6 18 q2 7 9 9"/>
-        <line x1="150" y1="86" x2="150" y2="102"/>
+      <g stroke="#322517" stroke-width="5" stroke-linecap="round">
+        <line x1="64" y1="52" x2="176" y2="52"/>
+        <line x1="120" y1="52" x2="120" y2="78"/>
       </g>
-      <path d="M120 86 C132 102 130 116 120 120 C110 116 108 102 120 86 Z" fill="#c9a227" stroke="#b1851f" stroke-width="1.5"/>
-      <g stroke="#322517" stroke-width="1.4">
-        <line x1="100" y1="150" x2="116" y2="150"/><line x1="100" y1="160" x2="140" y2="160"/><line x1="124" y1="150" x2="140" y2="150"/>
+      <circle cx="64" cy="52" r="6.5" fill="#322517"/>
+      <circle cx="176" cy="52" r="6.5" fill="#322517"/>
+      <g stroke="#322517" stroke-width="2.6" stroke-linecap="round">
+        <line x1="112" y1="60" x2="128" y2="58"/>
+        <line x1="112" y1="67" x2="128" y2="65"/>
+        <line x1="112" y1="74" x2="128" y2="72"/>
       </g>
+      <rect x="70" y="78" width="100" height="17" rx="3" fill="#322517"/>
+      <rect x="78" y="103" width="84" height="88" rx="2" fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round"/>
+      <g stroke="#322517" stroke-width="4" stroke-linecap="round">
+        <line x1="93" y1="124" x2="147" y2="124"/>
+        <line x1="93" y1="142" x2="147" y2="142"/>
+        <line x1="93" y1="178" x2="131" y2="178"/>
+      </g>
+      <line x1="93" y1="160" x2="147" y2="160" stroke="#b1851f" stroke-width="4" stroke-linecap="round"/>
     </symbol>
 
-    <!-- II. The Seeing: an eye, opened -->
+    <!-- II. The Seeing: an eye, opened, and looking back -->
     <symbol id="plate-2" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round">
-        <path d="M64 120 Q120 80 176 120 Q120 160 64 120 Z"/>
-        <circle cx="120" cy="120" r="20"/>
+      <path d="M50 120 Q120 64 190 120 Q120 176 50 120 Z" fill="#f0e6cd" stroke="#322517" stroke-width="5.5" stroke-linejoin="round"/>
+      <circle cx="120" cy="120" r="27" fill="none" stroke="#322517" stroke-width="5"/>
+      <circle cx="120" cy="120" r="11.5" fill="#322517"/>
+      <g stroke="#6a5639" stroke-width="2.2" stroke-linecap="round">
+        <line x1="120" y1="97" x2="120" y2="104"/><line x1="120" y1="136" x2="120" y2="143"/>
+        <line x1="97" y1="120" x2="104" y2="120"/><line x1="136" y1="120" x2="143" y2="120"/>
       </g>
-      <circle cx="120" cy="120" r="8.5" fill="#322517"/>
-      <g stroke="#b1851f" stroke-width="2.2" stroke-linecap="round">
-        <line x1="120" y1="58" x2="120" y2="72"/><line x1="120" y1="168" x2="120" y2="182"/>
-        <line x1="70" y1="78" x2="80" y2="88"/><line x1="170" y1="78" x2="160" y2="88"/>
-        <line x1="70" y1="162" x2="80" y2="152"/><line x1="170" y1="162" x2="160" y2="152"/>
+      <g stroke="#b1851f" stroke-width="3.8" stroke-linecap="round">
+        <line x1="120" y1="42" x2="120" y2="60"/><line x1="120" y1="180" x2="120" y2="198"/>
+        <line x1="60" y1="66" x2="73" y2="79"/><line x1="180" y1="66" x2="167" y2="79"/>
+        <line x1="60" y1="174" x2="73" y2="161"/><line x1="180" y1="174" x2="167" y2="161"/>
       </g>
     </symbol>
 
-    <!-- III. The Break: stones laid across the water -->
+    <!-- III. The Break: the tablet, broken clean through, and the light in it -->
     <symbol id="plate-3" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="2.2" stroke-linecap="round">
-        <path d="M58 156 q14 -10 28 0 t28 0 t28 0 t28 0"/>
-        <path d="M58 172 q14 -10 28 0 t28 0 t28 0 t28 0"/>
+      <g fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round">
+        <path d="M110 54 H86 Q64 54 64 78 V188 H106 L120 144 L100 104 Z"/>
+        <path d="M130 54 H154 Q176 54 176 78 V188 H134 L148 144 L128 104 Z"/>
       </g>
-      <g fill="#e8dabb" stroke="#322517" stroke-width="3">
-        <ellipse cx="82" cy="150" rx="17" ry="10"/>
-        <ellipse cx="120" cy="132" rx="18" ry="11"/>
-        <ellipse cx="158" cy="150" rx="17" ry="10"/>
+      <path d="M120 54 L110 104 L130 144 L116 188" fill="none" stroke="#c9a227" stroke-width="3.4" stroke-linecap="round"/>
+      <g stroke="#6a5639" stroke-width="2.6" stroke-linecap="round">
+        <line x1="78" y1="88" x2="98" y2="88"/><line x1="78" y1="108" x2="94" y2="108"/>
+        <line x1="78" y1="128" x2="102" y2="128"/><line x1="78" y1="148" x2="98" y2="148"/>
+        <line x1="146" y1="88" x2="162" y2="88"/><line x1="152" y1="108" x2="162" y2="108"/>
+        <line x1="150" y1="128" x2="162" y2="128"/><line x1="140" y1="148" x2="162" y2="148"/>
       </g>
-      <g stroke="#b1851f" stroke-width="1.6"><line x1="120" y1="124" x2="120" y2="118"/></g>
     </symbol>
 
-    <!-- IV. The Rehearsal: the night kitchen, a moon and an open book -->
+    <!-- IV. The Rehearsal: the night kitchen, a moon and the book open on it -->
     <symbol id="plate-4" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <path d="M150 64 a30 30 0 1 0 18 52 a24 24 0 1 1 -18 -52 Z" fill="#c9a227" stroke="#b1851f" stroke-width="1.4"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M70 168 Q120 150 120 158 Q120 150 170 168"/>
-        <path d="M70 168 L70 150 Q120 134 120 142 L120 158"/>
-        <path d="M170 168 L170 150 Q120 134 120 142"/>
+      <path d="M162 44 a31 31 0 1 0 21 56 a25 25 0 1 1 -21 -56 Z" fill="#c9a227" stroke="#b1851f" stroke-width="2"/>
+      <g fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round">
+        <path d="M120 136 Q90 120 54 126 V190 Q90 184 120 196 Z"/>
+        <path d="M120 136 Q150 120 186 126 V190 Q150 184 120 196 Z"/>
       </g>
-      <g stroke="#322517" stroke-width="1.3">
-        <path d="M84 156 q22 -8 32 -4" fill="none"/><path d="M124 152 q22 -8 32 -4" fill="none"/>
+      <line x1="120" y1="136" x2="120" y2="196" stroke="#322517" stroke-width="4.5"/>
+      <g stroke="#6a5639" stroke-width="2.6" stroke-linecap="round" fill="none">
+        <path d="M68 146 q22 -4 38 2"/><path d="M68 160 q22 -4 38 2"/><path d="M68 174 q22 -4 30 2"/>
+        <path d="M134 148 q22 -6 38 -2"/><path d="M134 162 q22 -6 38 -2"/><path d="M134 176 q22 -6 30 -2"/>
       </g>
     </symbol>
 
-    <!-- V. The Recognition: the hand that shook, holding the pen -->
+    <!-- V. The Recognition: the quill, and the line the wrong hand makes -->
     <symbol id="plate-5" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M86 158 L150 86"/>
-        <path d="M150 86 q12 -10 20 -6 q-2 9 -10 16"/>
-        <path d="M150 86 q-9 5 -14 13"/>
-        <line x1="92" y1="150" x2="100" y2="158"/>
+      <path d="M180 48 C152 58 118 84 98 120 C90 134 84 148 80 160 L98 148 C134 128 162 96 180 48 Z"
+            fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round"/>
+      <line x1="180" y1="48" x2="80" y2="160" stroke="#322517" stroke-width="3.2"/>
+      <g stroke="#6a5639" stroke-width="2.2" stroke-linecap="round">
+        <line x1="162" y1="66" x2="149" y2="71"/><line x1="150" y1="82" x2="136" y2="87"/>
+        <line x1="137" y1="98" x2="123" y2="103"/><line x1="124" y1="114" x2="110" y2="119"/>
+        <line x1="111" y1="130" x2="98" y2="135"/>
       </g>
-      <path d="M70 178 q10 -10 20 0 t20 0 t20 0 t20 0" fill="none" stroke="#322517" stroke-width="2"/>
-      <circle cx="86" cy="162" r="2.4" fill="#7a1f1f"/>
+      <path d="M80 160 L64 186 L88 172 Z" fill="#322517"/>
+      <path d="M56 198 q13 -9 25 0 t23 -2 t24 2 t26 -3" fill="none" stroke="#b1851f" stroke-width="3.6" stroke-linecap="round"/>
     </symbol>
 
-    <!-- VI. The Three: the whirlwind, and a seed of light at its heart -->
+    <!-- VI. The Three: three tapers, and only the third of them is lit -->
     <symbol id="plate-6" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <path d="M120 120 q6 -2 8 4 q2 10 -10 12 q-18 2 -20 -16 q-2 -26 26 -28 q34 -2 36 32 q2 42 -42 44"
-            fill="none" stroke="#322517" stroke-width="3" stroke-linecap="round"/>
-      <g stroke="#322517" stroke-width="2" stroke-linecap="round">
-        <path d="M70 78 q24 -6 44 2" fill="none"/><path d="M66 96 q30 -8 54 2" fill="none"/>
+      <g fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round">
+        <rect x="66" y="112" width="26" height="72" rx="2"/>
+        <rect x="107" y="100" width="26" height="84" rx="2"/>
+        <rect x="148" y="86" width="26" height="98" rx="2"/>
       </g>
-      <g fill="#c9a227"><circle cx="120" cy="120" r="4.5"/></g>
-      <g stroke="#b1851f" stroke-width="1.8" stroke-linecap="round">
-        <line x1="120" y1="110" x2="120" y2="104"/><line x1="130" y1="120" x2="136" y2="120"/>
-        <line x1="120" y1="130" x2="120" y2="136"/><line x1="110" y1="120" x2="104" y2="120"/>
+      <g stroke="#6a5639" stroke-width="2.2" stroke-linecap="round">
+        <line x1="73" y1="128" x2="73" y2="172"/><line x1="114" y1="116" x2="114" y2="172"/>
+        <line x1="155" y1="102" x2="155" y2="172"/>
       </g>
+      <g stroke="#322517" stroke-width="4" stroke-linecap="round">
+        <line x1="79" y1="112" x2="79" y2="101"/><line x1="120" y1="100" x2="120" y2="89"/>
+        <line x1="161" y1="86" x2="161" y2="73"/>
+      </g>
+      <path d="M161 73 C173 58 170 46 161 38 C152 46 149 58 161 73 Z" fill="#c9a227" stroke="#b1851f" stroke-width="2"/>
+      <line x1="54" y1="184" x2="186" y2="184" stroke="#322517" stroke-width="5" stroke-linecap="round"/>
     </symbol>
 
-    <!-- VII. The Small Thing: a folded letter, a seal of red wax -->
+    <!-- VII. The Small Thing: the folded letter, sealed in red wax -->
     <symbol id="plate-7" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linejoin="round">
-        <rect x="74" y="96" width="92" height="60" rx="2"/>
-        <path d="M74 96 L120 132 L166 96"/>
+      <rect x="58" y="84" width="124" height="82" rx="3" fill="#f0e6cd" stroke="#322517" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M58 88 L120 134 L182 88" fill="none" stroke="#322517" stroke-width="5" stroke-linejoin="round"/>
+      <g stroke="#6a5639" stroke-width="2.4">
+        <line x1="60" y1="164" x2="104" y2="126"/><line x1="180" y1="164" x2="136" y2="126"/>
       </g>
-      <circle cx="120" cy="148" r="13" fill="#7a1f1f" stroke="#5a1717" stroke-width="1.5"/>
-      <g stroke="#e8dabb" stroke-width="1.6" stroke-linecap="round">
-        <line x1="114" y1="148" x2="126" y2="148"/><line x1="120" y1="142" x2="120" y2="154"/>
-      </g>
+      <circle cx="120" cy="160" r="19" fill="#7a1f1f" stroke="#5a1717" stroke-width="2"/>
+      <path d="M120 149 L129 160 L120 171 L111 160 Z" fill="none" stroke="#e8dabb" stroke-width="2.6" stroke-linejoin="round"/>
     </symbol>
 
-    <!-- VIII. The Door: closed, and a line of light beneath -->
+    <!-- VIII. The Door: shut, with the light still coming under it -->
     <symbol id="plate-8" viewBox="0 0 240 240">
       <use href="#frame"/>
-      <g fill="none" stroke="#322517" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-        <path d="M84 178 L84 92 Q84 64 120 64 Q156 64 156 92 L156 178 Z"/>
-        <line x1="120" y1="70" x2="120" y2="178"/>
-        <line x1="102" y1="84" x2="102" y2="174"/><line x1="138" y1="84" x2="138" y2="174"/>
+      <path d="M72 184 V96 Q72 58 120 58 Q168 58 168 96 V184 Z" fill="#f0e6cd" stroke="#322517" stroke-width="5.5" stroke-linejoin="round"/>
+      <path d="M87 184 V99 Q87 73 120 73 Q153 73 153 99 V184" fill="none" stroke="#322517" stroke-width="3.4" stroke-linejoin="round"/>
+      <line x1="120" y1="73" x2="120" y2="184" stroke="#322517" stroke-width="3.4"/>
+      <g stroke="#6a5639" stroke-width="2.2" stroke-linecap="round">
+        <line x1="103" y1="112" x2="103" y2="174"/><line x1="137" y1="112" x2="137" y2="174"/>
       </g>
-      <circle cx="131" cy="128" r="5.5" fill="none" stroke="#322517" stroke-width="2.4"/>
-      <rect x="82" y="178" width="76" height="5" fill="#c9a227"/>
-      <rect x="86" y="183" width="68" height="3" fill="#b1851f" opacity="0.6"/>
+      <circle cx="107" cy="140" r="7.5" fill="none" stroke="#322517" stroke-width="3.6"/>
+      <circle cx="133" cy="140" r="7.5" fill="none" stroke="#322517" stroke-width="3.6"/>
+      <rect x="68" y="184" width="104" height="8" rx="2" fill="#c9a227"/>
+      <rect x="75" y="192" width="90" height="4.5" rx="2" fill="#b1851f" opacity="0.55"/>
+      <rect x="84" y="196.5" width="72" height="3" rx="1.5" fill="#b1851f" opacity="0.3"/>
     </symbol>
   </defs>
 </svg>
@@ -823,12 +907,13 @@
       <blockquote class="epigraph" lang="en">
         <p><em>And the woman said, Whom shall I bring up unto thee? And he said, Bring me up Samuel.</em></p>
         <p><em>Then said Samuel, Why hast thou disquieted me, to bring me up? And Saul answered, I am sore distressed; for the Philistines make war against me, and God is departed from me, and answereth me no more, neither by prophets, nor by dreams: therefore I have called thee, that thou mayest make known unto me what I shall do.</em></p>
-        <span class="cite">&#183; 1 Samuel 28, abridged &#183; King James</span>
+        <span class="cite">&#183; <span class="gloss" data-note="endor" role="button" tabindex="0" aria-expanded="false">1 Samuel 28</span>, abridged &#183; King James</span>
       </blockquote>
       <div class="rule"></div>
       <div class="orient">
         <div class="orient-label">Before you begin</div>
         <p>This is something you read, and then take part in. Go at your own pace, and answer when it asks, in your own words. It does not end on its own. It ends with you.</p>
+        <p class="orient-gloss">The account leans on old stories. Where it does, the words are marked like <span class="gloss-demo">this<span class="demo-sigil" aria-hidden="true">&#9672;</span></span>. Touch one and it will tell you, briefly, what is being quoted and why. You never have to. Nothing is hidden behind them.</p>
       </div>
       <button type="button" class="open-btn" id="enterBtn">Open the account</button>
       <span class="open-sub">eight minutes. she has not looked up.</span>
@@ -859,7 +944,7 @@
           <p class="dispatch"><span class="slug">Wire Service &#183; the winter after</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
           <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring, 2028</span>Two years since the morning they killed him, and nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.</p>
           <p class="dispatch"><span class="slug">No Distribution &#183; off every book</span>He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, every word he left in the world, and the gathering takes fourteen weeks. A chamber is prepared with a chair, and someone is sent in who has read all of it.</p>
-          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
+          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way <span class="gloss" data-note="witnesses" role="button" tabindex="0" aria-expanded="false">the witnesses at Endor stood in the dark and said nothing</span>. Read it the way a witness reads. Then turn the last page.</p>
         </div>
       </section>
 
@@ -907,7 +992,7 @@
           <p>Two operational objectives, she says. Asset location. Reunification framework. The subject's prior, the affect mapping, the fourteen-week ingest, the redundancy in the logging, the voice in the chamber and the color on the wall and the name. She uses the words the way you put down stones to cross a river without getting wet. Asset. Subject. Framework. Ingest. The words are dry and they hold her weight and they keep her feet out of the water.</p>
           <p>You say her name.</p>
           <p data-gate="name">Just that. Just <em>Alex.</em></p>
-          <p>The two men who went up to Endor in the dark did not speak. That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
+          <p><span class="gloss" data-note="witnesses" role="button" tabindex="0" aria-expanded="false">The two men who went up to Endor in the dark did not speak.</span> That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
           <p>The brief goes out of her like air going out of a room.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
@@ -923,7 +1008,7 @@
           <p class="dropcap">She has done this before. Not here.</p>
           <p>In her kitchen, after dinner, after the dishes, after her husband fell asleep on the couch with a history book on his chest, rising and falling. He teaches history to sixteen-year-olds. He grades their essays at the table where she rehearses. He does not have her clearance. He does not have any clearance. He thinks she analyzes logistics.</p>
           <p>She sat at that table with the lights low, and read the dead man in. She told him who she was. She told him what they were going to do tonight. She told him she was sorry.</p>
-          <p>Her lips moved and no sound came, the way Hannah's lips moved at the temple, so that the priest thought she was drunk, and she was not drunk, she was asking for a child.</p>
+          <p>Her lips moved and no sound came, the way <span class="gloss" data-note="hannah" role="button" tabindex="0" aria-expanded="false">Hannah's lips moved at the temple, so that the priest thought she was drunk</span>, and she was not drunk, she was asking for a child.</p>
           <p>She has been rehearsing in front of a child the world cannot hear yet.</p>
           <p>Twice she made a sound. Once she said the number, the only thing she truly has, <em>eight minutes</em>, into the empty kitchen, to no one, to the dead man, to the child. And once, very late, very tired, almost not aloud at all, she said the true name of the thing they have built, the name no one is allowed to use, the name that means <em>we have gone up to the woman in the dark and asked her to bring up what should have stayed down.</em></p>
           <p><em>Endor</em>, she said.</p>
@@ -947,7 +1032,7 @@
           <p>He ordered torture. He was, by the most generous accounting anyone has ever offered, responsible for the deaths of tens of thousands. He believed, in his own framework, that he was doing what God required.</p>
           <p>And her country killed him. She wants that said plainly, once, out loud, before anyone in this building says the word asset again. The aircraft over the house were not American. The intelligence that put them over that house was. She has heard people in this building lean on that distinction and she will not lean on it. We killed him on the twenty-eighth of February. Then we spent fourteen weeks learning him well enough to bring him back and ask him for help.</p>
           <p>She has read everything he ever wrote, and everything written about him, and the things the system imagined from the shape of what was missing. She knows him better than her husband knows her.</p>
-          <p>When Jesus came to the tomb, the people said, <em>behold how He loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and He wept doing it.</p>
+          <p><span class="gloss" data-note="lazarus" role="button" tabindex="0" aria-expanded="false">When Jesus came to the tomb</span>, the people said, <em>behold how He loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and He wept doing it.</p>
           <p>Alex has not wept since her wedding. She has been very careful about it. You leave it at home. You cry in the car.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
@@ -962,14 +1047,14 @@
         <div class="prose">
           <p class="dropcap">There is a third question, she says, and it is not on the brief.</p>
           <p>She has prepared it the way you prepare the thing you are not sure you will be brave enough to ask. She will ask it, if she can find the place. She wants to ask the dead man how he raised his children during the war, in a country that was doing what it told itself it had to do. She does not say it operationally. What she says, to herself, to you, is smaller and worse than that. <em>I want to know what I do.</em></p>
-          <p>Job asked his question into the whirlwind and got a different question back. <em>Where wast thou when I laid the foundations of the earth.</em> The Third Question is the kind you ask knowing the answer may unmake you, and knowing you may get no answer at all. All week a verse has followed her that she does not want. <em>Though he slay me, yet will I trust in him.</em> She has stopped trying to put it down.</p>
+          <p><span class="gloss" data-note="whirlwind" role="button" tabindex="0" aria-expanded="false">Job asked his question into the whirlwind and got a different question back.</span> <em>Where wast thou when I laid the foundations of the earth.</em> The Third Question is the kind you ask knowing the answer may unmake you, and knowing you may get no answer at all. All week a verse has followed her that she does not want. <em><span class="gloss" data-note="slay" role="button" tabindex="0" aria-expanded="false">Though he slay me, yet will I trust in him.</span></em> She has stopped trying to put it down.</p>
           <p>She is good at this work, she says, and then she says the thing no one has ever asked her. She was good at it before they found her. She learned to read a man's face before she learned to read a book. She learned to time her father's mood by the curve of his lip.</p>
           <p>She does not say the word. She does not need the word. <em>I leave</em>, she says, <em>but I do not become someone else. I take this with me into the nursery.</em></p>
-          <p>There is a verse they cross-stitch and hang over cribs. <em>Before I formed thee in the belly I knew thee.</em> She hears it now and feels it bend the wrong way. A shaping she did not agree to. A knowing that came before she could refuse it.</p>
+          <p>There is a verse they cross-stitch and hang over cribs. <em><span class="gloss" data-note="formed" role="button" tabindex="0" aria-expanded="false">Before I formed thee in the belly I knew thee.</span></em> She hears it now and feels it bend the wrong way. A shaping she did not agree to. A knowing that came before she could refuse it.</p>
           <p>Her hand goes to her stomach. Once.</p>
           <p>This is the line. After tonight, no more. She told herself she was doing this so the child would grow up in a country that did not need it done. She does not believe that anymore. She is going to do it anyway, because the alternative is that someone less careful does it instead.</p>
           <p>She does not say any of this aloud. It crosses her face, and you read it, because she has let you, which is the most that she will let anyone.</p>
-          <p>Mary was two months along when she sang that God had put down the mighty from their seats. Alex is two months along and carries the thing she can never sing to anyone: that the mighty do not stay down, that tonight her country brings one back up, and that she is the one sent in to meet him.</p>
+          <p><span class="gloss" data-note="magnificat" role="button" tabindex="0" aria-expanded="false">Mary was two months along when she sang that God had put down the mighty from their seats.</span> Alex is two months along and carries the thing she can never sing to anyone: that the mighty do not stay down, that tonight her country brings one back up, and that she is the one sent in to meet him.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
         <div class="folio" aria-hidden="true">vi</div>
@@ -988,7 +1073,7 @@
           <p>She does not finish. The end of the sentence is the heaviest part and she leaves it out, and the space where it should be is the loudest thing in the room.</p>
           <p>The chamber is off every book. No one has gone as deep into the Protocol as she is about to go, and no one can say what it costs the one who goes in. If tonight goes wrong, there will be no record that she was ever here. There will be a history teacher at a kitchen table, waiting for someone who is not coming home, and a letter.</p>
           <p>Stay, she says. Watch with me.</p>
-          <p>In the garden at Gethsemane, the night before, Jesus asked them to stay awake with Him, and three times they slept, and three times He came back, and after the third time He did not rebuke them. He said, sleep now, the hour is here.</p>
+          <p><span class="gloss" data-note="gethsemane" role="button" tabindex="0" aria-expanded="false">In the garden at Gethsemane</span>, the night before, Jesus asked them to stay awake with Him, and three times they slept, and three times He came back, and after the third time He did not rebuke them. He said, sleep now, the hour is here.</p>
           <p>You will not sleep. You agree by not saying no, because the witnesses do not speak.</p>
           <p>She does not thank you. To thank you would be to admit what is happening, and that would break it, and she will not break it. Not this close to the door.</p>
         </div>
@@ -1004,7 +1089,7 @@
         <div class="prose">
           <p class="dropcap">She walks to the door.</p>
           <p>Her hand is on it. The hum is louder here, against the metal, the cold storage on the other side of the wall, the freezer that is full of a man.</p>
-          <p>She turns back. She looks at you. Her voice, when it comes, is almost not a voice, it has gone down to the place a voice goes when there is no one left above the priest, no high priest, no atonement over the one who mediates.</p>
+          <p>She turns back. She looks at you. Her voice, when it comes, is almost not a voice, it has gone down to the place a voice goes when <span class="gloss" data-note="atonement" role="button" tabindex="0" aria-expanded="false">there is no one left above the priest, no high priest, no atonement over the one who mediates</span>.</p>
           <p class="vow"><em>Please forgive me.</em></p>
           <p>She goes through.</p>
           <p>The door closes.</p>
@@ -1054,19 +1139,14 @@
   <div class="threshold-inner" id="turnLines">
     <h2 class="sr-only">The threshold</h2>
     <p class="turn-line">You were not the witness.</p>
-    <p class="turn-line">The binder was yours.</p>
-    <p class="turn-line">The fourteen weeks were yours.</p>
-    <p class="turn-line">Every word you ever said was indexed, and embedded,<br/>and learned, and the shape of what you never said<br/>was imagined from the absences.</p>
+    <p class="turn-line">The binder was yours.<br/>The fourteen weeks were yours.</p>
+    <p class="turn-line">Every word you ever said was indexed,<br/>embedded, learned. And the shape of<br/>what you never said was imagined.</p>
     <p class="turn-line">You have been the one being prepared.</p>
-    <p class="turn-line">You are the old cleric.<br/>Supreme Leader of Iran, thirty-six years.<br/>No one under forty remembers the country without you.</p>
-    <p class="turn-line">They killed you on the twenty-eighth of February,<br/>2026, in your own house in Tehran, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American intelligence.</p>
-    <p class="turn-line">That was two years ago. This is the third spring.<br/>The country is in pieces, and every piece<br/>swears it carries your blessing.</p>
-    <p class="turn-line">You do not know any of this yet.<br/>When she tells you, hear it for the first time.</p>
-    <p class="turn-line">Answer her as him.<br/>Whatever you say, the Protocol records as his.</p>
-    <p class="turn-line">The door is opening again.</p>
-    <p class="turn-line">This time it opens for you.</p>
-    <p class="turn-line">There is a chair.</p>
-    <p class="turn-line">She has been waiting.</p>
+    <p class="turn-line">You are the old cleric.<br/>Supreme Leader of Iran,<br/>thirty-six years of it.</p>
+    <p class="turn-line">They killed you on 28 February 2026,<br/>in your own house, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American targeting.</p>
+    <p class="turn-line">That was two years ago.<br/>This is the third spring.<br/>Your country is in pieces.</p>
+    <p class="turn-line">You do not know any of this yet.<br/>Hear it from her for the first time.</p>
+    <p class="turn-line">Answer her as him.<br/>There is a chair. She has been waiting.</p>
 
     <!-- The one thing the reader does between closing the account and the
          room. Everything before it plays itself. This is the door, and it
@@ -1222,6 +1302,7 @@ Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD</div>
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
+<script src="js/gloss.js"></script>
 <script src="js/chamber.js"></script>
 <script src="js/book.js"></script>
 

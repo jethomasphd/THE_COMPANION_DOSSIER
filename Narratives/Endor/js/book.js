@@ -197,6 +197,8 @@
   function renderPage(i) {
     var p = pages[i];
     currentPage = i;
+    // The leaf is rebuilt, so any note pinned to a mark on it is orphaned.
+    if (window.ENDOR && ENDOR.Marginalia) ENDOR.Marginalia.close();
     pageEl.innerHTML = pageHtml(i);
     // The prologue carries no clock. The account does.
     if (isNaN(p.clock)) { if (clockBox) clockBox.style.opacity = '0'; }
@@ -355,6 +357,9 @@
   // chapters and keep the reader on the chapter they were reading.
   var resizeTimer = null;
   window.addEventListener('resize', function () {
+    // The turn is fitted to the screen, so it has to be refitted when the
+    // screen changes under it.
+    if (body.getAttribute('data-stage') === 'threshold') { fitThreshold(); return; }
     if (body.getAttribute('data-stage') !== 'green' || turning || advanceLock || gateOpen) return;
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
@@ -371,7 +376,13 @@
   // use the keyboard. Interactive controls keep their own behavior.
   var greenroomEl = document.getElementById('greenroom');
   greenroomEl.addEventListener('click', function (e) {
-    if (e.target.closest('button, a, input, textarea')) return;
+    if (e.target.closest('button, a, input, textarea, .gloss, .gloss-note')) return;
+    // A note standing open takes the click, so dismissing a gloss never
+    // costs the reader the page they were reading.
+    if (window.ENDOR && ENDOR.Marginalia && ENDOR.Marginalia.isOpen()) {
+      ENDOR.Marginalia.close();
+      return;
+    }
     advance();
   });
   advanceBtn.addEventListener('click', function (e) { e.stopPropagation(); advance(); });
@@ -385,7 +396,9 @@
   if (gateGo) gateGo.addEventListener('click', function (e) { e.stopPropagation(); submitName(); });
   document.addEventListener('keydown', function (e) {
     if (body.getAttribute('data-stage') !== 'green') return;
-    if (e.target.closest && e.target.closest('button, a, input, textarea')) return;
+    if (e.target.closest && e.target.closest('button, a, input, textarea, .gloss')) return;
+    // While a note is open the keys belong to it. Escape closes it.
+    if (window.ENDOR && ENDOR.Marginalia && ENDOR.Marginalia.isOpen()) return;
     // Leaves are fitted to the screen and never scroll, so the keys turn
     // the leaf: forward, and back.
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' ||
@@ -465,12 +478,32 @@
     return REDUCED ? 500 : 1100 + (segments - 1) * 350;
   }
 
+  /* The turn is one page, read once and then clicked. It must never scroll,
+     on any screen. Everything in the threshold is sized in em from the one
+     value on the container, so shrinking that value shrinks the whole page
+     until it fits, proportions intact. Measured with every line and the
+     control already in the layout (they are transparent, not absent), so
+     what is measured is the finished page. */
+  function fitThreshold() {
+    var inner = document.querySelector('.threshold-inner');
+    if (!inner) return;
+    inner.style.fontSize = '';
+    var base = parseFloat(getComputedStyle(inner).fontSize) || 15;
+    var avail = (window.innerHeight || document.documentElement.clientHeight || 800);
+    for (var i = 0; i < 16 && base > 8.5; i++) {
+      if (inner.getBoundingClientRect().height <= avail) break;
+      base *= 0.95;
+      inner.style.fontSize = base.toFixed(2) + 'px';
+    }
+  }
+
   function enterThreshold() {
     window.scrollTo({ top: 0, behavior: 'auto' });
     focusEl(document.getElementById('turnLines'));
     thLines = Array.prototype.slice.call(document.querySelectorAll('#threshold .turn-line'));
     thIdx = 0; thDone = false;
     if (thresholdEnter) thresholdEnter.classList.remove('show');
+    fitThreshold();
     // The first line is there almost at once, so the reader never mistakes
     // the threshold for an empty page. The held black was the door; this
     // room speaks as soon as it is entered.
@@ -482,11 +515,13 @@
     thTimer = setTimeout(revealNextThresholdLine, delay);
   }
 
-  // The turn is longer than one screen now that it names who the reader has
-  // become. Keep the newest line under the reader's eye so the descent never
-  // continues below the fold where they cannot see it.
+  // A safety net only. The page is fitted to the screen, so nothing should
+  // ever be out of sight; if a viewport defeats the fit anyway, the newest
+  // line is still brought under the reader's eye.
   function keepThresholdLineInView(el) {
     if (!el) return;
+    var root = document.documentElement;
+    if (root.scrollHeight <= root.clientHeight + 2) return;
     try { el.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }); }
     catch (e) { try { el.scrollIntoView(false); } catch (e2) {} }
   }
