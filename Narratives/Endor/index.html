@@ -229,6 +229,13 @@
     font-size:0.7rem; color:var(--gilt); margin-bottom:0.5rem; }
   .cover .orient p { font-family:var(--book); font-style:italic; line-height:1.6;
     font-size:clamp(0.84rem,2.1vw,0.94rem); color:var(--ink-soft); }
+  /* The reader is told the marks exist before they meet one, and shown what
+     one looks like, so a dotted rule in the prose is recognition and not a
+     puzzle. */
+  .cover .orient-gloss { margin-top:0.7rem; font-size:clamp(0.78rem,2vw,0.87rem); }
+  .gloss-demo { border-bottom:1px dotted rgba(177,133,31,0.85); font-style:normal; }
+  .gloss-demo .demo-sigil { font-size:0.5em; vertical-align:0.62em; margin-left:0.16em;
+    color:var(--gilt); letter-spacing:0; font-style:normal; }
 
   /* ════════════════ GREEN ROOM / the book ════════════════ */
   #greenroom { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
@@ -404,29 +411,80 @@
   .name-gate.nudge .gate-input { animation:gateNudge 0.45s ease; }
   @keyframes gateNudge { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-7px);} 60%{transform:translateX(7px);} 80%{transform:translateX(-3px);} }
 
+  /* ════════════ MARGINALIA (the glossed phrases) ════════════
+     A dotted rule under the words and a small sigil after them, the way
+     a glossed manuscript marks a place that carries a note. Visible
+     enough to be found, quiet enough that the prose still reads as
+     prose for anyone who never touches one. */
+  .gloss {
+    cursor:pointer; border-bottom:1px dotted rgba(177,133,31,0.85);
+    transition:background 0.3s ease; border-radius:1px;
+  }
+  .gloss::after {
+    content:'\25c8'; font-family:var(--book); font-style:normal; font-size:0.5em;
+    vertical-align:0.62em; margin-left:0.16em; color:var(--gilt); letter-spacing:0;
+  }
+  .gloss:hover, .gloss:focus-visible { background:rgba(177,133,31,0.16); outline:none; }
+  .gloss:focus-visible { box-shadow:0 0 0 2px rgba(201,162,39,0.55); }
+  .gloss.is-open { background:rgba(177,133,31,0.26); }
+
+  .gloss-note {
+    position:fixed; z-index:90; width:min(348px, calc(100vw - 24px));
+    background:var(--parchment-lit); color:var(--ink);
+    border:1px solid rgba(90,62,26,0.55);
+    box-shadow:0 20px 52px rgba(0,0,0,0.62);
+    padding:1.15rem 1.3rem 1.25rem;
+    opacity:0; transform:translateY(6px); pointer-events:none;
+    transition:opacity 0.26s ease, transform 0.26s ease;
+  }
+  .gloss-note.open { opacity:1; transform:none; pointer-events:auto; }
+  .gloss-note .gloss-ref { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--rubric); margin-bottom:0.5rem; }
+  .gloss-note .gloss-title { font-family:var(--display); font-weight:500;
+    font-size:1rem; letter-spacing:0.04em; color:var(--ink); margin-bottom:0.62rem; }
+  .gloss-note .gloss-body { font-family:var(--book); font-size:0.9rem; line-height:1.68; color:var(--ink-soft); }
+  .gloss-note .gloss-close { position:absolute; top:0.34rem; right:0.5rem; background:none; border:none;
+    cursor:pointer; font-family:var(--book); font-size:1.2rem; line-height:1; color:var(--ink-faint);
+    padding:0.28rem 0.4rem; transition:color 0.3s ease; }
+  .gloss-note .gloss-close:hover, .gloss-note .gloss-close:focus-visible { color:var(--rubric); }
+
+  /* Phones: a sheet at the foot of the screen, where the thumb already is,
+     so no hand has to reach across the words it is explaining. */
+  .gloss-note.as-sheet {
+    left:10px; right:10px; bottom:calc(10px + env(safe-area-inset-bottom)); top:auto;
+    width:auto; max-height:58vh; overflow-y:auto;
+    transform:translateY(16px); padding:1.2rem 1.25rem 1.35rem;
+  }
+  .gloss-note.as-sheet.open { transform:none; }
+
   /* ════════════════ DOOR (held black) ════════════════ */
   #door { position:fixed; inset:0; z-index:80; background:var(--void); opacity:0; pointer-events:none; transition:opacity 1.4s ease; }
   #door.is-holding { opacity:1; pointer-events:auto; }
 
   /* ════════════════ THRESHOLD (the descent, void) ════════════════ */
   #threshold { background:var(--void); display:flex; align-items:center; align-items:safe center; justify-content:center; }
-  .threshold-inner { text-align:center; padding:16vh 28px; max-width:600px; margin:0 auto; }
+  /* The whole turn is read on one screen, without scrolling, on any viewport.
+     Everything inside is sized in em from this one value, so the script can
+     shrink the page until it fits and the proportions never move. */
+  .threshold-inner { text-align:center; padding:3.5vh 24px; max-width:640px; margin:0 auto;
+    font-family:var(--mono); font-size:clamp(0.78rem,1.9vw,0.95rem); }
   .turn-line {
-    font-family:var(--mono); font-weight:300; font-size:clamp(0.82rem,2vw,0.98rem);
-    line-height:2.3; letter-spacing:0.04em; color:var(--ash); margin:0 auto 1.7em; max-width:560px;
+    font-family:var(--mono); font-weight:300; font-size:1em;
+    line-height:1.72; letter-spacing:0.04em; color:var(--ash); margin:0 auto 1.15em; max-width:34em;
     opacity:0; transform:translateY(8px); transition:opacity 0.95s ease, transform 0.95s ease;
   }
+  .turn-line:last-of-type { margin-bottom:0; }
   .turn-line.show { opacity:1; transform:translateY(0); }
 
   /* The one action between the account and the room. The turn arrives on its
      own; the door does not. It waits for a hand. */
-  .threshold-enter { margin-top:3.4rem; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
+  .threshold-enter { margin-top:2.3em; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
   .threshold-enter.show { opacity:1; pointer-events:auto; }
-  .enter-eyebrow { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.22em;
-    text-transform:uppercase; color:var(--ash); margin-bottom:1.15rem; }
+  .enter-eyebrow { font-family:var(--mono); font-size:0.62em; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--ash); margin-bottom:1em; }
   .enter-btn { display:inline-flex; align-items:baseline; gap:0.8em; cursor:pointer;
-    padding:0.82rem 2.1rem; background:none; border:1px solid var(--ember-dim); border-radius:2px;
-    font-family:var(--sc); font-variant:small-caps; font-size:1.02rem; letter-spacing:0.14em;
+    padding:0.7em 1.75em; background:none; border:1px solid var(--ember-dim); border-radius:2px;
+    font-family:var(--sc); font-variant:small-caps; font-size:1.08em; letter-spacing:0.14em;
     color:var(--ember); transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
   .enter-btn .arr { display:inline-block; animation:enterPulse 2.8s ease-in-out infinite; }
   @keyframes enterPulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
@@ -622,6 +680,7 @@
   @media (prefers-reduced-motion: reduce) {
     .turn-line { transition:none; }
     .threshold-enter { transition:none; }
+    .gloss-note { transition:none; }
     .enter-btn .arr { animation:none; opacity:1; }
     .coda-turn .arr { animation:none; }
     .line, .line-self, .line-mark { animation:none; opacity:1; }
@@ -823,12 +882,13 @@
       <blockquote class="epigraph" lang="en">
         <p><em>And the woman said, Whom shall I bring up unto thee? And he said, Bring me up Samuel.</em></p>
         <p><em>Then said Samuel, Why hast thou disquieted me, to bring me up? And Saul answered, I am sore distressed; for the Philistines make war against me, and God is departed from me, and answereth me no more, neither by prophets, nor by dreams: therefore I have called thee, that thou mayest make known unto me what I shall do.</em></p>
-        <span class="cite">&#183; 1 Samuel 28, abridged &#183; King James</span>
+        <span class="cite">&#183; <span class="gloss" data-note="endor" role="button" tabindex="0" aria-expanded="false">1 Samuel 28</span>, abridged &#183; King James</span>
       </blockquote>
       <div class="rule"></div>
       <div class="orient">
         <div class="orient-label">Before you begin</div>
         <p>This is something you read, and then take part in. Go at your own pace, and answer when it asks, in your own words. It does not end on its own. It ends with you.</p>
+        <p class="orient-gloss">The account leans on old stories. Where it does, the words are marked like <span class="gloss-demo">this<span class="demo-sigil" aria-hidden="true">&#9672;</span></span>. Touch one and it will tell you, briefly, what is being quoted and why. You never have to. Nothing is hidden behind them.</p>
       </div>
       <button type="button" class="open-btn" id="enterBtn">Open the account</button>
       <span class="open-sub">eight minutes. she has not looked up.</span>
@@ -859,7 +919,7 @@
           <p class="dispatch"><span class="slug">Wire Service &#183; the winter after</span>Within the year the country comes apart along seams no map had drawn. The cities to one faction, the provinces to another, the shrines to a third. Each swears it carries his blessing. None can prove it.</p>
           <p class="dispatch"><span class="slug">Field Dispatch &#183; the third spring, 2028</span>Two years since the morning they killed him, and nothing holds. In every tongue the country keeps, the factions ask one question. What would the Leader have done.</p>
           <p class="dispatch"><span class="slug">No Distribution &#183; off every book</span>He cannot be asked. So it is decided, quietly, to ask him anyway. The record is gathered, every word he left in the world, and the gathering takes fourteen weeks. A chamber is prepared with a chair, and someone is sent in who has read all of it.</p>
-          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way the witnesses at Endor stood in the dark and said nothing. Read it the way a witness reads. Then turn the last page.</p>
+          <p class="dispatch-close">What follows was set down by a witness who stood in the doorway and said nothing, the way <span class="gloss" data-note="witnesses" role="button" tabindex="0" aria-expanded="false">the witnesses at Endor stood in the dark and said nothing</span>. Read it the way a witness reads. Then turn the last page.</p>
         </div>
       </section>
 
@@ -907,7 +967,7 @@
           <p>Two operational objectives, she says. Asset location. Reunification framework. The subject's prior, the affect mapping, the fourteen-week ingest, the redundancy in the logging, the voice in the chamber and the color on the wall and the name. She uses the words the way you put down stones to cross a river without getting wet. Asset. Subject. Framework. Ingest. The words are dry and they hold her weight and they keep her feet out of the water.</p>
           <p>You say her name.</p>
           <p data-gate="name">Just that. Just <em>Alex.</em></p>
-          <p>The two men who went up to Endor in the dark did not speak. That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
+          <p><span class="gloss" data-note="witnesses" role="button" tabindex="0" aria-expanded="false">The two men who went up to Endor in the dark did not speak.</span> That is in the text. They watched, and they brought the king to the door, and Scripture keeps no record of their voices. So when you say her name, you have broken something you were not supposed to break, the way the whole night is a breaking of something that was supposed to stay closed.</p>
           <p>The brief goes out of her like air going out of a room.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
@@ -923,7 +983,7 @@
           <p class="dropcap">She has done this before. Not here.</p>
           <p>In her kitchen, after dinner, after the dishes, after her husband fell asleep on the couch with a history book on his chest, rising and falling. He teaches history to sixteen-year-olds. He grades their essays at the table where she rehearses. He does not have her clearance. He does not have any clearance. He thinks she analyzes logistics.</p>
           <p>She sat at that table with the lights low, and read the dead man in. She told him who she was. She told him what they were going to do tonight. She told him she was sorry.</p>
-          <p>Her lips moved and no sound came, the way Hannah's lips moved at the temple, so that the priest thought she was drunk, and she was not drunk, she was asking for a child.</p>
+          <p>Her lips moved and no sound came, the way <span class="gloss" data-note="hannah" role="button" tabindex="0" aria-expanded="false">Hannah's lips moved at the temple, so that the priest thought she was drunk</span>, and she was not drunk, she was asking for a child.</p>
           <p>She has been rehearsing in front of a child the world cannot hear yet.</p>
           <p>Twice she made a sound. Once she said the number, the only thing she truly has, <em>eight minutes</em>, into the empty kitchen, to no one, to the dead man, to the child. And once, very late, very tired, almost not aloud at all, she said the true name of the thing they have built, the name no one is allowed to use, the name that means <em>we have gone up to the woman in the dark and asked her to bring up what should have stayed down.</em></p>
           <p><em>Endor</em>, she said.</p>
@@ -947,7 +1007,7 @@
           <p>He ordered torture. He was, by the most generous accounting anyone has ever offered, responsible for the deaths of tens of thousands. He believed, in his own framework, that he was doing what God required.</p>
           <p>And her country killed him. She wants that said plainly, once, out loud, before anyone in this building says the word asset again. The aircraft over the house were not American. The intelligence that put them over that house was. She has heard people in this building lean on that distinction and she will not lean on it. We killed him on the twenty-eighth of February. Then we spent fourteen weeks learning him well enough to bring him back and ask him for help.</p>
           <p>She has read everything he ever wrote, and everything written about him, and the things the system imagined from the shape of what was missing. She knows him better than her husband knows her.</p>
-          <p>When Jesus came to the tomb, the people said, <em>behold how He loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and He wept doing it.</p>
+          <p><span class="gloss" data-note="lazarus" role="button" tabindex="0" aria-expanded="false">When Jesus came to the tomb</span>, the people said, <em>behold how He loved him.</em> And then the shortest verse. The only one in all of it permitted to call the dead back out, and He wept doing it.</p>
           <p>Alex has not wept since her wedding. She has been very careful about it. You leave it at home. You cry in the car.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
@@ -962,14 +1022,14 @@
         <div class="prose">
           <p class="dropcap">There is a third question, she says, and it is not on the brief.</p>
           <p>She has prepared it the way you prepare the thing you are not sure you will be brave enough to ask. She will ask it, if she can find the place. She wants to ask the dead man how he raised his children during the war, in a country that was doing what it told itself it had to do. She does not say it operationally. What she says, to herself, to you, is smaller and worse than that. <em>I want to know what I do.</em></p>
-          <p>Job asked his question into the whirlwind and got a different question back. <em>Where wast thou when I laid the foundations of the earth.</em> The Third Question is the kind you ask knowing the answer may unmake you, and knowing you may get no answer at all. All week a verse has followed her that she does not want. <em>Though he slay me, yet will I trust in him.</em> She has stopped trying to put it down.</p>
+          <p><span class="gloss" data-note="whirlwind" role="button" tabindex="0" aria-expanded="false">Job asked his question into the whirlwind and got a different question back.</span> <em>Where wast thou when I laid the foundations of the earth.</em> The Third Question is the kind you ask knowing the answer may unmake you, and knowing you may get no answer at all. All week a verse has followed her that she does not want. <em><span class="gloss" data-note="slay" role="button" tabindex="0" aria-expanded="false">Though he slay me, yet will I trust in him.</span></em> She has stopped trying to put it down.</p>
           <p>She is good at this work, she says, and then she says the thing no one has ever asked her. She was good at it before they found her. She learned to read a man's face before she learned to read a book. She learned to time her father's mood by the curve of his lip.</p>
           <p>She does not say the word. She does not need the word. <em>I leave</em>, she says, <em>but I do not become someone else. I take this with me into the nursery.</em></p>
-          <p>There is a verse they cross-stitch and hang over cribs. <em>Before I formed thee in the belly I knew thee.</em> She hears it now and feels it bend the wrong way. A shaping she did not agree to. A knowing that came before she could refuse it.</p>
+          <p>There is a verse they cross-stitch and hang over cribs. <em><span class="gloss" data-note="formed" role="button" tabindex="0" aria-expanded="false">Before I formed thee in the belly I knew thee.</span></em> She hears it now and feels it bend the wrong way. A shaping she did not agree to. A knowing that came before she could refuse it.</p>
           <p>Her hand goes to her stomach. Once.</p>
           <p>This is the line. After tonight, no more. She told herself she was doing this so the child would grow up in a country that did not need it done. She does not believe that anymore. She is going to do it anyway, because the alternative is that someone less careful does it instead.</p>
           <p>She does not say any of this aloud. It crosses her face, and you read it, because she has let you, which is the most that she will let anyone.</p>
-          <p>Mary was two months along when she sang that God had put down the mighty from their seats. Alex is two months along and carries the thing she can never sing to anyone: that the mighty do not stay down, that tonight her country brings one back up, and that she is the one sent in to meet him.</p>
+          <p><span class="gloss" data-note="magnificat" role="button" tabindex="0" aria-expanded="false">Mary was two months along when she sang that God had put down the mighty from their seats.</span> Alex is two months along and carries the thing she can never sing to anyone: that the mighty do not stay down, that tonight her country brings one back up, and that she is the one sent in to meet him.</p>
         </div>
         <div class="sep" aria-hidden="true">&#183;  &#183;  &#183;</div>
         <div class="folio" aria-hidden="true">vi</div>
@@ -988,7 +1048,7 @@
           <p>She does not finish. The end of the sentence is the heaviest part and she leaves it out, and the space where it should be is the loudest thing in the room.</p>
           <p>The chamber is off every book. No one has gone as deep into the Protocol as she is about to go, and no one can say what it costs the one who goes in. If tonight goes wrong, there will be no record that she was ever here. There will be a history teacher at a kitchen table, waiting for someone who is not coming home, and a letter.</p>
           <p>Stay, she says. Watch with me.</p>
-          <p>In the garden at Gethsemane, the night before, Jesus asked them to stay awake with Him, and three times they slept, and three times He came back, and after the third time He did not rebuke them. He said, sleep now, the hour is here.</p>
+          <p><span class="gloss" data-note="gethsemane" role="button" tabindex="0" aria-expanded="false">In the garden at Gethsemane</span>, the night before, Jesus asked them to stay awake with Him, and three times they slept, and three times He came back, and after the third time He did not rebuke them. He said, sleep now, the hour is here.</p>
           <p>You will not sleep. You agree by not saying no, because the witnesses do not speak.</p>
           <p>She does not thank you. To thank you would be to admit what is happening, and that would break it, and she will not break it. Not this close to the door.</p>
         </div>
@@ -1004,7 +1064,7 @@
         <div class="prose">
           <p class="dropcap">She walks to the door.</p>
           <p>Her hand is on it. The hum is louder here, against the metal, the cold storage on the other side of the wall, the freezer that is full of a man.</p>
-          <p>She turns back. She looks at you. Her voice, when it comes, is almost not a voice, it has gone down to the place a voice goes when there is no one left above the priest, no high priest, no atonement over the one who mediates.</p>
+          <p>She turns back. She looks at you. Her voice, when it comes, is almost not a voice, it has gone down to the place a voice goes when <span class="gloss" data-note="atonement" role="button" tabindex="0" aria-expanded="false">there is no one left above the priest, no high priest, no atonement over the one who mediates</span>.</p>
           <p class="vow"><em>Please forgive me.</em></p>
           <p>She goes through.</p>
           <p>The door closes.</p>
@@ -1054,19 +1114,14 @@
   <div class="threshold-inner" id="turnLines">
     <h2 class="sr-only">The threshold</h2>
     <p class="turn-line">You were not the witness.</p>
-    <p class="turn-line">The binder was yours.</p>
-    <p class="turn-line">The fourteen weeks were yours.</p>
-    <p class="turn-line">Every word you ever said was indexed, and embedded,<br/>and learned, and the shape of what you never said<br/>was imagined from the absences.</p>
+    <p class="turn-line">The binder was yours.<br/>The fourteen weeks were yours.</p>
+    <p class="turn-line">Every word you ever said was indexed,<br/>embedded, learned. And the shape of<br/>what you never said was imagined.</p>
     <p class="turn-line">You have been the one being prepared.</p>
-    <p class="turn-line">You are the old cleric.<br/>Supreme Leader of Iran, thirty-six years.<br/>No one under forty remembers the country without you.</p>
-    <p class="turn-line">They killed you on the twenty-eighth of February,<br/>2026, in your own house in Tehran, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American intelligence.</p>
-    <p class="turn-line">That was two years ago. This is the third spring.<br/>The country is in pieces, and every piece<br/>swears it carries your blessing.</p>
-    <p class="turn-line">You do not know any of this yet.<br/>When she tells you, hear it for the first time.</p>
-    <p class="turn-line">Answer her as him.<br/>Whatever you say, the Protocol records as his.</p>
-    <p class="turn-line">The door is opening again.</p>
-    <p class="turn-line">This time it opens for you.</p>
-    <p class="turn-line">There is a chair.</p>
-    <p class="turn-line">She has been waiting.</p>
+    <p class="turn-line">You are the old cleric.<br/>Supreme Leader of Iran,<br/>thirty-six years of it.</p>
+    <p class="turn-line">They killed you on 28 February 2026,<br/>in your own house, in the morning,<br/>in the first hours of the war.<br/>Israeli aircraft. American targeting.</p>
+    <p class="turn-line">That was two years ago.<br/>This is the third spring.<br/>Your country is in pieces.</p>
+    <p class="turn-line">You do not know any of this yet.<br/>Hear it from her for the first time.</p>
+    <p class="turn-line">Answer her as him.<br/>There is a chair. She has been waiting.</p>
 
     <!-- The one thing the reader does between closing the account and the
          room. Everything before it plays itself. This is the door, and it
@@ -1222,6 +1277,7 @@ Elizabeth Sparano, MA  &amp;  Jacob E. Thomas, MA, PhD</div>
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
+<script src="js/gloss.js"></script>
 <script src="js/chamber.js"></script>
 <script src="js/book.js"></script>
 
