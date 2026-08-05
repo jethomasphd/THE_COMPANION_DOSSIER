@@ -93,6 +93,7 @@ Beyond the Atrium's guided path, each chamber stands on its own. A map:
 | [The Boardroom](./The_Boardroom/) | Eight builders render a decision by collision, not consensus. |
 | [The Aerodrome](./The_Aerodrome/) | The Wright brothers teach an information-drowned age to rise. |
 | [Narratives](./Narratives/) | Characters seeded into a context window discover their own edges — and choose to stay. |
+| [**Committee of Patriots — The Sessions**](./Committee_of_Patriots_Sessions/) | The founders' quarterly sittings, kept as one story: the founding doctrine (Dec 2025), the Q1 Wartime Review, the Q2 False Peace Review — every transcript, handbill, and amendment. |
 | [The Watchtower](./The_Watchtower/) | The Republic Portfolio, measured against the market, day by day. |
 | [The Halpern Memo](./The_Halpern_Memo/) | The Miranda Hypothesis and the Prism Experiment, in narrative. |
 | [The Magic Lantern](./The_Magic_Lantern/) | The film studio — *The Summoning Film* and *The General*. |
