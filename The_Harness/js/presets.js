@@ -46,7 +46,7 @@ COMPANION.Presets = (function () {
             '',
             'The insight: the powerful have positioned themselves at the choke points of the economy. Citizens must become owners of those same choke points — not as speculators, but as governors.',
             '',
-            'The doctrine allocates roughly 50% to "Engines of the Republic" (producers and builders), 35% to "Critical Choke Points" (rails, gates, strategic positions), and 15% reserve. Its governing rule: "Vote Every Proxy. Ownership without voice is mere speculation."',
+            'As founded, the doctrine allocated roughly 50% to "Engines of the Republic" (producers and builders), 35% to "Critical Choke Points" (rails, gates, strategic positions), and 15% reserve. It is a living framework, amended in quarterly session: the Q1 2026 Wartime Review raised the reserve to 20% and added an energy sleeve; the Q2 2026 False Peace Review garrisoned the semiconductor gate (TSM, ASML, INTC) and established two ledgers of refusal — an Exclusion List (what the Committee will not own, on conscience) and a Withheld List (what it declines until the price stops lying). Its governing rule: "Vote Every Proxy. Ownership without voice is mere speculation."',
             '',
             'This is educational and civic research, not financial advice.'
           ].join('\n')
