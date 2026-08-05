@@ -59,7 +59,6 @@ from the data — only the *prose* can go stale.
 8. **Do not touch:**
    - `The_Magic_Lantern/**` — the Summoning Film is **frozen** to its own
      snapshot (`the_film/data/vigil_data_frozen.js`). It never updates.
-   - `The_Watchtower/archive/**` — the First Vigil, preserved unedited.
 
 9. **Ship.** Commit with message
    `The Watchtower: Watch Log — dispatch for week ending YYYY-MM-DD`.
@@ -96,9 +95,8 @@ Tweet-energy, tower diction. Quick, to the point, cheeky.
   the Order of Battle section of `index.html` only if the holdings actually
   changed (as the Q1 Wartime Review did).
 - **Year end:** the final dispatch of December closes the log. Propose — do
-  not execute — an archive snapshot (like `archive/`, the First Vigil) and a
-  fresh log for the new year, and leave that decision to the keeper of the
-  estate.
+  not execute — an archive snapshot and a fresh log for the new year, and
+  leave that decision to the keeper of the estate.
 
 ◊ ◈ ◊
 
