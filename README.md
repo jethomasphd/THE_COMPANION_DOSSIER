@@ -20,7 +20,7 @@ This repository is an **estate**, not a single page. If it's your first time —
 |---|---|---|
 | **The guided tour** *(start here)* | 🏛 **[The Atrium](https://the-companion-dossier.com/The_Atrium/)** | The entrance hall. One golden path through the whole project, with every artifact one click away. |
 | **To watch, not read** | 🎞 **[The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/)** | A ~7-minute film — the Committee of Patriots and the Republic Portfolio, as summoning cinema. |
-| **The paper & the talk** | 🔬 **[Mask vs Mirror](./Mask_vs_Mirror/)** | The preliminary preprint, the AI Engineer World's Fair slides, references, and the sealed vignettes. |
+| **The paper & the talk** | 🔬 **[Mask vs Mirror](./Mask_vs_Mirror/)** | The preprint — *The Mask and the Mirror* — now readable in-repo, with the AI Engineer World's Fair slides, references, and the sealed vignettes. |
 
 **To just use the protocol right now,** skip to [Quick Start](#quick-start). **To go all the way down,** read the [Dossier PDF](./THE_COMPANION_DOSSIER.pdf).
 
@@ -28,14 +28,17 @@ This repository is an **estate**, not a single page. If it's your first time —
 
 ## 🔬 For the AI Engineer World's Fair audience
 
-The talk references a working preprint — **Mask vs Mirror** — and a set of time-sealed experimental vignettes. Both live in **[`/Mask_vs_Mirror/`](./Mask_vs_Mirror/)**.
+The talk references a working preprint and a set of time-sealed experimental vignettes. Both now live in **[`/Mask_vs_Mirror/`](./Mask_vs_Mirror/)** — and the preprint is there to read:
+
+> **The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure**
+> Jacob E. Thomas · Rick Halpern · Shawn Martin — Preprint, August 2026
 
 A few things worth knowing before you read:
 
-- The preprint is **very preliminary** and, for now, lives **only in this repository — by design**, accessible to this audience. A formal submission (e.g., SSRN) is in progress; that version will become the citable one.
+- The preprint is **available now** ([`Mask_and_Mirror_Preprint_Final.docx`](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_Final.docx)), but it is **very preliminary** and, for now, lives **only in this repository — by design**, accessible to this audience. A formal submission (e.g., SSRN) is in progress; that version will become the citable one.
 - The experimental vignettes are deposited **sealed and timestamped**. The **key is revealed only after the experiment is run** — a commitment device, so the materials provably predate the result.
 
-See [`/Mask_vs_Mirror/README.md`](./Mask_vs_Mirror/README.md) for the full explanation.
+See [`/Mask_vs_Mirror/README.md`](./Mask_vs_Mirror/README.md) for the full explanation, the paper's three contributions, and how to cite it.
 
 ---
 
