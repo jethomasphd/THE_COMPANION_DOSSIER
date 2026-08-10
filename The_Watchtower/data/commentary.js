@@ -9,7 +9,7 @@
  * Do not rewrite history: past dispatches are the log. Only append.
  */
 window.VIGIL_COMMENTARY = {
-  updated: "2026-07-15",
+  updated: "2026-08-07",
   entries: [
     { date: "2026-01-09", tag: "FIRST WATCH",
       text: "The vigil opens. Five trading days in and the doctrine already holds the front — +2.1 to the index's +1.6. Early, yes. But the tower has a rule about leads taken quietly: they tend to be kept.",
@@ -121,6 +121,18 @@ window.VIGIL_COMMENTARY = {
 
     { date: "2026-07-15", tag: "THE LAMP STAYS LIT",
       text: "Iran walks from the memorandum; earnings walk in at +23%. Six-tenths of a point is the whole lead, the war is back on, and the reserve sits at 20%, unbothered. Week twenty-eight of the vigil. The lamp stays lit.",
-      tape: "REP +11.67 · SPY +11.07 · GAP +0.60" }
+      tape: "REP +11.67 · SPY +11.07 · GAP +0.60" },
+
+    { date: "2026-07-24", tag: "ROUNDING ERROR",
+      text: "The index slid 1.2% Friday — Alphabet off 7%, Tesla down 14% — on AI-spending fear, its first losing July since 2014 in the making. The doctrine owns Alphabet at equal weight, a rounding error, not an anchor, and no Tesla at all. Oil runs hot while the strait smolders; the gap widens to four. Cap-weighting giveth; this week it took.",
+      tape: "REP +12.81 · SPY +8.74 · GAP +4.07" },
+
+    { date: "2026-07-31", tag: "HAWKISH HOLD",
+      text: "The Fed holds a fifth straight time, 9–3, three dissenters itching to <em>hike</em> — the dot plot still pencils one by year-end. Stocks swooned on the decision, then clawed back to +9.9. The doctrine's 20% reserve stops looking like caution and starts looking like income. Saudi Arabia rallies forty nations to guard Hormuz; oil slips.",
+      tape: "REP +12.97 · SPY +9.93 · GAP +3.04" },
+
+    { date: "2026-08-07", tag: "THE CHIP GATE",
+      text: "Records everywhere. The index rockets to an all-time high on Palantir +30% — a name the Committee blacklisted in March — and fresh hope for reopening Hormuz. But Caterpillar, an Engine, popped 5.6% the same day and carried the doctrine to its <em>own</em> record, +14.4. The Committee answered the chip trade on its own terms — TSM, ASML, INTC — never Palantir's. Gap: a third of a point. After 150 sessions, still first.",
+      tape: "REP +14.13 · SPY +13.79 · GAP +0.34" }
   ]
 };
