@@ -35,7 +35,7 @@ The talk references a working preprint and a set of time-sealed experimental vig
 
 A few things worth knowing before you read:
 
-- The preprint is **available now** ([`Mask_and_Mirror_Preprint_Final.docx`](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_Final.docx)), but it is **very preliminary** and, for now, lives **only in this repository — by design**, accessible to this audience. A formal submission (e.g., SSRN) is in progress; that version will become the citable one.
+- The preprint is **available now** ([`Mask_and_Mirror_Preprint_08102026.pdf`](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_08102026.pdf)), but it is **very preliminary**. It has now been **submitted to SSRN**; once it posts, the DOI and formal citation will be made available as soon as possible. Until then, the paper lives here in this repository, and the **best citation is the PDF above**.
 - The experimental vignettes are deposited **sealed and timestamped**. The **key is revealed only after the experiment is run** — a commitment device, so the materials provably predate the result.
 
 See [`/Mask_vs_Mirror/README.md`](./Mask_vs_Mirror/README.md) for the full explanation, the paper's three contributions, and how to cite it.
