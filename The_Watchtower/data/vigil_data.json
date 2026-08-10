@@ -1,8 +1,8 @@
 {
- "asof": "2026-08-07",
- "generated": "2026-08-07T23:07:13Z",
+ "asof": "2026-08-10",
+ "generated": "2026-08-10T23:07:30Z",
  "base_date": "2026-01-02",
- "n_points": 150,
+ "n_points": 151,
  "pivot_date": "2026-03-31",
  "pivot_index": 60,
  "pivot_label": "Mar 31",
@@ -170,7 +170,8 @@
   "2026-08-04",
   "2026-08-05",
   "2026-08-06",
-  "2026-08-07"
+  "2026-08-07",
+  "2026-08-10"
  ],
  "labels": [
   "Jan 2",
@@ -322,7 +323,8 @@
   "Aug 4",
   "Aug 5",
   "Aug 6",
-  "Aug 7"
+  "Aug 7",
+  "Aug 10"
  ],
  "series": {
   "republic": [
@@ -475,7 +477,8 @@
    14.425,
    14.225,
    14.164,
-   14.13
+   14.139,
+   14.59
   ],
   "spy": [
    0.0,
@@ -627,7 +630,8 @@
    13.505,
    13.278,
    13.097,
-   13.789
+   13.789,
+   13.755
   ],
   "dvrux": [
    0.0,
@@ -779,7 +783,8 @@
    13.687,
    13.92,
    14.036,
-   14.036
+   14.677,
+   14.677
   ],
   "qgrpx": [
    0.0,
@@ -931,7 +936,8 @@
    5.788,
    5.949,
    6.27,
-   6.27
+   6.431,
+   6.431
   ],
   "midusa": [
    0.0,
@@ -1079,11 +1085,12 @@
    5.806,
    7.135,
    7.605,
-   7.605,
-   7.605,
+   9.582,
+   9.582,
    11.73,
    10.484,
-   10.484
+   12.677,
+   12.677
   ],
   "bniex": [
    0.0,
@@ -1235,28 +1242,29 @@
    9.637,
    10.111,
    10.427,
-   10.427
+   11.848,
+   11.848
   ]
  },
  "final": {
-  "republic": 14.13,
-  "spy": 13.79,
-  "dvrux": 14.04,
-  "qgrpx": 6.27,
-  "midusa": 10.48,
-  "bniex": 10.43
+  "republic": 14.59,
+  "spy": 13.76,
+  "dvrux": 14.68,
+  "qgrpx": 6.43,
+  "midusa": 12.68,
+  "bniex": 11.85
  },
  "stats": {
-  "republic_led": 134,
-  "n_days": 150,
-  "republic_peak": 14.43,
-  "republic_peak_label": "Aug 4",
-  "republic_rank": 1,
+  "republic_led": 133,
+  "n_days": 151,
+  "republic_peak": 14.59,
+  "republic_peak_label": "Aug 10",
+  "republic_rank": 2,
   "republic_at_pivot": 5.86,
-  "republic_last_lead_label": "Aug 7",
+  "republic_last_lead_label": "Aug 6",
   "republic_max_pullback": -6.1,
-  "vs_spy": 0.34,
-  "spread": 7.86
+  "vs_spy": 0.83,
+  "spread": 8.25
  },
  "names": {
   "republic": "The Republic Portfolio",
