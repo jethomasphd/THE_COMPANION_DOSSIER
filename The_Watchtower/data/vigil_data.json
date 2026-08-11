@@ -1,8 +1,8 @@
 {
- "asof": "2026-08-10",
- "generated": "2026-08-10T23:07:30Z",
+ "asof": "2026-08-11",
+ "generated": "2026-08-11T23:13:08Z",
  "base_date": "2026-01-02",
- "n_points": 151,
+ "n_points": 152,
  "pivot_date": "2026-03-31",
  "pivot_index": 60,
  "pivot_label": "Mar 31",
@@ -171,7 +171,8 @@
   "2026-08-05",
   "2026-08-06",
   "2026-08-07",
-  "2026-08-10"
+  "2026-08-10",
+  "2026-08-11"
  ],
  "labels": [
   "Jan 2",
@@ -324,7 +325,8 @@
   "Aug 5",
   "Aug 6",
   "Aug 7",
-  "Aug 10"
+  "Aug 10",
+  "Aug 11"
  ],
  "series": {
   "republic": [
@@ -478,7 +480,8 @@
    14.225,
    14.164,
    14.139,
-   14.59
+   14.59,
+   14.391
   ],
   "spy": [
    0.0,
@@ -631,7 +634,8 @@
    13.278,
    13.097,
    13.789,
-   13.755
+   13.755,
+   13.391
   ],
   "dvrux": [
    0.0,
@@ -784,7 +788,8 @@
    13.92,
    14.036,
    14.677,
-   14.677
+   14.56,
+   14.56
   ],
   "qgrpx": [
    0.0,
@@ -937,7 +942,8 @@
    5.949,
    6.27,
    6.431,
-   6.431
+   6.324,
+   6.324
   ],
   "midusa": [
    0.0,
@@ -1090,7 +1096,8 @@
    11.73,
    10.484,
    12.677,
-   12.677
+   12.772,
+   12.772
   ],
   "bniex": [
    0.0,
@@ -1243,28 +1250,29 @@
    10.111,
    10.427,
    11.848,
-   11.848
+   11.769,
+   11.769
   ]
  },
  "final": {
-  "republic": 14.59,
-  "spy": 13.76,
-  "dvrux": 14.68,
-  "qgrpx": 6.43,
-  "midusa": 12.68,
-  "bniex": 11.85
+  "republic": 14.39,
+  "spy": 13.39,
+  "dvrux": 14.56,
+  "qgrpx": 6.32,
+  "midusa": 12.77,
+  "bniex": 11.77
  },
  "stats": {
-  "republic_led": 133,
-  "n_days": 151,
+  "republic_led": 134,
+  "n_days": 152,
   "republic_peak": 14.59,
   "republic_peak_label": "Aug 10",
   "republic_rank": 2,
   "republic_at_pivot": 5.86,
-  "republic_last_lead_label": "Aug 6",
+  "republic_last_lead_label": "Aug 10",
   "republic_max_pullback": -6.1,
-  "vs_spy": 0.83,
-  "spread": 8.25
+  "vs_spy": 1.0,
+  "spread": 8.24
  },
  "names": {
   "republic": "The Republic Portfolio",
