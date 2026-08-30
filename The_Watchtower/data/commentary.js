@@ -9,7 +9,7 @@
  * Do not rewrite history: past dispatches are the log. Only append.
  */
 window.VIGIL_COMMENTARY = {
-  updated: "2026-08-07",
+  updated: "2026-08-28",
   entries: [
     { date: "2026-01-09", tag: "FIRST WATCH",
       text: "The vigil opens. Five trading days in and the doctrine already holds the front — +2.1 to the index's +1.6. Early, yes. But the tower has a rule about leads taken quietly: they tend to be kept.",
@@ -133,6 +133,18 @@ window.VIGIL_COMMENTARY = {
 
     { date: "2026-08-07", tag: "THE CHIP GATE",
       text: "Records everywhere. The index rockets to an all-time high on Palantir +30% — a name the Committee blacklisted in March — and fresh hope for reopening Hormuz. But Caterpillar, an Engine, popped 5.6% the same day and carried the doctrine to its <em>own</em> record, +14.4. The Committee answered the chip trade on its own terms — TSM, ASML, INTC — never Palantir's. Gap: a third of a point. After 150 sessions, still first.",
-      tape: "REP +14.13 · SPY +13.79 · GAP +0.34" }
+      tape: "REP +14.13 · SPY +13.79 · GAP +0.34" },
+
+    { date: "2026-08-14", tag: "THE CEILING",
+      text: "+15.08 — the doctrine's high-water mark for the year, printed on a thin August tape with the Strait still quiet and un-reopened. A week ago the Dividend Ruler had nosed in front; this week the gold line reclaimed <em>outright first</em> and stretched the gap over the index back to eight-tenths. Reserve at 20%, powder dry, the war merely paused.",
+      tape: "REP +15.08 · SPY +14.24 · GAP +0.83" },
+
+    { date: "2026-08-21", tag: "JACKSON HOLE",
+      text: "The tape rolled over into Jackson Hole — the index off 1.6 on the week, the doctrine off 1.5 — the Chair giving the doves nothing and the dot-plot hawks still fingering a hike by year-end. Everything sold; the gold line sold off less than the index, and the gap actually <em>widened</em>, to nine-tenths. Down weeks are where the lead is kept.",
+      tape: "REP +13.58 · SPY +12.68 · GAP +0.90" },
+
+    { date: "2026-08-28", tag: "THE ONE-DAY LEASE",
+      text: "Thursday the index edged in front — by twelve-hundredths, its first close atop the doctrine since June. Friday the gold line took it straight back, +0.40, first again. August was the index's best month — three-plus points to the doctrine's half — and it still bought only one session in the lead. <em>The May passing lasted a week; this one didn't reach the weekend.</em>",
+      tape: "REP +13.61 · SPY +13.21 · GAP +0.40" }
   ]
 };
