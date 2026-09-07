@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE LAST INK · The Press
+   A MEDITATION ON THE NECESSITY OF INK AND PAPER IN A SILICON-MAD WORLD
+   The Press
 
    Orchestration for the whole piece. A dark screen with a dead
    kettle's display; then the story, set in type on sheets that are
@@ -160,9 +161,10 @@
 
   var FOLIO_PLACEHOLDER = '<div class="folio" aria-hidden="true">00</div>';
 
+  // The running head carries the chapter, the way a single-page book sets
+  // it, since the title of the work is too long to run at the head of a sheet.
   function runningHead(ch, first) {
-    return '<div class="running-head" aria-hidden="true">The Last Ink' +
-      ((first || ch.kind === 'prologue') ? '' : ' &#183; ' + esc(ch.title)) + '</div>';
+    return '<div class="running-head" aria-hidden="true">' + esc(ch.title) + '</div>';
   }
   function bodyInner(ch, first, arr, last) {
     return (first ? ch.head + ch.cut : '') +
@@ -594,7 +596,7 @@
     }
 
     function applyArc(text) {
-      phase = LASTINK.Arc.nextPhase(phase, text);
+      phase = MEDITATION.Arc.nextPhase(phase, text);
     }
 
     /* The live reveal of the King's voice. His words arrive over the wire
@@ -646,7 +648,7 @@
 
     function updateCut() {
       if (!stream || stream.cut >= 0) return;
-      var cut = LASTINK.Arc.cutAtRelease(stream.buf);
+      var cut = MEDITATION.Arc.cutAtRelease(stream.buf);
       if (cut >= 0) stream.cut = cut;
     }
 
@@ -684,14 +686,14 @@
       paintStream();
       var shownText = stream.buf.slice(0, limit).trim();
       var fullText = stream.buf.trim();
-      var released = (stream.cut >= 0) || LASTINK.Arc.classify(fullText).release;
+      var released = (stream.cut >= 0) || MEDITATION.Arc.classify(fullText).release;
       if (stream.box && stream.box.parentNode) stream.box.parentNode.removeAttribute('aria-hidden');
       announce(shownText);
       applyArc(fullText);
       stream = null;
       if (released) { toRelease(); return; }
       busy = false;
-      if (LASTINK.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
+      if (MEDITATION.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
       setInputEnabled(true);
       noteIfAway();
     }
@@ -713,7 +715,7 @@
       if (REDUCED) {
         hideThinking();
         var text = (full || '').trim();
-        var cut = LASTINK.Arc.cutAtRelease(text);
+        var cut = MEDITATION.Arc.cutAtRelease(text);
         var shown = (cut >= 0) ? text.slice(0, cut) : text;
         kingHasSpoken = true;
         renderKing(shown);
@@ -722,7 +724,7 @@
         stream = null;
         if (cut >= 0) { toRelease(); return; }
         busy = false;
-        if (LASTINK.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
+        if (MEDITATION.API.readerTurnCount() >= MAX_READER_TURNS) { forceRelease(); return; }
         setInputEnabled(true);
         noteIfAway();
         return;
@@ -762,7 +764,7 @@
     function forceRelease() {
       if (stream) { if (stream.timer) clearTimeout(stream.timer); stream = null; }
       hideThinking();
-      var lines = LASTINK.Interview.FORCED_RELEASE;
+      var lines = MEDITATION.Interview.FORCED_RELEASE;
       var n = renderKing(lines);
       announce(lines);
       toRelease((n - 1) * 780);
@@ -806,7 +808,7 @@
       setInputEnabled(false);
       showThinking();
       stream = newStream();
-      LASTINK.API.send(userText, LASTINK.Interview.SYSTEM_PROMPT,
+      MEDITATION.API.send(userText, MEDITATION.Interview.SYSTEM_PROMPT,
         { onChunk: onChunk, onDone: onStreamDone, onError: onError }, {});
     }
 
@@ -843,17 +845,17 @@
       // authored words, so the room always opens well.
       kingHasSpoken = true;
       renderMark('·  the red light is out  ·  the engineer has taken off his headphones  ·');
-      var opening = LASTINK.Interview.OPENING;
+      var opening = MEDITATION.Interview.OPENING;
       var n = renderKing(opening);
       announce(opening);
 
-      if (!LASTINK.API.isReady()) {
+      if (!MEDITATION.API.isReady()) {
         // No live wire here. The opening lands, then he goes back to the table.
         setTimeout(forceRelease, REDUCED ? 1500 : (n - 1) * 780 + 4200);
         return;
       }
 
-      LASTINK.API.seedOpening(LASTINK.Interview.SEED_CUE, opening);
+      MEDITATION.API.seedOpening(MEDITATION.Interview.SEED_CUE, opening);
       // The correspondent does not speak over him. The line to write on
       // opens only once his opening has fully landed.
       var openDelay = REDUCED ? 0 : (n - 1) * 780 + 900;

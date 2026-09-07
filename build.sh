@@ -123,8 +123,8 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> Narratives/Endor/js/config.js"
 
-# Narratives (The Last Ink)
-cat > Narratives/The_Last_Ink/js/config.js << JSEOF
+# Narratives (A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World)
+cat > Narratives/A_Meditation_on_Ink_and_Paper/js/config.js << JSEOF
 window.COMPANION_CONFIG = {
   proxyUrl: '${COMPANION_PROXY_URL}',
   safeguards: {
@@ -133,6 +133,6 @@ window.COMPANION_CONFIG = {
   }
 };
 JSEOF
-echo "  -> Narratives/The_Last_Ink/js/config.js"
+echo "  -> Narratives/A_Meditation_on_Ink_and_Paper/js/config.js"
 
 echo "Done. All containers configured for proxy mode."

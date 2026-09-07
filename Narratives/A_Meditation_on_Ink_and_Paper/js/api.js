@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE LAST INK · Claude API Integration
+   A MEDITATION ON THE NECESSITY OF INK AND PAPER IN A SILICON-MAD WORLD
+   Claude API Integration
 
    Streaming communication with the Anthropic Messages API by way of
    the repository's existing Cloudflare Worker proxy. The Worker holds
@@ -15,9 +16,9 @@
    again at the dark screen.
    ═══════════════════════════════════════════════════════════════ */
 
-var LASTINK = window.LASTINK || (window.LASTINK = {});
+var MEDITATION = window.MEDITATION || (window.MEDITATION = {});
 
-LASTINK.API = (function () {
+MEDITATION.API = (function () {
 
   var API_VERSION = '2023-06-01';
 

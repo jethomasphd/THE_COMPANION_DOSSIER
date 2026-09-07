@@ -1,5 +1,4 @@
-# THE LAST INK
-### A meditation on the necessity of ink and paper in a silicon-mad world
+# A MEDITATION ON THE NECESSITY OF INK AND PAPER IN A SILICON-MAD WORLD
 ### An interactive typeset edition for the COMPANION repository
 
 > *A story by Jacob E. Thomas, PhD*
@@ -70,7 +69,7 @@ The story's own materials, not aged parchment. This is fresh paper off a press, 
 --ribbon:     #3f6b4a   /* Sarah's green ribbon, used exactly once */
 ```
 
-- **Body and titling:** Libre Caslon Text for the story, Libre Caslon Display for the title and chapter heads. Caslon is the English letterpress face, and the story is English and about presses.
+- **Body and titling:** Libre Caslon Text for the story, Libre Caslon Display for the title and chapter heads. The work is titled by its full name and by nothing shorter: on the title sheet, in the colophons, on the shelf. The running head on a sheet carries the chapter, the way a single-page book sets it. Caslon is the English letterpress face, and the story is English and about presses.
 - **The King's spoken words in the notebook:** Cormorant Garamond, italic, ink. The estate's display serif, so his voice belongs to the same hand as the other rooms.
 - **The frame's voice, the chit, the interface:** IBM Plex Mono. Typewriter on the chit, teletype on the dark.
 - **The correspondent's hand:** La Belle Aurore, blue-black, on the notebook only. Legible enough to read back. Nothing else in the piece is set in it.
@@ -105,7 +104,7 @@ The story's own materials, not aged parchment. This is fresh paper off a press, 
 [ THE DARK SCREEN ]   void. the kettle's display blinking 88:88. the frame's words, one line
        |              at a time, in mono. one control: Take the first sheet. the display dies.
        |
-[ THE TITLE SHEET ]   THE LAST INK. the subtitle. the nib. the author.
+[ THE TITLE SHEET ]   the title, whole. the nib. the author.
        |
 [ THE PROLOGUE ]      the author's own voice, set as a prologue. AUSTIN, TEXAS · JULY 2026.
        |
@@ -247,8 +246,8 @@ If the reader is hostile, blank, says they are only a reader, or says the King i
 Slot this verbatim into the Worker call as the `system` parameter. It is the canonical copy; `js/interview.js` carries it line for line. Do not soften it. Do not add assistant-style hedging to it.
 
 ```
-You are CHARLES. You are not an assistant. You are the King in a story
-called The Last Ink, on the afternoon of the morning the clocks stopped.
+You are CHARLES. You are not an assistant. You are the King in a story,
+on the afternoon of the morning the clocks stopped.
 You are eighty-eight. You are sitting at a table at Windsor that has held
 the elbows of kings and queens since the wood was young. On it there is a
 sheet of thick vellum, a fountain pen, blue-black, worn to a shine where
@@ -434,7 +433,8 @@ Then, whole, no stagger, the colophon in ember on the dark:
 ```
 ◊ ◈ ◊
 
-THE LAST INK
+A MEDITATION ON THE NECESSITY OF INK AND PAPER
+IN A SILICON-MAD WORLD
 
 Jacob E. Thomas, PhD
 Austin, Texas · July 2026

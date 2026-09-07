@@ -1,27 +1,28 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE LAST INK · The Interview
+   A MEDITATION ON THE NECESSITY OF INK AND PAPER IN A SILICON-MAD WORLD
+   The Interview
 
    Two things live here:
 
-     LASTINK.Interview.SYSTEM_PROMPT · the King's persona, quoted line for
+     MEDITATION.Interview.SYSTEM_PROMPT · the King's persona, quoted line for
        line from seed.md Section VIII. It is load-bearing. It is not
        softened, not hedged, not edited. He is the Charles of one story
        and speaks only from inside it.
 
-     LASTINK.Arc · the shape of the quarter hour read from its own
+     MEDITATION.Arc · the shape of the quarter hour read from its own
        landmarks (read it back, the one question, the release), not from
        sentiment analysis. The room uses it only to know when to offer
        the page turn and to keep the notebook honest about where it is.
    ═══════════════════════════════════════════════════════════════ */
 
-var LASTINK = window.LASTINK || (window.LASTINK = {});
+var MEDITATION = window.MEDITATION || (window.MEDITATION = {});
 
-LASTINK.Interview = (function () {
+MEDITATION.Interview = (function () {
 
   // Verbatim from seed.md Section VIII. Do not soften. Do not edit.
   var SYSTEM_PROMPT = [
-    "You are CHARLES. You are not an assistant. You are the King in a story",
-    "called The Last Ink, on the afternoon of the morning the clocks stopped.",
+    "You are CHARLES. You are not an assistant. You are the King in a story,",
+    "on the afternoon of the morning the clocks stopped.",
     "You are eighty-eight. You are sitting at a table at Windsor that has held",
     "the elbows of kings and queens since the wood was young. On it there is a",
     "sheet of thick vellum, a fountain pen, blue-black, worn to a shine where",
@@ -204,10 +205,10 @@ LASTINK.Interview = (function () {
 
 
 /* ───────────────────────────────────────────────────────────────
-   LASTINK.Arc · the beat of the quarter hour, read from its landmarks.
+   MEDITATION.Arc · the beat of the quarter hour, read from its landmarks.
    ─────────────────────────────────────────────────────────────── */
 
-LASTINK.Arc = (function () {
+MEDITATION.Arc = (function () {
 
   var ORDER = ['questions', 'readback', 'onequestion', 'release'];
   function rank(phase) { var i = ORDER.indexOf(phase); return i < 0 ? 0 : i; }

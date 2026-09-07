@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>The Last Ink</title>
-<meta name="description" content="A meditation on the necessity of ink and paper in a silicon-mad world. Set in type, one sheet at a time. In the fourth chapter, you are sent for."/>
-<meta property="og:title" content="The Last Ink"/>
+<title>A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World</title>
+<meta name="description" content="Set in type, one sheet at a time. Every screen goes dark on the same morning, and an old man at Windsor asks for the pens. In the fourth chapter, you are sent for."/>
+<meta property="og:title" content="A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World"/>
 <meta property="og:description" content="Every screen goes dark on the same morning, and an old man at Windsor asks for the pens. You are the one they sent with the microphone."/>
 <meta property="og:type" content="book"/>
 <meta name="theme-color" content="#030303"/>
@@ -212,8 +212,7 @@
   /* the title sheet */
   .title-sheet { text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; }
   .title-sheet .cut { width:clamp(84px,17vw,110px); margin-bottom:1.6rem; }
-  .title-sheet h1 { font-family:var(--display); font-weight:400; font-size:clamp(2rem,6.4vw,3rem); letter-spacing:0.16em; line-height:1.05; color:currentColor; }
-  .title-sheet .subtitle { font-family:var(--book); font-style:italic; font-size:clamp(0.92rem,2.3vw,1.06rem); line-height:1.6; color:var(--ink-soft); max-width:34ch; margin:1.2rem auto 0; }
+  .title-sheet h1 { font-family:var(--display); font-weight:400; font-size:clamp(1.12rem,4vw,1.78rem); letter-spacing:0.06em; line-height:1.32; color:currentColor; margin:0 auto; }
   .title-sheet .title-rule { width:28%; height:0; border-top:1px solid rgba(20,18,16,0.3); margin:1.7rem auto; position:relative; }
   .title-sheet .title-rule::after { content:'\2766'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--stock); padding:0 0.5em; color:var(--ink); font-size:0.9rem; }
   .title-sheet .author { font-family:var(--book); text-transform:uppercase; letter-spacing:0.24em; font-size:0.74rem; color:var(--ink); }
@@ -355,7 +354,7 @@
   .colophon { margin-top:2.6em; opacity:0; transition:opacity 1.4s ease; font-family:var(--display); color:var(--ember); letter-spacing:0.1em; line-height:2; font-size:clamp(0.9rem,2.3vw,1.05rem); }
   .colophon.show { opacity:1; }
   .colophon .sig { letter-spacing:0.5em; color:var(--ember-dim); font-size:1rem; display:block; margin-bottom:0.6em; }
-  .colophon .work { letter-spacing:0.3em; text-transform:uppercase; display:block; margin-bottom:0.5em; }
+  .colophon .work { letter-spacing:0.16em; text-transform:uppercase; display:block; margin:0 auto 0.6em; font-size:0.84em; line-height:1.75; max-width:30em; }
   .colophon .who { font-family:var(--serif); letter-spacing:0.06em; color:var(--bone-dim); display:block; font-size:1.05em; }
   .colophon .where { font-family:var(--mono); font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--ash); display:block; margin-top:0.4em; }
   .colophon .live { font-family:var(--serif); font-style:italic; letter-spacing:0.04em; color:var(--bone-dim); display:block; margin-top:1.4em; font-size:1.05em; }
@@ -405,7 +404,7 @@
     .stack { width:auto; }
     html.js .source, .source { display:block !important; }
     .source .title-sheet { height:auto; padding:30vh 0 0; break-after:page; page-break-after:always; }
-    .source .title-sheet h1, .source .title-sheet .author, .source .title-sheet .imprint, .source .title-sheet .subtitle { color:#000; }
+    .source .title-sheet h1, .source .title-sheet .author, .source .title-sheet .imprint { color:#000; }
     .source .chapter { break-inside:auto; margin:0 auto 2.2rem; max-width:62ch; }
     .source .chapter + .chapter { margin-top:2.6rem; }
     .source .chapter-head { break-inside:avoid; page-break-inside:avoid; break-after:avoid; page-break-after:avoid; margin-top:1.4rem; }
@@ -630,7 +629,7 @@
       </svg>
     </div>
     <div id="darkLines">
-      <h1 class="sr-only">The Last Ink</h1>
+      <h1 class="sr-only">A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World</h1>
       <p class="dark-line">This is the last screen.</p>
       <p class="dark-line">Everything after it is set in type, on paper.</p>
       <p class="dark-line">Read it the way you would read a thing you could not scroll.<br/>One sheet at a time.</p>
@@ -647,7 +646,7 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!-- THE SHEETS. The story, set in type. It does not move.        -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<main id="press" class="stage" aria-label="The Last Ink">
+<main id="press" class="stage" aria-label="A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World">
   <div class="stack" id="stack">
 
     <!-- Source of truth, hidden on screen. The paginator fits these into
@@ -656,8 +655,7 @@
     <div class="source" id="source">
       <section class="chapter title-sheet" id="title" data-kind="title" aria-labelledby="title-h">
         <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-nib"/></svg></figure>
-        <h1 id="title-h">The Last Ink</h1>
-        <p class="subtitle">A meditation on the necessity of ink and paper in a silicon-mad world</p>
+        <h1 id="title-h">A Meditation on the Necessity<br/>of Ink and Paper<br/>in a Silicon-Mad World</h1>
         <div class="title-rule"></div>
         <div class="author">Jacob E. Thomas, PhD</div>
         <div class="imprint">The COMPANION Protocol &#183; Narratives &#183; III</div>
@@ -889,7 +887,7 @@
         <div class="end-orn" aria-hidden="true">&#10086;</div>
       </section>
 
-      <div class="print-colophon">The Last Ink &#183; Jacob E. Thomas, PhD &#183; Austin, Texas &#183; July 2026</div>
+      <div class="print-colophon">A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World &#183; Jacob E. Thomas, PhD &#183; Austin, Texas &#183; July 2026</div>
     </div><!-- /source -->
 
     <div class="sheet" id="sheet" tabindex="-1" aria-label="The sheet you are reading"></div>
@@ -974,7 +972,7 @@
     </div>
     <div class="colophon" id="colophon">
       <span class="sig">&#9674; &#9672; &#9674;</span>
-      <span class="work">The Last Ink</span>
+      <span class="work">A Meditation on the Necessity of Ink and Paper in a Silicon-Mad World</span>
       <span class="who">Jacob E. Thomas, PhD</span>
       <span class="where">Austin, Texas &#183; July 2026</span>
       <span class="live">The story is his. The interview was live.</span>

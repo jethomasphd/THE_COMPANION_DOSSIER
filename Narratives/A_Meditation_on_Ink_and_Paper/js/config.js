@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE LAST INK · Deployment Configuration
+   A MEDITATION ON THE NECESSITY OF INK AND PAPER IN A SILICON-MAD WORLD
+   Deployment Configuration
 
    Proxy mode. The Anthropic API key lives server-side in the
    Cloudflare Worker. Nothing secret in the browser.
