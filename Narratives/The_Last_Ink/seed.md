@@ -1,5 +1,5 @@
 # THE LAST INK
-### A meditation on the necessity of ink and paper in a silicone-mad world
+### A meditation on the necessity of ink and paper in a silicon-mad world
 ### An interactive typeset edition for the COMPANION repository
 
 > *A story by Jacob E. Thomas, PhD*
