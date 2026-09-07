@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>The Last Ink</title>
+<meta name="description" content="A meditation on the necessity of ink and paper in a silicone-mad world. Set in type, one sheet at a time. In the fourth chapter, you are sent for."/>
+<meta property="og:title" content="The Last Ink"/>
+<meta property="og:description" content="Every screen goes dark on the same morning, and an old man at Windsor asks for the pens. You are the one they sent with the microphone."/>
+<meta property="og:type" content="book"/>
+<meta name="theme-color" content="#030303"/>
+<script>
+  /* Mark the document script-capable as early as possible, so the staged
+     layout hides all but the dark screen without a flash. With scripting
+     off, the whole story stays visible and reads as one quiet document. */
+  document.documentElement.className += ' js';
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Display&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=La+Belle+Aurore&display=swap');
+
+  :root {
+    --void:#030303;
+    --stock:#f4efe4;
+    --stock-lit:#f9f5ec;
+    --stock-deep:#e9e2d2;
+    --stock-edge:#d6cdb8;
+    --ink:#141210;
+    --ink-wet:rgba(20,18,16,0.5);
+    --ink-soft:#4a453d;
+    --ink-faint:rgba(20,18,16,0.38);
+    --blueblack:#1f2a44;
+    --blueblack-wet:rgba(31,42,68,0.42);
+    --wax:#8a1c1c;
+    --gilt:#b1851f;
+    --ember:#c9a227;
+    --ember-dim:rgba(201,162,39,0.34);
+    --ember-faint:rgba(201,162,39,0.13);
+    --ash:#6b6b6b;
+    --ash-faint:rgba(107,107,107,0.45);
+    --bone:#e8e4d9;
+    --bone-dim:rgba(232,228,217,0.5);
+    --ribbon:#3f6b4a;
+    --led:#ff3b2a;
+
+    --book:'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+    --display:'Libre Caslon Display', 'Libre Caslon Text', Georgia, serif;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --mono:'IBM Plex Mono', 'Courier New', monospace;
+    --hand:'La Belle Aurore', 'Segoe Script', 'Bradley Hand', cursive;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--void); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  body {
+    min-height:100vh; overflow-x:hidden; color:var(--ink); font-family:var(--book);
+    /* The dark is the dark. A whisper of a lamp so the sheet reads as lit. */
+    background:radial-gradient(ellipse 90% 70% at 50% 42%, #0c0b09 0%, var(--void) 70%);
+    background-attachment:fixed;
+  }
+  ::selection { background:rgba(31,42,68,0.22); color:var(--ink); }
+
+  a:focus-visible, button:focus-visible, textarea:focus-visible, [tabindex="0"]:focus-visible {
+    outline:2px solid var(--ember); outline-offset:3px;
+  }
+  [tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline:none; }
+  /* The line to write on shows focus through its own rule darkening, so it
+     carries no ring of its own on the paper. */
+  .ask:focus-visible { outline:none; }
+
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  /* ── Staged layout. Without .js every stage stays visible. ── */
+  html.js #dark:not(.is-active),
+  html.js #press:not(.is-active),
+  html.js #interview:not(.is-active),
+  html.js #last:not(.is-active) { display:none; }
+  html.js .source { display:none; }
+  .stage { min-height:100vh; min-height:100dvh; }
+
+  #dark { transition:opacity 0.7s ease; }
+  #dark.fading-out { opacity:0; }
+  #press { transition:opacity 0.8s ease; }
+  #press.fading-in, #press.fading-out { opacity:0; }
+  #interview.is-active { animation:stageRise 1.1s ease both; }
+  #last.is-active { animation:stageRise 1s ease both; }
+  @keyframes stageRise { from { opacity:0; } to { opacity:1; } }
+
+  /* ── Fixed marginalia ── */
+  .corner {
+    position:fixed; z-index:60; background:none; border:none; cursor:pointer; text-decoration:none;
+    font-family:var(--mono); color:rgba(201,162,39,0.5); transition:color 0.4s ease, opacity 0.8s ease;
+    opacity:0; visibility:hidden; pointer-events:none;
+  }
+  .corner:hover { color:var(--ember); }
+  .sigil-home { top:18px; left:20px; font-size:1rem; }
+  body[data-stage="dark"] .sigil-home, body[data-stage="press"] .sigil-home, body[data-stage="last"] .sigil-home {
+    opacity:1; visibility:visible; pointer-events:auto;
+  }
+
+  /* ════════════════ THE DARK SCREEN ════════════════ */
+  #dark, #last { display:flex; align-items:center; align-items:safe center; justify-content:center; padding:5vh 24px; background:var(--void); }
+  .dark-inner { text-align:center; max-width:640px; margin:0 auto; font-family:var(--mono); font-size:clamp(0.8rem,1.9vw,0.95rem); }
+
+  /* The kettle's display. Every segment lit, because that is what a display
+     does when the time it kept has stopped meaning anything. */
+  .segdisplay { display:inline-block; width:clamp(150px,30vw,220px); margin:0 auto 3.2em; }
+  .segdisplay svg { width:100%; height:auto; display:block; overflow:visible; }
+  .seg-ghost { fill:rgba(255,59,42,0.07); }
+  .seg-lit { fill:var(--led); filter:drop-shadow(0 0 6px rgba(255,59,42,0.55)); animation:ledBlink 1.1s steps(1,end) infinite; }
+  .segdisplay.dead .seg-lit { animation:none; opacity:0; transition:opacity 0.9s ease; }
+  @keyframes ledBlink { 0%,58% { opacity:1; } 59%,100% { opacity:0.04; } }
+
+  .dark-line {
+    font-family:var(--mono); font-weight:300; font-size:1em; line-height:1.75; letter-spacing:0.04em;
+    color:var(--ash); margin:0 auto 1.2em; max-width:36em;
+    opacity:0; transform:translateY(8px); transition:opacity 0.95s ease, transform 0.95s ease;
+  }
+  .dark-line.show { opacity:1; transform:translateY(0); }
+  .dark-line.bright { color:var(--bone); }
+
+  .dark-enter { margin-top:2.4em; opacity:0; pointer-events:none; transition:opacity 1.2s ease; }
+  .dark-enter.show { opacity:1; pointer-events:auto; }
+  .enter-eyebrow { font-family:var(--mono); font-size:0.62em; letter-spacing:0.22em; text-transform:uppercase; color:var(--ash); margin-bottom:1em; }
+  .enter-btn {
+    display:inline-flex; align-items:baseline; gap:0.8em; cursor:pointer;
+    padding:0.7em 1.75em; background:none; border:1px solid var(--ember-dim); border-radius:2px;
+    font-family:var(--mono); font-size:0.92em; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ember); transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+  }
+  .enter-btn .arr { display:inline-block; animation:enterPulse 2.8s ease-in-out infinite; }
+  @keyframes enterPulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+  .enter-btn:hover, .enter-btn:focus-visible { color:var(--bone); border-color:var(--ember); background:rgba(201,162,39,0.07); }
+
+  /* ════════════════ THE SHEETS ════════════════ */
+  #press { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3.5vh 3vw 0; }
+  .stack { position:relative; width:min(92vw, 640px); }
+  /* the unread sheets beneath, squared off the way a stack sits on a table */
+  .stack::before, .stack::after {
+    content:''; position:absolute; inset:0; z-index:0; border-radius:1px; background:var(--stock-deep);
+    border:1px solid var(--stock-edge); pointer-events:none;
+  }
+  .stack::before { transform:translate(5px, 6px); opacity:0.92; }
+  .stack::after  { transform:translate(10px, 12px); opacity:0.62; }
+  .stack.extinguished::before, .stack.extinguished::after { opacity:0; transition:opacity 0.8s ease; }
+
+  .sheet {
+    position:relative; z-index:1;
+    height:clamp(560px, 86vh, 900px);
+    padding:clamp(1.5rem,3.2vw,2.4rem) clamp(1.5rem,4.8vw,3.2rem) clamp(1.1rem,2.4vw,1.6rem);
+    overflow:hidden; display:flex; flex-direction:column;
+    background-color:var(--stock);
+    background-image:
+      radial-gradient(circle at 20% 12%, rgba(255,255,255,0.35), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(120,100,60,0.08), transparent 42%),
+      linear-gradient(100deg, var(--stock-lit), var(--stock) 40%, var(--stock-deep) 100%);
+    color:var(--ink); border:1px solid var(--stock-edge); border-radius:1px;
+    box-shadow:0 2px 0 rgba(0,0,0,0.25), 0 28px 60px rgba(0,0,0,0.7), 0 6px 18px rgba(0,0,0,0.5);
+    transition:opacity 0.42s ease, transform 0.42s ease;
+  }
+  /* paper grain, fine and new */
+  .sheet::before {
+    content:''; position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:multiply; opacity:0.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:180px 180px;
+  }
+  .sheet > * { position:relative; z-index:1; }
+  .sheet.leaving { opacity:0; transform:translateY(-14px); }
+  .sheet.arriving { opacity:0; transform:translateY(10px); transition:none; }
+  .stack.extinguished .sheet { background:var(--void); border-color:#000; box-shadow:none; }
+  .stack.extinguished .sheet::before { opacity:0; }
+
+  /* The ink dries. A fresh sheet arrives a shade light and darkens. */
+  .sheet-body { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:flex-start; color:var(--ink); transition:color 1.6s ease; }
+  .sheet.wet .sheet-body { color:var(--ink-wet); transition:none; }
+  .sheet.wet .sheet-body .cut svg { opacity:0.55; }
+  .sheet-body .cut svg { transition:opacity 1.6s ease; }
+
+  .running-head {
+    text-align:center; font-family:var(--book); text-transform:uppercase; letter-spacing:0.3em;
+    font-size:0.58rem; color:var(--ink-soft); padding-bottom:0.55rem; margin-bottom:1.1rem;
+    border-bottom:1px solid rgba(20,18,16,0.16); flex:0 0 auto;
+  }
+  .folio { flex:0 0 auto; text-align:center; font-family:var(--book); font-size:0.66rem; letter-spacing:0.14em; color:var(--ink-soft); margin-top:0.9rem; }
+
+  .chapter-head { text-align:center; margin-bottom:0.9rem; }
+  .chapter-num { font-family:var(--display); font-size:0.86rem; letter-spacing:0.38em; color:currentColor; }
+  .chapter-title { font-family:var(--display); font-weight:400; font-size:clamp(1.3rem,3.4vw,1.72rem); letter-spacing:0.03em; line-height:1.15; color:currentColor; margin-top:0.35rem; }
+  .chapter-title.prologue-title { font-size:clamp(1rem,2.6vw,1.2rem); letter-spacing:0.34em; }
+  .chapter-head .rule { width:34%; height:0; border-top:1px solid rgba(20,18,16,0.3); margin:0.75rem auto 0; }
+  .cut { width:clamp(64px,13vw,84px); margin:0.15rem auto 1rem; }
+  .cut svg { width:100%; height:auto; display:block; }
+
+  .prose { max-width:62ch; margin:0 auto; }
+  .prose p {
+    font-family:var(--book); font-size:clamp(0.98rem,2.2vw,1.1rem); line-height:1.62; color:currentColor;
+    text-align:justify; hyphens:auto; -webkit-hyphens:auto;
+  }
+  .prose p + p { text-indent:1.4em; }
+  .prose p.first::first-letter {
+    font-family:var(--display); float:left; font-size:3.15em; line-height:0.8; padding:0.05em 0.1em 0 0; color:currentColor;
+  }
+  .prose p.letter, .prose p.sign, .prose p.dateline, .prose p.first + p.letter { text-indent:0; }
+  .prose p.letter { font-style:italic; margin-left:1.6em; margin-right:0.6em; text-align:left; }
+  .prose p.letter + p.letter { margin-top:0.45em; }
+  .prose p.letter.letter-open { margin-top:0.9em; }
+  .prose p.letter-last + p { margin-top:0.9em; }
+  .prose p.sign { text-align:right; font-style:italic; margin-top:0.45em; margin-bottom:0.9em; }
+  .prose p.dateline { text-align:right; font-family:var(--book); text-transform:uppercase; letter-spacing:0.2em; font-size:0.72rem; color:var(--ink-soft); margin-top:1.6em; }
+  .prose em { font-style:italic; }
+  .end-orn { text-align:center; color:var(--ink); font-size:1.05rem; margin-top:1.3rem; letter-spacing:0.2em; }
+
+  /* the title sheet */
+  .title-sheet { text-align:center; display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .title-sheet .cut { width:clamp(84px,17vw,110px); margin-bottom:1.6rem; }
+  .title-sheet h1 { font-family:var(--display); font-weight:400; font-size:clamp(2rem,6.4vw,3rem); letter-spacing:0.16em; line-height:1.05; color:currentColor; }
+  .title-sheet .subtitle { font-family:var(--book); font-style:italic; font-size:clamp(0.92rem,2.3vw,1.06rem); line-height:1.6; color:var(--ink-soft); max-width:34ch; margin:1.2rem auto 0; }
+  .title-sheet .title-rule { width:28%; height:0; border-top:1px solid rgba(20,18,16,0.3); margin:1.7rem auto; position:relative; }
+  .title-sheet .title-rule::after { content:'\2766'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--stock); padding:0 0.5em; color:var(--ink); font-size:0.9rem; }
+  .title-sheet .author { font-family:var(--book); text-transform:uppercase; letter-spacing:0.24em; font-size:0.74rem; color:var(--ink); }
+  .title-sheet .imprint { font-family:var(--book); text-transform:uppercase; letter-spacing:0.2em; font-size:0.58rem; color:var(--ink-soft); margin-top:2.4rem; }
+
+  /* turn-the-sheet affordances */
+  .advance { position:relative; width:min(92vw,640px); margin:0 auto; padding:1.5rem 0 2.4rem; text-align:center; }
+  .advance-btn {
+    font-family:var(--mono); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(201,162,39,0.62); background:none; border:none; cursor:pointer; transition:color 0.5s ease; opacity:0;
+  }
+  .advance-btn.show { opacity:1; animation:cueGlow 4s ease-in-out 0.8s infinite; }
+  .advance-btn:hover { color:var(--ember); animation:none; }
+  .advance-btn .arr { margin-left:0.5em; }
+  .advance-btn.emphatic { border:1px solid var(--ember-dim); border-radius:2px; padding:0.62em 1.5em; color:var(--ember); }
+  @keyframes cueGlow { 0%,100%{opacity:0.55;} 50%{opacity:1;} }
+  .back-btn {
+    position:absolute; left:0; top:50%; transform:translateY(-50%);
+    font-family:var(--mono); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:rgba(201,162,39,0.34); background:none; border:none; cursor:pointer; transition:color 0.4s ease; visibility:hidden;
+  }
+  .back-btn:hover { color:var(--ember); }
+  .back-btn .arr { margin-right:0.4em; }
+
+  /* ════════════════ THE CHIT ════════════════ */
+  .chit-wrap {
+    position:absolute; inset:0; z-index:8; display:flex; align-items:center; justify-content:center; padding:6%;
+    background:rgba(3,3,3,0.42); border-radius:1px;
+  }
+  .chit-wrap[hidden] { display:none; }
+  .chit {
+    position:relative; width:min(100%, 440px); padding:1.7rem 1.6rem 1.5rem 1.6rem;
+    background:linear-gradient(170deg, #f1e7c6 0%, #e9dcb4 100%); color:#2a2418;
+    border:1px solid rgba(90,70,30,0.35); box-shadow:0 16px 44px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4);
+    font-family:var(--mono); font-size:clamp(0.66rem,1.7vw,0.76rem); line-height:1.85; letter-spacing:0.04em;
+    transform:rotate(-0.6deg); transition:transform 0.7s cubic-bezier(0.4,0,0.6,1), opacity 0.6s ease;
+  }
+  .chit::before {  /* the paperclip */
+    content:''; position:absolute; top:-14px; left:30px; width:14px; height:44px;
+    border:2.5px solid #8d8a80; border-radius:8px; border-top-color:#a7a49a; box-shadow:1px 1px 2px rgba(0,0,0,0.35);
+  }
+  .chit.aside { transform:translateX(130%) rotate(7deg); opacity:0; }
+  .chit-head { text-transform:uppercase; letter-spacing:0.2em; font-size:0.86em; margin-bottom:1.2em; color:#4a3f28; }
+  .chit-head strong { display:block; font-weight:400; color:#2a2418; }
+  .chit table { border-collapse:collapse; margin-bottom:1.2em; }
+  .chit td { vertical-align:top; padding:0 0 0.15em 0; }
+  .chit td.k { text-transform:uppercase; letter-spacing:0.16em; padding-right:1.4em; color:#6a5a34; white-space:nowrap; }
+  .chit p { margin-top:0.35em; }
+  .chit p.cast { color:var(--wax); }
+  .chit-aside {
+    position:absolute; left:50%; bottom:1.6rem; transform:translateX(-50%);
+    font-family:var(--mono); font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ember); background:rgba(3,3,3,0.7); border:1px solid var(--ember-dim); border-radius:2px; padding:0.6em 1.4em; cursor:pointer;
+    transition:color 0.4s ease, border-color 0.4s ease, opacity 0.5s ease;
+  }
+  .chit-aside:hover, .chit-aside:focus-visible { color:var(--bone); border-color:var(--ember); }
+
+  /* ════════════════ THE INTERVIEW ════════════════ */
+  #interview {
+    position:relative; z-index:2; display:flex; flex-direction:column; align-items:center;
+    height:100vh; height:100dvh; max-height:100dvh; overflow:hidden;
+    /* the Old Room at the failing end of the afternoon: one window, high and to the right */
+    background:radial-gradient(ellipse 60% 50% at 78% 8%, rgba(201,162,39,0.06) 0%, transparent 60%), var(--void);
+  }
+  .room-head {
+    flex:0 0 auto; width:100%; max-width:640px; padding:14px 24px 10px;
+    font-family:var(--mono); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ash);
+  }
+  .room-row { display:flex; justify-content:space-between; align-items:center; gap:1em; }
+  .air { display:flex; align-items:center; gap:9px; color:var(--ash); white-space:nowrap; }
+  .air-dot { width:8px; height:8px; border-radius:50%; background:transparent; border:1px solid var(--ash-faint); }
+  .room-slug {
+    text-align:center; font-size:0.5rem; letter-spacing:0.15em; line-height:2; color:var(--ash);
+    border-top:1px solid rgba(107,107,107,0.14); margin-top:8px; padding-top:7px; text-transform:none;
+  }
+  .room-slug .dot { margin:0 0.6em; color:rgba(107,107,107,0.45); }
+
+  .notebook {
+    position:relative; flex:1 1 auto; min-height:0; width:min(92vw, 600px); margin:16px auto 0;
+    display:flex; flex-direction:column; border-radius:2px 2px 0 0;
+    background-color:#f7f3ea;
+    background-image:
+      linear-gradient(90deg, transparent 0, transparent calc(var(--margin) - 1px), rgba(138,28,28,0.55) calc(var(--margin) - 1px), rgba(138,28,28,0.55) var(--margin), transparent var(--margin)),
+      repeating-linear-gradient(180deg, transparent 0, transparent calc(var(--rule) - 1px), rgba(31,42,68,0.11) calc(var(--rule) - 1px), rgba(31,42,68,0.11) var(--rule));
+    --margin:4.4rem; --rule:2.05rem;
+    box-shadow:0 -2px 0 rgba(255,255,255,0.1) inset, 0 24px 60px rgba(0,0,0,0.7);
+    border:1px solid var(--stock-edge); border-bottom:none;
+  }
+  .rings { position:absolute; top:-7px; left:0; right:0; display:flex; justify-content:space-evenly; padding:0 6%; pointer-events:none; }
+  .rings span { width:11px; height:15px; border:2px solid #8d8a80; border-radius:6px; background:var(--void); box-shadow:0 1px 2px rgba(0,0,0,0.5); }
+
+  .pad { flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; padding:2.1rem 1.4rem 1rem 0;
+    scrollbar-width:thin; scrollbar-color:rgba(31,42,68,0.3) transparent; }
+  .entry { position:relative; padding-left:var(--margin); margin-bottom:1.6rem; }
+  .entry .who {
+    position:absolute; left:0; width:calc(var(--margin) - 0.7rem); text-align:right; top:0.45em;
+    font-family:var(--mono); font-size:0.5rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--wax); opacity:0.85;
+  }
+  .entry.you .who { color:var(--blueblack); opacity:0.7; }
+  .king-text { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.14rem,2.5vw,1.3rem); line-height:1.78; color:var(--ink); max-width:34em; padding-right:0.6rem; }
+  .king-text .frag { opacity:0; transform:translateY(6px); transition:opacity 1.1s ease, transform 1.1s ease; }
+  .king-text .frag.in { opacity:1; transform:none; }
+  .king-text .frag + .frag { margin-top:0.85em; }
+  .king-text .caret { display:inline-block; width:0.42em; height:0.95em; margin-left:0.08em; vertical-align:-0.14em; background:rgba(20,18,16,0.35); animation:caretBlink 1.05s steps(1,end) infinite; }
+  @keyframes caretBlink { 0%,54%{opacity:0.8;} 55%,100%{opacity:0;} }
+  .you-text { font-family:var(--hand); font-size:clamp(1.22rem,2.7vw,1.4rem); line-height:2.05rem; color:var(--blueblack); max-width:32em; padding-right:0.8rem; white-space:pre-wrap; word-wrap:break-word;
+    transition:color 1.3s ease; }
+  .entry.you.wet .you-text { color:var(--blueblack-wet); transition:none; }
+  .mark { text-align:center; margin:0.6rem auto 1.6rem; font-family:var(--mono); font-size:0.54rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ash); white-space:pre; opacity:0; animation:rise 1.4s ease forwards; }
+  .thinking { padding-left:var(--margin); display:flex; align-items:center; margin-bottom:1.2rem; }
+  .thinking .dot { width:5px; height:5px; border-radius:50%; background:rgba(20,18,16,0.35); animation:thinkPulse 2.4s ease-in-out infinite; }
+  @keyframes thinkPulse { 0%,100%{opacity:0.2; transform:scale(0.85);} 50%{opacity:0.8; transform:scale(1);} }
+  @keyframes rise { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .pad-input { flex:0 0 auto; padding:0.6rem 1.2rem calc(1rem + env(safe-area-inset-bottom)) var(--margin);
+    background:linear-gradient(rgba(247,243,234,0), rgba(247,243,234,0.96) 30%); }
+  .write-row { display:flex; align-items:flex-end; gap:10px; border-bottom:1px solid rgba(31,42,68,0.35); padding-bottom:0.3rem; transition:border-color 0.5s ease; }
+  .pad-input:focus-within .write-row { border-color:var(--blueblack); }
+  .pencil { font-family:var(--serif); color:var(--ink-soft); font-size:1rem; line-height:1.9; }
+  .ask { flex:1; background:transparent; border:none; outline:none; resize:none; padding:0;
+    font-family:var(--hand); font-size:clamp(1.22rem,2.7vw,1.4rem); line-height:2.05rem; color:var(--blueblack); caret-color:var(--blueblack); max-height:26vh; }
+  .ask::placeholder { color:transparent; }
+  .ask:disabled { opacity:0.45; }
+  .ask-btn { flex:0 0 auto; display:flex; align-items:center; gap:0.5em; background:none; border:1px solid rgba(31,42,68,0.3); border-radius:2px; cursor:pointer;
+    padding:0.32rem 0.7rem; line-height:1; color:var(--blueblack); font-family:var(--mono); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase;
+    transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease; margin-bottom:0.3rem; }
+  .ask-btn svg { width:14px; height:14px; display:block; }
+  .ask-btn:hover:not([disabled]), .ask-btn:focus-visible { background:rgba(31,42,68,0.07); border-color:var(--blueblack); }
+  .ask-btn[disabled] { opacity:0.32; cursor:default; }
+  .pad-note { margin-top:0.55rem; font-family:var(--mono); font-size:0.5rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); min-height:1.2em; }
+  .turn-page { display:none; margin:0.6rem auto 0; padding:0.62rem 1.5rem; cursor:pointer; background:none;
+    border:1px solid rgba(31,42,68,0.35); border-radius:2px; color:var(--ink); font-family:var(--mono); font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
+    opacity:0; transition:opacity 1.2s ease, border-color 0.4s ease, background 0.4s ease; }
+  .turn-page.show { display:block; opacity:1; }
+  .turn-page .turn-sub { display:block; margin-top:0.45em; font-size:0.56rem; letter-spacing:0.14em; color:var(--ink-soft); text-transform:none; }
+  .turn-page:hover, .turn-page:focus-visible { border-color:var(--ink); background:rgba(31,42,68,0.06); }
+
+  /* ════════════════ THE LAST SHEET ════════════════ */
+  .colophon { margin-top:2.6em; opacity:0; transition:opacity 1.4s ease; font-family:var(--display); color:var(--ember); letter-spacing:0.1em; line-height:2; font-size:clamp(0.9rem,2.3vw,1.05rem); }
+  .colophon.show { opacity:1; }
+  .colophon .sig { letter-spacing:0.5em; color:var(--ember-dim); font-size:1rem; display:block; margin-bottom:0.6em; }
+  .colophon .work { letter-spacing:0.3em; text-transform:uppercase; display:block; margin-bottom:0.5em; }
+  .colophon .who { font-family:var(--serif); letter-spacing:0.06em; color:var(--bone-dim); display:block; font-size:1.05em; }
+  .colophon .where { font-family:var(--mono); font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--ash); display:block; margin-top:0.4em; }
+  .colophon .live { font-family:var(--serif); font-style:italic; letter-spacing:0.04em; color:var(--bone-dim); display:block; margin-top:1.4em; font-size:1.05em; }
+  .ways { display:flex; flex-wrap:wrap; justify-content:center; gap:1.2em; margin-top:3em; opacity:0; transition:opacity 1.4s ease; pointer-events:none; }
+  .ways.show { opacity:1; pointer-events:auto; }
+  .way { display:flex; flex-direction:column; align-items:center; gap:0.5em; min-width:12em; cursor:pointer; text-decoration:none;
+    padding:0.9em 1.6em; background:none; border:1px solid var(--ember-dim); border-radius:2px; color:var(--ember);
+    font-family:var(--mono); font-size:0.82em; letter-spacing:0.16em; text-transform:uppercase; transition:color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
+  .way .way-sub { font-size:0.7em; letter-spacing:0.1em; text-transform:none; color:var(--ash); transition:color 0.4s ease; }
+  .way:hover, .way:focus-visible { color:var(--bone); border-color:var(--ember); background:rgba(201,162,39,0.07); }
+  .way:hover .way-sub, .way:focus-visible .way-sub { color:var(--bone-dim); }
+
+  /* ════════════════ Mobile ════════════════ */
+  @media (max-width:600px) {
+    .sigil-home { top:12px; left:12px; }
+    .sheet { height:clamp(470px, 82vh, 760px); }
+    .prose p { text-align:left; hyphens:manual; -webkit-hyphens:manual; }
+    .room-head { padding-left:14px; padding-right:14px; }
+    .notebook { --margin:3.7rem; width:min(96vw, 600px); margin-top:12px; }
+    .entry .who { font-size:0.42rem; letter-spacing:0.12em; white-space:nowrap; }
+    .pad { padding-right:0.9rem; }
+    .chit { padding:1.3rem 1.1rem 1.2rem; }
+    .ways { flex-direction:column; align-items:stretch; }
+  }
+  @media (max-height:700px) {
+    .segdisplay { margin-bottom:2em; width:clamp(120px,24vw,170px); }
+    .dark-inner { font-size:0.8rem; }
+  }
+
+  /* ════════════════ Reduced motion ════════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    .dark-line, .dark-enter, .colophon, .ways, .sheet, .chit, .turn-page, .king-text .frag, .you-text, .sheet-body { transition:none; }
+    .seg-lit, .enter-btn .arr, .advance-btn.show, .thinking .dot, .king-text .caret { animation:none; }
+    .king-text .frag { opacity:1; transform:none; }
+    .king-text .caret { opacity:0; }
+    .mark { animation:none; opacity:1; }
+    #dark, #press { transition:none; }
+    #interview.is-active, #last.is-active { animation:none; }
+    html { scroll-behavior:auto; }
+  }
+
+  /* ════════════════ Print: the story, on paper ════════════════ */
+  @media print {
+    html, body { background:#fff !important; color:#000; }
+    #dark, #interview, #last, .corner, .sheet, .stack::before, .stack::after, .chit-wrap, .advance, noscript { display:none !important; }
+    #press { display:block !important; padding:0; min-height:0; }
+    .stack { width:auto; }
+    html.js .source, .source { display:block !important; }
+    .source .title-sheet { height:auto; padding:30vh 0 0; break-after:page; page-break-after:always; }
+    .source .title-sheet h1, .source .title-sheet .author, .source .title-sheet .imprint, .source .title-sheet .subtitle { color:#000; }
+    .source .chapter { break-inside:auto; margin:0 auto 2.2rem; max-width:62ch; }
+    .source .chapter + .chapter { margin-top:2.6rem; }
+    .source .chapter-head { break-inside:avoid; page-break-inside:avoid; break-after:avoid; page-break-after:avoid; margin-top:1.4rem; }
+    .source .cut { width:64px; break-inside:avoid; page-break-inside:avoid; break-after:avoid; page-break-after:avoid; }
+    .source .prose p.first { break-before:avoid; page-break-before:avoid; }
+    .source .prose p.letter-open { break-after:avoid; page-break-after:avoid; }
+    .source .prose p.sign { break-before:avoid; page-break-before:avoid; }
+    .source .prose p { font-size:11.5pt; line-height:1.55; color:#000; orphans:3; widows:3; }
+    .source .end-orn { color:#000; break-after:avoid; page-break-after:avoid; }
+    .print-colophon { display:block !important; margin-top:2.2rem; break-before:avoid; page-break-before:avoid; text-align:center; font-family:var(--book); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:#000; }
+  }
+  .print-colophon { display:none; }
+</style>
+</head>
+<body data-stage="dark">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE CUTS (hidden sprite, struck in ink, one colour at most)  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="cut-frame">
+      <rect x="3" y="3" width="90" height="90" fill="none" stroke="#141210" stroke-width="1.6"/>
+    </g>
+
+    <!-- frontispiece: the nib, and one drop of blue-black -->
+    <symbol id="cut-nib" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <rect x="38" y="9" width="20" height="13" rx="2" fill="#141210"/>
+      <path d="M48 70 L31 44 Q31 26 48 20 Q65 26 65 44 Z" fill="#f4efe4" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="48" y1="70" x2="48" y2="48" stroke="#141210" stroke-width="2.4"/>
+      <circle cx="48" cy="43" r="3.6" fill="#f4efe4" stroke="#141210" stroke-width="2.4"/>
+      <path d="M48 76 q-6 8 0 12 q6 -4 0 -12 Z" fill="#1f2a44"/>
+    </symbol>
+
+    <!-- I: a wall clock stopped at midnight -->
+    <symbol id="cut-clock" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <circle cx="48" cy="49" r="30" fill="#f4efe4" stroke="#141210" stroke-width="3"/>
+      <g stroke="#141210" stroke-width="2" stroke-linecap="round">
+        <line x1="48" y1="23" x2="48" y2="28"/><line x1="74" y1="49" x2="69" y2="49"/>
+        <line x1="48" y1="75" x2="48" y2="70"/><line x1="22" y1="49" x2="27" y2="49"/>
+        <line x1="61" y1="26.5" x2="59" y2="30"/><line x1="70.5" y1="36" x2="67" y2="38"/>
+        <line x1="70.5" y1="62" x2="67" y2="60"/><line x1="61" y1="71.5" x2="59" y2="68"/>
+        <line x1="35" y1="71.5" x2="37" y2="68"/><line x1="25.5" y1="62" x2="29" y2="60"/>
+        <line x1="25.5" y1="36" x2="29" y2="38"/><line x1="35" y1="26.5" x2="37" y2="30"/>
+      </g>
+      <line x1="48" y1="49" x2="48" y2="30" stroke="#141210" stroke-width="4.2" stroke-linecap="round"/>
+      <line x1="48" y1="49" x2="48" y2="36" stroke="#141210" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="48" cy="49" r="2.6" fill="#8a1c1c"/>
+    </symbol>
+
+    <!-- II: the ink bottle open like a small black mouth, the pen beside it -->
+    <symbol id="cut-inkwell" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <path d="M26 46 h30 v-9 h-8 v-8 h-14 v8 h-8 Z M26 46 v30 q0 4 4 4 h22 q4 0 4 -4 v-30 Z" fill="#f4efe4" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="26" y="52" width="30" height="24" fill="#141210"/>
+      <ellipse cx="41" cy="29" rx="6" ry="2.4" fill="#141210"/>
+      <path d="M78 16 L62 62 L58 74 L66 64 L82 20 Z" fill="#f4efe4" stroke="#141210" stroke-width="2.8" stroke-linejoin="round"/>
+      <path d="M58 74 L54 84 L62 76 Z" fill="#141210"/>
+      <line x1="78" y1="16" x2="82" y2="20" stroke="#b1851f" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- III: the envelope, sealed in red -->
+    <symbol id="cut-envelope" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <rect x="16" y="28" width="64" height="44" rx="2" fill="#f4efe4" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M16 30 L48 56 L80 30" fill="none" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M17 71 L40 50 M79 71 L56 50" fill="none" stroke="#141210" stroke-width="2"/>
+      <circle cx="48" cy="58" r="9" fill="#8a1c1c" stroke="#5a1212" stroke-width="1.5"/>
+      <path d="M48 52 L53 58 L48 64 L43 58 Z" fill="none" stroke="#f4efe4" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- IV: the microphone old enough to have seen war, the red light lit -->
+    <symbol id="cut-mic" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <rect x="35" y="14" width="26" height="42" rx="12" fill="#f4efe4" stroke="#141210" stroke-width="3"/>
+      <g stroke="#141210" stroke-width="2" stroke-linecap="round">
+        <line x1="40" y1="26" x2="56" y2="26"/><line x1="40" y1="33" x2="56" y2="33"/>
+        <line x1="40" y1="40" x2="56" y2="40"/><line x1="41" y1="47" x2="55" y2="47"/>
+      </g>
+      <path d="M30 40 v8 q0 14 18 14 q18 0 18 -14 v-8" fill="none" stroke="#141210" stroke-width="2.6"/>
+      <line x1="48" y1="62" x2="48" y2="78" stroke="#141210" stroke-width="3"/>
+      <path d="M32 82 q16 -6 32 0" fill="none" stroke="#141210" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="78" cy="18" r="4" fill="#8a1c1c"/>
+    </symbol>
+
+    <!-- V: candles, lit -->
+    <symbol id="cut-candles" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <g fill="#f4efe4" stroke="#141210" stroke-width="2.8" stroke-linejoin="round">
+        <rect x="22" y="48" width="12" height="30" rx="1.5"/>
+        <rect x="42" y="38" width="12" height="40" rx="1.5"/>
+        <rect x="62" y="54" width="12" height="24" rx="1.5"/>
+      </g>
+      <g stroke="#141210" stroke-width="2.2" stroke-linecap="round">
+        <line x1="28" y1="48" x2="28" y2="43"/><line x1="48" y1="38" x2="48" y2="33"/><line x1="68" y1="54" x2="68" y2="49"/>
+      </g>
+      <g fill="#b1851f">
+        <path d="M28 43 c6 -7 4 -12 0 -16 c-4 4 -6 9 0 16 Z"/>
+        <path d="M48 33 c7 -8 5 -14 0 -18 c-5 4 -7 10 0 18 Z"/>
+        <path d="M68 49 c6 -7 4 -12 0 -16 c-4 4 -6 9 0 16 Z"/>
+      </g>
+      <line x1="14" y1="79" x2="82" y2="79" stroke="#141210" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- VI: the ribbon, tied -->
+    <symbol id="cut-ribbon" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <g fill="#3f6b4a" stroke="#141210" stroke-width="2.6" stroke-linejoin="round">
+        <path d="M48 46 C34 30 14 32 18 46 C22 58 40 52 48 46 Z"/>
+        <path d="M48 46 C62 30 82 32 78 46 C74 58 56 52 48 46 Z"/>
+        <path d="M44 48 L30 80 L40 76 L48 54 Z"/>
+        <path d="M52 48 L66 80 L56 76 L48 54 Z"/>
+        <rect x="42" y="40" width="12" height="12" rx="3"/>
+      </g>
+    </symbol>
+
+    <!-- VII: the signet ring -->
+    <symbol id="cut-ring" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <ellipse cx="48" cy="56" rx="22" ry="24" fill="none" stroke="#141210" stroke-width="7"/>
+      <ellipse cx="48" cy="56" rx="22" ry="24" fill="none" stroke="#b1851f" stroke-width="3"/>
+      <rect x="34" y="18" width="28" height="22" rx="4" fill="#b1851f" stroke="#141210" stroke-width="3"/>
+      <path d="M48 22 L55 29 L48 36 L41 29 Z" fill="none" stroke="#141210" stroke-width="2.2" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- VIII: the post van -->
+    <symbol id="cut-van" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <path d="M14 66 V38 h38 l12 -12 h14 q6 0 6 6 V66 Z" fill="#8a1c1c" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M54 38 l10 -10 h12 q3 0 3 3 V38 Z" fill="#f4efe4" stroke="#141210" stroke-width="2.4" stroke-linejoin="round"/>
+      <rect x="20" y="44" width="16" height="10" fill="#f4efe4" stroke="#141210" stroke-width="2"/>
+      <circle cx="30" cy="68" r="8" fill="#f4efe4" stroke="#141210" stroke-width="3"/>
+      <circle cx="68" cy="68" r="8" fill="#f4efe4" stroke="#141210" stroke-width="3"/>
+      <circle cx="30" cy="68" r="2.4" fill="#141210"/><circle cx="68" cy="68" r="2.4" fill="#141210"/>
+    </symbol>
+
+    <!-- IX: the roll call, names and ticks -->
+    <symbol id="cut-rollcall" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <rect x="24" y="14" width="48" height="68" rx="1.5" fill="#f4efe4" stroke="#141210" stroke-width="3"/>
+      <g stroke="#141210" stroke-width="2.4" stroke-linecap="round">
+        <line x1="42" y1="28" x2="64" y2="28"/><line x1="42" y1="40" x2="62" y2="40"/>
+        <line x1="42" y1="52" x2="64" y2="52"/><line x1="42" y1="64" x2="60" y2="64"/>
+      </g>
+      <g fill="none" stroke="#141210" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 28 l3 3 l6 -7"/><path d="M30 40 l3 3 l6 -7"/><path d="M30 64 l3 3 l6 -7"/>
+      </g>
+      <path d="M30 52 l3 3 l6 -7" fill="none" stroke="#8a1c1c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- X: the sapling -->
+    <symbol id="cut-sapling" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <line x1="48" y1="82" x2="48" y2="40" stroke="#141210" stroke-width="3.4" stroke-linecap="round"/>
+      <g fill="none" stroke="#141210" stroke-width="2.6" stroke-linecap="round">
+        <path d="M48 60 q-10 -4 -16 -14"/><path d="M48 52 q10 -4 16 -16"/><path d="M48 44 q-6 -6 -6 -16"/><path d="M48 40 q4 -8 12 -10"/>
+      </g>
+      <g fill="#141210">
+        <ellipse cx="32" cy="45" rx="5.5" ry="3.6" transform="rotate(-35 32 45)"/>
+        <ellipse cx="64" cy="35" rx="5.5" ry="3.6" transform="rotate(35 64 35)"/>
+        <ellipse cx="42" cy="27" rx="5" ry="3.4" transform="rotate(-70 42 27)"/>
+      </g>
+      <ellipse cx="60" cy="29" rx="5" ry="3.4" transform="rotate(60 60 29)" fill="#b1851f"/>
+      <path d="M22 82 q26 -5 52 0" fill="none" stroke="#141210" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- XI: Theo's sun, radiating fiercely -->
+    <symbol id="cut-sun" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <circle cx="48" cy="48" r="13" fill="#b1851f" stroke="#141210" stroke-width="2.4"/>
+      <g stroke="#b1851f" stroke-width="3.2" stroke-linecap="round">
+        <line x1="48" y1="30" x2="48" y2="12"/><line x1="48" y1="66" x2="48" y2="86"/>
+        <line x1="30" y1="48" x2="10" y2="48"/><line x1="66" y1="48" x2="84" y2="48"/>
+        <line x1="35" y1="35" x2="22" y2="21"/><line x1="61" y1="35" x2="76" y2="20"/>
+        <line x1="35" y1="61" x2="20" y2="75"/><line x1="61" y1="61" x2="74" y2="74"/>
+        <line x1="41" y1="31" x2="36" y2="15"/><line x1="55" y1="31" x2="62" y2="14"/>
+        <line x1="31" y1="41" x2="14" y2="36"/><line x1="65" y1="55" x2="82" y2="61"/>
+      </g>
+    </symbol>
+
+    <!-- XII: the bicycle -->
+    <symbol id="cut-bicycle" viewBox="0 0 96 96">
+      <use href="#cut-frame"/>
+      <circle cx="28" cy="62" r="14" fill="none" stroke="#141210" stroke-width="3"/>
+      <circle cx="68" cy="62" r="14" fill="none" stroke="#141210" stroke-width="3"/>
+      <g fill="none" stroke="#141210" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 62 L42 40 L60 40 L68 62"/><path d="M42 40 L48 62 L68 62"/><path d="M48 62 L28 62"/>
+        <path d="M60 40 L56 30"/><path d="M42 40 L40 32"/>
+      </g>
+      <path d="M34 31 h12" stroke="#141210" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M52 30 h9" stroke="#141210" stroke-width="3.2" stroke-linecap="round"/>
+      <circle cx="48" cy="62" r="2.6" fill="#b1851f"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<a href="../" class="corner sigil-home" title="Return to Narratives" aria-label="Return to Narratives">&#9674;</a>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE DARK SCREEN                                              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="dark" class="stage is-active" aria-label="The dark screen">
+  <div class="dark-inner">
+    <div class="segdisplay" id="segdisplay" role="img" aria-label="A kettle's display blinking eighty-eight, eighty-eight">
+      <svg viewBox="0 0 250 100" aria-hidden="true">
+        <!-- four eights and a colon: every segment lit -->
+        <g id="seg8">
+          <polygon points="8,4 44,4 40,10 12,10"/>
+          <polygon points="46,6 46,46 40,42 40,12"/>
+          <polygon points="46,54 46,94 40,88 40,58"/>
+          <polygon points="8,96 44,96 40,90 12,90"/>
+          <polygon points="6,54 6,94 12,88 12,58"/>
+          <polygon points="6,6 6,46 12,42 12,12"/>
+          <polygon points="10,50 14,46 38,46 42,50 38,54 14,54"/>
+        </g>
+        <g class="seg-ghost"><use href="#seg8"/><use href="#seg8" x="56"/><use href="#seg8" x="138"/><use href="#seg8" x="194"/><circle cx="123" cy="32" r="4"/><circle cx="123" cy="68" r="4"/></g>
+        <g class="seg-lit"><use href="#seg8"/><use href="#seg8" x="56"/><use href="#seg8" x="138"/><use href="#seg8" x="194"/><circle cx="123" cy="32" r="4"/><circle cx="123" cy="68" r="4"/></g>
+      </svg>
+    </div>
+    <div id="darkLines">
+      <h1 class="sr-only">The Last Ink</h1>
+      <p class="dark-line">This is the last screen.</p>
+      <p class="dark-line">Everything after it is set in type, on paper.</p>
+      <p class="dark-line">Read it the way you would read a thing you could not scroll.<br/>One sheet at a time.</p>
+      <p class="dark-line">Somewhere in it you will be handed a notebook.<br/>Write in it in your own words.<br/>Nothing you write is kept by anyone but you.</p>
+    </div>
+    <div class="dark-enter" id="darkEnter">
+      <div class="enter-eyebrow">it has been blinking since before you arrived</div>
+      <button type="button" class="enter-btn" id="takeSheetBtn">Take the first sheet <span class="arr" aria-hidden="true">&#9674;</span></button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE SHEETS. The story, set in type. It does not move.        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<main id="press" class="stage" aria-label="The Last Ink">
+  <div class="stack" id="stack">
+
+    <!-- Source of truth, hidden on screen. The paginator fits these into
+         sheets that never scroll and lays one on the stack at a time. In
+         print, this block is the edition. -->
+    <div class="source" id="source">
+      <section class="chapter title-sheet" id="title" data-kind="title" aria-labelledby="title-h">
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-nib"/></svg></figure>
+        <h1 id="title-h">The Last Ink</h1>
+        <p class="subtitle">A meditation on the necessity of ink and paper in a silicone-mad world</p>
+        <div class="title-rule"></div>
+        <div class="author">Jacob E. Thomas, PhD</div>
+        <div class="imprint">The COMPANION Protocol &#183; Narratives &#183; III</div>
+      </section>
+
+      <section class="chapter" id="prologue" data-kind="prologue" aria-labelledby="ch-prologue">
+        <header class="chapter-head"><h2 class="chapter-title prologue-title" id="ch-prologue">PROLOGUE</h2><div class="rule"></div></header>
+        <div class="prose">
+          <p class="first">I was raised inside a printing business in Austin, Texas: a family shop, which is to say a family liturgy. My childhood smelled of solvent and hot paper. I learned to read type in the mirror world of a lithography department, upside down and backward, cigar smoke thick in the air. I learned that a word is a physical event. It has a weight you can quote in pounds per ream, 500 sheets at a time. It has a cost you can quote per plate. In the shop, an error was not deleted. An error was paid for: in film, in aluminum, in an afternoon of a grown man's labor. That was my first theology. Language is accountable. The Word is work.</p>
+          <p>I left the shop and went to work inside the Flood. I took a doctorate in the sciences of behavior and contagion, and I now earn my living in digital marketing, building the machines this story fears: systems that write, sort, rank, and persuade at industrial scale. I am not a bystander wringing his hands at the waterline. I am one of the engineers of the weather. So believe what I tell you from inside the works. The Flood is not water. The Flood is speech without weight, the billionth frictionless sentence falling upon the one sentence that mattered, and burying it.</p>
+          <p>My terror of artificial intelligence is not the terror of the cinema. I do not fear the machine that hates us. I fear the machine that agrees with us at scale, that autocompletes the vow, the apology, the eulogy, until no one alive remembers what a costly sentence truly costs. I fear a civilization that stores its whole memory in rented electricity and calls this progress, having agreed, politely and without a vote, to forget on schedule.</p>
+          <p>So I keep ink and paper. Not as nostalgia. As redundancy, the way an ark is redundancy. Ink dries into fiber like a vow. Paper asks for no password, no subscription, no grid; it asks only for light and one living reader. What is written by hand is witnessed, and what is witnessed can hold.</p>
+          <p>What follows is a fable of the first time the Flood goes silent. I wrote it to remember, ahead of the hour, what holds.</p>
+          <p class="dateline">AUSTIN, TEXAS · JULY 2026</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch-i" data-kind="chapter" data-num="I" aria-labelledby="ch-i-h">
+        <header class="chapter-head"><div class="chapter-num">I</div><h2 class="chapter-title" id="ch-i-h">The Day the Clocks Stopped</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-clock"/></svg></figure>
+        <div class="prose">
+          <p class="first">The morning the clocks stopped, Sarah Whitaker’s kettle boiled itself dry. She didn’t notice until she smelled the scorched rubber of the handle and saw the digital display blinking an angry “88:88,” as if time were a joke it had been playing on her from the beginning.</p>
+          <p>Her son, Theo, was leaning over the window box, counting the daisies with a seriousness that made her heart ache. “Mum,” he said without looking up, “is school cancelled if time is cancelled?”</p>
+          <p>Somewhere across London, alarms howled without pattern, drones hovered as if listening for orders they could no longer hear, and traffic lights gave up the pretense of alternating. People stood on their front steps with their phones raised to the sky in a mute prayer, the way ancient people lifted sacrificial birds. They waited for a bar of signal like a miracle.</p>
+          <p>Sarah touched the screen of her own phone. It was perfectly black and perfectly reflective. In it, she could just make out her face, the worn sweater, the way one lock of hair would never stay behind her ear.</p>
+          <p>In the living room, the radio breathed static. It was a battered, battery-powered thing she kept because it had once been her father’s.  Then, as if clearing its throat, it found a voice. Not the smooth confidence of a presenter. A thin, human voice, tired from use, clipped but certain.</p>
+          <p>“…This is the BBC Home Service. Repeat. The BBC Home Service. The digital networks are compromised. Remain calm. Local authorities will issue paper advisories. Listen for further instructions, hourly.”</p>
+          <p>Theo looked up. “Paper advisories?”</p>
+          <p>Sarah almost laughed. “Letters,” she said. “We’re going back to letters.”</p>
+          <p>He nodded, accepting this as the kind of magic grown-ups arranged when machines broke. He pressed his forehead to the glass and fogged it, and in his little cloud he drew a sun.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-ii" data-kind="chapter" data-num="II" aria-labelledby="ch-ii-h">
+        <header class="chapter-head"><div class="chapter-num">II</div><h2 class="chapter-title" id="ch-ii-h">The Old Room</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-inkwell"/></svg></figure>
+        <div class="prose">
+          <p class="first">In Windsor Castle, a man of eighty-eight sat at a table that had supported the elbows of kings and queens since the wood was young. The table had been scratched and polished and scratched again, and now it held a sheet of thick vellum and a fountain pen, the ink bottle open like a small black mouth.</p>
+          <p>Charles stared at his hands. They were the hands people had remarked upon all his life. Square, slightly swollen, the curls of veins like old vines up the wrists. He flexed them. They trembled, but not enough to keep him from writing.</p>
+          <p>He had slept badly. He had dreamed he was a boy again, standing at the edge of a river, and the river was full of letters, thousands of them, unopened, tumbling past. He woke with the sense that he had missed something vital, something he had been meant to read and answer. And then the equerries were at the door, and the news was there before words: screens black, banks frozen, Parliament’s vote tallies corrupted, the Prime Minister unreachable, the Cabinet in fragments.</p>
+          <p>A footman brought tea. The cup rattled against its saucer. “Your Majesty,” the Private Secretary said quietly, “the Privy Council will be here within the hour. We’re proceeding by paper. The Armed Forces Council are en route.”</p>
+          <p>Charles took a breath that felt like a cold lake poured into his lungs. “Thank you,” he said. Then, almost to himself: “Find the pens.”</p>
+          <p>He had always kept pens. People sent him pens engraved with commemorations, with prayers, with their daughters’ names. He found the one he wanted in the drawer: a simple one, blue-black, worn to a shine in exactly the places his fingers fit.</p>
+          <p>He uncapped it, and the smell of ink rose and steadied him. It was a scent like earth and evening and the inside of well-loved books. “If the nation requires poetry,” he murmured, thinking of an old line, “give it a signature.”</p>
+          <p>At the far end of the table, a young clerk unfurled a parchment like a small sail. “Your Majesty, the proclamation is prepared. It affirms continuity of government by analogue registry, the paper roll call for Parliament, the immediate reauthorization of food and fuel corridors, and a temporary order to the Commonwealth to coordinate humanitarian response under Crown aegis.”</p>
+          <p>Charles nodded. He read it once, lips moving silently. He remembered his mother telling him, when he was very young, that the Crown was a coat you wore on behalf of the people. “It keeps you warm only if you hold it open for them,” she had said.</p>
+          <p>He lifted the pen.</p>
+          <p>“My hand will be legible,” he said aloud, and the clerk did not quite hide her smile.</p>
+          <p>The first stroke was wobbly. The second held. And then the name unfurled in dark, wet ink. Full, ceremonial, and burdened with history. It was the same hand that had signed cards for his grandchildren, the same that had planted saplings, that had comforted the bereaved with illegible scribbles that still meant love.</p>
+          <p>When he finished, he set the pen down with reverence.</p>
+          <p>“Seal it,” he said. “Then find me a microphone that plugs into a wall.”</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-iii" data-kind="chapter" data-num="III" aria-labelledby="ch-iii-h">
+        <header class="chapter-head"><div class="chapter-num">III</div><h2 class="chapter-title" id="ch-iii-h">The Letter That Saved Mrs. Finch</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-envelope"/></svg></figure>
+        <div class="prose">
+          <p class="first">In a sorting centre that had been a museum three weeks earlier, men and women in high-vis jackets fed envelopes into canvas sacks. The Royal Mail, that sleeping dragon, had woken with a quiet dignity and moved from its lair, shedding dust and surprise. Old vans were wheeled out and coaxed into breath. Bicycles were oiled. Postmen and women who had thought their knees had seen their last winter bent and rose and bent again.</p>
+          <p>Tom Ellis, thirty-eight, who had joined the Post years ago because his grandfather had worn the red and because walking felt like a prayer, slung two heavy satchels over his shoulder and stepped into a world that had remembered how to wait.</p>
+          <p>The letter on the top of his stack was heavier than the others. The vellum was thick enough to stop a small bullet. The seal was red, deep, immediate. He touched it with the back of his finger, awe and worry mixing in his belly.</p>
+          <p>He carried it carefully down the street, past the shuttered shops, the chalkboard that still proclaimed quiz night in hopeful letters, past the window where a woman had put three jars of beans and two of jam and a note that read need some? take some.</p>
+          <p>At 119 he knocked.</p>
+          <p>A chain rattled. The door opened an inch. Mrs. Finch, who had taught math to three generations and baked wedding cakes for half the neighborhood, peered out, her hair a white halo gone to thunderstorms.</p>
+          <p>“Post, Mrs. Finch,” Tom said gently. “From…well. From the Palace.”</p>
+          <p>“The Palace?” she said, as if he’d said Mars. She reached up to straighten the chain and then, with a defiant sniff, unhooked it. “Well, don’t just hover on the step like a scarecrow, Thomas Ellis. Bring it in.”</p>
+          <p>He set the letter on her table and watched her fingers run over the ridges of the seal. She broke it cleanly and read. Halfway down the page, her free hand found the back of a chair and stayed there.</p>
+          <p>She read it again. When she looked up, her eyes were not any less tired, but they were steadier.</p>
+          <p>“It says,” she said, “that there will be bread at St. Luke’s at four, and medicine at the surgery at six, and that my niece in Leeds is alive, because they’ve reconnected the phone lines by wire. Wires! Imagine that. And it says…” She swallowed. “It says we are not abandoned. It says he has signed his name.”</p>
+          <p>Tom nodded. He felt something in him loosen that had been clenched for as long as he could remember, perhaps longer. In the hall, the clock, which had been frozen at midnight, gave a soft, astonished tick.</p>
+          <p>“Will you answer?” he said. The question surprised him. It shouldn’t have. Letters begged replies.</p>
+          <p>Mrs. Finch looked at him as if he had offered her a strange treasure. “Yes,” she said. “I believe I will.”</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-iv" data-kind="chapter" data-num="IV" aria-labelledby="ch-iv-h">
+        <header class="chapter-head"><div class="chapter-num">IV</div><h2 class="chapter-title" id="ch-iv-h">The Audience</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-mic"/></svg></figure>
+        <div class="prose">
+          <p class="first">The microphone was old enough to have seen war. It was heavy, the cord thick and cloth-wrapped. It hummed to itself like a cat purring while resting in the lap of the speaker. Charles placed his hands on either side of it the way you hold a face you love.</p>
+          <p>The camera was analog, too, and behind it the engineer wore a cardigan that had belonged to his father. The little red light winked to life, and Charles remembered every Christmas broadcast, every wreath and careful smile. This, he thought, would be different. This would have to be true.</p>
+          <p>He had asked that the room be simple. A table. The pen. The ink bottle, because he wanted it to be seen and trusted. The seal lying like a red coin. No banners. No medals. No crown.</p>
+          <p>He began without preamble.</p>
+          <p>“My fellow citizens,” he said. His voice surprised him. It came out thin, yes, but strong at the edges, like a well-made blade. “We have arrived in a moment when tools we trusted have gone silent. The lights you expected to flick on at the switch do not obey. The numbers that were once saved with a password are not there when you call them back. The systems you cannot touch have revealed how easily they can be taken from you.</p>
+          <p>“And yet.”</p>
+          <p>He let the words settle like ash.</p>
+          <p>“And yet we are not a people of systems. We are a people of hands and hearts. We built our homes with timber you can splinter on. We baked bread that sang when it cooled. We wrote letters, and we kept them, because they had weight. We loved each other in the presence of witnesses and signed our names, and that meant something.</p>
+          <p>“I have signed my name today to the following: that this Parliament shall reassemble by paper roll call at Westminster; that bread and medicine shall move on roads guarded by those sworn to protect you; that the wires shall hum again between towns, and news shall arrive by voice and by ink; that our Commonwealth shall share what we have, and ask for what we need. I have signed my name to say: we are not abandoned.</p>
+          <p>“I am an old man,” he said then, suddenly and without ceremony. “My hands shake. But they can still write. They have planted trees that I knew I would not live to sit beneath. I ask you now to do the same. Plant what you will not see flower. Write what your grandchildren may find in a drawer and know, then, that you were brave for them.</p>
+          <p>“Courage, then. We shall proceed.”</p>
+          <p>He inclined his head. He did not smile. It did not seem a smiling day. The red light went out.</p>
+          <p>In the quiet that followed, the engineer took off his headphones and cried, private as rain on an empty field.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-v" data-kind="chapter" data-num="V" aria-labelledby="ch-v-h">
+        <header class="chapter-head"><div class="chapter-num">V</div><h2 class="chapter-title" id="ch-v-h">A Commonwealth of Small Lights</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-candles"/></svg></figure>
+        <div class="prose">
+          <p class="first">In Ottawa, the Governor General read the proclamation into a room full of candles and said, “Yes. We answer.”</p>
+          <p>In Canberra, the Prime Minister’s office was emptied of screens and the walls were scraped clean of graphs nobody trusted anymore. They received a bundle of paper tied with string, stamped with a red seal that made the intern who touched it feel like she’d found a lost coin on a beach. “Yes,” she said aloud to a room that had forgotten how to feel. “We answer.”</p>
+          <p>In Jamaica, a woman at a switchboard ran her fingers along connections like a harp and brought a village the voice of a sister they had assumed was gone. Her hands learned again the pleasure of solving something with touch and patience.</p>
+          <p>In a school in Lagos, where the net had always been patchy, the headboy showed his friends how to fold end-to-end letters into boats that could cross a flood without dissolving. They laughed. They wrote to cousins they had not spoken to in years. They sent lists of what they had and what they lacked. Somebody organized an exchange. Somebody else smuggled joy.</p>
+          <p>The world learned to live inside its skin again.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-vi" data-kind="chapter" data-num="VI" aria-labelledby="ch-vi-h">
+        <header class="chapter-head"><div class="chapter-num">VI</div><h2 class="chapter-title" id="ch-vi-h">The Girl with the Green Ribbon</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-ribbon"/></svg></figure>
+        <div class="prose">
+          <p class="first">At St. Luke’s at four, there was, as promised, bread. It was not perfectly sliced, and that seemed to make it taste better. Volunteers in aprons that had once read summer fete now read feed where the letters were smudged. Sarah tied a green ribbon around Theo’s wrist so she could find him in the moving, cheerful line.</p>
+          <p>She found her own mother near the tea urns, sitting as if benches had been made for her. “Look at you,” her mother said, and in the way she said it was all the relief and all the unsaid, <em>I thought the lines had swallowed you.</em> They held hands hard.</p>
+          <p>On the noticeboard someone had pinned a copy of the proclamation. People paused and touched the seal with the pads of their fingers as if meaning might rub off on them like pollen. Theo tugged Sarah’s sleeve.</p>
+          <p>“What does ‘aegis’ mean?” he asked.</p>
+          <p>“It means shield,” she said, and looked at his small face and thought, <em>Yes.</em> “It means the thing you hold up so the people behind you can walk.”</p>
+          <p>When they went home, the sun was thinking of its descent. In the hallway, the black phone sat on its little table like an animal that had finally come to heel. Sarah lifted the receiver and heard a dial tone that thrummed like a living thing. She laughed, a bright, astonished sound that startled even her.</p>
+          <p>She dialed her sister’s number by memory, by the shape of it in her fingers. The phone rang far away, and was answered. Voices crossed the wire as if crossing a bridge.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-vii" data-kind="chapter" data-num="VII" aria-labelledby="ch-vii-h">
+        <header class="chapter-head"><div class="chapter-num">VII</div><h2 class="chapter-title" id="ch-vii-h">After the Speech</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-ring"/></svg></figure>
+        <div class="prose">
+          <p class="first">Charles returned to the table. The ink bottle winked at him. The Private Secretary approached with the next document, and then the next. The day became a series of careful names, a rhythm as old as governance: hear, consider, sign, seal, dispatch. Between each signature he lifted his hands and placed them flat upon the wood to feel the steadying cool.</p>
+          <p>Once, he looked up to find the window catching the last of the light. His reflection hovered there, too transparent to be vain about. He saw his father’s profile there, sharp as a rule, and his mother’s eyes. He did not, he was relieved to learn, see a king. He saw a man bending, as any man might, to a labor he had not chosen but would do anyway.</p>
+          <p>Near evening, the Prime Minister arrived, pale, thinner, with the ash of scandal and fear still clinging like soot. The meeting was private, as such meetings always had been, even when the cameras swore transparency into existence.</p>
+          <p>“You may dismiss me,” the Prime Minister said, and the words, spoken without preface, sat between them like a beast that might decide to bite or curl up, depending on how it was handled.</p>
+          <p>Charles shook his head. “I may not,” he said simply. “But I will accept your resignation after Parliament reconvenes, so that you may answer properly for the days when you let machines do what men should have done. For now, you will help fix what can be fixed.”</p>
+          <p>The Prime Minister’s shoulders fell. He looked suddenly, briefly, like a boy whose prank had scorched a barn. “Yes, sir,” he said. He did not look up when he added, a whisper, “Thank you.”</p>
+          <p>When he had gone, Charles signed two more orders. The last was short, elegant, meant for no camera and no bulletin board. <em>To my grandchildren,</em> it began, <em>if you should ever wonder why we kept such old things—pens, trees, promises—know that when the new things failed, the old held. And because they held, so did we.</em></p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-viii" data-kind="chapter" data-num="VIII" aria-labelledby="ch-viii-h">
+        <header class="chapter-head"><div class="chapter-num">VIII</div><h2 class="chapter-title" id="ch-viii-h">The Road North</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-van"/></svg></figure>
+        <div class="prose">
+          <p class="first">What saved Mrs. Finch was not the letter itself, of course. What saved her was the corridor of hands that the letter set in motion.</p>
+          <p>At dawn the following day, Tom Ellis met a convoy at the edge of town. They had wooden crates and paper manifests written in careful cursive by a woman in a room that smelled of lemon polish. Tom signed for them with a fountain pen that had belonged to his grandfather. He loaded two crates marked insulin into the Post van and cinched them with rope. He drove the old van as if it had feelings.</p>
+          <p>The road north was broken in places. It had potholes like mouths and traffic lights stuck on amber like the world was forever caution. People waved him through like pilgrims in reverse. Once, a man tried to take a crate. Tom did not argue. He put the van in park, stepped down, and looked at the man until the man remembered himself. “We’re going to the surgery,” Tom said, “and they have a list.”</p>
+          <p>At the surgery, a nurse named Aisha rolled the crates into the cool room and touched each vial with a tenderness Tom would remember. “Bless you,” she said, and then, unexpected and fierce, she pressed her face to the wood and wept quietly.</p>
+          <p>Mrs. Finch received her vial that afternoon. She turned it in the light and thought it looked like mercy. When she closed her hand around it, she felt the thump of her own blood, stubborn, faithful.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-ix" data-kind="chapter" data-num="IX" aria-labelledby="ch-ix-h">
+        <header class="chapter-head"><div class="chapter-num">IX</div><h2 class="chapter-title" id="ch-ix-h">The Paper Parliament</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-rollcall"/></svg></figure>
+        <div class="prose">
+          <p class="first">Parliament reassembled by paper roll call three days after the proclamation. Members arrived on foot, by bicycle, in black cabs whose drivers refused payment. They wore sober suits and borrowed boots. They passed through doors held open by police who looked tired and proud.</p>
+          <p>Inside the chamber, the clerk read names as if taking attendance in a school where the fear was not of detention but of vanishing. Members answered “Present” in voices that betrayed how close tears were to the surface of their lives. Papers were passed hand to hand. Votes were marked with ink and counted by eyes, fingers sliding along columns, lips moving.</p>
+          <p>In the gallery, Charles sat like another column, his profile as classical as any carving. He did not speak. The Speaker did not acknowledge him beyond a nod as slight as the opening of a book. It was enough. Everyone in the room understood that the Crown’s presence was less a decoration than a hinge.</p>
+          <p>When the vote was taken on the Bread and Medicines Act, it passed in a wave that felt like light rolling over hills. For a moment, there was no party, no cleverness. There was relief. There was work.</p>
+          <p>Afterwards, Charles moved through the corridors where the walls had watched nations shift themselves like sleeping giants. He touched one with the palm of his hand and felt, astonishingly, the warm hum of life, as if the building were a creature that had survived a fever. He closed his eyes.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-x" data-kind="chapter" data-num="X" aria-labelledby="ch-x-h">
+        <header class="chapter-head"><div class="chapter-num">X</div><h2 class="chapter-title" id="ch-x-h">The Last Ink</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-sapling"/></svg></figure>
+        <div class="prose">
+          <p class="first">Winter prepared itself slowly, as if even seasons had learned caution. The world did not mend in a week. There were long nights when the radios only coughed and the post was delayed and tempers frayed along the fault lines where deprivation pressed. There were mistakes. There were opportunists. There were griefs that would unroll their sorrow for years.</p>
+          <p>But there were also small lights, so many of them that from above you could have mistaken the earth for a sky.</p>
+          <p>Theo learned to wind the clock in the hall with a key that fit his palm like the handle of a future. He would stand on a chair and listen to the tick resume, and his mother would kiss his hair hard enough to keep the fear in her teeth instead of in her voice. Mrs. Finch began to teach arithmetic again at the church, on a blackboard that had been a theatre prop. The children held chalk in their fingers and blinked at the white dust like snow.</p>
+          <p>Tom learned the names of his streets as if they were psalms. He kept a small tally in a notebook: loaves delivered, letters carried, hands shaken. On the last page he wrote, without quite knowing why, <em>We remembered who we were.</em></p>
+          <p>And in Windsor, in the quiet hours when everyone slept or pretended to, Charles wrote letters. Not proclamations. Letters. To farmers whose herds had been slaughtered for lack of power and now newly grazed. To a woman who had lost her husband to a broken ventilator and found her voice in the choir again. To a boy who had wired a village with scavenged copper and become, overnight, an electrician, and whose hands had stopped shaking only when he put them to work.</p>
+          <p>His handwriting was not neat. It never had been. But it was his, and the ink dried into the paper like a vow. His fingers stained black-blue and he did not wipe them clean, even for sleep. He wanted to carry the proof of his labor into dreams.</p>
+          <p>When the spring came, the cherry trees in the castle garden daubed the air with petals like paper fragments. He walked beneath them alone and let a few land in his hair. He thought about the word <em>reign,</em> which had always been the accident of rain and rule, and he wondered if anyone had ever truly understood that a reign was only holy if it fell, indiscriminately, on the just and the unjust, on palaces and post vans and kitchens where kettles boiled again.</p>
+          <p>He stopped by a sapling he had planted a decade ago, small then, now taller than any man. He touched its bark the way he had touched the walls of Parliament, and felt beneath his palm the slow, secret traffic of sap.</p>
+          <p>A thrush sang. He looked up to find it, and did not. He laughed at himself. He was tired, and the tiredness felt honest.</p>
+          <p>He put his hand in his pocket and found, as he always did now, the pen.</p>
+          <p>“Do your duty,” he whispered to it, and to himself. “Not because it is grand, but because it is small.”</p>
+          <p>He went back inside.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-xi" data-kind="chapter" data-num="XI" aria-labelledby="ch-xi-h">
+        <header class="chapter-head"><div class="chapter-num">XI</div><h2 class="chapter-title" id="ch-xi-h">The Letter that Found Its Way</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-sun"/></svg></figure>
+        <div class="prose">
+          <p class="first">On an evening in May, when the air tasted green and the river, that old bearer of messages, ran with less menace, a letter arrived at the castle with no stamp. The envelope had been folded from a child’s drawing—a sun with lines radiating so fiercely that half the sky had been yellowed. It was addressed simply: <em>To the Man With the Shaking Hands, Please.</em></p>
+          <p>The footman who delivered it did so with a face he kept carefully neutral, but his eyes were bright. Charles took it, smoothed it, and read.</p>
+          <p class="letter letter-open"><em>Dear King,</em></p>
+          <p class="letter"><em>My mum says I should call you Your Majesty but I think King is a good word. It’s like the King in our Chess set who is slow but makes all the other pieces play properly.</em></p>
+          <p class="letter"><em>Thank you for the bread. We made toast and it tasted like Sundays. Our clock works again and I wind it with a key. I am learning to write letters. Mrs. Finch says I am quite good.</em></p>
+          <p class="letter"><em>When you talked on the radio you sounded like my granddad before he died when he told me to always be brave when I can be and if I can’t be then be kind. I drew this so you know we are okay now.</em></p>
+          <p class="sign"><em>from Theo (age 7)</em></p>
+          <p>There was a drawing attached. A man at a table with a pen. His hands were big. Around him were little people with bowls and envelopes and a bird that looked like a plane. In the corner, the sun.</p>
+          <p>Charles sat a long time with the letter in his lap. He did not ring for anyone. He let the room darken to a kind kindness that hid fatigue in its pockets.</p>
+          <p>At last, he rose and made his way to the table. He pulled the ink nearer. He laid out paper. He began to write, slowly, the last ink of a long day.</p>
+          <p class="letter letter-open"><em>Dear Theo,</em></p>
+          <p class="letter"><em>Thank you for your letter and your drawing, which I shall keep. I am very glad about your toast. You have described the King in chess perfectly. We are all very slow but we make the game possible.</em></p>
+          <p class="letter"><em>There will be days, my dear boy, when bravery is too heavy to carry, and kindness will be enough. Carry that. Wind the clock. Plant your daisies. Write letters to people who think they are forgotten, and you will prove to them they are wrong.</em></p>
+          <p class="letter"><em>With my very best wishes,</em></p>
+          <p class="sign"><em>Charles R.</em></p>
+          <p>He sealed it with wax and pressed the ring into it and felt, as always, the small shock of the old world still obeying a human hand. He rang finally, and when the footman came, he gave him the envelope with an expression he did not try to school.</p>
+          <p>“In the morning,” he said. “First post.”</p>
+          <p>“Your Majesty,” the footman said, unable to keep the smile out of his voice, “the post now begins at sunrise.”</p>
+          <p>“As it should,” Charles said, and sat a moment longer with the warm seal under his palm, as if holding it up for someone small behind him, walking.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <section class="chapter" id="ch-xii" data-kind="chapter" data-num="XII" aria-labelledby="ch-xii-h">
+        <header class="chapter-head"><div class="chapter-num">XII</div><h2 class="chapter-title" id="ch-xii-h">The World Resumes</h2><div class="rule"></div></header>
+        <figure class="cut" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#cut-bicycle"/></svg></figure>
+        <div class="prose">
+          <p class="first">By summer, there were concerts again, powered by bicycles pedaled by volunteers with laughing calves. There were markets that preferred cash but would accept, when all else failed, jars of jam. The digital networks did not return as they had been. They were quieter, simpler, more like streams than floods. Systems came back with manners.</p>
+          <p>In a schoolyard, Theo raced the other children and skinned his knee and did not cry. He learned to deliver letters on their street with Tom in the afternoons, the satchel banging blessedly against his leg. He liked the feeling of putting an envelope into a hand and seeing understanding bloom.</p>
+          <p>Mrs. Finch married two numbers in a way that made sense to children who had thought numbers were orphans. She baked again, once a week, and she wrote the ingredients on a card in big letters and pinned it to the church board and people laughed and said, “It is a good day when a recipe goes out in public.”</p>
+          <p>Aisha, at the surgery, took an evening class in violin because she had always wanted to and now time had reappeared like a forgiven friend.</p>
+          <p>And Charles, often as he could, sat at the same table and signed the day’s honest labours into being, knowing that the ink, the seal, the pen were not magic, merely instruments. The magic was the hand. The miracle was that hands, across a nation, would answer.</p>
+          <p>On the day the clocks had first stopped, he had feared it would be his last job to console a people for a loss he could not fix. Instead, it had been his strange honour to remind them of a thing older than all the networks: that we are real to one another in proportion to the weight of what we carry, and that letters lift more than any of us can imagine.</p>
+          <p>In the evening, when the castle was very quiet and the garden smelled of cut grass and rain approaching, he would walk to the window and watch the sky bruise to purple and then forgive itself, and he would think of the boy’s drawing with the sun in the corner.</p>
+          <p>“Onward,” he would say to nobody, and mean it.</p>
+        </div>
+        <div class="end-orn" aria-hidden="true">&#10086;</div>
+      </section>
+
+      <div class="print-colophon">The Last Ink &#183; Jacob E. Thomas, PhD &#183; Austin, Texas &#183; July 2026</div>
+    </div><!-- /source -->
+
+    <div class="sheet" id="sheet" tabindex="-1" aria-label="The sheet you are reading"></div>
+
+    <!-- THE CHIT. Typed, clipped over the fourth chapter. It casts you. -->
+    <div class="chit-wrap" id="chitWrap" hidden>
+      <div class="chit" id="chit" role="document" aria-label="Assignment chit">
+        <div class="chit-head">British Broadcasting Corporation<strong>Home Service &#160;&#183;&#160; Assignment Chit</strong></div>
+        <table>
+          <tr><td class="k">to</td><td>the correspondent</td></tr>
+          <tr><td class="k">where</td><td>Windsor. The Old Room.</td></tr>
+          <tr><td class="k">when</td><td>this afternoon. the wire is booked for the hour.</td></tr>
+          <tr><td class="k">carry</td><td>the microphone that plugs into a wall.<br/>one engineer. one notebook. one pencil.</td></tr>
+        </table>
+        <p class="cast">You are the correspondent.</p>
+        <p>The King will speak to the nation, and you will hold the microphone.</p>
+        <p>When the red light goes out, stay.</p>
+        <p>He has asked for someone who still writes things down.</p>
+      </div>
+      <button type="button" class="chit-aside" id="chitAside">Set it aside <span aria-hidden="true">&#8250;</span></button>
+    </div>
+  </div><!-- /stack -->
+
+  <div class="advance">
+    <button type="button" class="back-btn" id="backBtn" aria-label="Back a sheet"><span class="arr" aria-hidden="true">&#8249;</span> back</button>
+    <button type="button" class="advance-btn" id="advanceBtn" aria-label="Next sheet">Next sheet<span class="arr" aria-hidden="true">&#8250;</span></button>
+  </div>
+</main>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE INTERVIEW. Live. Claude is the King. You are the          -->
+<!-- correspondent. Everything on the page is your record.        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="interview" class="stage" aria-label="The interview">
+  <h2 class="sr-only">The interview</h2>
+  <div class="room-head">
+    <div class="room-row">
+      <span>Windsor &#183; the Old Room &#183; after the address</span>
+      <span class="air" role="status"><span class="air-dot" aria-hidden="true"></span><span>off the air</span></span>
+    </div>
+    <div class="room-slug">
+      <span>at the table: the King, eighty-eight, the pen still uncapped</span>
+      <span class="dot" aria-hidden="true">&#183;</span>
+      <span>asking: you, the correspondent from the Home Service</span>
+      <span class="dot" aria-hidden="true">&#183;</span>
+      <span>a quarter of an hour nobody has claimed</span>
+    </div>
+  </div>
+
+  <div class="notebook">
+    <div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="pad" id="pad" role="log" aria-live="off" aria-label="The correspondent's notebook"></div>
+    <div id="srLive" class="sr-only" role="status" aria-live="polite"></div>
+    <div class="pad-input">
+      <div class="write-row" id="writeRow">
+        <span class="pencil" aria-hidden="true">&#10000;</span>
+        <textarea id="ask" class="ask" rows="1" maxlength="1200" autocomplete="off" aria-label="Your question, in your own hand" disabled></textarea>
+        <button type="button" class="ask-btn" id="askBtn" aria-label="Ask him" disabled>
+          <span>ask</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M12 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="pad-note" id="padNote" role="status"></div>
+      <button type="button" class="turn-page" id="turnPageBtn">Turn the page<span class="turn-sub">V &#183; A Commonwealth of Small Lights</span></button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- THE LAST SHEET. The dark screen returns.                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section id="last" class="stage" aria-label="The last sheet">
+  <div class="dark-inner" id="lastInner">
+    <h2 class="sr-only">The last sheet</h2>
+    <div id="lastLines">
+      <p class="dark-line">The story is over. This is a screen again.</p>
+      <p class="dark-line">The King answered you through a machine<br/>of the kind the prologue fears.<br/>It was live. It was not stored.<br/>Nothing you said, and nothing he said,<br/>was kept by anyone.</p>
+      <p class="dark-line">When you close this, it is gone.<br/>Except what you wrote down.</p>
+      <p class="dark-line bright">Write it in ink.</p>
+    </div>
+    <div class="colophon" id="colophon">
+      <span class="sig">&#9674; &#9672; &#9674;</span>
+      <span class="work">The Last Ink</span>
+      <span class="who">Jacob E. Thomas, PhD</span>
+      <span class="where">Austin, Texas &#183; July 2026</span>
+      <span class="live">The story is his. The interview was live.</span>
+    </div>
+    <div class="ways" id="ways">
+      <button type="button" class="way" id="printBtn"><span class="way-label">Put it on paper</span><span class="way-sub">the whole story, set for print</span></button>
+      <a href="../" class="way"><span class="way-label">Close the paper</span><span class="way-sub">back to the shelf</span></a>
+    </div>
+  </div>
+</section>
+
+
+<noscript>
+  <div style="max-width:560px;margin:8vh auto;padding:0 28px;font-family:Georgia,serif;font-size:1rem;line-height:1.8;color:#e8e4d9;text-align:center;">
+    The interview is a live conversation and needs JavaScript to open.<br/>
+    The story above stands on its own.
+  </div>
+</noscript>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/interview.js"></script>
+<script src="js/press.js"></script>
+
+</body>
+</html>

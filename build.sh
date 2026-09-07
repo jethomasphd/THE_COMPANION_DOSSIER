@@ -123,4 +123,16 @@ window.COMPANION_CONFIG = {
 JSEOF
 echo "  -> Narratives/Endor/js/config.js"
 
+# Narratives (The Last Ink)
+cat > Narratives/The_Last_Ink/js/config.js << JSEOF
+window.COMPANION_CONFIG = {
+  proxyUrl: '${COMPANION_PROXY_URL}',
+  safeguards: {
+    maxReaderTurns: 12,
+    cooldownSeconds: 0
+  }
+};
+JSEOF
+echo "  -> Narratives/The_Last_Ink/js/config.js"
+
 echo "Done. All containers configured for proxy mode."
