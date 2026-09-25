@@ -1,8 +1,9 @@
 name: The Watchtower — Daily Vigil
 
 # Refreshes The_Watchtower/data after each U.S. trading day so the tower stays
-# current. Runs from the default branch on the cron below, or manually from the
-# Actions tab.
+# current. Runs from the default branch on the crons below, or manually from the
+# Actions tab. Two passes per session: the evening pass posts the close; the
+# morning pass lands the UBS funds, whose NAVs post around midnight ET.
 #
 # The Summoning Film does NOT read this data — the film is frozen to its own
 # snapshot at The_Magic_Lantern/the_film/data/vigil_data_frozen.js and must
@@ -11,7 +12,8 @@ name: The Watchtower — Daily Vigil
 
 on:
   schedule:
-    - cron: '30 22 * * 1-5'   # 22:30 UTC, Mon–Fri — after the NYSE close
+    - cron: '37 21 * * 1-5'   # 21:37 UTC, Mon–Fri — after the NYSE close
+    - cron: '13 11 * * 2-6'   # 11:13 UTC, Tue–Sat — prior session's fund NAVs
   workflow_dispatch:
 
 permissions:
@@ -26,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -51,4 +53,9 @@ jobs:
           git add The_Watchtower/data/
           ASOF=$(python -c "import json; print(json.load(open('The_Watchtower/data/vigil_data.json'))['asof'])")
           git commit -m "The Watchtower: daily vigil — data through ${ASOF}"
-          git push
+          # main may have moved while the model ran (a merged dispatch, say)
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

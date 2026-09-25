@@ -1,8 +1,9 @@
 # ◊ THE WATCH LOG — DISPATCH PROTOCOL ◊
 
-Standing orders for the weekly commentary of the Watchtower. A scheduled
-session (the **Watch**) runs every Friday after the U.S. close, follows this
-file exactly, and appends one dispatch. This protocol is the single source of
+Standing orders for the weekly commentary of the Watchtower. The keeper
+opens a session by hand (the **Watch**) — "update the watchtower" — and the
+session follows this file exactly, appending one dispatch for each completed
+week since the last one in the log. This protocol is the single source of
 truth for voice, format, and mechanics — future sessions have no memory of
 past ones; this file is the memory.
 
@@ -12,8 +13,8 @@ past ones; this file is the memory.
 
 | Cadence | What | How |
 |---|---|---|
-| **Daily** (automatic) | Market data refresh | `.github/workflows/watchtower-daily.yml` runs `model_ytd.py` after each close and commits `data/vigil_data.js` + `.json`. |
-| **Weekly** (the Watch) | One commentary dispatch | A scheduled Claude session follows this protocol and appends to `data/commentary.js`. |
+| **Daily** (automatic) | Market data refresh | `.github/workflows/watchtower-daily.yml` runs `model_ytd.py` twice per session — 21:37 UTC after the close, 11:13 UTC next morning for the fund NAVs — and commits `data/vigil_data.js`, `.json`, and `price_cache.json`. |
+| **Weekly** (the Watch, by hand) | One commentary dispatch per completed week | A Claude session, opened by the keeper, follows this protocol and appends to `data/commentary.js`. |
 
 The page (`index.html`) renders everything from those two data files. The
 upshot's headline numbers (days led, YTD figures, the gap) fill themselves
@@ -62,9 +63,11 @@ from the data — only the *prose* can go stale.
 
 9. **Ship.** Commit with message
    `The Watchtower: Watch Log — dispatch for week ending YYYY-MM-DD`.
-   Try `git push origin HEAD:main`; if the push is rejected, push a branch
-   `watchtower/dispatch-YYYY-MM-DD` and open a PR with the dispatch text in
-   the body so it can be merged with one click.
+   Push to the session's working branch and open a PR with the dispatch text
+   in the body so it can be merged with one click. The daily bot commits the
+   data files to `main` in the meantime; on a merge conflict in
+   `data/vigil_data.*` or `data/price_cache.json`, re-run `model_ytd.py`
+   rather than hand-merging.
 
 ---
 

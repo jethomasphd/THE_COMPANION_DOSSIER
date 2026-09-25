@@ -9,7 +9,7 @@
  * Do not rewrite history: past dispatches are the log. Only append.
  */
 window.VIGIL_COMMENTARY = {
-  updated: "2026-08-28",
+  updated: "2026-09-18",
   entries: [
     { date: "2026-01-09", tag: "FIRST WATCH",
       text: "The vigil opens. Five trading days in and the doctrine already holds the front — +2.1 to the index's +1.6. Early, yes. But the tower has a rule about leads taken quietly: they tend to be kept.",
@@ -145,6 +145,18 @@ window.VIGIL_COMMENTARY = {
 
     { date: "2026-08-28", tag: "THE ONE-DAY LEASE",
       text: "Thursday the index edged in front — by twelve-hundredths, its first close atop the doctrine since June. Friday the gold line took it straight back, +0.40, first again. August was the index's best month — three-plus points to the doctrine's half — and it still bought only one session in the lead. <em>The May passing lasted a week; this one didn't reach the weekend.</em>",
-      tape: "REP +13.61 · SPY +13.21 · GAP +0.40" }
+      tape: "REP +13.61 · SPY +13.21 · GAP +0.40" },
+
+    { date: "2026-09-04", tag: "HOT PAYROLLS",
+      text: "August payrolls printed 162,000 against 55,000 expected, and the market heard one word: <em>hike</em>. Washington and Tehran traded direct fire for the first time in a month; a tanker took three projectiles in the Strait; Brent near $96. The week netted to nothing — +0.12 for the doctrine, +0.13 for the index. Gap: four-tenths. Still first.",
+      tape: "REP +13.75 · SPY +13.34 · GAP +0.41" },
+
+    { date: "2026-09-11", tag: "DIESEL AT SIX",
+      text: "Four straight red sessions, Brent past $105, diesel at a record $6.05, core CPI hot at 0.3. Hike odds leapt from coin-flip to ninety. The index shed 0.87 on the week; the doctrine, oil sleeve and 20% reserve intact, shed 0.67 — and the gap <em>widened</em> to six-tenths. The war writes the invoice; the tower notes who holds the energy.",
+      tape: "REP +13.08 · SPY +12.47 · GAP +0.61" },
+
+    { date: "2026-09-18", tag: "THE FIRST HIKE",
+      text: "The Fed hiked — unanimous, a quarter point to 3.75–4%, the first raise in three years — and Chair Warsh called the summer's inflation unimproved. The reserve got a raise; the rest of the doctrine did not. The gold line gave back 0.42 to the index's 0.11, and the gap thinned to three-tenths: <em>the thinnest Friday lead of the year.</em>",
+      tape: "REP +12.66 · SPY +12.36 · GAP +0.30" }
   ]
 };
