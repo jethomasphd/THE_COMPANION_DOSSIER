@@ -1,6 +1,6 @@
 {
  "asof": "2026-09-24",
- "generated": "2026-09-24T21:16:29Z",
+ "generated": "2026-09-25T00:33:40Z",
  "base_date": "2026-01-02",
  "n_points": 183,
  "pivot_date": "2026-03-31",
@@ -944,7 +944,7 @@
    9.202,
    9.202,
    8.096,
-   8.096
+   7.688
   ],
   "qgrpx": [
    0.0,
@@ -1129,7 +1129,7 @@
    5.573,
    5.573,
    4.77,
-   4.77
+   5.252
   ],
   "midusa": [
    0.0,
@@ -1499,16 +1499,16 @@
    10.427,
    10.427,
    9.637,
-   9.637
+   8.926
   ]
  },
  "final": {
   "republic": 12.4,
   "spy": 13.17,
-  "dvrux": 8.1,
-  "qgrpx": 4.77,
+  "dvrux": 7.69,
+  "qgrpx": 5.25,
   "midusa": 7.96,
-  "bniex": 9.64
+  "bniex": 8.93
  },
  "stats": {
   "republic_led": 160,
@@ -1520,7 +1520,7 @@
   "republic_last_lead_label": "Sep 18",
   "republic_max_pullback": -6.1,
   "vs_spy": -0.77,
-  "spread": 8.4
+  "spread": 7.92
  },
  "names": {
   "republic": "The Republic Portfolio",
