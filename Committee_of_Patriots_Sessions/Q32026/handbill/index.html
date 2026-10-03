@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Republic Portfolio — The False Peace Handbill, August 2026</title>
+    <title>The Republic Portfolio — The Germantown Handbill, October 2026</title>
+    <meta name="description" content="The Republic Portfolio as a broadside for citizens, by order of the Committee of Patriots' Q3 2026 Review: held from second place, the Cost Column published, the covenant's third clause.">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,7 +14,7 @@
         }
 
         body {
-            background: #2c2416;
+            background: #2a2418;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,7 +25,7 @@
         .handbill {
             background:
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
-                linear-gradient(to bottom, #f4e4c1 0%, #e8d4a8 50%, #dcc696 100%);
+                linear-gradient(to bottom, #f2e3c3 0%, #e6d3aa 50%, #d8c497 100%);
             max-width: 700px;
             padding: 50px 60px;
             box-shadow:
@@ -46,8 +47,9 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(ellipse at 20% 20%, rgba(139,109,64,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(100,70,30,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 18% 22%, rgba(139,109,64,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 82% 78%, rgba(100,70,30,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(120,125,130,0.10) 0%, transparent 45%),
                 radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(80,60,30,0.1) 100%);
             pointer-events: none;
         }
@@ -114,8 +116,8 @@
             text-align: center;
             margin: 25px 0;
             padding: 12px 20px;
-            border: 2px solid #8b0000;
-            background: rgba(139, 0, 0, 0.06);
+            border: 2px solid #4a4f55;
+            background: rgba(74, 79, 85, 0.07);
         }
 
         .war-banner p {
@@ -123,8 +125,13 @@
             font-size: 14px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #8b0000;
+            color: #3a3f45;
             line-height: 1.8;
+        }
+
+        .war-banner p strong {
+            color: #8b0000;
+            font-weight: normal;
         }
 
         .performance-box {
@@ -170,6 +177,15 @@
             color: #1a1308;
         }
 
+        .section-title .held {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 1px;
+            font-size: 13px;
+            color: #5a4d38;
+        }
+
         .holdings {
             font-family: 'IM Fell DW Pica', Georgia, serif;
             font-size: 14px;
@@ -207,7 +223,7 @@
 
         .withheld-box {
             text-align: center;
-            margin: 8px 0 20px;
+            margin: 8px 0 8px;
             padding: 8px 10px;
             border: 1px dashed #6a5a2a;
         }
@@ -218,6 +234,63 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             color: #6a5a2a;
+        }
+
+        .withheld-box .tests {
+            text-transform: none;
+            letter-spacing: 1px;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        .cost-box {
+            margin: 8px 0 20px;
+            padding: 12px 16px 10px;
+            border: 2px double #3d2f1a;
+        }
+
+        .cost-box .label {
+            font-family: 'IM Fell Great Primer', Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #1a1308;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .cost-box table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 13px;
+            color: #1a1308;
+        }
+
+        .cost-box td {
+            padding: 3px 4px;
+            border-bottom: 1px dotted rgba(61,47,26,0.4);
+        }
+
+        .cost-box td.r {
+            text-align: right;
+            letter-spacing: 1px;
+        }
+
+        .cost-box tr.rep td {
+            border-bottom: none;
+            border-top: 1px solid #3d2f1a;
+            font-weight: bold;
+        }
+
+        .cost-box .foot {
+            font-family: 'IM Fell DW Pica', Georgia, serif;
+            font-size: 12px;
+            font-style: italic;
+            color: #5a4d38;
+            text-align: center;
+            margin-top: 7px;
+            line-height: 1.5;
         }
 
         .reserve-box {
@@ -330,6 +403,26 @@
             line-height: 1.8;
         }
 
+        .covenant-box p.third {
+            font-style: normal;
+            color: #1a1308;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .home {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1000;
+            font-size: 1.1rem;
+            color: #a08860;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .home:hover { color: #d4b070; }
+
         @media (max-width: 600px) {
             body { padding: 20px 10px; }
             .handbill {
@@ -350,8 +443,11 @@
             .motto .main { font-size: 18px; }
             .motto .sub { font-size: 14px; }
             .covenant-box p { font-size: 12px; }
+            .covenant-box p.third { font-size: 13px; }
             .ornament { font-size: 18px; letter-spacing: 8px; }
             .withheld-box p { font-size: 11px; letter-spacing: 1px; }
+            .cost-box table { font-size: 12px; }
+            .exclusion-box p { font-size: 12px; letter-spacing: 2px; }
         }
 
         @media (max-width: 400px) {
@@ -360,11 +456,17 @@
             .holdings { font-size: 11px; }
             .performance-box .numbers { font-size: 11px; }
         }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .home { display: none; }
+            .handbill { box-shadow: none; max-width: none; }
+        }
     </style>
 </head>
 <body>
 
-<a href="../../../" style="position:fixed;top:1.5rem;left:1.5rem;z-index:1000;font-size:1.1rem;color:#a08860;text-decoration:none;transition:color 0.3s ease;" onmouseover="this.style.color='#d4b070'" onmouseout="this.style.color='#a08860'" title="Return to COMPANION">&#9674;</a>
+<a href="../../../" class="home" title="Return to COMPANION">&#9674;</a>
 
 <div class="handbill">
 
@@ -373,80 +475,93 @@
     <div class="header">
         <h1>The Republic Portfolio</h1>
         <div class="ornament-line"><span>&#9670; &#9672; &#9670;</span></div>
-        <h2>The False Peace &mdash; A Handbill for Citizens</h2>
-        <p class="date">August 4, 2026</p>
+        <h2>Germantown &mdash; A Handbill for Citizens</h2>
+        <p class="date">October 3, 2026 &middot; the Eve of Germantown</p>
     </div>
 
     <div class="war-banner">
-        <p>The Ceasefire Held 91 Days &mdash; The War Resumes<br>The Market Shrugged. The Committee Did Not.</p>
+        <p>Day 218 of the War &mdash; Money Grown Dear<br><strong>The Index Holds the Front.</strong> The Committee Holds Its Line.</p>
     </div>
 
     <div class="performance-box">
         <p class="headline">The Year, As It Stands</p>
-        <p class="numbers">Republic <strong>+13.52%</strong> &nbsp;|&nbsp; S&amp;P 500 <strong>+11.49%</strong> &nbsp;|&nbsp; Led <strong>130 of 146</strong> days</p>
-        <p class="subline">The index won the quarter, +15.12 to +4.42. The Republic kept the year. Both facts are printed here, because you deserve both.</p>
+        <p class="numbers">Republic <strong>+12.03%</strong> &nbsp;|&nbsp; S&amp;P 500 <strong>+13.54%</strong> &nbsp;|&nbsp; First of six on <strong>160 of 189</strong> days</p>
+        <p class="subline">The index passed on September 21 and has held the front ten sessions. Since the Committee last sat, it has gained three hundredths of one percent; the Republic has given back two points. Both facts are printed here, because you deserve both.</p>
     </div>
 
     <div class="preamble">
-        <span class="drop-cap">C</span>itizens of the Republic &mdash; The Committee of Patriots, convened this fourth day of August for its Q2 2026 Review, reports honestly: this was the first quarter the index has ever beaten the doctrine. The ceasefire of April became the melt-up of May; twice the S&amp;P 500 passed the Republic on the year, and twice the lead was returned within a fortnight. Then the peace of Islamabad collapsed, the war resumed &mdash; and while the market bought chip stocks through the death of a treaty, the Republic climbed to its high-water mark. It stands first of six contenders, live on <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:#3d2f1a;">the Watchtower</a>. The quarter belonged to the hare. The year, so far, belongs to the tortoise &mdash; who has read the fable.
+        <span class="drop-cap">C</span>itizens of the Republic &mdash; The Committee of Patriots, convened this third day of October for its Q3 2026 Review, reports from second place, for the first time. The Federal Reserve raised its rate for the first time in three years; the long bond reached its dearest price since 2002; and the builders, the utilities, and the lenders the doctrine owns gave back what the summer had paid them. On the twenty-first of September the index passed on a shopping machine built by a company on our Exclusion List. The Committee answered as General Washington answered at Germantown, on the morrow of a lost capital: <em>not with a clever plan, but with a simple one that is still right.</em> The holdings stand as voted in August. The live record is kept on <a href="https://www.the-companion-dossier.com/The_Watchtower" style="color:#3d2f1a;">the Watchtower</a>.
     </div>
 
     <div class="ornament-line"><span>&#9830; &#9674; &#9830;</span></div>
 
-    <div class="section-title">Engines of the Republic (45%)</div>
+    <div class="section-title">Engines of the Republic (45%) <span class="held">&mdash; held</span></div>
     <div class="holdings">
-        CAT &middot; DE &middot; HON &middot; LMT* &middot; GE &middot; <strong style="color:#8b0000;">INTC (NEW)</strong> &middot; WMT &middot; COST &middot; HD &middot; JNJ &middot; PFE &middot; ADM &middot; BG &middot; TSN &middot; SCHW &middot; BRK.B
+        CAT &middot; DE &middot; HON &middot; LMT* &middot; GE &middot; INTC &middot; WMT &middot; COST &middot; HD &middot; JNJ &middot; PFE &middot; ADM &middot; BG &middot; TSN &middot; SCHW &middot; BRK.B
     </div>
 
-    <div class="section-title">Critical Choke Points (35%)</div>
+    <div class="section-title">Critical Choke Points (35%) <span class="held">&mdash; held</span></div>
     <div class="holdings">
-        NEE &middot; D &middot; KMI &middot; WMB &middot; XLE &middot; V &middot; MA &middot; JPM &middot; MSFT &middot; AMZN &middot; GOOGL &middot; <strong style="color:#8b0000;">TSM (NEW)</strong> &middot; <strong style="color:#8b0000;">ASML (NEW)</strong> &middot; UNP &middot; NSC &middot; MCK &middot; UNH&dagger;
+        NEE &middot; D &middot; KMI &middot; WMB &middot; XLE &middot; V &middot; MA &middot; JPM &middot; MSFT &middot; AMZN &middot; GOOGL &middot; TSM &middot; ASML &middot; UNP &middot; NSC &middot; MCK &middot; UNH&dagger;
     </div>
 
     <div class="reserve-box">
-        <p class="label">Reserve &mdash; 20%</p>
-        <p class="detail">Held at 20% until the Strait stays open ninety days unescorted and Brent holds below $85. Conditions, not dates.</p>
+        <p class="label">Reserve &mdash; 20% &mdash; Held</p>
+        <p class="detail">Now earning near the Federal Reserve's new 3.75&ndash;4%. Steps down only when the Strait stands open ninety days unescorted and Brent holds below $85. Conditions, not moods.</p>
     </div>
 
     <div class="ornament-line"><span>&#10022;</span></div>
 
     <div class="note-star">*LMT: Hold as Citizen Overseer. Vote for transparency in civilian casualty reporting. Vote for independent review of targeting protocols. Vote against compensation without accountability.</div>
     <div class="note-star">&dagger;UNH: Hold as Reformer. Vote against extraction. Vote for transparency.</div>
-    <div class="note-star">NEW &mdash; The Semiconductor Gate: TSM is the island foundry the December map named and the portfolio never held; ASML is the one company on earth that makes the machine that makes the machine; INTC is the Republic's answer to the island, rising in Arizona and Ohio. The gate, not the froth.</div>
+    <div class="note-star">The Semiconductor Gate, garrisoned in August &mdash; TSM, ASML, INTC &mdash; is up nine to eighteen per cent since it was bought, in a drawdown. It has paid the garrison.</div>
 
     <div class="exclusion-box">
         <p>Excluded: BLK &middot; PLTR &middot; META &middot; HOOD &middot; GEO &middot; CXW</p>
     </div>
     <div class="withheld-box">
-        <p>Withheld: NVDA &mdash; the gate, when it is a gate. Reviewed quarterly.</p>
+        <p>Withheld: NVDA &mdash; reviewed quarterly</p>
+        <p class="tests">The toll is proven. The winter is not. It enters when its margin holds above 65% through a year its buyers spend less.</p>
+    </div>
+
+    <div class="cost-box">
+        <p class="label">The Cost Column</p>
+        <table>
+            <tr><td>NVDA &mdash; withheld</td><td class="r">&asymp; +27%</td></tr>
+            <tr><td>META &mdash; excluded</td><td class="r">&asymp; +11%</td></tr>
+            <tr><td>PLTR &mdash; excluded</td><td class="r">+6.9%</td></tr>
+            <tr class="rep"><td>The Republic Portfolio</td><td class="r">+12.03%</td></tr>
+        </table>
+        <p class="foot">What our refusals earned this year, printed without comment. Conscience has been nearly free; patience has not. The wall is not for sale at any price.</p>
     </div>
 
     <div class="ornament-line"><span>&#9830; &#9674; &#9830;</span></div>
 
     <div class="section-title">Instructions to Citizens</div>
 
-    <div class="instruction-item">If your neighbor beat you this quarter: <em>he did. Congratulate him, then look at the year.</em> His lead required a melt-up and a peace treaty; the treaty is abandoned. Envy is the Flood's oldest instrument. Envy pays no dividend.</div>
+    <div class="instruction-item">If your neighbor is ahead: <em>this time he is. Say so.</em> Then observe that since August he has gained three hundredths of one percent. You grew two points poorer while he stood still. That turns the way it came.</div>
 
-    <div class="instruction-item">If you have held since December: <em>you hold the year's best result of the six.</em> Worst pullback all year: 6 points. The index's: nearly 18. The sprint quarters belong to the index. The decade is the wager.</div>
+    <div class="instruction-item">If you have held since December: <em>you are up twelve on the year,</em> through a war, a false peace, and the first rate hike in three years. Second of six. Do not sell in October what you bought in December for the decade.</div>
 
-    <div class="instruction-item">If you have been contributing monthly: <em>your discipline bought the April bottom.</em> Fear became position. Do not stop when the news improves, nor when it worsens again. It will do both.</div>
+    <div class="instruction-item">If money has grown dear: <em>pay your dear debts first.</em> No holding pays twenty per cent, risk-free, every year; a card balance retired does. Never own the Republic on margin. A man who owns on borrowed money is owned by his lender.</div>
 
-    <div class="instruction-item">To adopt the amendment: <em>let new money do the work.</em> Add TSM, ASML, and INTC with fresh contributions. No forced selling. Conscience may decline any position; the reasoning is published in full.</div>
+    <div class="instruction-item">If you contribute monthly: <em>send the new money to the beaten names</em> &mdash; whatever has fallen furthest below its weight. No selling. No timing. The simple plan works the same in fog as in sunshine.</div>
 
-    <div class="instruction-item">If you have not yet begun: <em>begin now, in the quarter the index won.</em> A framework that publishes its own defeat in a table is the only kind worth joining. Even fifty dollars deployed today is a vote.</div>
+    <div class="instruction-item">On the third of November: <em>vote.</em> The Committee does not tell you how. It tells you <em>that.</em> A proxy governs a company; a ballot governs the republic that charters every company you own.</div>
 
-    <div class="instruction-item"><em>Vote your shares.</em> This spring, citizens' votes were counted at Lockheed and UnitedHealth for the first time. The resolutions failed while being counted &mdash; which is a different thing entirely from failing in silence. The count grows. Govern.</div>
+    <div class="instruction-item">If you have not yet begun: <em>begin in second place.</em> You join no victory parade &mdash; only a doctrine that published its standing on the front page and changed nothing in a panic. Even fifty dollars deployed today is a vote.</div>
 
     <div class="ornament-line"><span>&#10022;</span></div>
 
     <div class="covenant-box">
-        <p>The Republic Portfolio is not a clean thing. It was designed to be real. To own the Republic is to own its contradictions &mdash; and, the false peace has taught us, to refuse the comforts of a lie. The market spent ninety-one days pricing a peace nobody kept, and now prices a war nobody watches. The citizen who owns real things is under a discipline the index has abandoned: the discipline of noticing.</p>
-        <p style="margin-top:10px; font-style:normal; font-weight:bold; color:#1a1308;">This is not a disclaimer. It is a covenant, with its second clause.</p>
+        <p>The Republic Portfolio is not a clean thing. It was designed to be real. To own the Republic is to own its contradictions &mdash; and to refuse the comforts of a lie.</p>
+        <p class="third">To own the Republic is to keep your own choosing. No agent buys your holdings, votes your shares, or casts your ballot. Use the machines that argue with you. Refuse the ones that choose for you.</p>
+        <p style="margin-top:10px; font-style:normal; font-weight:bold; color:#1a1308;">This is not a disclaimer. It is a covenant, with its third clause.</p>
     </div>
 
     <div class="motto">
         <p class="main">Own them. Vote them. Govern.</p>
-        <p class="sub">Envy pays no dividend.</p>
+        <p class="sub">Keep your own choosing.</p>
     </div>
 
     <div class="ornament">&#9830; &#9672; &#9830;</div>
@@ -454,10 +569,9 @@
     <footer class="footer">
         <p class="footer-line">Published by Order of the COMMITTEE of PATRIOTS</p>
         <p class="footer-line">Gen. WASHINGTON, presiding &middot; Col. HAMILTON &middot; Mr. JEFFERSON &middot; Dr. FRANKLIN</p>
-        <p class="footer-small" style="margin-top: 10px;">Convened via the COMPANION Protocol v2.0 &middot; August 4, 2026</p>
-        <p class="footer-small">The False Peace Amendment to the Republic Portfolio</p>
-        <p class="footer-small" style="margin-top:8px;">This Handbill is released into the Publick Domain and may be freely copied, distributed, and extended.</p>
-        <p class="footer-small" style="margin-top:8px;"><strong>NOTICE:</strong> This is the False Peace broadside, preserved as printed. The Committee held the allocation unchanged in its Q3 sitting and published the first Cost Column &mdash; the current broadside is the <a href="../../Q32026/handbill/" style="color:#3d2f1a;font-weight:bold;">Germantown Handbill</a> (October 2026).</p>
+        <p class="footer-small" style="margin-top: 10px;">Convened via the COMPANION Protocol v2.0 &middot; October 3, 2026</p>
+        <p class="footer-small">The Germantown Resolutions of the Republic Portfolio &middot; <a href="../" style="color:#5a4d38;">read the full session</a></p>
+        <p class="footer-small" style="margin-top:8px;">Not financial advice. This Handbill is released into the Publick Domain and may be freely copied, distributed, and extended.</p>
         <div class="ornament" style="margin-top: 15px; font-size: 16px;">&mdash; FINIS &mdash;</div>
     </footer>
 

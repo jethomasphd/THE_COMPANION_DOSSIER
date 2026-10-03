@@ -99,7 +99,7 @@ section{position:relative;padding:6rem 2rem;display:flex;align-items:center;just
 /* ───────────── IV. THE SPINE ───────────── */
 #spine{background:#070707;}
 .spine-intro{text-align:center;max-width:680px;margin:0 auto 3.5rem;}
-.spine-rail{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.spine-rail{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;}
 .spine-flow{position:absolute;top:38px;left:6%;right:6%;height:2px;z-index:0;}
 .spine-flow svg{width:100%;height:2px;overflow:visible;}
 .beat{position:relative;z-index:1;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .4rem;transition:transform .35s ease;}
@@ -193,6 +193,10 @@ footer{padding:3rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
 .foot-links a:hover{color:var(--ember);}
 .foot-meta{font-family:var(--font-terminal);font-size:.58rem;color:#444;line-height:2;}
 
+@media(max-width:1080px){
+  .spine-rail{grid-template-columns:repeat(3,1fr);gap:2.6rem 1rem;}
+  .spine-flow{display:none;}
+}
 @media(max-width:880px){
   .strata-grid{grid-template-columns:1fr;}
   .spine-rail{grid-template-columns:1fr 1fr;gap:2.2rem 1rem;}
@@ -335,10 +339,19 @@ footer{padding:3rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
         <div class="beat-desc">A ceasefire, a melt-up, the first quarter the index wins. The minds return, publish their own defeat, and amend again.</div>
         <div class="beat-enter">ENTER THE FALSE PEACE REVIEW &rarr;</div>
       </a>
+
+      <a href="../Committee_of_Patriots_Sessions/Q32026/" class="beat">
+        <div class="beat-node">&#9729;&#xFE0E;</div>
+        <div class="beat-step">VI &middot; THE LOOP HOLDS</div>
+        <div class="beat-name">Germantown</div>
+        <div class="beat-when">OCT 2026</div>
+        <div class="beat-desc">The index takes the front and keeps it. For the first time the minds convene from second place &mdash; publish what their refusals cost, refuse their own temptation, and change nothing in a panic.</div>
+        <div class="beat-enter">ENTER THE GERMANTOWN REVIEW &rarr;</div>
+      </a>
     </div>
 
     <p class="spine-loop reveal rd2">
-      &mdash; and each Review rewrites the Doctrine, which the Instrument keeps measuring. <em>The loop never closes; it turns. It has turned twice now.</em>
+      &mdash; and each Review rewrites the Doctrine, which the Instrument keeps measuring. <em>The loop never closes; it turns. It has turned three times now.</em>
     </p>
   </div>
 </section>
@@ -560,6 +573,7 @@ footer{padding:3rem 2rem;border-top:1px solid #1a1a1a;text-align:center;}
     <a href="../The_Watchtower/">THE WATCHTOWER</a>
     <a href="../Committee_of_Patriots_Sessions/Q12026/">Q1 REVIEW</a>
     <a href="../Committee_of_Patriots_Sessions/Q22026/">Q2 REVIEW</a>
+    <a href="../Committee_of_Patriots_Sessions/Q32026/">Q3 REVIEW</a>
     <a href="../The_Halpern_Memo/">HALPERN MEMO</a>
     <a href="../The_Addendum/">THE ADDENDUM</a>
     <a href="../Latent_Dialogic_Space/">DIALOGIC INTELLIGENCE</a>
