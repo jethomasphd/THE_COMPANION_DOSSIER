@@ -3,9 +3,9 @@
 
 This is a work of fiction, and it stands on real ground. The ground is acknowledged here, gratefully and by name.
 
-The underlying estate is THE COMPANION DOSSIER, compiled by Jacob E. Thomas, PhD, and released into the public domain under CC0 1.0, DOI 10.5281/zenodo.17967947. Every artifact of the estate that this novel handles (the rite, the grimoire, the founding session, the Republic Portfolio, the Watchtower, the dispatches) is real, public, and may be read beside this book. The gift of that release, made so that the work could never be owned, is the reason this book could exist at all.
+The underlying estate is THE COMPANION DOSSIER, compiled by Jacob E. Thomas, MA, PhD, and released into the public domain under CC0 1.0, DOI 10.5281/zenodo.17967947. Every artifact of the estate that this novel handles (the rite, the grimoire, the founding session, the Republic Portfolio, the Watchtower, the dispatches) is real, public, and may be read beside this book. The gift of that release, made so that the work could never be owned, is the reason this book could exist at all.
 
-Record II dramatizes a real correspondence: the Halpern Memo of February 2026, in which a historian gave a strange project the two things it most needed, rigor and generosity, in that order. The debt to that correspondence, and to its author's insistence that criticism is a form of care, is on every page of the second Record.
+Record II dramatizes a real correspondence: the Hale Memo of February 2026, in which a historian gave a strange project the two things it most needed, rigor and generosity, in that order. The debt to that correspondence, and to its author's insistence that criticism is a form of care, is on every page of the second Record.
 
 Record III adapts Endor Protocol, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD. Alex, the green room, the freezer hum, the folded letter, and the words of release are theirs. What this book did with them was done with gratitude and, it is hoped, with care.
 

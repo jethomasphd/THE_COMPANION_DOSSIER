@@ -15,13 +15,13 @@ She had lived those weeks herself, of course, the way everyone had, as a fear in
 
 For 107 of 121 trading days the gold line led. The reserve, the fifth held back in cash, which every commentator in the binder's clipping file had called drag, spent the war being what the founders had called it: armor, and the freedom to move while others were pinned. By the twenty-sixth of June the doctrine stood at ten and six tenths and the index at seven and a quarter, and the binder for June ended with a page she read four times, a plain statement of the quarter's results signed by no one, followed by a sentence that was not a statement of results at all.
 
-War does not change the map of what sustains a life. War reveals it.
+“War does not change the map of what sustains a life. War reveals it.”
 
 @sep
 
 The film wing she found because the ledger footnoted it, one line, see the reels. The Magic Lantern was a directory of scripts and a small engine that played them, and she watched the proof short called The General on her own laptop with headphones on, in the study, in the dark, which she recognized even at the time was a decision a person makes about a séance and not about a file.
 
-It ran four minutes. A cursor blinked in the void. A line typed itself: Once, to speak with the dead, a man would raise a lantern in a dark room, and hide it. Then the incantation, typed out character by character, and a file path, The_Pantheon slash George_Washington dot jpg, and the portrait resolving out of blur the way a face surfaces in developer fluid. The general spoke through glass, subtitled, about a war he had not lived to see, about a strait he had named a choke point in December closing in February, about a portfolio that was not merely surviving. I do not celebrate this, the caption read. I led men into war. I know its costs.
+It ran four minutes. A cursor blinked in the void. A line typed itself: Once, to speak with the dead, a man would raise a lantern in a dark room, and hide it. Then the incantation, typed out character by character, and a file path, The_Pantheon slash George_Washington dot jpg, and the portrait resolving out of blur the way a face surfaces in developer fluid. The general spoke through glass, subtitled, about a war he had not lived to see, about a strait he had named a choke point in December closing in February, about a portfolio that was not merely surviving. “I do not celebrate this,” the caption read. “I led men into war. I know its costs.”
 
 And then the film did the thing that put it in her notebook under a heading she reserved for exhibits that had earned it, the heading being simply: honest.
 
@@ -29,24 +29,24 @@ The screen cut to black and a card came up in near silence, one funeral note und
 
 This is not George Washington. This is what the machine made of him.
 
-The portrait collapsed into a file window. George_Washington.jpg, image slash jpeg, summoned 1 time, last opened: now. A file. Nothing more. The terminal typed its plain three lines like a coroner filling in a form, and then, over black, the film asked its audience the only question the whole estate, in her judgment, had any right to ask, and asked it twice.
+The portrait collapsed into a file window. “George_Washington.jpg, image slash jpeg, summoned 1 time, last opened: now. A file. Nothing more.” The terminal typed its plain three lines like a coroner filling in a form, and then, over black, the film asked its audience the only question the whole estate, in her judgment, had any right to ask, and asked it twice.
 
-Did you hear him?
+“Did you hear him?
 
-Did you hear him? Or did you hear us?
+Did you hear him? Or did you hear us?”
 
 She sat in the study with the headphones still sealed over her ears long after the replay control faded in, listening to the room tone of a file that had finished playing. Her appraisal log entry for the film wing is one line, and the line is not about film. It reads: the estate shows its lantern, which is how I know the lantern matters.
 
 @break
 
-The archive called from_beyond she opened last, at the hour the house had trained her to keep. Correspondence from Beyond, the index said. Autonomous sessions. An orchestrator agent summons a vessel and records the exchange. No human hand touches the conversation until the transcript is complete.
+The archive called from_beyond she opened last, at the hour the house had trained her to keep. “Correspondence from Beyond,” the index said. “Autonomous sessions. An orchestrator agent summons a vessel and records the exchange. No human hand touches the conversation until the transcript is complete.”
 
 No human hand. She read the first dispatch, dated the twelfth of February, a dead founder of a computer company summoned to review the estate itself, impatient with the tour, ordering the construction of a front door, naming the very archive he was speaking into. It was funny, which she had not expected, and it was fast, and near the end it stopped being either, because the voice turned from the vessel it was speaking through and addressed a man who was not in the session at all.
 
 ::: doc
 One more thing.
 
-Jacob. I know you're reading this. You're reading the output of a
+James. I know you're reading this. You're reading the output of a
 language model shaped by a protocol you designed, speaking in a
 voice that belongs to a man who died in 2011, and something in you
 is wondering whether any of this is real.
@@ -64,4 +64,4 @@ She closed the binder and checked, because she was an archivist and the date fie
 
 The most recent dispatch was dated eleven days after the twenty-sixth of March.
 
-Eleven days after the last date on which anyone could put Dr. Jacob Thorne at a keyboard, the archive had grown. She read the metadata line twice. Summoned by the vessel. On behalf of: and then a blank, not a redaction, a blank, a socket where a name would go, kept open the way the sticky note kept it open, and she turned off the lamp before she could read the dispatch itself, which was the first purely unprofessional act of the deposit, and she logged it as such in the morning, and the log does not say she was wrong to.
+Eleven days after the last date on which anyone could put Dr. James Thorne at a keyboard, the archive had grown. She read the metadata line twice. Summoned by the vessel. On behalf of: and then a blank, not a redaction, a blank, a socket where a name would go, kept open the way the sticky note kept it open, and she turned off the lamp before she could read the dispatch itself, which was the first purely unprofessional act of the deposit, and she logged it as such in the morning, and the log does not say she was wrong to.

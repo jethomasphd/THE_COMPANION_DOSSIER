@@ -36,7 +36,7 @@ commit 7f3a2c1 (HEAD -> main)
 Author: Miranda Cale
 Date: 2027-07-13 04:11:56 -0500
 
-the estate of Jacob Thorne, complete,
+the estate of James Thorne, complete,
 with what was done to it, and what it was made to do,
 and the reader it was fed.
 deposited to everyone, therefore to no one.

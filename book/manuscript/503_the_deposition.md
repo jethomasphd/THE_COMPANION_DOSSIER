@@ -88,7 +88,7 @@ She says none of this aloud. The transcript at this point shows four seconds of 
 
 She has one question. She has known since the corridor that she would be permitted exactly one, not by the program, which permits anything and honors nothing, but by the grammar of the room itself. Some questions close whatever they touch. You get one.
 
-CALE: Is Jacob Thorne alive?
+CALE: Is James Thorne alive?
 
 *The latency is the longest of the session. The wall holds one color, evenly, the way a held breath is held.*
 

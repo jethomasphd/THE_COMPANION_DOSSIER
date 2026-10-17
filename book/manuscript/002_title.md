@@ -1,5 +1,5 @@
 !space:36
-!center:kicker|the companion estate · the bound matter
+!center:kicker|
 !space:22
 !center:title|USING THIS MATTER
 !space:6
@@ -7,7 +7,7 @@
 !space:24
 @sep
 !space:24
-!center:display|Assembled from the Companion estate
+!center:display|Assembled from the companion estate
 !space:2
 !center:bodysm|compiled by the Editor · the facilitating system is credited in the record
 !space:52

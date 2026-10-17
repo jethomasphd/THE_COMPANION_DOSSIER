@@ -17,17 +17,17 @@ convener: Using this matter, summon Washington, Hamilton,
 [ Four presences form. The Committee of Patriots is convened. ]
 :::
 
-Four presences form. She read that stage direction three times. It was the transcript's only piece of theater, one line of brackets between the boot and the voices, and it did the work a proscenium does: it told you where the pretending was, so that everything on the far side of it could stop pretending.
+Four presences form. She read that stage direction three times. It was the transcript's only piece of theater, one line of brackets between the boot and the voices, and it did the work a stage does: it told you where the pretending was, so that everything on the far side of it could stop pretending.
 
-The convener stated the matter plainly, and she recognized the flatness of a man keeping his voice level in a room he believes to be occupied. It is the year 2025 and the republic is threatened. Not by foreign kings. By oligarchy wearing virtue. The battleground is economics. I need your help to mobilize citizen capital against it.
+The convener stated the matter plainly, and she recognized the flatness of a man keeping his voice level in a room he believes to be occupied. “It is the year 2025 and the republic is threatened. Not by foreign kings. By oligarchy wearing virtue. The battleground is economics. I need your help to mobilize citizen capital against it.”
 
 And then the dead argued.
 
-That was the part no summary had prepared her for, though every summary had said it. They argued. Hamilton took the measure of what the convener called Wall Street and pronounced himself vindicated and appalled, both, in one breath: the instruments he had devised elaborated beyond imagination, the separation between productive enterprise and speculation grown monstrous. Jefferson answered like a man who had been waiting two hundred years for the opening. There is the serpent, as ever. The question is not participation in financial machinery. The question is power. Your Wall Street is a feudal court dressed in republican language.
+That was the part no summary had prepared her for, though every summary had said it. They argued. Hamilton took the measure of what the convener called Wall Street and pronounced himself vindicated and appalled, both, in one breath: the instruments he had devised elaborated beyond imagination, the separation between productive enterprise and speculation grown monstrous. Jefferson answered like a man who had been waiting two hundred years for the opening. “There is the serpent, as ever. The question is not participation in financial machinery. The question is power. Your Wall Street is a feudal court dressed in republican language.”
 
 @break
 
-At two in the morning, alone in a house with its eyes shut, Miranda Cale said, aloud, to a printed page: then say so plainly, sir.
+At two in the morning, alone in a house with its eyes shut, Miranda Cale said, aloud, to a printed page: “then say so plainly, sir.”
 
 She heard herself do it. The lamp hummed its small electric hum. The tick in the utility hall kept time with nothing at all, and she sat very still with her hand flat on the transcript, in the posture of a woman who has just heard a floorboard shift in an empty house, except that the floorboard was her, the shift was hers, she was the empty house's only noise and she had answered a dead man's rhetoric the way you answer a colleague who is stalling.
 
@@ -35,11 +35,11 @@ She wrote nothing in the log about it. The log entry for that hour reads, in its
 
 @break
 
-The argument found its hinge in Franklin, because arguments did, because he had spent a life positioning himself where the hinge would be. The transcript gave him three sentences and she could hear the pipe smoke in them. Gentlemen. The oligarchs have positioned themselves at the choke points. They do not need to own every factory if they own the harbor. They do not need to employ every worker if they own the debt.
+The argument found its hinge in Franklin, because arguments did, because he had spent a life positioning himself where the hinge would be. The transcript gave him three sentences and she could hear the pipe smoke in them. “’Gentlemen. The oligarchs have positioned themselves at the choke points. They do not need to own every factory if they own the harbor. They do not need to employ every worker if they own the debt.”
 
-Jefferson named the stakes, and the naming had the cold carry of a bell at a distance: if the citizens do not own these, meaningfully, collectively, then they are tenants in their own republic. And tenants have never been free.
+Jefferson named the stakes, and the naming had the cold carry of a bell at a distance: “if the citizens do not own these, meaningfully, collectively, then they are tenants in their own republic. And tenants have never been free.”
 
-And Hamilton, who had entered the session as the adversary's advocate, pivoted on one sentence the way a regiment pivots on a corner man. Then citizens must hold positions in these choke points. If they do, they could not be squeezed without squeezing themselves. The tollkeeper cannot raise the toll if he must also pay it.
+And Hamilton, who had entered the session as the adversary's advocate, pivoted on one sentence the way a regiment pivots on a corner man. “Then citizens must hold positions in these choke points. If they do, they could not be squeezed without squeezing themselves. The tollkeeper cannot raise the toll if he must also pay it.”
 
 She underlined nothing, because the pencil stays off exhibits, but she copied the tollkeeper sentence into her notebook, and under it she wrote the only marginal comment of the night: *this is either a very good model or a very good script, and I do not currently possess an instrument that tells those apart.*
 
@@ -47,9 +47,9 @@ It was the honest sentence of a professional. It would also prove to be the thes
 
 @sep
 
-The seventh act she read standing, because her back had given out on the chair and because the transcript had begun to move with the gathering speed of a service reaching its benediction. The Committee had refined the argument into a document, the document had a name, the Republic Portfolio, and the name had a logic: not a manifesto, a list. Own the firms that make things. Own the gates all commerce passes through. Hold a reserve, and the freedom to move. A doctrine, the convener wrote later, asks to be tested. A manifesto only asks to be believed.
+The seventh act she read standing, because her back had given out on the chair and because the transcript had begun to move with the gathering speed of a service reaching its benediction. The Committee had refined the argument into a document, the document had a name, the Republic Portfolio, and the name had a logic: not a manifesto, a list. “Own the firms that make things. Own the gates all commerce passes through. Hold a reserve, and the freedom to move.” “A doctrine,” the convener wrote later, “asks to be tested. A manifesto only asks to be believed.”
 
-Hamilton, near the end, said the thing the annotator in her had been waiting for someone to say, because it was the thing the session could not have scripted for itself without embarrassment, and therefore the thing most worth weighing. I confess I did not expect to find myself in such agreement with Mr. Jefferson. Perhaps the times have clarified what we always shared beneath the disagreement.
+Hamilton, near the end, said the thing the annotator in her had been waiting for someone to say, because it was the thing the session could not have scripted for itself without embarrassment, and therefore the thing most worth weighing. “I confess I did not expect to find myself in such agreement with Mr. Jefferson. Perhaps the times have clarified what we always shared beneath the disagreement.”
 
 Old rivals, reconciled by a spreadsheet. Put that way it was ridiculous. It had not read as ridiculous at two in the morning. It had read like watching two men lower a coffin together, each convinced the other had held the heavier corner.
 

@@ -2,7 +2,7 @@
 #T The Historian's Contribution
 
 ::: doc
-HALE_CONTRIB.docx · recovered plaintext · 45,204 bytes
+THE_HISTORIAN_S_CONTRIB.docx · recovered plaintext · 45,204 bytes
 fingerprint committed 2026-05-14 · sealed 2027-02-19
 opened by derivation · reproduced here from the deposit
 :::

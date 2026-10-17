@@ -1,7 +1,7 @@
 #K record ii · box 3 · folder 2
 #T The Ninth Hour
 #E Think of each agent as a research assistant sealed in a room with only its assigned materials, unable to see what the other rooms contain.
-#ES the halpern memo
+#ES the hale memo
 
 The long battery went up at twelve minutes past six in the evening, in the last gray of a January light that had never fully arrived. Sixty items, all three rooms in parallel, the full diagnostic sweep he and Hale had spent the autumn arguing into shape. It was the final run before the seals came off for analysis, and Thorne had nothing to do.
 

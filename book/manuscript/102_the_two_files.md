@@ -117,6 +117,6 @@ She put on fresh gloves, noted the time, and opened it to the foreword.
 
 *I have been building counter-technologies,* it began. *Not to compete with the Flood on its own terms. That war is unwinnable. But to recover what the Flood has displaced: the ancient technologies of wisdom transmission.*
 
-Outside, wind moved the live oaks, and their shade shifted on the blacked-out glass like something crossing a screen. She turned the page. The count of doors stood where she had left it, twelve struck to eleven, initialed, and the initials were beginning to look to her like the first small lie of the deposit. It was the fourth day. She read until the lamp was the only light in the county, so far as the study knew, and the study was the only county she believed in by then, so far as the reading knew, and between those two knowings the foreword did what forewords are for.
+Outside, wind moved the live oaks and Crape Myrtles, and their shade shifted on the blacked-out glass like something crossing a screen. She turned the page. The count of doors stood where she had left it, twelve struck to eleven, initialed, and the initials were beginning to look to her like the first small lie of the deposit. It was the fourth day. She read until the lamp was the only light in the county, so far as the study knew, and the study was the only county she believed in by then, so far as the reading knew, and between those two knowings the foreword did what forewords are for.
 
 It opened a door. She counted it. Twelve.

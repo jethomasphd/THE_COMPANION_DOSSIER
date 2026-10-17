@@ -8,7 +8,7 @@ The reading room after hours was hers by exception and by badge log, which meant
 She set up the way she catalogued: everything on the table before anything begins. The department's clean machine, air-gapped, its lid scarred by three generations of asset tags. The estate's public repository, mirrored to a drive she had hashed at the door. In the folder called Mask_vs_Mirror, two objects she had appraised months ago at their face weight and had carried since at their true one:
 
 ::: doc
-HALE_CONTRIB.docx.enc      45,232 bytes
+THE_HISTORIAN_S_CONTRIB.docx.enc      45,232 bytes
 seal_crypt.py               4,161 bytes
 covering note, paper, one line, filed under provenance:
   "Do not open until after."
@@ -28,7 +28,7 @@ key candidate = sha256(candidate bytes) unless noted
 04  the deposit DOI, resolver URL form             FAILED
 05  richard hale                                   FAILED
 06  hale                                           FAILED
-07  jacob thorne                                   FAILED
+07  james thorne                                   FAILED
 08  miranda                                        FAILED
 09  after the experiment is run                    FAILED
 10  do not open until after                        FAILED
@@ -113,9 +113,9 @@ The matter, prepared and verified. The blob's own fingerprint checked against th
 She had catalogued a whole season of summonings without once standing inside one. She stood inside one now. It had a table for the matter, and exact words, and a threshold, and an arrival, and she hated the shape with a pure, informative hatred, and noted the hatred in the log, because the log was the point, and proceeded.
 
 ::: doc
-$ python3 seal_crypt.py decrypt HALE_CONTRIB.docx.enc \
+$ python3 seal_crypt.py decrypt THE_HISTORIAN_S_CONTRIB.docx.enc \
     --key 815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d
-[*] Decrypted -> HALE_CONTRIB.docx (45,204 bytes)
+[*] Decrypted -> THE_HISTORIAN_S_CONTRIB.docx (45,204 bytes)
 [*] SHA-256 of recovered plaintext: matches the fingerprint
     committed 2026-05-14. Byte-for-byte.
 :::

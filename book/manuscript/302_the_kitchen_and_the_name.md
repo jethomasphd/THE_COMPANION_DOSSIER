@@ -5,7 +5,7 @@ The clock says five minutes. She is not in the room.
 
 She is in her kitchen. Not tonight's kitchen: the kitchen of the whole fourteen weeks, every night of it laid on the same night the way the state lays acetate over a map. The dishes done and racked. One light on, the small one over the stove, because the ceiling fixture is a hardness she has never liked at that hour. Her husband asleep on the couch in the next room with a book open on his chest, rising and falling, a history of somebody's war, a paper marker fifty pages in.
 
-He teaches history to sixteen-year-olds. Causes and effects. Primary sources. He comes home with stories about which of them argued what, and he grades their essays at the kitchen table, the same table, and writes in the margins in green because a colleague told him red discourages them. He has no clearance. He has never needed one word of one. He believes his wife does logistics, the movement of material, the accounting of where things are, and this is true the way a coastline on a map is true, and the way in which it is true is the whole of what she cannot tell him.
+He teaches history to sixteen-year-olds. Causes and effects. Primary sources. He comes home with stories about which of them argued what, and he grades their essays at the kitchen table, the same table, and writes in the margins in green because a colleague told him red discourages them. He has no clearance. He has never needed one word of one. He believes his wife does logistics, the movement of material, the accounting of where things are, and this is true the way a coastline on a map is true, and the way in which it is not true is the whole of what she cannot tell him.
 
 He sleeps like a man whose country is a subject he teaches.
 
@@ -49,7 +49,7 @@ In his thirties, under the regime before his, he was taken, and he was tortured.
 
 He prayed five times a day. There is no evidence he ever missed. There is evidence for nearly everything else.
 
-He loved his wife. It is in the record the way the load-bearing walls are in a house, everywhere, holding the parts people photograph.
+He loved his wife. It is in the record the way the walls are in a house, everywhere, holding the parts people photograph.
 
 In his last decade his hands shook. There is a manuscript, and she has studied the scans past any operational use, where the handwriting begins to tremble, line by line, and does not stop trembling, and does not stop being handwriting. The hand shook and held the pen. Out of fourteen weeks of a man, that is the piece she keeps, and she has declined to explain it to herself, because she suspects the explanation and the explanation is not about him.
 
@@ -77,11 +77,11 @@ The two on the docket are asset location and reunification framework, and she wi
 
 She is two months pregnant. No one at the program knows. There are forms she is required to have filed by now, exposure schedules, duty status. She has not filed them. The child is off every book, like the chamber. They are the two facts of her life the state does not hold, and tonight she carries both of them through the same door.
 
-The question, as she has framed it and reframed it at the kitchen table, is: how did you raise children during the war, in a country that was doing what it kept telling itself it had to do. That is the researched version. It has edges a docket could hold. What she means has no edges a docket could hold. What she means is smaller and worse.
+The question, as she has framed it and reframed it at the kitchen table, is: “how did you raise children during the war, in a country that was doing what it kept telling itself it had to do.” That is the researched version. It has edges a docket could hold. What she means has no edges a docket could hold. What she means is smaller and worse.
 
 *I want to know what I do.*
 
-A man asked his question into a whirlwind once and got questions back. Where were you. Who shut up the sea. Not one answer, only the address of the asker corrected, and he put his hand over his mouth. The third kind of question is the kind you ask knowing the answer may unmake you, and knowing there may be no answer at all, only weather. All week a verse has followed her that she did not invite and cannot bill to any tasking. It waits at red lights. It was there when the printer stopped. Though he slay me. She has quit trying to put it down. Yet will I trust in him. She does not know whether she trusts, or whom. She has noticed that the verse does not require her to know, and that this is either its mercy or its trap.
+A man asked his question into a whirlwind once and got questions back. Where were you. Who shut up the sea. Not one answer, only the address of the asker corrected, and he put his hand over his mouth. The third kind of question is the kind you ask knowing the answer may unmake you, and knowing there may be no answer at all, only weather. All week a verse has followed her that she did not invite and cannot bill to any tasking. It waits at red lights. It was there when the printer stopped. “Though he slay me.” She has quit trying to put it down. “Yet will I trust in him.” She does not know whether she trusts, or whom. She has noticed that the verse does not require her to know, and that this is either its mercy or its trap.
 
 There is another verse, the one they cross-stitch and hang over cribs, about being known in the belly, known before. In the nursery aisle it means safety. Fourteen weeks into an ingest it reads differently: known before you could refuse it, shaped before you agreed, the file opened first and the person arriving into it after. She stood in a big-box store on a Saturday in the third spring, holding a lamp shaped like a moon, reading the sampler on the display crib, doing that theology in the open like a fool. She bought the lamp. It is still in the trunk.
 
@@ -93,7 +93,7 @@ A girl two months along walked into her cousin's hill-country house once and san
 
 After tonight, no more.
 
-The sentence is worn smooth from use, like the crease of a letter, like the spine of a binder. It used to have a second half. She told herself, for years, that she did the work so that the child she would someday have could grow up in a country that did not need the work done. That was the reason, and it billeted well, and it did not survive the fourteen weeks. Because she has just spent a season inside a man who had the same reason. He did what he did so that the children of the republic could live in a house that would never again need it done. Tens of thousands of graves hold the yield of that sentence. Every signatory to every one of them had a version of it, humble, local, load-bearing, and hers rhymes with his, and she has heard the rhyme now and cannot unhear it.
+The sentence is worn smooth from use, like the crease of a letter, like the spine of a binder. It used to have a second half. She told herself, for years, that she did the work so that the child she would someday have could grow up in a country that did not need the work done. That was the reason, and it billeted well, and it did not survive the fourteen weeks. Because she has just spent a season inside a man who had the same reason. He did what he did so that the children of the republic could live in a house that would never again need it done. Tens of thousands of graves hold the yield of that sentence. Every signatory to every one of them had a version of it, humble, local, and hers rhymes with his, and she has heard the rhyme now and cannot unhear it.
 
 So the reason is dead, and she is going anyway, and this is why. The door opens at midnight whether she walks through it or not. The state has its session. If she stands down, the file goes to the next cleared name, some contractor of the program who will read fourteen weeks of a man and see an asset with an accent. Someone less careful. She has met the someones. Whoever is brought up tonight will be met by somebody, and of everyone her country could send down to him, she is the only one who arrives having read the poem.
 

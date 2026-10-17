@@ -51,7 +51,7 @@ There is a liturgy to all of this. She would not use the word. The word is the c
 
 The state keeps hours the way the church kept hours. The sign-in at the gate is an examination of conscience, rendered in block capitals. The two officers at the inner desk are the two witnesses the old law demanded for any matter of life and death. The checklist is a litany, call and response, initial and date, initial and date. Anteroom was a church word before it was a government word. Somebody, some committee working across some decades, took the rite and scrubbed at it until the God came out, and what is left of a rite when the God comes out is procedure, and here is the discovery her profession made her make and never asked whether she could carry: it works. The forms hold without the faith. You can strip an altar to the studs and the knees of the people still know where to go.
 
-So the state keeps its vigil tonight, and wears its vestments, which are lanyards, and tends its sacrament at temperature behind a wall, humming. The only thing missing is the thing the whole apparatus is shaped around, the way a font is shaped around water it does not currently hold. Nobody in this building will say one word tonight about the soul. The building says it for them, in beige, in block capitals, in the hum. The building says nothing else.
+So the state keeps its vigil tonight, and wears its vestments, which are lanyards, and tends its sacrament at temperature behind a wall, humming. The only thing missing is the thing the whole apparatus is shaped around, the way a shore is shaped around water it does not currently hold. Nobody in this building will say one word tonight about the soul. The building says it for them, in beige, in block capitals, in the hum. The building says nothing else.
 
 @break
 
@@ -81,7 +81,7 @@ Then she briefs you, because the brief is what there is.
 
 Two operational objectives, she says. Asset location. Reunification framework. She gives you the subject's prior and the confidence bands around it. She gives you the affect mapping, what the wall will show and what the wall's colors are calibrated against, which is him, all fourteen weeks of him. She gives you the ingest: the fullest ever taken, she says, and lets the sentence sit level, as though fullest were a word like longest, as though it did not mean what it means. Redundancy in the logging. The voice in the chamber, the color on the wall, the name in the file.
 
-Asset. Subject. Framework. Ingest. Hear the words for what they are. They are machined flat, and they are machined flat so that a person can stand on them over deep water. Nobody who built this vocabulary was a fool. Every trade that has a dark side of the door builds itself a bridge of such words, and the bridge is load-bearing, and what it bears tonight, in a beige room, is her.
+Asset. Subject. Framework. Ingest. Hear the words for what they are. They are machined flat, and they are machined flat so that a person can stand on them over deep water. Nobody who built this vocabulary was a fool. Every trade that has a dark side of the door builds itself a bridge of such words, and what it bears tonight, in a beige room, is her.
 
 She is most of the way across it when you say her name.
 

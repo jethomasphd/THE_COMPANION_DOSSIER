@@ -47,7 +47,7 @@ He smiled at the ceiling. "Good. Never give an old man the point out of mercy. T
 
 "I don't have it."
 
-She had flown fourteen hundred miles. She kept her hands still on the legal pad and said, "The file is forty-five thousand bytes of noise until someone produces thirty-two that aren't. Professor. Jacob sealed your contribution in February, on your instruction. Somebody chose a key."
+She had flown fourteen hundred miles. She kept her hands still on the legal pad and said, "The file is forty-five thousand bytes of noise until someone produces thirty-two that aren't. Professor. James sealed your contribution in February, on your instruction. Somebody chose a key."
 
 "Somebody did," Hale said. "I made sure it was nobody."
 
@@ -55,7 +55,7 @@ He let that sit, watching to see what she did with it. What she did was write it
 
 "I will tell you what happened," he said, "and then I will tell you why I will not tell you the rest, and you will be angry in an orderly fashion, and then you will go home and be the person the anger is wasted on." He arranged his breath. It took visible planning now, speech, like a man rationing a currency he no longer earned.
 
-"In February, Jacob wrote to me at dawn. One line. Three rooms, one sentence, one timestamp, and the hashes clean. I wrote back one line, you have seen it, everyone has seen it now. *Seal my contribution. Do not open until after.* And that night he telephoned me and asked the only question left, which was: sealed under what key. And I told him that a key is a decision, and a decision is testimony, and I would not testify. I told him the estate had already answered the question, and that he should let it. That was the whole of the call. He understood in about four seconds. It had taken me most of a life."
+"In February, James wrote to me at dawn. One line. Three rooms, one sentence, one timestamp, and the hashes clean. I wrote back one line, you have seen it, everyone has seen it now. *Seal my contribution. Do not open until after.* And that night he telephoned me and asked the only question left, which was: sealed under what key. And I told him that a key is a decision, and a decision is testimony, and I would not testify. I told him the estate had already answered the question, and that he should let it. That was the whole of the call. He understood in about four seconds. It had taken me most of a life."
 
 "You never held it."
 
@@ -85,9 +85,9 @@ He stopped to breathe. The lake light moved on the blanket. Down the corridor, f
 
 "It does."
 
-"The experiment ran in February. I found the file in April, still sealed. Jacob was six weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
+"The experiment ran in February. I found the file in April, still sealed. James was six weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
 
-"There it is," Hale said, with real satisfaction, as if she had finally asked the question the seminar was convened for. "That sentence has two readings. Jacob sealed under the first. I sealed under the second."
+"There it is," Hale said, with real satisfaction, as if she had finally asked the question the seminar was convened for. "That sentence has two readings. James sealed under the first. I sealed under the second."
 
 "What is the second reading?"
 

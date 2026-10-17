@@ -138,7 +138,7 @@ She filed the folder and wrote the day's memorandum, shorter than usual, and sen
 
 @sep
 
-The freezer had been on her inventory since the first week. GARAGE, APPLIANCE, CHEST TYPE, OPERATING. Four words of catalog and one omission the size of a coffin lid. She had opened every box in the house by then. She had read a marriage's tax returns and a living child's crayon minutes of an imaginary committee. She had not opened the freezer, and she had let the sentence an appliance is not a record stand in her working papers for eleven weeks, and it had held the way a plank holds over a well, which is to say it had held because she did not stand on it.
+The freezer had been on her inventory since the first week. GARAGE, APPLIANCE, CHEST TYPE, OPERATING. Four words of catalog and one omission the size of a coffin lid. She had opened every box in the house by then. She had read a marriage's tax returns and a living child's crayon minutes of an imaginary committee. She had not opened the freezer, and she had let the sentence an appliance is not a record stand in her working papers for eleven weeks, and it had held the way a 75-year-old plank holds over a decaying well, which is to say it had held because she did not stand on it.
 
 The hum had been there from the first day. It was the sound the house made instead of grieving, a low continuous note through the garage wall, and in week two she had gone out and put her palm flat on the white enamel lid and felt the note arrive into her hand and stop being a mystery. APPLIANCE, OPERATING. And then she had gone on hearing it anyway, at night, in rooms it could not reach, which was not the freezer's doing, and she knew it.
 
@@ -148,7 +148,7 @@ Cold breathed up and out, the way it does. Frost, and the smell of clean paper. 
 
 Venison, at temperature, indifferent, full. A freezer that was a freezer the whole way down.
 
-The mundane explanation did not even need assembling. Jacob Thorne had shot a deer in the fall of 2025, in the same season the dead first spoke in his study, and he had butchered it himself and labeled the packages in marker, and in the third spring the meat was still good because the power had never once gone out. The labels were going on two years old. That was the entire finding. The hum was never the horror. The horror was that she had needed it to be, because a body under the frost would at least have been an answer, and the house had declined, all these weeks, to give her even the wrong one.
+The mundane explanation did not even need assembling. James Thorne had shot a deer in the fall of 2025, in the same season the dead first spoke in his study, and he had butchered it himself and labeled the packages in marker, and in the third spring the meat was still good because the power had never once gone out. The labels were going on two years old. That was the entire finding. The hum was never the horror. The horror was that she had needed it to be, because a body under the frost would at least have been an answer, and the house had declined, all these weeks, to give her even the wrong one.
 
 She repacked the freezer in the order she had found it, because order of discovery is evidence even when the discovery is stew meat. The last package went back on top reading FOR EL'S CHILI in a missing man's confident hand.
 
