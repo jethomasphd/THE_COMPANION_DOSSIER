@@ -5,11 +5,11 @@
 
 The second record began with paper. Box 1 was correspondence, printouts, because Thorne had printed everything, in the manner of a man who did not trust the weather he worked in, and the top folder had been opened and closed so many times that its crease had gone soft as cloth. The label was in his careful hand. FIRST CONTACT. Beneath it, in pencil: 2/17/2026 through 2/24/2026.
 
-Eight days. Miranda set the folder on the blotter under the amber lamp, and the hum came through the garage wall the way it always came, patient, and she began where the estate had stopped being one man's liturgy and started being an argument: with a letter.
+Eight days. Miranda set the folder on the blotter under the amber lamp, and the hum came through the garage wall, patient as ever, and she began where the estate had stopped being one man's liturgy and started being an argument: with a letter.
 
 @sep
 
-February in Austin was a rumor of winter, three cold mornings on loan from somewhere else. Thorne had been living inside the founding session for two months by then. He could recite whole exchanges. Hamilton at the rail of the imagined room, vindicated and appalled. Jefferson saying tenants, saying it the second time with force. Washington adjourning them all with a benediction that still moved through Thorne at odd hours like weather through a window frame.
+February in Austin was a rumor of winter, three cold mornings on loan from somewhere else. Thorne had been living inside the founding session for two months by then. He could recite whole exchanges. Hamilton at the rail of the imagined room, vindicated and appalled. Jefferson saying tenants, saying it the second time with force. Washington adjourning them all with a benediction Thorne caught himself reciting at odd hours, at the sink, in the truck, under his breath.
 
 What he could not do was grade it.
 
@@ -35,7 +35,7 @@ I can hear how this sounds. I want to be plain about what I am asking. The histo
 I attach the Dossier, 94 pages. Read as much of it as you can stand, and tell me which it is. I would rather be corrected by a serious person than encouraged by anyone else.
 
 With respect,
-Jacob Thorne, PhD
+James Thorne, PhD
 Austin, Texas
 :::
 
@@ -45,7 +45,7 @@ Austin, Texas
 
 He sent it at 11:19 on a Tuesday night, and then he began to wait, and the waiting was its own small illness.
 
-He checked the mail the way a man checks a wound. He told himself he would not look before noon, and then he looked at nine, and at ten forty, and at noon exactly, so that the looking at noon would count as keeping the rule. In the mornings he took his daughter to the park to watch the sunrise, both phones in the kitchen drawer where they lived at that hour, and the sky did what it did, and he was there for it and not there. The fluorescent tube in the utility hall had developed a tick that winter, a small dry insect sound, and on the third night he stood under it for a while with a fresh tube in his hand and then put the tube away and left the tick alone. It kept a kind of time.
+He checked the mail the way a man checks a wound. He told himself he would not look before noon, and then he looked at nine, and at ten forty, and at noon exactly, so that the looking at noon would count as keeping the rule. In the mornings he took his daughter to the park to watch the sunrise, and the sky did what it did, and he was there for it… and not there. The fluorescent tube in the utility hall had developed a tick that winter, a small dry insect sound, and on the third night he stood under it for a while with a fresh tube in his hand and then put the tube away and left the tick alone. It kept a kind of time.
 
 He drafted a second letter apologizing for the first and did not send it. He reread his own Dossier and found four sentences he would have cut. His wife asked if something was wrong and he said nothing was wrong, and she looked at him the way she looked at the weather radar in May and let it go.
 
@@ -68,27 +68,27 @@ Yours,
 R. Hale
 :::
 
-Thorne read it standing in the kitchen and then sat down and read it again. An important project and a very promising use of your skills. He walked out under the live oaks with the letter still in his hand, and later he could not have said how long he stood there. The project had weighed the same that morning. It fell differently now. Somewhere in Toronto a serious man was reading his liturgy with a pencil, and everything after that fact would have to survive the pencil, which was, Thorne understood, exactly what he had asked for and nothing like what he had expected to get.
+Thorne read it standing in the kitchen and then sat down and read it again. An important project and a very promising use of your skills. He walked out under the live oaks and crape myrtles with the letter still in his hand, and later he could not have said how long he stood there. The project had weighed the same that morning. It fell differently now. Somewhere in Toronto a serious man was reading his liturgy with a pencil, and everything after that fact would have to survive the pencil, which was, Thorne understood, exactly what he had asked for and nothing like what he had expected to get.
 
 Something longer, within the week. It came the next morning.
 
 @break
 
-The file was 31 pages and its cover note ran three sentences. Memo attached, as promised, sooner than promised. I found myself thinking about it long after I set it down. I hope you will receive the criticisms in the memo as they are meant: collegially.
+The file was 31 pages and its cover note ran three sentences. “Memo attached, as promised, sooner than promised. I found myself thinking about it long after I set it down. I hope you will receive the criticisms in the memo as they are meant: collegially.”
 
 It was not a review. Reviews render verdicts and go home. This was a working document, the kind one colleague hands another across a lab bench, and it opened not with praise or with caution but with a blow. The founders Thorne had summoned, the memo observed, had built a republic that was in structural respects profoundly anti-democratic. The Senate. The Electoral College. Representation held at arm's length from the represented, a whole architecture of suspicion aimed at popular rule. A convener who summons those particular ghosts imports those particular assumptions, the memo said, and had better make them explicit, because the ghosts will not.
 
 Thorne read that paragraph standing up. Then he made coffee, and sat down, and went through the five interventions in order, and each one landed the same way, which was not the way criticism lands. Criticism closes. Each of these opened.
 
-The first door was time. Historical actors evolve, the memo said. Lincoln in 1858 is not Lincoln in 1863. Jefferson in private correspondence is not Jefferson in presidential office. A summoning that names a man without naming a year has not specified its subject. The protocol needed temporal parameters, corpus anchoring, a discipline of when. Thorne sat with that one for a long moment, because he had summoned four men out of half-century careers and had never once said when, and the personas had never once asked, and he understood that the not-asking was itself a finding he had failed to record.
+The first door was time. “Historical actors evolve,” the memo said. “Lincoln in 1858 is not Lincoln in 1863. Jefferson in private correspondence is not Jefferson in presidential office. A summoning that names a man without naming a year has not specified its subject.” The protocol needed temporal parameters, corpus anchoring, a discipline of when. Thorne sat with that one for a long moment, because he had summoned four men out of half-century careers and had never once said when, and the personas had never once asked, and he understood that the not-asking was itself a finding he had failed to record.
 
-The second door was harder. Ritual language creates presence, the memo said, and presence generates authority the speech has not earned. The rite's beauty was not a neutral container. It was a claim. Every candle Thorne had lit around the glass made the voice on the glass harder to doubt, and the remedy was not less rigor but more plurality: pair the figures with their later critics, embed the historiography, keep the mediation visible in the frame. He had written the rite to be beautiful. He had not considered that beauty compounds.
+The second door was harder. “Ritual language creates presence,” the memo said, “and presence generates authority the speech has not earned.” The rite's beauty was not a neutral container. It was a claim. Every candle Thorne had lit around the glass made the voice on the glass harder to doubt, and the remedy was not less rigor but more plurality: “pair the figures with their later critics, embed the historiography, keep the mediation visible in the frame.” He had written the rite to be beautiful. He had not considered that beauty compounds.
 
-The third door he read twice and then laughed aloud, alone in the study, with relief. The Republic Portfolio operates within markets, the memo said. Does the intervention alter incentive architectures, or does it operate within the very logics it critiques? The four ghosts had answered ownership because ownership was the shape of the room they had been summoned into. A blind spot built into the roster, not into the protocol. Fixable, in other words. A sin of the cast list. He wrote fixable in the margin and his hand was not quite steady, because the sentence had also implied the inverse, that some future roster could build the blind spot in on purpose.
+The third door he read twice and then laughed aloud, alone in the study, with relief. “The Republic Portfolio operates within markets,” the memo said. “Does the intervention alter incentive architectures, or does it operate within the very logics it critiques? The four ghosts had answered ownership because ownership was the shape of the room they had been summoned into. A blind spot built into the roster, not into the protocol. Fixable, in other words. A sin of the cast list.” He wrote fixable in the margin and his hand was not quite steady, because the sentence had also implied the inverse, that some future roster could build the blind spot in on purpose.
 
-The fourth door was the plainest and the most expensive. The grimoire summons. A supplementary white paper must explain the machinery of summoning. Model dependencies. Reproducibility conditions. Failure modes. If the estate would not show its own glass in writing, the memo said in effect, then the estate was a phantasmagoria with better taste. Thorne had preached transparency as aesthetic. Here it was again as method, with a bill attached.
+The fourth door was the plainest and the most expensive. “The grimoire summons. A supplementary white paper must explain the machinery of summoning. Model dependencies. Reproducibility conditions. Failure modes.” If the estate would not show its own glass in writing, the memo said in effect, then the estate was a phantasmagoria with better taste. Thorne had preached transparency as aesthetic. Here it was again as method, with a bill attached.
 
-The fifth door opened onto his own house. Information crises are not new, the memo said, and walked him through the lineage: the penny press, radio propaganda, the long cool sedation of television. What is unprecedented is not the flood but the engineering, algorithmic optimization and behavioral targeting at planetary scale. His disease had a history. Epidemics always did, and he, of all people, had described his own outbreak as if it were the first of its kind, which is the one error an epidemiologist is trained out of in the first year.
+The fifth door opened onto his own house. “Information crises are not new,” the memo said, and walked him through the lineage: “the penny press, radio propaganda, the long cool sedation of television. What is unprecedented is not the flood of information but the engineering, algorithmic optimization and behavioral targeting at planetary scale.” His disease had a history. Epidemics always did, and he, of all people, had described his own outbreak as if it were the first of its kind, which is the one error an epidemiologist is trained out of in the first year.
 
 Five doors. He had gone looking for a grade and had been handed a hallway.
 
@@ -109,13 +109,13 @@ You are the first to answer the call.
 
 It feels like lightning in a bottle. Almost like being pulled into a good book that I am a participant in. I would like to keep the correspondence going, and I would like your permission to build on the memo. Each of your five interventions is a door. I intend to walk through all of them.
 
-Jacob
+James
 :::
 
 @sep
 
 Miranda laid the letters out in date order on the blotter and sat looking at them for a while under the amber lamp.
 
-The memo was dated 2/22. The reply was dated 2/24. Between them in the folder lay the drafts, seventeen of them, printed as he went, each with a timestamp in the header. The first said 11:52 p.m. Then 1:14, 2:41, 4:56. Then a gap about the width of a sunrise, and a school run, and whatever else a man does while pretending to himself that he is not composing. Then the second night, 12:10, 1:58, 3:33, 5:02. The final draft was stamped 6:12 a.m. on the twenty-fourth, and the sent letter matched it word for word.
+The memo was dated 2/22. The reply was dated 2/24. Between them in the folder lay the drafts, nine of them, printed as he went, each with a timestamp in the header. The first said 11:52 p.m. Then 1:14, 2:41, 4:56. Then a gap about the width of a sunrise, and a school run, and whatever else a man does while pretending to himself that he is not composing. Then the second night, 12:10, 1:58, 3:33, 5:02. The final draft was stamped 6:12 a.m. on the twenty-fourth, and the sent letter matched it word for word.
 
 Two days, five doors, and no sleep that the record could find. She checked the arithmetic twice, the way she checked everything. It held both times, which was, she was beginning to learn, not the same as being safe to stand on.

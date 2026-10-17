@@ -1,7 +1,7 @@
 #K record iv · box 2 · folder 2
 #T The Wife in Marfa
 
-She drove because flying would have meant a manifest, and because seven hours of highway was the only kind of unrecorded she had left. West of the last Austin overpass the war thinned out into its rural dialect: a fuel sign with more digits lit than the frame was built for, a National Guard convoy heading the other way under tarps the color of dust, flatbed after flatbed, and then nothing, a hundred miles of nothing, the country flattening from hills into argument and from argument into statement. She stopped once, in Fort Stockton, where the station's window carried a hand-lettered card, CASH SAME AS EVER, and a church marquee across the road had been pared down to four words, as if letters had grown expensive too: PRAY FOR THE WATER. The clerk counted her change without looking at it, watching a wall-mounted screen that was watching the Strait.
+She drove because flying would have meant a manifest, and because seven hours of highway was the only kind of unrecorded she had left. West of the last Austin overpass the war thinned out into its rural dialect: a fuel sign with more digits lit than the frame was built for, a National Guard convoy heading the other way under tarps the color of dust, flatbed after flatbed, and then nothing, a hundred miles of nothing, the country flattening from hills into argument and from argument into statement. She stopped once, in Ozona, where the station's window carried a hand-lettered card, CASH SAME AS EVER, and a church marquee across the road had been pared down to four words, as if letters had grown expensive too: PRAY FOR THE WATER. The clerk counted her change without looking at it, watching a wall-mounted screen that was watching the Strait.
 
 Past the Pecos the radio lost its last opinion. She let it go and drove the rest of the way inside a silence the size of the sky, and found, somewhere in the second hour of it, that she had stopped rehearsing. There was no protocol for this visit. She was not coming to appraise anything. She was coming because the record had a hole in it shaped like a household, and because the woman who had refused the house for six months had written back, at last, three words: *Come ahead then.*
 
@@ -11,11 +11,11 @@ The house was south of the tracks, a low adobe the color of the road, with a swa
 
 El Thorne came out through the screen door before Miranda had shut the car door, which meant she had been watched down the whole length of the street, which was fair.
 
-"You made good time," El said. That was the greeting, all of it, and it was somehow complete. She was a tall woman gone lean rather than thin, dark hair pinned up off her neck against the heat, a potter's forearms, a schoolteacher's way of standing square to what approached. She looked at Miranda for a moment with frank assessment, the way you look at weather coming in off the plain. "You'll want water before anything. Everyone gets out of the car thinking they want answers and what they want is water."
+"You made good time," El said. That was the greeting, all of it, and it was somehow complete. She was a tall woman gone lean rather than thin, dark hair pinned up off her neck against the heat, a potter's forearms, a schoolteacher's way of standing square to what approached. She looked at Miranda for a moment with frank assessment. "You'll want water before anything. Everyone gets out of the car thinking they want answers and what they want is water."
 
 @sep
 
-The kitchen was cool and dim and smelled of cumin and clay slip. A window over the sink framed the mountains going blue. At the table, bent over a spiral pad with a pencil, sat the daughter, nine, barefoot, one heel hooked on the chair rung. She looked up once when they came in, filed Miranda under something, and went back to the pad. She was drawing a map. Miranda could see coastline from across the room, too much coastline to be anywhere, bays inside bays, an island labeled in careful block letters she couldn't read at that distance. The hand was steady and the hand was familiar: she had catalogued it months ago, four men at a table, signed in crayon, framed on a study wall three hundred miles east. The line had grown two springs steadier. It was the same line.
+The kitchen was cool and dim and smelled of cumin and clay slip. A window over the sink framed the mountains going blue. At the table, bent over a spiral pad with a pencil, sat the daughter, nine, barefoot, one heel hooked on the chair rung. She looked up once when they came in, filed Miranda under something, and went back to the pad. She was drawing a map. Miranda could see coastline from across the room, too much coastline to be anywhere, bays inside bays, an island labeled in careful block letters she couldn't read at that distance. The hand was steady and the hand was familiar: she had catalogued it months ago, four men at a table, signed in crayon, framed on a study wall four hundred miles east. The line had grown two springs steadier. It was the same line.
 
 El put down glasses of water, then iced tea, then, unasked, a plate of tortillas and beans, establishing by increments that this was a household and not an interview.
 
@@ -33,7 +33,7 @@ Miranda had driven seven hours with a list and found she didn't want the list. "
 
 They talked through the cooling of the afternoon, and El gave her the marriage's version, which no document in the deposit held and which Miranda did not write down, having promised her hands she wouldn't.
 
-"Everyone asks me one question," El said. "They dress it up but it's one question. Did he believe he was talking to the dead. And I watch them need it to be yes, because yes is a story, yes is a diagnosis, yes files him." She shook her head, once. "No. Jacob did not believe the dead speak. I'd have known. You can't share a bathroom sink with a man for eleven years and miss a belief that size. What he believed was worse, because it was about us. He believed the living had stopped listening. To the dead, to books, to each other, to anything that doesn't shout. He watched it happen inside a decade. He used to say the Flood doesn't drown you, it teaches you to breathe it." Her jaw set slightly. "The estate was never a séance. It was a listening. He called it a quiet loud enough to carry. That's the whole theology, and he'd wince to hear me use that word, and he isn't here to wince, so."
+"Everyone asks me one question," El said. "They dress it up but it's one question. Did he believe he was talking to the dead. And I watch them need it to be yes, because yes is a story, yes is a diagnosis, yes files him." She shook her head, once. "No. James did not believe the dead speak. I'd have known. You can't share a bathroom sink with a man for eleven years and miss a belief that size. What he believed was worse, because it was about us. He believed the living had stopped listening. To the dead, to books, to each other, to anything that doesn't shout. He watched it happen inside a decade. He used to say the Flood doesn't drown you, it teaches you to breathe it." Her jaw set slightly. "The estate was never a séance. It was a listening. He called it a quiet loud enough to carry. That's the whole theology, and he'd wince to hear me use that word, and he isn't here to wince, so."
 
 She looked out the window at the blue coming up the mountains.
 
@@ -51,7 +51,7 @@ Through all of this the girl gave no sign of listening, which is how children li
 
 The light went long. El stood to fill the kettle, and Miranda gathered her legal pad and squared it, the gesture that ends visits, and it was then, into the ordinary noise of water and chairs, that the daughter spoke for the first time since the filing glance.
 
-She did not look up from the map. She finished the letter she was blocking in, set the pencil down parallel with the pad's edge, and looked at Miranda with the total practical calm of a child who has had six months to engineer one question down to its load-bearing frame.
+She did not look up from the map. She finished the letter she was blocking in, set the pencil down parallel with the pad's edge, and looked at Miranda with the total practical calm of a child who has had six months to engineer one question down to its frame.
 
 "Is Dad in the computer?"
 
@@ -71,7 +71,7 @@ She picked up the pencil and went back to her coastline.
 
 At the door, in the last gold, El said, "There's a thing I have to give you. I've been deciding about you all afternoon. He'd laugh at that. He left it with the machines, so it was never mine to decide, and I decided anyway."
 
-She went into the bedroom and came back with a single envelope. Plain, letter-sized, its corners gone soft in the way of paper that has been carried and carried and not read: six months riding in a purse, a glovebox, a coat. On the front, in the careful narrow hand Miranda knew now better than her own, one line: *for whoever the estate chooses.*
+She went into the bedroom and came back with a single envelope. Plain, letter-sized, its corners gone soft in the way of paper that has been carried and carried and not read: three months riding in a purse, a glovebox, a coat. On the front, in the careful narrow hand Miranda knew now better than her own, one line: *for whoever the estate chooses.*
 
 "It was on the server rack," El said. "Propped against the drives, where he knew the first person to inventory the closet would find it. Except I got there before the county did, and I took it. It's the one thing I took." She said this last part deliberately, into the record, a woman correcting a ledger. "I didn't open it. It isn't addressed to me. Eleven years, and his last piece of mail isn't addressed to me, and the strange thing, and you can file this too, is that I understand. It isn't addressed to him either, if that helps you. He was past names by then. He'd gone over entirely to roles."
 

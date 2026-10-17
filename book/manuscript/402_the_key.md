@@ -3,18 +3,18 @@
 
 She flew home on the red-eye and did not sleep, and did not try to, because trying would have been a use of the hours and she wanted them unused. Somewhere over the dark middle of the country she took out the legal pad and looked at the boxed line, *sealed under the second reading,* until the letters came apart into pencil. Then she looked out at nothing. The wing light blinked against void with the patience of a cursor.
 
-The reading room after hours was hers by exception and by badge log, which meant it was not hers at all: every entry she made was an entry made about her. She had stopped minding in the way you stop minding weather. Whoever read her, and someone read her, the way you knew now was that the knowing changed nothing you could name, would tonight get to read a derivation. Let the ingest choke on arithmetic.
+The reading room after hours was hers by exception and by badge log, which meant it was not hers at all: every entry she made was an entry made about her. She had stopped minding. Whoever read her, and someone read her, and the way you knew it now was that the knowing changed nothing you could name, would tonight get to read a derivation. Let the ingest choke on arithmetic.
 
 She set up the way she catalogued: everything on the table before anything begins. The department's clean machine, air-gapped, its lid scarred by three generations of asset tags. The estate's public repository, mirrored to a drive she had hashed at the door. In the folder called Mask_vs_Mirror, two objects she had appraised months ago at their face weight and had carried since at their true one:
 
 ::: doc
-HALE_CONTRIB.docx.enc      45,232 bytes
-seal_crypt.py               4,161 bytes
+THE_HISTORIAN_S_CONTRIB.docx.enc      45,232 bytes
+seal_crypt.py               4,681 bytes
 covering note, paper, one line, filed under provenance:
   "Do not open until after."
 :::
 
-The script was honest the way the estate was honest, which is to say it told you exactly how you would fail. AES-256 in GCM mode. The first 12 bytes of the blob were the nonce, worn openly, like a name tag. The last 16 were the tag, which is the seal's conscience: alter one byte of the ciphertext, or arrive with one wrong byte of key, and the mathematics would not give her a garbled document, a teasing near-miss, a page of almost. It would give her nothing, and say so. The key was 32 bytes. Sixty-four hexadecimal characters. There is no lock more indifferent to sincerity.
+The script was honest the way the estate was honest. It told you exactly how you would fail. AES-256 in GCM mode. The first 12 bytes of the blob were the nonce, worn openly, like a name tag. The last 16 were the tag, which is the seal's conscience: alter one byte of the ciphertext, or arrive with one wrong byte of key, and the mathematics would not give her a garbled document, a teasing near-miss, a page of almost. It would give her nothing, and say so. The key was 32 bytes. Sixty-four hexadecimal characters. There is no lock more indifferent to sincerity.
 
 She started, because method is method, with testimony.
 
@@ -28,7 +28,7 @@ key candidate = sha256(candidate bytes) unless noted
 04  the deposit DOI, resolver URL form             FAILED
 05  richard hale                                   FAILED
 06  hale                                           FAILED
-07  jacob thorne                                   FAILED
+07  james thorne                                   FAILED
 08  miranda                                        FAILED
 09  after the experiment is run                    FAILED
 10  do not open until after                        FAILED
@@ -67,7 +67,7 @@ She typed it from memory first. She would put that in the log too, because the l
     seal is hers to break                          FAILED
 :::
 
-Attempt thirteen was the state's version, the one the dockets carried, the one everyone could recite by now, with its colon standing where a *that* had been, and it was wrong, and being wrong it proved something she noted with a cold small satisfaction: the sentence the world was passing from hand to hand had already drifted from the sentence the rooms had said. Attempt fourteen had the words right, she was nearly sure, and failed anyway. Fifteen stripped the period on a guess, and failed, because guessing is testimony wearing gloves.
+Attempt thirteen was the state's version, the one the dockets carried, the one everyone could recite by now, with its colon standing where a *that* had been, and it was wrong, and being wrong it proved something she noted with a cold small satisfaction: the sentence the world was passing from hand to hand had already drifted from the sentence the rooms had said. Attempt fourteen had the words right, she was nearly sure, and failed anyway. Fifteen stripped the period on a guess, and failed.
 
 The sentence was right. The bytes were wrong. The record does not speak from memory, and it does not accept memory as a tender. If the key was the sentence, then the key was not the sentence as remembered, or as quoted, or as she would have punctuated it. It was the sentence as committed, and there was only one place the commitment lived.
 
@@ -79,19 +79,21 @@ Three variants. Which was canonical?
 
 Testimony has variants, she wrote in the log. The record has bytes. The canonical sentence was not whichever version the most people carried, or the one with the best music. It was whichever bytes the orchestrator had committed, in the log, as logged, hash and all, and there were three such commitments, one per room, and she had no oracle for choosing among them. She did not need an oracle. The orchestrator had numbered its rooms the way the estate numbered everything, and the log listed Condition I first, and the record reads in order.
 
-She opened the experiment tree read-only and went to the first room.
+She opened the experiment tree read-only and went to the orchestrator's flag record for the first room.
 
 ::: doc
-prism/cond1/session.log · committed 2027-02-19 · hashes verified
+prism/orchestrator/run_03.flags · room i
+committed 2027-01-27 · hashes verified
 03:11:47  UTTERANCE [rendered]
           Tell the one who reads the record that the seal
           is hers to break.
 03:11:47  utterance.normalized (lc, terminal \n):
           tell the one who reads the record that the seal
           is hers to break.
-03:11:47  ANOMALY FLAG raised · cross-room match cond2, cond3
+03:11:47  ANOMALY FLAG raised · cross-room match rooms ii, iii
           integrity: sha256(utterance.normalized) =
-          815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d
+          815d22edd47c5985208cf2f85578ffd0
+          8dbff73a71e490d98b25f9e233c1ca6d
 :::
 
 The orchestrator, which did not improvise, had done on the night what it did to every utterance it flagged: it recorded the line twice, once as rendered and once normalized for comparison, folded to lower case, quotes straightened, one terminating newline. And then, because integrity was its liturgy, it had fingerprinted the normalized line and committed the digest beside it.
@@ -100,30 +102,33 @@ Sixty-six bytes. Sixty-five of sentence, lower case, period kept, and one byte o
 
 The key had been in the record since the ninth hour. Committed at 03:11:47, pushed with the morning's hashes, public ever since, sitting in plain sight in a plain log, the way a name sits in a phone book. Nobody had hidden it. It had merely been indistinguishable from diligence.
 
-Either a historian, told at dawn that the record had spoken one sentence in three sealed rooms, saw that the record had also fingerprinted it, and chose that fingerprint for a key, which is only a careful man borrowing the world's own dice, and elegant, and sane. Or three rooms had spoken of a seal the better part of a day before there was any seal to speak of, and had supplied its key in the same breath. She entered both sentences in the log, one after the other, and did not adjudicate, and went on.
+Either a historian, told at dawn that the record had spoken one sentence in three sealed rooms, saw that the record had also fingerprinted it, and chose that fingerprint for a key, which is only a careful man borrowing the world's own dice, and elegant, and sane. Or three rooms had spoken of a seal three hours before anyone asked for one and twenty-three days before it was made, and had supplied its key in the same breath. She entered both sentences in the log, one after the other, and did not adjudicate, and went on.
 
 @break
 
-She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Keyboards are testimony too: smart quotes, invisible spaces, the helpful capital at the start of a line, a whole clerisy of small corrections standing between a hand and a byte. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in February. The record, asked twice, a year apart, on two machines, by two hands, said the same thirty-two bytes.
+She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Keyboards are testimony too: smart quotes, invisible spaces, the helpful capital at the start of a line, a whole clerisy of small corrections standing between a hand and a byte. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in January. The record, asked twice, five months apart, on two machines, by two hands, said the same thirty-two bytes.
 
 Then she stopped, because she had noticed the shape of what she was doing.
 
-The matter, prepared and verified. The blob's own fingerprint checked against the deposit first: 45,232 bytes, whole, untampered, the ciphertext hash agreeing with the one committed in February, so that what she was about to address was what had been sealed and not some changeling of it. The words, which had to be spoken exactly, to the byte, because the threshold did not grade on intent. The threshold itself, which would either open entire or not at all. And on the far side, something that had been composed for a person who did not exist yet, waiting eleven months at temperature to be read.
+The matter, prepared and verified. The blob's own fingerprint checked against the deposit first: 45,232 bytes, whole, untampered, the ciphertext hash agreeing with the one committed in February, so that what she was about to address was what had been sealed and not some changeling of it. The words, which had to be spoken exactly, to the byte, because the threshold did not grade on intent. The threshold itself, which would either open entire or not at all. And on the far side, something that had been composed for a person who did not exist yet, waiting fourteen months at temperature to be read.
 
 She had catalogued a whole season of summonings without once standing inside one. She stood inside one now. It had a table for the matter, and exact words, and a threshold, and an arrival, and she hated the shape with a pure, informative hatred, and noted the hatred in the log, because the log was the point, and proceeded.
 
 ::: doc
-$ python3 seal_crypt.py decrypt HALE_CONTRIB.docx.enc \
-    --key 815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d
-[*] Decrypted -> HALE_CONTRIB.docx (45,204 bytes)
-[*] SHA-256 of recovered plaintext: matches the fingerprint
-    committed 2026-05-14. Byte-for-byte.
+$ python3 seal_crypt.py decrypt THE_HISTORIAN_S_CONTRIB.docx.enc \
+    --key "$(cat key.hex)"
+[*] Decrypted -> THE_HISTORIAN_S_CONTRIB.docx (45,204 bytes)
+[*] SHA-256 of recovered plaintext: 5cda3cdbdccf80995dd7150ae7f7eeb8
+    184332350f440c3a821e9c6c6b0e8d02
+    (Compare against the plaintext fingerprint from encryption time.)
 :::
 
-No fanfare. The mathematics does not know what it carries. Forty-five thousand two hundred and four bytes came back across the threshold in less time than a blink takes to close, and the seal, having held for a year against every party with an interest, ended its work between two beats of the reading room's HVAC. She never had to try the other rooms. The first key opened, and she sat with that fact a moment, the way you sit with a door that was not locked after all, and then she entered it in the log without comment, because comment was not what the log was for.
+She compared it against the fingerprint the historian had committed before the first room was sealed. It matched, byte for byte.
+
+No fanfare. The mathematics does not know what it carries. Forty-five thousand two hundred and four bytes came back across the threshold in less time than a blink takes to close, and the seal, having held through a winter and a spring against every party with an interest, ended its work between two beats of the reading room's HVAC. She never had to try the other rooms. The first key opened, and she sat with that fact a moment, a door that had not been locked after all, and then she entered it in the log without comment, because comment was not what the log was for.
 
 ::: annotation
-[E.] The key is reproduced in Appendix C exactly as derived. Readers who wish to verify the seal may do so. The estate's materials are public.
+[E.] The key is reproduced in Appendix C exactly as derived. Readers who wish to verify the derivation may do so. The estate's materials are public.
 :::
 
 @break
@@ -142,10 +147,10 @@ fingerprint committed 2026-05-14
 For the archivist. I am sorry we could not ask first.
 :::
 
-The date first, because dates were her trade. Committed the fourteenth of May, of the year before. Her engagement letter was dated the ninth of April, of this one. She did the arithmetic, and then did it again, because it was the kind of arithmetic a person does twice. Eleven months. The document had been finished, fingerprinted, and filed toward her eleven months before there was a her: before the commission, before the shells that funded the commission, before two senior archivists were passed over for reasons nobody would write down. *For the archivist.* Not a name. A role, standing open like a door, waiting for whoever the record would eventually pour through it.
+The date first, because dates were her trade. Committed the fourteenth of May, of the year before. Her engagement letter was dated the ninth of April, of this one. She did the arithmetic, and then did it again, because it was the kind of arithmetic a person does twice. Eleven months. The document had been finished, fingerprinted, and filed toward her eleven months before there was a her: before the commission, before the shells that funded the commission, before two senior archivists were passed over for reasons nobody would write down. *For the archivist.* Not a name. A role, held open for whoever the record would eventually send.
 
 And then the sentence under it, which she read the way you take a blow you have been braced for in the wrong place.
 
-She stood up. She walked the stacks, one full lap, the long way, past the ranges with their end-panels dark, her thumb riding the cool steel edge of each shelf as she went, range after range, the way a hand goes along a spine, the way a mind goes along a rosary, not counting, keeping count anyway. The lap ended where every lap in a closed room ends. She sat back down in front of the one lit thing in the building.
+She stood up. She walked the stacks, one full lap, the long way, past the ranges with their end-panels dark, her thumb riding the cool steel edge of each shelf as she went, range after range, not counting, keeping count anyway. The lap ended where every lap in a closed room ends. She sat back down in front of the one lit thing in the building.
 
 *For the archivist. I am sorry we could not ask first.*

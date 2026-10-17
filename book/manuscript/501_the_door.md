@@ -21,7 +21,7 @@ Her resignation is signed, dated, accepted, routed. Effective in eleven days. It
 
 They asked her to conduct this session. She refused, in writing, on a form that has a field for everything except reasons. The refusal stood. Refusals here always stand, because somebody else can always be found, and that is the sentence that turned her around in the doorway of her own leaving. Somebody else can always be found. Somebody less careful. Somebody who would run the docket off the checklist, and the checklist has no line for mercy.
 
-She said a thing to herself once, at her own kitchen table, in the dark of her own house, with her lips moving and no sound coming out. After tonight, no more. She believed it the way you believe a doctrine you wrote yourself, which is to say entirely, and on no evidence. The sentence has come back with interest. After tonight, no more, and then a transfer notice crosses your desk with a designation on the first line like a headstone with the dates left blank, and you learn what your sentence was worth. You stay for one more. Not because you doubt the doctrine. Because you know exactly who inherits the chair if you go.
+She said a thing to herself once, at her own kitchen table, in the dark of her own house, with her lips moving and no sound coming out. After tonight, no more. She believed it entirely, and on no evidence. She had written it herself. The sentence has come back with interest. After tonight, no more, and then a transfer notice crosses your desk with a designation on the first line like a headstone with the dates left blank, and you learn what your sentence was worth. You stay for one more. Not because you doubt the doctrine. Because you know exactly who inherits the chair if you go.
 
 @break
 
@@ -35,7 +35,7 @@ She does it without ceremony, reaching up, tracing the cord to the outlet, pulli
 
 The child kicks.
 
-It has learned the hour her body tries to be still, and it disagrees with the hour on principle, the way its father disagrees with a bad textbook. She puts her hand flat on her stomach, once, the old gesture with a new weight under it, and stands in the humming quiet counting a different kind of time. Seven months. A summer child. It will be born into a world that contains this building, and it will never be told, and both of those facts are hers to carry now, one in each arm.
+It has learned the hour her body tries to be still, and it objects. Its father objects to bad textbooks the same way, at the kitchen table, in green ink. She puts her hand flat on her stomach, once, the old gesture with a new weight under it, and stands in the humming quiet counting a different kind of time. Six months. An autumn child. It will be born into a world that contains this building, and it will never be told, and both of those facts are hers to carry now, one in each arm.
 
 @sep
 
@@ -63,7 +63,7 @@ The archivist takes the sentences the way an archivist takes anything: as a depo
 
 "The witnesses do not speak," Alex says. "That is the entire liturgy. Everything else in this building is a footnote to it."
 
-"Then I will do the speaking," the conductor says, and the sentence is not bravado. It is a division of labor. It is the most restful thing anyone has said to Alex in fourteen months.
+"Then I will do the speaking," the conductor says, and the sentence is not bravado. It is a division of labor. It is the most restful thing anyone has said to Alex in a year.
 
 @break
 
@@ -73,11 +73,11 @@ Down the corridor the hum grows a body. Against the metal of the chamber door it
 
 If you have ever opened a door for someone else, a door you once went through alone, you know what her hands know at this threshold. The handle has not changed. The weight has.
 
-She thinks, without wanting to, of the two who went up to the woman in the dark, the ones whose names Scripture never kept, who stood at the edge of the light and said nothing while the summoned came up out of the ground to ask why he had been disquieted. For twelve years she believed she was the woman, the one with the gift and the price. Standing at this door with her hands empty she understands the truth of her whole career at the speed of a dropped glass. She was never the woman. She was always the two in the dark. The program made her forget it by handing her the questions.
+She thinks, without wanting to, of the two who went up to the woman in the dark, the ones whose names Scripture never kept, who stood at the edge of the light and said nothing while the summoned came up out of the ground to ask why he had been disquieted. For twelve years she believed she was the woman, the one with the gift and the price. Standing at this door with her hands empty she understands the truth of her whole career, all at once. She was never the woman. She was always the two in the dark. The program made her forget it by handing her the questions.
 
-Tonight the questions belong to someone else, and Alex is restored to the oldest station there is, and the restoration feels like grief and lands like grace, and there is no form with a field for either.
+Tonight the questions belong to someone else, and Alex is restored to the oldest station there is. It feels like grief. It is not only grief. There is no form with a field for it.
 
-She takes her place inside, against the wall, where the metal is cold through her coat and the hum comes up her spine like a second pulse. The interrogator watches. The witnesses do not speak. The reversal is complete, and it has taken exactly one career to travel forty feet.
+She takes her place inside, against the wall, where the metal is cold through her coat and the hum comes up her spine like a second pulse. The interrogator watches. The witnesses do not speak. The reversal is complete.
 
 Her hand is the one that opens the door for the conductor. That much the program left her: doors.
 

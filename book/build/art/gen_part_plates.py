@@ -96,16 +96,18 @@ PLATES = {
      <circle cx="120" cy="51" r="6" fill="{E}">
      </circle>
      <line x1="120" y1="560" x2="860" y2="560" stroke="{A}" stroke-width="1.4" opacity=".7"/>
-     <rect x="330" y="80" width="190" height="480" fill="rgba(122,31,31,.10)"/>
-     <path d="M 140 470 L 250 420 L 330 430 L 420 380 L 520 400 L 620 350 L 730 360 L 860 300"
+     <rect x="300" y="80" width="80" height="480" fill="rgba(139,133,120,.13)"/>
+     <rect x="760" y="80" width="86" height="480" fill="rgba(139,133,120,.08)"/>
+     <path d="M 140 480 L 200 420 L 250 398 L 290 405 L 330 452 L 360 440 L 420 400 L 520 392 L 620 344 L 700 300 L 760 330 L 800 345 L 840 330 L 860 318"
            fill="none" stroke="{E}" stroke-width="3.5"/>
-     <path d="M 140 480 L 250 470 L 330 500 L 420 530 L 520 500 L 620 460 L 730 400 L 860 330"
+     <path d="M 140 485 L 250 482 L 300 520 L 335 545 L 420 452 L 520 380 L 560 396 L 620 362 L 700 318 L 760 318 L 800 308 L 840 326 L 860 334"
            fill="none" stroke="{A}" stroke-width="2" stroke-dasharray="7 6"/>
-     <text x="336" y="106" fill="{BL}" font-family="IBM Plex Mono" font-size="19">the war</text>
-     <text x="856" y="282" fill="{E}" font-family="IBM Plex Mono" font-size="20" text-anchor="end">the doctrine</text>
-     <text x="856" y="368" fill="{A}" font-family="IBM Plex Mono" font-size="20" text-anchor="end">the index</text>
+     <text x="306" y="106" fill="{A}" font-family="IBM Plex Mono" font-size="19">the war</text>
+     <text x="766" y="106" fill="{A}" font-family="IBM Plex Mono" font-size="17">second</text>
+     <text x="856" y="296" fill="{E}" font-family="IBM Plex Mono" font-size="20" text-anchor="end">the doctrine</text>
+     <text x="856" y="372" fill="{A}" font-family="IBM Plex Mono" font-size="20" text-anchor="end">the index</text>
    </svg>""",
-   caption="the score kept in public, day by day ·<br>the line that refuses to die"),
+   caption="the score kept in public, day by day<br>ahead or behind · the line that refuses to die"),
 
  "plate_part5_chamber": dict(
    kicker="record v", title="The Chamber",
@@ -133,10 +135,11 @@ WITHHELD = """<!doctype html>
   <div class="k">plate vii</div>
   <div class="rule" style="margin-top:56px"></div>
   <div class="emblem">
-    <div style="width:760px;height:1010px;border:1.5px solid rgba(139,133,120,.4);position:relative;
+    <div style="width:760px;height:1010px;border:1.5px solid rgba(139,133,120,.16);position:relative;
                 display:flex;align-items:center;justify-content:center">
-      <div style="width:26px;height:26px;border-radius:50%%;background:#7a1f1f;
-                  box-shadow:0 0 50px 8px rgba(122,31,31,.4)"></div>
+      <div style="font:500 22px 'IBM Plex Mono';letter-spacing:.32em;color:#060505;
+                  text-shadow:0 1px 0 rgba(232,228,217,.07),0 -1px 0 rgba(0,0,0,.9);
+                  text-align:center;line-height:2">PLATE VII<br>WITHHELD AT THE KEEPER'S DIRECTION</div>
     </div>
   </div>
   <div class="cap">WITHHELD AT THE KEEPER'S DIRECTION<br>

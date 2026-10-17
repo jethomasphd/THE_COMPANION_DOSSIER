@@ -7,8 +7,8 @@ The display face is Cormorant Garamond, designed by Christian Thalmann. Cormoran
 
 The prose is Crimson Pro, drawn by Jacques Le Bailly after Sebastian Kosch's Crimson: an old-style face made for long reading, warm without softness. The procedural voice, the logs, dockets, checksums, and registers, is IBM Plex Mono, which was built to be trusted and is therefore used here for everything the reader must decide whether to trust.
 
-The sigil, ◊ ◈ ◊, marks thresholds. The soft break marks a breath. The ember, the darkened gold that carries the kickers and the second hand, is the estate's color: one warm light on a void, and what it costs.
+The sigil, ◊ ◈ ◊, marks thresholds. The soft break marks a breath. The ember, the darkened gold that carries the kickers and the second hand, is the estate's color: one warm light on a void.
 
-All three faces are licensed under the SIL Open Font License, which is to say: released, like the estate, so that they cannot be taken.
+All three faces are licensed under the SIL Open Font License: released, like the estate, so that they cannot be taken.
 
-The type, like the dead, is rendered. The reading, like the living, is real.
+The type, like the dead, is rendered. The reading is not.

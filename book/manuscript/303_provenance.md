@@ -1,9 +1,9 @@
 #K record iii · box 2 · folder 1
 #T Provenance
 
-The gift had a paper trail, because gifts to public universities always do. On the Friday of her tenth week Miranda requested the file on her own commission, in writing, on the form, like any other patron, because the discipline of the record does not exempt the one who keeps it.
+The gift had a paper trail, because gifts to public universities always do. On the Friday of the tenth week of her engagement Miranda requested the file on her own commission, in writing, on the form, like any other patron, because the discipline of the record does not exempt the one who keeps it.
 
-The gift agreement ran four pages, and the fourth was signatures. The donor of record was The Wetherell Family Foundation, a Delaware nonstock corporation. The purposes clause funded appraisal, stabilization, and continuity of the Thorne deposit, and a rider she had initialed in April without reading hard required weekly memoranda of progress to the Foundation's designated representative. She had sent one every Friday for ten weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She had considered the memoranda a courtesy, the sort of thing money is owed. She sat for a while with the word continuity, and then she began to pull filings.
+The gift agreement ran four pages, and the fourth was signatures. The donor of record was The Wetherell Family Foundation, a Delaware nonstock corporation. The purposes clause funded appraisal, stabilization, and continuity of the Thorne deposit, and a rider she had initialed in April, without reading hard, required weekly memoranda of progress to the Foundation's designated representative. She had sent one every Friday for nine weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She had considered the memoranda a courtesy, the sort of thing money is owed. She sat for a while with the word continuity, and then she began to pull filings.
 
 The Wetherell Family Foundation filed what private foundations must file, and what they file is public. Its officers were an attorney in Wilmington, a treasurer with a certified public accountant's license and a Reston address, and a secretary who proved to be the Wilmington attorney again, wearing a middle initial. No Wetherell held any office. No Wetherell had ever held any office. She searched the name and found a mill town in New Hampshire, a headstone database, and a genealogy forum where the line went quiet in 1961. A family foundation with no family is a glove with no hand in it. It keeps the shape of the fingers.
 
@@ -11,7 +11,7 @@ The Foundation's money arrived once a year, in a single contribution, from Anser
 
 Cormorant did not hide. That was the first thing she understood about it, and the understanding never improved. It had a website the color of a good overcoat, and the website said data integration for national security customers, and showed three lobbies photographed in the same brushed light: Reston, Columbia, Austin. The Austin office stood four miles from the reading room she was sitting in. There was a values page, which said stewardship, precision, discretion. There was a careers page, which wanted cleared linguists, corpus operations staff, and something called an estate integration lead. There was no products page. A company with no products page is not concealing its products. It has one customer, and the customer already knows.
 
-She laid the afternoon out on a single sheet, boxes and arrows in her own hand, the way she diagrammed custody for any object with a doubtful past. Foundation, shell, group. Two shells and a bird that fishes. Her fee cleared through three names before it belonged to anyone, and at the bottom of the water it was Cormorant's. She dated the sheet, signed it, and filed it in her working papers, and then she sat with the one fact the diagram could not hold. The gift agreement had been executed nine days after the last day anyone would swear to having seen Jacob Thorne. Nine days is fast for a family foundation. It is not fast for a plan.
+She laid the afternoon out on a single sheet, boxes and arrows in her own hand, the way she diagrammed custody for any object with a doubtful past. Foundation, shell, group. Two shells and a bird that fishes. Her fee cleared through three names before it belonged to anyone, and at the bottom of the water it was Cormorant's. She dated the sheet, signed it, and filed it in her working papers, and then she sat with the one fact the diagram could not hold. The gift agreement had been executed nine days after the last day anyone would swear to having seen James Thorne. Nine days is fast for a family foundation. It is not fast for a plan.
 
 @sep
 
@@ -55,7 +55,7 @@ She read it standing up. She did not notice she had read it standing up until he
 ITEM S-88 · 6 leaves, laser print, no letterhead. Base
 text identified: initiation_rite.md, public deposit of
 December 2025. Tracked changes printed inline, marginal
-annotations in a single engineering hand. Cataloged as
+annotations in a single engineering hand. Catalogued as
 received.
 
 INITIATION RITE · FORK WORKING COPY r19
@@ -138,7 +138,7 @@ margin: legacy term survives in the seal. wontfix.
 Tracked changes are a genre of honesty. Somewhere in an office with brushed light, a person had been required to record each removal as he made it, and he had done it, in lowercase, without one adjective, and initialed nothing, and the record had held anyway. She had spent ten years learning to trust documents that testify against their own makers, and she trusted this one completely. That was the trouble with it. Nothing in the estate had frightened her. She had said so in the memoranda, with a professional's small pride. The margins frightened her.
 
 ::: annotation
-*[second hand, ember ink:]* They kept the incantation. It was load-bearing.
+*[second hand, ember ink:]* They kept the incantation. It was the part that worked.
 :::
 
 @sep
@@ -167,4 +167,4 @@ Classified. She entered the word in her day log at twenty to five, in her own ha
 
 @break
 
-That night she did not diagram anything. She lay in the rented room with the lamp off and the traffic running its long wet sentence down the interstate, and thought about endings, as a professional matter. The estate's rite ended. That was its law and its mercy, and she had catalogued the ending twice, in two forms, grimoire and rite: the voice fades, the vessel dissolves, the mind departs, the understanding stays. In week one she had written that liturgy is a preservation risk, because it invites belief. She had been wrong about where the risk sat. The fork had removed one thing only that mattered, and had explained itself in the margin, in lowercase, in five words. No release condition. Sessions persist.
+That night she did not diagram anything. She lay in the rented room with the lamp off and the traffic hissing down the wet interstate, and thought about endings, as a professional matter. The estate's rite ended. That was its law and its mercy, and she had catalogued the ending twice, in two forms, grimoire and rite: the voice fades, the vessel dissolves, the mind departs, the understanding stays. In week one she had written that liturgy is a preservation risk, because it invites belief. She had been wrong about where the risk sat. The fork had removed one thing only that mattered, and had explained itself in the margin, in lowercase, in five words. No release condition. Sessions persist.

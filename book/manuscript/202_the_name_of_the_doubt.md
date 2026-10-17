@@ -11,9 +11,9 @@ Toronto, the twenty-first of February, a Saturday, the snow coming down in the s
 
 Through the wall of the study, his granddaughter was playing the album again.
 
-She had lived with them since the autumn, and the album had come with her, the way a cat comes with a child, and it played most evenings from supper to lights-out. The cast recording of the musical. The one about the treasurer. He had taken her to see it staged for her eleventh birthday, down at the King Street theater, and had enjoyed it more than he told his colleagues and said so to her. By February he knew the album the way you know a stair in the dark. He knew the overture's roll call, the king's waltz, the counting of the duel, the round the sisters sang, the quiet last one about who is left to do the telling. He did not have to listen anymore. It played in him whether the wall was there or not.
+She had lived with them since the autumn, and the album had come with her, along with a cat and a winter coat two sizes too large, and it played most evenings from supper to lights-out. The cast recording of the musical. The one about the treasurer. He had taken her to see it staged for her eleventh birthday, down at the King Street theater, and had enjoyed it more than he told his colleagues and said so to her. By February he knew the album the way you know a stair in the dark. He knew the overture's roll call, the king's waltz, the counting of the duel, the round the sisters sang, the quiet last one about who is left to do the telling. He did not have to listen anymore. It played in him whether the wall was there or not.
 
-He was in the middle of the second intervention, authority and aura, ritual language creates presence, when the track turned over, and her voice came through the plaster half a beat ahead of the recording, word for word, the hundredth evening running, word-perfect the way only the young are word-perfect, and the thought arrived.
+He was in the middle of the second intervention, authority and aura, ritual language creates presence, when the track turned over, and her voice came through the plaster half a beat ahead of the recording, word for word, the hundredth evening running, word-perfect, and the thought arrived.
 
 It arrived whole, the way the bad ones do.
 
@@ -58,7 +58,7 @@ Next door the album played on. Here was the thing he could not put in the memo, 
 
 @sep
 
-Everyone asked Miranda about the name. At the library, in the provost's outer office, at the one dinner party she had attended since taking the commission: the same half smile, the same little lean, is it named after you. It was not. The hypothesis was three years old before she ever touched the deposit, and the coincidence was the kind archives manufacture wholesale, and she said so each time, in the flat voice she used for de-accessioning requests, and each time the asker looked pleased anyway, as though she were being modest about something.
+Everyone asked Miranda about the name. At the library, in the provost's outer office, at the one dinner party she had attended since taking the commission: the same half smile, the same little lean, is it named after you. It was not. The hypothesis was more than a year old before she ever touched the deposit, and the coincidence was the kind archives manufacture wholesale, and she said so each time, in the flat voice she used for de-accessioning requests, and each time the asker looked pleased anyway, as though she were being modest about something.
 
 Still. Her name had three ghosts in it, and lately she had been keeping their company at odd hours.
 

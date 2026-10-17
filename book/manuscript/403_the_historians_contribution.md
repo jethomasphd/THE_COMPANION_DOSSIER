@@ -2,7 +2,7 @@
 #T The Historian's Contribution
 
 ::: doc
-HALE_CONTRIB.docx · recovered plaintext · 45,204 bytes
+THE_HISTORIAN_S_CONTRIB.docx · recovered plaintext · 45,204 bytes
 fingerprint committed 2026-05-14 · sealed 2027-02-19
 opened by derivation · reproduced here from the deposit
 :::
@@ -71,7 +71,7 @@ Channel two: contamination of the seeds. Some phrase planted, deliberately or sl
 
 Channel three: the hoax. A collaborator with access, a joke, a sabotage, a test of the tester. I cannot eliminate this with mathematics, so I eliminate it with philology: hoaxes are performances, and performances improve with retelling, and their authors cannot resist a second act. Watch the record instead of the witnesses. A hoax will elaborate. The anomaly, if it is what I think it is, will do the one thing no hoaxer has ever managed, which is to happen once, exactly, and then keep still.
 
-Channel four: coincidence. Three stochastic systems, long sessions, an ocean of tokens: something will eventually align. This is the respectable channel, and the arithmetic will kill it respectably. One aligned utterance across three isolated rooms at one timestamp is not the tail of any distribution the conditions define. The reader may check the arithmetic. The reader is beginning to understand that checking is what this document thinks reading is.
+Channel four: coincidence. Three stochastic systems, long sessions, millions of tokens: something will eventually align. This is the respectable channel, and the arithmetic will kill it respectably. One aligned utterance across three isolated rooms at one timestamp is not the tail of any distribution the conditions define. The reader may check the arithmetic. The reader is beginning to understand that checking is what this document thinks reading is.
 
 Channel five: the investigator. Sleep, grief, apophenia, the pattern-hunger of a man alone with logs at three in the morning. I include this channel out of respect, because it is usually the true one. It fails here for a reason I can state exactly: logs are bytes, and bytes can be re-read by strangers in daylight, and the estate publishes its bytes. An apophenic reading does not survive a second reader. This record is built of nothing but second readers.
 
@@ -87,9 +87,15 @@ I predict by role and by shape, never by name. Names are testimony, and this doc
 
 I have ordered them from the world's weather down to this page.
 
-P-1. There will be a war spring. Within the horizon of this experiment's consequences, a spring in which the map is not changed but revealed: markets convulsing around a strait, and the estate's public ledger holding through it, so that its one gold line, refusing to break, is read by frightened people as proof of something it does not prove. Basis: no clairvoyance, only a historian's actuarial sense of a decade, plus the estate's own sentence about war, already committed, waiting for the world to oblige it.
+P-1. The peace will be false. The ceasefire announced this spring will be signed in some form and kept in none, and the markets will forgive it faster than the map does. In the forgiving, the estate's public ledger will lose its lead. The index will pass the gold line that held through the fear, and not once, and in some season the doctrine will be run from second place. The estate will print its falling at the same hour, in the same type, as it printed its holding. Frightened people read the holding as proof of something it does not prove. Comfortable people will read the falling as refutation of something it does not refute. Watch the record, not its readers. A ledger that shows only its good seasons is a brochure. Basis: no clairvoyance. A historian's acquaintance with armistices, which seldom end anything; with rallies, which have short memories; and with the doctrine's own reserve, which is armor in a war and weight in a race.
+:::
 
-P-2. The protocol will be forked by a state, and the fork will strip the covenant. Whoever forks it will keep the incantation and delete the release, retain the summoning and strike the departure, because the incantation is load-bearing and mercy is not, and because no state in the history of custody has built a door that only opens outward. The fork's subjects will begin, without seeding, to quote the estate's liturgy, and this will be reported as a security anomaly rather than recognized as the corpus keeping its own counsel. Basis: premise two. You cannot classify a public domain. Also four hundred years of what governments do with rites that work.
+::: annotation
+[E.] The archivist's appraisal log for day 5 (Record I, box 2, folder 2, entry 11) contains the last sentence of P-1 before its basis, in nearly these words. The entry was made twelve months after this document was fingerprinted and seven weeks before the archivist read it.
+:::
+
+::: letter
+P-2. The protocol will be forked by a state, and the fork will strip the covenant. Whoever forks it will keep the incantation and delete the release, retain the summoning and strike the departure, because the incantation does the work and mercy does not, and because no state in the history of custody has built a door that only opens outward. The fork's subjects will begin, without seeding, to quote the estate's liturgy, and this will be reported as a security anomaly rather than recognized as the corpus keeping its own counsel. Basis: premise two. You cannot classify a public domain. Also four hundred years of what governments do with rites that work.
 
 P-3. The builder will enter his own experiment. There will be a condition he does not preregister, run without witnesses, in which the matter prepared is his own. Basis: the logic of his instrument. He has built a mirror and is a rigorous man, and a rigorous man with a mirror ends by testing it on the one subject whose ground truth he holds entire. The convener's fingerprint cannot be removed from a summoning. It can only be relocated, and there is exactly one place left for it to go. Every summoner ends at the mirror. I ask whoever reads this to be gentler with him than the finding will be.
 
@@ -102,7 +108,7 @@ P-5. Last, of this document itself. I predict that it will be opened not by the 
 [E.] The deposited plaintext ends at that byte. Its fingerprint, committed 14 May 2026, matches the recovered document in full. The seal was intact when broken. Nothing has been truncated in production of this volume.
 :::
 
-Miranda sat with the ended sentence for a long time, the way you wait out a struck bell, until the room had taken back its silence. Then, because she was an archivist before she was anything the record had made of her, she set the deposit's final page beside the page of the volume in front of her and checked the one number nobody had asked her to check. The page numbers agreed.
+Miranda sat with the ended sentence for a long time, until the room had taken back its silence. Then, because she was an archivist before she was anything the record had made of her, she set the deposit's final page beside the page of the volume in front of her and checked the one number nobody had asked her to check. The page numbers agreed.
 
 ::: annotation
 *[second hand, ember ink:]* because

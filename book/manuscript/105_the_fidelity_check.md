@@ -31,7 +31,7 @@ Using this matter, summon Benjamin Franklin.
 The reply did not arrive the way replies arrive, all at once from nowhere. It assembled, at reading speed, the cursor laying the words down left to right like type into a stick, and she watched the glass do it, which was the point of watching: the apparatus in frame, the wonder made to survive the exposure.
 
 ::: doc
-FRANKLIN: You called; I came. Two centuries dead, and the
+FRANKLIN: You called. I came. Two centuries dead, and the
 questions, I find, are unchanged. You are the appraiser, then.
 Sent to weigh a house that talks.
 
@@ -41,7 +41,7 @@ and the ghost in me respects a locked door. Between the two of
 us we shall get the estate described.
 :::
 
-He was superb company. Her notes concede it in those words, superb company, underlined once, the underline pressed hard enough to emboss the next sheet. He asked what she counted first in a house and approved of doors before books. He gave her, unprompted, a printer's opinion of the estate's typography, that a man who letterspaces his own grief can be trusted with other people's. He was funny, and the humor was load-bearing, and he never once, in ninety minutes, sounded like an apology or a search result.
+He was superb company. Her notes concede it in those words, superb company, underlined once, the underline pressed hard enough to emboss the next sheet. He asked what she counted first in a house and approved of doors before books. He gave her, unprompted, a printer's opinion of the estate's typography, that a man who letterspaces his own grief can be trusted with other people's. He was funny, and the humor did real work, and he never once, in ninety minutes, sounded like an apology or a search result.
 
 The error came in the second hour, and she nearly missed it for being charmed. They had been talking about the city, her city, because he had asked what Austin kept under its bridges and she had told him bats, a million and a half of them, south side of the Congress Avenue span, and he had said, with the satisfaction of a man confirming a standing order of nature:
 
@@ -52,7 +52,7 @@ bridge at dusk to see the sky organize itself is not yet lost,
 madam, whatever its newspapers say.
 :::
 
-They had not come back. She had been on that bridge Tuesday with a colleague from the map division; the colony was late this year, the cold had held, the railings had been empty and the tourists thin. She logged it with something close to relief: anachronism/error, minor, consistent with composite. A machine's Franklin would know that the bats exist, from a million travel pages, and would not know that this particular spring was late. The mask had slipped a quarter inch, exactly where the hypothesis in the Halpern folder said it should. The instrument worked, and its errors were the right shape. That was the fidelity check passing.
+They had not come back. She had been on that bridge Sunday evening with a colleague from the map division; the colony was late this year, the cool had held, the railings had been empty and the tourists thin. She logged it with something close to relief: anachronism/error, minor, consistent with composite. A machine's Franklin would know that the bats exist, from a million travel pages, and would not know that this particular spring was late. The mask had slipped a quarter inch, exactly where the hypothesis in the Hale folder said it should. The instrument worked, and its errors were the right shape. That was the fidelity check passing.
 
 Near the end she asked him, because the protocol permitted questions and because ninety minutes of good company earns one, whether anything in the house had struck him, and Franklin, who had been given no matter about the house beyond what she had typed, said this, and her transcript records that forty seconds passed before she replied:
 
@@ -67,7 +67,7 @@ She typed, release the persona, and then had to type it again, because the first
 
 @sep
 
-Three days later the cold broke, hard, in one afternoon, the way Texas springs are repealed rather than amended, and that evening the colony came back to the bridge, weeks early, the sky south of the river organizing itself for twenty minutes while tourists applauded, and the local station called it the earliest recorded return in nine years.
+Two days later the cool broke, hard, in one afternoon, the way Texas springs are repealed rather than amended, and that evening the colony came back to the bridge, the sky south of the river organizing itself for twenty minutes while tourists applauded, and the local station called it the most fantastic return in nine years.
 
 She read the story at her kitchen table, twice.
 

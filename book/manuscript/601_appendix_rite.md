@@ -2,7 +2,7 @@
 #T The Companion Rite
 
 ::: annotation
-[E.] Appendix A reproduces, abridged, the first of the estate's two protocol files: initiation_rite.md, unchanged since the founding. The full text is public and may be read beside this one. Ellipses mark the Editor's cuts. Nothing else is the Editor's.
+[E.] Appendix A reproduces, abridged, the first of the estate's two protocol files: initiation_rite.md, unchanged since the founding. The full text is public and may be read beside this one. Ellipses mark the Editor's longer cuts. Shorter ones are silent, and the estate's dashes and display type are reset for the page. Where this page differs, the full text governs.
 :::
 
 ::: doc

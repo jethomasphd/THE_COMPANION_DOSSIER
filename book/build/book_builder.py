@@ -102,9 +102,38 @@ def para(doc, align=None, before=0, after=0, leading=None, indent=None,
 INLINE_RE = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*)")
 
 
+STRAIGHTEN = str.maketrans({"“": '"', "”": '"', "‘": "'", "’": "'"})
+
+
+def smart_quotes(text):
+    """Typeset straight quotes as curly ones, reading context past *markup*.
+
+    The manuscript mixes straight and curly quotes (Word autocorrect in the
+    reviewed draft). Prose is set curly; the mono documents stay straight,
+    as typewritten and machine records do.
+    """
+    text = text.translate(STRAIGHTEN)
+    out = []
+    for i, ch in enumerate(text):
+        if ch not in "\"'":
+            out.append(ch)
+            continue
+        j = i - 1
+        while j >= 0 and text[j] == "*":
+            j -= 1
+        prev = text[j] if j >= 0 else ""
+        opens = prev == "" or prev.isspace() or prev in "([{“‘/"
+        if ch == '"':
+            out.append("“" if opens else "”")
+        else:
+            out.append("‘" if opens else "’")
+    return "".join(out)
+
+
 def add_inline(p, text, name=SERIF_BODY, size=BODY_PT, color=INK,
                base_italic=False, base_bold=False, **kw):
     """Add text with *italic* and **bold** inline markup."""
+    text = text.translate(STRAIGHTEN) if name == MONO else smart_quotes(text)
     for tok in INLINE_RE.split(text):
         if not tok:
             continue
@@ -216,15 +245,44 @@ def body_para(doc, text, first=False):
     return p
 
 
+DOC_MAX_PT, DOC_MIN_PT = 8.4, 6.9
+DOC_LEFT, DOC_RIGHT = 0.32, 0.05
+TEXT_WIDTH_IN = 6 - 0.85 - 0.7          # page width minus margins (setup_section)
+MONO_ADVANCE = 0.6                      # IBM Plex Mono: every glyph is 0.6 em
+DOC_AVAIL_PT = (TEXT_WIDTH_IN - DOC_LEFT - DOC_RIGHT) * 72 * 0.98
+
+
+def doc_size(lines):
+    """Largest type size (pt) at which the block's laid-out lines fit.
+
+    Documents are reproduced line for line, so a typed line that overruns
+    the measure breaks into a ragged orphan. Only lines that belong to a
+    layout (a neighbour above or below: tables, logs, hard-wrapped text)
+    set the size; a lone line is a paragraph and may wrap like prose, and
+    a line too long to fit even at the floor wraps whatever we do.
+    """
+    widths = [len(ln.replace("*", "").rstrip()) for ln in lines]
+    cap = int(DOC_AVAIL_PT / (MONO_ADVANCE * DOC_MIN_PT))
+    laid = [w for i, w in enumerate(widths)
+            if w and ((i > 0 and widths[i - 1]) or (i + 1 < len(widths) and widths[i + 1]))
+            and w <= cap]
+    longest = max(laid, default=0)
+    if not longest:
+        return DOC_MAX_PT
+    fit = DOC_AVAIL_PT / (MONO_ADVANCE * longest)
+    return max(DOC_MIN_PT, min(DOC_MAX_PT, int(fit * 10) / 10))
+
+
 def doc_block(doc, lines):
+    size = doc_size(lines)
     for i, ln in enumerate(lines):
         p = para(doc, before=(8 if i == 0 else 0),
                  after=(8 if i == len(lines) - 1 else 0),
-                 leading=12.6, left=0.32, right=0.22)
+                 leading=round(size * 1.5, 1), left=DOC_LEFT, right=DOC_RIGHT)
         if ln.strip():
-            add_inline(p, ln, name=MONO, size=8.4, color=INK)
+            add_inline(p, ln, name=MONO, size=size, color=INK)
         else:
-            set_font(p.add_run(" "), name=MONO, size=8.4)
+            set_font(p.add_run(" "), name=MONO, size=size)
 
 
 def letter_block(doc, lines):

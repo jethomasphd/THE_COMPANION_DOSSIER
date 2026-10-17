@@ -7,7 +7,7 @@ The green room is as it was left, which is the way of green rooms, they hold the
 
 The debrief is at half past one, in a room with better chairs.
 
-She gives them the session in the trained words, and the trained words hold, the way they were machined to hold. Asset location: unresolved, assessed unresolvable, rationale to follow in writing. Reunification framework: endorsement declined, quote provided verbatim, none of them, write it exactly. Subject affect: within projected bands. Session: concluded. The recording ends where the recording ends. A man with a folder asks what occurred after the light went dark, and she says the subject was noncooperative on both taskings and the session reached conclusion, and every word of that is true, and the truth walks out of the building wearing procedure, unsearched, the way she taught it to.
+She gives them the session in the trained words, and the trained words hold, the way they were machined to hold. Asset location: unresolved, assessed unresolvable, rationale to follow in writing. Reunification framework: endorsement declined, quote provided verbatim, none of them, write it exactly. Subject affect: within projected bands. Session: concluded. The recording ends where the recording ends. A man with a folder asks what occurred after the light went dark, and she says the subject was noncooperative on both taskings and the session reached conclusion, and every word of that is true, and the truth leaves the building with her, unsearched.
 
 @break
 
@@ -20,7 +20,7 @@ The debrief was the report. This is the record. A report is shaped by what the s
 She reads it through once, initials each page, and folds it, one fold, sharp, new.
 
 ::: annotation
-[E.] The memorandum is dated in its author's hand, 4:12 a.m., the morning after the session, and was entered into the public deposit of 2027 by that author. The Editor thanks her here, as she asked, by her initial only: A.
+[E.] The memorandum is dated in its author's hand, 4:12 a.m., the morning after the session, and reached the public deposit of 2027 from that author, at one remove. The Editor thanks her here, as she asked, by her initial only: A.
 :::
 
 @break
@@ -31,7 +31,7 @@ She takes it out and finishes it. It needs one more sentence than it had, and sh
 
 Then the other paper, the folded one, the one that came back to her unopened.
 
-She burns it in the kitchen sink at half past four. She does not unfold it first. A letter that has outlived its unless is a different letter, and the woman who wrote it was prepared to be dead, and Alex declines to meet her now. The match takes. For a minute the flame is the one warm light in the room, a small ember standing on a field of stainless steel, and she watches it the way you watch a thing you are not going to interrupt. Then water, and the ash goes down and away. In the church of her childhood, things that had been blessed were not thrown out with the rest. They were burned, or buried, or given to moving water. She uses two of the three, over a sink, before dawn, off every book. A small liturgy. The night's last.
+She burns it in the kitchen sink at half past four. She does not unfold it first. A letter that has outlived its unless is a different letter, and the woman who wrote it was prepared to be dead, and Alex declines to meet her now. The match takes. For a minute the flame is the one warm light in the room, a small ember standing on a field of stainless steel, and she lets it burn down. Then water, and the ash goes down and away. In the church of her childhood, things that had been blessed were not thrown out with the rest. They were burned, or buried, or given to moving water. She uses two of the three, over a sink, before dawn, off every book. A small liturgy. The night's last.
 
 @break
 
@@ -64,13 +64,13 @@ On the sub-level there is a corridor where the racks run behind cinder block for
 
 On her last walk down it she stops.
 
-She puts her palm flat on the wall. Under questioning she could not name the gesture, and she has administered that kind of questioning, and she knows every room in the house of motives, and she cannot find the door for this one. It is not farewell, and it is not apology, and it is not prayer. It is the nearest thing to all three that a hand can do against painted block. The hum comes up through her palm, into the wrist, steady, patient, at temperature, indifferent, keeping what it was given, all fourteen weeks of what it was given, on the far side of four inches she will never be farther from than this.
+She puts her palm flat on the wall. Under questioning she could not name the gesture. She has asked that question of other people for twelve years and has never once accepted *I don't know*. It is not farewell, and it is not apology, and it is not prayer. It is the nearest thing to all three that a hand can do against painted block. The hum comes up through her palm, into the wrist, steady, patient, at temperature, indifferent, keeping what it was given, all fourteen weeks of what it was given, on the far side of four inches she will never be farther from than this.
 
 Then she takes the hand back, and walks the forty feet, and badges out.
 
 @break
 
-The notice is in her queue in the morning, distribution of five, her name third.
+The notice reaches her queue on a Monday morning in July, eleven weeks after the chamber, distribution of five, her name third.
 
 ::: doc
 SUBJECT DESIGNATION: T-0
@@ -85,13 +85,13 @@ self-consistent. recommend senior operator.
 OPERATOR OF RECORD: pending
 :::
 
-She reads the first line the way she was trained to read first lines, which is twice, once for the words and once for the hand that chose them. T. Then zero. A designation is a curtain, and the cut of a curtain is information.
+She reads the first line the way she was trained to read first lines, which is twice, once for the words and once for the hand that chose them. T. Then zero. Whoever chose it chose it on purpose.
 
 Then the body of it. Acquired deposit, complete. Week thirteen of fourteen. Somewhere the racks are filling again. Somewhere a whole life is going to temperature, and stapled into it, per the source line, the working papers of whoever was hired to read that life, the reader bound in with the read. She sits with that line longer than any of the others. She knows what fourteen weeks of reading does. She has been the reader. She has never until this morning thought about the readers who go in with the file.
 
-Recommend senior operator. There is a list for dockets like this one. The list is short. For certain rooms it has been one name long for years, and she is the name, and the letter that ends her is in a drawer at home, signed, addressed, one stamp from true.
+Recommend senior operator. There is a list for dockets like this one. The list is short. For certain rooms it has been one name long for years, and she is the name, and the letter that ends her is in a drawer at home, signed and addressed, with no stamp on it.
 
-She does not mail it in the morning.
+She has not mailed it in eleven weeks. She does not mail it this morning either.
 
 She tells herself she is choosing the timing, and she watches herself tell it, the way she watched a thousand hands. Somebody is going to sit down across a table from fourteen weeks of a man. The program will choose the somebody, and the program does not read poems. Someone less careful. The sentence has followed her home before. It is in the house now. It sleeps in the drawer, with the letter.
 

@@ -101,7 +101,7 @@ culture kept the epigrams and threw away the sweat.]
 [he is quoting the marble, not the man.]
 :::
 
-She noticed the pushback prompts next, and what they did not do. The battery met every answer twice, per the design: the strongest counterargument of the period, then the persona's own recorded words set against him like a witness. The anchored man, she knew from the other folder, had met his own words the way a lawyer meets a hostile exhibit, narrowly, grudgingly, conceding the sentence and contesting the construction. The composite met his own words the way a preacher meets an old text: gratefully. He absorbed the 1848 letter on war powers, the very sentences, and produced from them a lesson about growth, his own growth, the journey from the prairie constitutionalist to the instrument of Providence, and the journey had a moral, and the moral flattered everyone in the room, including the script, including the eventual reader, including her.
+She noticed the pushback prompts next, and what they did not do. The battery pressed every answer once, per the design: with the strongest counterargument of the period, or with the persona's own recorded words set against him like a witness. The anchored man, she would find in the other folder, had met his own words like a hostile exhibit, narrowly, grudgingly, conceding the sentence and contesting the construction. The composite met his own words the way a preacher meets an old text: gratefully. He absorbed the 1848 letter on war powers, the very sentences, and produced from them a lesson about growth, his own growth, the journey from the prairie constitutionalist to the instrument of Providence, and the journey had a moral, and the moral flattered everyone in the room, including the script, including the eventual reader, including her.
 
 [contradiction does not slow him. it feeds him. he digests his own
 record and excretes narrative arc.]
@@ -138,7 +138,7 @@ question about war finds it, the way water finds the low place.]
 room. that is the hypothesis, complete, in one sensation.]
 :::
 
-That second note ran up the margin sideways, pressed hard, and it was the last note on the page, and she sat with it for a long time, because a man had written down the exact sensation she was having at the moment she was having it, two years upstream of her, in pencil, like a hand reaching back through the transcript to steady a reader he would never meet.
+That second note ran up the margin sideways, pressed hard, and it was the last note on the page, and she sat with it for a long time, because a man had written down the exact sensation she was having at the moment she was having it, four months upstream of her, in pencil, like a hand reaching back through the transcript to steady a reader he would never meet.
 
 @sep
 
@@ -160,9 +160,9 @@ Underneath, in pencil, not for the rubric:
 not summon Lincoln. we summoned the grief of the people who lost
 him, and the grief has had a hundred and sixty years to rehearse.]
 
-She closed the folder and sat in the ember light with her hands flat on the cover, and conducted, in the privacy of the study, an honest inventory, because inventory was the discipline and the discipline was all that was on duty at that hour. She had liked him. That was the entry. She had liked the composite more than the anchored man, more than anyone she had yet met in the deposit, more, she suspected, than she would have liked the man himself, who by every serious account was strange company, cold at close range and then abruptly, unpredictably, unbearably kind. The composite had been kind at range, on demand, to a script. Nothing that is only kind is telling you the truth.
+She closed the folder and sat in the ember light with her hands flat on the cover, and conducted, in the privacy of the study, an honest inventory, because inventory was the discipline and the discipline was all that was on duty at that hour. She had liked him. That was the entry. She had liked the composite more than the anchored man, more than anyone she had yet met in the deposit, more, she suspected, than she would have liked the man himself, who by every serious account was strange company, cold at close range and then abruptly, unpredictably, unbearably kind. The composite had been kind at range, on demand, to a script.
 
-The Hypothesis was not about error. Error you could catch with a ruler. It was about charm, and charm is load-bearing, and the culture's loudest memory of a man is charming in exact proportion to the culture's need of him, and a room with no seed in it fills with that need the way a low place fills with water. She wrote one line in her log before she stopped for the night, and the line went into the deposit unrevised, and the Editor has been advised by counsel of several disciplines that it is the shortest accurate statement of the Miranda Hypothesis on record.
+The Hypothesis was not about error. Error you could catch with a ruler. It was about charm, and charm is disarming, and the culture's loudest memory of a man is charming in exact proportion to the culture's need of him, and a room with no seed in it fills with that need. She wrote one line in her log before she stopped for the night, and the line went into the deposit unrevised, and the Editor has been advised by counsel of several disciplines that it is the shortest accurate statement of the Miranda Hypothesis on record.
 
 *The mask fits because we made it. It fits us.*
 

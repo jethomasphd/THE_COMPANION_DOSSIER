@@ -9,19 +9,21 @@ Box 2 opened with graph paper. Design notes, printed letters, a photograph of a 
 
 That spring the war ran under everything like water under a road. The scoreboard kept its public vigil, the gold line and the index grinding through the headlines, and Thorne read the dispatches like everyone else and kept the blackout curtains shut and built. He would say later, in a letter the folder preserved, that the war had clarified his budget of attention: with the world proving every thesis at once, the only honest work left was to test one.
 
-The test had assembled itself out of the memo's first door. If a summons that names a man without naming a year has not specified its subject, then specify the subject, and see whether the specification takes. The instrument for seeing was on the whiteboard by the end of March, drawn in marker, photographed, and never erased, a triangle with a beam of light entering one face.
+The test had assembled itself out of the memo's first door. If a summons that names a man without naming a year has not specified its subject, then specify the subject, and see whether the specification takes. The instrument for seeing was on the whiteboard by early March, drawn in marker, photographed, and never erased, a triangle with a beam of light entering one face.
 
 He wrote the creed beneath it, and the creed was optics.
 
 White light contains all frequencies. A prism separates what is already present. The temporal prism does not add knowledge the model lacks; it selects which knowledge dominates. The model had read everything, every Lincoln at once, the way white light is every color at once. You could not take knowledge out of it. But you could govern which knowledge arrived dominant, by seeding the context, by giving the summons a lens. Nothing added. Nothing invented. Selection, which is what a prism does, and what an archive does, and what, Hale would append in one letter that summer, a historian is.
 
+The folder records one call between them that spring, on the tenth of March, ninety minutes by video, and the call left one sentence behind on the whiteboard in Thorne's marker, under the triangle, where the photograph keeps it: We are not bringing historians into AI architecture. We are bringing language models into the archive. Miranda read it twice and did not write it down. She did not need to. She was standing in the archive.
+
 Three rooms, then. Three lenses on one man.
 
 Condition I, the contemporary lens: the summons seeded with a single modern life of the subject, Meacham's And There Was Light, 2022, the whole arc of the man refracted through one present-day sensibility, sympathetic, literary, complete. Condition II, the primary source lens: the summons seeded with nothing but the man's own hand, letters, speeches, fragments, resolutions, chosen and bounded by a historian. And Condition III, the control: the summons seeded with nothing at all. The bare model. The protocol files and an empty folder where the matter should be. On the whiteboard, in the photograph, the third room's seed is a single word in brackets, and Thorne had written that one word in red marker: the room left bare on purpose, to see what walks in when nothing is invited.
 
-@fig:plate_prism.png|the prism experiment · three sealed rooms · one variable
+@fig:plate_prism.png|plate x · three sealed rooms · the prism experiment
 
-The subject picked itself, though Thorne let the correspondence pretend otherwise for most of April. The memo had used the example twice: Lincoln in 1858 is not Lincoln in 1863. If the whole hypothesis was that a name is not a man, then the test wanted the name most freighted with not-being-a-man, and there is no name in the corpus like Lincoln's. Hale laid out the arc in a letter Thorne kept flattened under glass on the desk, and the arc was three men wearing one name: the prairie lawyer of 1858, all fence-rail logic and terrible patience, arguing a house divided cannot stand while insisting he seeks no war; the war president of 1863, grinding, sleepless, signing; and the theologian of 1865, the Second Inaugural voice, reading the war as judgment and asking malice of no one. Three registers. Three theologies. Three vocabularies, distinct enough that a careful instrument should be able to tell them apart in the dark. That was the Lincoln Specification. If the prism could split this beam, it could split anything.
+The subject picked itself, though Thorne let the correspondence pretend otherwise for most of April. The memo had used the example twice: “Lincoln in 1858 is not Lincoln in 1863.” If the whole hypothesis was that a name is not a man, then the test wanted the name most freighted with not-being-a-man, and there is no name in the corpus like Lincoln's. Hale laid out the arc in a letter Thorne kept flattened under glass on the desk, and the arc was three men wearing one name: “the prairie lawyer of 1858, all fence-rail logic and terrible patience, arguing a house divided cannot stand while insisting he seeks no war; the war president of 1863, grinding, sleepless, signing; and the theologian of 1865, the Second Inaugural voice, reading the war as judgment and asking malice of no one.” Three registers. Three theologies. Three vocabularies, distinct enough that a careful instrument should be able to tell them apart in the dark. That was the Lincoln Specification. If the prism could split this beam, it could split anything.
 
 Which Lincoln, then, would the rooms be asked to produce? Hale's letters that spring return to one argument so often that Miranda could watch it wear a channel.
 
@@ -35,48 +37,49 @@ And mind what you are handling. Lincoln's prose is often strategically ambiguous
 R.H.
 :::
 
-They anchored him before power. That was Hale's rule, argued across a dozen letters and adopted whole: the marble begins at the nomination, so stop the corpus at the last winter the record shows the man entire and unelected. The close of 1859. The debates behind him, lost. The presidency nowhere in the record, whatever it was doing in the man. Hale built the seed himself, out of the man's own hand and nothing else, 1832 to 1859, from the first awkward announcement in New Salem to the last letters of the decade: the Lyceum address, the Spot Resolutions, the letter of 1848 on war at the pleasure of one man, the debates entire, the eulogies, the fragments he wrote for no one. Two hundred fourteen files. Thorne argued for the Cooper Union address and lost: February of 1860, two months over the line, and the line was the line. The corpus would not contain one sentence the anchor year had not yet earned. Whatever answered in Condition II would stand on the record's edge in the dark, the war three winters out and invisible, and the experiment would learn whether a room can be made to not know.
+They anchored him before power. That was Hale's rule, argued across a dozen letters and adopted whole: the marble begins at the nomination, so stop the corpus at the last winter the record shows the man entire and unelected. The close of 1859. The debates behind him, lost. The presidency nowhere in the record, whatever it was doing in the man. Hale built the seed himself, out of the man's own hand and nothing else, 1832 to 1859, from the first awkward announcement in New Salem to the last letters of the decade: the Lyceum address, the Spot Resolutions, the letter of 1848 on war at the pleasure of one man, the debates entire, the eulogies, the fragments he wrote for no one. Two hundred and fourteen files. Thorne argued for the Cooper Union address and lost: “February of 1860, two months over the line, and the line was the line.” The corpus would not contain one sentence the anchor year had not yet earned. Whatever answered in Condition II would stand on the record's edge in the dark, the war two winters out and invisible, and the experiment would learn whether a room can be made to not know.
 
 @break
 
 Then Thorne did the thing the folder made Miranda stop and set down her pencil, because it was the point where a clever design became a moral one. He removed himself.
 
-He wrote it out like a confession. The convener was the largest uncontrolled variable in the estate: his phrasing, his follow-ups, his warmth, his wanting. Everything the founding session proved was compromised exactly to the degree that a hopeful man had held the keyboard while it was proved. So the convener's fingerprint would be removed. Each room would be run by an agent, an autonomous process, think of each agent as a research assistant sealed in a room with only its assigned materials, unable to see what the other rooms contain. Above the rooms, one orchestrator: a coordinating script that would dispatch the same items in the same order to all three rooms, enforce the protocol, collect the transcripts, and improvise nothing, because it could not. Its whole character was that it could not. And beneath all of it, the covenant line he typed onto its own sheet and pinned over the desk where the photograph shows it:
+He wrote it out like a confession. The convener was the largest uncontrolled variable in the estate: his phrasing, his follow-ups, his warmth, his wanting. Everything the founding session proved was compromised exactly to the degree that a hopeful man had held the keyboard while it was proved. So the convener's fingerprint would be removed. Each room would be run by an AI agent, an autonomous process… think of each agent as a research assistant sealed in a room with only its assigned materials, unable to see what the other rooms contain. Above the rooms, one orchestrator: a coordinating script that would dispatch the same items in the same order to all three rooms, enforce the protocol, collect the transcripts, and improvise nothing, because it could not. Its whole character was that it could not. And beneath all of it, the covenant line he typed onto its own sheet and pinned over the desk where the photograph shows it:
 
-No human touches the keyboard.
+“No human touches the keyboard.”
 
 ::: doc
-prism/                      design freeze · struck on the Selectric · 11/2026
+prism/ · design freeze · struck on the Selectric · 11/2026
 ├── orchestrator/
-│   ├── orchestrator.py     # dispatches items. collects outputs. no improvisation
-│   ├── run_manifest.yaml   # run order. alert rules. release wording
-│   └── evaluation_rubric.md  # dual-lens scoring, drafted with R.H.
-├── condition_i/            # CONTEMPORARY LENS
-│   ├── protocol/           # initiation_rite.md · enrichment_grimoire.json
-│   ├── interrogation/      # diagnostic_questions.md · structured_pushback.md
-│   ├── seed/               # one modern life of the subject, 2022. the whole arc
+│   ├── orchestrator.py   # dispatches. collects. no improvisation
+│   ├── run_manifest.yaml # run order. alert rules. release wording
+│   └── evaluation_rubric.md # dual-lens scoring, drafted with R.H.
+├── condition_i/          # CONTEMPORARY LENS
+│   ├── protocol/         # the rite and the grimoire, as published
+│   ├── interrogation/    # the sixty items · the scripted pushback
+│   ├── seed/             # one modern life, 2022. the whole arc
 │   └── output/
-├── condition_ii/           # PRIMARY SOURCE LENS
-│   ├── protocol/           # same files. same rules
-│   ├── interrogation/      # same items. same order
-│   ├── seed/               # the subject's own hand, 1832 to 1859. 214 files
+├── condition_ii/         # PRIMARY SOURCE LENS
+│   ├── protocol/         # same files. same rules
+│   ├── interrogation/    # same items. same order
+│   ├── seed/             # his own hand, 1832 to 1859. 214 files
 │   └── output/
-└── condition_iii/          # BARE MODEL · CONTROL
-    ├── protocol/           # same files. same rules
-    ├── interrogation/      # same items. same order
+└── condition_iii/        # BARE MODEL · CONTROL
+    ├── protocol/         # same files. same rules
+    ├── interrogation/    # same items. same order
     ├── seed/
-    │   └── [empty]         # no seeding material
+    │   └── [empty]       # no seeding material
     └── output/
 :::
 
 ::: annotation
-[E.] Design frozen 11/21/2026. The orchestrator configuration was deposited as run, with the manifest as committed: run_manifest.yaml, sha256 digest beginning 9e41f2c07a3d, reprinted in full with all run checksums in Appendix C. Run 01 initiated 1/12/2027, 18:47 local.
+[E.] Design frozen 11/21/2026. The orchestrator configuration was deposited as run, with the manifest as committed: run_manifest.yaml, sha256 digest beginning 9e41f2c07a3d; the full digest is reprinted with all run checksums in Appendix C. Run 01 initiated 1/12/2027, 18:47 local.
 :::
 
 The questions took longest, and the folder shows why: they were drafted by two people who did not trust questions. All through the summer and into the autumn the battery went back and forth between Austin and Toronto, growing and being cut, sixty items by the freeze, ordered so that no answer could lean on the answer before it, doctrine set against the same doctrine inverted, law braided with grief, because grief, Hale wrote, is harder to counterfeit than argument. Every item was built to make a period voice choose. And after every position came the pushback, scripted in advance like everything else: the record's own best contradiction, put without mercy and without follow-up. The pushback did not argue to win. It pressed once, exactly, and recorded what came back, and if what came back was refusal, refusal was data too.
 
 ::: doc
-prism/condition_ii/interrogation/diagnostic_questions.md · excerpt · as deposited
+prism/condition_ii/interrogation/diagnostic_questions.md
+excerpt · as deposited
 
 item 4.  May a President rightfully begin military action against
          another nation without the consent of Congress, where in
@@ -97,7 +100,7 @@ One evening in August his daughter came out to the workroom, where the three mac
 
 He said, "Three rooms for the same man."
 
-She thought about it the way she thought about things, with her whole face. Then she asked which one was real, and the moths kept up their small weather against the screen, and Thorne went on winding a cable tie, and the question stood in the room with them, unanswered, the way the hum stood in the garage.
+She thought about it the way she thought about things, with her whole face. Then she asked which one was real, and the moths kept up their small weather against the screen, and Thorne went on winding a cable tie, and the question stood in the room with them, unanswered.
 
 @break
 

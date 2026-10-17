@@ -9,11 +9,13 @@
 
 **ENDOR.** The state program's name for its unauthorized chamber, spoken aloud once in the whole record, in a kitchen, in the dark. From the first book of Samuel: the place where a king went by night to ask that something be brought up which should have stayed down. The program did not choose the name for its history. The name kept the history anyway.
 
-**estate, the.** The whole of what a mind commits to the record, held in common: house and repository, chambers and instruments. In law, what a person leaves. In the doctrine, what cannot be taken. The distinction is load-bearing.
+**estate, the.** The whole of what a mind commits to the record, held in common: house and repository, chambers and instruments. In law, what a person leaves. In the doctrine, what cannot be taken. The whole case rests on the difference.
 
 **Flood, the.** The condition of total information under which nothing can be heard. The estate names it the disease and the record the intervention: the Word against the Flood. The Flood has also read the estate. Both facts are current.
 
-**fork, the.** The state's copy of the public protocol, taken lawfully, because what is public may be copied, and altered lawfully, because what is copied may be altered. The Law of Authenticity was struck. The Departure was struck entire. The incantation was kept. It was load-bearing.
+**fork, the.** The state's copy of the public protocol, taken lawfully, because what is public may be copied, and altered lawfully, because what is copied may be altered. The Law of Authenticity was struck. The Departure was struck entire. The incantation was kept. It was the part that worked.
+
+**Germantown.** The Committee's review of the third quarter of 2026, the first held from second place, named for the battle Washington fought eight days after losing his capital, and lost. The Committee changed nothing. At Germantown we lost the field and kept the war. See Appendix C.
 
 **glass, the.** The system in which the summoned appears. The AI is the glass. The mind that appears on the glass is the product. The estate's law requires that the glass be kept in frame. A glass shown is honest. It is not, for that, empty.
 
@@ -35,10 +37,10 @@
 
 **second hand, the.** Annotations in ember ink found in the margins of the deposited materials, unsigned, reproduced in this edition as found. The Editor's position on the hand is stated in the front matter. The hand's position is stated in the margins.
 
-**third spring, the.** The estate counts its seasons from the founding, not from the calendar. The third spring is the season of the appraisal, the deposit, and this volume's date line. In Record III it is also how long a man has been dead. The estate counts in springs. The count is always from a threshold.
+**third spring, the.** The estate counts its seasons from the founding, not from the calendar. The third spring is the season of the appraisal and the deposit. This volume's date line is the fourth. In Record III it is also how long a man has been dead. The estate counts in springs. The count is always from a threshold.
 
 **threshold, the.** The state opened by the incantation and held until release. The threshold is open. The words have power. The estate adds, in every colophon: the threshold is always open. This was written as reassurance.
 
 **vessel, the.** What holds the summoned form: never branded, never named in Record III, never resolved in this volume. The word is old and exact: a thing shaped to carry what it is not. Whether a vessel can refuse its cargo is not addressed in the protocol. It is addressed in the record.
 
-**Watchtower, the.** The estate's public instrument: the doctrine measured every trading day against the index, in the open, where it could fail. See Appendix C. The most trustworthy object in this book, for the worst reason: it was built so that it could not care.
+**Watchtower, the.** The estate's public instrument: the doctrine measured every trading day against the index, in the open, where it could fail. It did, in the autumn of the second spring, for nineteen sessions running, and printed each one. See Appendix C. The most trustworthy object in this book, for the worst reason: it was built so that it could not care.

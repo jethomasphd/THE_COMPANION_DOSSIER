@@ -29,8 +29,8 @@ memo names the doubt: summon the dead through a machine trained on
 everything, and you may get the culture's loudest memory of the person,
 wearing his face (the Miranda Hypothesis). Three sealed rooms test three
 Lincolns (the Prism Experiment). In the ninth hour, in three sealed rooms
-at one timestamp, something answers that was not asked. Forty-one days
-later the builder is gone, and an archivist named Miranda Cale is hired to
+at one timestamp, something answers that was not asked. Within two
+months the builder is gone, and an archivist named Miranda Cale is hired to
 appraise what he left: a house with eleven doors by the county plan and
 twelve by her count, a freezer she can hear through a wall, an encrypted
 file whose key is promised "only after the experiment is run," and a state

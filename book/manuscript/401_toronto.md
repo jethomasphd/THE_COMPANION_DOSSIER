@@ -7,11 +7,11 @@ She bought the ticket at the airline counter, in cash, which changed nothing, an
 
 Toronto was cool and orderly and had the particular calm of a city that is not yet in a thing and knows the thing is looking at it. The cab driver asked no questions. The hospital stood on University Avenue with its name in letters she did not record, because Hale had asked, through the granddaughter, that she bring nothing that transmitted and write down nothing that named.
 
-The ward was on the eleventh floor, the one where the machines are quieter, where the fluorescents are traded for lamps and the carts go by on rubber wheels. In the family lounge a television played the war with the sound off. Nobody was watching it. It went on performing anyway.
+The ward was on the eleventh floor. He had been moved up from seven east in the weeks since her call, to the floor where the machines are quieter, where the fluorescents are traded for lamps and the carts go by on rubber wheels. In the family lounge a television played the war with the sound off. Nobody was watching it. It went on performing anyway.
 
 The girl sat in the corridor outside his room, cross-legged on a vinyl chair built for no human posture, headphones on, a paperback folded open against her knee. Thirteen now. The headphones leaked: a hiss of snare, a voice pitched to reach the back row of a large room. Miranda knew it before the second bar. She had never owned the album and she knew it before the second bar.
 
-The girl took off one earpiece, unhurried, and looked at her the way ward staff look at visitors, which is to say: for credentials.
+The girl took off one earpiece, unhurried, and looked at her the way ward staff look at visitors: for credentials.
 
 "You're the archivist."
 
@@ -47,7 +47,7 @@ He smiled at the ceiling. "Good. Never give an old man the point out of mercy. T
 
 "I don't have it."
 
-She had flown fourteen hundred miles. She kept her hands still on the legal pad and said, "The file is forty-five thousand bytes of noise until someone produces thirty-two that aren't. Professor. Jacob sealed your contribution in February, on your instruction. Somebody chose a key."
+She had flown fourteen hundred miles. She kept her hands still on the legal pad and said, "The file is forty-five thousand bytes of noise until someone produces thirty-two that aren't. Professor. James sealed your contribution in February, on your instruction. Somebody chose a key."
 
 "Somebody did," Hale said. "I made sure it was nobody."
 
@@ -55,7 +55,7 @@ He let that sit, watching to see what she did with it. What she did was write it
 
 "I will tell you what happened," he said, "and then I will tell you why I will not tell you the rest, and you will be angry in an orderly fashion, and then you will go home and be the person the anger is wasted on." He arranged his breath. It took visible planning now, speech, like a man rationing a currency he no longer earned.
 
-"In February, Jacob wrote to me at dawn. One line. Three rooms, one sentence, one timestamp, and the hashes clean. I wrote back one line, you have seen it, everyone has seen it now. *Seal my contribution. Do not open until after.* And that night he telephoned me and asked the only question left, which was: sealed under what key. And I told him that a key is a decision, and a decision is testimony, and I would not testify. I told him the estate had already answered the question, and that he should let it. That was the whole of the call. He understood in about four seconds. It had taken me most of a life."
+"In January, James wrote to me at dawn. One line. Three rooms, one sentence, one timestamp, and the hashes clean. I wrote back one line, you have seen it, everyone has seen it now. *Seal my contribution. Do not open until after.* And that night he telephoned me and asked the only question left, which was: sealed under what key. And I told him that a key is a decision, and a decision is testimony, and I would not testify. I told him the estate had already answered the question, and that he should let it. That was the whole of the call. He understood in about four seconds. It had taken me most of a life."
 
 "You never held it."
 
@@ -73,21 +73,21 @@ She looked at him. He looked back with the unembarrassed patience of a man who h
 
 "Commit first, reveal later, and let the record speak." He said it the way other men his age said psalms. "People hear that and think it is a method for being believed. It is not. It is a method for being *checked*, which is the only kind of believed that survives its believer. A seal is a promise made to a future that cannot be lobbied. You cannot negotiate with a hash, Miss Cale. You cannot take a timestamp to lunch. I have spent my career watching the past be adjusted by people who arrived after it with better lawyers. This once, I wanted to file something the afterward could not touch."
 
-He stopped to breathe. The lake light moved on the blanket. Down the corridor, faint as a pulse in the jaw, the leak of the headphones: the voice reaching for the back row.
+He stopped to breathe. The lake light moved on the blanket. Down the corridor, barely there, the leak of the headphones: the voice reaching for the back row.
 
 @break
 
-"February," she said. "Tell me about the night you sealed it."
+"February," she said. "Tell me about the night it was sealed."
 
-"I sat in my study until dark," Hale said. "My study faces east, so that was a long sit. I had written the contribution the spring before. You will find the fingerprint was committed in May, and you will do that arithmetic yourself, and I would like to be there when you do, and I won't be." No self-pity in it. An appointment he regretted missing. "In May I believed I was contributing caution to a colleague's experiment. By that night in February I understood what I had actually done, which was different, and I sealed under the second understanding."
+"He telephoned when it was done, the nineteenth, late. I sat in my study until dark waiting for the call," Hale said. "My study faces east, so that was a long sit. I had written the contribution the spring before. You will find the fingerprint was committed in May, and you will do that arithmetic yourself, and I would like to be there when you do, and I won't be." No self-pity in it. An appointment he regretted missing. "In May I believed I was contributing caution to a colleague's experiment. By that night in February I understood what I had actually done, which was different, and I sealed under the second understanding."
 
-"The note says *after the experiment is run.*"
+"The deposit note says *after the experiment is run.*"
 
 "It does."
 
-"The experiment ran in February. I found the file in April, still sealed. Jacob was six weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
+"The experiment ran in January. Condition Four ran in February. I found the file in May, still sealed. James was eight weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
 
-"There it is," Hale said, with real satisfaction, as if she had finally asked the question the seminar was convened for. "That sentence has two readings. Jacob sealed under the first. I sealed under the second."
+"There it is," Hale said, with real satisfaction, as if she had finally asked the question the seminar was convened for. "That sentence has two readings. James sealed under the first. I sealed under the second."
 
 "What is the second reading?"
 
@@ -95,7 +95,7 @@ The room was quiet. The television in the lounge went on performing to nobody. H
 
 "You are in it," Hale said.
 
-She waited. She had learned, in a season among that estate, the difference between a silence that is a door and a silence that is a wall. This one was a wall, and it was load-bearing, and he had built it before she was hired, and he would die behind it on purpose.
+She waited. She had learned, in a season among that estate, the difference between a silence that is a door and a silence that is a wall. This one was a wall, and he had built it before she was hired, and he meant to die behind it.
 
 She wrote down: *sealed under the second reading,* and drew a box around it, and did not press. Something in his face, watching her not press, was close to what the delight had been at the beginning, but older.
 
