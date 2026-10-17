@@ -102,9 +102,38 @@ def para(doc, align=None, before=0, after=0, leading=None, indent=None,
 INLINE_RE = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*)")
 
 
+STRAIGHTEN = str.maketrans({"“": '"', "”": '"', "‘": "'", "’": "'"})
+
+
+def smart_quotes(text):
+    """Typeset straight quotes as curly ones, reading context past *markup*.
+
+    The manuscript mixes straight and curly quotes (Word autocorrect in the
+    reviewed draft). Prose is set curly; the mono documents stay straight,
+    as typewritten and machine records do.
+    """
+    text = text.translate(STRAIGHTEN)
+    out = []
+    for i, ch in enumerate(text):
+        if ch not in "\"'":
+            out.append(ch)
+            continue
+        j = i - 1
+        while j >= 0 and text[j] == "*":
+            j -= 1
+        prev = text[j] if j >= 0 else ""
+        opens = prev == "" or prev.isspace() or prev in "([{“‘/"
+        if ch == '"':
+            out.append("“" if opens else "”")
+        else:
+            out.append("‘" if opens else "’")
+    return "".join(out)
+
+
 def add_inline(p, text, name=SERIF_BODY, size=BODY_PT, color=INK,
                base_italic=False, base_bold=False, **kw):
     """Add text with *italic* and **bold** inline markup."""
+    text = text.translate(STRAIGHTEN) if name == MONO else smart_quotes(text)
     for tok in INLINE_RE.split(text):
         if not tok:
             continue

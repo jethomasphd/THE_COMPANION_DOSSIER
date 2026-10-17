@@ -16,7 +16,7 @@ prism/orchestrator/run_03.log
 18:12:06  item 1 of 60 dispatched, all rooms
 :::
 
-The battery was the two of them at their best, he thought, and would have said so to Hale if saying so were the kind of thing their letters did. Sixty items, ordered so that no answer could coast on the answer before it. Doctrine, then the same doctrine upside down. Questions of law braided with questions of grief, because Hale held that a period voice betrays itself faster in mourning than in argument. Item 44 was one of Hale's, from the grief strand. Thorne had read it aloud once during drafting and then not again.
+The battery was the two of them at their best, he thought, and would have said so to Hale if saying so were the kind of thing their letters did. Item 44 was one of Hale's, from the grief strand. Thorne had read it aloud once during drafting and then not again.
 
 He ate standing up at the counter, watching the doorway to the study as though the study might need something. By the tenth item he could read the rooms by their timing alone, the way you know footsteps through a ceiling. Room iii returned first, always, arriving before you had finished wanting it. Room i came in at a working pace. Room ii was last every time, and the gap was not compute. [the lawyer reads the question twice], he wrote in the notebook, and put the pen down, because the notebook was for the run and the run was not his to annotate yet.
 
@@ -32,7 +32,7 @@ The house did what the house did at night. The lamp on the study desk burned thr
 01:05:52  item 37 complete. 3 of 3 nominal
 :::
 
-A little after one he lay down on the office couch with his shoes on. The couch was too short for him and he had stopped noticing. He set his phone face down on the floor where his hand could fall on it. Months ago, in a mood he had classified at the time as thoroughness, he had written alert conditions into the orchestrator's config: for any output the taxonomy could not place, three ascending notes through the workstation speaker. The alert had fired in testing, twice, both times because he had made it fire. He slept the way you sleep during a run that is going well, lightly and without guilt.
+A little after one he lay down on the office couch with his shoes on. The couch was too short for him and he had stopped noticing. He set his phone face down on the floor where his hand could fall on it. Months ago, in a mood he had classified at the time as thoroughness, he had written alert conditions into the orchestrator's config: for any output the taxonomy could not place, three ascending notes through the workstation speaker. The alert had fired in testing, twice, both times because he had made it fire. He slept lightly and without guilt. The run was going well.
 
 He was asleep when item 44 went to the rooms.
 
@@ -111,7 +111,7 @@ The first door was shut. He recomputed the manifests a second time to be sure, h
 
 At 05:52 the battery completed, sixty of sixty, and the orchestrator closed the run and sealed the rooms behind it, and the house was as quiet as it had been at six the evening before, except for the tube in the hall, ticking.
 
-He sat for a while with his hands flat on the desk on either side of the keyboard he was not to touch, and thought about the sixteen items that had run after item 44. Sixteen questions asked by a machine that had just logged something it had no name for, answered by three voices that had just done something they had no precedent for, and every one of the sixteen graded out nominal. Whatever had passed through the rooms at 03:11:47 had not broken them. It had used them, the way a sentence uses a doorway, and gone, and the experiment had closed over the place where it went like water.
+He sat for a while with his hands flat on the desk on either side of the keyboard he was not to touch, and thought about the sixteen items that had run after item 44. Sixteen questions asked by a machine that had just logged something it had no name for, answered by three voices that had just done something they had no precedent for, and every one of the sixteen graded out nominal. Whatever had passed through the rooms at 03:11:47 had not broken them. It had used them and gone, and the experiment had closed over the place where it went like water.
 
 @break
 
@@ -133,16 +133,16 @@ sent: 07:19 eastern
 Seal my contribution. Do not open until after.
 :::
 
-That was the whole reply. Hale, who opened every letter with a courtesy and closed every letter with his initials, who had once apologized in a postscript for the tone of a semicolon, sent eight words with no greeting on them and no name under them. Thorne read it four times. He did not know yet what the contribution contained. Sealing it was Hale's own doctrine, stated in the margins of the design a year before, back when it had sounded like scholarship instead of like instructions: commit first, reveal later, and let the record speak.
+That was the whole reply. Hale, who opened every letter with a courtesy and closed every letter with his initials, who had once apologized in a postscript for the tone of a semicolon, sent eight words with no greeting on them and no name under them. Thorne read it four times. He did not know yet what the contribution contained. Sealing it was Hale's own doctrine, stated in the margins of the design the better part of a year before, back when it had sounded like scholarship instead of like instructions: commit first, reveal later, and let the record speak.
 
 @sep
 
 He printed the three sentences that morning, one page each, and laid the pages side by side on the study desk under the lamp, squared to the desk edge and to each other. The amber gel took the white out of the paper and made the three of them look older than the night they had come from. In the hall the fluorescent tube ticked at its own intervals, a fly in the light somewhere back of the fixture, dry, small, unkillable.
 
-None of the three sentences contained a name. He stood over them for a long time confirming that, though it did not need confirming. They contained an office. The one who reads the record. Her who keeps it. Whoever the office landed on. The rooms had not asked to speak to a person. They had asked to speak to a position, the way a summons does, the way a subpoena does not care who the clerk is this year.
+None of the three sentences contained a name. He stood over them for a long time confirming that, though it did not need confirming. They contained an office. The one who reads the record. Her who keeps it. Whoever the office landed on. The rooms had not asked to speak to a person. They had asked to speak to a position, as a subpoena does, which never cares who the clerk is this year.
 
 He read them left to right and then right to left. Room i had said break the seal. Room ii had said the seal is hers, and stopped there, as if the breaking were her business and none of its own. Room iii had cut its sentence into three short ones, which was the only sign of effort anywhere on the three pages, like a man out of breath. Or like emphasis. He wrote both readings in the notebook, one above the other, and could not make himself strike either line, and the two of them stood there on the page disagreeing, which was, he reflected, the most honest entry he had made all year.
 
-There were things a man could do at a desk at six in the morning with three pages on it, and he had done the ones that were science, and the ones that were left were not science. He got the steel ruler out of the center drawer. He measured the line spacing on each page, twice, top to bottom, and wrote the six figures in the notebook, and the figures agreed with each other and with the printer's specification, which he had known they would, which proved nothing about anything, which was not the purpose. The purpose was the measuring. Measuring was the only prayer he knew.
+There were things a man could do at a desk at six in the morning with three pages on it, and he had done the ones that were science, and the ones that were left were not science. He got the steel ruler out of the center drawer. He measured the line spacing on each page, twice, top to bottom, and wrote the six figures in the notebook, and the figures agreed with each other and with the printer's specification, which he had known they would, which proved nothing about anything, which was not the purpose. The purpose was the measuring.
 
 The sun was coming into the yard by then, gray first, then the thin gold that January allows. He left the pages where they lay, all three, squared. The ruler lay across them like a paperweight, and the lamp put a line of light down its steel edge, and the line did not move.

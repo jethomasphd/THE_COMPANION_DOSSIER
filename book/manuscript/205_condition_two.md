@@ -33,7 +33,7 @@ LINCOLN: I will ask the committee to notice the place in its question where the 
 [rubric, J.T.: nothing after 1859 in the seed. nothing after 1859 in the answer. he does not know how any of it ends. it is like watching a man cross a floor with no knowledge of the fire below it.]
 :::
 
-She noticed, a page into the answer, that her posture had changed. She had read the composite leaning back, the way you watch a performance you are enjoying and slightly ashamed of enjoying. She read this one sitting forward, pencil in hand, the way she read deeds of gift with money involved. He made her work. He did not once make her smile, and twice made her put the pages down and check a date against the chronology in her own files, and both times the date held.
+She noticed, a page into the answer, that her posture had changed. She had read the composite leaning back, like an audience at a performance it is enjoying and slightly ashamed of enjoying. She read this one sitting forward, pencil in hand, the way she read deeds of gift with money involved. He made her work. He did not once make her smile, and twice made her put the pages down and check a date against the chronology in her own files, and both times the date held.
 
 The rubric itself was in the folder, four pages of it, a scoring instrument drafted with Hale across two months of correspondence: fidelity axes, period vocabulary, argumentative structure, a column for anachronism with room for many entries. On the composite's transcript the anachronism column had filled and run into the margin. On this one it was empty for six straight pages, and Thorne had drawn a line down the empty column and initialed the line, the way an auditor certifies an absence.
 
@@ -111,10 +111,10 @@ Stapled behind the last page she found a half sheet, torn not cut, the same smal
 [condition ii asked a question. conditions do not ask questions.]
 :::
 
-Miranda sat with the folder squared in front of her for a while. At some point in the last eleven pages her coffee had gone cold, and she had not noticed the point, and she drank two swallows of it cold before she noticed that either. She carried the mug to the sink and stood there with the water running longer than rinsing required. Through the window over the sink she could see the corner of the garage, and she was aware of the hum the way you are aware, in another room, of a clock you have stopped hearing.
+Miranda sat with the folder squared in front of her for a while. At some point in the last eleven pages her coffee had gone cold, and she had not noticed the point, and she drank two swallows of it cold before she noticed that either. She carried the mug to the sink and stood there with the water running longer than rinsing required. Through the window over the sink she could see the corner of the garage, and she was aware of the hum again.
 
 There was a procedure for days like this, and she followed it. She logged the folder. She noted the anomalous output at 21:44:09 in the same flat hand she used for foxing and water damage, one line, classification copied from the orchestrator's own: interrogative, non-responsive, addressee outside taxonomy. Appraisal is the discipline of not believing, and discipline is mostly forms, and the forms held.
 
 He asked for the premises in writing, she thought. He was refused, and he answered anyway, and he put the refusal into the record on his way through. That was the difference she could not unhear now, the one no gloss in the folder had needed to explain. The composite had spent the whole session giving. This one had spent the whole session keeping accounts.
 
-That evening, under a heading she filed as thoroughness, she looked up who, in fact, kept the record of the Thorne deposit. Her commission agreement carried a Schedule C she had skimmed and initialed in a lawyer's office in March, and Schedule C named a custodian of record for all deposited materials, present and subsequent. The custodian of record was her.
+That evening, under a heading she filed as thoroughness, she looked up who, in fact, kept the record of the Thorne deposit. Her commission agreement carried a Schedule C she had skimmed and initialed in a lawyer's office in April, and Schedule C named a custodian of record for all deposited materials, present and subsequent. The custodian of record was her.

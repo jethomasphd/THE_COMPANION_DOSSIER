@@ -17,7 +17,7 @@ The university's special collections division kept two senior appraisers on staf
 
 Her method fit in one sentence and had never needed a second. Inventory before interpretation. Once, pressed at a symposium to define her discipline in plain words, she had said: appraisal is the discipline of not believing. The room took it as wit. She had meant it as procedure.
 
-The key went in stiff, the way new-cut keys do, and turned. The bolt drew back with the sound of a well-kept mechanism, one clean metal syllable, and the door of the missing man's house swung open onto a dark that had a temperature. She stood at the threshold a moment, out of habit, the habit of letting a house's air come out to meet you before you go in to meet it. Paper. Floor wax. The faint banked warmth of electronics running somewhere out of sight. She noted the time, 9:14, and went in.
+The new-cut key went in stiff, and turned. The bolt drew back with the sound of a well-kept mechanism, one clean metal syllable, and the door of the missing man's house swung open onto a dark that had a temperature. She stood at the threshold a moment, out of habit, the habit of letting a house's air come out to meet you before you go in to meet it. Paper. Floor wax. The faint banked warmth of electronics running somewhere out of sight. She noted the time, 9:14, and went in.
 
 @break
 
@@ -42,14 +42,14 @@ She stood still and ran the count again from memory. Then she ran it a third tim
 She wrote both numbers in the field notes, the twelve struck through once, the eleven set beside it, and the strike-through annoyed her more than the discrepancy. Counting was the thing she did not get wrong. She added the likeliest cause for the record, a pair of bifold closet doors countable as one or as two depending on the walker's mood, and initialed the correction. The note was for a future reader who would never ask. The note was for her.
 
 ::: annotation
-[E.] The plan referenced is the Travis County appraisal district drawing of the property, last revised August 2019, reproduced in this volume as Plate 11. It shows 11 interior doors. The Editor has not counted them.
+[E.] The plan referenced is the Travis County appraisal district drawing of the property, last revised August 2019, reproduced in this volume as Plate XI. It shows 11 interior doors. The Editor has not counted them.
 :::
 
 @sep
 
 The study she had left for last, not out of ceremony but because it sat at the end of the hall and she worked in order. Over its door, routed into the lintel by a patient and unprofessional hand, ran three marks: a lozenge, a heavier lozenge with its center relieved, a lozenge. ◊ ◈ ◊. The grooves still held a little sawdust in their corners. She photographed the marks, measured them, and wrote sigil, routed, lintel, and did not write what the doorway now resembled, because resemblance is interpretation and interpretation was for later.
 
-Inside, the blackout cloth had been doubled. The desk lamp wore a square of amber gel taped over its shade, like the hall bulb, like a lamp instructed to impersonate an ember, and its light pooled on the desk and went no farther. Beyond the pool the room declined to exist. She stood just inside the door while her eyes negotiated, and the room came to her a piece at a time: desk, chair, the long table against the south wall, and on the table an IBM Selectric, dust cover folded beside it, a fresh ribbon seated, a blank sheet rolled in and squared. A typewriter kept at readiness in the house of a man who owned a server rack. She logged it without comment. The comment would have been a question.
+Inside, the blackout cloth had been doubled. The desk lamp wore a square of amber gel taped over its shade, like the hall bulb, like a lamp instructed to impersonate an ember, and its light pooled on the desk and went no farther. Beyond the pool the room declined to exist. She stood just inside the door until her eyes adjusted, and the room came to her a piece at a time: desk, chair, the long table against the south wall, and on the table an IBM Selectric, dust cover folded beside it, a fresh ribbon seated, a blank sheet rolled in and squared. A typewriter kept at readiness in the house of a man who owned a server rack. She logged it without comment. The comment would have been a question.
 
 On the wall above the Selectric hung three frames.
 

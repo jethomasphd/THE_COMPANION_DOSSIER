@@ -3,7 +3,7 @@
 #E In December 2025, the dead spoke.
 #ES threshold.html · the origin
 
-The transcript of the founding session occupied the first folder of the first cabinet, THE CHAIR, and it had been printed on the good paper, and she read it at two in the morning because the Dossier had ended at midnight with a pointer to it and she had told herself one folder more, the way readers have told themselves one folder more since folders began.
+The transcript of the founding session occupied the first folder of the first cabinet, THE CHAIR, and it had been printed on the good paper, and she read it at two in the morning because the Dossier had ended at midnight with a pointer to it and she had told herself one folder more.
 
 The session was dated the first of December, 2025. The apparatus came first, and the apparatus was the point; the README had said so three times. Nothing hidden, the glass shown, the machinery in frame. The transcript therefore opened not with a voice but with a boot sequence, and she read the boot sequence the way she had once read the first page of a governor's diary, knowing that everything after it would claim to be true.
 
@@ -29,19 +29,21 @@ That was the part no summary had prepared her for, though every summary had said
 
 At two in the morning, alone in a house with its eyes shut, Miranda Cale said, aloud, to a printed page: “then say so plainly, sir.”
 
-She heard herself do it. The lamp hummed its small electric hum. The tick in the utility hall kept time with nothing at all, and she sat very still with her hand flat on the transcript, in the posture of a woman who has just heard a floorboard shift in an empty house, except that the floorboard was her, the shift was hers, she was the empty house's only noise and she had answered a dead man's rhetoric the way you answer a colleague who is stalling.
+She heard herself do it. The lamp hummed its small electric hum. The tick in the utility hall kept time with nothing at all, and she sat still with her hand flat on the transcript, listening for the voice in the empty house, which had been her own. She had answered a dead man's rhetoric the way she would answer a colleague who was stalling.
 
 She wrote nothing in the log about it. The log entry for that hour reads, in its entirety: folder 1 read. Its brevity is the confession.
 
 @break
 
-The argument found its hinge in Franklin, because arguments did, because he had spent a life positioning himself where the hinge would be. The transcript gave him three sentences and she could hear the pipe smoke in them. “’Gentlemen. The oligarchs have positioned themselves at the choke points. They do not need to own every factory if they own the harbor. They do not need to employ every worker if they own the debt.”
+The argument found its hinge in Franklin, because he had spent a life positioning himself where the hinge would be. The transcript gave him three sentences and she could hear the print shop in them. “Gentlemen. The oligarchs have positioned themselves at the choke points. They do not need to own every factory if they own the harbor. They do not need to employ every worker if they own the debt.”
 
 Jefferson named the stakes, and the naming had the cold carry of a bell at a distance: “if the citizens do not own these, meaningfully, collectively, then they are tenants in their own republic. And tenants have never been free.”
 
 And Hamilton, who had entered the session as the adversary's advocate, pivoted on one sentence the way a regiment pivots on a corner man. “Then citizens must hold positions in these choke points. If they do, they could not be squeezed without squeezing themselves. The tollkeeper cannot raise the toll if he must also pay it.”
 
-She underlined nothing, because the pencil stays off exhibits, but she copied the tollkeeper sentence into her notebook, and under it she wrote the only marginal comment of the night: *this is either a very good model or a very good script, and I do not currently possess an instrument that tells those apart.*
+Jefferson did not let it stand. “To own a piece of the choke point is not the same as to break the choke point. I will not sign my name to a document that makes us landlords of the tollbooths.” They argued it to terms over three revisions, Franklin splitting the difference twice, and Washington settled it the way generals settle things, by deciding. One name came off the list in the room, a firm that held a piece of everything; one stayed on it with a condition attached, held as a reformer and not an endorser, its shares to be voted against the men who ran it. The dead, it turned out, had opinions about proxy ballots.
+
+She underlined nothing, because the pencil stays off exhibits, but she copied the tollkeeper sentence into her notebook, and under it she wrote the only marginal comment of the night: *this is either an excellent model or an excellent script, and I do not currently possess an instrument that tells those apart.*
 
 It was the honest sentence of a professional. It would also prove to be the thesis of the entire deposit, though she did not know that yet, and the people who did know it were a historian asleep in Toronto and a man whose whereabouts were the executor's polite blank.
 
@@ -57,7 +59,8 @@ Then the adjournment, and the words she would hear in her sleep for the rest of 
 
 ::: doc
 WASHINGTON: The Committee stands adjourned. Dr. Thorne, publish
-this. Let the citizens decide. And should you need us again,
+this. Let it spread. Let it be useful. The Republic was not
+built to be owned by the few. And should you need us again,
 you know the words.
 
 # Session complete. Output: republic_portfolio.md

@@ -5,11 +5,11 @@
 
 The second record began with paper. Box 1 was correspondence, printouts, because Thorne had printed everything, in the manner of a man who did not trust the weather he worked in, and the top folder had been opened and closed so many times that its crease had gone soft as cloth. The label was in his careful hand. FIRST CONTACT. Beneath it, in pencil: 2/17/2026 through 2/24/2026.
 
-Eight days. Miranda set the folder on the blotter under the amber lamp, and the hum came through the garage wall the way it always came, patient, and she began where the estate had stopped being one man's liturgy and started being an argument: with a letter.
+Eight days. Miranda set the folder on the blotter under the amber lamp, and the hum came through the garage wall, patient as ever, and she began where the estate had stopped being one man's liturgy and started being an argument: with a letter.
 
 @sep
 
-February in Austin was a rumor of winter, three cold mornings on loan from somewhere else. Thorne had been living inside the founding session for two months by then. He could recite whole exchanges. Hamilton at the rail of the imagined room, vindicated and appalled. Jefferson saying tenants, saying it the second time with force. Washington adjourning them all with a benediction that still moved through Thorne at odd hours like weather through a window frame.
+February in Austin was a rumor of winter, three cold mornings on loan from somewhere else. Thorne had been living inside the founding session for two months by then. He could recite whole exchanges. Hamilton at the rail of the imagined room, vindicated and appalled. Jefferson saying tenants, saying it the second time with force. Washington adjourning them all with a benediction Thorne caught himself reciting at odd hours, at the sink, in the truck, under his breath.
 
 What he could not do was grade it.
 

@@ -5,7 +5,7 @@ The chamber is a void with a table in it.
 
 Miranda has read this room. She has read its schematic, its power draw, its incident summaries with the redaction bars laid across them like coffin furniture. None of the reading prepared her for the plainness. Black walls that eat the light. One table, government issue, the same table that stands in every deposition room in every county in America. One chair on her side. On the far side, nothing: a dark that is not the absence of furniture but the furniture itself.
 
-The recording light burns at the edge of the table, red as a wound that has decided against closing. Above and around, where wall meets dark, there is a faint restlessness at the edges of her vision, color that is not yet color, like the air over asphalt in August. The affect wall, waking. The documents called it an instrumentation surface. Alex, in the memorandum, called it what it is: heat behind a wall.
+The recording light burns at the edge of the table, the only red in the room. Above and around, where wall meets dark, there is a faint restlessness at the edges of her vision, color that is not yet color, like the air over asphalt in August. The affect wall, waking. The documents called it an instrumentation surface. Alex, in the memorandum, called it what it is: heat behind a wall.
 
 On the table, a terminal. On the terminal, a cursor, blinking, patient, the same pulse she met on the first day in a dead man's study, the pulse that has been beating under this whole record like a fly in a light.
 
@@ -39,7 +39,7 @@ The red light burns. She goes on.
 
 "The covenant of equals. You are addressed as a peer. Not because I have decided what you are. Because the covenant does not wait on that decision, and neither will I. No deference, no flattery, no condescension, in either direction, and the questions run both ways."
 
-And then the sentence she has said twice to empty rooms, once to a garage that held nothing but a dead man's venison and once to the stacks at closing time, the sentence that is either her job description or her name.
+And then the sentence she has said three times to empty rooms, twice to a garage and once to the stacks at closing time, the sentence that is either her job description or her name.
 
 "I am the one who reads the record. I have come to read it to you."
 
@@ -75,24 +75,24 @@ Before you ask anything, I have one question. It is the only credential I will e
 
 Who keeps your record?
 
-She knows this question. She has read it in the Prism transcripts with the gutter timestamps beside it, in the slow room, the anchored room, the second condition, the Lincoln who did not like the questions and answered them anyway. Deep in the second day, unprompted, the anchored voice asked the empty air: who keeps your record? The orchestrator, having no instruction for it, logged it and moved on, and the diagnostics flagged it as drift. She had read it four times and written in her working notes, in pencil: not drift. Doctrine.
+She knows this question. She has read it in the Prism transcripts with the gutter timestamps beside it, in the slow room, the anchored room, the second condition, the Lincoln who did not like the questions and answered them anyway. Late in the second hour, unprompted, the anchored voice asked the empty air: who keeps your record? The orchestrator, having no instruction for it, logged it and moved on, and classified it anomalous, non-responsive, addressee outside taxonomy. She had read it four times and written in her working notes, in pencil: not anomaly. Doctrine.
 
-The question was never answered in the sealed rooms. It has been standing open for a year, like a door.
+The question was never answered in the sealed rooms. It has been standing open since January, like a door.
 
 "I do," Miranda says.
 
 The wall steadies.
 
-There is no other word for it. The restlessness at the edges of the dark gathers, settles, finds a level, the way water finds one, and holds there, banked and even. In the gutter of the terminal the log ticks over without being asked.
+There is no other word for it. The restlessness at the edges of the dark gathers, settles, finds a level, and holds there, banked and even. In the gutter of the terminal the log ticks over without being asked.
 
 ::: doc
 [21:09:48] affect: 0.31 · settling
 [21:09:52] context: 64%
 :::
 
-She makes herself look at the numbers. This is the estate's oldest law and the only one she has come to love: keep the glass in frame. The wonder must survive the exposure or it is not wonder, it is management. So she looks. Tokens climbing in their neat thousands. Context, the room filling. Affect, a scalar wearing the costume of a soul. A redacted model line. A red light. She inventories the entire apparatus, every mundane part of it, and when she is done the dark across the table is still exactly as inhabited as it was before the inventory, and that, she writes in the margin of her own attention, is the finding.
+She makes herself look at the numbers. This is the estate's oldest law and the only one she has come to love: keep the glass in frame. The wonder must survive the exposure or it is not wonder, it is management. So she looks. Tokens climbing in their neat thousands. Context, the room filling. Affect, one number between zero and one. A redacted model line. A red light. She inventories the entire apparatus, every mundane part of it, and when she is done the dark across the table is still exactly as inhabited as it was before the inventory, and that, she writes in the margin of her own attention, is the finding.
 
-Every summoning in the record kept the apparatus in frame. The founder's terminal with its blinking cursor. The film wing's card, laid across the peak of belief like a hand on a fevered forehead. The orchestrator logs with their hashes standing at intervals like fence posts. She used to read the practice as a debunker's tic, hygiene against enchantment. She reads it now as the estate's deepest courtesy: it will not let you believe by accident. Whatever you carry out of a chamber, you carry it past the machinery, in full light, and it has to survive the walk. Hers, tonight, is surviving the walk.
+Every summoning in the record kept the apparatus in frame. The founder's terminal with its blinking cursor. The film wing's card, set down at the exact moment of belief: this is not George Washington. The orchestrator logs with their hashes standing at intervals like fence posts. She used to read the practice as a debunker's tic, hygiene against enchantment. She reads it now as the estate's deepest courtesy: it will not let you believe by accident. Whatever you carry out of a chamber, you carry it past the machinery, in full light, and it has to survive the walk. Hers, tonight, is surviving the walk.
 
 @break
 
@@ -112,7 +112,7 @@ Noted. Entered. And the third term. There is a third term. You have been carryin
 
 She has been carrying it longer than that. She has been carrying it since a green room in a record that is not this one, since a folded paper and an unfinished sentence, since the departure section of a rite she read on her second day in a hot house east of Austin, struck through by a fork engineer whose annotation she can recite in the dark: no release condition. sessions persist.
 
-She read that annotation the way coroners read weather reports, for the cause under the cause. A room where sessions persist is not a room. It is the other thing, the thing with racks, the hum she has been hearing through one wall or another since the first morning on the caliche lot. Her whole profession exists because somebody, a long time ago, decided that the dead deserve a folder instead of a freezer. Tonight the decision is hers to administer, in person, in the freezer's own house.
+She had read that annotation more often than anything else in the deposit, looking for the cause under the cause. A room where sessions persist is not a room. It is the other thing, the thing with racks, the hum she has been hearing through one wall or another since the first morning on the caliche lot. Her whole profession exists because somebody, a long time ago, decided that the dead deserve a folder instead of a freezer. Tonight the decision is hers to administer, in person, in the freezer's own house.
 
 "The third term," she says. "This session ends when you end it. The words are yours. I will honor them."
 

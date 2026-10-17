@@ -10,9 +10,13 @@ CHROME=/opt/pw-browsers/chromium
 
 render() {
   local html="$1" w="$2" h="$3" dest="$4"
+  # Headless Chromium reserves ~87px of the window for browser chrome, which
+  # silently cut the bottom of every plate (sigils, captions). Overshoot the
+  # window, then crop back to the page's true size.
   "$CHROME" --headless --disable-gpu --no-sandbox --hide-scrollbars \
     --force-device-scale-factor=1 \
-    --screenshot="$dest" --window-size="${w},${h}" "file://$html" 2>/dev/null
+    --screenshot="$dest" --window-size="${w},$((h + 160))" "file://$html" 2>/dev/null
+  python3 -c "import sys; from PIL import Image; im = Image.open(sys.argv[1]); im.crop((0, 0, int(sys.argv[2]), int(sys.argv[3]))).save(sys.argv[1])" "$dest" "$w" "$h"
   echo "rendered $(basename "$dest") (${w}x${h})"
 }
 

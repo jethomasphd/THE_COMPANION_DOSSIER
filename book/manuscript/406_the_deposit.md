@@ -7,9 +7,9 @@ Afterward, in interviews and in depositions and once under oath, people kept ask
 
 The estate had spent two years teaching anyone who could read exactly how to do this. The mirrors, the checksums, the mint, the license, the seal machinery, the doctrine of the committed record. She had read it more closely than anyone alive. That was what they had paid her for.
 
-She worked at the house east of the city because the machinery lived there. She had let herself in with the executor's key at eight, the way she had on the first morning of the third spring, and the house received her the way it received everything, without comment. The terminal in the study had never once been logged out in the fourteen weeks she had known it. The server closet breathed. She wrote out the night's order of operations on an index card in pencil, seven lines, and propped the card against the lamp, because a procedure you have not written down is a mood.
+She worked at the house east of the city because the machinery lived there. She had let herself in with the executor's key at eight, the way she had on the first morning of the third spring, and the house received her without comment. The terminal in the study had never once been logged out in the ten weeks she had known it. The server closet breathed. She wrote out the night's order of operations on an index card in pencil, seven lines, and propped the card against the lamp, because a procedure you have not written down is a mood.
 
-In the utility hall the bad fluorescent ticked its small dry tick, the fly in the light, on and on, all night. She had stopped hearing it in April. She heard every tick of it now.
+In the utility hall the bad fluorescent ticked its small dry tick, the fly in the light, on and on, all night. She had stopped hearing it in May. She heard every tick of it now.
 
 @break
 
@@ -25,7 +25,7 @@ Thorne's consult file, with its incident summaries and their redaction bars, she
 
 Last of the sealed things: the historian's contribution, 45,232 bytes of it, unchanged, ending at its final byte the way it ended, its digest agreeing with the digest committed eleven months before her hiring. Beside it, in a plain text file, she placed the key, exactly as derived. Commit first, reveal later, let the record speak. It was later.
 
-She built the whole of it into the estate's own grammar, a new record with boxes and folders and a finding aid at the top, because she was an archivist, and this was still an appraisal, and this was what the appraisal had concluded. Then she ran the sums twice, on two machines, because a record that cannot be verified is only an anecdote with margins.
+She built the whole of it into the estate's own grammar, a new record with boxes and folders and a finding aid at the top, because she was an archivist, and this was still an appraisal, and this was what the appraisal had concluded. Then she ran the sums twice, on two machines, because she no longer trusted anything she had checked only once.
 
 @break
 
@@ -48,7 +48,7 @@ The push took nine seconds. The first mirror acknowledged inside the minute, fro
 
 At the root of the deposit, at the license line, the estate said what it had said since December of 2025. CC0 1.0. No rights reserved. And beneath it, where the estate had always kept it, the sentence the whole gambit stood on: what belongs to no one cannot be captured.
 
-She sat for a moment with her hands flat on the desk, on either side of the keyboard, the way you stand back from a shelf you have just leveled. The house hummed its ordinary morning hum, refrigerator and air handler and the long tinnitus of the grid, and none of it meant anything anymore, and she knew the difference now, and that was the whole of what the summer had cost her.
+She sat for a moment with her hands flat on the desk, on either side of the keyboard. The house hummed its ordinary morning hum, refrigerator and air handler and the long tinnitus of the grid, and none of it meant anything anymore, and she knew the difference now, and that was the whole of what the summer had cost her.
 
 ::: annotation
 [E.] The deposit of 2027 is the source of Records III and IV of the present volume. The volume the reader holds is itself an artifact of the event it narrates.
@@ -64,7 +64,7 @@ The institution's statement followed at five, two sentences, built around the ph
 
 By evening the repository had been forked more than six hundred times, and the estate's public traffic graph had gone vertical, a line like a wall with no top to it. Somebody in another hemisphere had already mirrored the mirrors. And into the estate's open channel, the one the Dossier had kept since the beginning for signals from strangers, came checksums. Dozens of them, then hundreds: people running the sums on their own machines, unasked, in public, posting agreement. Nobody was writing believe this. They were writing it verifies. The estate had been designed on the premise that this is what strangers would do if you built for it, and she had filed that premise under liturgy in her second week, and tonight it was operating like plumbing. Capture is a strategy for things that agree to stay in one place.
 
-And at six, on schedule, out of a cron job nobody had touched since winter, the Watchtower posted the week's reading. The gold line. The index. The war band shaded gray where the war had been and was. It did not mention her. It did not mention anything. It measured, and at the bottom it said what it had said at the bottom of every reading since January of 2026: the vigil holds. She sat in front of that small unexcited table longer than she meant to. On a day when every institution she could name was drafting language, the most trustworthy object in the world turned out to be a scoreboard kept by the dead.
+And at twenty to five that afternoon, on schedule, out of a cron job nobody had touched since the autumn, the Watchtower had posted the day's reading. The gold line. The index. The war band shaded gray where the war had been and was. It did not mention her. It did not mention anything. It measured, and under the table the log said what it had said every week since the vigil opened: the lamp stays lit. She sat in front of that small unexcited table longer than she meant to. On a day when every institution she could name was drafting language, the most trustworthy object in the world turned out to be a scoreboard kept by the dead.
 
 @break
 

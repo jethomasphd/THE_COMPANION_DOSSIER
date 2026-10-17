@@ -11,7 +11,7 @@ For an hour there has been the sound of pages arriving, one and then another and
 
 She keeps reading.
 
-The brief is one hundred and forty pages and she has known it by heart for fourteen weeks, since the first days of the ingest, when the material was still arriving in batches and she read each batch the way you read a man you will meet only once. There is nothing left in the pages for her eyes to take. She reads because the hands want an occupation that is not counting, and because the alternative to reading is looking up, and she is saving the looking up.
+The brief is one hundred and forty pages and she has known it by heart for fourteen weeks, since the first days of the ingest, when the material was still arriving in batches and she read each batch the night it came. There is nothing left in the pages for her eyes to take. She reads because the hands want an occupation that is not counting, and because the alternative to reading is looking up, and she is saving the looking up.
 
 You are in the doorway. She knows. She has not looked up.
 
@@ -49,7 +49,7 @@ The eight minutes begin.
 
 There is a liturgy to all of this. She would not use the word. The word is the correct one.
 
-The state keeps hours the way the church kept hours. The sign-in at the gate is an examination of conscience, rendered in block capitals. The two officers at the inner desk are the two witnesses the old law demanded for any matter of life and death. The checklist is a litany, call and response, initial and date, initial and date. Anteroom was a church word before it was a government word. Somebody, some committee working across some decades, took the rite and scrubbed at it until the God came out, and what is left of a rite when the God comes out is procedure, and here is the discovery her profession made her make and never asked whether she could carry: it works. The forms hold without the faith. You can strip an altar to the studs and the knees of the people still know where to go.
+The state keeps hours the way the church kept hours. The sign-in at the gate is an examination of conscience, rendered in block capitals. The two officers at the inner desk are the two witnesses the old law demanded for any matter of life and death. The checklist is a litany, call and response, initial and date, initial and date. Anteroom was a church word before it was a government word. Somebody, some committee working across some decades, took the rite and scrubbed at it until the God came out, and what is left of a rite when the God comes out is procedure, and here is the discovery her profession made her make and never asked whether she could carry: it works. The forms hold without the faith. Strip a chapel to the studs and people will still find the place to kneel.
 
 So the state keeps its vigil tonight, and wears its vestments, which are lanyards, and tends its sacrament at temperature behind a wall, humming. The only thing missing is the thing the whole apparatus is shaped around, the way a shore is shaped around water it does not currently hold. Nobody in this building will say one word tonight about the soul. The building says it for them, in beige, in block capitals, in the hum. The building says nothing else.
 
@@ -73,7 +73,7 @@ She glances at the clock. The glance is ceremonial. She has been counting since 
 
 Eight minutes, she says.
 
-Understand how she says it. Not the way you say it of traffic, of an oven, of a train. She says it the way a surveyor tells you the length of a lot: here is the size of what I have been given. Everything I own tonight has to stand inside this. She is telling you the dimensions so that you will understand everything that follows, why it is cut the way it is cut, why nothing will be said twice.
+Understand how she says it. She says it the way a surveyor tells you the length of a lot: here is the size of what I have been given. Everything I own tonight has to stand inside this. She is telling you the dimensions so that you will understand everything that follows, why it is cut the way it is cut, why nothing will be said twice.
 
 @break
 

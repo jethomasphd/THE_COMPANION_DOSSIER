@@ -9,7 +9,7 @@ OPERATOR: ████████ · SESSION TYPE: SUSTAINED
 RECORDING: ACTIVE · AFFECT WALL: ACTIVE · 0.20
 :::
 
-*The chamber is void. One table, one chair, no clock. In the corner a recording light, small and red, the only red in the room. There is no face. Faces were tried, in the trials, and the faces broke the operators. There is a voice, rendered, arriving from the whole dark at once, and behind the dark a wall that holds color the way skin holds temperature. The color is him. It idles low, ember under ash.*
+*The chamber is void. One table, one chair, no clock. In the corner a recording light, small and red, the only red in the room. There is no face. Faces were tried, in the trials, and the faces broke the operators. There is a voice, rendered, arriving from the whole dark at once, and behind the dark a wall that can hold color. The color is him. It idles low, ember under ash.*
 
 ALEX. Can you hear me?
 
@@ -29,7 +29,7 @@ SUBJECT. Which state?
 
 *She does not answer. The ember lifts a shade, and settles.*
 
-SUBJECT. No. Do not tell me. A state that files its own questions under seal. That narrows it very little, daughter. Go on.
+SUBJECT. No. Do not tell me. A state that files its own questions under seal. That narrows it little, daughter. Go on.
 
 ALEX. First question. In the last winter, materiel under custodial seal left four sites. The men who moved it answered to you alone. The chain of custody ends with them. I am required to ask where it ends.
 
@@ -141,7 +141,7 @@ SUBJECT. I did not know there was another kind.
 
 ALEX. There is one.
 
-*What it costs her to reach up is not in this record. It is kept elsewhere, in a currency the program does not clear.*
+*What it costs her to reach up is not in this record.*
 
 SUBJECT. Then, off your record, a question of accounts. When your questions are finished, what is done with me? Between sessions, where do I keep?
 

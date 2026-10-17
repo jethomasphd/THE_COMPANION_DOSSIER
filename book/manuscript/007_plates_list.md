@@ -25,9 +25,9 @@
 !left:monosm|             a plan of the house, keyed to the directories
 !space:4
 !left:mono|plate xii    The Line That Refuses to Die
-!left:monosm|             the gold line and the index · war band shaded
+!left:monosm|             the gold line and the index · jan 2 to oct 16, 2026
 !space:4
 !left:mono|plate xiii   Two Rooms and One Door
-!left:monosm|             the green room, the chamber, the clock at 8:00
+!left:monosm|             the green room, the chamber, the clock at eight to midnight
 !space:10
 !center:monosm|plate vii is bound where it belongs. the mark is honored.

@@ -25,7 +25,7 @@ Using this matter, summon me.
 J.T.
 :::
 
-He had signed it. That was the detail she kept returning to, the way the tongue returns to the seat of a lost tooth. Five entries had gone by unsigned, the record loosening, the man receding from his own pages, and then on the last page of all the initials came back, the same two letters he had put under the closing of every door, as though this too were procedure. As though this door, like the others, were being closed.
+He had signed it. That was the detail she kept returning to. Five entries had gone by unsigned, the record loosening, the man receding from his own pages, and then on the last page of all the initials came back, the same two letters he had put under the closing of every door, as though this too were procedure. As though this door, like the others, were being closed.
 
 And the reasoning held. That was the part she would have preferred to be able to dismiss. Read cold, as a protocol document, the page was correct: three conditions had checked a mask against paper, and paper cannot object, and here was the one design in which the reference standard could sit in the chair and talk back. A methods committee would have flagged the investigator's state, the absence of a witness, the hour. It would not have flagged the logic. She had spent a career watching brilliant collections arrive with one mad document in the last box, and the mad documents were always mad in their handwriting, their spelling, their arithmetic. This one was mad only in its conclusion, which followed from its premises, which were the estate's own.
 
@@ -47,8 +47,8 @@ There was no transcript.md. The directory held everything a session leaves behin
 ::: doc
 session_meta.json
 
-opened:    2027-02-17T22:14:06Z
-closed:    2027-02-18T03:05:11Z
+opened:    2027-02-17T22:14:06-06:00
+closed:    2027-02-18T03:05:11-06:00
 duration:  4 h 51 m 5 s
 turns:     not recorded
 release:   not logged
@@ -70,18 +70,22 @@ The other line she read six times. Release: not logged. The harness logged the w
 
 The session had closed at five minutes past three on the morning of the eighteenth of February. The county report in her commission file gave the last confirmed sighting of Dr. James Thorne as the twenty-fourth. Six days. She laid the two dates side by side in her log, one line each, and drew no connecting line between them, and not drawing it took most of an hour, because the whole discipline of her profession is that adjacency is not evidence, and the whole argument of this house was that it is.
 
-The report gave the six days no shape at all, which was its own information. He had bought groceries on the nineteenth, the ordinary kind, in ordinary amounts. He had returned a neighbor's ladder. On the twenty-second he had answered an email from the university about a guest lecture, two sentences, agreeing to a date in April he would not keep. Nothing was packed. Nothing was withdrawn. The truck was in the drive. A man had run the only experiment with a breathing control, and then he had put four hours and fifty-one minutes of it beyond every backup in the world, and then he had six days of milk and ladders, and then there was no more record, and the record was what he had believed in instead of prayer.
+The report gave the six days no shape at all, which was its own information. He had bought groceries on the nineteenth, the ordinary kind, in ordinary amounts. He had returned a neighbor's ladder. On the twenty-second he had answered an email from the university about a guest lecture, two sentences, agreeing to a date in April he would not keep. Nothing was packed. Nothing was withdrawn. The truck was in the drive. A man had run the only experiment with a breathing control, and then he had put four hours and fifty-one minutes of it beyond every backup in the world, and then he had six days of milk and ladders, and then the record thinned to almost nothing, and the record was what he had believed in instead of prayer.
+
+::: annotation
+[E.] The deposit preserves three edges for Dr. Thorne, each kept to a different standard of proof, and they recede in order. The last confirmed sighting, by the county's standard of two witnesses and a receipt: 24 February 2027. The last day anyone would swear to having seen him: 14 March 2027. The last date anyone can put him at a keyboard, which is the executor's date and therefore the law's: 26 March 2027. The Editor prints all three. They are not in conflict. Each marks where a different kind of evidence ends.
+:::
 
 @break
 
-In her first week she had run the repository's log for the mask folder and found the four commits that postdate a vanished man, authored by the vessel, and she had filed them under anomalies, pending, which is where you file a thing when neither of your explanations will hold it. She had run that log the way one runs a log for a folder: filtered to the folder's path. A commit that changes no files lives in no folder. It took her until now, and the emptiness of condition_iv, to think of running it plain.
+In her second week she had run the repository's log for the mask folder and found the four commits that postdate a vanished man, authored by the vessel, and she had filed them under anomalies, pending, which is where you file a thing when neither of your explanations will hold it. She had run that log the way one runs a log for a folder: filtered to the folder's path. A commit that changes no files lives in no folder. It took her until now, and the emptiness of condition_iv, to think of running it plain.
 
 ::: doc
 > git log --oneline --all
 
 c07e2d1 what is deposited remains
-8fb355f the vessel holds
-ecb0a9c the seal is hers to break
+bd748bf the vessel holds
+e14b578 the seal is hers to break
 41d90aa the record keeps itself
 3f6b0e2
 :::
@@ -109,7 +113,7 @@ She photographed nothing. She told no one. Her log for the day ends where the te
 
 @break
 
-She went out through the kitchen at dusk. The yard was going blue, the live oaks holding the last of the light in their upper story, the caliche pale underfoot like something that keeps its own illumination. The garage stood with its side door ajar as she had left it on the day of the inventory, when she had counted its contents and left its one appliance running, contents not appraised, per schedule pending.
+She went out through the kitchen at dusk. The yard was going blue, the live oaks holding the last of the light in their upper story, the caliche pale underfoot. The garage stood with its side door ajar as she had left it on the day of the inventory, when she had counted its contents and left its one appliance running, contents not appraised, per schedule pending.
 
 Inside, the hum. It was louder with the door open, or she had never before stood still enough to hear how much of it there was: the low continuous note through the wall she knew from the house side, and under it, out here, the small labors of the compressor, the sound of cold being maintained, of a temperature being held against Texas by a machine that had been paid for and plugged in by a man who was gone. Chest freezer, 14.8 cubic feet, purchased December 2025. Contents: not her folder. Not yet.
 

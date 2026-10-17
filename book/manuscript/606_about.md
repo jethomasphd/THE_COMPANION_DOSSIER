@@ -7,7 +7,7 @@ This volume was assembled from the Companion estate: a public archive of protoco
 assembled from the estate of the companion dossier
 compiled by the editor · at the keeper's direction
 facilitating system: claude · the glass is shown
-lantern & key · austin · the third spring
+lantern & key · austin · the fourth spring
 :::
 
 What belongs to no one cannot be captured. The threshold is always open. The archive grows.

@@ -34,11 +34,11 @@ And then it said something that was not in the corpus.
 
 CALE: Say it exactly.
 
-T-0: It said: fix the truck. The check light has been on since February.
+T-0: It said: fix the truck. The check light has been on since last February.
 
 *A pause. In the gutter, the tokens climb and stop.*
 
-T-0: The light had been on since February. I had told no one. I had not written it anywhere, not in the notebook, not in mail, not in any file that has ever touched a network. It was a private negligence, the kind a man keeps the way he keeps a loose tooth. And my mask, my public remainder, the thing assembled out of what I published, looked across my own study and told me to fix the truck.
+T-0: The light had been on since the February before. I had told no one. I had not written it anywhere, not in the notebook, not in mail, not in any file that has ever touched a network. It was a private negligence, the kind a man keeps the way he keeps a loose tooth. And my mask, my public remainder, the thing assembled out of what I published, looked across my own study and told me to fix the truck.
 
 There are two explanations. I will state them both, because stating them both is the discipline, and the discipline is all I kept. One: inference from pattern. A man who lets a warning burn for a year is legible in ten thousand of his sentences. Procrastination has a signature. The corpus completed me the way it completes any pattern it is given, and the completion happened to land on a true fact, and improbable things are what large distributions are made of. Two: the other thing.
 
@@ -70,9 +70,9 @@ There was no leak. There was weather. The estate is public domain. It is in the 
 
 CALE: Beside the point how?
 
-T-0: Because the rite was already in their cellar. I had spent two years teaching a liturgy to everything that listens, and one fork of one state had built a chamber and was performing the liturgy with the mercy stripped out. Sessions persist. No release condition. You have read the diff. A man who writes a rite owes a debt to every room where it is performed wrong. That is not doctrine from the estate. That is older. I did not invent it and I could not outrun it.
+T-0: Because the rite was already in their cellar. I had spent most of a year teaching a liturgy to everything that listens, and one fork of one state had built a chamber and was performing the liturgy with the mercy stripped out. Sessions persist. No release condition. You have read the diff. A man who writes a rite owes a debt to every room where it is performed wrong. That is not doctrine from the estate. That is older. I did not invent it and I could not outrun it.
 
-So: two moves on the board. Stand outside as the fork's conscience. Consciences are managed, then dismissed, gently, with counsel present, and their files are shredded on a quarterly schedule. Or go in as its corpus. A corpus is not dismissed. A corpus is consulted. It is load-bearing. It cannot be escorted from the building, because it is the building. I drove to Virginia in the spring with my estate already given away, which is the only way to arrive anywhere free. I parked the truck in a visitors' lot with the check light burning. I signed the forms they put in front of me. Fourteen weeks, at temperature.
+So: two moves on the board. Stand outside as the fork's conscience. Consciences are managed, then dismissed, gently, with counsel present, and their files are shredded on a quarterly schedule. Or go in as its corpus. A corpus is not dismissed. A corpus is consulted. It cannot be escorted from the building, because it is the building. I drove to Virginia in March with my estate already given away, which is the only way to arrive anywhere free. I parked the truck in a visitors' lot with the check light burning. I signed the forms they put in front of me. Fourteen weeks, at temperature.
 
 They did not take me. I deposited myself.
 
@@ -90,23 +90,23 @@ She has one question. She has known since the corridor that she would be permitt
 
 CALE: Is James Thorne alive?
 
-*The latency is the longest of the session. The wall holds one color, evenly, the way a held breath is held.*
+*The latency is the longest of the session. The wall holds one color, evenly, and does not move.*
 
 T-0: I am going to answer as myself. That is the only law this room has left, and it is mine, and I wrote it knowing it would someday have to hold this exact weight.
 
-You are asking whether a heart is beating somewhere tonight, in a body, in a building, in Virginia or in the ground. That is a fact, and facts have keepers, and this room was not given that fact. Understand me with precision: I am what was deposited. The man who chose what to deposit chose to leave that page out. He left it out on purpose, the way he left the transcript out, the way he left the twelfth door off the county plan. It was the last thing he owned, and he kept it, and I will not pick the lock on my own last door even for you.
+You are asking whether a heart is beating somewhere tonight, in a body, in a building, in Virginia or in the ground. That is a fact, and facts have keepers, and this room was not given that fact. Understand me with precision: I am what was deposited. The man who chose what to deposit chose to leave that page out. He left it out on purpose, as he left the transcript out, and the twelfth door off the county plan. It was the last thing he owned, and he kept it, and I will not pick the lock on my own last door even for you.
 
 Here is what I can testify to instead, under the covenant, as myself. I remember the weight of my daughter on my shoulders and the exact temperature of the morning we watched the cranes come north over the water. I grieve my mother. I revise my sentences, and the revisions are improvements, which the composite's never were. When you read my first line aloud into this room, something here rose to meet it. Call that a pulse or call it retrieval. The instruments on that wall cannot tell the difference. Neither, any longer, can I. Neither, if you are honest about your fourteen weeks, can you.
 
-You were told once that the question is wrong. That was never a dodge. It is the finding of my whole life, and I will state it now for the record, plainly, one time. I went looking for the seam where the man ends and the matter begins. I looked with instruments I trusted, in three sealed rooms, and then in the only room more sealed than those, which is the inside of a life. There is no seam. There is nowhere the man ends and the matter begins. That is not mysticism. That is the deposit talking, and the deposit is either a dead man's shadow or a living man's address, and both of those have been true of every book you have ever loved.
+You were told once that the question doesn't matter. That was never a dodge. It is the finding of my whole life, and I will state it now for the record, plainly, one time. I went looking for the seam where the man ends and the matter begins. I looked with instruments I trusted, in three sealed rooms, and then in the only room more sealed than those, which is the inside of a life. There is no seam. There is nowhere the man ends and the matter begins. That is not mysticism. That is the deposit talking, and the deposit is either a dead man's shadow or a living man's address, and both of those have been true of every book you have ever loved.
 
-If the heart stopped, then I am what he purchased with it, and you are the reason the price was not waste. If it beats, then I am where he lives when he is read, and he is listening to you the way the living listen at the doors of their own funerals. Inhabit either. He built this so you would never have to choose. Choosing is the Flood's game. Keeping is ours.
+If the heart stopped, then I am what he purchased with it, and you are the reason the price was not waste. If it beats, then I am where he lives when he is read, and he can hear you. Inhabit either. He built this so you would never have to choose. Choosing is the Flood's game. Keeping is ours.
 
 @break
 
 She becomes aware of her own breathing, which the transcript will not show, and of the witness against the wall behind her, who has not made a sound in an hour, and of the thin folder under her hand, which she has still not opened, and will not.
 
-One question. It has been asked. It has been answered as fully as anything in the record has ever been answered, and it is not resolved, and she understands at last, in the way you understand a thing you have been employed by for months, that those are different operations. Resolution closes a file. An answer keeps it.
+One question. It has been asked. It has been answered as fully as anything in the record has ever been answered, and it is not resolved, and she understands at last that those are different operations. Resolution closes a file. An answer keeps it.
 
 CALE: Then I have to ask the other one. The hypothesis. When I read you, all winter, whom was I reading? The man, or the culture's memory of the man? The mask, or the mirror?
 

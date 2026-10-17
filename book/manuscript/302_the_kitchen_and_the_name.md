@@ -73,7 +73,7 @@ Her Bible has been packed in a box since Annapolis. She cannot say which box. Th
 
 There is a third question. It is on no docket.
 
-The two on the docket are asset location and reunification framework, and she will ask them, flat, correct, and the state will get whatever the state gets. The third is hers. She has built it the way you build the thing you may not have the nerve to use, in private, after hours, to tolerances no one is checking.
+The two on the docket are asset location and reunification framework, and she will ask them, flat, correct, and the state will get whatever the state gets. The third is hers. She has built it in private, after hours, to tolerances no one is checking.
 
 She is two months pregnant. No one at the program knows. There are forms she is required to have filed by now, exposure schedules, duty status. She has not filed them. The child is off every book, like the chamber. They are the two facts of her life the state does not hold, and tonight she carries both of them through the same door.
 
