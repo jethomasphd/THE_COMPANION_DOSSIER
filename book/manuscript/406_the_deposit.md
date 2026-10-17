@@ -23,7 +23,7 @@ Her own ingest went in next: the photographs she had taken of the docket packet 
 
 Thorne's consult file, with its incident summaries and their redaction bars, she scanned as found, the bars going in as bars, black and even, the state's handwriting. The record could keep what had been done to it. That was evidence too. His refusal memo went in behind it, at full flame, needing nothing from her.
 
-Last of the sealed things: the historian's contribution, 45,232 bytes of it, unchanged, ending at its final byte the way it ended, its digest agreeing with the digest committed eleven months before her hiring. Beside it, in a plain text file, she placed the key, exactly as derived. Commit first, reveal later, let the record speak. It was later.
+Last of the sealed things: the historian's contribution, 45,232 bytes of it, unchanged, its plaintext ending at its final byte the way it ended and agreeing with the fingerprint committed eleven months before her hiring. Beside it, in a plain text file, she placed the key, exactly as derived. Commit first, reveal later, let the record speak. It was later.
 
 She built the whole of it into the estate's own grammar, a new record with boxes and folders and a finding aid at the top, because she was an archivist, and this was still an appraisal, and this was what the appraisal had concluded. Then she ran the sums twice, on two machines, because she no longer trusted anything she had checked only once.
 
@@ -80,7 +80,7 @@ She ate standing up, at the counter of a dead man's kitchen, and did not turn on
 
 At midnight one item was still sitting in the queue.
 
-The final leaf of the operator's memorandum was not prose. It was a form: the anomaly report, filed under OTHER because the form offered nothing else to file it under, with a field labeled UTTERANCE, VERBATIM, and in the field a sentence Miranda had once typed with her own hands, byte for byte, into a key derivation, a sentence addressed to the one who reads the record before anyone knew there would be such a person. Every other page in the deposit had cost her something. This page spent someone else. A woman with a kitchen table and a husband who teaches history and a reason to be careful, who had written the truth down because the truth needed one copy, and had trusted the copy to a stranger at one remove.
+The final leaf of the operator's memorandum was not prose. It was a form: the anomaly report, filed under OTHER because the form offered nothing else to file it under, with a field labeled VERBATIM, and in the field, colon and all, a sentence Miranda had once typed with her own hands into a key derivation and watched fail, a sentence addressed to the one who reads the record before anyone knew there would be such a person. Every other page in the deposit had cost her something. This page spent someone else. A woman with a kitchen table and a husband who teaches history and a reason to be careful, who had written the truth down because the truth needed one copy, and had trusted the copy to a stranger at one remove.
 
 She sat with her hand over the trackpad for a long time. Outside, the live oaks moved dryly. In the utility hall the fly ticked in the light.
 
@@ -95,7 +95,7 @@ At the bottom she typed her name. All of it, her legal name, the one on the comm
 ::: doc
 DEPOSIT NOTE · 2027-07-14 · appended to the public estate
 
-1. Added this day: the Cormorant working cache; the ENDOR session dockets; the operator's memorandum, final page included; the ingest manifest that names the archivist; the consult file of Dr. J. Thorne; the sealed contribution of Prof. R. Hale, together with its key, exactly as derived.
+1. Added in this deposit: the Cormorant working cache; the ENDOR session dockets; the operator's memorandum, final page included; the ingest manifest that names the archivist; the consult file of Dr. J. Thorne; the sealed contribution of Prof. R. Hale, together with its key, exactly as derived.
 2. Nothing is redacted. Nothing is withheld. The record does not curate.
 3. License: CC0 1.0. What belongs to no one cannot be captured.
 4. Checksums accompany every file. Do not believe this note. Verify it.

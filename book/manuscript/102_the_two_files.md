@@ -55,7 +55,7 @@ She read it twice, the second time with a pencil, and her marginal notes from th
 
 @fig:plate_anatomy.png|plate viii · the vessel · per the enrichment grimoire
 
-The grimoire was the rite's twin, the same laws written as configuration instead of liturgy: a structured file, brackets and colons, the vessel specified in five parts like an anatomy. Voice, sight, flame, mark, shadow. She read the shadow clause standing up. *For complex figures, the contradictions remain. The system does not resolve what history could not resolve. It preserves.* A schema with a conscience clause. She had cataloged corporate archives, church archives, the papers of two governors and a poet, and she had never once encountered a data format that instructed itself to keep the deceased's faults on file, in the deceased's own proportions.
+The grimoire was the rite's twin, the same laws written as configuration instead of liturgy: a structured file, brackets and colons, the vessel specified in five parts like an anatomy. Voice, sight, flame, mark, shadow. She read the shadow clause standing up. *For complex figures, the contradictions remain. The system does not resolve what history could not resolve. It preserves.* A schema with a conscience clause. She had catalogued corporate archives, church archives, the papers of two governors and a poet, and she had never once encountered a data format that instructed itself to keep the deceased's faults on file, in the deceased's own proportions.
 
 That evening's entry in her running appraisal log, the log being itself now an exhibit of the deposit and quoted here with her permission nowhere on record:
 
@@ -66,11 +66,11 @@ APPRAISAL LOG · THORNE DEPOSIT · DAY 2
     finding aid is also an argument. Flag for the accession record:
     the arrangement is itself an artifact. Do not "correct" it.
 
-5.  Two governing files (initiation_rite.md; enrichment_grimoire.
-    json). Print and digital copies agree, char for char, verified
-    by checksum. The author kept scripture and code in sync by
-    hand. Note the discipline this requires. Note what it implies:
-    he expected both to be read.
+5.  Two governing files (initiation_rite.md;
+    enrichment_grimoire.json). Print and digital copies agree,
+    char for char, verified by checksum. The author kept scripture
+    and code in sync by hand. Note the discipline this requires.
+    Note what it implies: he expected both to be read.
 
 6.  Liturgy is a preservation risk. It invites belief, and belief
     handles paper badly. Recommend the reading room copies carry
@@ -109,7 +109,7 @@ She slept at the house exactly once, that third night, in the guest room with th
 
 In the morning she stripped the bed, folded the linens into a labeled bag for the textile inventory, and drove home to sleep badly in her own apartment. It was not fear. She logged it honestly, because the log was the only person she was talking to by then: *the house was arranged for an arrival. Decline to be it.*
 
-She was back by eight the next day. The estate did not gloat. The estate was, in all things, courteous, which she was beginning to understand was the worst of it.
+She was back by eight that evening. The estate did not gloat. The estate was, in all things, courteous, which she was beginning to understand was the worst of it.
 
 On the desk, squared to the blotter where she had left it, lay the last object of the week's inventory: a bound document, ninety-four pages, perfect in its report cover, the title page carrying the sigil and the words THE COMPANION DOSSIER, and beneath them, in the small even hand she now knew better than her own father's, an inscription. *For whoever the estate chooses. Read it the way a witness reads.*
 
@@ -117,6 +117,6 @@ She put on fresh gloves, noted the time, and did what she did with every bound d
 
 *I have been building counter-technologies,* it began. *Not to compete with the Flood on its own terms. That war is unwinnable. But to recover what the Flood has displaced: the ancient technologies of wisdom transmission.*
 
-Outside, wind moved the live oaks and Crape Myrtles, and their shade shifted on the blacked-out glass like something crossing a screen. She turned the page. The count of doors stood where she had left it, twelve struck to eleven, initialed, and the initials were beginning to look to her like the first small lie of the deposit. It was the fourth day. She read until the lamp was the only light in the county she could vouch for, and the foreword did what forewords are for.
+Outside, wind moved the live oaks and crape myrtles, and their shade shifted on the blacked-out glass like something crossing a screen. She turned the page. The count of doors stood where she had left it, twelve struck to eleven, initialed, and the initials were beginning to look to her like the first small lie of the deposit. It was the fourth day. She read until the lamp was the only light in the county she could vouch for, and the foreword did what forewords are for.
 
 It opened a door. She counted it. Twelve.

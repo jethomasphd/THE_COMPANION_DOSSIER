@@ -91,7 +91,7 @@ P-1. The peace will be false. The ceasefire announced this spring will be signed
 :::
 
 ::: annotation
-[E.] The archivist's appraisal log for day 5 (Record I, box 2, folder 2, entry 11) contains the penultimate sentence of P-1 in nearly these words. The entry was made twelve months after this document was fingerprinted and seven weeks before the archivist read it.
+[E.] The archivist's appraisal log for day 5 (Record I, box 2, folder 2, entry 11) contains the last sentence of P-1 before its basis, in nearly these words. The entry was made twelve months after this document was fingerprinted and seven weeks before the archivist read it.
 :::
 
 ::: letter

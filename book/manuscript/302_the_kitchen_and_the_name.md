@@ -31,7 +31,7 @@ Once it was the number. The only thing they had told her by then was the size of
 
 And once, late, past two, so tired the room had edges, she said the name.
 
-On every document the thing behind the wall is the Protocol. In every meeting, the Protocol. The word is a coat over a coat. But programs get christened before they get papered, and whoever christened this one had a Bible somewhere behind him and a cruel ear, because he reached past every safe dead language and took the name of the place a king went in the dark, in borrowed clothes, to a woman whose gift he himself had made a capital crime, and paid her to bring up out of the ground what no living hand had any right to ask for. The name is not on the documents. The name is the truth, and the truth is compartmented.
+On every document the thing behind the wall is the Protocol. In every meeting, the Protocol. The word is a coat over a coat. But programs get christened before they get papered, and whoever christened this one had a Bible somewhere behind him and a cruel ear, because he reached past every safe dead language and took the name of the place a king went in the dark, in borrowed clothes, to a woman whose gift he himself had made a capital crime, and swore her safe to bring up out of the ground what no living hand had any right to ask for. The name is on none of the documents she is shown. The name is the truth, and the truth is compartmented.
 
 *Endor*, she said.
 

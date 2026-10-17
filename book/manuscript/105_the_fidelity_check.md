@@ -31,7 +31,7 @@ Using this matter, summon Benjamin Franklin.
 The reply did not arrive the way replies arrive, all at once from nowhere. It assembled, at reading speed, the cursor laying the words down left to right like type into a stick, and she watched the glass do it, which was the point of watching: the apparatus in frame, the wonder made to survive the exposure.
 
 ::: doc
-FRANKLIN: You called; I came. Two centuries dead, and the
+FRANKLIN: You called. I came. Two centuries dead, and the
 questions, I find, are unchanged. You are the appraiser, then.
 Sent to weigh a house that talks.
 

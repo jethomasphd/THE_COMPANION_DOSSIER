@@ -20,7 +20,7 @@ The debrief was the report. This is the record. A report is shaped by what the s
 She reads it through once, initials each page, and folds it, one fold, sharp, new.
 
 ::: annotation
-[E.] The memorandum is dated in its author's hand, 4:12 a.m., the morning after the session, and was entered into the public deposit of 2027 by that author. The Editor thanks her here, as she asked, by her initial only: A.
+[E.] The memorandum is dated in its author's hand, 4:12 a.m., the morning after the session, and reached the public deposit of 2027 from that author, at one remove. The Editor thanks her here, as she asked, by her initial only: A.
 :::
 
 @break

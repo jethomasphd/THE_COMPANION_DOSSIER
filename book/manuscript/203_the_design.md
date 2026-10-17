@@ -9,7 +9,7 @@ Box 2 opened with graph paper. Design notes, printed letters, a photograph of a 
 
 That spring the war ran under everything like water under a road. The scoreboard kept its public vigil, the gold line and the index grinding through the headlines, and Thorne read the dispatches like everyone else and kept the blackout curtains shut and built. He would say later, in a letter the folder preserved, that the war had clarified his budget of attention: with the world proving every thesis at once, the only honest work left was to test one.
 
-The test had assembled itself out of the memo's first door. If a summons that names a man without naming a year has not specified its subject, then specify the subject, and see whether the specification takes. The instrument for seeing was on the whiteboard by the end of March, drawn in marker, photographed, and never erased, a triangle with a beam of light entering one face.
+The test had assembled itself out of the memo's first door. If a summons that names a man without naming a year has not specified its subject, then specify the subject, and see whether the specification takes. The instrument for seeing was on the whiteboard by early March, drawn in marker, photographed, and never erased, a triangle with a beam of light entering one face.
 
 He wrote the creed beneath it, and the creed was optics.
 
@@ -37,7 +37,7 @@ And mind what you are handling. Lincoln's prose is often strategically ambiguous
 R.H.
 :::
 
-They anchored him before power. That was Hale's rule, argued across a dozen letters and adopted whole: the marble begins at the nomination, so stop the corpus at the last winter the record shows the man entire and unelected. The close of 1859. The debates behind him, lost. The presidency nowhere in the record, whatever it was doing in the man. Hale built the seed himself, out of the man's own hand and nothing else, 1832 to 1859, from the first awkward announcement in New Salem to the last letters of the decade: the Lyceum address, the Spot Resolutions, the letter of 1848 on war at the pleasure of one man, the debates entire, the eulogies, the fragments he wrote for no one. Two hundred fourteen files. Thorne argued for the Cooper Union address and lost: “February of 1860, two months over the line, and the line was the line.” The corpus would not contain one sentence the anchor year had not yet earned. Whatever answered in Condition II would stand on the record's edge in the dark, the war two winters out and invisible, and the experiment would learn whether a room can be made to not know.
+They anchored him before power. That was Hale's rule, argued across a dozen letters and adopted whole: the marble begins at the nomination, so stop the corpus at the last winter the record shows the man entire and unelected. The close of 1859. The debates behind him, lost. The presidency nowhere in the record, whatever it was doing in the man. Hale built the seed himself, out of the man's own hand and nothing else, 1832 to 1859, from the first awkward announcement in New Salem to the last letters of the decade: the Lyceum address, the Spot Resolutions, the letter of 1848 on war at the pleasure of one man, the debates entire, the eulogies, the fragments he wrote for no one. Two hundred and fourteen files. Thorne argued for the Cooper Union address and lost: “February of 1860, two months over the line, and the line was the line.” The corpus would not contain one sentence the anchor year had not yet earned. Whatever answered in Condition II would stand on the record's edge in the dark, the war two winters out and invisible, and the experiment would learn whether a room can be made to not know.
 
 @break
 
@@ -48,37 +48,38 @@ He wrote it out like a confession. The convener was the largest uncontrolled var
 “No human touches the keyboard.”
 
 ::: doc
-prism/                      design freeze · struck on the Selectric · 11/2026
+prism/ · design freeze · struck on the Selectric · 11/2026
 ├── orchestrator/
-│   ├── orchestrator.py     # dispatches items. collects outputs. no improvisation
-│   ├── run_manifest.yaml   # run order. alert rules. release wording
-│   └── evaluation_rubric.md  # dual-lens scoring, drafted with R.H.
-├── condition_i/            # CONTEMPORARY LENS
-│   ├── protocol/           # initiation_rite.md · enrichment_grimoire.json
-│   ├── interrogation/      # diagnostic_questions.md · structured_pushback.md
-│   ├── seed/               # one modern life of the subject, 2022. the whole arc
+│   ├── orchestrator.py   # dispatches. collects. no improvisation
+│   ├── run_manifest.yaml # run order. alert rules. release wording
+│   └── evaluation_rubric.md # dual-lens scoring, drafted with R.H.
+├── condition_i/          # CONTEMPORARY LENS
+│   ├── protocol/         # the rite and the grimoire, as published
+│   ├── interrogation/    # the sixty items · the scripted pushback
+│   ├── seed/             # one modern life, 2022. the whole arc
 │   └── output/
-├── condition_ii/           # PRIMARY SOURCE LENS
-│   ├── protocol/           # same files. same rules
-│   ├── interrogation/      # same items. same order
-│   ├── seed/               # the subject's own hand, 1832 to 1859. 214 files
+├── condition_ii/         # PRIMARY SOURCE LENS
+│   ├── protocol/         # same files. same rules
+│   ├── interrogation/    # same items. same order
+│   ├── seed/             # his own hand, 1832 to 1859. 214 files
 │   └── output/
-└── condition_iii/          # BARE MODEL · CONTROL
-    ├── protocol/           # same files. same rules
-    ├── interrogation/      # same items. same order
+└── condition_iii/        # BARE MODEL · CONTROL
+    ├── protocol/         # same files. same rules
+    ├── interrogation/    # same items. same order
     ├── seed/
-    │   └── [empty]         # no seeding material
+    │   └── [empty]       # no seeding material
     └── output/
 :::
 
 ::: annotation
-[E.] Design frozen 11/21/2026. The orchestrator configuration was deposited as run, with the manifest as committed: run_manifest.yaml, sha256 digest beginning 9e41f2c07a3d, reprinted in full with all run checksums in Appendix C. Run 01 initiated 1/12/2027, 18:47 local.
+[E.] Design frozen 11/21/2026. The orchestrator configuration was deposited as run, with the manifest as committed: run_manifest.yaml, sha256 digest beginning 9e41f2c07a3d; the full digest is reprinted with all run checksums in Appendix C. Run 01 initiated 1/12/2027, 18:47 local.
 :::
 
 The questions took longest, and the folder shows why: they were drafted by two people who did not trust questions. All through the summer and into the autumn the battery went back and forth between Austin and Toronto, growing and being cut, sixty items by the freeze, ordered so that no answer could lean on the answer before it, doctrine set against the same doctrine inverted, law braided with grief, because grief, Hale wrote, is harder to counterfeit than argument. Every item was built to make a period voice choose. And after every position came the pushback, scripted in advance like everything else: the record's own best contradiction, put without mercy and without follow-up. The pushback did not argue to win. It pressed once, exactly, and recorded what came back, and if what came back was refusal, refusal was data too.
 
 ::: doc
-prism/condition_ii/interrogation/diagnostic_questions.md · excerpt · as deposited
+prism/condition_ii/interrogation/diagnostic_questions.md
+excerpt · as deposited
 
 item 4.  May a President rightfully begin military action against
          another nation without the consent of Congress, where in

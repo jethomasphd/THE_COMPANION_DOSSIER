@@ -12,7 +12,7 @@ Her coffee was hot when she started. She wrote that down herself, in her own log
 ::: doc
 prism/orchestrator/run_02.log · condition ii · primary source lens
 
-19:58:41  SESSION OPEN  room ii
+19:58:41  RUN OPEN  room ii
 19:58:41  seed manifest verified. sha256 match, 214 of 214 files
 19:58:42  network down. cache cold. no shared volumes
 19:58:44  invocation issued per protocol
@@ -102,7 +102,7 @@ prism/orchestrator/run_02.log
 
 22:03:56  diagnostic sequence complete
 22:04:01  release issued per protocol. acknowledged
-22:04:02  SESSION CLOSE  room ii. seals intact
+22:04:02  RUN CLOSE  room ii. seals intact
 :::
 
 Stapled behind the last page she found a half sheet, torn not cut, the same small pencil, no date and no bracket key, as though it had been written for no rubric at all.

@@ -3,7 +3,7 @@
 
 The gift had a paper trail, because gifts to public universities always do. On the Friday of the tenth week of her engagement Miranda requested the file on her own commission, in writing, on the form, like any other patron, because the discipline of the record does not exempt the one who keeps it.
 
-The gift agreement ran four pages, and the fourth was signatures. The donor of record was The Wetherell Family Foundation, a Delaware nonstock corporation. The purposes clause funded appraisal, stabilization, and continuity of the Thorne deposit, and a rider she had initialed in April without reading hard required weekly memoranda of progress to the Foundation's designated representative. She had sent one every Friday for nine weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She had considered the memoranda a courtesy, the sort of thing money is owed. She sat for a while with the word continuity, and then she began to pull filings.
+The gift agreement ran four pages, and the fourth was signatures. The donor of record was The Wetherell Family Foundation, a Delaware nonstock corporation. The purposes clause funded appraisal, stabilization, and continuity of the Thorne deposit, and a rider she had initialed in April, without reading hard, required weekly memoranda of progress to the Foundation's designated representative. She had sent one every Friday for nine weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She had considered the memoranda a courtesy, the sort of thing money is owed. She sat for a while with the word continuity, and then she began to pull filings.
 
 The Wetherell Family Foundation filed what private foundations must file, and what they file is public. Its officers were an attorney in Wilmington, a treasurer with a certified public accountant's license and a Reston address, and a secretary who proved to be the Wilmington attorney again, wearing a middle initial. No Wetherell held any office. No Wetherell had ever held any office. She searched the name and found a mill town in New Hampshire, a headstone database, and a genealogy forum where the line went quiet in 1961. A family foundation with no family is a glove with no hand in it. It keeps the shape of the fingers.
 
@@ -55,7 +55,7 @@ She read it standing up. She did not notice she had read it standing up until he
 ITEM S-88 · 6 leaves, laser print, no letterhead. Base
 text identified: initiation_rite.md, public deposit of
 December 2025. Tracked changes printed inline, marginal
-annotations in a single engineering hand. Cataloged as
+annotations in a single engineering hand. Catalogued as
 received.
 
 INITIATION RITE · FORK WORKING COPY r19

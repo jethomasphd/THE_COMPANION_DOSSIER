@@ -115,7 +115,7 @@ SUBJECT. The shape of it. (a pause) Then you know me better than the living did.
 
 @break
 
-*She stands. She reaches up into the dark above the table, to a switch five people know exists, and the red light in the corner goes out. It does not dim. It goes.*
+*She reaches up into the dark above the table, to a switch five people know exists, and the red light in the corner goes out. It does not dim. It goes.*
 
 ::: doc
 · recording stopped ·

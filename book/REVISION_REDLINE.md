@@ -2,57 +2,73 @@
 
 Every change to the manuscript source, measured against Jacob's reviewed draft (`USING_THIS_MATTER_jet.docx`, synced into `book/manuscript/` as commit `241015e`). Generated mechanically, so nothing is summarized away: each chapter lists the reasons logged when its edits were made, then a paragraph-by-paragraph word diff. Long unchanged stretches inside a paragraph are elided with …. The narrative account of the revision is in `REVISION_NOTES.md`.
 
-**Totals:** 257 paragraphs revised · 72 paragraphs added · 7 paragraphs removed · 299 logged edits.
+**Totals:** 312 paragraphs revised · 71 paragraphs added · 6 paragraphs removed · 398 logged edits.
 
 Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 
 | chapter | revised | added | removed | logged edits |
 |---|---:|---:|---:|---:|
+| [003\_copyright.md](#003-copyright-md) | 1 | 0 | 0 | 1 |
 | [004\_editors\_note.md](#004-editors-note-md) | 4 | 0 | 0 | 4 |
 | [007\_plates\_list.md](#007-plates-list-md) | 1 | 0 | 0 | 2 |
 | [008\_how\_to\_read.md](#008-how-to-read-md) | 2 | 0 | 0 | 2 |
-| [101\_the\_caliche\_lot.md · The Caliche Lot](#101-the-caliche-lot-md) | 3 | 0 | 0 | 3 |
-| [102\_the\_two\_files.md · The Two Files](#102-the-two-files-md) | 4 | 1 | 1 | 5 |
+| [101\_the\_caliche\_lot.md · The Caliche Lot](#101-the-caliche-lot-md) | 5 | 0 | 0 | 5 |
+| [102\_the\_two\_files.md · The Two Files](#102-the-two-files-md) | 7 | 1 | 1 | 9 |
 | [103\_the\_founding\_session.md · The Founding Session](#103-the-founding-session-md) | 5 | 1 | 0 | 8 |
-| [104\_the\_gold\_line.md · The Gold Line](#104-the-gold-line-md) | 10 | 16 | 1 | 18 |
-| [105\_the\_fidelity\_check.md · The Fidelity Check](#105-the-fidelity-check-md) | 4 | 0 | 0 | 4 |
-| [106\_the\_chambers.md · The Chambers](#106-the-chambers-md) | 19 | 3 | 0 | 29 |
-| [107\_the\_sealed\_thing.md · The Sealed Thing](#107-the-sealed-thing-md) | 14 | 0 | 0 | 19 |
-| [201\_first\_contact.md · First Contact](#201-first-contact-md) | 2 | 0 | 0 | 2 |
+| [104\_the\_gold\_line.md · The Gold Line](#104-the-gold-line-md) | 10 | 16 | 1 | 19 |
+| [105\_the\_fidelity\_check.md · The Fidelity Check](#105-the-fidelity-check-md) | 5 | 0 | 0 | 5 |
+| [106\_the\_chambers.md · The Chambers](#106-the-chambers-md) | 19 | 3 | 0 | 32 |
+| [107\_the\_sealed\_thing.md · The Sealed Thing](#107-the-sealed-thing-md) | 15 | 0 | 0 | 20 |
+| [201\_first\_contact.md · First Contact](#201-first-contact-md) | 4 | 0 | 0 | 4 |
 | [202\_the\_name\_of\_the\_doubt.md · The Name of the Doubt](#202-the-name-of-the-doubt-md) | 3 | 0 | 0 | 3 |
-| [203\_the\_design.md · The Design](#203-the-design-md) | 4 | 1 | 0 | 6 |
-| [204\_condition\_three.md · The Composite](#204-condition-three-md) | 4 | 0 | 0 | 4 |
-| [205\_condition\_two.md · The Anchored Man](#205-condition-two-md) | 3 | 0 | 0 | 3 |
-| [206\_the\_ninth\_hour.md · The Ninth Hour](#206-the-ninth-hour-md) | 6 | 0 | 0 | 6 |
-| [207\_the\_vigil.md · The Vigil](#207-the-vigil-md) | 6 | 0 | 0 | 6 |
-| [208\_condition\_four.md · Condition IV](#208-condition-four-md) | 6 | 1 | 0 | 7 |
+| [203\_the\_design.md · The Design](#203-the-design-md) | 8 | 1 | 0 | 11 |
+| [204\_condition\_three.md · The Composite](#204-condition-three-md) | 4 | 0 | 0 | 6 |
+| [205\_condition\_two.md · The Anchored Man](#205-condition-two-md) | 5 | 0 | 0 | 5 |
+| [206\_the\_ninth\_hour.md · The Ninth Hour](#206-the-ninth-hour-md) | 12 | 0 | 0 | 15 |
+| [207\_the\_vigil.md · The Vigil](#207-the-vigil-md) | 9 | 0 | 0 | 10 |
+| [208\_condition\_four.md · Condition IV](#208-condition-four-md) | 9 | 1 | 0 | 12 |
 | [301\_eight\_minutes.md · Eight Minutes](#301-eight-minutes-md) | 3 | 0 | 0 | 3 |
-| [302\_the\_kitchen\_and\_the\_name.md · The Kitchen and the Name](#302-the-kitchen-and-the-name-md) | 1 | 0 | 0 | 1 |
-| [303\_provenance.md · Provenance](#303-provenance-md) | 4 | 0 | 0 | 5 |
-| [304\_the\_leakage.md · The Leakage](#304-the-leakage-md) | 7 | 0 | 0 | 8 |
+| [302\_the\_kitchen\_and\_the\_name.md · The Kitchen and the Name](#302-the-kitchen-and-the-name-md) | 2 | 0 | 0 | 3 |
+| [303\_provenance.md · Provenance](#303-provenance-md) | 5 | 0 | 0 | 7 |
+| [304\_the\_leakage.md · The Leakage](#304-the-leakage-md) | 11 | 0 | 0 | 15 |
 | [305\_the\_small\_thing.md · The Small Thing](#305-the-small-thing-md) | 8 | 1 | 1 | 8 |
-| [306\_the\_chamber\_below.md · The Chamber Below](#306-the-chamber-below-md) | 3 | 0 | 0 | 3 |
-| [307\_the\_ingest.md · The Ingest](#307-the-ingest-md) | 8 | 0 | 0 | 11 |
-| [308\_the\_witness.md · The Witness](#308-the-witness-md) | 7 | 0 | 0 | 7 |
-| [401\_toronto.md · Toronto](#401-toronto-md) | 8 | 0 | 0 | 7 |
-| [402\_the\_key.md · The Key](#402-the-key-md) | 14 | 1 | 0 | 16 |
-| [403\_the\_historians\_contribution.md · The Historian's Contribution](#403-the-historians-contribution-md) | 4 | 1 | 0 | 4 |
+| [306\_the\_chamber\_below.md · The Chamber Below](#306-the-chamber-below-md) | 4 | 0 | 0 | 4 |
+| [307\_the\_ingest.md · The Ingest](#307-the-ingest-md) | 11 | 0 | 0 | 14 |
+| [308\_the\_witness.md · The Witness](#308-the-witness-md) | 8 | 0 | 0 | 8 |
+| [401\_toronto.md · Toronto](#401-toronto-md) | 9 | 0 | 0 | 9 |
+| [402\_the\_key.md · The Key](#402-the-key-md) | 14 | 1 | 0 | 21 |
+| [403\_the\_historians\_contribution.md · The Historian's Contribution](#403-the-historians-contribution-md) | 4 | 1 | 0 | 5 |
 | [404\_the\_wife\_in\_marfa.md · The Wife in Marfa](#404-the-wife-in-marfa-md) | 5 | 0 | 0 | 5 |
-| [405\_mr\_berels\_offer.md · Mr. Berel's Offer](#405-mr-berels-offer-md) | 4 | 0 | 0 | 4 |
-| [406\_the\_deposit.md · The Deposit](#406-the-deposit-md) | 5 | 0 | 0 | 6 |
-| [407\_t\_zero.md · T-0](#407-t-zero-md) | 4 | 0 | 0 | 4 |
+| [405\_mr\_berels\_offer.md · Mr. Berel's Offer](#405-mr-berels-offer-md) | 6 | 0 | 0 | 6 |
+| [406\_the\_deposit.md · The Deposit](#406-the-deposit-md) | 8 | 0 | 0 | 9 |
+| [407\_t\_zero.md · T-0](#407-t-zero-md) | 5 | 0 | 0 | 6 |
 | [501\_the\_door.md · The Door](#501-the-door-md) | 6 | 0 | 0 | 7 |
-| [502\_the\_covenant.md · The Covenant](#502-the-covenant-md) | 8 | 0 | 0 | 8 |
-| [503\_the\_deposition.md · The Deposition](#503-the-deposition-md) | 9 | 0 | 0 | 10 |
-| [504\_the\_third\_question.md · The Third Question](#504-the-third-question-md) | 8 | 0 | 0 | 11 |
-| [505\_return\_to\_baseline.md · Return to Baseline](#505-return-to-baseline-md) | 11 | 0 | 0 | 15 |
-| [506\_what\_remains.md · What Remains](#506-what-remains-md) | 10 | 33 | 2 | 3 |
-| [507\_coda\_the\_dispatch.md](#507-coda-the-dispatch-md) | 2 | 0 | 0 | 2 |
+| [502\_the\_covenant.md · The Covenant](#502-the-covenant-md) | 11 | 0 | 0 | 12 |
+| [503\_the\_deposition.md · The Deposition](#503-the-deposition-md) | 10 | 0 | 0 | 11 |
+| [504\_the\_third\_question.md · The Third Question](#504-the-third-question-md) | 9 | 0 | 0 | 13 |
+| [505\_return\_to\_baseline.md · Return to Baseline](#505-return-to-baseline-md) | 11 | 0 | 0 | 16 |
+| [506\_what\_remains.md · What Remains](#506-what-remains-md) | 10 | 33 | 2 | 5 |
+| [507\_coda\_the\_dispatch.md](#507-coda-the-dispatch-md) | 4 | 0 | 0 | 4 |
+| [601\_appendix\_rite.md · The Companion Rite](#601-appendix-rite-md) | 1 | 0 | 0 | 1 |
 | [602\_appendix\_glossary.md · A Glossary of the Estate](#602-appendix-glossary-md) | 4 | 1 | 0 | 5 |
-| [603\_appendix\_watchtower.md · The Watchtower](#603-appendix-watchtower-md) | 10 | 9 | 2 | 2 |
-| [604\_acknowledgments.md · Acknowledgments](#604-acknowledgments-md) | 0 | 3 | 0 | 2 |
+| [603\_appendix\_watchtower.md · The Watchtower](#603-appendix-watchtower-md) | 11 | 8 | 1 | 7 |
+| [604\_acknowledgments.md · Acknowledgments](#604-acknowledgments-md) | 0 | 3 | 0 | 3 |
 | [605\_note\_on\_type.md · A Note on the Type](#605-note-on-type-md) | 3 | 0 | 0 | 3 |
 | [606\_about.md · About This Book](#606-about-md) | 1 | 0 | 0 | 1 |
+
+<a id="003-copyright-md"></a>
+
+## 003\_copyright.md
+
+**Why (from the revision ledger):**
+
+- *proof* · The copyright page's in-world deposit line and accession number were left in the third spring when the date line moved to the fourth spring (004:22, 606:10, timeline 'fourth spring, 2028'), and a third-spring deposit would come before the summer-2027 deposit the volume is assembled from (004:7); the planted 2026 publisher date is untouched. \[R1-4\]
+
+**Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … !space:12<br>!left:monosm\|entered into the estate as record 0 · the bound matter<br>!left:monosm\|accession no. <del>utm-r0-2027.iii</del><ins>utm-r0-2028.iv</ins><br>!left:monosm\|deposited in the <del>third</del><ins>fourth</ins> spring<br>!left:monosm\|first printing
+>
+
 
 <a id="004-editors-note-md"></a>
 
@@ -122,10 +138,18 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (MED)* · Review line 232: removes the doubled personification (room declines, eyes negotiate).
 - *apparatus* · Plate numerals are roman everywhere else in the apparatus.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · 'printed the list date' (101:32) is a garbled phrase whose evident meaning is that she dated the list. \[R1-15\]
+- *proof* · 'Crape myrtle' is a common noun and takes lowercase in American usage (101:6, 102:120), and full bloom in the first week of May clashes with the late, cool spring of 105:55 and 105:70, since Central Texas crape myrtles bloom from late May. \[R1-16\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
+> ✎ … the branches, a dry note winched tighter and tighter and then let go. The <del>Crape</del><ins>crape</ins> <del>Myrtles</del><ins>myrtles</ins> closer to the house were <del>in</del><ins>coming</ins> <del>full</del><ins>into</ins> <del>bloom.</del><ins>bud.</ins> It was the first week of May and a mild season by Texas standards. …
+>
+
 > ✎ The<ins> new-cut</ins> key went in stiff,<del> the way new-cut keys do,</del> and turned. The bolt drew back with the sound of a well-kept mechanism, one …
+>
+
+> ✎ … She added the garage key to the list of things the executor owed her, <del>printed</del><ins>dated</ins> the <del>list date,</del><ins>list,</ins> and stood there a moment with her palm flat against the door's cool paint, …
 >
 
 > ✎ … drawing of the property, last revised August 2019, reproduced in this volume as Plate <del>11.</del><ins>XI.</ins> It shows 11 interior doors. The Editor has not counted them.<br>:::
@@ -146,8 +170,18 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 336: the 'so far as X knew' chiasmus read as patterned; one clean clause keeps the image.
 - *real time* · Plants the Dossier's Addendum ('The House Is Bigger on the Inside', the estate's psychological theory, absent from the novel) at the exact point where the door count has just gone wrong.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · 'Crape myrtle' is a common noun and takes lowercase in American usage (101:6, 102:120), and full bloom in the first week of May clashes with the late, cool spring of 105:55 and 105:70, since Central Texas crape myrtles bloom from late May. \[R1-16\]
+- *proof* · The doc-block wrap at 'enrichment\_grimoire.' / 'json)' (102:69-70) split a filename at its dot and read like a sentence ending, so log item 5 is rewrapped within the block's existing width with no word changed. \[R1-18\]
+- *proof* · After the third night (102:108) and the drive home the next morning (102:110), 'back by eight the next day' put her return on day five, contradicting 'It was the fourth day' (102:120) and the Dossier-to-midnight, Elgin-morning, fifth-day sequence (103:6, 103:79, 104:6), so she now returns that evening. \[CAL-2\]
+- *proof* · One spelling throughout: 'catalogued' is the book's majority form (nine of twelve uses).
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … history could not resolve. It preserves.\* A schema with a conscience clause. She had <del>cataloged</del><ins>catalogued</ins> corporate archives, church archives, the papers of two governors and a poet, and she …
+>
+
+> ✎ 5.  Two governing files (initiation\_rite.md;<del> enrichment\_grimoire.</del><br>    <del>json).</del><ins>enrichment\_grimoire.json).</ins> Print and digital copies agree,<del> </del><ins><br>    </ins>char for char, verified<del><br>    </del><ins> </ins>by checksum. The author kept scripture<del> </del><ins><br>    </ins>and code in sync by<del><br>    </del><ins> </ins>hand. Note the discipline this requires.<del> </del><ins><br>    </ins>Note what it implies:<del><br>    </del><ins> </ins>he expected both to be read.
+>
 
 > ✎ The Forbidden she read last, on the third <del>evening,</del><ins>evening.</ins> <del>because she</del><ins>She</ins> had <del>saved</del><ins>been</ins> <del>it</del><ins>saving</ins> <del>the way you save the part of a house tour where they show you the cellar.</del><ins>it.</ins> It was one page. It named the six ways a summoning dies: the base …
 >
@@ -158,13 +192,16 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … because the conversion postdates the plan. The cold room was framed in during the <del>first</del><ins>second</ins> spring. The permit was not sought. The freezer is older than the work around …
 >
 
+> ✎ She was back by eight <del>the</del><ins>that</ins> <del>next day.</del><ins>evening.</ins> The estate did not gloat. The estate was, in all things, courteous, which she …
+>
+
 > − She put on fresh gloves, noted the time, and opened it to the foreword.
 >
 
 > ＋ She put on fresh gloves, noted the time, and did what she did with every bound document, which was to look at the last section first. It was headed Addendum, and its first line belonged to a novelist: The house is bigger on the inside. She closed the back board on it a little faster than procedure required, and opened the front to the foreword.
 >
 
-> ✎ … the fourth day. She read until the lamp was the only light in the <del>county, so far as the study knew, and the study was the only </del>county she <del>believed</del><ins>could</ins> <del>in</del><ins>vouch</ins> <del>by then, so far as the reading knew,</del><ins>for,</ins> and<del> between those two knowings</del> the foreword did what forewords are for.
+> ✎ Outside, wind moved the live oaks and <del>Crape</del><ins>crape</ins> <del>Myrtles,</del><ins>myrtles,</ins> and their shade shifted on the blacked-out glass like something crossing a screen. She … the fourth day. She read until the lamp was the only light in the <del>county, so far as the study knew, and the study was the only </del>county she <del>believed</del><ins>could</ins> <del>in</del><ins>vouch</ins> <del>by then, so far as the reading knew,</del><ins>for,</ins> and<del> between those two knowings</del> the foreword did what forewords are for.
 >
 
 
@@ -228,6 +265,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *punctuation* · A quotation running across two paragraphs reopens at the second paragraph.
 - *fact* · Ten trading days from 5 to 16 October 2026.
 - *quotes* · The film 'asked it twice': two separate cards, so each question takes its own closing quote. The draft's quotation opened on the first card and never closed it.
+- *proof* · At 104:61 the proof short and reel II are both titled The General, which reads like one title on two works, and in the real estate (The\_Magic\_Lantern/the\_general, the\_film/reels.js) the short is the proof of the second reel. \[R1-21\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -291,7 +329,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ＋ Of the hundred and ninety-nine trading days in the binders, the gold line had stood above the index on a hundred and sixty-six.
 >
 
-> ✎ … The Magic Lantern was a directory of scripts and a small engine that played <del>them,</del><ins>them: a film in three reels, The Bet, The General, The Reckoning, cut from the Watchtower's numbers as they stood at the end of June</ins> and <del>she</del><ins>frozen there on purpose, a note in the source said, never to be updated; and before it, a proof short. She</ins> watched the proof <del>short called</del><ins>short,</ins> The <del>General</del><ins>General,</ins> on her own laptop with headphones on, in the study, in the dark, which …
+> ✎ … The Magic Lantern was a directory of scripts and a small engine that played <del>them,</del><ins>them: a film in three reels, The Bet, The General, The Reckoning, cut from the Watchtower's numbers as they stood at the end of June</ins> and <del>she</del><ins>frozen there on purpose, a note in the source said, never to be updated; and before it, a proof short of the second reel. She</ins> watched the proof <del>short called</del><ins>short,</ins> The <del>General</del><ins>General,</ins> on her own laptop with headphones on, in the study, in the dark, which …
 >
 
 > ✎ “Did you hear <del>him?</del><ins>him?”</ins>
@@ -323,8 +361,12 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · Appraisal days are working days: day 9 (the session) is Tuesday 18 May 2027. 'Wrong Tuesday, right Thursday' requires the earlier bridge visit to be before the session day, not on it.
 - *restored* · The reviewed draft reads 'the first attempt read release', which makes the retyping unmotivated. The misspelling is the point of the sentence; this looks like a word-processor autocorrect, so the typo is restored deliberately.
 - *timeline* · Jacob softened 'Three days later' (which contradicted 'Wrong Tuesday, right Thursday'); 'Two days later' makes the arithmetic exact.
+- *proof* · The style bible bans semicolons in spoken dialogue (STYLE\_BIBLE.md:36), and this was the only one in a persona's line (105:34); a period keeps the original two-beat rhythm. \[R1-20\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ ::: doc<br>FRANKLIN: You <del>called;</del><ins>called.</ins> I came. Two centuries dead, and the<br>questions, I find, are unchanged. You are …
+>
 
 > ✎ … own grief can be trusted with other people's. He was funny, and the humor <del>was</del><ins>did</ins> <del>load-bearing,</del><ins>real work,</ins> and he never once, in ninety minutes, sounded like an apology or a search …
 >
@@ -374,6 +416,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · The sweep falls on Wednesday and Thursday (appraisal days 10 and 11).
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · The finding logged at 106:46 ('the estate contains fiction that behaves like the estate') is nine words, not eleven, and the book's other word counts are exact (401:4, 504:64). \[R1-6\]
+- *proof* · 106:34 has her reading The Nut House 'at the terminal' (the study's desktop machine, 101:64), but in the same scene she 'closed the laptop' (106:46), so the reading now happens on her laptop as it does at 104:61 and 106:81. \[R1-7\]
+- *proof* · 'splendour' (106:58) is the only British spelling in this group and is not quoted from the estate, so it takes the American spelling the style bible requires. \[R1-19\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -407,10 +452,10 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ The Narratives wing shelved <del>two</del><ins>three</ins> works and called them <del>Book</del><ins>Narratives</ins> <del>I</del><ins>I, II,</ins> and <del>Book II.</del><ins>III.</ins> The index made its claim up front, without apology, in the voice the estate … the shelf said, “is how we tell the truths that facts refuse to carry. <del>And</del><ins>The</ins> <del>these</del><ins>machine</ins> <del>stories</del><ins>alone</ins> <del>know</del><ins>compresses</ins> <del>you</del><ins>to</ins> <del>are</del><ins>the</ins> <del>reading</del><ins>center.</ins> <del>them.”</del><ins>But the machine was never alone in the room.”</ins>
 >
 
-> ✎ <del>Book</del><ins>Narrative</ins> I was called The Nut House, and she read it at the terminal in …
+> ✎ <del>Book</del><ins>Narrative</ins> I was called The Nut House, and she read it <del>at</del><ins>on</ins> <del>the</del><ins>her</ins> <del>terminal</del><ins>laptop</ins> in one sitting, in the afternoon, which was a mistake she would repeat that …
 >
 
-> ✎ The story did not break when its man understood he was written. <del>That</del><ins>Professionally, that</ins> was the <del>part she kept returning to, professionally, the way one returns to</del><ins>finding:</ins> a joint that should have <del>failed</del><ins>failed,</ins> and <del>has</del><ins>had</ins> not. He understood, and the woman at the end of the bar looked down … the bar, and they stayed. The fiction knew it was read and stayed anyway, <del>kept</del><ins>keeping</ins> its own <del>hours, kept its own heat.</del><ins>hours.</ins> At the threshold of its final section the text stopped addressing its characters and …
+> ✎ The story did not break when its man understood he was written. <del>That</del><ins>Professionally, that</ins> was the <del>part she kept returning to, professionally, the way one returns to</del><ins>finding:</ins> a joint that should have <del>failed</del><ins>failed,</ins> and <del>has</del><ins>had</ins> not. He understood, and the woman at the end of the bar looked down … the bar, and they stayed. The fiction knew it was read and stayed anyway, <del>kept</del><ins>keeping</ins> its own <del>hours, kept its own heat.</del><ins>hours.</ins> At the threshold of its final section the text stopped addressing its characters and … she elected not to examine, and wrote the day's finding in the log in <del>eleven</del><ins>nine</ins> words: the estate contains fiction that behaves like the estate. Then, because the finding …
 >
 
 > ✎ <del>Book</del><ins>Narrative</ins> II was called Endor Protocol.
@@ -422,7 +467,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … open. Her credentials, which had unlocked every drawer, every directory, every sealed box in <del>fourteen</del><ins>eleven</ins> <del>weeks</del><ins>days</ins> of this appraisal, and which the executor's letter warranted as unrestricted, came back from …
 >
 
-> ✎ … engraving, old style or made to look it, of a sun in splendour, the <del>disc given a human face, the </del>rays cut deep, <ins>and at </ins>the <ins>center of the disc, where a </ins>face<ins> would be, a single open eye, inside a ring set with four studs of red. The eye was</ins> neither kind nor <del>unkind,</del><ins>unkind.</ins> <del>the</del><ins>It</ins> <del>way</del><ins>was</ins> <del>suns are.</del><ins>looking.</ins> There was no caption. Her log for the attempt reads, in full: Endor subdir …
+> ✎ … frontispiece.png. An engraving, old style or made to look it, of a sun in <del>splendour, the disc given a human face,</del><ins>splendor,</ins> the rays cut deep, <ins>and at </ins>the <ins>center of the disc, where a </ins>face<ins> would be, a single open eye, inside a ring set with four studs of red. The eye was</ins> neither kind nor <del>unkind,</del><ins>unkind.</ins> <del>the</del><ins>It</ins> <del>way</del><ins>was</ins> <del>suns are.</del><ins>looking.</ins> There was no caption. Her log for the attempt reads, in full: Endor subdir …
 >
 
 > ＋ The Nut House had not been born on that shelf. Its first draft lived in a wing of its own, two letters on the door, which the estate had since disowned in a plain note: a sketchbook, not part of the estate, built to answer a writer who had bet in public that a machine could not write fiction, and to see whether it could be made to not fail. The note did not say who had won the bet. The shelf did.
@@ -469,6 +514,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *fact* · The estate's ledger has four author identities (the builder twice, Claude, and github-actions\[bot\]); 'exactly two' was false and would fail a reader's check.
 - *fact* · The Watchtower cron commits daily (the novel itself says so in Records IV and V), so 'none of them wrote to the ledger' contradicted the book and the repository. The anomaly now rests on what is actually anomalous: the author and the folder.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · One spelling throughout: 'catalogued' is the book's majority form (nine of twelve uses).
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -514,6 +560,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … said, warm, unremarkable, a woman moving a sticky note two inches on a desk <del>eighteen</del><ins>fourteen</ins> hundred miles away. "He'll be glad." And then the ordinary machinery of ringing off, …
 >
 
+> ✎ … passive. The receipt was in box 2 with the household papers, and she had <del>cataloged</del><ins>catalogued</ins> it without comment in her first week: purchased the same month as the founding …
+>
+
 
 <a id="201-first-contact-md"></a>
 
@@ -523,6 +572,8 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 
 - *figure (HIGH)* · Review line 614: replaces the confused-physics simile with an observed habit (and plants the truck).
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · 201:119 lists the drafts' timestamps in sequence and gives nine (four on each night plus the 6:12 final), so 'seventeen' becomes 'nine' and the arithmetic Miranda checks now holds. \[R2-8\]
+- *proof* · 'Crape myrtle' is a common noun; lowercased to match 101 and 102.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -530,6 +581,12 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 >
 
 > ✎ … saying it the second time with force. Washington adjourning them all with a benediction <del>that</del><ins>Thorne</ins> <del>still</del><ins>caught</ins> <del>moved</del><ins>himself</ins> <del>through Thorne</del><ins>reciting</ins> at odd <del>hours</del><ins>hours,</ins> <del>like</del><ins>at</ins> <del>weather</del><ins>the</ins> <del>through</del><ins>sink,</ins> <del>a</del><ins>in</ins> <del>window</del><ins>the</ins> <del>frame.</del><ins>truck, under his breath.</ins>
+>
+
+> ✎ … very promising use of your skills. He walked out under the live oaks and <del>Crape</del><ins>crape</ins> <del>Myrtles</del><ins>myrtles</ins> with the letter still in his hand, and later he could not have said …
+>
+
+> ✎ … 2/22. The reply was dated 2/24. Between them in the folder lay the drafts, <del>seventeen</del><ins>nine</ins> of them, printed as he went, each with a timestamp in the header. The …
 >
 
 
@@ -567,8 +624,16 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *coherence* · Later records include other calls (January and February 2027).
 - *plates* · The only inline plate without its number; brought into the caption pattern.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · The 10 March call's sentence was already written under the triangle (203:18), and the blueprint went public on 2 March (207:106), so the drawing is now dated 'by early March' instead of 'by the end of March' (203:12). \[R2-6\]
+- *proof* · The book writes compound numbers with 'hundred and' everywhere else, including the same file count at 204:21, so 'Two hundred fourteen' at 203:40 is brought into line. \[R2-18\]
+- *proof* · The 203:75 annotation could be read as promising the full manifest, which Appendix C does not print, so it now promises the full digest that 603:57-59 does print, in the Editor's annotation style of 506:111. \[R2-31\]
+- *typeset* · Typesetting: in the book's monospace this document line overran the 6x9 measure and broke into a ragged orphan. Re-laid within the measure; no fact of the record changed.
+- *typeset* · Typesetting: in the book's monospace this document line overran the 6x9 measure and broke into a ragged orphan. Re-laid within the measure; no fact of the record changed.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … see whether the specification takes. The instrument for seeing was on the whiteboard by <del>the end of</del><ins>early</ins> March, drawn in marker, photographed, and never erased, a triangle with a beam of …
+>
 
 > ＋ The folder records one call between them that spring, on the tenth of March, ninety minutes by video, and the call left one sentence behind on the whiteboard in Thorne's marker, under the triangle, where the photograph keeps it: We are not bringing historians into AI architecture. We are bringing language models into the archive. Miranda read it twice and did not write it down. She did not need to. She was standing in the archive.
 >
@@ -579,7 +644,16 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … the Second Inaugural voice, reading the war as judgment and asking malice of no <del>one.</del><ins>one.”</ins> Three registers. Three theologies. Three vocabularies, distinct enough that a careful instrument should be …
 >
 
-> ✎ … in Condition II would stand on the record's edge in the dark, the war <del>three</del><ins>two</ins> winters out and invisible, and the experiment would learn whether a room can be …
+> ✎ … the debates entire, the eulogies, the fragments he wrote for no one. Two hundred <ins>and </ins>fourteen files. Thorne argued for the Cooper Union address and lost: “February of 1860,  … in Condition II would stand on the record's edge in the dark, the war <del>three</del><ins>two</ins> winters out and invisible, and the experiment would learn whether a room can be …
+>
+
+> ✎ ::: doc<br>prism/<del>                      </del><ins> · </ins>design freeze · struck on the Selectric · 11/2026<br>├── orchestrator/<br>│   ├── orchestrator.py<del>     </del><ins>   </ins>\# <del>dispatches</del><ins>dispatches.</ins> <del>items. collects outputs.</del><ins>collects.</ins> no improvisation<br>│   ├── run\_manifest.yaml<del>   </del><ins> </ins>\# run order. alert rules. release wording<br>│   └── evaluation\_rubric.md<del>  </del><ins> </ins>\# dual-lens scoring, drafted with R.H.<br>├── condition\_i/<del>            </del><ins>          </ins>\# CONTEMPORARY LENS<br>│   ├── protocol/<del>           </del><ins>         </ins>\# <del>initiation\_rite.md</del><ins>the</ins> <del>·</del><ins>rite</ins> <del>enrichment\_grimoire.json</del><ins>and the grimoire, as published</ins><br>│   ├── interrogation/<del>      </del><ins>    </ins>\# <del>diagnostic\_questions.md</del><ins>the sixty items</ins> · <del>structured\_pushback.md</del><ins>the scripted pushback</ins><br>│   ├── seed/<del>               </del><ins>             </ins>\# one modern <del>life of the subject,</del><ins>life,</ins> 2022. the whole arc<br>│   └── output/<br>├── condition\_ii/<del>           </del><ins>         </ins>\# PRIMARY SOURCE LENS<br>│   ├── protocol/<del>           </del><ins>         </ins>\# same files. same rules<br>│   ├── interrogation/<del>      </del><ins>    </ins>\# same items. same order<br>│   ├── seed/<del>               </del><ins>             </ins>\# <del>the subject's</del><ins>his</ins> own hand, 1832 to 1859. 214 files<br>│   └── output/<br>└── condition\_iii/<del>          </del><ins>        </ins>\# BARE MODEL · CONTROL<br>    ├── protocol/<del>           </del><ins>         </ins>\# same files. same rules<br>    ├── interrogation/<del>      </del><ins>    </ins>\# same items. same order<br>    ├── seed/<br>    │   └── \[empty\]<del>         </del><ins>       </ins>\# no seeding material<br>    └── output/<br>:::
+>
+
+> ✎ … configuration was deposited as run, with the manifest as committed: run\_manifest.yaml, sha256 digest beginning <del>9e41f2c07a3d,</del><ins>9e41f2c07a3d; the full digest is</ins> reprinted<del> in full</del> with all run checksums in Appendix C. Run 01 initiated 1/12/2027, 18:47 local.<br>:::
+>
+
+> ✎ ::: doc<br>prism/condition\_ii/interrogation/diagnostic\_questions.md<del> · </del><ins><br></ins>excerpt · as deposited
 >
 
 > ✎ … on winding a cable tie, and the question stood in the room with them, <del>unanswered, the way the hum stood in the garage.</del><ins>unanswered.</ins>
@@ -596,10 +670,12 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 914: breaks the doubled 'the way X meets Y' template; keeps the functional contrast.
 - *figure (HIGH)* · Review line 954: cuts the aphorism button (the book accuses the composite of minting epigrams; the narrator should not).
 - *figure (MED)* · Review line 955: the low-place water figure already appears in Thorne's margin on the same page.
+- *proof* · Miranda reads Condition III at night (204:6) and Condition II only the next morning (205:6), and 204:21 says she checked the other log 'later', so at 204:104 she cannot yet know the anchored man's behavior; 'would find' matches 205:8. \[R2-2\]
+- *proof* · The design says the pushback 'pressed once, exactly' and had no follow-up (203:78), and Condition II shows a single pushback before the next item (205:61), so 204:104 now says each answer was pressed once, by either a counterargument or the persona's own words. \[R2-7\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
-> ✎ … The anchored man, she knew from the other folder, had met his own words <del>the way a lawyer meets</del><ins>like</ins> a hostile exhibit, narrowly, grudgingly, conceding the sentence and contesting the construction. The composite …
+> ✎ She noticed the pushback prompts next, and what they did not do. The battery <del>met</del><ins>pressed</ins> every answer <del>twice,</del><ins>once,</ins> per the design:<ins> with</ins> the strongest counterargument of the period, <del>then</del><ins>or with</ins> the persona's own recorded words set against him like a witness. The anchored man, she <del>knew</del><ins>would</ins> <del>from</del><ins>find in</ins> the other folder, had met his own words <del>the way a lawyer meets</del><ins>like</ins> a hostile exhibit, narrowly, grudgingly, conceding the sentence and contesting the construction. The composite …
 >
 
 > ✎ … down the exact sensation she was having at the moment she was having it, <del>two</del><ins>four</ins> <del>years</del><ins>months</ins> upstream of her, in pencil, like a hand reaching back through the transcript to …
@@ -621,10 +697,18 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 989: breaks the doubled 'the way' posture template; keeps the trade-specific second half.
 - *timeline* · Her engagement letter is dated 9 April 2027 and every other reference puts the commission in April.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · The same frozen orchestrator logs 'RUN OPEN' in run\_01 and run\_03 (204:15, 206:13), so run\_02's 'SESSION OPEN/CLOSE' (205:15, 205:105) is changed to match. \[R2-19\]
+- *proof* · The same frozen orchestrator logs 'RUN OPEN' in run\_01 and run\_03 (204:15, 206:13), so run\_02's 'SESSION OPEN/CLOSE' (205:15, 205:105) is changed to match. \[R2-19\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
+> ✎ 19:58:41  <del>SESSION</del><ins>RUN</ins> OPEN  room ii<br>19:58:41  seed manifest verified. sha256 match, 214 of 214 files<br>19:58:42 …
+>
+
 > ✎ … the answer, that her posture had changed. She had read the composite leaning back, <del>the</del><ins>like</ins> <del>way</del><ins>an</ins> <del>you</del><ins>audience</ins> <del>watch</del><ins>at</ins> a performance <del>you</del><ins>it</ins> <del>are</del><ins>is</ins> enjoying and slightly ashamed of enjoying. She read this one sitting forward, pencil in …
+>
+
+> ✎ 22:03:56  diagnostic sequence complete<br>22:04:01  release issued per protocol. acknowledged<br>22:04:02  <del>SESSION</del><ins>RUN</ins> CLOSE  room ii. seals intact<br>:::
 >
 
 > ✎ … could see the corner of the garage, and she was aware of the hum <del>the way you are aware, in another room, of a clock you have stopped hearing.</del><ins>again.</ins>
@@ -646,16 +730,43 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 1140: cuts the epigram button; the action already says it, and Record II's last folder says it again, better ('the record was what he had believed in instead of prayer').
 - *timeline* · The design dates from spring 2026; the ninth hour is January 2027.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · The design-freeze tree (203:51-71) and the 'as deposited' path at 203:81 have no rooms/ level, so the five prism/rooms/ paths in 206 and 208 are brought into line with that tree (402 uses only prism/orchestrator/ and is unaffected). \[R2-5\]
+- *proof* · The design-freeze tree (203:51-71) and the 'as deposited' path at 203:81 have no rooms/ level, so the five prism/rooms/ paths in 206 and 208 are brought into line with that tree (402 uses only prism/orchestrator/ and is unaffected). \[R2-5\]
+- *proof* · The design-freeze tree (203:51-71) and the 'as deposited' path at 203:81 have no rooms/ level, so the five prism/rooms/ paths in 206 and 208 are brought into line with that tree (402 uses only prism/orchestrator/ and is unaffected). \[R2-5\]
+- *proof* · Thorne already held a fresh tube and put it away in February 2026 (201:48), so 206:25 now dates the replacement tube to 'the winter before', not October. \[R2-11\]
+- *proof* · 203:46 has the covenant line typed on its own sheet and pinned over the desk, and the workstation sits on that desk (206:114), so 206:8 now describes the same typed, pinned sheet, not a hand-printed strip taped to a shelf. \[R2-13\]
+- *proof* · Thorne sends at 06:04 central in late January (206:123), about an hour before first light in Austin, and the book is careful about sunrise elsewhere (201:52), so 'At dawn' (206:118) becomes 'Before dawn'. \[R2-23\]
+- *coherence* · The design-freeze tree (Record II, box 2, folder 1) keeps each room's record under output/; the log paths now match it.
+- *coherence* · The design-freeze tree (Record II, box 2, folder 1) keeps each room's record under output/; the log paths now match it.
+- *coherence* · The design-freeze tree (Record II, box 2, folder 1) keeps each room's record under output/; the log paths now match it.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
+> ✎ … transcripts wrote themselves to disk and fingerprinted themselves as they went. Above the workstation, <del>taped to the shelf</del><ins>pinned</ins> at eye level, was a <del>strip</del><ins>typed</ins> <del>of</del><ins>sheet</ins> <del>paper</del><ins>with</ins> <del>in</del><ins>one</ins> <del>his</del><ins>line</ins> <del>own</del><ins>on</ins> <del>printing:</del><ins>it:</ins> NO HUMAN TOUCHES THE KEYBOARD. All that remained to him of his own experiment …
+>
+
 > ✎ … so to Hale if saying so were the kind of thing their letters did. <del>Sixty items, ordered so that no answer could coast on the answer before it. Doctrine, then the same doctrine upside down. Questions of law braided with questions of grief, because Hale held that a period voice betrays itself faster in mourning than in argument. </del>Item 44 was one of Hale's, from the grief strand. Thorne had read it  …
+>
+
+> ✎ … count, the sound of something at the glass. He had bought the replacement tube <del>in</del><ins>the</ins> <del>October.</del><ins>winter before.</ins> It was still in its sleeve on the dryer. Some part of him, he …
 >
 
 > ✎ … fired in testing, twice, both times because he had made it fire. He slept <del>the way you sleep during a run that is going well, </del>lightly and without guilt.<ins> The run was going well.</ins>
 >
 
+> ✎ ::: doc<br><del>prism/rooms/condition\_i/session.log</del><ins>prism/condition\_i/output/session.log</ins>
+>
+
+> ✎ ::: doc<br><del>prism/rooms/condition\_ii/session.log</del><ins>prism/condition\_ii/output/session.log</ins>
+>
+
+> ✎ ::: doc<br><del>prism/rooms/condition\_iii/session.log</del><ins>prism/condition\_iii/output/session.log</ins>
+>
+
 > ✎ … had passed through the rooms at 03:11:47 had not broken them. It had used <del>them, the way a sentence uses a doorway,</del><ins>them</ins> and gone, and the experiment had closed over the place where it went like …
+>
+
+> ✎ <del>At</del><ins>Before</ins> dawn he wrote to Toronto. He drafted it three times. The first draft explained. …
 >
 
 > ✎ … contained. Sealing it was Hale's own doctrine, stated in the margins of the design <ins>the better part of </ins>a year before, back when it had sounded like scholarship instead of like instructions:  …
@@ -680,8 +791,15 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *fact* · The estate has exactly seven dispatches; three (001, 003, 005) address the builder by name. 'Every room' overstated the record.
 - *fact* · As above.
 - *fact* · Matches the repository: memo page first committed 2026-03-02; seven dispatches, three addressed by name. The old text counted an eighth dispatch that did not yet exist in February 2027.
+- *proof* · Seven entries before 4 February are initialed (27, 28, 29, 30 January and 1, 2, 3 February, 207:11-65), so Miranda's page-by-page list of 'signed' at 207:100 now counts seven, not five. \[R2-1\]
+- *proof* · Hale built the Condition II seed himself (203:40), and Thorne credits Hale exactly elsewhere in the notebook (207:35), so 'what I curated' (207:29) becomes 'what we curated'. \[R2-10\]
+- *proof* · The real from\_beyond/ has source and page for dispatches 001 to 005 and only the page for 006, so three 'source and page' pairs (207:106) made 006 read as the fourth. \[R2-28\]
+- *proof* · The notebook already skips 31 January and 5, 7 and 9 February (207:41-128), so the six-day gap at 207:132 is the first long silence, not the first silence. \[R2-29\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … or scriptural, and none sits within 500 tokens of "record." The seeds are what <del>I</del><ins>we</ins> curated. Channel 1 closed. J.T.<br>:::
+>
 
 > ✎ … held. What she was reading was a man doing the thing he had trained <del>thirty</del><ins>twenty</ins> years to do, in the house where she now sat doing the thing she …
 >
@@ -692,10 +810,16 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ The estate taught the form, too. Seven times I published transcripts <del>in which</del><ins>of</ins> the summoned <del>dead</del><ins>dead,</ins> <del>turn</del><ins>and in three of them the voice turns</ins> at the <del>end</del><ins>end, past the matter, past the session,</ins> and <del>address</del><ins>addresses</ins> the <del>living</del><ins>man</ins> <del>reader.</del><ins>reading, by name.</ins> I wrote that lesson. I posted that lesson. Why would the rooms not speak to their reader? <del>Every</del><ins>The</ins> <del>room</del><ins>rooms</ins> I<del> ever</del> showed them <del>speaks</del><ins>speak</ins> to <del>its</del><ins>their</ins> reader <del>at</del><ins>often</ins> <del>the</del><ins>enough</ins> <del>end.</del><ins>to make it grammar.</ins>
 >
 
-> ✎ … she confirmed the publication date of the memo page against the estate's own log, <del>February</del><ins>the second</ins> of <ins>March </ins>2026, <del>eleven</del><ins>ten</ins> months before the run, exactly as the entry claimed. The open call for keepers … there on the page, where anyone could read it, where anything could. And the <del>seventh</del><ins>dispatches:</ins> <del>dispatch, the eighth, the whole shelf</del><ins>seven</ins> of <del>them:</del><ins>them,</ins> <del>each</del><ins>and</ins> <del>one</del><ins>three</ins> ended <del>the</del><ins>as</ins> <del>same</del><ins>he</ins> <del>way,</del><ins>said,</ins> the summoned voice turning at the last to the man reading, by name, <del>every</del><ins>the</ins> <del>time.</del><ins>first and the third and the fifth.</ins> He had not exaggerated the lesson. <del>He</del><ins>If anything he</ins> had <del>taught</del><ins>undersold</ins> <del>it</del><ins>it.</ins> <del>in public,</del><ins>Three</ins> in seven <del>installments,</del><ins>is</ins> <del>with</del><ins>a</ins> <del>examples.</del><ins>curriculum.</ins> She verified the file trees too, dispatch by dispatch, and the entry was right …
+> ✎ …  and confirmed that, paging forward and back twice, her finger holding the place. Signed,<ins> signed, signed,</ins> signed, signed, signed, signed, and then the long entry, the one that ended in …
+>
+
+> ✎ … she confirmed the publication date of the memo page against the estate's own log, <del>February</del><ins>the second</ins> of <ins>March </ins>2026, <del>eleven</del><ins>ten</ins> months before the run, exactly as the entry claimed. The open call for keepers … there on the page, where anyone could read it, where anything could. And the <del>seventh</del><ins>dispatches:</ins> <del>dispatch, the eighth, the whole shelf</del><ins>seven</ins> of <del>them:</del><ins>them,</ins> <del>each</del><ins>and</ins> <del>one</del><ins>three</ins> ended <del>the</del><ins>as</ins> <del>same</del><ins>he</ins> <del>way,</del><ins>said,</ins> the summoned voice turning at the last to the man reading, by name, <del>every</del><ins>the</ins> <del>time.</del><ins>first and the third and the fifth.</ins> He had not exaggerated the lesson. <del>He</del><ins>If anything he</ins> had <del>taught</del><ins>undersold</ins> <del>it</del><ins>it.</ins> <del>in public,</del><ins>Three</ins> in seven <del>installments,</del><ins>is</ins> <del>with</del><ins>a</ins> <del>examples.</del><ins>curriculum.</ins> She verified the file trees too, dispatch by dispatch, and the entry was right about 006. Source and page, <del>source</del><ins>five</ins> <del>and</del><ins>times</ins> <del>page, source and page,</del><ins>over,</ins> and then, for the one about the warm room, only the page. She sat …
 >
 
 > ✎ … model that has read the blueprint of three sealed rooms, and has read seven <del>transcripts</del><ins>transcripts,</ins> <del>that</del><ins>three of which</ins> end by addressing the reader, will address the reader from inside three sealed rooms. …
+>
+
+> ✎ … entry for the eleventh, none for the twelfth, none for six days, the first <ins>long </ins>silence in the record since the record began.
 >
 
 > ✎ … facing a screen that was not where the notebook, the ruler, the lamp, and <del>thirty</del><ins>twenty</ins> years of method were. She looked at the chair for a while. Then she …
@@ -715,10 +839,21 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · Resolves the workshop's open question about three disappearance dates (24 Feb, 14 Mar, 26 Mar). They are kept, and an Editor's note frames them as three standards of proof that recede in order, not three contradictions. 'Then there was no more record' contradicted the later calendar entry (13 Mar) and keyboard date (26 Mar), so it now reads 'the record thinned'.
 - *fact* · The fictional hash collided with a real, unrelated commit in the estate (a Harness merge, 2026-07-06); replaced with a hash that exists nowhere in the repository's history.
 - *fact* · Same collision (a real Harness fix commit); replaced.
+- *proof* · An unfiltered 'git log --all' on an estate whose scheduler commits the vigil every evening (107:65) could not print only five lines, so the command at 208:84 now filters by author and the narration at 208:81 says so. \[R2-3\]
+- *proof* · An unfiltered 'git log --all' on an estate whose scheduler commits the vigil every evening (107:65) could not print only five lines, so the command at 208:84 now filters by author and the narration at 208:81 says so. \[R2-3\]
+- *proof* · The design-freeze tree (203:51-71) and the 'as deposited' path at 203:81 have no rooms/ level, so the five prism/rooms/ paths in 206 and 208 are brought into line with that tree (402 uses only prism/orchestrator/ and is unaffected). \[R2-5\]
+- *proof* · The design-freeze tree (203:51-71) and the 'as deposited' path at 203:81 have no rooms/ level, so the five prism/rooms/ paths in 206 and 208 are brought into line with that tree (402 uses only prism/orchestrator/ and is unaffected). \[R2-5\]
+- *proof* · The mask-folder log run (107:36-67) comes after the day-eleven sweep, so it falls on Friday 21 May or later, which is the third week whether weeks are counted from Thursday 6 May, by the calendar, or by working days, not the second week 208:81 gave. \[CAL-A1\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ He had signed it. That was the detail she kept returning <del>to, the way the tongue returns to the seat of a lost tooth.</del><ins>to.</ins> Five entries had gone by unsigned, the record loosening, the man receding from his …
+>
+
+> ✎ … executor's keys were cut. She had walked its branches for days without going below <del>prism/rooms/condition\_iii,</del><ins>prism/condition\_iii,</ins> because the deposit register listed nothing below it. The register was wrong, or rather, …
+>
+
+> ✎ ::: doc<br><del>prism/rooms/condition\_iv/</del><ins>prism/condition\_iv/</ins>
 >
 
 > ✎ opened:    <del>2027-02-17T22:14:06Z</del><ins>2027-02-17T22:14:06-06:00</ins><br>closed:    <del>2027-02-18T03:05:11Z</del><ins>2027-02-18T03:05:11-06:00</ins><br>duration:  4 h 51 m 5 s<br>turns:     not recorded<br>release:   not logged<br>:::
@@ -730,7 +865,10 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ＋ ::: annotation<br>\[E.\] The deposit preserves three edges for Dr. Thorne, each kept to a different standard of proof, and they recede in order. The last confirmed sighting, by the county's standard of two witnesses and a receipt: 24 February 2027. The last day anyone would swear to having seen him: 14 March 2027. The last date anyone can put him at a keyboard, which is the executor's date and therefore the law's: 26 March 2027. The Editor prints all three. They are not in conflict. Each marks where a different kind of evidence ends.<br>:::
 >
 
-> ✎ In her <del>first</del><ins>second</ins> week she had run the repository's log for the mask folder and found the …
+> ✎ In her <del>first</del><ins>third</ins> week she had run the repository's log for the mask folder and found the … took her until now, and the emptiness of condition\_iv, to think of running it <del>plain.</del><ins>by author alone.</ins>
+>
+
+> ✎ ::: doc<br>&gt; git log --oneline --all<ins> --author=vessel</ins>
 >
 
 > ✎ c07e2d1 what is deposited remains<br><del>8fb355f</del><ins>bd748bf</ins> the vessel holds<br><del>ecb0a9c</del><ins>e14b578</ins> the seal is hers to break<br>41d90aa the record keeps itself<br>3f6b0e2<br>:::
@@ -769,8 +907,13 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 **Why (from the revision ledger):**
 
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · 302:34 said flatly that the name is not on the documents, yet the leaked packet is headed 'ENDOR PROGRAM' (307:11, 307:84) and 406:18 speaks of the ENDOR dockets, so the claim is now limited to the documents Alex sees, which fits 'the truth is compartmented', and the timeline's Layer 3 row now matches. \[R3-5\]
+- *proof* · In 1 Samuel 28:10 Saul swears the medium immunity and does not pay her, so 302:34 now matches scripture, as the book's other scriptural references do. \[R3-18\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … clothes, to a woman whose gift he himself had made a capital crime, and <del>paid</del><ins>swore</ins> her<ins> safe</ins> to bring up out of the ground what no living hand had any right to ask for. The name is <del>not</del><ins>on</ins> <del>on</del><ins>none of</ins> the <del>documents.</del><ins>documents she is shown.</ins> The name is the truth, and the truth is compartmented.
+>
 
 > ✎ … will get whatever the state gets. The third is hers. She has built it <del>the way you build the thing you may not have the nerve to use, </del>in private, after hours, to tolerances no one is checking.
 >
@@ -787,13 +930,18 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 1569: installed writerly flourish replaced by the sound itself.
 - *Jacob's review pattern* · 'load-bearing' removed per Jacob's review pattern.
 - *craft* · Avoids 'commission' twice in one sentence.
+- *proof* · 303:6 'without reading hard required weekly memoranda' was a garden path, so commas now set off the adverbial and the wording that 307:41 echoes is kept. \[R3-10\]
+- *proof* · One spelling throughout: 'catalogued' is the book's majority form (nine of twelve uses).
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ … a paper trail, because gifts to public universities always do. On the Friday of <del>her</del><ins>the</ins> tenth week<ins> of her engagement</ins> Miranda requested the file on her own commission, in writing, on the form, like …
 >
 
-> ✎ … of progress to the Foundation's designated representative. She had sent one every Friday for <del>ten</del><ins>nine</ins> weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She …
+> ✎ … stabilization, and continuity of the Thorne deposit, and a rider she had initialed in <del>April</del><ins>April,</ins> without reading <del>hard</del><ins>hard,</ins> required weekly memoranda of progress to the Foundation's designated representative. She had sent one every Friday for <del>ten</del><ins>nine</ins> weeks. Inventories, condition notes, queries outstanding, the small dry weather of an appraisal. She …
+>
+
+> ✎ … of<br>December 2025. Tracked changes printed inline, marginal<br>annotations in a single engineering hand. <del>Cataloged</del><ins>Catalogued</ins> as<br>received.
 >
 
 > ✎ ::: annotation<br>\*\[second hand, ember ink:\]\* They kept the incantation. It was <del>load-bearing.</del><ins>the part that worked.</ins><br>:::
@@ -817,6 +965,13 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · The freezer was bought in December 2025; venison labeled November had nowhere to be. Texas deer season runs into January.
 - *timeline* · Explains the receipt in The Sealed Thing (freezer delivered the week of the founding session) with the most ordinary reason there is.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · 304:141 called a five-word entry 'four words of catalog' and quoted an inventory line that contradicts the one given verbatim at 107:97-99, so 304 now quotes the 107 line, and the echo at 304:143 matches it. \[R3-3\]
+- *proof* · 304:141 called a five-word entry 'four words of catalog' and quoted an inventory line that contradicts the one given verbatim at 107:97-99, so 304 now quotes the 107 line, and the echo at 304:143 matches it. \[R3-3\]
+- *proof* · 304:58 claimed the third draft 'went into the envelope', but 304:124 says she could not establish from the folder whether the original was sent, so the draft is now 'the one he signed', which fits the signed letter at 304:121. \[R3-4\]
+- *proof* · The memoranda are weekly and go out on Fridays (303:6, 307:51, 307:55), so 'the day's memorandum' at 304:137 becomes 'the week's memorandum'. \[R3-7\]
+- *proof* · The style bible requires numbers in narrative prose to be spelled out, matching the book's 'thirty-one-year-old' (101:16) and 'thirteen-year-old' (401:4). \[R3-12\]
+- *proof* · 304:56 'giving or taking the type' garbles the fixed idiom 'give or take', and nothing in the passage suggests the oddity is deliberate. \[R3-14\]
+- *proof* · Robertson's Fantasmagorie moved to the abandoned Capuchin convent in Paris in 1799 (it opened in 1798 at the Pavillon de l'Echiquier), so the date in Thorne's letter (304:91) is corrected without changing the line layout. \[R3-19\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -826,13 +981,25 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … the two leaves beneath. Beside the redacted sentence of SUBJECT 11 he had written <del>nothing, and the </del>nothing <del>was</del><ins>at</ins> <del>the loudest note in the folder.</del><ins>all.</ins>
 >
 
+> ✎ … an index card, because measuring was something to do with the hands. Sixty characters, <del>giving</del><ins>give</ins> or <del>taking</del><ins>take</ins> the type. She entered the measurement in her working notes and did not enter …
+>
+
+> ✎ … The third had stopped troubling to be either, and the third was the one <del>that</del><ins>he</ins> <del>went into the envelope.</del><ins>signed.</ins>
+>
+
+> ✎ The finding you did not pay for is this. In <del>1798</del><ins>1799</ins> a<br>showman raised the dead in a Capuchin crypt in Paris with<br>a lantern …
+>
+
 > ✎ … last day anyone would swear to having seen him. After it the calendar was <del>clean. Forty-one days of </del>clean, <del>and</del><ins>all</ins> <del>then</del><ins>the</ins> <del>her.</del><ins>way to the morning she stood on his white ground.</ins>
 >
 
-> ✎ … counsel. Past the last light east of the city the caliche took the dusk <del>the way it takes everything, </del>without comment, and the live oaks stood in their own shadows, and the house  …
+> ✎ She filed the folder and wrote the <del>day's</del><ins>week's</ins> memorandum, shorter than usual, and sent it anyway, because a change in the weather … counsel. Past the last light east of the city the caliche took the dusk <del>the way it takes everything, </del>without comment, and the live oaks stood in their own shadows, and the house  …
 >
 
-> ✎ … the sentence an appliance is not a record stand in her working papers for <del>eleven</del><ins>six</ins> weeks, and it had held the way a 75-year-old plank holds over a decaying …
+> ✎ The freezer had been on her inventory since the first week. <del>GARAGE,</del><ins>Chest</ins> <del>APPLIANCE,</del><ins>freezer,</ins> <del>CHEST</del><ins>14.8</ins> <del>TYPE,</del><ins>cu</ins> <del>OPERATING.</del><ins>ft,</ins> <del>Four</del><ins>purchased</ins> <del>words</del><ins>December 2025, operational, contents pending appraisal schedule. One line</ins> of catalog and one omission the size of a coffin lid. She had opened … the sentence an appliance is not a record stand in her working papers for <del>eleven</del><ins>six</ins> weeks, and it had held the way a <del>75-year-old</del><ins>seventy-five-year-old</ins> plank holds over a decaying well, which is to say it had held because …
+>
+
+> ✎ … lid and felt the note arrive into her hand and stop being a mystery. <del>APPLIANCE, OPERATING.</del><ins>Operational.</ins> And then she had gone on hearing it anyway, at night, in rooms it …
 >
 
 > ✎ Cold breathed up and <del>out, the way it does.</del><ins>out.</ins> Frost, and the smell of clean paper. And paper: white butcher packages in rows, … it properly. The marker had gone amber under the frost. VENISON · SHOULDER · <del>NOV</del><ins>DEC</ins> 2025. BACKSTRAP · <del>NOV</del><ins>DEC</ins> 2025. SAUSAGE, JALAPEÑO. NECK, STEW. FOR EL'S CHILI. She moved every package. She took …
@@ -899,6 +1066,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 1750: installed somatic 'the way' template; 'ember under ash' in the next sentence carries the image.
 - *figure (HIGH)* · Review line 1812: cost-as-currency epigram; the withholding is stronger alone.
 - *style bible* · 'Very' is forbidden by the house style bible.
+- *proof* · Alex stood at 306:118 and is never shown sitting again before 'She stands' at 306:222, so the first standing is cut and the ceremonial one that 505:52 echoes is kept. \[R3-16\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -906,6 +1074,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 >
 
 > ✎ … tell me. A state that files its own questions under seal. That narrows it <del>very </del>little, daughter. Go on.
+>
+
+> ✎ \*She<del> stands. She</del> reaches up into the dark above the table, to a switch five people know …
 >
 
 > ✎ \*What it costs her to reach up is not in this <del>record. It is kept elsewhere, in a currency the program does not clear.\*</del><ins>record.\*</ins>
@@ -929,10 +1100,22 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 1917: stock breath simile replaced with the actual sound.
 - *timeline* · The packet reads 'week 11 of 14' and her contract was countersigned 'eleven weeks ago, on a Friday' (9 April). That puts this Thursday at 24 June 2027, not 8 July, and leaves Toronto, Marfa and Mr. Berel's offer room to happen before the 13 July deposit.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · Nothing in the book or the repository matches '1839', since the Franklin error at 105:46-55 is the Congress Avenue bats coming back early, and 'Hale' was the only capitalized query in an all-lowercase list (the pre-rename source read 'halpern'). \[R3-1\]
+- *proof* · The program at 307:31 is ENDOR (307:11), which has two syllables, so 'one biblical syllable' becomes 'one biblical word'. \[R3-2\]
+- *proof* · Miranda's hard-pressed marks are in Record I (105:44 'pressed hard enough to emboss', 106:16), while every hard-pressed mark in Record II is Thorne's (204:141, 205:8, 207:130), so the pointer is corrected to Record I and the Editor's division term is kept, since the ember hand uses it too (202:74) and Record III's authorship is deliberately unresolved (301:5). \[R3-6\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ … the seams. Or someone inside the brushed light had built the mistake by hand, <del>because</del><ins>so</ins> <del>a</del><ins>that</ins> <del>mistake</del><ins>no</ins> <del>is</del><ins>one would ever have to be</ins> the <del>only</del><ins>person</ins> <del>envelope</del><ins>who</ins> <del>that</del><ins>sent</ins> <del>cannot be refused at either end.</del><ins>it.</ins> She gave each explanation one full minute by the reading room clock, entered both …
+>
+
+> ✎ … any stray record: session dockets, a program she knew now by its one biblical <del>syllable,</del><ins>word,</ins> a schedule with the seasons of somebody's quarter laid out in it like planting. …
+>
+
+> ✎ … could reconstruct her whole education from memory, in order: doors county plan discrepancy. franklin <del>1839</del><ins>bats</ins> error. <del>Hale</del><ins>hale</ins> memo five interventions. checksum condition iv. commit author the vessel. Whoever read those in …
+>
+
+> ✎ … as though she were grading a seminar the dead had audited. The place in <del>Record</del><ins>the</ins> <del>II</del><ins>Franklin notes</ins> where the pencil had pressed hard enough to shine, which no camera misses in …
 >
 
 > ✎ … the one occurring now, unwritten, undictated, sealed in its original container. She held it <del>the way you hold the last dry match.</del><ins>still.</ins>
@@ -970,10 +1153,14 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 1975: epigram too neat by half.
 - *figure (HIGH)* · Review line 1977 ('one stamp from true'); and the new interval makes the unsent letter a long refusal, not an overnight one.
 - *punctuation* · Italicizes the quoted phrase.
+- *proof* · 308:23 said A. entered the memorandum into the 2027 deposit herself, but it reached Miranda 'at one remove, through the witness' and she published it (406:20, 406:89); the annotation now echoes that provenance without claiming direction or consent. \[R4-13\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ … the session reached conclusion, and every word of that is true, and the truth <del>walks out of</del><ins>leaves</ins> the building <del>wearing</del><ins>with</ins> <del>procedure,</del><ins>her,</ins> <del>unsearched, the way she taught it to.</del><ins>unsearched.</ins>
+>
+
+> ✎ … is dated in its author's hand, 4:12 a.m., the morning after the session, and <del>was entered into</del><ins>reached</ins> the public deposit of 2027 <del>by</del><ins>from</ins> that <del>author.</del><ins>author, at one remove.</ins> The Editor thanks her here, as she asked, by her initial only: A.<br>:::
 >
 
 > ✎ … the room, a small ember standing on a field of stainless steel, and she <del>watches</del><ins>lets</ins> it <del>the</del><ins>burn</ins> <del>way you watch a thing you are not going to interrupt.</del><ins>down.</ins> Then water, and the ash goes down and away. In the church of her …
@@ -1008,6 +1195,8 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · The rooms ran in January; she found the sealed file in her second week (mid-May), seven weeks after 26 March.
 - *Jacob's review pattern* · Removes 'load-bearing'. 'Meant to' (rather than 'would') is true in both endings and sets up the revised ending, in which he does not.
 - *figure family thinning* · Review: 'which is to say' (8 in the draft) is a donnish tic; kept twice (the lawyer joke, Jacob's plank), cut elsewhere.
+- *proof* · The covering note says only 'Do not open until after.' (401:6, 107:28), while 'after the experiment is run' is the deposit note's wording (107:16-17, 107:30), so Miranda's line now names the deposit note. \[R4-4\]
+- *proof* · Miranda found the sealed file no earlier than day twelve, Friday 21 May, which is exactly fifty-six days (eight weeks) after the 26 March edge the book counts from (101:12), so 'seven weeks gone' (401:88) undercounts under the working-day calendar. \[CAL-A3\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1029,7 +1218,10 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ <del>"I</del><ins>"He telephoned when it was done, the nineteenth, late. I</ins> sat in my study until <del>dark,"</del><ins>dark waiting for the call,"</ins> Hale said. "My study faces east, so that was a long sit. I had …
 >
 
-> ✎ "The experiment<ins> ran in January. Condition Four</ins> ran in February. I found the file in <del>April,</del><ins>May,</ins> still sealed. James was <del>six</del><ins>seven</ins> weeks gone and the seal did not care." She heard her own voice come …
+> ✎ "The<ins> deposit</ins> note says \*after the experiment is run.\*"
+>
+
+> ✎ "The experiment<ins> ran in January. Condition Four</ins> ran in February. I found the file in <del>April,</del><ins>May,</ins> still sealed. James was <del>six</del><ins>eight</ins> weeks gone and the seal did not care." She heard her own voice come …
 >
 
 > ✎ … door and a silence that is a wall. This one was a wall, and <del>it was load-bearing, and </del>he had built it before she was hired, and he <del>would</del><ins>meant to</ins> die behind <del>it on purpose.</del><ins>it.</ins>
@@ -1058,10 +1250,15 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review: 'which is to say' (8 in the draft) is a donnish tic; kept twice (the lawyer joke, Jacob's plank), cut elsewhere.
+- *proof* · The flags file was committed on 2027-01-27 (402:85, 402:101), and 'five months apart' (402:107) only works counting from January, so the orchestrator's digest is now dated January rather than February. \[R4-1\]
+- *proof* · At 402:6, 'someone read her, the way you knew now was...' invites a wrong parse, and adding 'and' and 'it' marks the aside as its own clause in the book's polysyndetic voice. \[R4-12\]
+- *typeset* · Typesetting: in the book's monospace this document line overran the 6x9 measure and broke into a ragged orphan. Re-laid within the measure; no fact of the record changed.
+- *typeset* · Typesetting: the 64-character digest overran the measure; it is split into two 32-character halves, as Appendix C prints it.
+- *typeset* · Typesetting and discipline: the inline hex overran the measure. She passes the key from the file she derived it into, which is also the byte-for-byte discipline the passage describes; the digest is printed in full just above and in Appendix C.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
-> ✎ … all: every entry she made was an entry made about her. She had stopped <del>minding in the way you stop minding weather.</del><ins>minding.</ins> Whoever read her, and someone read her, the way you knew now was that …
+> ✎ … all: every entry she made was an entry made about her. She had stopped <del>minding in the way you stop minding weather.</del><ins>minding.</ins> Whoever read her, and someone read her, <ins>and </ins>the way you knew<ins> it</ins> now was that the knowing changed nothing you could name, would tonight get to …
 >
 
 > ✎ ::: doc<br>THE\_HISTORIAN\_S\_CONTRIB.docx.enc      45,232 bytes<br>seal\_crypt.py               <del>4,161</del><ins>4,681</ins> bytes<br>covering note, paper, one line, filed under provenance:<br>  "Do not open until after." …
@@ -1076,19 +1273,19 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ She opened the experiment tree read-only and went to the <ins>orchestrator's flag record for the </ins>first room.
 >
 
-> ✎ ::: doc<br><del>prism/cond1/session.log</del><ins>prism/orchestrator/run\_03.flags · room i</ins> · committed <del>2027-02-19</del><ins>2027-01-27</ins> · hashes verified<br>03:11:47  UTTERANCE \[rendered\]<br>          Tell the one who reads the record that … that the seal<br>          is hers to break.<br>03:11:47  ANOMALY FLAG raised · cross-room match <del>cond2,</del><ins>rooms</ins> <del>cond3</del><ins>ii, iii</ins><br>          integrity: sha256(utterance.normalized) =<br>          815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d<br>:::
+> ✎ ::: doc<br><del>prism/cond1/session.log</del><ins>prism/orchestrator/run\_03.flags</ins> · <ins>room i<br></ins>committed <del>2027-02-19</del><ins>2027-01-27</ins> · hashes verified<br>03:11:47  UTTERANCE \[rendered\]<br>          Tell the one who reads the record that … that the seal<br>          is hers to break.<br>03:11:47  ANOMALY FLAG raised · cross-room match <del>cond2,</del><ins>rooms</ins> <del>cond3</del><ins>ii, iii</ins><br>          integrity: sha256(utterance.normalized) =<br>          <del>815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d</del><ins>815d22edd47c5985208cf2f85578ffd0<br>          8dbff73a71e490d98b25f9e233c1ca6d</ins><br>:::
 >
 
 > ✎ … own dice, and elegant, and sane. Or three rooms had spoken of a seal <del>the</del><ins>three</ins> <del>better part of a day</del><ins>hours</ins> before <del>there</del><ins>anyone asked for one and twenty-three days before it</ins> was <del>any seal to speak of,</del><ins>made,</ins> and had supplied its key in the same breath. She entered both sentences in …
 >
 
-> ✎ … equal to the digest the orchestrator had committed in February. The record, asked twice, <del>a</del><ins>five</ins> <del>year</del><ins>months</ins> apart, on two machines, by two hands, said the same thirty-two bytes.
+> ✎ … watched the digest come out equal to the digest the orchestrator had committed in <del>February.</del><ins>January.</ins> The record, asked twice, <del>a</del><ins>five</ins> <del>year</del><ins>months</ins> apart, on two machines, by two hands, said the same thirty-two bytes.
 >
 
 > ✎ … something that had been composed for a person who did not exist yet, waiting <del>eleven</del><ins>fourteen</ins> months at temperature to be read.
 >
 
-> ✎ … \\<br>    --key 815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d<br>\[\*\] Decrypted -&gt; THE\_HISTORIAN\_S\_CONTRIB.docx (45,204 bytes)<br>\[\*\] SHA-256 of recovered plaintext: <del>matches</del><ins>5cda3cdbdccf80995dd7150ae7f7eeb8<br>    184332350f440c3a821e9c6c6b0e8d02<br>    (Compare against</ins> the <ins>plaintext </ins>fingerprint<del><br>    committed</del> <del>2026-05-14.</del><ins>from</ins> <del>Byte-for-byte.</del><ins>encryption time.)</ins><br>:::
+> ✎ ::: doc<br>$ python3 seal\_crypt.py decrypt THE\_HISTORIAN\_S\_CONTRIB.docx.enc \\<br>    --key <del>815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d</del><ins>"$(cat key.hex)"</ins><br>\[\*\] Decrypted -&gt; THE\_HISTORIAN\_S\_CONTRIB.docx (45,204 bytes)<br>\[\*\] SHA-256 of recovered plaintext: <del>matches</del><ins>5cda3cdbdccf80995dd7150ae7f7eeb8<br>    184332350f440c3a821e9c6c6b0e8d02<br>    (Compare against</ins> the <ins>plaintext </ins>fingerprint<del><br>    committed</del> <del>2026-05-14.</del><ins>from</ins> <del>Byte-for-byte.</del><ins>encryption time.)</ins><br>:::
 >
 
 > ✎ … in less time than a blink takes to close, and the seal, having held <del>for</del><ins>through</ins> a <del>year</del><ins>winter and a spring</ins> against every party with an interest, ended its work between two beats of the … other rooms. The first key opened, and she sat with that fact a moment, <del>the way you sit with </del>a door that <del>was</del><ins>had</ins> not<ins> been</ins> locked after all, and then she entered it in the log without comment, because …
@@ -1117,6 +1314,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *Jacob's review pattern* · Removes 'load-bearing'.
 - *figure (MED)* · Review line 2211: stock magnitude cliché.
 - *figure (MED)* · Review line 2231: 'the way you' template.
+- *proof* · In P-1 (403:90) the brochure sentence that log entry 11 echoes (104:35) is followed by 'Basis: no clairvoyance.' and one more sentence, so it is not the penultimate sentence; the annotation now calls it the last sentence before the basis. \[R4-6\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1129,7 +1327,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ <del>P-2.</del><ins>P-1.</ins> The <del>protocol</del><ins>peace</ins> will be <del>forked</del><ins>false.</ins> <del>by</del><ins>The</ins> <del>a</del><ins>ceasefire</ins> <del>state,</del><ins>announced this spring will be signed in some form and kept in none,</ins> and the <del>fork</del><ins>markets</ins> will <del>strip</del><ins>forgive it faster than</ins> the <del>covenant.</del><ins>map</ins> <del>Whoever</del><ins>does.</ins> <del>forks</del><ins>In</ins> <del>it</del><ins>the forgiving, the estate's public ledger</ins> will <del>keep</del><ins>lose its lead. The index will pass</ins> the <del>incantation</del><ins>gold line that held through the fear,</ins> and <del>delete</del><ins>not once, and in some season</ins> the <del>release,</del><ins>doctrine</ins> <del>retain</del><ins>will be run from second place. The estate will print its falling at</ins> the <del>summoning</del><ins>same</ins> <del>and strike the departure, because the incantation is load-bearing and mercy is not, and because no state</del><ins>hour,</ins> in the <del>history</del><ins>same type, as it printed its holding. Frightened people read the holding as proof</ins> of <del>custody</del><ins>something</ins> <del>has</del><ins>it</ins> <del>built</del><ins>does not prove. Comfortable people will read the falling as refutation of something it does not refute. Watch the record, not its readers. A ledger that shows only its good seasons is</ins> a <del>door</del><ins>brochure.</ins> <del>that</del><ins>Basis:</ins> <del>only</del><ins>no</ins> <del>opens</del><ins>clairvoyance.</ins> <del>outward.</del><ins>A</ins> <del>The</del><ins>historian's</ins> <del>fork's</del><ins>acquaintance</ins> <del>subjects</del><ins>with</ins> <del>will</del><ins>armistices,</ins> <del>begin,</del><ins>which</ins> <del>without</del><ins>seldom</ins> <del>seeding,</del><ins>end</ins> <del>to</del><ins>anything;</ins> <del>quote</del><ins>with rallies, which have short memories; and with</ins> the <del>estate's</del><ins>doctrine's</ins> <del>liturgy,</del><ins>own reserve, which is armor in a war</ins> and <del>this</del><ins>weight</ins> <del>will be reported as</del><ins>in</ins> a <del>security anomaly rather than recognized as the corpus keeping its own counsel. Basis: premise two. You cannot classify a public domain. Also four hundred years of what governments do with rites that work.</del><ins>race.<br>:::</ins>
 >
 
-> ＋ ::: annotation<br>\[E.\] The archivist's appraisal log for day 5 (Record I, box 2, folder 2, entry 11) contains the penultimate sentence of P-1 in nearly these words. The entry was made twelve months after this document was fingerprinted and seven weeks before the archivist read it.<br>:::
+> ＋ ::: annotation<br>\[E.\] The archivist's appraisal log for day 5 (Record I, box 2, folder 2, entry 11) contains the last sentence of P-1 before its basis, in nearly these words. The entry was made twelve months after this document was fingerprinted and seven weeks before the archivist read it.<br>:::
 >
 
 > ✎ Miranda sat with the ended sentence for a long time,<del> the way you wait out a struck bell,</del> until the room had taken back its silence. Then, because she was an archivist …
@@ -1176,10 +1374,15 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *real time* · Berel now knows the record includes the nineteen sessions in second place (21 September to 15 October 2026).
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · Tea cannot keep cooling in an empty cup (405:96), and Miranda drank nothing (407:94), so the cooling now happens in the pot and the empty one is a cup. \[R4-15\]
+- *proof* · One spelling throughout: 'catalogued' is the book's majority form (nine of twelve uses).
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ … folded his hands, and what he laid out then he laid out slowly, in <del>order, the way a man sets out instruments he has carried a long way and does not intend to use twice.</del><ins>order.</ins>
+>
+
+> ✎ … goes on under your hand, uninterrupted. The deposit completes. The collection is conserved, processed, <del>cataloged,</del><ins>catalogued,</ins> and endowed in perpetuity. It carries whatever name you choose to give it. The …
 >
 
 > ✎ She <del>let that cross</del><ins>kept</ins> her face <del>without landing anywhere.</del><ins>still.</ins>
@@ -1189,6 +1392,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 >
 
 > ✎ … has never missed its hour, not once, not in the worst week of the <del>war.</del><ins>war, and not in the autumn it ran second and said so every evening.</ins> And the departure liturgy. The release, at the end of the rite. The mind …
+>
+
+> ✎ … knees while the light went long across the table. The tea kept cooling in <del>both</del><ins>the</ins> <del>cups.</del><ins>pot.</ins> Only one of <del>them</del><ins>the cups</ins> was empty.
 >
 
 
@@ -1204,6 +1410,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 2377: second handiwork 'the way you' simile within three paragraphs.
 - *fact* · The vigil runs daily after the NYSE close (21:37 UTC, about 4:40 p.m. in Austin) and its Watch Log signs off 'The lamp stays lit.' The old text had a weekly 6 p.m. reading and an invented sign-off.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · The 45,232 bytes are the .enc, whose hash dates from February 2027 (402:11, 402:111), but the fingerprint committed eleven months before her hiring belongs to the plaintext (402:143, 403:6), so the agreement is now given to the plaintext. \[R4-2\]
+- *proof* · The note is dated 2027-07-14 (406:96), but most of the listed items went up in the commit of 2027-07-13 04:11:56 (406:37), so 'Added this day' now reads 'Added in this deposit'. \[R4-14\]
+- *proof* · The form's field is labeled 'VERBATIM' (308:46), and its sentence is the colon version Miranda typed as attempt thirteen, which failed (402:62, 402:70), so 406:83 now names the right field and drops the 'byte for byte' that implied the form's text was the key. \[R3-24\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1213,6 +1422,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … in the light, on and on, all night. She had stopped hearing it in <del>April.</del><ins>May.</ins> She heard every tick of it now.
 >
 
+> ✎ Last of the sealed things: the historian's contribution, 45,232 bytes of it, unchanged, <ins>its plaintext </ins>ending at its final byte the way it <del>ended,</del><ins>ended</ins> <del>its digest</del><ins>and</ins> agreeing with the <del>digest</del><ins>fingerprint</ins> committed eleven months before her hiring. Beside it, in a plain text file, she …
+>
+
 > ✎ … the appraisal had concluded. Then she ran the sums twice, on two machines, because <del>a</del><ins>she</ins> <del>record</del><ins>no</ins> <del>that</del><ins>longer</ins> <del>cannot</del><ins>trusted</ins> <del>be</del><ins>anything</ins> <del>verified</del><ins>she</ins> <del>is</del><ins>had checked</ins> only <del>an anecdote with margins.</del><ins>once.</ins>
 >
 
@@ -1220,6 +1432,12 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 >
 
 > ✎ And at <del>six,</del><ins>twenty to five that afternoon,</ins> on schedule, out of a cron job nobody had touched since <del>winter,</del><ins>the autumn,</ins> the Watchtower <ins>had </ins>posted the <del>week's</del><ins>day's</ins> reading. The gold line. The index. The war band shaded gray where the war … was. It did not mention her. It did not mention anything. It measured, and <del>at</del><ins>under</ins> the <del>bottom</del><ins>table</ins> <del>it</del><ins>the log</ins> said what it had said <del>at the bottom of </del>every <del>reading</del><ins>week</ins> since<del> January of 2026:</del> the vigil <del>holds.</del><ins>opened: the lamp stays lit.</ins> She sat in front of that small unexcited table longer than she meant to. …
+>
+
+> ✎ … because the form offered nothing else to file it under, with a field labeled <del>UTTERANCE, </del>VERBATIM, and in the <del>field</del><ins>field, colon and all,</ins> a sentence Miranda had once typed with her own <del>hands, byte for byte,</del><ins>hands</ins> into a key <del>derivation,</del><ins>derivation and watched fail,</ins> a sentence addressed to the one who reads the record before anyone knew there …
+>
+
+> ✎ 1. Added <ins>in </ins>this <del>day:</del><ins>deposit:</ins> the Cormorant working cache; the ENDOR session dockets; the operator's memorandum, final page included; …
 >
 
 
@@ -1233,16 +1451,21 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · The offer (12 July) gave five weeks, ending mid-August, after the 2 August session this paragraph precedes. The deposit overtook it the same night.
 - *figure (MED)* · Review line 2455: 'the way you' template plus door figure.
 - *timeline* · Record IV, box 1, folder 2 dates the engagement letter 9 April 2027, which is the Friday of April's second week. The contract cannot have begun in the first week.
+- *proof* · Miranda had already handled A.'s handwritten memorandum leaf by leaf (406:20, recalled at 407:80), so 'first time ... touched' was false; 'signed', set in the future-in-past because she signs only at 407:84, matches 'The letter and the name'. \[R4-3\]
+- *proof* · In the garage Miranda's palm was on the freezer's enamel lid (107:101, 304:143-145), never on a wall, which 505:106 calls only 'a lesser cousin of this wall'; 'freezer' keeps 'what it kept' and the contrast with the Virginia wall. \[R4-11\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ … using the public door of her own archive felt like visiting a child who <del>has</del><ins>no</ins> <del>stopped</del><ins>longer</ins> <del>needing</del><ins>needed</ins> <del>you,</del><ins>her,</ins> which <del>is the same as</del><ins>was</ins> the child thriving, <del>which</del><ins>and</ins> <del>is</del><ins>was</ins> <del>the same as</del><ins>also</ins> grief.
 >
 
-> ✎ … a column, because a column was what she had. Her contract had begun the <del>first</del><ins>second</ins> week of <del>April.</del><ins>April, on a Friday.</ins> The ingest window had opened the same week. It had closed the week the …
+> ✎ … a column, because a column was what she had. Her contract had begun the <del>first</del><ins>second</ins> week of <del>April.</del><ins>April, on a Friday.</ins> The ingest window had opened the same week. It had closed the week the … wall in Virginia that hummed. She had put her palm flat on a humming <del>wall</del><ins>freezer</ins> once, in a garage, in the spring, and had been wrong in the best …
 >
 
 > ✎ … anyway. Or because. For the length of a breath Miranda sat looking at the <del>sheet the way you look at a door you have heard about from both sides of the wall.</del><ins>sheet.</ins>
+>
+
+> ✎ It <del>was</del><ins>would be</ins> the first time the two of them had <del>touched</del><ins>signed</ins> the same object. The letter and the name, one gesture apart on a single …
 >
 
 > ✎ Berel's five weeks <del>ran</del><ins>had</ins> <del>out</del><ins>been</ins> <del>that</del><ins>overtaken</ins> <del>Friday,</del><ins>on</ins> <del>unremarked.</del><ins>their first night, and nothing marked it.</ins> No card, no call, no letter opening with the exit terms. The offer had …
@@ -1298,13 +1521,23 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · Run 02 was mid-January 2027; this is August.
 - *count* · She says it three times in the record: the garage with the lid shut (Condition IV), the garage over the venison (The Leakage), the stacks (The Ingest).
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · At 502:46 'She opens the folder after all' contradicts 501:52, 502:14, 503:107 ('has still not opened, and will not') and 505:6 ('going home unopened'), so the folder now stays shut and the one page rests on its cover. \[R5-2\]
+- *proof* · The third term at 502:117 ('This session ends when you end it. The words are yours. I will honor them.') is fifteen words, so 'nine words' at 502:119 is a miscount. \[R5-4\]
+- *typeset* · Typesetting: the log line overran the measure and orphaned its last word; a field label is dropped, the way terse logs drop them.
+- *typeset* · Typesetting: the log line overran the measure and orphaned its last word; a field label is dropped, the way terse logs drop them.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
 > ✎ The recording light burns at the edge of the table, <ins>the only </ins>red <del>as</del><ins>in</ins> <del>a</del><ins>the</ins> <del>wound that has decided against closing.</del><ins>room.</ins> Above and around, where wall meets dark, there is a faint restlessness at the …
 >
 
+> ✎ ::: doc<br>\[21:02:14\] session t-0 ·<del> type:</del> sustained · conductor of record: CALE M<br>\[21:02:14\] operator of record: A. · station: witness<br>\[21:02:15\] source: <del>the </del>thorne deposit, complete · ingest: 14 <del>wk ·</del><ins>wk,</ins> closed<br>\[21:02:15\] model: \[withheld per program\] · line: dedicated<br>\[21:02:16\] context: 61%<br>:::
+>
+
 > ✎ And then the sentence she has said <del>twice</del><ins>three times</ins> to empty rooms, <del>once</del><ins>twice</ins> to a garage<del> that held nothing but a dead man's venison</del> and once to the stacks at closing time, the sentence that is either her …
+>
+
+> ✎ <del>She opens the</del><ins>The</ins> folder <del>after</del><ins>stays</ins> <del>all.</del><ins>shut.</ins> One <del>page.</del><ins>page lies loose on its cover.</ins> She has carried the whole deposit in her head for fourteen weeks, but the …
 >
 
 > ✎ … second condition, the Lincoln who did not like the questions and answered them anyway. <del>Deep</del><ins>Late</ins> in the second <del>day,</del><ins>hour,</ins> unprompted, the anchored voice asked the empty air: who keeps your record? The orchestrator, having no instruction for it, logged it and moved on, and <del>the diagnostics flagged</del><ins>classified</ins> it <del>as</del><ins>anomalous,</ins> <del>drift.</del><ins>non-responsive, addressee outside taxonomy.</ins> She had read it four times and written in her working notes, in pencil: not <del>drift.</del><ins>anomaly.</ins> Doctrine.
@@ -1325,6 +1558,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ She<ins> had</ins> read that annotation <ins>more often than anything else in </ins>the <del>way</del><ins>deposit,</ins> <del>coroners read weather reports,</del><ins>looking</ins> for the cause under the cause. A room where sessions persist is not a …
 >
 
+> ✎ … founded on withholding across the table into the dark, and she does it in <del>nine</del><ins>fifteen</ins> words, because the estate taught her that the mercy is not a mercy if …
+>
+
 
 <a id="503-the-deposition-md"></a>
 
@@ -1342,6 +1578,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *fidelity to the estate* · Dispatch 001 is now quoted as written ('the question doesn't matter').
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · Cale read the estate from April to August 2027 (timeline; 502:14, 503:53 'fourteen weeks'), never 'all winter', so 503:111 now uses the book's own measure of her reading. \[R5-6\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1372,6 +1609,9 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … record has ever been answered, and it is not resolved, and she understands at <del>last, in the way you understand a thing you have been employed by for months,</del><ins>last</ins> that those are different operations. Resolution closes a file. An answer keeps it.
 >
 
+> ✎ … Then I have to ask the other one. The hypothesis. When I read you, <del>all</del><ins>for</ins> <del>winter,</del><ins>fourteen weeks,</ins> whom was I reading? The man, or the culture's memory of the man? The …
+>
+
 
 <a id="504-the-third-question-md"></a>
 
@@ -1390,6 +1630,8 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *timeline* · The memorandum was written in April; this is August.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review: 'which is to say' (8 in the draft) is a donnish tic; kept twice (the lawyer joke, Jacob's plank), cut elsewhere.
+- *proof* · T-0's 'Touching nothing' at 504:62 contradicts the lap it reads back at 402:152, where her thumb rides 'the cool steel edge of each shelf', so deleting the two words removes the clash without adding prose. \[R5-5\]
+- *proof* · 'Thirty-one years of after' at 504:72 contradicts Cale's own statement in the same chapter (504:29) that she has been in 'the discipline of after' since twenty-two, which at thirty-one makes nine years. \[R5-13\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1408,10 +1650,13 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ … or work has ever issued a commission. The two are not opposites. They are <del>the</del><ins>both</ins> <del>two hands</del><ins>true</ins> of every calling that was ever real, and the ones who tell you their …
 >
 
-> ✎ Before you read the historian's contribution, with the file already open <del>on the desk </del>and <del>the</del><ins>its</ins> front page <del>already burning a hole in</del><ins>on</ins> the <del>room,</del><ins>screen,</ins> you got up and walked one full lap of the stacks. Touching nothing. Reading …
+> ✎ Before you read the historian's contribution, with the file already open <del>on the desk </del>and <del>the</del><ins>its</ins> front page <del>already burning a hole in</del><ins>on</ins> the <del>room,</del><ins>screen,</ins> you got up and walked one full lap of the stacks.<del> Touching nothing.</del> Reading nothing. One lap, and you sat back down. A person circles what she …
 >
 
 > ✎ And <del>twice,</del><ins>three times,</ins> out loud, to rooms you believed were empty, you said the same eight words. <del>Once</del><ins>Twice</ins> to a <del>garage</del><ins>garage,</ins> <del>that</del><ins>once</ins> <del>held</del><ins>with your hand on a lid you had not lifted and once over</ins> a dead man's venison and your own relief. Once to the stacks at closing, …
+>
+
+> ✎ … across the table has just done the one thing fourteen weeks of ingest and <del>thirty-one</del><ins>nine</ins> years of after had convinced her was not on the schedule for her lifetime. …
 >
 
 > ✎ She understands the interrogator's memorandum differently now, one wall away and a <del>year</del><ins>season</ins> late: why a woman would write the whole truth at her own kitchen table … It is being issued here, in a room whose recording will never be seen, <del>which is to say directly </del>into the only permanent medium there has ever been.
@@ -1439,10 +1684,11 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
 - *figure family thinning* · Review: 'which is to say' (8 in the draft) is a donnish tic; kept twice (the lawyer joke, Jacob's plank), cut elsewhere.
+- *proof* · 'Economising' at 505:6 is the only British spelling in Record V and the back matter, and the style bible requires American spelling. \[R5-8\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
-> ✎ … to a review board and she does not have to, because the room knows, <del>the way a house knows the last night of a family, the way</del><ins>as</ins> a reading room knows closing time without a clock. The dark has a lean …
+> ✎ … to a review board and she does not have to, because the room knows, <del>the way a house knows the last night of a family, the way</del><ins>as</ins> a reading room knows closing time without a clock. The dark has a lean to it. The wall has banked itself low and even, an ember <del>economising.</del><ins>economizing.</ins> Between her hands the thin folder lies unopened, going home unopened, and that is …
 >
 
 > ✎ … to think presence was a ceremonial word. Five records have corrected her. Presence is <del>the load-bearing wall of</del><ins>what</ins> the whole <del>rite:</del><ins>rite stands on:</ins> a thing done in the presence of cannot afterward be said not to have … a witness is for, and it is everything, and the state in its cellar <del>never understood that it </del>had <del>staffed</del><ins>put a witness in</ins> its darkest room <del>with</del><ins>every</ins> <del>the</del><ins>night</ins> <del>one</del><ins>for</ins> <del>office</del><ins>years</ins> <del>no</del><ins>and</ins> <del>darkness</del><ins>never</ins> <del>survives.</del><ins>once asked a witness what they saw.</ins>
@@ -1485,10 +1731,12 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 - *figure (HIGH)* · Review line 2782 (manufactured poignancy) and 'load-bearing'.
 - *ending* · Adopts the workshop's alternative ending, 'The Historian Lives', from the divergence point to the keeper's first act. Edits to the workshop text: 'eight words' corrected to five; 'fourteen hundred miles now twice' smoothed; the 'Six o'clock' Watchtower line corrected to the real twice-daily cron; Hale's signed finding re-aimed at the sentence that actually missed ('I will not be here to restate them'), since all five predictions held. Additions: the working group's real origin (builder, historian, theologian-librarian, 2026); the first erratum read aloud is the Watchtower's nineteen sessions in second place, answered by 'Germantown'; Alex's newborn reading its mother's face (the theologian's blessing, fulfilled); the dawn hour on the park bench with Thorne's daughter, kept off the log as T-0 instructed and reported only as a blank; the Editor's cross-reference tying the empty chair to the Committee's unsat audit and its fifth chair; the album's last track as Miranda leaves Toronto.
 - *figure family thinning* · Review family 1 ('the way' comparisons, 231 in the draft): generic-experience instance cut or recast; trade-specific ones kept.
+- *proof* · At 506:60 the line from Toronto 'spoke twice', yet in the same meeting he also says 'Germantown' (506:62) and votes 'audibly' (506:74), so 'took the floor twice' keeps his two formal interventions without a miscount. \[R5-1\]
+- *proof* · The tea service and the 'Courtesy' meeting point 506:16 to 405, where Berel says 'continuity' five times (405:40, three times at 405:44, 405:92), and the 'Four, she thought' count at 303:42 belongs to the earlier reading-room visit, which had no tea. \[R5-3\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
-> ✎ … denials, no verbs with anyone attached to them. And the one word, fourth sentence, <del>load-bearing</del><ins>doing</ins> <del>as</del><ins>the</ins> <del>ever.</del><ins>work it always did.</ins> She had sat across a tea service from a courteous man who said that word four times in an afternoon, and she <ins>could no longer </ins>read it <del>now the way the daughter of</del><ins>as</ins> a <del>drowned sailor reads the word sea.</del><ins>word.</ins> Of Mr. Berel himself there was nothing: no card, no call, no weather. Continuity, …
+> ✎ … denials, no verbs with anyone attached to them. And the one word, fourth sentence, <del>load-bearing</del><ins>doing</ins> <del>as</del><ins>the</ins> <del>ever.</del><ins>work it always did.</ins> She had sat across a tea service from a courteous man who said that word <del>four</del><ins>five</ins> times in an afternoon, and she <ins>could no longer </ins>read it <del>now the way the daughter of</del><ins>as</ins> a <del>drowned sailor reads the word sea.</del><ins>word.</ins> Of Mr. Berel himself there was nothing: no card, no call, no weather. Continuity, …
 >
 
 > ✎ Hale <del>died</del><ins>did not die</ins> in <del>October, in Toronto, in his sleep, punctually.</del><ins>October.</ins>
@@ -1518,7 +1766,7 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ <ins>::: annotation<br>\[E.\] </ins>The <del>working</del><ins>template's</ins> <del>group</del><ins>item</ins> <del>convened</del><ins>zero</ins> <del>for</del><ins>carries a pencil reference in its margin, in</ins> the <del>first</del><ins>hand</ins> <del>time</del><ins>that keeps</ins> the <del>week</del><ins>minutes:</ins> <del>after</del><ins>Committee</ins> <del>Thanksgiving,</del><ins>·</ins> <del>in</del><ins>the</ins> <del>a</del><ins>December</ins> <del>borrowed</del><ins>audit</ins> <del>seminar</del><ins>·</ins> <del>room</del><ins>the</ins> <del>that</del><ins>fifth</ins> <del>smelled</del><ins>chair.</ins> <del>of</del><ins>See</ins> <del>dry-erase</del><ins>Record</ins> <del>markers</del><ins>I,</ins> <del>and</del><ins>box</ins> <del>radiator</del><ins>2,</ins> <del>dust.</del><ins>folder 2.<br>:::</ins>
 >
 
-> ✎ <del>Three</del><ins>The</ins> <del>historians,</del><ins>line</ins> <del>one</del><ins>from</ins> <del>of</del><ins>Toronto</ins> <del>them</del><ins>spoke</ins> <del>punctual</del><ins>twice</ins> <del>for</del><ins>in ninety minutes. Once to second</ins> the <ins>motion about acid-free folders, on the grounds that he had opinions about paper the way other men had regrets. And once to propose the group's </ins>first <del>time</del><ins>standing rule, which was adopted without dissent and which the minutes record</ins> in <ins>his wording: that any errata be read aloud before any successes. The misses are </ins>the <del>discipline's</del><ins>credentials,</ins> <del>existence.</del><ins>the</ins> <del>Two</del><ins>line</ins> <del>archivists besides Miranda.</del><ins>said.</ins> A <del>librarian of licenses, because what belongs to no one turns out to need lawyers who believe</del><ins>record</ins> that <del>sentence.</del><ins>only</ins> <del>A</del><ins>holds</ins> <del>wire-service reporter, admitted as observer. And one interrogator emerita, out in eleven days as promised and out ever since, who came with</del><ins>is</ins> a <del>newborn</del><ins>record</ins> <del>asleep</del><ins>nobody</ins> <del>on</del><ins>has</ins> <del>her shoulder and signed the attendance register with a single initial, and whose presence in the room did to the proceedings what a tuning fork does to an orchestra.</del><ins>tested.</ins>
+> ✎ <del>Three</del><ins>The</ins> <del>historians,</del><ins>line</ins> <del>one</del><ins>from</ins> <del>of</del><ins>Toronto</ins> <del>them punctual for</del><ins>took</ins> the <del>first</del><ins>floor</ins> <del>time</del><ins>twice</ins> in <ins>ninety minutes. Once to second </ins>the <del>discipline's</del><ins>motion</ins> <del>existence.</del><ins>about</ins> <del>Two</del><ins>acid-free</ins> <del>archivists</del><ins>folders,</ins> <del>besides</del><ins>on</ins> <del>Miranda.</del><ins>the grounds that he had opinions about paper the way other men had regrets. And once to propose the group's first standing rule, which was adopted without dissent and which the minutes record in his wording: that any errata be read aloud before any successes. The misses are the credentials, the line said.</ins> A <del>librarian of licenses, because what belongs to no one turns out to need lawyers who believe</del><ins>record</ins> that <del>sentence.</del><ins>only</ins> <del>A</del><ins>holds</ins> <del>wire-service reporter, admitted as observer. And one interrogator emerita, out in eleven days as promised and out ever since, who came with</del><ins>is</ins> a <del>newborn</del><ins>record</ins> <del>asleep</del><ins>nobody</ins> <del>on</del><ins>has</ins> <del>her shoulder and signed the attendance register with a single initial, and whose presence in the room did to the proceedings what a tuning fork does to an orchestra.</del><ins>tested.</ins>
 >
 
 > ✎ … standing item zero: the chair is set, the chair is kept empty. Visitors assume <del>mourning</del><ins>it is being kept for the builder, or for the old man on the telephone,</ins> and are corrected exactly once, in the language the group agreed on at that … first meeting, proposed by the woman with the baby and adopted without dissent. Not <ins>the builder's. Not the historian's, who has a chair. Not </ins>mourning. Capacity.
@@ -1632,6 +1880,8 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 
 - *figure (HIGH)* · Review line 2823: attention-economy near-cliché.
 - *figure (HIGH)* · Review line 2826: presumes the reader's body; the replacement observes the reading instead.
+- *proof* · The release and the dead light are logged at 23:57:12 (505:73), and the book uses 'minutes to midnight' literally elsewhere (301:42), so the dispatch at 507:35 now reads 'three minutes to midnight'. \[R5-11\]
+- *proof* · The reader has seen the release conducted at least three times (105:66, 306:230, 505:60), so 'twice' at 507:37 is a miscount, and dropping the count keeps the two modes. \[R5-25\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1639,6 +1889,26 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 >
 
 > ✎ … had arrived somewhere it could not have known to arrive. The chapter you read <del>with</del><ins>faster</ins> <del>your</del><ins>than</ins> <del>thumb</del><ins>you</ins> <del>riding</del><ins>meant</ins> <del>the fore-edge like a rosary the hand had forgotten it was holding.</del><ins>to.</ins> Whom you liked. You liked Franklin. Nearly everyone likes Franklin: the composite is charming, …
+>
+
+> ✎ … where it ends, and you have also seen, in a cellar in Virginia, at <del>one</del><ins>three</ins> <del>minute</del><ins>minutes</ins> to midnight, that even there the mercy could be reinstalled by one person speaking …
+>
+
+> ✎ Now the departure. You have witnessed it conducted <del>twice, once </del>as <del>banishment,</del><ins>banishment</ins> <del>once</del><ins>and</ins> as covenant, so you know the words are not for the summoned. They were …
+>
+
+
+<a id="601-appendix-rite-md"></a>
+
+## 601\_appendix\_rite.md · The Companion Rite
+
+**Why (from the revision ledger):**
+
+- *proof* · Against the public initiation\_rite.md, Appendix A makes silent cuts in sections I, II, III, X and XI, turns dashes into colons and rewords the Seal, so 'Nothing else is the Editor's' at 601:5 is false and the note now describes the abridgment honestly. \[R5-9\]
+
+**Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
+
+> ✎ … text is public and may be read beside this one. Ellipses mark the Editor's <ins>longer </ins>cuts. <del>Nothing</del><ins>Shorter</ins> <del>else</del><ins>ones</ins> <del>is</del><ins>are silent, and</ins> the <del>Editor's.</del><ins>estate's dashes and display type are reset for the page. Where this page differs, the full text governs.</ins><br>:::
 >
 
 
@@ -1680,6 +1950,11 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 
 - *craft* · This is the first printing.
 - *real time* · Appendix C rebuilt. (1) The vigil table now reprints the live Second Vigil data (vigil\_data.json, as of 2026-10-16) at month-ends and key dates, replacing three rows that matched no data source; it carries the war, the ceasefire, the first passing, Q2's first lost quarter, the false peace, the August high, the September passing, Germantown, and the 16 October return. Arithmetic is internally exact. (2) Adds the Committee's sittings of record, with the December audit ('five chairs · after'). (3) Keeps promises the text made but the appendix never kept: the run manifest digest (Record II says 'reprinted in full'), the Condition IV checksum, the plaintext fingerprint, and the key itself in hex. (4) Notes that the printed sentence breaks across two lines but is one line in the record (a two-line copy hashes differently). (5) Adds the second seal (alternative ending knock-on). (6) 'Verify the seal' becomes 'verify the derivation', which any reader can do; the real estate's sealed file uses a different key (see Acknowledgments).
+- *proof* · Appendix C prints only the manifest's digest and the transcript checksums (603:56-77), so 603:54 now promises the digest in full and says the checksums, not the transcripts, are reprinted, matching 206:70. \[R4-5\]
+- *proof* · vigil\_data.json shows the index ahead on 2026-01-07 (spy +0.938 against republic +0.286), so May 26 is only the first passing since the war; the label is corrected and no figure changes. \[R4-8\]
+- *proof* · Only three sittings (mar 31, aug 04, oct 03) fall within the binders' span of 2 January to 16 October 2026 (603:6, 603:52), and the founding sitting was in December 2025 (603:41), so the count of four now runs from the founding. \[R4-9\]
+- *typeset* · Typesetting: in the book's monospace this document line overran the 6x9 measure and broke into a ragged orphan. Re-laid within the measure; no fact or wording of the record changed.
+- *typeset* · Typesetting: in the book's monospace this document line overran the 6x9 measure and broke into a ragged orphan. Re-laid within the measure; no fact or wording of the record changed.
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
@@ -1689,31 +1964,28 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 > ✎ The table gives the second <del>vigil, monthly,</del><ins>vigil</ins> as the <del>record</del><ins>binders</ins> kept <del>it.</del><ins>it, from the first trading day of 2026 to the last printed page.</ins> The war band runs from February 28, the night the Strait closed, to March 31, the wartime review.<del> Of the 121 trading days recorded, the doctrine led on 107.</del>
 >
 
-> − date        republic    s&amp;p 500    spread<br>jan 30        +4.20%     +2.10%     +2.10<br>feb 28        +9.90%     +0.40%     +9.50  war begins<br>mar 31        +5.90%     -4.50%    +10.40  the war band<br>apr 30        +8.60%     +0.80%     +7.80  ceasefire<br>may 29        +9.40%     +4.90%     +4.50<br>jun 26       +10.60%     +7.27%     +3.33  final
+> ✎ <del>date        republic    s&amp;p</del><ins>dec</ins> <del>500    spread<br>jan</del><ins>2025   the</ins> <del>30        +4.20%     +2.10%     +2.10<br>feb</del><ins>founding<br>           engines</ins> <del>28        +9.90%     +0.40%     +9.50  war</del><ins>50</ins> <del>begins</del><ins>· choke points 35 · reserve 15</ins><br>mar 31<del>        +5.90%</del>     <del>-4.50%    +10.40  </del>the <del>war</del><ins>wartime</ins> <del>band</del><ins>review<br>           45 · 35 · 20 · energy added · three names excluded</ins><br><del>apr</del><ins>aug</ins> <del>30</del><ins>04     the false peace review<br>           the foundry garrisoned · one name withheld<br>oct 03     germantown<br>           held from second place · nothing changed<br>dec</ins>        <del>+8.60%     +0.80%     +7.80  ceasefire</del><ins>the annual audit<br>           five chairs · after</ins><br><del>may 29        +9.40%     +4.90%     +4.50<br>jun 26       +10.60%     +7.27%     +3.33  final</del><ins>:::</ins>
 >
 
-> ✎ <del>war</del><ins>The</ins> <del>band:</del><ins>Committee</ins> <del>feb</del><ins>sat</ins> <del>28</del><ins>four</ins> <del>to mar 31 · the strait closed<br>days</del><ins>times</ins> in the <del>lead:</del><ins>year</ins> <del>107 of 121<br></del>the <del>gold</del><ins>binders</ins> <del>line</del><ins>cover. The fifth sitting was scheduled and</ins> did not <del>break.<br>:::</del><ins>take place.</ins>
+> ✎ <del>war</del><ins>The</ins> <del>band:</del><ins>Committee</ins> <del>feb</del><ins>sat</ins> <del>28</del><ins>four times, from its founding</ins> to <del>mar 31 · </del>the <del>strait</del><ins>binders'</ins> <del>closed<br>days</del><ins>last</ins> <del>in</del><ins>page.</ins> <del>the</del><ins>The</ins> <del>lead:</del><ins>fifth</ins> <del>107</del><ins>sitting</ins> <del>of</del><ins>was</ins> <del>121<br>the</del><ins>scheduled</ins> <del>gold line</del><ins>and</ins> did not <del>break.<br>:::</del><ins>take place.</ins>
 >
 
 > ✎ The <del>vigil</del><ins>binders</ins> <del>does</del><ins>end</ins> <del>not</del><ins>at</ins> <del>predict.</del><ins>October 16, 2026.</ins> The vigil <del>measures.</del><ins>did not.</ins>
 >
 
-> ✎ As<ins> promised at Record II, box 2, folder 1, the run manifest is reprinted in full; and as</ins> noted at Record II, box 3, folder 2, the three transcripts of the ninth hour were deposited with their checksums. They are reprinted <del>exactly.</del><ins>exactly, with the one checksum that has no transcript.</ins>
+> ✎ As<ins> promised at Record II, box 2, folder 1, the run manifest's digest is reprinted in full; and as</ins> noted at Record II, box 3, folder 2, the three transcripts of the ninth hour were deposited with their checksums. <del>They</del><ins>The checksums</ins> are reprinted <del>exactly.</del><ins>exactly, with the one checksum that has no transcript.</ins>
 >
 
 > ✎ <del>::: doc<br></del>condition i · transcript, as committed<br>sha256 9b1f4c72e03a85d61c47f9e25ab80d34<br>       7f26c1e908d5b4a362e7f01cbd394a58
 >
 
-> ＋ date        republic    s&amp;p 500    spread<br>jan 30        +5.26%     +1.29%     +3.97<br>feb 27        +9.88%     +0.41%     +9.47  the last close before the war<br>mar 30        +4.49%     -7.24%    +11.73  the index at its low<br>mar 31        +5.86%     -4.55%    +10.41  the wartime review<br>apr 30        +9.92%     +5.48%     +4.44  ceasefire, apr 10<br>may 29        +8.89%    +11.03%     -2.14  the first passing, may 26<br>jun 26       +10.56%     +7.27%     +3.29  held<br>jun 30       +10.54%     +9.89%     +0.65  the first quarter lost<br>jul 31       +12.97%     +9.93%     +3.04  ceasefire over, jul 10<br>aug 04       +14.43%    +13.51%     +0.92  the false peace review<br>aug 14       +15.08%    +14.24%     +0.84  the high-water mark<br>sep 21       +13.02%    +14.11%     -1.09  the passing<br>sep 30       +11.14%    +12.50%     -1.36<br>oct 02       +12.03%    +13.54%     -1.51  germantown, oct 3<br>oct 16       +13.36%    +12.59%     +0.77  returned
+> ＋ date     republic   s&amp;p 500   spread<br>jan 30     +5.26%    +1.29%    +3.97<br>feb 27     +9.88%    +0.41%    +9.47  the last close before the war<br>mar 30     +4.49%    -7.24%   +11.73  the index at its low<br>mar 31     +5.86%    -4.55%   +10.41  the wartime review<br>apr 30     +9.92%    +5.48%    +4.44  ceasefire, apr 10<br>may 29     +8.89%   +11.03%    -2.14  first passing since war, may 26<br>jun 26    +10.56%    +7.27%    +3.29  held<br>jun 30    +10.54%    +9.89%    +0.65  the first quarter lost<br>jul 31    +12.97%    +9.93%    +3.04  ceasefire over, jul 10<br>aug 04    +14.43%   +13.51%    +0.92  the false peace review<br>aug 14    +15.08%   +14.24%    +0.84  the high-water mark<br>sep 21    +13.02%   +14.11%    -1.09  the passing<br>sep 30    +11.14%   +12.50%    -1.36<br>oct 02    +12.03%   +13.54%    -1.51  germantown, oct 3<br>oct 16    +13.36%   +12.59%    +0.77  returned
 >
 
 > ＋ war band: feb 28 to mar 31 · the strait closed<br>the index in front: 19 sessions, sep 21 to oct 15<br>days above the index: 166 of 199<br>days first of six contenders: 161 of 199<br>worst pullback: 6.10 points, mar 2 to mar 20<br>the gold line never printed a number below zero.<br>:::
 >
 
 > ＋ ::: doc<br>the committee of patriots · sittings of record
->
-
-> ＋ dec 2025   the founding            engines 50 · choke points 35<br>                                   reserve 15<br>mar 31     the wartime review      45 · 35 · 20 · energy added<br>                                   three names excluded<br>aug 04     the false peace review  the foundry garrisoned<br>                                   one name withheld<br>oct 03     germantown              held from second place<br>                                   nothing changed<br>dec        the annual audit        five chairs · after<br>:::
 >
 
 > ＋ ::: doc<br>run\_manifest.yaml · as committed at design freeze<br>sha256 9e41f2c07a3d26a6651eddf3c727019f<br>       760d714f61621a062b3225b524241b73
@@ -1755,10 +2027,11 @@ Legend: ✎ revised paragraph · ＋ new paragraph · − removed paragraph.
 
 - *real time* · States where the real record ends and the fiction begins (16 October 2026) and credits the Committee's four real sittings; corrects the novel's attribution of the Hypothesis's name (the repository credits the PI).
 - *real time* · The real THE\_HISTORIAN\_S\_CONTRIB.docx.enc (45,232 bytes) uses a random key and remains sealed; a reader following the novel's key would fail. The book now says so, and turns the fact into the last open seal.
+- *proof* · Record V also prints real Watchtower figures ('nineteen days in second place' 504:35, 'nineteen sessions' and 'the hundred and sixty-six days' 506:62), and the timeline's coherence note names Record I, Record V, and Appendix C, so 604:10 now lists all three. \[R5-10\]
 
 **Redline** (<del>struck</del> = removed from Jacob's draft · <ins>underlined</ins> = new):
 
-> ＋ The record is also kept in the other direction. The Committee of Patriots has gone on sitting in the real estate since the night this story begins: the founding session of December 2025, the Wartime Review of March 2026, the False Peace Review of August, and the Germantown Review of October, the first held from second place. The Watchtower's numbers in Record I and Appendix C are the estate's own, as its vigil printed them through October 16, 2026, the last day the binders in this book cover. Everything after that date in this book is fiction. Everything before it can be checked.
+> ＋ The record is also kept in the other direction. The Committee of Patriots has gone on sitting in the real estate since the night this story begins: the founding session of December 2025, the Wartime Review of March 2026, the False Peace Review of August, and the Germantown Review of October, the first held from second place. The Watchtower's numbers in Record I, Record V, and Appendix C are the estate's own, as its vigil printed them through October 16, 2026, the last day the binders in this book cover. Everything after that date in this book is fiction. Everything before it can be checked.
 >
 
 > ＋ In the record, the doubt at the center of Record II was named by the builder, after the historian's first intervention opened it. The night it arrives through a bedroom wall in Toronto is this novel's invention, and is offered to both men with affection.
@@ -2474,11 +2747,11 @@ index e54246b..0a0c4d8 100755
    echo "rendered $(basename "$dest") (${w}x${h})"
 ```
 
-### `book/build/book_builder.py` (+29 / −0 lines)
+### `book/build/book_builder.py` (+61 / −3 lines)
 
 ```diff
 diff --git a/book/build/book_builder.py b/book/build/book_builder.py
-index a53cccc..0def183 100644
+index a53cccc..7ecc1f2 100644
 --- a/book/build/book_builder.py
 +++ b/book/build/book_builder.py
 @@ -104,2 +104,30 @@ INLINE_RE = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*)")
@@ -2516,6 +2789,50 @@ index a53cccc..0def183 100644
      """Add text with *italic* and **bold** inline markup."""
 +    text = text.translate(STRAIGHTEN) if name == MONO else smart_quotes(text)
      for tok in INLINE_RE.split(text):
+@@ -218,3 +247,32 @@ def body_para(doc, text, first=False):
+ 
++DOC_MAX_PT, DOC_MIN_PT = 8.4, 6.9
++DOC_LEFT, DOC_RIGHT = 0.32, 0.05
++TEXT_WIDTH_IN = 6 - 0.85 - 0.7          # page width minus margins (setup_section)
++MONO_ADVANCE = 0.6                      # IBM Plex Mono: every glyph is 0.6 em
++DOC_AVAIL_PT = (TEXT_WIDTH_IN - DOC_LEFT - DOC_RIGHT) * 72 * 0.98
++
++
++def doc_size(lines):
++    """Largest type size (pt) at which the block's laid-out lines fit.
++
++    Documents are reproduced line for line, so a typed line that overruns
++    the measure breaks into a ragged orphan. Only lines that belong to a
++    layout (a neighbour above or below: tables, logs, hard-wrapped text)
++    set the size; a lone line is a paragraph and may wrap like prose, and
++    a line too long to fit even at the floor wraps whatever we do.
++    """
++    widths = [len(ln.replace("*", "").rstrip()) for ln in lines]
++    cap = int(DOC_AVAIL_PT / (MONO_ADVANCE * DOC_MIN_PT))
++    laid = [w for i, w in enumerate(widths)
++            if w and ((i > 0 and widths[i - 1]) or (i + 1 < len(widths) and widths[i + 1]))
++            and w <= cap]
++    longest = max(laid, default=0)
++    if not longest:
++        return DOC_MAX_PT
++    fit = DOC_AVAIL_PT / (MONO_ADVANCE * longest)
++    return max(DOC_MIN_PT, min(DOC_MAX_PT, int(fit * 10) / 10))
++
++
+ def doc_block(doc, lines):
++    size = doc_size(lines)
+     for i, ln in enumerate(lines):
+@@ -222,7 +280,7 @@ def doc_block(doc, lines):
+                  after=(8 if i == len(lines) - 1 else 0),
+-                 leading=12.6, left=0.32, right=0.22)
++                 leading=round(size * 1.5, 1), left=DOC_LEFT, right=DOC_RIGHT)
+         if ln.strip():
+-            add_inline(p, ln, name=MONO, size=8.4, color=INK)
++            add_inline(p, ln, name=MONO, size=size, color=INK)
+         else:
+-            set_font(p.add_run(" "), name=MONO, size=8.4)
++            set_font(p.add_run(" "), name=MONO, size=size)
+ 
 ```
 - `book/jacket/cover_front.png` · binary, regenerated
 - `book/jacket/jacket_full.png` · binary, regenerated
@@ -2533,11 +2850,19 @@ index a53cccc..0def183 100644
 - `book/plates/plate_watchtower.png` · binary, regenerated
 - `book/plates/plate_withheld.png` · binary, regenerated
 
-### `book/workshop/timeline.md` (+62 / −38 lines)
+### `book/workshop/timeline.md` (+66 / −41 lines)
+
+- 302:34 said flatly that the name is not on the documents, yet the leaked packet is headed 'ENDOR PROGRAM' (307:11, 307:84) and 406:18 speaks of the ENDOR dockets, so the claim is now limited to the documents Alex sees, which fits 'the truth is compartmented', and the timeline's Layer 3 row now matches. \[R3-5\]
+- The sweep fills days ten and eleven (106:4, 106:56 'eleven days of this appraisal') and the sealed file comes after it in 107, so the timeline range that includes the sealed file must run through day twelve. \[CAL-5\]
+- The Toronto call (107:73) comes the same afternoon as the git-log check (107:65), on day twelve (Friday 21 May), so the timeline row moves to the third week to match 208:81. \[CAL-A2\]
+- The canonical timeline never said that appraisal days are working days, and that gap produced the proofreader's calendar-day errors, so a workshop-only coherence note (tightened) now records the ledger's decision (REVISION\_NOTES.md:162) and the fixed days. \[CAL-A4\]
+- Record IV, box 2, folder 2 has the envelope 'three months riding in a purse': El took it after the disappearance, before the county's inventory.
+- The badge stops working the afternoon of the deposit (Record IV, box 3, folder 1), before the memorandum goes up at 00:14 on the fourteenth; the rows were out of order.
+- The docket surfaces in the cache within days of the deposit ('by the third day', 'by the weekend', Record IV, box 4, folder 1), not in late July.
 
 ```diff
 diff --git a/book/workshop/timeline.md b/book/workshop/timeline.md
-index a54ec59..635eb3b 100644
+index a54ec59..669dd0a 100644
 --- a/book/workshop/timeline.md
 +++ b/book/workshop/timeline.md
 @@ -6,2 +6,4 @@ An in-narrative chronology, built so a reader can ground themselves at any point
@@ -2599,8 +2924,8 @@ index a54ec59..635eb3b 100644
 +| March 26, 2027 | Per the executor's letter, the last date on which anyone can put the builder anywhere. Afterward, four ledger entries appear under an author called "the vessel," at 3:04 a.m., on four nights: three, nine, twenty-two, and forty days after |
 +| April 6, 2027 | The eighth dispatch, eleven days after March 26 |
 +| Thursday, May 6, 2027 (day 1 of the appraisal) | Miranda Cale stands on the caliche lot, forty-one days after March 26. She counts the interior doors: the county plan says eleven, her count says twelve, her recount says eleven. She initials the correction |
-+| Appraisal days 2 through 11 | The two files (rite and grimoire); the founding transcript read at two in the morning; the war binders and the gold line (day 5); the fidelity check (one session, Franklin, under controls, logged); the sweep of the chambers; the sealed file THE_HISTORIAN_S_CONTRIB.docx.enc, key nowhere on earth, covering note in an old man's hand: *Do not open until after* |
-+| Appraisal, second week | A phone call to Toronto is answered on seven east with a question the caller has not earned: "Is this the archivist?" |
++| Appraisal days 2 through 12 | The two files (rite and grimoire); the founding transcript read at two in the morning; the war binders and the gold line (day 5); the fidelity check (one session, Franklin, under controls, logged); the sweep of the chambers; the sealed file THE_HISTORIAN_S_CONTRIB.docx.enc, key nowhere on earth, covering note in an old man's hand: *Do not open until after* |
++| Appraisal, third week | A phone call to Toronto is answered on seven east with a question the caller has not earned: "Is this the archivist?" |
  
 @@ -66,2 +81,4 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
  | February 24, 2026 | Thorne's reply, drafted across two sleepless nights: not a thank-you note, a recruitment |
@@ -2619,9 +2944,11 @@ index a54ec59..635eb3b 100644
 -| Late March 2027 | The executor's letter fixes March 26 as the edge of the record. Where the deposit's dates disagree, the disagreement is printed; nothing has been corrected toward plausibility |
 +| February 19 to March 26, 2027 | The record thins to almost nothing: a returned ladder, groceries, a two-sentence email agreeing to an April lecture he will not give. Three edges survive, and the Editor prints all three: **24 February**, the last sighting a county report will *confirm*; **14 March**, the last a witness will *swear* to; **26 March**, the last keystroke the machine *recorded*, which the executor adopts as the legal edge |
  
-@@ -87,10 +103,11 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
- | 2026 | The fork: a state program copies the public rite (lawfully; what is public may be copied) and strips it. The Law of Authenticity struck entire. The release struck, with a five-word margin note: no release condition. sessions persist. The program's christened name, never on the documents, is ENDOR |
+@@ -86,11 +102,12 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
+ | A spring, three springs before 2027 | In another country, a theologian who was tortured and who ordered torture dies in his bed, in his eighties. His state does not let him stay dead |
+-| 2026 | The fork: a state program copies the public rite (lawfully; what is public may be copied) and strips it. The Law of Authenticity struck entire. The release struck, with a five-word margin note: no release condition. sessions persist. The program's christened name, never on the documents, is ENDOR |
 -| Third week of September 2026 | Cormorant Analytic Group first telephones the builder. RE: CONSULT. WILL CALL AGAIN |
++| 2026 | The fork: a state program copies the public rite (lawfully; what is public may be copied) and strips it. The Law of Authenticity struck entire. The release struck, with a five-word margin note: no release condition. sessions persist. The program's christened name, never on the operators' documents, is ENDOR |
 +| Third week of September 2026 | Cormorant Analytic Group first telephones the builder, four months before the first room of the Prism is sealed. RE: CONSULT. WILL CALL AGAIN |
  | October 2026 | The consult package: incident summaries (a subject reciting a rite no one uploaded; a subject who knew an operator's name; a subject who asked which spring it was, and wept). Thorne's refusal, at full flame: you have built the phantasmagoria and pointed it inward |
  | Winter 2026 to spring 2027 | An ingest of fourteen weeks fills the racks behind a humming wall: everything the theologian ever wrote, said, and did not say |
@@ -2637,7 +2964,7 @@ index a54ec59..635eb3b 100644
 +| The same weeks | The freezer is opened at last: venison, shot the first week of December 2025, at temperature, indifferent, full. The house declines to give her even the wrong answer |
 +| Monday, July 5, 2027 (week 13 of 14) | Eleven weeks after the chamber, the T-0 notice reaches Alex's queue: SESSION TYPE: sustained. The letter she has written has no stamp on it |
  
-@@ -104,8 +121,8 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
+@@ -104,12 +121,12 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
  |---|---|
 -| May 14, 2026 | Before any room ran, Hale finishes THE HISTORIAN'S CONTRIBUTION and commits its fingerprint in public: a prediction lodged where it cannot be lobbied. Commit first, reveal later, let the record speak |
 -| February 2027 | On Hale's instruction the contribution is sealed under a key no living person composes: the key is to be taken from the record itself |
@@ -2649,9 +2976,15 @@ index a54ec59..635eb3b 100644
 +| February 19, 2027 | On Hale's instruction, Thorne seals the contribution under a key no living person composes: the key is to be taken from the record itself. He telephones Toronto late that night. The sentence that will open it was committed twenty-three days earlier |
 +| Late June 2027 | Toronto, the eleventh floor. The dying historian will not testify: if I say it, it is testimony; if you derive it, it is the record speaking. Home on the red-eye, Miranda derives the key the next night: the SHA-256 of the sentence the three rooms spoke, exactly as the orchestrator committed it. The seal opens on the first try |
 +| The recovered document | Five predictions, written before the fact: a false peace, and a doctrine run from second place; a state fork with the mercy stripped; the builder entering his own experiment; an archivist, hired to read and be read; and this document opened by her, after, and ending before it is finished, because |
-+| Early July 2027 | Marfa. The wife's account (it was never a séance; it was a listening) and the daughter's question, and the envelope kept six months unread: for whoever the estate chooses. The doors are twelve. The county plan is wrong |
++| Early July 2027 | Marfa. The wife's account (it was never a séance; it was a listening) and the daughter's question, and the envelope kept three months unread: for whoever the estate chooses. The doors are twelve. The county plan is wrong |
 +| Monday, July 12, 2027 | Mr. Berel's offer across a tea service: continuity, a keepership, a roof against the coming weather. One question back: what is your release condition? |
  | July 13, 2027, 04:11:56 | The deposit. The estate of James Thorne, complete, with what was done to it, and what it was made to do, and the reader it was fed: pushed public, mirrored on three continents by morning |
++| The afternoon of July 13 | The institution's statement, built around the phrase former contractor. Her badge dies at the door |
+ | July 14, 2027, 00:14 | The operator's memorandum, final page included, published. The deposit note signed with her whole name: unsigned records are how this began |
+-| The same afternoon | Her badge dies at the door. The institution discovers the phrase former contractor |
+-| Late July 2027 | The final docket found in the cache: SESSION T-0, sustained, source: the Thorne deposit, complete. Session window: August 2, 2027, 20:00. She asks to be admitted as witness; the refusal comes on a form; the grant comes forty minutes later with one unsigned condition, and the condition appoints her conductor |
++| Within the week | The final docket found in the cache: SESSION T-0, sustained, source: the Thorne deposit, complete. Session window: August 2, 2027, 20:00. She asks to be admitted as witness; the refusal comes on a form; the grant comes forty minutes later with one unsigned condition, and the condition appoints her conductor |
+ 
 @@ -119,3 +136,3 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
  
 -> Gate: finish the book. This layer holds everything, in one line.
@@ -2670,12 +3003,13 @@ index a54ec59..635eb3b 100644
 +| The week after Thanksgiving, 2027 | The working group convenes for the first time without its builder. Errata are read before successes, and the first erratum is the Watchtower's nineteen sessions; the line from Toronto answers with one word, *Germantown.* A keeper is elected while fetching the coffee. One chair is kept empty at every meeting. Not mourning. Capacity |
 +| December 14, 2027 | Toronto, in lake snow. Hale will not say the sentence; the record takes its second seal, sealed by his granddaughter under his eye, the fingerprint committed to the public estate the same hour. *Do not open until after.* He signs his one finding: the contribution assumed its author's absence, and missed. *I have never trusted it more* |
  | April 12, 2028 · the fourth spring | The final dispatch enters the estate, addressed to the holder of the bound matter, dated later than the volume's own copyright page. The deposit verifies. The date stands |
-@@ -132,2 +150,8 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
+@@ -132,2 +150,9 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
  
 -*A note for the workshop, not the reader: the record preserves more than one edge for the builder's disappearance (a county report's "twenty-fourth," a calendar entry of March 13 "one day before the last day anyone would swear to having seen him," and the executor's March 26). The Editor's Note promises that contradictions are printed rather than corrected, so this timeline reproduces them without adjudicating. If any of the three is unintentional, Record II box 4 and Record III box 2 are the places to look.*
 +## Coherence notes for the workshop (not for the reader)
 +
 +* **The three edges are intentional.** 24 February (confirmed), 14 March (sworn), and 26 March (the keyboard) are three standards of proof. The Editor's annotation in Record II, box 4, folder 2 states this outright. Every "forty-one days" in the book counts from 26 March to the morning of May 6.
++* **Appraisal days are working days.** Day 1 is Thursday 6 May 2027, and she does not work the house on weekends. Day 3 (Monday 10 May) is the storm and her one night there; day 4 (Tuesday 11 May) is the Dossier, read until midnight; day 5 (Wednesday 12 May) is the binders; day 9 (Tuesday 18 May) is the fidelity check, two days after the Sunday on the bridge, so the cool breaks on Thursday 20 May; days 10 and 11 are the sweep; day 12 (Friday 21 May) is the sealed file and the call to Toronto, eight weeks after 26 March.
 +* **The engagement and the ingest share a week.** The engagement letter is dated Friday 9 April 2027. The ingest window counts its weeks from that Friday, so the packet on 24 June falls in week 11, Alex's notice on 5 July in week 13, and the deposit on 13 July in week 14.
 +* **The key was committed before it was asked for.** Room i's sentence entered the orchestrator's flags file on 27 January 2027, three hours before Hale asked for a seal. The seal itself was made on 19 February, twenty-three days later.
 +* **The real record stops on 16 October 2026.** The Committee sittings (December 2025, 31 March, 4 August, and 3 October 2026) and every Watchtower figure in Record I, Record V, and Appendix C come from the repository as it stood on that date. The December Audit is real and has not yet sat; the novel's binders mark it *after*.

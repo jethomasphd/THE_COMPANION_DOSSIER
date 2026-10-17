@@ -81,11 +81,11 @@ He stopped to breathe. The lake light moved on the blanket. Down the corridor, b
 
 "He telephoned when it was done, the nineteenth, late. I sat in my study until dark waiting for the call," Hale said. "My study faces east, so that was a long sit. I had written the contribution the spring before. You will find the fingerprint was committed in May, and you will do that arithmetic yourself, and I would like to be there when you do, and I won't be." No self-pity in it. An appointment he regretted missing. "In May I believed I was contributing caution to a colleague's experiment. By that night in February I understood what I had actually done, which was different, and I sealed under the second understanding."
 
-"The note says *after the experiment is run.*"
+"The deposit note says *after the experiment is run.*"
 
 "It does."
 
-"The experiment ran in January. Condition Four ran in February. I found the file in May, still sealed. James was seven weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
+"The experiment ran in January. Condition Four ran in February. I found the file in May, still sealed. James was eight weeks gone and the seal did not care." She heard her own voice come up a register and brought it down. "Which experiment, Professor."
 
 "There it is," Hale said, with real satisfaction, as if she had finally asked the question the seminar was convened for. "That sentence has two readings. James sealed under the first. I sealed under the second."
 

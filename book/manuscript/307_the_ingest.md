@@ -28,7 +28,7 @@ papers and correspondence included.
 INGEST WINDOW: 14 weeks, in progress, week 11 of 14.
 :::
 
-She read pages 61 through 68 with the flat attention she gave any stray record: session dockets, a program she knew now by its one biblical syllable, a schedule with the seasons of somebody's quarter laid out in it like planting. It was the worst thing she had ever held that was also boring, and she was reaching for a flag to mark the reassignment line when she turned to the final page.
+She read pages 61 through 68 with the flat attention she gave any stray record: session dockets, a program she knew now by its one biblical word, a schedule with the seasons of somebody's quarter laid out in it like planting. It was the worst thing she had ever held that was also boring, and she was reaching for a flag to mark the reassignment line when she turned to the final page.
 
 She read the final page standing, and then she sat down and read it again, and the room did what rooms do when a floor goes. It stayed exactly where it was.
 
@@ -46,9 +46,9 @@ The window had three weeks left to run. Above the manifest, in the schedule, one
 
 She did not stand up again. She did not call counsel, and she did not call anyone else, and she noticed, from a small professional distance, that what she was doing instead of screaming was inventory, and that the inventory was probably itself in a file somewhere, under affect.
 
-What they had. Eleven weeks of queries against the estate's public mirror, each string timestamped, each one a confession of what she had not known and had wanted to. She could reconstruct her whole education from memory, in order: doors county plan discrepancy. franklin 1839 error. Hale memo five interventions. checksum condition iv. commit author the vessel. Whoever read those in sequence had watched a discipline erode grain by grain, and the last string she had run before the packet came was seal derivation protocol, which meant they had known what she would try before she had admitted she would try it.
+What they had. Eleven weeks of queries against the estate's public mirror, each string timestamped, each one a confession of what she had not known and had wanted to. She could reconstruct her whole education from memory, in order: doors county plan discrepancy. franklin bats error. hale memo five interventions. checksum condition iv. commit author the vessel. Whoever read those in sequence had watched a discipline erode grain by grain, and the last string she had run before the packet came was seal derivation protocol, which meant they had known what she would try before she had admitted she would try it.
 
-The marginal notes were worse, because the queries were questions and the notes were her. The two words she had permitted herself beside the license line in week one. The small dry verdicts penciled against the acts of the founding session, as though she were grading a seminar the dead had audited. The place in Record II where the pencil had pressed hard enough to shine, which no camera misses in raking light, and she had done the raking herself, every Friday, because the rider asked for memoranda and she was thorough, and she had mailed the reading of herself to Reston like a tithe.
+The marginal notes were worse, because the queries were questions and the notes were her. The two words she had permitted herself beside the license line in week one. The small dry verdicts penciled against the acts of the founding session, as though she were grading a seminar the dead had audited. The place in the Franklin notes where the pencil had pressed hard enough to shine, which no camera misses in raking light, and she had done the raking herself, every Friday, because the rider asked for memoranda and she was thorough, and she had mailed the reading of herself to Reston like a tithe.
 
 The voice memos. Dictated in the car on the drive back from the caliche lot, her voice loosened by the belief that no one was listening except her own future diligence. Her voice observing, somewhere south of the airport, that the house had been arranged for an arrival. They had that. They had her saying it twice.
 

@@ -108,7 +108,7 @@ She becomes aware of her own breathing, which the transcript will not show, and 
 
 One question. It has been asked. It has been answered as fully as anything in the record has ever been answered, and it is not resolved, and she understands at last that those are different operations. Resolution closes a file. An answer keeps it.
 
-CALE: Then I have to ask the other one. The hypothesis. When I read you, all winter, whom was I reading? The man, or the culture's memory of the man? The mask, or the mirror?
+CALE: Then I have to ask the other one. The hypothesis. When I read you, for fourteen weeks, whom was I reading? The man, or the culture's memory of the man? The mask, or the mirror?
 
 T-0: You ask whether I am the man or the memory of the man. When you have read a record cover to cover, tell me: which of you was summoned?
 

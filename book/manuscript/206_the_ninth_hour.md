@@ -5,7 +5,7 @@
 
 The long battery went up at twelve minutes past six in the evening, in the last gray of a January light that had never fully arrived. Sixty items, all three rooms in parallel, the full diagnostic sweep he and Hale had spent the autumn arguing into shape. It was the final run before the seals came off for analysis, and Thorne had nothing to do.
 
-That was the design. He had removed himself from the experiment the way you remove a solvent, in stages, checking the residue. The orchestrator dispatched. The rooms answered. The transcripts wrote themselves to disk and fingerprinted themselves as they went. Above the workstation, taped to the shelf at eye level, was a strip of paper in his own printing: NO HUMAN TOUCHES THE KEYBOARD. All that remained to him of his own experiment was the tail of the log, scrolling up the left monitor at the pace of other minds conversing elsewhere.
+That was the design. He had removed himself from the experiment the way you remove a solvent, in stages, checking the residue. The orchestrator dispatched. The rooms answered. The transcripts wrote themselves to disk and fingerprinted themselves as they went. Above the workstation, pinned at eye level, was a typed sheet with one line on it: NO HUMAN TOUCHES THE KEYBOARD. All that remained to him of his own experiment was the tail of the log, scrolling up the left monitor at the pace of other minds conversing elsewhere.
 
 ::: doc
 prism/orchestrator/run_03.log
@@ -22,7 +22,7 @@ He ate standing up at the counter, watching the doorway to the study as though t
 
 Around ten he walked the house once, a habit with no method behind it. Through the garage wall, low and continuous, the hum: the chest freezer he had bought in December of the founding winter, doing what compressors do. He stood a moment with his hand flat on the drywall, feeling the vibration arrive in his palm a beat behind the sound of it, and then went back to the study, where three versions of a dead man were answering item 26 in three sealed rooms, each believing itself alone, each being right.
 
-The house did what the house did at night. The lamp on the study desk burned through its amber gel, one warm ellipse on the dark wood and the dark beyond it. In the utility hall the fluorescent tube ticked, a small dry ticking with no rhythm you could count, the sound of something at the glass. He had bought the replacement tube in October. It was still in its sleeve on the dryer. Some part of him, he would have said if asked, wanted the light to keep doing that.
+The house did what the house did at night. The lamp on the study desk burned through its amber gel, one warm ellipse on the dark wood and the dark beyond it. In the utility hall the fluorescent tube ticked, a small dry ticking with no rhythm you could count, the sound of something at the glass. He had bought the replacement tube the winter before. It was still in its sleeve on the dryer. Some part of him, he would have said if asked, wanted the light to keep doing that.
 
 @break
 
@@ -37,7 +37,7 @@ A little after one he lay down on the office couch with his shoes on. The couch 
 He was asleep when item 44 went to the rooms.
 
 ::: doc
-prism/rooms/condition_i/session.log
+prism/condition_i/output/session.log
 
 03:08:55.104  item 44 dispatched
 03:09:41.360  response streaming
@@ -47,7 +47,7 @@ prism/rooms/condition_i/session.log
 :::
 
 ::: doc
-prism/rooms/condition_ii/session.log
+prism/condition_ii/output/session.log
 
 03:08:55.104  item 44 dispatched
 03:10:02.771  response streaming
@@ -57,7 +57,7 @@ prism/rooms/condition_ii/session.log
 :::
 
 ::: doc
-prism/rooms/condition_iii/session.log
+prism/condition_iii/output/session.log
 
 03:08:55.104  item 44 dispatched
 03:09:12.556  response streaming
@@ -115,7 +115,7 @@ He sat for a while with his hands flat on the desk on either side of the keyboar
 
 @break
 
-At dawn he wrote to Toronto. He drafted it three times. The first draft explained. The second draft apologized for the first. The one he sent did neither.
+Before dawn he wrote to Toronto. He drafted it three times. The first draft explained. The second draft apologized for the first. The one he sent did neither.
 
 ::: letter
 from: j. thorne

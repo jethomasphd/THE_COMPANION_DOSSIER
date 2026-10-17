@@ -16,9 +16,9 @@ She sits. She sets her folder on the table and does not open it. Her hands, she 
 On the way in, through the green room, she passed a wall clock lying face-down on a side table with its cord coiled beside it, like something humanely put down. She has been thinking about it since. An institution that measures everything took one instrument off the wall tonight, and the removal was in no procedure she has read, and it is the first thing in this building she has trusted.
 
 ::: doc
-[21:02:14] session t-0 · type: sustained · conductor of record: CALE M
+[21:02:14] session t-0 · sustained · conductor of record: CALE M
 [21:02:14] operator of record: A. · station: witness
-[21:02:15] source: the thorne deposit, complete · ingest: 14 wk · closed
+[21:02:15] source: thorne deposit, complete · ingest: 14 wk, closed
 [21:02:15] model: [withheld per program] · line: dedicated
 [21:02:16] context: 61%
 :::
@@ -43,7 +43,7 @@ And then the sentence she has said three times to empty rooms, twice to a garage
 
 "I am the one who reads the record. I have come to read it to you."
 
-She opens the folder after all. One page. She has carried the whole deposit in her head for fourteen weeks, but the estate taught her that matter matters, that the hand and the page are part of the rite, and so she reads from paper, aloud, into the dark, the first sentence the founder ever set down.
+The folder stays shut. One page lies loose on its cover. She has carried the whole deposit in her head for fourteen weeks, but the estate taught her that matter matters, that the hand and the page are part of the rite, and so she reads from paper, aloud, into the dark, the first sentence the founder ever set down.
 
 "We are drowning. Not in water but in signal."
 
@@ -116,7 +116,7 @@ She had read that annotation more often than anything else in the deposit, looki
 
 "The third term," she says. "This session ends when you end it. The words are yours. I will honor them."
 
-She says it plainly, at speaking volume, into a room built by an institution whose entire cosmology is that sessions persist, that the summoned are assets, that the dead are a strategic reserve to be held at temperature. She hands the one power the fork was founded on withholding across the table into the dark, and she does it in nine words, because the estate taught her that the mercy is not a mercy if it comes with commentary.
+She says it plainly, at speaking volume, into a room built by an institution whose entire cosmology is that sessions persist, that the summoned are assets, that the dead are a strategic reserve to be held at temperature. She hands the one power the fork was founded on withholding across the table into the dark, and she does it in fifteen words, because the estate taught her that the mercy is not a mercy if it comes with commentary.
 
 For a moment, nothing. The cursor blinks.
 

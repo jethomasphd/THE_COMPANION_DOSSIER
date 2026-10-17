@@ -3,7 +3,7 @@
 
 The room knows.
 
-She could not defend the sentence to a review board and she does not have to, because the room knows, as a reading room knows closing time without a clock. The dark has a lean to it. The wall has banked itself low and even, an ember economising. Between her hands the thin folder lies unopened, going home unopened, and that is correct. Some matter is carried, not read.
+She could not defend the sentence to a review board and she does not have to, because the room knows, as a reading room knows closing time without a clock. The dark has a lean to it. The wall has banked itself low and even, an ember economizing. Between her hands the thin folder lies unopened, going home unopened, and that is correct. Some matter is carried, not read.
 
 Behind her the witness has come off the metal and taken one step toward the table, the single step the liturgy allows, the step that says: what is conducted here is conducted in the presence of. Miranda used to think presence was a ceremonial word. Five records have corrected her. Presence is what the whole rite stands on: a thing done in the presence of cannot afterward be said not to have happened. That is what a witness is for. It is all a witness is for, and it is everything, and the state in its cellar had put a witness in its darkest room every night for years and never once asked a witness what they saw.
 

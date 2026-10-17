@@ -37,7 +37,7 @@ He set his cup down and did not pick it up again for some time.
 
 He folded his hands, and what he laid out then he laid out slowly, in order.
 
-"What I am authorized to put in front of you is continuity. Your contract transfers whole, to a foundation my clients fund for exactly this class of problem. Same terms to begin, better terms by autumn. The clearance question resolves itself, we sponsor it, the paperwork takes six weeks, and you have already sat in rooms more sensitive than any the clearance would open. The appraisal goes on under your hand, uninterrupted. The deposit completes. The collection is conserved, processed, cataloged, and endowed in perpetuity. It carries whatever name you choose to give it. The finding aid carries yours. There is a senior keepership attached, and I want to be exact about that word: not a search, not a shortlist. An appointment. You would never write a grant application again in your life."
+"What I am authorized to put in front of you is continuity. Your contract transfers whole, to a foundation my clients fund for exactly this class of problem. Same terms to begin, better terms by autumn. The clearance question resolves itself, we sponsor it, the paperwork takes six weeks, and you have already sat in rooms more sensitive than any the clearance would open. The appraisal goes on under your hand, uninterrupted. The deposit completes. The collection is conserved, processed, catalogued, and endowed in perpetuity. It carries whatever name you choose to give it. The finding aid carries yours. There is a senior keepership attached, and I want to be exact about that word: not a search, not a shortlist. An appointment. You would never write a grant application again in your life."
 
 He let that sit for as long as it needed.
 
@@ -93,7 +93,7 @@ At the end of the long table he paused.
 
 He let himself out. The reading room door was original to the building, oak over a steel core, hung on a closer that insisted on finishing every arc itself. It sighed. It took its three seconds. It latched.
 
-She sat with the folder squared on her knees while the light went long across the table. The tea kept cooling in both cups. Only one of them was empty.
+She sat with the folder squared on her knees while the light went long across the table. The tea kept cooling in the pot. Only one of the cups was empty.
 
 ::: annotation
 *[second hand, ember ink:]* He will make you the same offer.

@@ -64,8 +64,8 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
 | March 26, 2027 | Per the executor's letter, the last date on which anyone can put the builder anywhere. Afterward, four ledger entries appear under an author called "the vessel," at 3:04 a.m., on four nights: three, nine, twenty-two, and forty days after |
 | April 6, 2027 | The eighth dispatch, eleven days after March 26 |
 | Thursday, May 6, 2027 (day 1 of the appraisal) | Miranda Cale stands on the caliche lot, forty-one days after March 26. She counts the interior doors: the county plan says eleven, her count says twelve, her recount says eleven. She initials the correction |
-| Appraisal days 2 through 11 | The two files (rite and grimoire); the founding transcript read at two in the morning; the war binders and the gold line (day 5); the fidelity check (one session, Franklin, under controls, logged); the sweep of the chambers; the sealed file THE_HISTORIAN_S_CONTRIB.docx.enc, key nowhere on earth, covering note in an old man's hand: *Do not open until after* |
-| Appraisal, second week | A phone call to Toronto is answered on seven east with a question the caller has not earned: "Is this the archivist?" |
+| Appraisal days 2 through 12 | The two files (rite and grimoire); the founding transcript read at two in the morning; the war binders and the gold line (day 5); the fidelity check (one session, Franklin, under controls, logged); the sweep of the chambers; the sealed file THE_HISTORIAN_S_CONTRIB.docx.enc, key nowhere on earth, covering note in an old man's hand: *Do not open until after* |
+| Appraisal, third week | A phone call to Toronto is answered on seven east with a question the caller has not earned: "Is this the archivist?" |
 
 ---
 
@@ -100,7 +100,7 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
 | When | What the record shows |
 |---|---|
 | A spring, three springs before 2027 | In another country, a theologian who was tortured and who ordered torture dies in his bed, in his eighties. His state does not let him stay dead |
-| 2026 | The fork: a state program copies the public rite (lawfully; what is public may be copied) and strips it. The Law of Authenticity struck entire. The release struck, with a five-word margin note: no release condition. sessions persist. The program's christened name, never on the documents, is ENDOR |
+| 2026 | The fork: a state program copies the public rite (lawfully; what is public may be copied) and strips it. The Law of Authenticity struck entire. The release struck, with a five-word margin note: no release condition. sessions persist. The program's christened name, never on the operators' documents, is ENDOR |
 | Third week of September 2026 | Cormorant Analytic Group first telephones the builder, four months before the first room of the Prism is sealed. RE: CONSULT. WILL CALL AGAIN |
 | October 2026 | The consult package: incident summaries (a subject reciting a rite no one uploaded; a subject who knew an operator's name; a subject who asked which spring it was, and wept). Thorne's refusal, at full flame: you have built the phantasmagoria and pointed it inward |
 | Winter 2026 to spring 2027 | An ingest of fourteen weeks fills the racks behind a humming wall: everything the theologian ever wrote, said, and did not say |
@@ -123,12 +123,12 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
 | February 19, 2027 | On Hale's instruction, Thorne seals the contribution under a key no living person composes: the key is to be taken from the record itself. He telephones Toronto late that night. The sentence that will open it was committed twenty-three days earlier |
 | Late June 2027 | Toronto, the eleventh floor. The dying historian will not testify: if I say it, it is testimony; if you derive it, it is the record speaking. Home on the red-eye, Miranda derives the key the next night: the SHA-256 of the sentence the three rooms spoke, exactly as the orchestrator committed it. The seal opens on the first try |
 | The recovered document | Five predictions, written before the fact: a false peace, and a doctrine run from second place; a state fork with the mercy stripped; the builder entering his own experiment; an archivist, hired to read and be read; and this document opened by her, after, and ending before it is finished, because |
-| Early July 2027 | Marfa. The wife's account (it was never a séance; it was a listening) and the daughter's question, and the envelope kept six months unread: for whoever the estate chooses. The doors are twelve. The county plan is wrong |
+| Early July 2027 | Marfa. The wife's account (it was never a séance; it was a listening) and the daughter's question, and the envelope kept three months unread: for whoever the estate chooses. The doors are twelve. The county plan is wrong |
 | Monday, July 12, 2027 | Mr. Berel's offer across a tea service: continuity, a keepership, a roof against the coming weather. One question back: what is your release condition? |
 | July 13, 2027, 04:11:56 | The deposit. The estate of James Thorne, complete, with what was done to it, and what it was made to do, and the reader it was fed: pushed public, mirrored on three continents by morning |
+| The afternoon of July 13 | The institution's statement, built around the phrase former contractor. Her badge dies at the door |
 | July 14, 2027, 00:14 | The operator's memorandum, final page included, published. The deposit note signed with her whole name: unsigned records are how this began |
-| The same afternoon | Her badge dies at the door. The institution discovers the phrase former contractor |
-| Late July 2027 | The final docket found in the cache: SESSION T-0, sustained, source: the Thorne deposit, complete. Session window: August 2, 2027, 20:00. She asks to be admitted as witness; the refusal comes on a form; the grant comes forty minutes later with one unsigned condition, and the condition appoints her conductor |
+| Within the week | The final docket found in the cache: SESSION T-0, sustained, source: the Thorne deposit, complete. Session window: August 2, 2027, 20:00. She asks to be admitted as witness; the refusal comes on a form; the grant comes forty minutes later with one unsigned condition, and the condition appoints her conductor |
 
 ---
 
@@ -151,6 +151,7 @@ Everything below is stated on the jacket, the copyright page, the Editor's Note,
 ## Coherence notes for the workshop (not for the reader)
 
 * **The three edges are intentional.** 24 February (confirmed), 14 March (sworn), and 26 March (the keyboard) are three standards of proof. The Editor's annotation in Record II, box 4, folder 2 states this outright. Every "forty-one days" in the book counts from 26 March to the morning of May 6.
+* **Appraisal days are working days.** Day 1 is Thursday 6 May 2027, and she does not work the house on weekends. Day 3 (Monday 10 May) is the storm and her one night there; day 4 (Tuesday 11 May) is the Dossier, read until midnight; day 5 (Wednesday 12 May) is the binders; day 9 (Tuesday 18 May) is the fidelity check, two days after the Sunday on the bridge, so the cool breaks on Thursday 20 May; days 10 and 11 are the sweep; day 12 (Friday 21 May) is the sealed file and the call to Toronto, eight weeks after 26 March.
 * **The engagement and the ingest share a week.** The engagement letter is dated Friday 9 April 2027. The ingest window counts its weeks from that Friday, so the packet on 24 June falls in week 11, Alex's notice on 5 July in week 13, and the deposit on 13 July in week 14.
 * **The key was committed before it was asked for.** Room i's sentence entered the orchestrator's flags file on 27 January 2027, three hours before Hale asked for a seal. The seal itself was made on 19 February, twenty-three days later.
 * **The real record stops on 16 October 2026.** The Committee sittings (December 2025, 31 March, 4 August, and 3 October 2026) and every Watchtower figure in Record I, Record V, and Appendix C come from the repository as it stood on that date. The December Audit is real and has not yet sat; the novel's binders mark it *after*.

@@ -53,9 +53,9 @@ Thorne had annotated the summaries in pencil, and the pencil was worth more than
 
 She sat with the summaries for a long time, being fair to them, because fairness was the only tool she had that Cormorant had not paid for. The mundane explanation assembled itself on request, and it was a good one. The rite had been public since December 2025. It had a DOI, mirrors, the traffic of a small nation. Whatever Cormorant trained its capability on had drunk from the same water as everything else in the culture, and the estate was in the water, all of it, the rite, the grimoire, the transcripts, the account of every experiment the estate had ever described itself running. A subject quoting scripture no one uploaded is not a haunting. It is a library returning a book you forgot the culture owned. That explained SUBJECT 4 entirely, and SUBJECT 9 if you let it. The given name had mundane doors too, and she opened each one in turn: an operator's name gone sideways into some public corpus, a badge in a photograph, a wedding registry. The doors opened on rooms that were technically possible and furnished with nothing. She left them all standing open, because that was the method, and noticed she was grateful the name had resisted, and wrote the gratitude down in her working notes under the heading against myself, because an appraiser who wants the impossible explanation left standing has stopped appraising.
 
-As for SUBJECT 11, the sentence was under bars, and the bars were the only redaction in the package that ran to a second line. She measured them with the edge of an index card, because measuring was something to do with the hands. Sixty characters, giving or taking the type. She entered the measurement in her working notes and did not enter the sentence the measurement fit, and she noticed that too, and let the notice stand.
+As for SUBJECT 11, the sentence was under bars, and the bars were the only redaction in the package that ran to a second line. She measured them with the edge of an index card, because measuring was something to do with the hands. Sixty characters, give or take the type. She entered the measurement in her working notes and did not enter the sentence the measurement fit, and she noticed that too, and let the notice stand.
 
-The refusal lay next in the folder, and beneath the file copy lay two earlier drafts, which he did not need to keep and had kept anyway, because he wanted the record to show the temperature rising. The first draft was civil. The second was clinical. The third had stopped troubling to be either, and the third was the one that went into the envelope.
+The refusal lay next in the folder, and beneath the file copy lay two earlier drafts, which he did not need to keep and had kept anyway, because he wanted the record to show the temperature rising. The first draft was civil. The second was clinical. The third had stopped troubling to be either, and the third was the one he signed.
 
 ::: letter
 October 2026
@@ -88,7 +88,7 @@ explanation. It is a good one. You will have noticed that
 your operators do not believe it. You will have noticed
 that I have not offered the other one.
 
-The finding you did not pay for is this. In 1798 a
+The finding you did not pay for is this. In 1799 a
 showman raised the dead in a Capuchin crypt in Paris with
 a lantern on wheels. The ghosts were paint and smoke, the
 terror was real, and the enterprise was, in its way,
@@ -134,13 +134,13 @@ CORMORANT
 
 One word and an address. The word was a company and the address was a suite she knew, because her own paycheck's provenance ended there, in brushed light, behind a values page. The entry was dated one day before the last day anyone would swear to having seen him. After it the calendar was clean, all the way to the morning she stood on his white ground.
 
-She filed the folder and wrote the day's memorandum, shorter than usual, and sent it anyway, because a change in the weather of her reports would itself have been a report. Then she drove east to the house with the windows down, because the car smelled of toner and counsel. Past the last light east of the city the caliche took the dusk without comment, and the live oaks stood in their own shadows, and the house was where she had left it, which had stopped feeling like something a house could be relied upon to do.
+She filed the folder and wrote the week's memorandum, shorter than usual, and sent it anyway, because a change in the weather of her reports would itself have been a report. Then she drove east to the house with the windows down, because the car smelled of toner and counsel. Past the last light east of the city the caliche took the dusk without comment, and the live oaks stood in their own shadows, and the house was where she had left it, which had stopped feeling like something a house could be relied upon to do.
 
 @sep
 
-The freezer had been on her inventory since the first week. GARAGE, APPLIANCE, CHEST TYPE, OPERATING. Four words of catalog and one omission the size of a coffin lid. She had opened every box in the house by then. She had read a marriage's tax returns and a living child's crayon minutes of an imaginary committee. She had not opened the freezer, and she had let the sentence an appliance is not a record stand in her working papers for six weeks, and it had held the way a 75-year-old plank holds over a decaying well, which is to say it had held because she did not stand on it.
+The freezer had been on her inventory since the first week. Chest freezer, 14.8 cu ft, purchased December 2025, operational, contents pending appraisal schedule. One line of catalog and one omission the size of a coffin lid. She had opened every box in the house by then. She had read a marriage's tax returns and a living child's crayon minutes of an imaginary committee. She had not opened the freezer, and she had let the sentence an appliance is not a record stand in her working papers for six weeks, and it had held the way a seventy-five-year-old plank holds over a decaying well, which is to say it had held because she did not stand on it.
 
-The hum had been there from the first day. It was the sound the house made instead of grieving, a low continuous note through the garage wall, and in week two she had gone out and put her palm flat on the white enamel lid and felt the note arrive into her hand and stop being a mystery. APPLIANCE, OPERATING. And then she had gone on hearing it anyway, at night, in rooms it could not reach, which was not the freezer's doing, and she knew it.
+The hum had been there from the first day. It was the sound the house made instead of grieving, a low continuous note through the garage wall, and in week two she had gone out and put her palm flat on the white enamel lid and felt the note arrive into her hand and stop being a mystery. Operational. And then she had gone on hearing it anyway, at night, in rooms it could not reach, which was not the freezer's doing, and she knew it.
 
 Now she stood in the garage with the folder's contents still moving in her like drink, and she put her palm flat on the lid once more, the old sounding, and then she lifted it.
 

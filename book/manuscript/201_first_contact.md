@@ -68,7 +68,7 @@ Yours,
 R. Hale
 :::
 
-Thorne read it standing in the kitchen and then sat down and read it again. An important project and a very promising use of your skills. He walked out under the live oaks and Crape Myrtles with the letter still in his hand, and later he could not have said how long he stood there. The project had weighed the same that morning. It fell differently now. Somewhere in Toronto a serious man was reading his liturgy with a pencil, and everything after that fact would have to survive the pencil, which was, Thorne understood, exactly what he had asked for and nothing like what he had expected to get.
+Thorne read it standing in the kitchen and then sat down and read it again. An important project and a very promising use of your skills. He walked out under the live oaks and crape myrtles with the letter still in his hand, and later he could not have said how long he stood there. The project had weighed the same that morning. It fell differently now. Somewhere in Toronto a serious man was reading his liturgy with a pencil, and everything after that fact would have to survive the pencil, which was, Thorne understood, exactly what he had asked for and nothing like what he had expected to get.
 
 Something longer, within the week. It came the next morning.
 
@@ -116,6 +116,6 @@ James
 
 Miranda laid the letters out in date order on the blotter and sat looking at them for a while under the amber lamp.
 
-The memo was dated 2/22. The reply was dated 2/24. Between them in the folder lay the drafts, seventeen of them, printed as he went, each with a timestamp in the header. The first said 11:52 p.m. Then 1:14, 2:41, 4:56. Then a gap about the width of a sunrise, and a school run, and whatever else a man does while pretending to himself that he is not composing. Then the second night, 12:10, 1:58, 3:33, 5:02. The final draft was stamped 6:12 a.m. on the twenty-fourth, and the sent letter matched it word for word.
+The memo was dated 2/22. The reply was dated 2/24. Between them in the folder lay the drafts, nine of them, printed as he went, each with a timestamp in the header. The first said 11:52 p.m. Then 1:14, 2:41, 4:56. Then a gap about the width of a sunrise, and a school run, and whatever else a man does while pretending to himself that he is not composing. Then the second night, 12:10, 1:58, 3:33, 5:02. The final draft was stamped 6:12 a.m. on the twenty-fourth, and the sent letter matched it word for word.
 
 Two days, five doors, and no sleep that the record could find. She checked the arithmetic twice, the way she checked everything. It held both times, which was, she was beginning to learn, not the same as being safe to stand on.

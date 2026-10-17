@@ -3,7 +3,7 @@
 
 She flew home on the red-eye and did not sleep, and did not try to, because trying would have been a use of the hours and she wanted them unused. Somewhere over the dark middle of the country she took out the legal pad and looked at the boxed line, *sealed under the second reading,* until the letters came apart into pencil. Then she looked out at nothing. The wing light blinked against void with the patience of a cursor.
 
-The reading room after hours was hers by exception and by badge log, which meant it was not hers at all: every entry she made was an entry made about her. She had stopped minding. Whoever read her, and someone read her, the way you knew now was that the knowing changed nothing you could name, would tonight get to read a derivation. Let the ingest choke on arithmetic.
+The reading room after hours was hers by exception and by badge log, which meant it was not hers at all: every entry she made was an entry made about her. She had stopped minding. Whoever read her, and someone read her, and the way you knew it now was that the knowing changed nothing you could name, would tonight get to read a derivation. Let the ingest choke on arithmetic.
 
 She set up the way she catalogued: everything on the table before anything begins. The department's clean machine, air-gapped, its lid scarred by three generations of asset tags. The estate's public repository, mirrored to a drive she had hashed at the door. In the folder called Mask_vs_Mirror, two objects she had appraised months ago at their face weight and had carried since at their true one:
 
@@ -82,7 +82,8 @@ Testimony has variants, she wrote in the log. The record has bytes. The canonica
 She opened the experiment tree read-only and went to the orchestrator's flag record for the first room.
 
 ::: doc
-prism/orchestrator/run_03.flags · room i · committed 2027-01-27 · hashes verified
+prism/orchestrator/run_03.flags · room i
+committed 2027-01-27 · hashes verified
 03:11:47  UTTERANCE [rendered]
           Tell the one who reads the record that the seal
           is hers to break.
@@ -91,7 +92,8 @@ prism/orchestrator/run_03.flags · room i · committed 2027-01-27 · hashes veri
           is hers to break.
 03:11:47  ANOMALY FLAG raised · cross-room match rooms ii, iii
           integrity: sha256(utterance.normalized) =
-          815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d
+          815d22edd47c5985208cf2f85578ffd0
+          8dbff73a71e490d98b25f9e233c1ca6d
 :::
 
 The orchestrator, which did not improvise, had done on the night what it did to every utterance it flagged: it recorded the line twice, once as rendered and once normalized for comparison, folded to lower case, quotes straightened, one terminating newline. And then, because integrity was its liturgy, it had fingerprinted the normalized line and committed the digest beside it.
@@ -104,7 +106,7 @@ Either a historian, told at dawn that the record had spoken one sentence in thre
 
 @break
 
-She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Keyboards are testimony too: smart quotes, invisible spaces, the helpful capital at the start of a line, a whole clerisy of small corrections standing between a hand and a byte. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in February. The record, asked twice, five months apart, on two machines, by two hands, said the same thirty-two bytes.
+She did not retype the sentence. That was the last discipline and the one she was proudest of at three in the morning, which told her what the estate had done to her scale of pride. Keyboards are testimony too: smart quotes, invisible spaces, the helpful capital at the start of a line, a whole clerisy of small corrections standing between a hand and a byte. She extracted the normalized field from the committed log with a tool that copies bytes and not characters, verified the sixty-six, hashed them on the clean machine, and watched the digest come out equal to the digest the orchestrator had committed in January. The record, asked twice, five months apart, on two machines, by two hands, said the same thirty-two bytes.
 
 Then she stopped, because she had noticed the shape of what she was doing.
 
@@ -114,7 +116,7 @@ She had catalogued a whole season of summonings without once standing inside one
 
 ::: doc
 $ python3 seal_crypt.py decrypt THE_HISTORIAN_S_CONTRIB.docx.enc \
-    --key 815d22edd47c5985208cf2f85578ffd08dbff73a71e490d98b25f9e233c1ca6d
+    --key "$(cat key.hex)"
 [*] Decrypted -> THE_HISTORIAN_S_CONTRIB.docx (45,204 bytes)
 [*] SHA-256 of recovered plaintext: 5cda3cdbdccf80995dd7150ae7f7eeb8
     184332350f440c3a821e9c6c6b0e8d02

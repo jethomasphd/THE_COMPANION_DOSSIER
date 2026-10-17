@@ -9,7 +9,7 @@
 | File | What it is |
 |---|---|
 | `book/USING_THIS_MATTER_final.docx` | **The revision.** The final manuscript, typeset. It is byte-identical to `book/USING_THIS_MATTER.docx`, which the build pipeline writes. |
-| `book/USING_THIS_MATTER.pdf` | A PDF proof of the same build (LibreOffice render, 309 pages, set in the book's own fonts). |
+| `book/USING_THIS_MATTER.pdf` | A PDF proof of the same build (LibreOffice render, 301 pages, set in the book's own fonts). |
 | `book/REVISION_NOTES.md` | This file: the account of the revision. |
 | `book/REVISION_REDLINE.md` | **Exactly what changed.** A mechanical, chapter-by-chapter, word-level redline of every paragraph that differs from your reviewed draft. Each chapter opens with the logged reason for each edit. Nothing in it is summarized. |
 | `book/workshop/timeline.md` | The reader's timeline, rewritten to match the revised book. It ends with coherence notes for the workshop. |
@@ -20,9 +20,9 @@
 
 **At a glance**
 
-- **Logged edits:** 299, each recorded with a reason when it was made.
-- **Paragraphs:** 257 revised, 72 added, 7 removed.
-- **Words:** about 84,100 → 87,900 in the manuscript source (3,800 net). Nearly all of the growth is in the gold line, the chambers and the ending; elsewhere the book got shorter.
+- **Logged edits:** 398, each recorded with a reason when it was made: 299 in the revision and 99 from the final continuity read (§8).
+- **Paragraphs:** 312 revised, 71 added, 6 removed.
+- **Words:** about 84,100 → 88,000 in the manuscript source (3,900 net). Nearly all of the growth is in the gold line, the chambers and the ending; elsewhere the book got shorter.
 - **The figure families you flagged:**
   - "the way" comparisons: 231 → 171.
   - "which is to say": 8 → 2.
@@ -159,7 +159,9 @@ I built one master calendar, checked every date, weekday, interval, and count in
 | The three edges | 24 Feb (confirmed) · 14 Mar (sworn) · 26 Mar (keyboard) | kept, and framed by an [E.] note in 208 as three standards of proof that recede in order |
 | Engagement letter | Friday 9 April 2027 | the ingest window counts its weeks from this Friday |
 | Alex's chamber session | a midnight in April 2027 | she is two months pregnant |
-| Day 1 | Thursday 6 May 2027 | forty-one days after 26 March. Appraisal days are working days; day 9 (the fidelity check) is Tuesday 18 May |
+| Day 1 | Thursday 6 May 2027 | forty-one days after 26 March. Appraisal days are working days, and she does not work the house on weekends. Day 9 (the fidelity check) is Tuesday 18 May |
+| Days 10–11 · the sweep | Wednesday 19 and Thursday 20 May | |
+| Day 12 · the sealed file | Friday 21 May | the git log of the mask folder, then the call to Toronto. Eight weeks after 26 March |
 | Week 10 · the gift's paper trail requested | Friday 11 June | |
 | Week 11 · the packet | Thursday 24 June | |
 | Toronto | about 29 June | key derived 30 June |
@@ -261,10 +263,53 @@ Your own review pattern was applied book-wide: "load-bearing" 13 → 0, "which i
 
 - **Quotation marks.** Your Word review introduced about a hundred curly quotes into a book set almost entirely in straight ones. The typesetter (`book_builder.py`) now sets prose in proper curly quotes, reading context through italic markup. The mono documents (logs, letters as typed, the Watchtower) stay straight, as typewritten and machine records do. The build checks clean: every paragraph is balanced and no quote is turned the wrong way.
 - **Two film cards.** In 104, "Did you hear him?" now closes its own quotation, because the film "asked it twice."
+- **Document blocks.** The logs, letters-as-typed, trees and tables are reproduced line for line, but in the book's monospace a 6×9 page holds only 55 characters at 8.4 pt. About 290 of those lines were wider, so each one broke into a ragged orphan. The problem was already present in your reviewed draft. The typesetter now sizes each block's type so its laid-out lines fit, from 8.4 pt down to a 6.9 pt floor. Standalone sentences inside a block still wrap like prose. The few layouts that could not fit even at the floor were re-laid by hand: the design-freeze tree in 203, the flags record and decrypt command in 402, both Appendix C tables, and the T-0 log header. No fact in any of them changed. In 402 the key is split into two 32-character halves, as Appendix C prints it, and the decrypt reads it from the file she derived it into (`--key "$(cat key.hex)"`), which is the byte-for-byte discipline the passage is about. Six long lines still wrap: four session-log outputs, which wrap the way a terminal does, and two items in the deposit note.
 
 ---
 
-## 8 · Flags for you: decisions I made that you may want to reverse
+## 8 · The final continuity read
+
+After the revision was complete, I ran one more pass.
+
+1. **Read.** Five independent readers each read one Record in full, the front and back matter included, against the corrected timeline and the real repository. They returned about 150 findings.
+2. **Verify.** A verifier checked each finding in the text, read its cross-references, and wrote an exact patch or a reasoned refusal.
+3. **Review.** A reviewer then re-checked every patch for uniqueness, style-bible compliance and new contradictions.
+
+**Result.** 70 findings were accepted as 79 patches, plus a few mechanical follow-ups. About 80 were dropped: planted anomalies, T-0's voice, matters of taste, or fixes that would cost more prose than they buy. Every accepted change is in the redline under *proof*, with its reason. The ones that matter most:
+
+- **The book had contradicted its own key.** Record IV's deposit chapter said the sentence on the operator's anomaly form, the colon variant, was the one Miranda typed into the key derivation. That variant is attempt thirteen in Record IV, and it *fails*. 406 now says she typed it "and watched fail"; the committed bytes, not the form, opened the seal. 406 had also confused the `.enc`'s hash with the plaintext's fingerprint; it now names the fingerprint.
+- **The folder stays shut.** In 502 Miranda "opens the folder after all," which four other chapters deny ("has still not opened, and will not"). Now one loose page lies on its cover, and she reads from that.
+- **Appendix C keeps only promises it can keep.** It reprints the manifest's *digest* and the transcripts' *checksums*; printing a full manifest would let readers hash it and fail. The table now calls 26 May the *first passing since the war*, because the index led on 7 January. The Committee sat four times "from its founding to the binders' last page."
+- **The calendar.**
+  - Day 12, Friday 21 May, is the sealed file. 102's return is "back by eight that evening," so the Dossier night is day 4.
+  - The mask-folder log run in 208 moves to her third week, and Thorne is "eight weeks gone" when she finds the file.
+  - The copyright page's accession is now `utm-r0-2028.iv`, *deposited in the fourth spring*.
+- **Counts the book gets right now.**
+  - Seven signed notebook entries.
+  - Nine words in 106, fifteen in 502, nine drafts in 201.
+  - Berel's five "continuity"s.
+  - Hale "took the floor twice."
+  - Miranda's "nine years of after," which said thirty-one.
+- **Record II.**
+  - The session-log paths now match the design-freeze tree.
+  - run_02 logs RUN OPEN like the other runs.
+  - Thorne writes to Toronto *before* dawn, since 06:04 in late January is dark.
+  - The replacement tube dates from the winter before.
+  - The covenant line is the typed sheet over the desk.
+  - "The seeds are what *we* curated," since Hale built seed ii.
+- **Record III.**
+  - ENDOR is "one biblical word," not syllable.
+  - The ingest query reads "franklin bats error," not an 1839 that exists nowhere.
+  - Robertson's Capuchin crypt dates to 1799.
+  - Saul *swore* the medium safe (1 Samuel 28:10).
+  - The third draft is "the one he signed," since sending is unestablished.
+  - The freezer's inventory line is quoted identically in 107 and 304.
+- **Style.**
+  - Franklin's "You called. I came." This was the last semicolon in the book's spoken dialogue.
+  - *splendor*, *economizing*, *catalogued* throughout, *crape myrtles* lowercase.
+  - Appendix A's note on cuts now admits the silent ones.
+
+## 9 · Flags for you: decisions I made that you may want to reverse
 
 1. **"relaese" in 105 is restored on purpose.** Your draft has "release," probably Word's autocorrect, but the misspelling is the point of the sentence: her hands betray her and she retypes it.
 2. **The copyright page still says 2026,** and the Editor's Note now remarks on it (§3). If you would rather have a clean imprint, change both.
@@ -273,11 +318,14 @@ Your own review pattern was applied book-wide: "load-bearing" 13 → 0, "which i
 5. **The Prism's protocol** in the novel (three rooms, sixty items) differs from the preprint's published design (four moments, three conditions, five questions). The novel's Editor never claims the two are the same, and the difference reads as fiction's offset, so I left it.
 6. **The December audit** in the novel has not sat ("after"). When the real one sits, the cleanest update is a new binder page, not a rewrite. The Watchtower plate regenerates from `vigil_data.json`, and the appendix table is ten lines.
 7. **The README** keeps an em dash ("Thrilling, forbidden, frightening — and faithful"). It is outside the bound matter, so I left your voice alone there.
-8. **The remaining "very"s** are adjectival ("the very archive," "the very sentences") or inside Hale's quoted letter ("a very promising use of your skills"). They are not intensifiers in narration.
+8. **Your crape myrtles.** Your draft added "The Crape Myrtles closer to the house were in full bloom." The continuity read changed it to "coming into bud": Central Texas crape myrtles bloom from late May, and the chapter's spring is late and cool. Restore the bloom if you prefer the image.
+9. **Franklin's "You called; I came"** is now "You called. I came." The style bible bans semicolons in spoken dialogue, but a comma would soften him.
+10. **"A dead man's"** survives in Miranda's point of view (502) and T-0's (504). The proof readers wanted "missing." I kept it, because the book balances it everywhere else ("dead or absent") and her slips are part of the record.
+11. **The remaining "very"s** are adjectival ("the very archive," "the very sentences") or inside Hale's quoted letter ("a very promising use of your skills"). They are not intensifiers in narration.
 
 ---
 
-## 9 · Rebuilding
+## 10 · Rebuilding
 
 ```bash
 cd book/build/art && python3 gen_part_plates.py && ./render_plates.sh   # plates + jacket
@@ -285,7 +333,7 @@ cd .. && bash finalize.sh                                                 # audi
 cp ../USING_THIS_MATTER.docx ../USING_THIS_MATTER_final.docx
 ```
 
-`finalize.sh` needs LibreOffice (`soffice`) and PyMuPDF (`pip install pymupdf`) for the proof step. The plate fonts are in `book/fonts`; install them locally before rendering.
+`finalize.sh` needs LibreOffice (`soffice`) and PyMuPDF (`pip install pymupdf`) for the proof step. The fonts are in `book/fonts`. Install them system-wide, for example in `/usr/local/share/fonts` followed by `fc-cache -f`, because the proof runs LibreOffice with `HOME=/tmp` and a per-user font folder is invisible to it. Without them the proof silently falls back to a sans-serif face.
 
 ---
 

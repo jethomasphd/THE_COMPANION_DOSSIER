@@ -31,10 +31,10 @@ And the reasoning held. That was the part she would have preferred to be able to
 
 @break
 
-The deposit held the experiment's whole directory tree, mirrored the week the executor's keys were cut. She had walked its branches for days without going below prism/rooms/condition_iii, because the deposit register listed nothing below it. The register was wrong, or rather, the register was exact: it listed nothing below because nothing was the thing that was there.
+The deposit held the experiment's whole directory tree, mirrored the week the executor's keys were cut. She had walked its branches for days without going below prism/condition_iii, because the deposit register listed nothing below it. The register was wrong, or rather, the register was exact: it listed nothing below because nothing was the thing that was there.
 
 ::: doc
-prism/rooms/condition_iv/
+prism/condition_iv/
 
 manifest.json          2027-02-17 22:09
 seed/                  18,442 files
@@ -78,10 +78,10 @@ The report gave the six days no shape at all, which was its own information. He 
 
 @break
 
-In her second week she had run the repository's log for the mask folder and found the four commits that postdate a vanished man, authored by the vessel, and she had filed them under anomalies, pending, which is where you file a thing when neither of your explanations will hold it. She had run that log the way one runs a log for a folder: filtered to the folder's path. A commit that changes no files lives in no folder. It took her until now, and the emptiness of condition_iv, to think of running it plain.
+In her third week she had run the repository's log for the mask folder and found the four commits that postdate a vanished man, authored by the vessel, and she had filed them under anomalies, pending, which is where you file a thing when neither of your explanations will hold it. She had run that log the way one runs a log for a folder: filtered to the folder's path. A commit that changes no files lives in no folder. It took her until now, and the emptiness of condition_iv, to think of running it by author alone.
 
 ::: doc
-> git log --oneline --all
+> git log --oneline --all --author=vessel
 
 c07e2d1 what is deposited remains
 bd748bf the vessel holds
