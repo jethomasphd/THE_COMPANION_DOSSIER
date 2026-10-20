@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "interior_pages": 304,
+  "trim_inches": [
+    6,
+    9
+  ],
+  "interior_bleed": false,
+  "binding": "hardcover",
+  "ink": "premium color",
+  "paper": "white",
+  "cover_inches": [
+    14.477,
+    10.417
+  ],
+  "unembedded_fonts": [],
+  "active_transparency": [],
+  "annotations": [],
+  "image_placements": [
+    {
+      "page": "cover",
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 301.18
+    }
+  ],
+  "folio_errors": [],
+  "margin_errors": [],
+  "kdp_previewer_checked": false,
+  "physical_proof_checked": false,
+  "minimum_image_ppi": 301.18,
+  "minimum_text_margins_inches": {
+    "inside": 0.6985,
+    "outside": 0.6995,
+    "top": 0.3709,
+    "bottom": 0.4052
+  },
+  "requested_text_and_degrees_checks": "passed",
+  "changed_pdf_pages": [
+    2,
+    9,
+    10,
+    11,
+    12,
+    13,
+    18,
+    28,
+    38,
+    65,
+    77,
+    84,
+    124,
+    130,
+    184,
+    188,
+    239,
+    303
+  ],
+  "unchanged_page_streams": 286,
+  "surrounding_narrative_preserved": true,
+  "manual_visual_review": [
+    "All 14 plate pages rendered with Poppler and visually checked",
+    "Numbered register and 13-entry plate list checked",
+    "New author note on existing blank page 287 checked"
+  ],
+  "cover_status": "Selected A; unchanged file and 304-page geometry",
+  "file_sizes_bytes": {
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 3642003,
+    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 3600954
+  },
+  "sha256": {
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": "d084ee41228566d64927800e310b973e2ddfb4187322ca2df4c7e9ceb8ee6b4f",
+    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": "d0b8c364c187b3586346beb5a9d4f3e16d9a73334e50681d5cc2eca8a05309da"
+  }
+}

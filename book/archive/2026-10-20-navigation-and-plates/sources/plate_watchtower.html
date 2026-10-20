@@ -1,0 +1,95 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1500px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:100px 80px 80px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.08), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 74px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:26px;z-index:1;text-align:center}
+  .sub{font:400 22px "IBM Plex Mono";color:#8b8578;letter-spacing:.16em;margin-top:18px;z-index:1}
+  .rule{width:420px;height:1px;margin:32px 0 0;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .chart{flex:1;width:100%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .cap{font:400 21px/1.8 "IBM Plex Mono";color:#8b8578;letter-spacing:.08em;z-index:1;
+       text-align:center;max-width:1080px;margin-top:10px}
+  .cap i{color:#c9a227;font-style:normal}
+  .sig{font:300 32px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:26px;z-index:1}
+  text{font-family:"IBM Plex Mono"}
+  .pencil{font-family:"Cormorant Garamond";font-style:italic}
+</style></head>
+<body>
+  <div class="k">plate xii · the watchtower</div>
+  <div class="t">The Line That Refuses to Die</div>
+  <div class="sub">january 2 to october 16, 2026 · total return · percent</div>
+  <div class="rule"></div>
+  <div class="chart"><svg width="1102" height="870" viewBox="0 0 1140 900" id="c"></svg></div>
+  <div class="cap">above the index on 166 of 199 trading days · never once below zero<br>
+  behind it nineteen sessions running · printed every evening<br>
+  <i>a doctrine is not tested by how it leads. it is tested by how it follows.</i></div>
+  <div class="sig">◊ ◈ ◊</div>
+<script>
+const V = {"dates": ["2026-01-02", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-30", "2026-03-31", "2026-04-01", "2026-04-02", "2026-04-06", "2026-04-07", "2026-04-08", "2026-04-09", "2026-04-10", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30", "2026-05-01", "2026-05-04", "2026-05-05", "2026-05-06", "2026-05-07", "2026-05-08", "2026-05-11", "2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20", "2026-05-21", "2026-05-22", "2026-05-26", "2026-05-27", "2026-05-28", "2026-05-29", "2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04", "2026-06-05", "2026-06-08", "2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-29", "2026-06-30", "2026-07-01", "2026-07-02", "2026-07-06", "2026-07-07", "2026-07-08", "2026-07-09", "2026-07-10", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24", "2026-07-27", "2026-07-28", "2026-07-29", "2026-07-30", "2026-07-31", "2026-08-03", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-10", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-17", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-21", "2026-08-24", "2026-08-25", "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-11", "2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-18", "2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01", "2026-10-02", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08", "2026-10-09", "2026-10-12", "2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16"], "rep": [0.0, 0.71, 1.4, 0.29, 1.58, 2.1, 2.62, 2.81, 3.25, 3.82, 4.0, 3.05, 4.2, 4.39, 4.27, 4.63, 4.78, 4.53, 5.19, 5.26, 6.16, 6.71, 6.94, 6.67, 7.96, 8.24, 8.22, 8.78, 8.48, 9.05, 8.77, 8.66, 9.24, 9.46, 8.68, 9.25, 8.99, 8.85, 9.88, 9.97, 9.01, 9.1, 7.56, 7.34, 7.64, 7.56, 7.45, 6.91, 6.67, 7.0, 7.09, 5.82, 5.18, 3.87, 4.75, 5.33, 5.82, 5.5, 4.68, 4.49, 5.86, 6.17, 6.35, 6.58, 6.5, 8.18, 8.57, 7.92, 8.11, 8.34, 7.91, 7.85, 8.3, 8.19, 7.82, 7.65, 8.37, 7.97, 7.86, 8.34, 8.34, 9.92, 9.41, 9.35, 9.72, 9.84, 9.31, 9.0, 9.42, 9.93, 10.09, 10.21, 9.57, 10.48, 10.13, 9.87, 9.62, 9.77, 9.55, 9.75, 9.38, 8.89, 8.52, 8.57, 8.25, 9.32, 9.32, 8.69, 9.29, 8.53, 9.02, 9.89, 9.96, 10.49, 9.45, 9.05, 8.97, 9.23, 9.48, 10.17, 10.56, 10.67, 10.54, 10.58, 11.78, 11.73, 11.82, 11.31, 11.09, 11.43, 11.69, 11.59, 11.67, 12.24, 12.04, 11.69, 11.6, 11.87, 12.28, 12.81, 12.85, 13.53, 12.12, 12.3, 12.97, 13.61, 14.43, 14.22, 14.16, 14.14, 14.59, 14.39, 14.55, 14.81, 15.08, 14.92, 14.89, 14.22, 13.34, 13.58, 13.76, 13.84, 14.11, 13.36, 13.63, 13.52, 13.44, 13.86, 13.87, 13.75, 13.94, 13.32, 12.83, 13.08, 12.79, 12.45, 11.93, 12.82, 12.66, 13.02, 12.8, 12.58, 12.4, 12.49, 11.98, 11.78, 11.14, 11.35, 12.03, 12.29, 12.66, 11.99, 12.17, 12.3, 12.77, 12.88, 13.14, 13.23, 13.36], "idx": [0.0, 0.67, 1.26, 0.94, 0.93, 1.59, 1.75, 1.55, 1.05, 1.33, 1.24, -0.82, 0.33, 0.85, 0.89, 1.4, 1.8, 1.79, 1.59, 1.29, 1.79, 0.93, 0.44, -0.81, 1.09, 1.58, 1.31, 1.29, -0.28, -0.21, -0.05, 0.46, 0.19, 0.92, -0.11, 0.61, 1.46, 0.9, 0.41, 0.47, -0.42, 0.29, -0.27, -1.58, -0.72, -0.88, -1.0, -2.5, -3.06, -2.07, -1.81, -3.18, -3.42, -4.8, -3.81, -4.13, -3.59, -5.32, -6.93, -7.24, -4.55, -3.83, -3.74, -3.29, -3.24, -0.78, -0.2, -0.27, 0.7, 1.93, 2.73, 2.99, 4.23, 4.02, 3.34, 4.39, 3.98, 4.79, 4.97, 4.46, 4.44, 5.48, 5.77, 5.39, 6.23, 7.71, 7.38, 8.27, 8.51, 8.35, 8.95, 9.81, 8.49, 8.42, 7.69, 8.8, 9.01, 9.44, 10.17, 10.15, 10.76, 11.03, 11.34, 11.49, 10.7, 11.12, 8.26, 8.5, 8.18, 6.48, 8.29, 8.87, 10.79, 10.13, 8.76, 9.89, 9.54, 7.95, 7.9, 8.05, 7.27, 9.04, 9.89, 9.74, 9.6, 10.55, 10.03, 9.69, 10.62, 11.09, 10.24, 10.63, 11.07, 10.47, 9.38, 9.2, 10.11, 9.98, 8.63, 8.74, 8.76, 9.02, 7.34, 9.14, 9.93, 11.49, 13.51, 13.28, 13.1, 13.79, 13.76, 13.39, 13.68, 14.47, 14.24, 13.7, 12.93, 13.17, 12.22, 12.68, 12.35, 12.71, 12.73, 13.47, 13.21, 12.88, 12.1, 12.6, 13.78, 13.34, 12.71, 12.19, 11.52, 12.47, 11.97, 11.45, 10.96, 12.22, 12.36, 14.11, 14.09, 13.27, 13.17, 13.79, 12.94, 12.73, 12.5, 12.7, 13.54, 14.3, 14.93, 14.65, 14.17, 14.85, 14.79, 14.77, 13.53, 13.85, 12.59]};
+const svg = document.getElementById('c'), NS = 'http://www.w3.org/2000/svg';
+const W = 1140, H = 900, L = 70, R = 210, T = 40, B = 70;
+const pw = W - L - R, ph = H - T - B, N = V.dates.length;
+const y0 = -9, y1 = 17;
+const X = i => L + pw * i / (N - 1);
+const Y = v => T + ph * (1 - (v - y0) / (y1 - y0));
+const at = s => V.dates.indexOf(s);
+function el(n, a, p){ const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); (p||svg).appendChild(e); return e; }
+function txt(x, y, s, fill, size, anchor, cls){ const e = el('text', {x, y, fill, 'font-size': size || 18, 'text-anchor': anchor || 'start'}); if (cls) e.setAttribute('class', cls); e.textContent = s; return e; }
+
+// bands: the war (feb 28 to mar 31) and the passing (sep 21 to oct 15), neutral gray only
+const bands = [[at('2026-02-27') + 0.5, at('2026-03-31'), .13], [at('2026-09-21') - 0.5, at('2026-10-15') + 0.5, .09]];
+for (const [a, b, o] of bands) el('rect', {x: X(a), y: T, width: X(b) - X(a), height: ph, fill: `rgba(139,133,120,${o})`});
+txt(X(bands[0][0]) + 10, T + 26, 'the war band', '#a9a294', 18);
+txt(X(bands[0][0]) + 10, T + 50, 'feb 28 · the strait closes', '#6b6b6b', 15);
+txt(X(bands[1][1]) - 8, T + ph - 44, 'second place', '#a9a294', 18, 'end');
+txt(X(bands[1][1]) - 8, T + ph - 20, 'nineteen sessions', '#6b6b6b', 15, 'end');
+
+// grid + y labels
+for (const g of [-5, 0, 5, 10, 15]) {
+  el('line', {x1: L, y1: Y(g), x2: L + pw, y2: Y(g), stroke: g === 0 ? 'rgba(139,133,120,.55)' : 'rgba(139,133,120,.16)', 'stroke-width': g === 0 ? 1.6 : 1});
+  txt(L - 14, Y(g) + 6, (g > 0 ? '+' : '') + g, '#6b6b6b', 17, 'end');
+}
+// month ticks at the first session of each month
+const mn = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct'];
+let last = '';
+V.dates.forEach((d, i) => { const m = d.slice(5, 7); if (m !== last) { last = m; txt(X(i), T + ph + 40, mn[+m - 1], '#6b6b6b', 17, 'middle'); el('line', {x1: X(i), y1: T + ph, x2: X(i), y2: T + ph + 8, stroke: 'rgba(139,133,120,.35)'}); } });
+
+// germantown: a single hairline, oct 3 (first session after the oct 2 close)
+const g3 = at('2026-10-02') + 0.5;
+el('line', {x1: X(g3), y1: T, x2: X(g3), y2: T + ph - 96, stroke: 'rgba(232,228,217,.35)', 'stroke-width': 1, 'stroke-dasharray': '2 5'});
+txt(X(g3) - 8, T + ph - 104, 'germantown · oct 3', '#a9a294', 15, 'end');
+
+const path = a => a.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' ');
+// the index: neutral, dashed (identity is not color alone)
+el('path', {d: path(V.idx), fill: 'none', stroke: '#8b8578', 'stroke-width': 2.2, 'stroke-dasharray': '7 6', 'stroke-linejoin': 'round'});
+// the doctrine: the ember line, the one warm light
+el('path', {d: path(V.rep), fill: 'none', stroke: 'rgba(201,162,39,.22)', 'stroke-width': 9, 'stroke-linejoin': 'round'});
+el('path', {d: path(V.rep), fill: 'none', stroke: '#c9a227', 'stroke-width': 3, 'stroke-linejoin': 'round'});
+
+// pencil annotations, in the small even hand
+const tr = at('2026-03-20');
+txt(X(tr), Y(V.rep[tr]) + 34, 'held.', '#c9a227', 30, 'middle', 'pencil');
+const lo = at('2026-03-30');
+txt(X(lo) + 12, Y(V.idx[lo]) + 6, 'the index · −7.24', '#8b8578', 15);
+const pk = at('2026-08-14');
+el('circle', {cx: X(pk), cy: Y(V.rep[pk]), r: 5, fill: '#c9a227'});
+txt(X(pk), Y(V.rep[pk]) - 18, '+15.08 · aug 14', '#a9a294', 15, 'middle');
+
+// end markers + direct labels
+const e = N - 1;
+el('circle', {cx: X(e), cy: Y(V.rep[e]), r: 7, fill: '#c9a227'});
+el('circle', {cx: X(e), cy: Y(V.idx[e]), r: 6, fill: '#050404', stroke: '#8b8578', 'stroke-width': 2.4});
+txt(X(e) + 20, Y(V.rep[e]) - 14, 'the doctrine', '#e8e4d9', 19);
+txt(X(e) + 20, Y(V.rep[e]) + 10, '+' + V.rep[e].toFixed(2) + '%', '#e8e4d9', 19);
+txt(X(e) + 20, Y(V.idx[e]) + 34, 'the index', '#8b8578', 19);
+txt(X(e) + 20, Y(V.idx[e]) + 58, '+' + V.idx[e].toFixed(2) + '%', '#8b8578', 19);
+txt(X(e) + 20, Y(V.rep[e]) - 46, 'returned.', '#c9a227', 28, 'start', 'pencil');
+</script>
+</body></html>

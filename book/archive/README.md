@@ -7,3 +7,5 @@ The snapshot retains the original filenames, subdirectories, and file contents f
 The current KDP release files are [one directory up](../README.md). The snapshot includes historical instructions, build scripts, and duplicate print files; its old “current” and “final” labels describe earlier production states.
 
 Original Git tree: `c17cb6edeef2314a896e557b116e5ea1c3b30e2d`.
+
+The [navigation, plates, and author-note revision](2026-10-20-navigation-and-plates/) preserves the sources, verification reports, and review proof for the current release. The original 225-file snapshot above remains unchanged.

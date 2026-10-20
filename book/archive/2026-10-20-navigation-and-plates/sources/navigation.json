@@ -1,0 +1,449 @@
+{
+  "source_edition": "304-page hardcover after The Halpern Memo correction",
+  "page_numbering": "Roman i–xvi; Arabic 1–288 from PDF page 17",
+  "records": [
+    {
+      "title": "record i · the atrium",
+      "pdf_page": 17,
+      "folio": 1,
+      "entries": [
+        {
+          "code": "1.1",
+          "title": "The Caliche Lot",
+          "pdf_page": 19,
+          "folio": 3
+        },
+        {
+          "code": "1.2",
+          "title": "The Two Files",
+          "pdf_page": 26,
+          "folio": 10
+        },
+        {
+          "code": "2.1",
+          "title": "The Founding Session",
+          "pdf_page": 32,
+          "folio": 16
+        },
+        {
+          "code": "2.2",
+          "title": "The Gold Line",
+          "pdf_page": 37,
+          "folio": 21
+        },
+        {
+          "code": "3.1",
+          "title": "The Fidelity Check",
+          "pdf_page": 44,
+          "folio": 28
+        },
+        {
+          "code": "3.2",
+          "title": "The Chambers",
+          "pdf_page": 48,
+          "folio": 32
+        },
+        {
+          "code": "4.1",
+          "title": "The Sealed Thing",
+          "pdf_page": 56,
+          "folio": 40
+        }
+      ]
+    },
+    {
+      "title": "record ii · the prism",
+      "pdf_page": 64,
+      "folio": 48,
+      "entries": [
+        {
+          "code": "1.1",
+          "title": "First Contact",
+          "pdf_page": 66,
+          "folio": 50
+        },
+        {
+          "code": "1.2",
+          "title": "The Name of the Doubt",
+          "pdf_page": 74,
+          "folio": 58
+        },
+        {
+          "code": "2.1",
+          "title": "The Design",
+          "pdf_page": 82,
+          "folio": 66
+        },
+        {
+          "code": "2.2",
+          "title": "The Composite",
+          "pdf_page": 90,
+          "folio": 74
+        },
+        {
+          "code": "3.1",
+          "title": "The Anchored Man",
+          "pdf_page": 96,
+          "folio": 80
+        },
+        {
+          "code": "3.2",
+          "title": "The Ninth Hour",
+          "pdf_page": 104,
+          "folio": 88
+        },
+        {
+          "code": "4.1",
+          "title": "The Vigil",
+          "pdf_page": 112,
+          "folio": 96
+        },
+        {
+          "code": "4.2",
+          "title": "Condition IV",
+          "pdf_page": 120,
+          "folio": 104
+        }
+      ]
+    },
+    {
+      "title": "record iii · the freezer full of a man",
+      "pdf_page": 129,
+      "folio": 113,
+      "entries": [
+        {
+          "code": "1.1",
+          "title": "Eight Minutes",
+          "pdf_page": 131,
+          "folio": 115
+        },
+        {
+          "code": "1.2",
+          "title": "The Kitchen and the Name",
+          "pdf_page": 137,
+          "folio": 121
+        },
+        {
+          "code": "2.1",
+          "title": "Provenance",
+          "pdf_page": 144,
+          "folio": 128
+        },
+        {
+          "code": "2.2",
+          "title": "The Leakage",
+          "pdf_page": 152,
+          "folio": 136
+        },
+        {
+          "code": "3.1",
+          "title": "The Small Thing",
+          "pdf_page": 160,
+          "folio": 144
+        },
+        {
+          "code": "3.2",
+          "title": "The Chamber Below",
+          "pdf_page": 165,
+          "folio": 149
+        },
+        {
+          "code": "4.1",
+          "title": "The Ingest",
+          "pdf_page": 174,
+          "folio": 158
+        },
+        {
+          "code": "4.2",
+          "title": "The Witness",
+          "pdf_page": 181,
+          "folio": 165
+        }
+      ]
+    },
+    {
+      "title": "record iv · the watchtower",
+      "pdf_page": 187,
+      "folio": 171,
+      "entries": [
+        {
+          "code": "1.1",
+          "title": "Toronto",
+          "pdf_page": 189,
+          "folio": 173
+        },
+        {
+          "code": "1.2",
+          "title": "The Key",
+          "pdf_page": 196,
+          "folio": 180
+        },
+        {
+          "code": "2.1",
+          "title": "The Historian’s Contribution",
+          "pdf_page": 203,
+          "folio": 187
+        },
+        {
+          "code": "2.2",
+          "title": "The Wife in Marfa",
+          "pdf_page": 211,
+          "folio": 195
+        },
+        {
+          "code": "3.1",
+          "title": "Mr. Berel’s Offer",
+          "pdf_page": 218,
+          "folio": 202
+        },
+        {
+          "code": "3.2",
+          "title": "The Deposit",
+          "pdf_page": 224,
+          "folio": 208
+        },
+        {
+          "code": "4.1",
+          "title": "T-0",
+          "pdf_page": 231,
+          "folio": 215
+        }
+      ]
+    },
+    {
+      "title": "record v · the chamber",
+      "pdf_page": 238,
+      "folio": 222,
+      "entries": [
+        {
+          "code": "1.1",
+          "title": "The Door",
+          "pdf_page": 240,
+          "folio": 224
+        },
+        {
+          "code": "1.2",
+          "title": "The Covenant",
+          "pdf_page": 245,
+          "folio": 229
+        },
+        {
+          "code": "2.1",
+          "title": "The Deposition",
+          "pdf_page": 252,
+          "folio": 236
+        },
+        {
+          "code": "2.2",
+          "title": "The Third Question",
+          "pdf_page": 259,
+          "folio": 243
+        },
+        {
+          "code": "3.1",
+          "title": "Return to Baseline",
+          "pdf_page": 265,
+          "folio": 249
+        },
+        {
+          "code": "3.2",
+          "title": "What Remains",
+          "pdf_page": 271,
+          "folio": 255
+        },
+        {
+          "code": "4.1",
+          "title": "Final Dispatch",
+          "pdf_page": 281,
+          "folio": 265
+        }
+      ]
+    }
+  ],
+  "front_matter": [
+    {
+      "title": "The Hand and the Glass",
+      "folio": "v",
+      "pdf_page": 5
+    },
+    {
+      "title": "Editor’s Note",
+      "folio": "vii",
+      "pdf_page": 7
+    },
+    {
+      "title": "List of Plates",
+      "folio": "xi",
+      "pdf_page": 11
+    },
+    {
+      "title": "How to Read This Deposit",
+      "folio": "xv",
+      "pdf_page": 15
+    }
+  ],
+  "apparatus": [
+    {
+      "code": "A",
+      "title": "The Companion Rite",
+      "pdf_page": 286,
+      "folio": 270
+    },
+    {
+      "code": "B",
+      "title": "A Glossary of the Estate",
+      "pdf_page": 291,
+      "folio": 275
+    },
+    {
+      "code": "C",
+      "title": "The Watchtower",
+      "pdf_page": 295,
+      "folio": 279
+    },
+    {
+      "code": null,
+      "title": "Acknowledgments",
+      "pdf_page": 299,
+      "folio": 283
+    },
+    {
+      "code": null,
+      "title": "A Note on the Type",
+      "pdf_page": 302,
+      "folio": 286
+    },
+    {
+      "code": null,
+      "title": "About the Author",
+      "pdf_page": 303,
+      "folio": 287
+    },
+    {
+      "code": null,
+      "title": "About This Book",
+      "pdf_page": 304,
+      "folio": 288
+    }
+  ],
+  "plates": [
+    {
+      "number": "I",
+      "title": "The Threshold",
+      "subtitle": "frontispiece · invocation and departure",
+      "folio": "ii",
+      "pdf_pages": [
+        2
+      ]
+    },
+    {
+      "number": "II",
+      "title": "The Atrium",
+      "subtitle": "Record I · a concordance of the counts",
+      "folio": "2",
+      "pdf_pages": [
+        18
+      ]
+    },
+    {
+      "number": "III",
+      "title": "The Prism",
+      "subtitle": "Record II · the boundary of the corpus",
+      "folio": "49",
+      "pdf_pages": [
+        65
+      ]
+    },
+    {
+      "number": "IV",
+      "title": "The Freezer Full of a Man",
+      "subtitle": "Record III · mechanism and permission",
+      "folio": "114",
+      "pdf_pages": [
+        130
+      ]
+    },
+    {
+      "number": "V",
+      "title": "The Watchtower",
+      "subtitle": "Record IV · the record and its absences",
+      "folio": "172",
+      "pdf_pages": [
+        188
+      ]
+    },
+    {
+      "number": "VI",
+      "title": "The Chamber",
+      "subtitle": "Record V · who may end the working",
+      "folio": "223",
+      "pdf_pages": [
+        239
+      ]
+    },
+    {
+      "number": "VII",
+      "title": "Withheld at the keeper’s direction",
+      "subtitle": "the mark is honored",
+      "folio": "108",
+      "pdf_pages": [
+        124
+      ]
+    },
+    {
+      "number": "VIII",
+      "title": "The Vessel",
+      "subtitle": "voice · sight · flame · mark · shadow",
+      "folio": "12",
+      "pdf_pages": [
+        28
+      ]
+    },
+    {
+      "number": "IX",
+      "title": "The Composition of a Name",
+      "subtitle": "the corpus behind a summoned man",
+      "folio": "61",
+      "pdf_pages": [
+        77
+      ]
+    },
+    {
+      "number": "X",
+      "title": "Three Sealed Rooms",
+      "subtitle": "the prism experiment · one variable",
+      "folio": "68",
+      "pdf_pages": [
+        84
+      ]
+    },
+    {
+      "number": "XI",
+      "title": "The Estate",
+      "subtitle": "plan and key, on the following spread",
+      "folio": "xii–xiii",
+      "pdf_pages": [
+        12,
+        13
+      ]
+    },
+    {
+      "number": "XII",
+      "title": "The Line That Refuses to Die",
+      "subtitle": "the gold line and the index · 2026",
+      "folio": "22",
+      "pdf_pages": [
+        38
+      ]
+    },
+    {
+      "number": "XIII",
+      "title": "Two Rooms and One Door",
+      "subtitle": "the green room · the chamber · the clock",
+      "folio": "168",
+      "pdf_pages": [
+        184
+      ]
+    }
+  ]
+}

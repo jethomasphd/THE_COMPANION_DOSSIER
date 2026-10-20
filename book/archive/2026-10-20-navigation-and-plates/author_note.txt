@@ -1,0 +1,7 @@
+Jacob E. Thomas, MA, PhD studies how information environments shape mental health, behavior, and access to opportunity, including how industries that profit from harmful products use media against vulnerable populations.
+
+His work spans more than a decade in hospitals including Bellevue, NewYork-Presbyterian, and Parkland, and research settings at NYU, Columbia University, and across the University of Texas System. He has contributed to NIH-, CDC-, and DoD-funded research totaling more than $50 million. He holds a PhD in Health Behavior from the University of Texas at Austin and an MA in Clinical Psychology from Columbia University.
+
+In industry, he works as a data scientist and AI strategist in recruitment technology, directing research into the information systems that shape labor markets and access to healthcare. His open-source projects include conflict intelligence, AI-mediated historical dialogue, and tools that widen access to data science. The Companion Dossier belongs to that work.
+
+Across these projects runs a practical question: who gets to inspect the machinery that shapes a life? In this volume, that question enters the archive.

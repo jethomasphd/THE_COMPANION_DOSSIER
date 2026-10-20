@@ -1,0 +1,107 @@
+{
+  "pages": 304,
+  "plate_ids": 13,
+  "plate_pages": 14,
+  "author_note_folio": 287,
+  "author_bio_source": "Author-supplied biographical text, condensed; no added factual credentials",
+  "author_note_paragraphs": [
+    "Jacob E. Thomas, MA, PhD studies how information environments shape mental health, behavior, and access to opportunity, including how industries that profit from harmful products use media against vulnerable populations.",
+    "His work spans more than a decade in hospitals including Bellevue, NewYork-Presbyterian, and Parkland, and research settings at NYU, Columbia University, and across the University of Texas System. He has contributed to NIH-, CDC-, and DoD-funded research totaling more than $50 million. He holds a PhD in Health Behavior from the University of Texas at Austin and an MA in Clinical Psychology from Columbia University.",
+    "In industry, he works as a data scientist and AI strategist in recruitment technology, directing research into the information systems that shape labor markets and access to healthcare. His open-source projects include conflict intelligence, AI-mediated historical dialogue, and tools that widen access to data science. The Companion Dossier belongs to that work.",
+    "Across these projects runs a practical question: who gets to inspect the machinery that shapes a life? In this volume, that question enters the archive."
+  ],
+  "changed_pdf_pages": [
+    2,
+    12,
+    13,
+    18,
+    28,
+    38,
+    65,
+    77,
+    84,
+    124,
+    130,
+    184,
+    188,
+    239,
+    303
+  ],
+  "unchanged_pdf_pages": 289,
+  "surrounding_narrative_preserved": true,
+  "selected_cover": "unchanged A",
+  "checks": [
+    {
+      "pdf_page": 28,
+      "original_image_removed": "Im302",
+      "placement_points": [
+        77.4,
+        230.84796701616,
+        288,
+        358.257454152
+      ],
+      "native_vector_replacement": true
+    },
+    {
+      "pdf_page": 77,
+      "original_image_removed": "Im881",
+      "placement_points": [
+        77.4,
+        257.40034450416,
+        288,
+        331.705076664
+      ],
+      "native_vector_replacement": true
+    },
+    {
+      "pdf_page": 84,
+      "original_image_removed": "Im953",
+      "placement_points": [
+        77.4,
+        230.84796701616,
+        288,
+        358.257454152
+      ],
+      "native_vector_replacement": true
+    },
+    {
+      "pdf_page": 124,
+      "original_image_removed": "Im1567",
+      "placement_points": [
+        77.4,
+        202.09952823216,
+        288,
+        387.005892936
+      ],
+      "native_vector_replacement": true
+    },
+    {
+      "plate": "XII",
+      "observations": 199,
+      "series_unchanged": true,
+      "source": "plate_watchtower.html"
+    },
+    {
+      "pdf_page": 38,
+      "original_image_removed": "Im430",
+      "placement_points": [
+        77.4,
+        257.40034450416,
+        288,
+        331.705076664
+      ],
+      "native_vector_replacement": true
+    },
+    {
+      "pdf_page": 184,
+      "original_image_removed": "Im2396",
+      "placement_points": [
+        77.4,
+        230.84796701616,
+        288,
+        358.257454152
+      ],
+      "native_vector_replacement": true
+    }
+  ]
+}
