@@ -1,0 +1,51 @@
+{
+  "binding": "KDP hardcover case laminate",
+  "interior": "premium color",
+  "paper": "white",
+  "trim_inches": [
+    6,
+    9
+  ],
+  "page_count": 304,
+  "full_cover_inches": [
+    14.477,
+    10.417
+  ],
+  "spine_inches": 0.902,
+  "wrap_inches": 0.591,
+  "hinge_inches": 0.394,
+  "art_placed_inches": [
+    3.4,
+    5.1
+  ],
+  "art_native_pixels": [
+    1024,
+    1536
+  ],
+  "art_ppi": 301.1764705882353,
+  "calculator_source": "https://kdp.amazon.com/cover-calculator",
+  "calculator_verified_on": "2026-10-19",
+  "status": "Author-selected A · Archive Sculpture; print files checked locally; KDP preview and physical proof pending",
+  "interior_bleed": false,
+  "finish_recommendation": "matte",
+  "barcode": "Leave the existing-barcode option unchecked; KDP adds the ISBN barcode in the reserved panel.",
+  "interior_file": "USING_THIS_MATTER_KDP_interior_304pp.pdf",
+  "cover_file": "USING_THIS_MATTER_KDP_hardcover_cover.pdf",
+  "kdp_upload_performed": false,
+  "physical_proof_reviewed": false,
+  "selected_cover": "A · Archive Sculpture",
+  "cover_art_native_pixels": [
+    1024,
+    1536
+  ],
+  "cover_art_placed_inches": [
+    3.4,
+    5.1
+  ],
+  "cover_art_effective_ppi": 301.1764705882353,
+  "interior_plate_method": "Typeset documentary evidence, with original map and evidentiary diagrams preserved",
+  "selected_on": "2026-10-20",
+  "cover_alpha_flattened": true,
+  "cover_background": "#10100f",
+  "back_copy": "Existing approved back-cover text preserved; typography recolored to the selected cover palette"
+}

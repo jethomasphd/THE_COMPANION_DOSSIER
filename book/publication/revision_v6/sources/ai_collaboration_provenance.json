@@ -1,9 +1,11 @@
 {
   "origin": "Author's account in this conversation, 20 October 2026",
   "claude_repository_role": "Primary builder under author's orchestration; author's ideas and writing seeds elaborated throughout by AI; credited scholarly collaborators contributed their ideas.",
-  "novel": "Claude consumed repository, discussed author's novel concept, generated initial draft, author read and revised, later Claude versions workshopped the manuscript.",
+  "novel": "Author instantiated a Claude Code session with the entire repository, dozens of handwritten notes, and text files constituting a rough novel outline; directed the dialogue and initial draft, read and revised it, and workshopped later versions.",
   "model_version_policy": "Use provider/family names, because the exact historical release labels have not been independently established.",
   "summoned_voices": "Gesture to method and /from_beyond, not claims about specific historical people personally contributing.",
   "reference": "https://github.com/jethomasphd/THE_COMPANION_DOSSIER/tree/main/from_beyond",
-  "author_priority": "The author explicitly centers intellectual sovereignty of himself and human collaborators; AI is a directed dialogic tool, not an independent originator or author."
+  "author_priority": "The author explicitly centers intellectual sovereignty of himself and human collaborators; AI is a directed dialogic tool, not an independent originator or author.",
+  "page_estimate": "Conservative scale estimate from snapshot immediately before the first book files: 94,744 words of deduplicated readable web/text material, about 316 pages at 300 words/page. Excludes PDFs, code/data, assets, and private notes. Not a claim about exact original model context.",
+  "cover_selection": "Author selected option A, Archive Sculpture, on 20 October 2026."
 }

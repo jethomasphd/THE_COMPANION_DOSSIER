@@ -114,10 +114,14 @@ if ROOT:
     report['unchanged_page_content_streams']=unchanged
     report['all_embedded_images_preserved_losslessly']=True
 report['status']='passed'
-report['manual_visual_review']=['New statement, publication page, closing links and acknowledgments rendered and visually checked','Document plates and narrative preserved']
-report['cover_status']='Selection pending; geometry checked against existing 304-page wrap. Workshop PDF is not an upload file.'
+report['manual_visual_review']=['Revised two-page author statement rendered and visually checked','Selected A front and full wrap rendered and visually checked','Document plates and narrative preserved']
+report['cover_status']='Author-selected A · Archive Sculpture; final wrap checked at the previously verified 304-page geometry. Workshop PDF remains a review file.'
 assert 'zenodo' not in joined.lower()
 assert 'The Hand and the Glass' in all_text[4]
+assert 'online filing room' in all_text[4]
+assert 'Claude Code session' in all_text[5]
+assert 'handwritten notes' in all_text[5]
+assert 'three hundred printed pages' in ' '.join(all_text[5].split())
 
 report['file_sizes_bytes']={p.name:p.stat().st_size for p in OUT.glob('*.pdf')}
 (OUT/'sources/preflight_report.json').write_text(json.dumps(report,indent=2),encoding='utf8')

@@ -1,11 +1,11 @@
-# Hardcover cover workshop
+# Selected hardcover cover
 
-The latest [three cover renditions](../publication/revision_v6/COVER_RENDITIONS.pdf) remove the rectangular image edge and retain a woman visibly constructed from documents. All three include MA, PhD.
+**A · Archive Sculpture**, selected by the author on 20 October 2026.
 
-Open [the visual gallery](../publication/revision_v6/REVIEW.html) locally after downloading the repository to compare them. These are front-cover concepts, not full KDP wraps. A new selection is pending.
+[The full hardcover wrap](USING_THIS_MATTER_KDP_hardcover_cover.pdf) is identical to the current publication copy. The document-built woman is set on a continuous charcoal background, with the complete head below the title and MA, PhD in the author line.
 
-The existing `USING_THIS_MATTER_KDP_hardcover_cover.pdf` is the previous full wrap for the 304-page, 6 × 9-inch premium-color hardcover. It is retained as a prior version. It has not been replaced with an unselected candidate.
+The wrap is 14.477 × 10.417 inches for the 304-page, 6 × 9-inch KDP premium-color hardcover on white paper. The 0.902-inch spine and case allowances use the previously verified KDP calculator dimensions. Native image resolution is 301 ppi; print transparency is flattened and fonts are embedded.
 
-[Publication notes](../publication/READ_ME_KDP.txt) contain the setup; [jacket copy](../publication/jacket_and_retailer_copy.txt) contains the description.
+[Publication notes](../publication/READ_ME_KDP.txt) contain the upload setup. [The gallery](../publication/revision_v6/REVIEW.html) shows the selected wrap, retained workshop studies, and The Hand and the Glass. [Jacket copy](../publication/jacket_and_retailer_copy.txt) contains the description.
 
-Older `jacket_full.png` and `cover_front.png` files are historical designs and are not KDP upload masters.
+The three-page workshop PDF and older jacket PNG files are historical review materials, not KDP upload masters. KDP Print Previewer and a physical proof remain pending.

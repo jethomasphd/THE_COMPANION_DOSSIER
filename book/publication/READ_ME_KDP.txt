@@ -1,27 +1,29 @@
 USING THIS MATTER
 Jacob E. Thomas, MA, PhD
 
-CURRENT INTERIOR — 20 October 2026
-USING_THIS_MATTER_KDP_interior_304pp.pdf
-304 pages / 6 x 9 inches / no bleed
-Hardcover / premium color / white paper
+CURRENT PRINT FILES — 20 October 2026
+Interior: USING_THIS_MATTER_KDP_interior_304pp.pdf
+Cover: USING_THIS_MATTER_KDP_hardcover_cover.pdf
+304 pages / 6 x 9 inches / no interior bleed
+Hardcover / premium color / white paper / matte finish recommended
 
-The Hand and the Glass, on pages v-vi, records the author's human intellectual
-origins and directed dialogic use of AI. The existing documentary evidence
-plates, estate map, narrative text and Hale revision are preserved.
-The publication and closing pages print the GitHub repository and website URLs.
+SELECTED COVER: A — ARCHIVE SCULPTURE
+Full wrap: 14.477 x 10.417 inches. Spine: 0.902 inch.
+The publication and jacket wrap PDFs are identical.
+Leave the existing-barcode option unchecked; KDP supplies the ISBN barcode
+in the reserved white panel. No ISBN or price has been invented.
+The front-cover PDF/JPG is for presentation, not the full-wrap upload.
+revision_v6/COVER_RENDITIONS.pdf contains workshop studies; do not upload it.
 
-COVER SELECTION PENDING
-The new options are in revision_v6/COVER_RENDITIONS.pdf.
-Open revision_v6/REVIEW.html locally to compare them.
-These are front-cover concepts. Do not upload this workshop PDF to KDP.
-The previous USING_THIS_MATTER_KDP_hardcover_cover.pdf is retained pending a
-new selection. It is not a newly approved cover.
+The Hand and the Glass, on pages v-vi, explains the public website and GitHub
+repository, records the Claude Code session with the repository, handwritten
+notes and rough outline, and centers the author's human intellectual origins
+and directed dialogic use of AI. The conservative page estimate uses the
+pre-book snapshot, with its method recorded in sources/corpus_page_estimate.json.
+The documentary evidence plates, estate map, narrative and Hale revision
+are preserved. The publication and closing pages print both reader URLs.
 
-The 304-page hardcover geometry remains 14.477 x 10.417 inches, with a
-0.902-inch spine. The selected new wrap will need its final print check.
-KDP Print Previewer and a physical proof remain pending.
+The interior and selected cover passed local file preflight. KDP Print
+Previewer and a physical proof remain pending; no KDP upload was performed.
 
-Current statement and changed-page review:
-revision_v6/THE_HAND_AND_THE_GLASS.txt
-revision_v6/STATEMENT_AND_LINKS_REVIEW.pdf
+Open revision_v6/REVIEW.html locally for the selected wrap and author statement.

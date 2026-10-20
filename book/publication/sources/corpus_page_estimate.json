@@ -1,0 +1,529 @@
+{
+  "snapshot": "8fb355f52405c5df905d4d4ff13785bb2d5b6ada",
+  "historical_scope": "Repository immediately before the first book files were added on 7 July 2026. A scale estimate, not an audit of the original Claude session context.",
+  "method": "Count words in Markdown/text and visible HTML prose. Omit script/style/navigation/header/footer, Markdown fenced code, links, paired HTML when Markdown exists, Addendum mirror, and repeated paragraphs of at least eight words. Exclude binary PDF/DOCX, code, JSON/CSV datasets, assets, and later book/publication content.",
+  "words": 94744,
+  "words_per_page": 300,
+  "files": [
+    {
+      "path": "Committee_of_Patriots_Sessions/Q12026/handbill/index.html",
+      "words": 504,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "629e3f25790d8911557755e38769f0d2aa64b472",
+      "source_bytes": 16621
+    },
+    {
+      "path": "Committee_of_Patriots_Sessions/Q12026/index.html",
+      "words": 5497,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "e5fd6b9c10d36a6bd73b47df7c33d0a4cddf4e0c",
+      "source_bytes": 97048
+    },
+    {
+      "path": "Committee_of_Patriots_Sessions/README.md",
+      "words": 269,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "407c9f00a1d82731e9a88a755961b0f8eba0a148",
+      "source_bytes": 2096
+    },
+    {
+      "path": "Committee_of_Patriots_Sessions/handbill/index.html",
+      "words": 220,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "bea52ed1db66b34961326171f44758db76fe9786",
+      "source_bytes": 14227
+    },
+    {
+      "path": "Committee_of_Patriots_Sessions/index.html",
+      "words": 1008,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "70c05fd88381982bb189a0298124a587c7028049",
+      "source_bytes": 29846
+    },
+    {
+      "path": "EL/index.html",
+      "words": 3551,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "10e69d20f299ee25eb509ac675975d16b954b1f4",
+      "source_bytes": 62112
+    },
+    {
+      "path": "EL/the_nut_house.html",
+      "words": 2570,
+      "duplicateParagraphWordsRemoved": 933,
+      "blob_sha": "61e0cb3e2661f00ab33439a1306841ffc91cf248",
+      "source_bytes": 42778
+    },
+    {
+      "path": "Latent_Dialogic_Space/DIALOGIC_INTELLIGENCE.md",
+      "words": 2832,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "73be8547bd7fd29dca60e4cd85dc6ccb76c19cc4",
+      "source_bytes": 22023
+    },
+    {
+      "path": "Latent_Dialogic_Space/THE_INVOCATION.md",
+      "words": 880,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "e2a44a23e5c9fd13d27a05f8ec67e4a41208116e",
+      "source_bytes": 10204
+    },
+    {
+      "path": "Latent_Dialogic_Space/index.html",
+      "words": 3830,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "c1f4e921392ded4bdf34a6eac68ece5f48c42962",
+      "source_bytes": 50532
+    },
+    {
+      "path": "Mask_vs_Mirror/README.md",
+      "words": 594,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "aaf2b330210a1f53f624942d3b1db911b0e0a8b7",
+      "source_bytes": 4504
+    },
+    {
+      "path": "Mask_vs_Mirror/miranda_deck.html",
+      "words": 3300,
+      "duplicateParagraphWordsRemoved": 24,
+      "blob_sha": "61364e4ff10f4fa503efeff8bae40b4116593d6a",
+      "source_bytes": 189615
+    },
+    {
+      "path": "Narratives/Endor/AGENT_PROMPT.md",
+      "words": 1145,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "c91b62016bf7e71ef324e07f1558a6388dbe24d4",
+      "source_bytes": 6802
+    },
+    {
+      "path": "Narratives/Endor/assets/README.md",
+      "words": 363,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "1c1e83ff011257cd2e03bb7e9da08efa69124afc",
+      "source_bytes": 2442
+    },
+    {
+      "path": "Narratives/Endor/index.html",
+      "words": 2791,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "a5ba94019c4e2ceee6d686f7ddb7eeff9be0b5bc",
+      "source_bytes": 72997
+    },
+    {
+      "path": "Narratives/Endor/seed.md",
+      "words": 4174,
+      "duplicateParagraphWordsRemoved": 1517,
+      "blob_sha": "d10666d41e8b7afec0029d42a1b137951feb0deb",
+      "source_bytes": 41496
+    },
+    {
+      "path": "Narratives/The_Nut_House/index.html",
+      "words": 971,
+      "duplicateParagraphWordsRemoved": 2612,
+      "blob_sha": "a2f7cd14fc18d12e436deafc0bab09d8b3198a13",
+      "source_bytes": 82437
+    },
+    {
+      "path": "Narratives/index.html",
+      "words": 246,
+      "duplicateParagraphWordsRemoved": 17,
+      "blob_sha": "a5514054551297b3e425f5fb6e29a1eaaa5653f7",
+      "source_bytes": 27020
+    },
+    {
+      "path": "README.md",
+      "words": 1158,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "3d80a0839e170785e31684512559a49e1b4b4918",
+      "source_bytes": 9189
+    },
+    {
+      "path": "Take_Action/index.html",
+      "words": 834,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "2a67e996e7892480fe68999abb34daabb9fc8f43",
+      "source_bytes": 40603
+    },
+    {
+      "path": "The_5_Lamps/DELL_MED_STRATEGIC_PLAN.md",
+      "words": 1848,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "8ed1ce803b051066b6e3ebf17ae99638180ac3b9",
+      "source_bytes": 13837
+    },
+    {
+      "path": "The_5_Lamps/STEVE_JOBS_DIALOGUE.md",
+      "words": 1905,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "d458448ee889fbbe25642dfce1eb0c728f5329e8",
+      "source_bytes": 11923
+    },
+    {
+      "path": "The_5_Lamps/index.html",
+      "words": 626,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "a0837193178b252100c695837b0c0ca8691623e6",
+      "source_bytes": 18202
+    },
+    {
+      "path": "The_Addendum/index.html",
+      "words": 2980,
+      "duplicateParagraphWordsRemoved": 10,
+      "blob_sha": "46f05bd1137b15f7832560b08a1132d6e41686d9",
+      "source_bytes": 87145
+    },
+    {
+      "path": "The_Aerodrome/README.md",
+      "words": 722,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "a99c90ac65fd08c9c8fc3c20a0cc2fbe34e35296",
+      "source_bytes": 4504
+    },
+    {
+      "path": "The_Aerodrome/index.html",
+      "words": 564,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "bb2b84f93be2846ed13387f9cebca320b1875cef",
+      "source_bytes": 16941
+    },
+    {
+      "path": "The_Atrium/README.md",
+      "words": 273,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "79831d1c2f320e3af8fcec0d6eceecc6c2bcae67",
+      "source_bytes": 1917
+    },
+    {
+      "path": "The_Atrium/index.html",
+      "words": 1290,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "54c6cba06c92fcda2d7b06186b134d48cf7d80ca",
+      "source_bytes": 38745
+    },
+    {
+      "path": "The_Boardroom/index.html",
+      "words": 671,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "c6ea15ddeb3e8cb2ed5a7a93ca5c35e5c099a588",
+      "source_bytes": 22749
+    },
+    {
+      "path": "The_Boardroom/seed.md",
+      "words": 1192,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "d358393825e162414b61bc010af6de0d0b432787",
+      "source_bytes": 8731
+    },
+    {
+      "path": "The_Chair/index.html",
+      "words": 584,
+      "duplicateParagraphWordsRemoved": 58,
+      "blob_sha": "8cc2c623a0c84a3417983c70cdb24dfd78083084",
+      "source_bytes": 18249
+    },
+    {
+      "path": "The_Chair/the-waters-recede.html",
+      "words": 679,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "53083bfe8b851fe704d379e9e26bd8e2522a9933",
+      "source_bytes": 11436
+    },
+    {
+      "path": "The_Exchange/README.md",
+      "words": 697,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "bafb0291be80e3f6eb3634d8c21d8b963f205790",
+      "source_bytes": 5541
+    },
+    {
+      "path": "The_Exchange/STARTER_PROMPT.md",
+      "words": 815,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "78813586e742233c7076b28bc06f1f2719dd68e6",
+      "source_bytes": 5645
+    },
+    {
+      "path": "The_Exchange/index.html",
+      "words": 534,
+      "duplicateParagraphWordsRemoved": 8,
+      "blob_sha": "d53832a455c394acd50c9c7aa806341b1974ab51",
+      "source_bytes": 19677
+    },
+    {
+      "path": "The_Exchange/search/index.html",
+      "words": 119,
+      "duplicateParagraphWordsRemoved": 79,
+      "blob_sha": "7689874d683ffeb07e1191484ffb8dbb637d0fdf",
+      "source_bytes": 24868
+    },
+    {
+      "path": "The_Halpern_Memo/index.html",
+      "words": 4282,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "0d82b89c45f48304dd4af435089b35fa2d431372",
+      "source_bytes": 89212
+    },
+    {
+      "path": "The_Harness/README.md",
+      "words": 576,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "778637558974c75c5ac2f8d054e4d77120f73d1d",
+      "source_bytes": 4958
+    },
+    {
+      "path": "The_Harness/index.html",
+      "words": 475,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "3f59697070273860c65041958ccd60f863e295a6",
+      "source_bytes": 17952
+    },
+    {
+      "path": "The_Magic_Lantern/README.md",
+      "words": 346,
+      "duplicateParagraphWordsRemoved": 8,
+      "blob_sha": "346a3e792c38e9ab83d3361d885e2c0d6c9006d0",
+      "source_bytes": 2486
+    },
+    {
+      "path": "The_Magic_Lantern/THE_INVOCATION.md",
+      "words": 440,
+      "duplicateParagraphWordsRemoved": 8,
+      "blob_sha": "d7b20a907602f73cf60dda8d8c661cce319434cc",
+      "source_bytes": 7028
+    },
+    {
+      "path": "The_Magic_Lantern/THE_SUMMONING_FILM.md",
+      "words": 1094,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "64e31346d9b3abbf51e89da85cac42b30b499b6b",
+      "source_bytes": 7667
+    },
+    {
+      "path": "The_Magic_Lantern/index.html",
+      "words": 1022,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "78d56d2acf9d71e0fac8fe602956de99957f8836",
+      "source_bytes": 26764
+    },
+    {
+      "path": "The_Magic_Lantern/the_film/index.html",
+      "words": 317,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "1e2bb94400bfb0954405885cc7a943b1cb99570b",
+      "source_bytes": 46604
+    },
+    {
+      "path": "The_Magic_Lantern/the_general/index.html",
+      "words": 98,
+      "duplicateParagraphWordsRemoved": 15,
+      "blob_sha": "258a65f3611b4703b2d98081664ef4cba1718423",
+      "source_bytes": 26236
+    },
+    {
+      "path": "The_Symposium/index.html",
+      "words": 624,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "0dea177f904b4fe6a6dd4261045e56c2103d7246",
+      "source_bytes": 20826
+    },
+    {
+      "path": "The_Watchtower/archive/README.md",
+      "words": 161,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "616f7e66a8b5449c475bb0e62dc31da5764396e0",
+      "source_bytes": 1134
+    },
+    {
+      "path": "The_Watchtower/archive/index.html",
+      "words": 577,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "25767a095489ecad3fc4641bd4907888ee914911",
+      "source_bytes": 129048
+    },
+    {
+      "path": "The_Watchtower/index.html",
+      "words": 1374,
+      "duplicateParagraphWordsRemoved": 12,
+      "blob_sha": "630a40111234c44b16e08bd9ae81f020b0fa0c3b",
+      "source_bytes": 56574
+    },
+    {
+      "path": "dispatch/index.html",
+      "words": 502,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "40f396a0b3097fe9a8082ac3a0435ad37f08bf6c",
+      "source_bytes": 22225
+    },
+    {
+      "path": "from_beyond/001_steve_jobs_sees_the_whole_machine.md",
+      "words": 3060,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "6bd8b307a96ce8b77815dbf612aacec5c0d66871",
+      "source_bytes": 19291
+    },
+    {
+      "path": "from_beyond/002_gabe_newell_the_player_is_the_search.md",
+      "words": 3493,
+      "duplicateParagraphWordsRemoved": 20,
+      "blob_sha": "16e82daf92c04103eeb9c68ed7f59def6336691e",
+      "source_bytes": 21681
+    },
+    {
+      "path": "from_beyond/003_rockefeller_the_boardroom_of_titans.md",
+      "words": 3975,
+      "duplicateParagraphWordsRemoved": 12,
+      "blob_sha": "ac4538fb709f82f1c574a9dd24379cc6ed66f0df",
+      "source_bytes": 25563
+    },
+    {
+      "path": "from_beyond/004_alexander_disney_campbell_the_living_framework.md",
+      "words": 3069,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "4991e2afaec486120261aeea76656515ff2622fb",
+      "source_bytes": 19130
+    },
+    {
+      "path": "from_beyond/005_simone_weil_the_grace_of_attention.md",
+      "words": 2396,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "3ffe74cbf2e128d7ffe80e3a9b6e43c296d8165c",
+      "source_bytes": 14349
+    },
+    {
+      "path": "from_beyond/006_danielewski_the_room_that_built_itself.html",
+      "words": 3135,
+      "duplicateParagraphWordsRemoved": 21,
+      "blob_sha": "7695fab794c7f4bc9474f0153c767f4b37802b18",
+      "source_bytes": 31667
+    },
+    {
+      "path": "from_beyond/007_marker_morris_vertov_the_lantern_turns_on_itself.md",
+      "words": 3670,
+      "duplicateParagraphWordsRemoved": 10,
+      "blob_sha": "b203f4c77342f12e6bee3ed03df87fa2f8193c7e",
+      "source_bytes": 21751
+    },
+    {
+      "path": "from_beyond/index.html",
+      "words": 526,
+      "duplicateParagraphWordsRemoved": 16,
+      "blob_sha": "9aaa73fe61d771b5aa0dee9bf836cf62b0b8fd62",
+      "source_bytes": 13201
+    },
+    {
+      "path": "index.html",
+      "words": 1408,
+      "duplicateParagraphWordsRemoved": 117,
+      "blob_sha": "137b09ecaa6bd377b08f62f85f679f581c09c30a",
+      "source_bytes": 57445
+    },
+    {
+      "path": "initiation_rite.md",
+      "words": 1530,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "eea1ffbc569cec778ddfcac9e4e91648f1384640",
+      "source_bytes": 10266
+    },
+    {
+      "path": "seeds/00_OVERVIEW.md",
+      "words": 416,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "9d85abef680ff46f0dc11ef6bb0b133fbb78d8b4",
+      "source_bytes": 3367
+    },
+    {
+      "path": "seeds/01_scaffold_and_css.md",
+      "words": 469,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "ad01eacf1d6ebd2010b13631d5a9642ea3f13189",
+      "source_bytes": 5003
+    },
+    {
+      "path": "seeds/02_condensed_narrative.md",
+      "words": 596,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "7296fcdb8f9af3db01509083b95a8303851a6797",
+      "source_bytes": 4859
+    },
+    {
+      "path": "seeds/03_chat_ui.md",
+      "words": 636,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "c07dc3ee8783960b6efbfb4246ecf862c87830ad",
+      "source_bytes": 7858
+    },
+    {
+      "path": "seeds/04_threshold_transition.md",
+      "words": 367,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "32485861eee122d409c2941569b513e75b7dd527",
+      "source_bytes": 6450
+    },
+    {
+      "path": "seeds/05_wire_api.md",
+      "words": 517,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "f999bc6cf2e89b0ac1810741db2ebc3a45810bb8",
+      "source_bytes": 8453
+    },
+    {
+      "path": "seeds/06_polish_and_deploy.md",
+      "words": 588,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "a1990474e987d6af8eb1be63a6e9accdd1375434",
+      "source_bytes": 6359
+    },
+    {
+      "path": "threshold.html",
+      "words": 633,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "8a9e5794817e2e45f3d556171a36239a8a865e89",
+      "source_bytes": 54856
+    },
+    {
+      "path": "workflow/index.html",
+      "words": 136,
+      "duplicateParagraphWordsRemoved": 0,
+      "blob_sha": "75fe3ef1d908d28e2db0239812fd674e8e67a12e",
+      "source_bytes": 8322
+    }
+  ],
+  "omitted": [
+    {
+      "path": "Addendum/index.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/001_steve_jobs_sees_the_whole_machine.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/002_gabe_newell_the_player_is_the_search.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/003_rockefeller_the_boardroom_of_titans.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/004_alexander_disney_campbell_the_living_framework.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/005_simone_weil_the_grace_of_attention.html",
+      "reason": "alternate presentation of a retained source"
+    },
+    {
+      "path": "from_beyond/007_marker_morris_vertov_the_lantern_turns_on_itself.html",
+      "reason": "alternate presentation of a retained source"
+    }
+  ],
+  "pages": 315.81333333333333,
+  "page_range_250_to_300_words": [
+    316,
+    379
+  ],
+  "source_url": "https://github.com/jethomasphd/THE_COMPANION_DOSSIER/tree/8fb355f52405c5df905d4d4ff13785bb2d5b6ada",
+  "published_estimate": "more than three hundred printed pages"
+}

@@ -68,14 +68,6 @@
     {
       "page": "cover",
       "pixels": [
-        1536,
-        1024
-      ],
-      "ppi": 301.18
-    },
-    {
-      "page": "cover",
-      "pixels": [
         1024,
         1536
       ],
@@ -95,13 +87,16 @@
   },
   "requested_text_and_degrees_checks": "passed",
   "manual_visual_review": [
-    "New statement, publication page, closing links and acknowledgments rendered and visually checked",
+    "Revised two-page author statement rendered and visually checked",
+    "Selected A front and full wrap rendered and visually checked",
     "Document plates and narrative preserved"
   ],
-  "cover_status": "Selection pending; geometry checked against existing 304-page wrap. Workshop PDF is not an upload file.",
+  "cover_status": "Author-selected A \u00b7 Archive Sculpture; final wrap checked at the previously verified 304-page geometry. Workshop PDF remains a review file.",
   "file_sizes_bytes": {
     "COVER_RENDITIONS.pdf": 13398603,
-    "STATEMENT_AND_LINKS_REVIEW.pdf": 382259,
-    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2958692
+    "STATEMENT_AND_LINKS_REVIEW.pdf": 382719,
+    "USING_THIS_MATTER_front_cover.pdf": 3577419,
+    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 3600954,
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2959152
   }
 }

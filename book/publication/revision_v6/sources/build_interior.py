@@ -137,7 +137,7 @@ assert 'zenodo' not in alltext.lower()
 assert all(url in final.pages[3].extract_text() and url in final.pages[303].extract_text() for url in [REPO,SITE])
 assert 'Hale returned to the hospital in October with pneumonia.' in final.pages[271].extract_text()
 for i in [1,17,64,129,187,238,11,12,27,37,76,83,123,183]:assert base.pages[i].get_contents().get_data()==final.pages[i].get_contents().get_data()
-report={'interior_pages':304,'replaced_pages':[i+1 for i in replace],'unchanged_page_content_streams':304-len(replace),'author_statement_pages':[5,6],'editor_note_pages':[7,8],'epigraph_page':14,'narrative_and_evidence_plates_preserved':True,'Hale_revision_preserved':True,'reader_links':[REPO,SITE],'zenodo_mentions_remaining':0,'cover_status':'Three workshop candidates; selection pending'}
+report={'interior_pages':304,'replaced_pages':[i+1 for i in replace],'unchanged_page_content_streams':304-len(replace),'author_statement_pages':[5,6],'editor_note_pages':[7,8],'epigraph_page':14,'narrative_and_evidence_plates_preserved':True,'Hale_revision_preserved':True,'reader_links':[REPO,SITE],'zenodo_mentions_remaining':0,'cover_status':'A · Archive Sculpture selected by the author on 20 October 2026'}
 (OUT/'sources/revision_verification.json').write_text(json.dumps(report,indent=2),encoding='utf8')
 (OUT/'sources/editorial_content.json').write_text(json.dumps(EDITORIAL,ensure_ascii=False,indent=2),encoding='utf8')
 (OUT/'sources/ai_collaboration_provenance.json').write_text(json.dumps(DATA['user_provenance'],ensure_ascii=False,indent=2),encoding='utf8')
