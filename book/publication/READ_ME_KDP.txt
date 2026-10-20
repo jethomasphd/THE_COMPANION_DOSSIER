@@ -2,61 +2,54 @@ USING THIS MATTER
 A Novel of the Companion Estate
 Jacob E. Thomas, MA, PhD
 
-FINAL KDP HARDCOVER UPLOAD FILES
+CURRENT EDITION: DOCUMENTARY PLATES / OPTION B
+20 October 2026
 
-1. Manuscript: USING_THIS_MATTER_KDP_interior_304pp.pdf
-2. Cover: USING_THIS_MATTER_KDP_hardcover_cover.pdf
+KDP UPLOADS
+Manuscript: USING_THIS_MATTER_KDP_interior_304pp.pdf
+Cover: USING_THIS_MATTER_KDP_hardcover_cover.pdf
+The plate review PDF and preview images are review materials, not uploads.
 
-Use these two PDFs for this edition. The JPEG is a front-cover preview and
-retailer image; it is not the full hardcover cover upload.
-
-KDP SETUP
-Binding: hardcover, case laminate
-Interior: premium color on white paper
-Trim: 6 x 9 inches
-Bleed: no bleed
-Pages: 304, including 16 pages of front matter
-Cover finish: matte recommended
-Cover file size: 14.477 x 10.417 inches
+SETUP
+Hardcover / case laminate
+Premium color / white paper
+6 x 9 inches / no interior bleed
+304 pages
+Cover: 14.477 x 10.417 inches
 Spine: 0.902 inches
-ISBN barcode: let KDP add it in the reserved white box; leave the
-existing-barcode option unchecked. No ISBN or price has been invented.
+Matte finish recommended
+Let KDP add the ISBN barcode in the reserved white box.
 
-The front cover, spine, and title page retain the author's MA, PhD credit.
-The selected cover is The Borrowed Face. Its archival-paper visual language
-continues through the frontispiece and all five record-opening illustrations.
-The estate map and evidentiary plates retain their approved content.
+REVISION
+Selected cover B, A Body of Evidence. Its original artwork is placed below
+a separate title area; the head and documents are fully visible.
+The frontispiece and five record-opening plates are typeset documentary
+evidence drawn from the manuscript. The cinematic workshop scenes and
+paper-object illustrations are not used in this edition.
+The seven other numbered plates, including the withheld leaf and two-page
+estate map, retain their previous content. There are thirteen numbered
+plates in all; the review PDF has fourteen pages because the map is a spread.
+The Hale correction on printed page 256 is retained.
+297 interior page content streams are unchanged. The seven replaced pages
+are the six plates and the publication page, whose artwork credit is updated.
 
-FINAL TEXT CHANGE
-In What Remains, printed page 256 (PDF page 272), the opening is now:
-Hale returned to the hospital in October with pneumonia.
-The next paragraph begins: It was the punctual kind, the kind the eleventh
-floor keeps a season for...
-The illness now precedes the recovery and the granddaughter's email.
-No other narrative text was changed from the approved visual-continuity
-edition. The prior removal of the fictional imprint and punctuation statement
-is retained. The fictional accession/date chronology is intentional.
+REVIEW
+Open REVIEW.html for the corrected cover and six document plates.
+PLATE_SEQUENCE_REVIEW.pdf includes the complete sequence at print size.
+File-level checks passed for fonts, margins, image resolution and folios.
+KDP Print Previewer and a physical proof have not been completed.
 
-PUBLICATION CHECK
-The supplied preflight report documents file-level checks. These files have
-not been uploaded to KDP or accepted by its Print Previewer. After upload,
-review the Previewer and order a physical proof to confirm dark illustration
-detail, ember annotations, and spine placement in print.
-Complete KDP's AI-content questions accurately: this edition includes
-AI-generated artwork and jacket copy. Describe the manuscript text according
-to its actual creation process. The manuscript credits Claude; the new
-artwork credits OpenAI image tools.
+PROVENANCE AND SOURCES
+The cover was generated with the built-in imagegen tool during the workshop.
+The new interior plates use native PDF text and vector drawing.
+sources/plate_provenance.json and manuscript_source_extracts.json document
+their source passages and distinguish transcription from editorial summaries.
+sources/build_revision.py records the local assembly process; it requires the
+prior approved PDF baselines and manuscript extraction from this workspace.
+It is not a standalone full-book composer. The repository's original builder
+and older DOCX files describe prior editions, not the current print masters.
 
-SUPPORTING MATERIALS
-artwork/: the seven selected native illustration assets.
-jacket_and_retailer_copy.txt: approved jacket and retailer description.
-sources/: specifications, editorial content, image prompts, revision record,
-checksums, and verification results. The PDF revision utility records the
-surgical change to the prior approved layout; it is not a general book composer.
-
-Official KDP references, checked 19 October 2026:
-https://kdp.amazon.com/en_US/help/topic/GKYZRXFBZH2LDXAK
-https://kdp.amazon.com/en_US/help/topic/GDTKFJPNQCBTMRV6
-https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6
-https://kdp.amazon.com/cover-calculator
-https://kdp.amazon.com/en_US/help/topic/G200672390
+Older artwork files retained elsewhere in the repository are historical.
+The current six plates are the pages shown in previews/plate-01.png through
+plate-06.png and the plate review PDF. The cover source is
+artwork/cover_B_a_body_of_evidence.png.

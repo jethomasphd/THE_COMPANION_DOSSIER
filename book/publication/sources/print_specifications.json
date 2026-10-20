@@ -32,5 +32,16 @@
   "interior_file": "USING_THIS_MATTER_KDP_interior_304pp.pdf",
   "cover_file": "USING_THIS_MATTER_KDP_hardcover_cover.pdf",
   "kdp_upload_performed": false,
-  "physical_proof_reviewed": false
+  "physical_proof_reviewed": false,
+  "selected_cover": "B · A Body of Evidence",
+  "cover_art_native_pixels": [
+    1024,
+    1536
+  ],
+  "cover_art_placed_inches": [
+    3.4,
+    5.1
+  ],
+  "cover_art_effective_ppi": 301.1764705882353,
+  "interior_plate_method": "Typeset documentary evidence, with original map and evidentiary diagrams preserved"
 }

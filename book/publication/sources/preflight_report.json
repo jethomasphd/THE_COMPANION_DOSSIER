@@ -18,22 +18,6 @@
   "annotations": [],
   "image_placements": [
     {
-      "page": 2,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
-    },
-    {
-      "page": 18,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
-    },
-    {
       "page": 28,
       "pixels": [
         1200,
@@ -48,14 +32,6 @@
         1384
       ],
       "ppi": 300.0
-    },
-    {
-      "page": 65,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
     },
     {
       "page": 77,
@@ -82,14 +58,6 @@
       "ppi": 300.0
     },
     {
-      "page": 130,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
-    },
-    {
       "page": 184,
       "pixels": [
         1200,
@@ -98,26 +66,18 @@
       "ppi": 300.0
     },
     {
-      "page": 188,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
-    },
-    {
-      "page": 239,
-      "pixels": [
-        1024,
-        1536
-      ],
-      "ppi": 341.33
-    },
-    {
       "page": "cover",
       "pixels": [
         1536,
         1024
+      ],
+      "ppi": 301.18
+    },
+    {
+      "page": "cover",
+      "pixels": [
+        1024,
+        1536
       ],
       "ppi": 301.18
     }
@@ -134,15 +94,17 @@
     "bottom": 0.4052
   },
   "requested_text_and_degrees_checks": "passed",
-  "unchanged_page_content_streams": 303,
-  "all_embedded_images_preserved_losslessly": true,
   "manual_visual_review": [
-    "Revised Hale page at print scale",
-    "Selected full hardcover wrap",
-    "Approved front matter and plate sequence retained; all other page streams verified identical"
+    "All six replacement document plates rendered and visually reviewed",
+    "Reframed option B front and full hardcover wrap visually reviewed",
+    "Updated publication credit page visually reviewed",
+    "297 unchanged page content streams verified, including Hale revision and all retained evidence/map pages"
   ],
   "file_sizes_bytes": {
-    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 3115638,
-    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 19198802
-  }
+    "PLATE_SEQUENCE_REVIEW.pdf": 1310660,
+    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 7066183,
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2683817
+  },
+  "unchanged_page_content_streams": 297,
+  "interior_replacement_method": "Six vector/typeset evidence plates, plus artwork-credit page."
 }

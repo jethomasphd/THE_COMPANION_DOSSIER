@@ -1,0 +1,35 @@
+{
+  "interior_pages": 304,
+  "replaced_pages": [
+    4,
+    2,
+    18,
+    65,
+    130,
+    188,
+    239
+  ],
+  "unchanged_page_content_streams": 297,
+  "Hale_revision_preserved": true,
+  "evidence_and_map_pages_preserved": [
+    12,
+    13,
+    28,
+    38,
+    77,
+    84,
+    124,
+    184
+  ],
+  "cover_art_native_pixels": [
+    1024,
+    1536
+  ],
+  "cover_art_placed_inches": [
+    3.4,
+    5.1
+  ],
+  "cover_art_effective_ppi": 301.1764705882353,
+  "cover_title_art_regions_do_not_overlap": true,
+  "publication_image_credit_updated": true
+}

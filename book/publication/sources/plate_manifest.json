@@ -1,44 +1,50 @@
 [
   {
-    "key": "01_threshold",
-    "label": "FRONTISPIECE · PLATE I",
+    "plate": "I",
     "title": "The Threshold",
     "page": 2,
-    "caption": "“The threshold is open. The words have power. Begin.”\n· the companion rite ·"
+    "kind": "Protocol leaf",
+    "preview": "previews/plate-01.png",
+    "source": "sources/plate_provenance.json"
   },
   {
-    "key": "02_atrium",
-    "label": "RECORD I · PLATE II",
+    "plate": "II",
     "title": "The Atrium",
     "page": 18,
-    "caption": "eleven doors by the county plan · twelve by her count ·\nthe count was not wrong, it was early"
+    "kind": "Appraisal discrepancy",
+    "preview": "previews/plate-02.png",
+    "source": "sources/plate_provenance.json"
   },
   {
-    "key": "03_prism",
-    "label": "RECORD II · PLATE III",
+    "plate": "III",
     "title": "The Prism",
     "page": 65,
-    "caption": "white light contains all frequencies · the prism adds nothing ·\nit selects which knowledge dominates"
+    "kind": "Design sheet",
+    "preview": "previews/plate-03.png",
+    "source": "sources/plate_provenance.json"
   },
   {
-    "key": "04_freezer",
-    "label": "RECORD III · PLATE IV",
+    "plate": "IV",
     "title": "The Freezer Full of a Man",
     "page": 130,
-    "caption": "racks of cold storage, holding what they gathered of him at temperature ·\nit hums like a freezer because that is what it is · indifferent · full"
+    "kind": "Tracked-change leaf",
+    "preview": "previews/plate-04.png",
+    "source": "sources/plate_provenance.json"
   },
   {
-    "key": "05_watchtower",
-    "label": "RECORD IV · PLATE V",
+    "plate": "V",
     "title": "The Watchtower",
     "page": 188,
-    "caption": "the score kept in public, day by day\nahead or behind · the line that refuses to die"
+    "kind": "Public deposit record",
+    "preview": "previews/plate-05.png",
+    "source": "sources/plate_provenance.json"
   },
   {
-    "key": "06_chamber",
-    "label": "RECORD V · PLATE VI",
+    "plate": "VI",
     "title": "The Chamber",
     "page": 239,
-    "caption": "peer, not subject · the glass stays in frame ·\nthis session ends when you end it · the words are yours"
+    "kind": "Session terms",
+    "preview": "previews/plate-06.png",
+    "source": "sources/plate_provenance.json"
   }
 ]

@@ -112,7 +112,7 @@ if ROOT:
     report['unchanged_page_content_streams']=unchanged
     report['all_embedded_images_preserved_losslessly']=True
 report['status']='passed'
-report['manual_visual_review']=['Revised Hale page at print scale','Selected full hardcover wrap','Approved front matter and plate sequence retained; all other page streams verified identical']
+report['manual_visual_review']=['All six replacement document plates rendered and visually reviewed', 'Reframed option B front and full hardcover wrap visually reviewed', 'Updated publication credit page visually reviewed', '297 unchanged page content streams verified, including Hale revision and all retained evidence/map pages']
 report['file_sizes_bytes']={p.name:p.stat().st_size for p in OUT.glob('*.pdf')}
 (OUT/'sources/preflight_report.json').write_text(json.dumps(report,indent=2),encoding='utf8')
 print(json.dumps({k:v for k,v in report.items() if k!='image_placements'},indent=2))
