@@ -3,39 +3,50 @@
 *A Novel of the Companion Estate*  
 **Jacob E. Thomas, MA, PhD**
 
-## Final publication edition
+## Current publication edition
 
-The final edition is **304 pages, 6 × 9 inches, premium color hardcover on white paper, no interior bleed**. The selected cover is **B, A Body of Evidence**: a woman visibly constructed from documents, with her complete head below the title. The frontispiece and five record-opening plates present manuscript evidence through typeset documents, corrections, and source notes. Author degrees and the revised jacket copy are included.
+The current interior is **304 pages, 6 × 9 inches, premium color hardcover on white paper, no interior bleed**. It includes the documentary evidence plates and a prominent author statement, **The Hand and the Glass**, on pages v–vi.
 
-Upload these two files to Amazon KDP:
+The statement centers the intellectual sovereignty of the author and his human collaborators. It describes AI as a directed dialogic instrument, records the actual drafting and revision process, and acknowledges the summoned-persona method represented in `/from_beyond`.
 
-| KDP upload | File |
+**Cover selection is in progress.** Three new treatments remove the rectangular image edge and retain the document-built woman and the author’s degrees.
+
+| Material | File |
 |---|---|
-| Manuscript | [Final interior PDF](publication/USING_THIS_MATTER_KDP_interior_304pp.pdf) |
-| Cover | [Final case-laminate hardcover wrap](publication/USING_THIS_MATTER_KDP_hardcover_cover.pdf) |
+| Current KDP manuscript | [304-page interior](publication/USING_THIS_MATTER_KDP_interior_304pp.pdf) |
+| Cover options A–C | [Three front-cover renditions](publication/revision_v6/COVER_RENDITIONS.pdf) |
+| Author statement and reader-link review | [Changed pages](publication/revision_v6/STATEMENT_AND_LINKS_REVIEW.pdf) |
+| Visual gallery | [Open locally after download](publication/revision_v6/REVIEW.html) |
+| Editable author statement | [The Hand and the Glass](publication/revision_v6/THE_HAND_AND_THE_GLASS.txt) |
 
-[KDP setup and publication notes](publication/READ_ME_KDP.txt) · [Front-cover preview](publication/USING_THIS_MATTER_front_cover.jpg) · [Jacket and retailer copy](publication/jacket_and_retailer_copy.txt) · [Preflight report](publication/sources/preflight_report.json) · [Complete plate sequence](publication/PLATE_SEQUENCE_REVIEW.pdf) · [Review gallery](publication/REVIEW.html)
+The cover-renditions PDF is a review document, not a KDP wrap. The previous full wrap remains in the publication and jacket folders as a prior version until a new option is selected. Do not treat it as the newly selected cover.
 
-`book/USING_THIS_MATTER.pdf` is an identical convenience copy of the final interior. The cover PDF in `book/jacket/` is likewise an identical convenience copy of the final hardcover wrap. Do not use the historical dust-jacket PNG for KDP.
+[Publication setup](publication/READ_ME_KDP.txt) · [Jacket and retailer copy](publication/jacket_and_retailer_copy.txt) · [Interior preflight](publication/sources/preflight_report.json) · [Complete evidence-plate sequence](publication/PLATE_SEQUENCE_REVIEW.pdf)
 
-The final correction in *What Remains* introduces Hale's pneumonia before describing his recovery. It appears on printed page 256, PDF page 272. The rest of the narrative is unchanged from the approved illustrated edition. The map and evidentiary diagrams retain their approved meaning and geometry.
+`book/USING_THIS_MATTER.pdf` is an identical convenience copy of the current interior. The Hale correction in *What Remains* introduces his pneumonia before describing his recovery, on printed page 256. Narrative text, the map, and the documentary plates are preserved. The plate list now describes the frontispiece as a protocol leaf.
+
+## The public archive
+
+Readers are directed to the [GitHub repository](https://github.com/jethomasphd/THE_COMPANION_DOSSIER) and [The Companion Dossier website](https://www.the-companion-dossier.com/). Those addresses appear on the publication and closing pages. The previous Zenodo reader reference has been removed from the current print interior.
 
 ## Sources and earlier editions
 
-The chapter files in `manuscript/` remain editable, including the corrected Hale passage and approved title, publication-page, and closing-credit changes. Current artwork, cover prompt, specifications, plate provenance, and verification records are in `publication/`. Open `publication/REVIEW.html` locally to review the corrected cover and six replacement document plates. The current plate previews are `previews/plate-01.png` through `plate-06.png`; other retained illustration files describe earlier editions.
+The chapter sources remain editable, including the new author statement in `manuscript/003a_ai_collaboration.md`, revised publication page, acknowledgments, closing page, and Hale passage. The latest cover workshop, statement, source notes, and build records are in `publication/revision_v6/`.
 
-The existing DOCX files, including the older file named `USING_THIS_MATTER_final.docx`, are retained as **historical editorial drafts**. They predate the final cover and interior design and are not the KDP upload masters. The original `build/book_builder.py`, older plate renderers, jacket PNGs, and design/workshop notes likewise document earlier production stages. Re-running that original builder will not recreate the final publication layout.
+The documentary plates were created through native text and vector drawing from the manuscript. Their source records remain in `publication/sources/plate_provenance.json`. The current plate previews are `publication/previews/plate-01.png` through `plate-06.png`.
 
-The current edition's file-level preflight is recorded in the publication folder. KDP Print Previewer approval and a physical proof remain publisher-side checks after upload.
+Existing DOCX files, including the older file named `USING_THIS_MATTER_final.docx`, are **historical editorial drafts**, not the KDP upload masters. Older illustrations, jacket PNGs, workshop materials, and build utilities record earlier production stages. Local assembly scripts require their indicated baseline files; the original builder does not reproduce the current print edition.
+
+The interior’s file-level preflight passed. KDP Print Previewer and a physical proof remain publication checks after final cover selection.
 
 ## About the novel
 
-Miranda Cale is hired to catalogue a missing scientist's estate. Eleven doors appear on the county plan; twelve appear in her inventory. Sealed experiments, a historian's warning, and a state program without a release condition lead her toward an archive that has been reading its keeper. The novel explores AI reconstruction, historical memory, consent, and the unstable boundary between fiction and evidence.
+Miranda Cale is hired to catalogue a missing scientist’s estate. Eleven doors appear on the county plan; twelve appear in her inventory. Sealed experiments, a historian’s warning, and a state program without a release condition lead her toward an archive that has been reading its keeper. The novel explores AI reconstruction, historical memory, consent, and the unstable boundary between fiction and evidence.
 
 Read the book linearly. Its register, plates, competing annotations, and withheld material participate in the fiction.
 
 ## Provenance and license
 
-The novel draws on **THE COMPANION DOSSIER**, by Jacob E. Thomas, MA, PhD, released under CC0 1.0, DOI [10.5281/zenodo.17967947](https://doi.org/10.5281/zenodo.17967947). The novel's existing CC0 1.0 release is retained. Record III adapts *Endor Protocol*, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD.
+The novel draws on **THE COMPANION DOSSIER**, by Jacob E. Thomas, MA, PhD, released under CC0 1.0. The novel’s existing CC0 1.0 release is retained. Record III adapts *Endor Protocol*, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD.
 
-The manuscript credits Claude as its facilitating system. The selected cover artwork was generated with OpenAI image tools. The frontispiece and five record-opening plates are editorial resets of material in the volume, created with native text and vector drawing. The publication page records that distinction. The fictional accession and publication chronology remain part of the narrative.
+The author’s statement describes the human intellectual origins, dialogic use of Claude, summoned personae, and OpenAI editorial and production assistance. The cover artwork was generated using OpenAI image tools; the document plates are editorial presentations of material in the volume. The fictional accession and publication chronology remain part of the narrative.

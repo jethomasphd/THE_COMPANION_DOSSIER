@@ -13,8 +13,8 @@
   "publication_page": [
     "USING THIS MATTER\nA Novel of the Companion Estate\nJacob E. Thomas, MA, PhD",
     "This is a work of fiction, assembled in the manner of a recovered archive. Its people are displacements, never portraits: an offset of a real figure, never the figure. Institutions, agencies, and firms in the narrative are inventions. The public estate and the fiction are distinguished in the Acknowledgments.",
-    "The underlying estate, THE COMPANION DOSSIER, by Jacob E. Thomas, MA, PhD, is released into the public domain under CC0 1.0. DOI: 10.5281/zenodo.17967947. Record II dramatizes a correspondence of February 2026. Record III adapts the Endor Protocol, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD.",
-    "The facilitating system for the estate and the manuscript was Claude. The glass is shown. The cover illustration was generated with OpenAI image tools. The frontispiece and five record-opening plates are editorial resets of material in this volume. The estate map has been redrawn from the deposited plate.",
+    "The underlying estate, THE COMPANION DOSSIER, by Jacob E. Thomas, MA, PhD, is released into the public domain under CC0 1.0. Record II dramatizes a correspondence of February 2026. Record III adapts the Endor Protocol, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD.",
+    "The making of this volume is disclosed in The Hand and the Glass, the author’s statement on generative AI on the following page.",
     "Set in Cormorant Garamond, Crimson Pro, and IBM Plex Mono, licensed under the SIL Open Font License.",
     "The accession and date below belong to the fictional deposit."
   ],
@@ -213,7 +213,7 @@
     [
       "I",
       "The Threshold",
-      "frontispiece · a door ajar"
+      "frontispiece · a protocol leaf"
     ],
     [
       "II–VI",
@@ -322,5 +322,26 @@
       "Workroom",
       "/Mask_vs_Mirror"
     ]
-  ]
+  ],
+  "ai_statement": {
+    "title": "The Hand and the Glass",
+    "subtitle": "A statement on generative artificial intelligence",
+    "paragraphs": [
+      "This book began in human inquiry: in engineering, history, archival practice, and the conversations between them. Its concepts, originating writings, and intellectual commitments are mine and those of my human collaborators, whose contributions retain their own attribution. They are intellectually sovereign from the tools used to develop and present them.",
+      "Generative AI served as a dialogic instrument in that work. In building the Companion Dossier, I supplied the writing, seeds, questions, and direction; Claude was the primary system through which I developed and assembled the repository. The dialogue helped me articulate, test, organize, and elaborate the material. The purposes of the inquiry and the judgment governing it remained human.",
+      "The summoned voices belong to this account as well. The exchanges preserved in /from_beyond show the project using the very method it studies: personae called into dialogue around a humanly supplied seed. They are acknowledged here as voices within that practice, AI-mediated constructions rather than the people whose names they bear. The instrument was used from within, and its traces were kept.",
+      "For the novel, I asked Claude to read the repository and worked through my conception of the book in dialogue. Claude prepared an initial draft from that material and direction. I read and revised it, then used later versions of Claude to workshop and strengthen the manuscript. This included generated prose and editorial assistance within a process I conceived, directed, and revised.",
+      "OpenAI tools assisted with editorial refinement, book design, typesetting, and production; OpenAI image tools were used for the cover artwork. The frontispiece and five record-opening plates are typeset presentations of material in this volume. The estate map was redrawn from the deposited plate.",
+      "Authorship here rests in intellectual responsibility and accountability. I attach my name, credentials, and standing to this edition and answer for its substance, including its errors and omissions. My collaborators retain credit for their contributions. The tools hold no authorial responsibility.",
+      "The novel asks what a voice can carry, and what the record can warrant. Its instruments are disclosed because the distinction matters within the work itself. The glass is shown. The hand remains answerable."
+    ],
+    "pdf_pages": [
+      5,
+      6
+    ]
+  },
+  "reader_links": {
+    "repository": "https://github.com/jethomasphd/THE_COMPANION_DOSSIER",
+    "website": "https://www.the-companion-dossier.com/"
+  }
 }

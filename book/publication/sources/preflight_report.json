@@ -90,21 +90,18 @@
   "minimum_text_margins_inches": {
     "inside": 0.6985,
     "outside": 0.6995,
-    "top": 0.4806,
+    "top": 0.3997,
     "bottom": 0.4052
   },
   "requested_text_and_degrees_checks": "passed",
   "manual_visual_review": [
-    "All six replacement document plates rendered and visually reviewed",
-    "Reframed option B front and full hardcover wrap visually reviewed",
-    "Updated publication credit page visually reviewed",
-    "297 unchanged page content streams verified, including Hale revision and all retained evidence/map pages"
+    "New statement, publication page, closing links and acknowledgments rendered and visually checked",
+    "Document plates and narrative preserved"
   ],
+  "cover_status": "Selection pending; geometry checked against existing 304-page wrap. Workshop PDF is not an upload file.",
   "file_sizes_bytes": {
-    "PLATE_SEQUENCE_REVIEW.pdf": 1310660,
-    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 7066183,
-    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2683817
-  },
-  "unchanged_page_content_streams": 297,
-  "interior_replacement_method": "Six vector/typeset evidence plates, plus artwork-credit page."
+    "COVER_RENDITIONS.pdf": 13398603,
+    "STATEMENT_AND_LINKS_REVIEW.pdf": 382259,
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2958692
+  }
 }

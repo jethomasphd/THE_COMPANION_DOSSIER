@@ -1,0 +1,9 @@
+{
+  "origin": "Author's account in this conversation, 20 October 2026",
+  "claude_repository_role": "Primary builder under author's orchestration; author's ideas and writing seeds elaborated throughout by AI; credited scholarly collaborators contributed their ideas.",
+  "novel": "Claude consumed repository, discussed author's novel concept, generated initial draft, author read and revised, later Claude versions workshopped the manuscript.",
+  "model_version_policy": "Use provider/family names, because the exact historical release labels have not been independently established.",
+  "summoned_voices": "Gesture to method and /from_beyond, not claims about specific historical people personally contributing.",
+  "reference": "https://github.com/jethomasphd/THE_COMPANION_DOSSIER/tree/main/from_beyond",
+  "author_priority": "The author explicitly centers intellectual sovereignty of himself and human collaborators; AI is a directed dialogic tool, not an independent originator or author."
+}

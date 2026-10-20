@@ -1,7 +1,11 @@
-# Final hardcover cover
+# Hardcover cover workshop
 
-Use [USING_THIS_MATTER_KDP_hardcover_cover.pdf](USING_THIS_MATTER_KDP_hardcover_cover.pdf) for the approved 304-page, 6 × 9-inch premium-color KDP hardcover. It includes the back, spine, front, hinges, and case wrap.
+The latest [three cover renditions](../publication/revision_v6/COVER_RENDITIONS.pdf) remove the rectangular image edge and retain a woman visibly constructed from documents. All three include MA, PhD.
 
-The selected artwork is option B, *A Body of Evidence*: a woman visibly constructed from documents. Her complete head and the document stack are placed below a separate title area. The author credit includes MA, PhD. [Publication notes](../publication/READ_ME_KDP.txt) contain the exact KDP setup; [jacket copy](../publication/jacket_and_retailer_copy.txt) contains the final description.
+Open [the visual gallery](../publication/revision_v6/REVIEW.html) locally after downloading the repository to compare them. These are front-cover concepts, not full KDP wraps. A new selection is pending.
 
-The older `jacket_full.png` and `cover_front.png` are retained historical design files. They are superseded and are not KDP upload files.
+The existing `USING_THIS_MATTER_KDP_hardcover_cover.pdf` is the previous full wrap for the 304-page, 6 × 9-inch premium-color hardcover. It is retained as a prior version. It has not been replaced with an unselected candidate.
+
+[Publication notes](../publication/READ_ME_KDP.txt) contain the setup; [jacket copy](../publication/jacket_and_retailer_copy.txt) contains the description.
+
+Older `jacket_full.png` and `cover_front.png` files are historical designs and are not KDP upload masters.

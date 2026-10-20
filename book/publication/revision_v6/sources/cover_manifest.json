@@ -1,0 +1,53 @@
+[
+  {
+    "option": "A",
+    "title": "Archive Sculpture",
+    "artwork": "artwork/A_archive_sculpture.png",
+    "native_pixels": [
+      1024,
+      1536
+    ],
+    "placed_inches": [
+      3.4,
+      5.1
+    ],
+    "effective_ppi": 301.1764705882353,
+    "background": "#10100f",
+    "status": "Cover concept; awaiting selection",
+    "alpha_preserved": true
+  },
+  {
+    "option": "B",
+    "title": "The Unbound Archive",
+    "artwork": "artwork/B_unbound_archive.png",
+    "native_pixels": [
+      1024,
+      1536
+    ],
+    "placed_inches": [
+      3.4,
+      5.1
+    ],
+    "effective_ppi": 301.1764705882353,
+    "background": "#eae4d8",
+    "status": "Cover concept; awaiting selection",
+    "alpha_preserved": true
+  },
+  {
+    "option": "C",
+    "title": "The Emergent Face",
+    "artwork": "artwork/C_the_emergent_face.png",
+    "native_pixels": [
+      1024,
+      1536
+    ],
+    "placed_inches": [
+      3.4,
+      5.1
+    ],
+    "effective_ppi": 301.1764705882353,
+    "background": "#151a1c",
+    "status": "Cover concept; awaiting selection",
+    "alpha_preserved": true
+  }
+]

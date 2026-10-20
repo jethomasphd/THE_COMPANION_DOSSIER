@@ -9,7 +9,9 @@ HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1] if HERE.name=='final' else None
 OUT=ROOT/'outputs/USING_THIS_MATTER_FINAL' if ROOT else HERE.parent
 interior=PdfReader(OUT/'USING_THIS_MATTER_KDP_interior_304pp.pdf')
-cover=PdfReader(OUT/'USING_THIS_MATTER_KDP_hardcover_cover.pdf')
+cover_name='USING_THIS_MATTER_KDP_hardcover_cover.pdf'
+cover_paths=[OUT/cover_name, OUT.parent/cover_name, OUT.parent/'USING_THIS_MATTER_Document_Edition_v5'/cover_name]
+cover=PdfReader(next(p for p in cover_paths if p.exists()))
 report={'status':'checking','interior_pages':len(interior.pages),'trim_inches':[6,9],
         'interior_bleed':False,'binding':'hardcover','ink':'premium color','paper':'white',
         'cover_inches':[float(cover.pages[0].mediabox.width)/72,float(cover.pages[0].mediabox.height)/72],
@@ -112,7 +114,11 @@ if ROOT:
     report['unchanged_page_content_streams']=unchanged
     report['all_embedded_images_preserved_losslessly']=True
 report['status']='passed'
-report['manual_visual_review']=['All six replacement document plates rendered and visually reviewed', 'Reframed option B front and full hardcover wrap visually reviewed', 'Updated publication credit page visually reviewed', '297 unchanged page content streams verified, including Hale revision and all retained evidence/map pages']
+report['manual_visual_review']=['New statement, publication page, closing links and acknowledgments rendered and visually checked','Document plates and narrative preserved']
+report['cover_status']='Selection pending; geometry checked against existing 304-page wrap. Workshop PDF is not an upload file.'
+assert 'zenodo' not in joined.lower()
+assert 'The Hand and the Glass' in all_text[4]
+
 report['file_sizes_bytes']={p.name:p.stat().st_size for p in OUT.glob('*.pdf')}
 (OUT/'sources/preflight_report.json').write_text(json.dumps(report,indent=2),encoding='utf8')
 print(json.dumps({k:v for k,v in report.items() if k!='image_placements'},indent=2))

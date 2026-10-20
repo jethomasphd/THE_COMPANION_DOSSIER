@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "interior_pages": 304,
+  "trim_inches": [
+    6,
+    9
+  ],
+  "interior_bleed": false,
+  "binding": "hardcover",
+  "ink": "premium color",
+  "paper": "white",
+  "cover_inches": [
+    14.477,
+    10.417
+  ],
+  "unembedded_fonts": [],
+  "active_transparency": [],
+  "annotations": [],
+  "image_placements": [
+    {
+      "page": 28,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 38,
+      "pixels": [
+        1200,
+        1384
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 77,
+      "pixels": [
+        1200,
+        1384
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 84,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 124,
+      "pixels": [
+        1200,
+        1615
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 184,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": "cover",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "ppi": 301.18
+    },
+    {
+      "page": "cover",
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 301.18
+    }
+  ],
+  "folio_errors": [],
+  "margin_errors": [],
+  "kdp_previewer_checked": false,
+  "physical_proof_checked": false,
+  "minimum_image_ppi": 300.0,
+  "minimum_text_margins_inches": {
+    "inside": 0.6985,
+    "outside": 0.6995,
+    "top": 0.3997,
+    "bottom": 0.4052
+  },
+  "requested_text_and_degrees_checks": "passed",
+  "manual_visual_review": [
+    "New statement, publication page, closing links and acknowledgments rendered and visually checked",
+    "Document plates and narrative preserved"
+  ],
+  "cover_status": "Selection pending; geometry checked against existing 304-page wrap. Workshop PDF is not an upload file.",
+  "file_sizes_bytes": {
+    "COVER_RENDITIONS.pdf": 13398603,
+    "STATEMENT_AND_LINKS_REVIEW.pdf": 382259,
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2958692
+  }
+}

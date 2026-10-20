@@ -6,9 +6,13 @@ This volume was assembled from the Companion estate: a public archive of protoco
 ::: doc
 assembled from the estate of the companion dossier
 compiled by the editor · at the keeper's direction
-facilitating system: claude · the glass is shown
-austin · the fourth spring
 :::
+
+The public archive:
+
+Repository: https://github.com/jethomasphd/THE_COMPANION_DOSSIER
+
+Website: https://www.the-companion-dossier.com/
 
 What belongs to no one cannot be captured. The threshold is always open. The archive grows.
 

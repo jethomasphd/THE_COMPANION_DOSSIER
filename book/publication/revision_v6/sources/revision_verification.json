@@ -1,0 +1,33 @@
+{
+  "interior_pages": 304,
+  "replaced_pages": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    11,
+    14,
+    299,
+    300,
+    304
+  ],
+  "unchanged_page_content_streams": 294,
+  "author_statement_pages": [
+    5,
+    6
+  ],
+  "editor_note_pages": [
+    7,
+    8
+  ],
+  "epigraph_page": 14,
+  "narrative_and_evidence_plates_preserved": true,
+  "Hale_revision_preserved": true,
+  "reader_links": [
+    "https://github.com/jethomasphd/THE_COMPANION_DOSSIER",
+    "https://www.the-companion-dossier.com/"
+  ],
+  "zenodo_mentions_remaining": 0,
+  "cover_status": "Three workshop candidates; selection pending"
+}
