@@ -18,7 +18,7 @@
   "previews/statement-review-05.png": "d9632bf34a861ae1a5f587227537172c3d3c6f73b50e90857ace7f325d334bff",
   "previews/statement-review-06.png": "0109fe08edd4cad944cd867cdc17578e2e8e7b1260c8d1f11f71cace8fb2cd59",
   "previews/statement-review-07.png": "ba7af2054ae04190392066e65ae19b8f8bf657c94ba7a45b8b3e045d6b0b65d2",
-  "previews/statement-review-08.png": "97050469046113da707c9113a431b09f095a4efde87963e0553cbe4218edec3c",
+  "previews/statement-review-08.png": "896e2f005746872b708db3719d271a108329171506755c1d88a7cddca9f52ad8",
   "previews/statement-review-09.png": "02bf5c401d308181ae4628f1b17d278ba7688703c9a5312d335929e48b239302",
   "previews/statement-review-10.png": "9d65e4ae332af0e294f7a7d1df14ace31b2e1707e5f20b23df7faa0f13ebd961",
   "READ_ME.txt": "f3d2ab425616ddc8ab4b703505f4ddaba2f99f55023c96dc45bd8c9f683aa02e",
@@ -40,15 +40,15 @@
   "sources/fonts/IBMPlexMono-400i.ttf": "b8282cd74fb0321912a5f74aae7c0a50ef94af598fae65e6e8c4ad941d9a1fa9",
   "sources/fonts/OFL_NOTE.md": "9bc4d8d2d698ed1b545ebfa739174a1c54f28e32a84ff6f6d062083172ac21fe",
   "sources/package_revision.py": "a1da1d6b3daa08f50c3332f0841c706b57fb52e2dee88769943ee2583b0b1ac1",
-  "sources/preflight_report.json": "80e73b64a039db7c3466e4b56c4e47dbf998ebd2f715e50a6415a1d045dcc8dd",
+  "sources/preflight_report.json": "b9d73eaddf0ce007a63c3d371fa390e944751bac6c21aa0942b595417433804e",
   "sources/preflight_v6.py": "0c51cc9d97602e59e5c7fd4c3dfa1913d480a73b74742309d342f8fa2e747bc2",
   "sources/print_specifications.json": "86cfd3ae265ff7e2346a802709f8a60657a4fcb6d9efba97c885626b30d3eabb",
   "sources/revision_verification.json": "f119b9d7eb771dd001645c8c39f22dc28a42e2f29387816976f01e0e3baee927",
   "sources/statement_layout.json": "fc3e8af7e8392753009004277e652f97bfac8df1b56f57a54c4d7a659c950944",
-  "STATEMENT_AND_LINKS_REVIEW.pdf": "528513fe7aff2d475217effbc7a0e08a36a0cac71abe5b9ce713d6c57d74f578",
+  "STATEMENT_AND_LINKS_REVIEW.pdf": "866c457a0b5920cff09cb2d347c86670d8bc7420946e865b22d9bb9dfbb32d27",
   "THE_HAND_AND_THE_GLASS.txt": "1f8afec5766f2e97998bb150f208b488d557749f8f2fcf9b2883207189f61778",
   "USING_THIS_MATTER_front_cover.jpg": "f3b64ce6b8d84baff13db60d4365df4b0d9087bfef7dff96b64115ab5394464b",
   "USING_THIS_MATTER_front_cover.pdf": "2a02b2dcc1e16f575532c0356582dfc31d5e60d84ef2ffbe3760c24fbcb1d6ad",
   "USING_THIS_MATTER_KDP_hardcover_cover.pdf": "d0b8c364c187b3586346beb5a9d4f3e16d9a73334e50681d5cc2eca8a05309da",
-  "USING_THIS_MATTER_KDP_interior_304pp.pdf": "dcd71487303371369886858b81d632437f98964127e98137f21fca28c694e4ef"
+  "USING_THIS_MATTER_KDP_interior_304pp.pdf": "a378d05a7afaf1d8dada79ca6a1faa728626bf5c5fe34516074f8b9f6e7e077d"
 }

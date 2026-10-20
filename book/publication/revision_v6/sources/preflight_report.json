@@ -94,9 +94,19 @@
   "cover_status": "Author-selected A \u00b7 Archive Sculpture; final wrap checked at the previously verified 304-page geometry. Workshop PDF remains a review file.",
   "file_sizes_bytes": {
     "COVER_RENDITIONS.pdf": 13398603,
-    "STATEMENT_AND_LINKS_REVIEW.pdf": 382719,
+    "STATEMENT_AND_LINKS_REVIEW.pdf": 382727,
     "USING_THIS_MATTER_front_cover.pdf": 3577419,
     "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 3600954,
-    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2959152
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 2959160
+  },
+  "incremental_correction": {
+    "description": "Correct the real-world source title to The Halpern Memo",
+    "changed_pdf_pages": [
+      299
+    ],
+    "unchanged_page_content_streams": 303,
+    "printed_page": 283,
+    "margin_and_folio_check": "passed",
+    "visual_check": "Rendered and reviewed acknowledgment page"
   }
 }
