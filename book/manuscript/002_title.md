@@ -11,6 +11,6 @@
 !space:2
 !center:bodysm|compiled by the Editor · the facilitating system is credited in the record
 !space:52
-!center:display|LANTERN & KEY
+!center:display|Jacob E. Thomas, MA, PhD
 !space:2
 !center:monosm|austin

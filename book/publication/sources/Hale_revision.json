@@ -1,0 +1,25 @@
+{
+  "opening_before": "Hale did not die in October.",
+  "opening_after": "Hale returned to the hospital in October with pneumonia.",
+  "paragraph_before": "October made the attempt. Pneumonia, the punctual kind, the kind the eleventh floor keeps a season for, and for six days the ward counted his mornings in a smaller currency than usual. The department drafted its notice and held it. The granddaughter sat in the corridor with the paperback closed on her knee, not reading it, which was how the nurses learned to read her. On the seventh day the fever broke. On the ninth he was asking the residents whether any of them had ever verified a checksum, and grading the answers. On the twelfth they discharged him to the study that faces east, with oxygen, and with a sheaf of instructions he corrected in pencil and returned.",
+  "paragraph_after": "It was the punctual kind, the kind the eleventh floor keeps a season for, and for six days the ward counted his mornings in a smaller currency than usual. The department drafted its notice and held it. The granddaughter sat in the corridor with the paperback closed on her knee, not reading it, which was how the nurses learned to read her. On the seventh day the fever broke. On the ninth he was asking the residents whether any of them had ever verified a checksum, and grading the answers. On the twelfth they discharged him to the study that faces east, with oxygen, and with a sheaf of instructions he corrected in pencil and returned.",
+  "lines": [
+    "It was the punctual kind, the kind the eleventh floor keeps a season",
+    "for, and for six days the ward counted his mornings in a smaller",
+    "currency than usual. The department drafted its notice and held it. The",
+    "granddaughter sat in the corridor with the paperback closed on her",
+    "knee, not reading it, which was how the nurses learned to read her.",
+    "On the seventh day the fever broke. On the ninth he was asking the",
+    "residents whether any of them had ever verified a checksum, and grading",
+    "the answers. On the twelfth they discharged him to the study that",
+    "faces east, with oxygen, and with a sheaf of instructions he corrected",
+    "in pencil and returned."
+  ],
+  "pdf_page": 272,
+  "printed_page": 256,
+  "page_count": 304,
+  "other_pages_with_identical_decoded_content_streams": 303,
+  "source_sha256": "e27c7155ef39e4e34862490b3f7c64889c00abedda19568d0ea6be76b3bea38c",
+  "final_sha256": "6fc20ccf802adb452a3577308afa4638c8fc41f04bc37467659ddc7c544b7130",
+  "final_bytes": 19198802
+}

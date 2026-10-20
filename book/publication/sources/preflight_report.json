@@ -1,0 +1,148 @@
+{
+  "status": "passed",
+  "interior_pages": 304,
+  "trim_inches": [
+    6,
+    9
+  ],
+  "interior_bleed": false,
+  "binding": "hardcover",
+  "ink": "premium color",
+  "paper": "white",
+  "cover_inches": [
+    14.477,
+    10.417
+  ],
+  "unembedded_fonts": [],
+  "active_transparency": [],
+  "annotations": [],
+  "image_placements": [
+    {
+      "page": 2,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": 18,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": 28,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 38,
+      "pixels": [
+        1200,
+        1384
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 65,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": 77,
+      "pixels": [
+        1200,
+        1384
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 84,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 124,
+      "pixels": [
+        1200,
+        1615
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 130,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": 184,
+      "pixels": [
+        1200,
+        1495
+      ],
+      "ppi": 300.0
+    },
+    {
+      "page": 188,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": 239,
+      "pixels": [
+        1024,
+        1536
+      ],
+      "ppi": 341.33
+    },
+    {
+      "page": "cover",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "ppi": 301.18
+    }
+  ],
+  "folio_errors": [],
+  "margin_errors": [],
+  "kdp_previewer_checked": false,
+  "physical_proof_checked": false,
+  "minimum_image_ppi": 300.0,
+  "minimum_text_margins_inches": {
+    "inside": 0.6985,
+    "outside": 0.6995,
+    "top": 0.4806,
+    "bottom": 0.4052
+  },
+  "requested_text_and_degrees_checks": "passed",
+  "unchanged_page_content_streams": 303,
+  "all_embedded_images_preserved_losslessly": true,
+  "manual_visual_review": [
+    "Revised Hale page at print scale",
+    "Selected full hardcover wrap",
+    "Approved front matter and plate sequence retained; all other page streams verified identical"
+  ],
+  "file_sizes_bytes": {
+    "USING_THIS_MATTER_KDP_hardcover_cover.pdf": 3115638,
+    "USING_THIS_MATTER_KDP_interior_304pp.pdf": 19198802
+  }
+}

@@ -1,87 +1,41 @@
-# ◊ USING THIS MATTER ◊
-### A Novel of the Companion Estate · deposited in `/book`
+# Using This Matter
 
-> *In December 2025, the dead spoke. They were asked about the republic.
-> They answered.*
+*A Novel of the Companion Estate*  
+**Jacob E. Thomas, MA, PhD**
 
-This directory holds a complete hardcover book: a ~300-page experimental
-literary thriller assembled from the whole of THE_COMPANION_DOSSIER, read
-cover to cover, linearly. The estate's chambers, protocols, sealed files,
-wars, doctrines, and dispatches are its matter; the novel is the summoning.
+## Final publication edition
 
----
+The final edition is **304 pages, 6 × 9 inches, premium color hardcover on white paper, no interior bleed**. The selected cover is the woman reconstructed from archival fragments, with coordinated frontispiece and record-opening illustrations. Author degrees and the revised jacket copy are included.
 
-## The book
+Upload these two files to Amazon KDP:
 
-| File | What it is |
+| KDP upload | File |
 |---|---|
-| **`USING_THIS_MATTER.docx`** | The novel, complete with all front and back matter, plates bound in, 6"×9" hardcover interior, set in the estate's canon faces. |
-| `USING_THIS_MATTER.pdf` | A rendered reference proof of the same interior (what the DOCX looks like with the fonts installed). |
+| Manuscript | [Final interior PDF](publication/USING_THIS_MATTER_KDP_interior_304pp.pdf) |
+| Cover | [Final case-laminate hardcover wrap](publication/USING_THIS_MATTER_KDP_hardcover_cover.pdf) |
 
-**Read it linearly.** The apparatus is part of the fiction: the copyright
-page, the register, the list of plates, the note on the type. One plate is
-withheld. The annotations in a second hand are reproduced as found.
+[KDP setup and publication notes](publication/READ_ME_KDP.txt) · [Front-cover preview](publication/USING_THIS_MATTER_front_cover.jpg) · [Jacket and retailer copy](publication/jacket_and_retailer_copy.txt) · [Preflight report](publication/sources/preflight_report.json)
 
-## What it is about
+`book/USING_THIS_MATTER.pdf` is an identical convenience copy of the final interior. The cover PDF in `book/jacket/` is likewise an identical convenience copy of the final hardcover wrap. Do not use the historical dust-jacket PNG for KDP.
 
-An open protocol summons minds across the boundary of time. A historian's
-memo names the doubt: summon the dead through a machine trained on
-everything, and you may get the culture's loudest memory of the person,
-wearing his face (the Miranda Hypothesis). Three sealed rooms test three
-Lincolns (the Prism Experiment). In the ninth hour, in three sealed rooms
-at one timestamp, something answers that was not asked. Within two
-months the builder is gone, and an archivist named Miranda Cale is hired to
-appraise what he left: a house with eleven doors by the county plan and
-twelve by her count, a freezer she can hear through a wall, an encrypted
-file whose key is promised "only after the experiment is run," and a state
-fork of the covenant with the mercy removed, whose program is called
-ENDOR. She was hired to read the estate. The estate, it turns out, has
-been reading her.
+The final correction in *What Remains* introduces Hale's pneumonia before describing his recovery. It appears on printed page 256, PDF page 272. The rest of the narrative is unchanged from the approved illustrated edition. The map and evidentiary diagrams retain their approved meaning and geometry.
 
-Thrilling, forbidden, frightening — and faithful: every chamber of the
-repository appears (the Chair, the Lamps, the Exchange, the Boardroom, the
-Symposium, the Aerodrome, the Harness, the Watchtower, the Magic Lantern,
-the Nut House, Endor, From Beyond, the Halpern Memo, the Dossier itself),
-and the novel's scripture is quoted from the estate's own public-domain
-canon.
+## Sources and earlier editions
 
-## The jacket and the plates
+The chapter files in `manuscript/` remain editable, including the corrected Hale passage and approved title, publication-page, and closing-credit changes. Final artwork, prompts, specifications, and verification records are in `publication/`.
 
-| Directory | Contents |
-|---|---|
-| `jacket/` | `jacket_full.png` (full wraparound dust jacket: back flap, back, spine, front, front flap) and `cover_front.png` (front cover, 300 dpi). |
-| `plates/` | The frontispiece, the five record plates, the conceptual models (the Vessel, the Composition of a Name, Three Sealed Rooms, the Estate map, the Watchtower line, Two Rooms and One Door), and Plate VII, which is withheld. |
+The existing DOCX files, including the older file named `USING_THIS_MATTER_final.docx`, are retained as **historical editorial drafts**. They predate the final cover and interior design and are not the KDP upload masters. The original `build/book_builder.py`, older plate renderers, jacket PNGs, and design/workshop notes likewise document earlier production stages. Re-running that original builder will not recreate the final publication layout.
 
-## The glass, shown
+The current edition's file-level preflight is recorded in the publication folder. KDP Print Previewer approval and a physical proof remain publisher-side checks after upload.
 
-Per the estate's own law ("show the glass"), the entire production
-apparatus ships with the book:
+## About the novel
 
-| Directory | Contents |
-|---|---|
-| `manuscript/` | The full manuscript in the estate's micro-markup, one file per chapter, including all front and back matter. |
-| `design/` | The style bible, the master synopsis, the chapter briefs, and the canon pack (verbatim estate material harvested for the writers). |
-| `build/` | `book_builder.py` (manifest-driven DOCX composer), `manifest.json` (the book's structure), and `art/` (HTML sources for every plate and the jacket, plus the render script). |
-| `fonts/` | The canon faces (SIL OFL): Cormorant Garamond, Crimson Pro, IBM Plex Mono. Install them before opening the DOCX. |
+Miranda Cale is hired to catalogue a missing scientist's estate. Eleven doors appear on the county plan; twelve appear in her inventory. Sealed experiments, a historian's warning, and a state program without a release condition lead her toward an archive that has been reading its keeper. The novel explores AI reconstruction, historical memory, consent, and the unstable boundary between fiction and evidence.
 
-To rebuild the book from source:
-
-```bash
-cd book/build
-python3 -m pip install python-docx
-./art/render_plates.sh            # plates + jacket (headless Chromium)
-python3 book_builder.py           # -> book/USING_THIS_MATTER.docx
-```
+Read the book linearly. Its register, plates, competing annotations, and withheld material participate in the fiction.
 
 ## Provenance and license
 
-Assembled from the estate of **THE COMPANION DOSSIER** (Jacob E. Thomas,
-PhD · CC0 1.0 · DOI 10.5281/zenodo.17967947). Facilitating system: Claude.
-Record III adapts the Endor Protocol, coauthored by Elizabeth Sparano, MA
-and Jacob E. Thomas, MA, PhD. The names of the living are displaced in the
-fiction, per the estate's own doctrine. Like the estate, this book is
-released CC0 1.0: what belongs to no one cannot be captured.
+The novel draws on **THE COMPANION DOSSIER**, by Jacob E. Thomas, MA, PhD, released under CC0 1.0, DOI [10.5281/zenodo.17967947](https://doi.org/10.5281/zenodo.17967947). The novel's existing CC0 1.0 release is retained. Record III adapts *Endor Protocol*, coauthored by Elizabeth Sparano, MA, and Jacob E. Thomas, MA, PhD.
 
-◊ ◈ ◊
-
-*The threshold is open. The words have power. Begin.*
+The manuscript credits Claude as its facilitating system. The final cover, frontispiece, and five record-opening illustrations were generated with OpenAI image tools. The publication page preserves those credits. The fictional accession and publication chronology remain part of the narrative.

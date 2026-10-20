@@ -1,0 +1,23 @@
+{
+  "artwork/01_threshold.png": "0fc0e430d9172560a76c74d3206c77854d60da970742d9775df73cb3f1eefce9",
+  "artwork/02_atrium.png": "332df5b36ae26deaab567e7a4e111b2f0c50cd4f17b47ae5d59aab9b6007bfd2",
+  "artwork/03_prism.png": "f82dfe9407a0fe1d08acea681a8bce8f4865a12c9004252f54b60ee58cae1e1f",
+  "artwork/04_freezer.png": "fce3a8d97aa5c4d3075245a80cd2c107c8ab286ebf381897d56a9420fba0f79d",
+  "artwork/05_watchtower.png": "8a69acc9cf5f16d1732e626274af13164ee6e0e2787231970d4f29e7989070c4",
+  "artwork/06_chamber.png": "dae4fbace20eaec46cb4dbfa16100d0f0fa1cb27303dc01acd44363b8570ec4f",
+  "artwork/cover_woman.png": "30e88f5d07a2b8a7290da2aa3af3ae9a58b6ef6547243745ae1ac50a705f42de",
+  "jacket_and_retailer_copy.txt": "9306e04ef53451b244f18fec91536765847cb20a8314f856f64f881c0c71f11d",
+  "READ_ME_KDP.txt": "1ea014fb8b1d45b656943568d3536d62ab68ab39233bd8efce01b5eda97b6ab1",
+  "sources/editorial_content.json": "08bdb7eb5b164d16c132a7bb3e45d75c0606843d8736c9a120c3524f9b7ef958",
+  "sources/finalize_pdf.py": "9a238974daf2ca0c64026f3e6d8b1e549ff2546d7302048a939cc702d81e0c18",
+  "sources/Hale_revision.json": "3a76923da68f7ed43c4ec3cab96605db5685cf737c2c960234c07b3070306e54",
+  "sources/image_prompts.json": "b364faedd342b0c45e37b94bcd1194114f7a833ba4f917481fe3d7477785aa2c",
+  "sources/plate_manifest.json": "3af4637975b416a26b77ce3a8eeb47d2adbc4e69f88193ad0522e42271dda115",
+  "sources/preflight_final.py": "455677dc497da7e0cf006a237f32d82825b740cf27745b2af305adcbef630886",
+  "sources/preflight_report.json": "3ec1f3c9047eb7327cb18e07b17f943090e909d8b457d505def21a18618218a9",
+  "sources/print_specifications.json": "c465977668a8b5652450f4127803ab1e50f256ce88460b7859043c1071d39488",
+  "sources/requirements.txt": "1d0f5ebe4e69daecdef2e9307d3d67182c289a5937d42b7e91bb207cbc314bce",
+  "USING_THIS_MATTER_front_cover.jpg": "3f9970848bfeb5b4aaf445c38a2ee3b23e0f4647b15d6b18234787624daa4cbd",
+  "USING_THIS_MATTER_KDP_hardcover_cover.pdf": "3938b60e53666829b54e0042dd7f949063db01d8d067d94d488b8d4eb428f865",
+  "USING_THIS_MATTER_KDP_interior_304pp.pdf": "6fc20ccf802adb452a3577308afa4638c8fc41f04bc37467659ddc7c544b7130"
+}

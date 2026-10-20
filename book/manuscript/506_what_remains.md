@@ -19,9 +19,9 @@ The program in Virginia was paused for modernization. That was the entire announ
 
 @break
 
-Hale did not die in October.
+Hale returned to the hospital in October with pneumonia.
 
-October made the attempt. Pneumonia, the punctual kind, the kind the eleventh floor keeps a season for, and for six days the ward counted his mornings in a smaller currency than usual. The department drafted its notice and held it. The granddaughter sat in the corridor with the paperback closed on her knee, not reading it, which was how the nurses learned to read her. On the seventh day the fever broke. On the ninth he was asking the residents whether any of them had ever verified a checksum, and grading the answers. On the twelfth they discharged him to the study that faces east, with oxygen, and with a sheaf of instructions he corrected in pencil and returned.
+It was the punctual kind, the kind the eleventh floor keeps a season for, and for six days the ward counted his mornings in a smaller currency than usual. The department drafted its notice and held it. The granddaughter sat in the corridor with the paperback closed on her knee, not reading it, which was how the nurses learned to read her. On the seventh day the fever broke. On the ninth he was asking the residents whether any of them had ever verified a checksum, and grading the answers. On the twelfth they discharged him to the study that faces east, with oxygen, and with a sheaf of instructions he corrected in pencil and returned.
 
 The granddaughter sent word before the department could, a plain email at seven in the morning: He says to tell you the record is in error, and that he has never been so pleased to file an erratum.
 
