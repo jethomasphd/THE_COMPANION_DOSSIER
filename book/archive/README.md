@@ -9,3 +9,5 @@ The current KDP release files are [one directory up](../README.md). The snapshot
 Original Git tree: `c17cb6edeef2314a896e557b116e5ea1c3b30e2d`.
 
 The [navigation, plates, and author-note revision](2026-10-20-navigation-and-plates/) preserves the sources, verification reports, and review proof for the current release. The original 225-file snapshot above remains unchanged.
+
+The [21 October map audit](2026-10-21-map-audit/) contains the corrected map spread, narrative cross-checks, and source needed to apply the map revision after rebuilding the preceding edition.

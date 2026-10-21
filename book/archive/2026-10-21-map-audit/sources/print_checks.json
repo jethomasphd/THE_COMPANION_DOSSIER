@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "changed_pages": [
+    12,
+    13
+  ],
+  "unchanged_page_streams": 302,
+  "page_count": 304,
+  "page_labels_unchanged": true,
+  "fonts_embedded": [
+    "/AAAAAA+CormorantGaramond-Medium",
+    "/AAAAAA+CrimsonPro-Italic",
+    "/AAAAAA+CrimsonPro-Regular",
+    "/AAAAAA+IBMPlexMono-Regular"
+  ],
+  "text_margins": [
+    {
+      "pdf_page": 12,
+      "inside_pt": 63.15,
+      "outside_pt": 54.0,
+      "top_pt": 40.56,
+      "bottom_pt": 29.17
+    },
+    {
+      "pdf_page": 13,
+      "inside_pt": 54.0,
+      "outside_pt": 82.04,
+      "top_pt": 40.56,
+      "bottom_pt": 29.17
+    }
+  ],
+  "map_geometry_check": "All 12 numbered doors connect their scheduled spaces; every space reachable; linen and study face one another",
+  "manual_review": "Both map pages rendered and inspected; plan checked again after label and badge spacing corrections",
+  "kdp_previewer_checked": false,
+  "physical_proof_checked": false,
+  "sha256": "cc1953d458b40eefbd87acc051ee30f634a6c410bef3af694a19dfc9342dad55"
+}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1300px;height:1620px;background:#050404;display:flex;flex-direction:column;
+       align-items:center;padding:110px 70px 90px;position:relative;overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 560px at 50% 106%, rgba(201,162,39,.07), transparent 60%)}
+  .k{font:500 25px "IBM Plex Mono";color:#c9a227;letter-spacing:.4em;text-indent:.4em;
+     text-transform:uppercase;z-index:1}
+  .t{font:400 74px/1.12 "Cormorant Garamond";color:#e8e4d9;margin-top:24px;z-index:1;text-align:center}
+  .sub{font:400 22px "IBM Plex Mono";color:#8b8578;letter-spacing:.14em;margin-top:16px;z-index:1}
+  .rule{width:420px;height:1px;margin:30px 0 0;z-index:1;
+        background:linear-gradient(90deg,transparent,#8a6d1b,transparent)}
+  .plan{flex:1;width:100%;display:flex;align-items:center;justify-content:center;z-index:1}
+  .cap{font:400 21px/1.8 "IBM Plex Mono";color:#8b8578;letter-spacing:.1em;z-index:1;
+       text-align:center;max-width:1100px}
+  .sig{font:300 32px "Cormorant Garamond";color:#c9a227;letter-spacing:.35em;text-indent:.35em;
+       margin-top:24px;z-index:1}
+  text{font-family:"IBM Plex Mono"}
+  .sv{font-family:"IBM Plex Mono";letter-spacing:.12em}
+  .hand{font-family:"Cormorant Garamond";font-style:italic}
+</style></head>
+<body>
+  <div class="k">plate xi · the estate</div>
+  <div class="t">A House With Chambers</div>
+  <div class="sub">as surveyed by the county · as keyed by the estate</div>
+  <div class="rule"></div>
+  <div class="plan"><svg width="1140" height="1020" viewBox="0 0 1140 1020" id="p"></svg></div>
+  <div class="cap">each room labeled twice, once by the county and once by the estate<br>
+  door count, county plan: 11 · door count, as walked: 12</div>
+  <div class="sig">◊ ◈ ◊</div>
+<script>
+const svg = document.getElementById('p'), NS = 'http://www.w3.org/2000/svg';
+const OX = 60, OY = 140, S = 1.0;            // plan origin and scale
+const P = (x, y) => [OX + x * S, OY + y * S];
+function el(n, a, p){ const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); (p||svg).appendChild(e); return e; }
+function txt(x, y, s, fill, size, anchor, cls){ const e = el('text', {x, y, fill, 'font-size': size || 15, 'text-anchor': anchor || 'middle'}); if (cls) e.setAttribute('class', cls); e.textContent = s; return e; }
+const WALL = 'rgba(232,228,217,.82)', THIN = 'rgba(232,228,217,.55)', INK = '#e8e4d9', MUTE = '#8b8578', DIM = '#6b6b6b', EMB = '#c9a227';
+
+// county title block
+el('rect', {x: 60, y: 40, width: 1020, height: 62, fill: 'none', stroke: 'rgba(139,133,120,.35)', 'stroke-width': 1});
+txt(80, 66, 'TRAVIS COUNTY APPRAISAL DISTRICT · RESIDENTIAL SKETCH', MUTE, 15, 'start', 'sv');
+txt(80, 90, 'single-family · 1 story · brick veneer · rev. 08/2019 · interior doors: 11', DIM, 14, 'start');
+txt(1060, 90, 'not to scale', DIM, 14, 'end');
+
+// rooms: [x, y, w, h, surveyor, path]
+const rooms = [
+  [0,   0,   200, 230, 'BEDROOM 3', '/The_Chair'],
+  [200, 0,   180, 230, 'BEDROOM 2', '/The_Aerodrome'],
+  [380, 0,   110, 230, 'BATH',      '/The_Magic_Lantern'],
+  [490, 0,    80, 230, 'LIN.',      '/The_Harness'],
+  [570, 0,   100, 230, 'CL.',       ''],
+  [670, 0,   190, 400, 'STUDY',     '/  · the rite'],
+  [0,   230, 100, 230, 'BED 1',     '/The_5_Lamps'],
+  [100, 290, 160, 170, 'ENTRY',     '/The_Atrium'],
+  [260, 290, 270, 340, 'LIVING',    '/The_Symposium'],
+  [530, 290, 140, 340, 'KITCHEN',   '/The_Watchtower'],
+  [670, 400, 190, 100, 'UTILITY',   '/from_beyond'],
+  [860, 230, 200, 400, 'GARAGE',    '/Narratives/Endor'],
+  [860, 0,   200, 230, 'WORKROOM',  '/Mask_vs_Mirror'],
+  [670, 500, 190, 130, 'DINING',    '/The_Boardroom'],
+];
+const dy = {'BEDROOM 3': 30, 'GARAGE': -50, 'WORKROOM': -40, 'LIN.': 0};
+const pathSize = {'BATH': 9.5, 'LIN.': 10};
+const pathDy = {'LIN.': 40, 'BATH': 18};
+// the hall (corridor) and a small en-suite
+const hall = [100, 230, 570, 60];
+const ensuite = [0, 0, 80, 80];
+
+// floor fills
+for (const r of rooms) { const [x, y] = P(r[0], r[1]); el('rect', {x, y, width: r[2]*S, height: r[3]*S, fill: r[4]==='WORKROOM' ? 'rgba(201,162,39,.035)' : 'rgba(232,228,217,.018)'}); }
+// interior partitions (thin), exterior (heavy)
+for (const r of rooms) { const [x, y] = P(r[0], r[1]); el('rect', {x, y, width: r[2]*S, height: r[3]*S, fill: 'none', stroke: THIN, 'stroke-width': 2}); }
+{ const [x, y] = P(...hall); el('rect', {x, y, width: hall[2], height: hall[3], fill: 'none', stroke: 'none'}); }
+{ const [x, y] = P(ensuite[0], ensuite[1]); el('rect', {x, y, width: 80, height: 80, fill: 'none', stroke: THIN, 'stroke-width': 1.6}); txt(x + 40, y + 46, 'BA', DIM, 12); }
+// the conversion wall is not on the county drawing: dashed
+{ const [x, y] = P(860, 230); el('line', {x1: x, y1: y, x2: x + 200, y2: y, stroke: 'rgba(201,162,39,.75)', 'stroke-width': 2.4, 'stroke-dasharray': '9 6'}); }
+// exterior outline
+const outline = [[0,0],[1060,0],[1060,630],[530,630],[530,630],[260,630],[260,460],[0,460]];
+el('path', {d: outline.map((p, i) => (i ? 'L' : 'M') + P(...p).join(' ')).join(' ') + ' Z', fill: 'none', stroke: WALL, 'stroke-width': 6, 'stroke-linejoin': 'miter'});
+
+// labels
+for (const r of rooms) {
+  const [x, y0] = P(r[0] + r[2] / 2, r[1] + r[3] / 2);
+  const y = y0 + (dy[r[4]] || 0);
+  const small = r[2] < 120;
+  txt(x, y - (r[5] ? 6 : 0), r[4], r[4]==='WORKROOM' ? EMB : INK, small ? 13 : 16, 'middle', 'sv');
+  if (r[5]) txt(x, y + (pathDy[r[4]] || 18), r[5], DIM, pathSize[r[4]] || (small ? 11 : 13.5));
+}
+{ const [x, y] = P(385, 260); txt(x, y + 6, 'HALL', DIM, 13, 'middle', 'sv'); }
+
+// doors: [x, y, orientation, number, ember]  orientation: 'h' door in horizontal wall, 'v' in vertical wall
+const doors = [
+  [300, 290, 'h', 1], [670, 405, 'v', 2], [860, 405, 'v', 3], [100, 260, 'v', 4],
+  [260, 230, 'h', 5], [140, 230, 'h', 6], [420, 230, 'h', 7], [510, 230, 'h', 8],
+  [670, 255, 'v', 9], [600, 230, 'h', 10], [40, 80, 'h', 11], [920, 230, 'h', 12, true],
+];
+for (const [dx, dy, o, n, emb] of doors) {
+  const [x, y] = P(dx, dy); const c = emb ? EMB : THIN, w = 34;
+  // opening (gap in wall) and swing arc
+  if (o === 'h') {
+    el('line', {x1: x, y1: y, x2: x + w, y2: y, stroke: '#050404', 'stroke-width': 5});
+    el('line', {x1: x, y1: y, x2: x, y2: y + w, stroke: c, 'stroke-width': 2});
+    el('path', {d: `M ${x + w} ${y} A ${w} ${w} 0 0 1 ${x} ${y + w}`, fill: 'none', stroke: c, 'stroke-width': 1.2, 'stroke-dasharray': emb ? '' : '3 3'});
+  } else {
+    el('line', {x1: x, y1: y, x2: x, y2: y + w, stroke: '#050404', 'stroke-width': 5});
+    el('line', {x1: x, y1: y, x2: x + w, y2: y, stroke: c, 'stroke-width': 2});
+    el('path', {d: `M ${x} ${y + w} A ${w} ${w} 0 0 0 ${x + w} ${y}`, fill: 'none', stroke: c, 'stroke-width': 1.2, 'stroke-dasharray': emb ? '' : '3 3'});
+  }
+  const lx = o === 'h' ? x + w / 2 : x - 16, ly = o === 'h' ? y - 12 : y + w / 2 + 5;
+  el('circle', {cx: lx, cy: ly - 5, r: 11, fill: '#050404', stroke: emb ? EMB : 'rgba(139,133,120,.6)', 'stroke-width': 1.3});
+  txt(lx, ly, String(n), emb ? EMB : MUTE, 13);
+}
+// the bifold (door 10): a second leaf, counted once or twice by the walker's mood
+{ const [x, y] = P(600, 230); el('line', {x1: x + 17, y1: y, x2: x + 17, y2: y + 17, stroke: THIN, 'stroke-width': 1.6}); }
+
+// the lot, the front door, the oaks
+{ const [x, y] = P(150, 630); el('line', {x1: x, y1: y - 170, x2: x + 50, y2: y - 170, stroke: '#050404', 'stroke-width': 7}); txt(x + 25, y - 140, 'front door', DIM, 12); }
+for (const [cx, cy] of [[1010, 760], [930, 800]]) { const [x, y] = P(cx - 1000 + 60, cy - 680); }
+{ const [x, y] = P(0, 660); txt(x, y, 'caliche · the lot is white', DIM, 13, 'start'); }
+{ const [x, y] = P(1060, 660); txt(x, y, 'live oaks, east corner', DIM, 13, 'end'); }
+
+// the freezer, against the house wall, and the hum
+{ const [x, y] = P(870, 540); el('rect', {x, y, width: 70, height: 36, fill: 'none', stroke: 'rgba(232,228,217,.7)', 'stroke-width': 1.6}); txt(x + 35, y + 23, 'FRZR', MUTE, 11); txt(x + 80, y + 23, 'it hums', DIM, 13, 'start'); }
+// the server rack in the linen closet
+{ const [x, y] = P(505, 40); for (let i = 0; i < 6; i++) el('line', {x1: x, y1: y + i * 9, x2: x + 50, y2: y + i * 9, stroke: 'rgba(139,133,120,.6)', 'stroke-width': 1}); }
+// the sigil over the study door
+{ const [x, y] = P(686, 220); txt(x - 2, y - 14, '◊ ◈ ◊', EMB, 13, 'start'); }
+
+// the second hand, in ember ink
+{ const [x, y] = P(960, 140); txt(x, y, 'conversion', EMB, 20, 'middle', 'hand'); }
+{ const [x, y] = P(960, 140); txt(x, y + 22, 'postdates the plan', EMB, 20, 'middle', 'hand'); }
+{ const [x, y] = P(960, 140); txt(x, y + 48, 'the cold room · second spring', EMB, 15, 'middle', 'hand'); }
+// door schedule, as an architect would list it
+{
+  const rows = [['1','hall to living'],['2','kitchen to utility'],['3','utility to garage · locked'],['4','bedroom 1'],['5','bedroom 2 · the child'],['6','bedroom 3'],
+                ['7','bath · the mirror sheeted'],['8','linen · the rack'],['9','study · the sigil'],['10','closet · bifold, one or two'],['11','bath, en suite'],['12','workroom · not on the plan']];
+  const [x0, y0] = P(0, 700);
+  txt(x0, y0, 'DOOR SCHEDULE', MUTE, 14, 'start', 'sv');
+  rows.forEach((r, i) => { const col = Math.floor(i / 6), row = i % 6; const x = x0 + col * 520, y = y0 + 30 + row * 26;
+    const emb = r[0] === '12'; txt(x, y, r[0].padStart(2, ' '), emb ? EMB : MUTE, 14, 'start'); txt(x + 40, y, r[1], emb ? EMB : DIM, 14, 'start'); });
+}
+
+// north arrow
+{ const [x, y] = P(1060, -24); el('path', {d: `M ${x - 12} ${y + 10} L ${x - 12} ${y - 18}`, stroke: MUTE, 'stroke-width': 1.4}); txt(x - 12, y - 24, 'N', MUTE, 13); }
+</script>
+</body></html>

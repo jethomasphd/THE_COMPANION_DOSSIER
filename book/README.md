@@ -34,3 +34,5 @@ All previous working materials are preserved in [archive/2026-10-20-production/]
 The current navigation, plate, and author-note sources and review proof are preserved in [archive/2026-10-20-navigation-and-plates/](archive/2026-10-20-navigation-and-plates/).
 
 Use the two PDFs in this directory for the release. Historical files named “final” inside the archive are earlier editorial or production records.
+
+The [map accuracy audit](archive/2026-10-21-map-audit/) records the subsequent corrections to Plate XI. The release map distinguishes the county’s eleven-door arrangement from the later annotation and has been checked against the narrative’s room connections and counts.

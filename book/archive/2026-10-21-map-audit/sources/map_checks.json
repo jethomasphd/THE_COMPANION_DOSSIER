@@ -1,0 +1,143 @@
+{
+  "pages": 304,
+  "changed_pdf_pages": [
+    12,
+    13
+  ],
+  "unchanged_page_streams": 302,
+  "door_adjacencies": [
+    {
+      "door": 1,
+      "joins": [
+        "hall",
+        "B"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 2,
+      "joins": [
+        "C",
+        "K"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 3,
+      "joins": [
+        "K",
+        "L"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 4,
+      "joins": [
+        "E",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 5,
+      "joins": [
+        "F",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 6,
+      "joins": [
+        "G",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 7,
+      "joins": [
+        "H",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 8,
+      "joins": [
+        "I",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 9,
+      "joins": [
+        "hall",
+        "J"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 10,
+      "joins": [
+        "closet",
+        "hall"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 11,
+      "joins": [
+        "en suite",
+        "G"
+      ],
+      "status": "county arrangement"
+    },
+    {
+      "door": 12,
+      "joins": [
+        "M",
+        "L"
+      ],
+      "status": "later annotation"
+    }
+  ],
+  "reachable_spaces": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "closet",
+    "en suite",
+    "hall"
+  ],
+  "linen_and_study_doors_face_each_other": true,
+  "county_doors": 11,
+  "later_annotation_door": 12,
+  "room_path_associations_retained": 13,
+  "counts_preserved": [
+    11,
+    12,
+    11
+  ],
+  "drawing_status": "Editorial schematic: exact dimensions, swing directions, unnumbered passage positions and exterior jamb positions are not supplied by the narrative.",
+  "narrative_sources": {
+    "5": "Three bedrooms off back hall; kitchen to utility to locked garage",
+    "6": "Linen rack across from study; plan 11, first count 12, recount 11",
+    "7": "Bifold explanation; study at end of hall; county revision August 2019",
+    "14": "Second hand reports garage conversion and cold room",
+    "46": "Kitchen exterior door, garage side door, freezer against house wall",
+    "201": "Thorne postscript asserts twelve",
+    "257": "Child counts twelve; alternatives remain open"
+  }
+}
