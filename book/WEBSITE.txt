@@ -1,0 +1,68 @@
+USING THIS MATTER / BOOK LANDING PAGE
+
+Destination: https://the-companion-dossier.com/book
+
+The page is a static addition to the existing repository and Cloudflare Pages
+site. It does not require a framework, package install, server function, or new
+hosting service. The existing build.sh can continue unchanged.
+
+ACTIVATE AMAZON AT PUBLICATION
+1. Open book/config.js.
+2. Paste the final, published Amazon book-page URL between the quotes in
+   amazonUrl: ""
+3. Commit and publish through the site's existing deployment process.
+4. Open /book on a phone and desktop, follow both Amazon buttons, and verify
+   that they reach the correct edition and marketplace.
+
+Use an HTTPS Amazon marketplace URL or an amzn.to link. A blank or unsupported
+URL keeps the honest prepublication state: print coming soon, free digital
+reading available. A valid URL reveals the edition's Amazon button, updates
+the hero button, and removes the coming-soon message. No price, ISBN, release
+date, preorder, or stock status is invented. The complete digital route remains.
+
+WHAT IS INCLUDED
+index.html: copy, metadata, book schema, transcript, page structure.
+book.css: responsive layout, self-hosted estate fonts, reduced-motion support.
+book.js: Amazon switch and optional engagement events.
+config.js: the one publication setting.
+assets/: selected cover, real interior pages, 720p trailer, poster, captions,
+         and the existing estate fonts with their license texts.
+
+The website trailer is 90 seconds and approximately 12.5 MiB. It uses H.264/AAC,
+fast-start metadata, no autoplay, and preload="none". Captions are composed into
+the film; the VTT track is optional so duplicate captions are not on by default.
+The written transcript is available directly below the player.
+
+OPTIONAL MEASUREMENT
+The page dispatches local DOM CustomEvents named book:engagement with details:
+name (amazon_click, free_read, trailer_play), placement where applicable, and
+the incoming utm_source, utm_medium, utm_campaign, utm_content values.
+This package does not collect or transmit events, set cookies, or use storage.
+Connect an analytics service separately if aggregate campaign measurement is
+wanted. A landing-page Amazon click is an outbound click, not a verified sale.
+
+PREVIEW
+From the repository root: python -m http.server 8765 --bind 127.0.0.1
+Then open http://127.0.0.1:8765/book/ and stop the server when finished.
+
+VALIDATION
+JavaScript syntax and Amazon state-switch checks passed. Local asset links
+and anchors resolve. Browser layout checked at 320, 390, 768 and 1280 pixels
+without horizontal overflow; print CTA, trailer playback (90 seconds), transcript,
+and interior images checked. Video masters were decoded and frame-counted.
+The narrated audio has technical QA; pronunciation and musical taste should
+receive a listening review before ad spend. No campaign has been posted and
+the page has not been deployed by this change.
+
+SOURCE AUTHORITY
+The current 304-page USING_THIS_MATTER_KDP_interior_304pp.pdf and book/README.md
+control edition facts. Selected cover A, Archive Sculpture, comes from the
+repository's revision_v6 publication archive. Old outline names and superseded
+endings are excluded. The fictional experimental events are not represented as
+real empirical results. The print-support message follows the author's brief.
+
+Fonts: unchanged copies of the estate's Cormorant Garamond, Crimson Pro, and
+IBM Plex Mono, distributed with their SIL Open Font License texts. Sources:
+https://github.com/google/fonts/tree/main/ofl/cormorantgaramond
+https://github.com/google/fonts/tree/main/ofl/crimsonpro
+https://github.com/google/fonts/tree/main/ofl/ibmplexmono
