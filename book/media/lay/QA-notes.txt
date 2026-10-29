@@ -1,0 +1,46 @@
+USING THIS MATTER — GENERAL-AUDIENCE FILM QA
+
+Final deliverables
+promo-01-the-missing-scientist-20s.mp4
+  1080 x 1920, 24 fps, exactly 20.00 seconds / 480 frames, 5,787,434 bytes.
+promo-02-the-archive-is-reading-her-20s.mp4
+  1080 x 1920, 24 fps, exactly 20.00 seconds / 480 frames, 5,810,953 bytes.
+using-this-matter-story-trailer-90s.mp4
+  1920 x 1080, 24 fps, exactly 90.00 seconds / 2160 frames, 41,954,642 bytes.
+using-this-matter-story-trailer-web.mp4
+  1280 x 720, 24 fps, exactly 90.00 seconds / 2160 frames, 13,066,920 bytes.
+  Below the 20 MiB static-file limit.
+
+Encoding and sound
+All four are H.264 High, yuv420p, AAC 48 kHz stereo, with fast-start metadata.
+Every video and audio stream decoded fully without errors.
+Audio is present throughout: fresh narration mixed with the reused instrumental score.
+Measured final peaks are -2.9, -2.6, -1.8, and -2.5 dBFS respectively; no clipping.
+Mean levels are approximately -20 dBFS including the instrumental closing holds.
+Sentence caption timing follows measured pauses in the generated speech.
+No subjective listening or speech-recognition tool was available; this is digital
+audio QA and script/pause alignment, not a claim of subjective audio audition.
+
+Visual review
+Reviewed opening hook posters, all-scene contact sheets, closing cover cards,
+and the exact frame at the trailer's 68-second transition.
+The opening A NOVEL label is enlarged for phone readability.
+All composed headlines and labels fit their measured safe widths.
+Portrait captions remain above social controls; closing URL remains visible.
+The 68-second transition is continuous, with moving book footage visible.
+Door-count wording is “11 on the plan. 12 in her count.” to preserve ambiguity.
+Cover, title, subtitle, and author credit match the selected book assets.
+No late plot solution, Amazon URL, release date, or live purchase claim is included.
+
+Captions and preservation
+All films have complete SRT and VTT sidecars with valid, non-overlapping cue times.
+The web trailer has its own matching caption files.
+All four original MP4s match their pre-task SHA-256 hashes exactly.
+See verification.json for per-file results and preservation evidence.
+
+Source
+source/master_edit.py rebuilds all three edits and the web export.
+source/verify_films.py repeats technical QA and exports contact sheets.
+source/edit.json holds scripts, scene timings, on-screen copy, and caption timing.
+source/generation-manifest.json records reused footage/score and new narration.
+Temporary render caches are stored under work, outside the deliverable folder.

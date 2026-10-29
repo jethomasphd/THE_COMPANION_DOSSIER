@@ -1,44 +1,55 @@
 # ◊ COMPANION ◊
 
-### A Protocol for Summoning Minds
+### An open estate for exploration
 
-> *"Using this matter, summon [Name]."*
+You may have arrived through the **AI Engineer World's Fair talk**, an internet search, the protocol, the original **Companion Dossier**, or the novel ***Using This Matter***. Welcome. This repository is home to the whole exploration: the founding manifesto, working products, scholarship, correspondence, a financial portfolio, and fiction.
 
-COMPANION is an open protocol for dialogue with historical, fictional, and archetypal minds through large language models. Not chatbot theater — the modern instantiation of humanity's oldest practice: seeking counsel from those we cannot otherwise reach.
+It began with a manifesto against the information flood. It became an open protocol, then working products. Critical exchange sharpened the questions; scholarship made the claims available for examination. Follow that lineage through the estate, with fiction as its latest form of exploration.
 
-**The living site:** [the-companion-dossier.com](https://the-companion-dossier.com)
-**The origin artifact:** 📄 [THE COMPANION DOSSIER](./THE_COMPANION_DOSSIER.pdf) — the complete theory, rules, and a full demonstration transcript.
-**The talk:** 🎥 [AI Engineer World's Fair](https://www.youtube.com/watch?v=IJXjTLPzvAU) — the project, presented live.
+**[Read the manifesto](./THE_COMPANION_DOSSIER.pdf)** · **[Use The Harness](https://the-companion-dossier.com/The_Harness/)** · **[Read the SSRN paper](https://ssrn.com/abstract=7260618)** · **[Explore the living estate](https://the-companion-dossier.com)**
 
 ---
 
-## ◈ Welcome — start here
+## Public work you can inspect
 
-This repository is an **estate**, not a single page. If it's your first time — or you just heard the talk and want the lay of the land — these are the three doors in:
+- **[AI Engineer World's Fair: the official talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned)** — *The Miranda Hypothesis: How Hamilton (the Musical) Poisoned Your Persona Evals*, with the recording, transcript, and chapters.
+- **[The Harness: a working product](https://the-companion-dossier.com/The_Harness/)** — document-bound dialogue, streaming, and transcript exports with prompt fingerprints. [Inspect the implementation](./The_Harness/).
+- **[The Mask and the Mirror on SSRN](https://ssrn.com/abstract=7260618)** — the preprint by Thomas, Halpern, and Martin, with [DOI 10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
 
-| If you want… | Go to | What it is |
-|---|---|---|
-| **The guided tour** *(start here)* | 🏛 **[The Atrium](https://the-companion-dossier.com/The_Atrium/)** | The entrance hall. One golden path through the whole project, with every artifact one click away. |
-| **To watch, not read** | 🎞 **[The Summoning Film](https://the-companion-dossier.com/The_Magic_Lantern/the_film/)** | A ~7-minute film — the Committee of Patriots and the Republic Portfolio, as summoning cinema. |
-| **The paper & the talk** | 🔬 **[Mask vs Mirror](./Mask_vs_Mirror/)** | The preprint — *The Mask and the Mirror* — now readable in-repo, with the AI Engineer World's Fair slides, references, and the sealed vignettes. |
+## Welcome: follow your thread
 
-**To just use the protocol right now,** skip to [Quick Start](#quick-start). **To go all the way down,** read the [Dossier PDF](./THE_COMPANION_DOSSIER.pdf).
+| What brought you here? | A place to begin |
+|---|---|
+| **The AI Engineer World's Fair talk** | [The paper and research materials](./Mask_vs_Mirror/), [the slides](./Mask_vs_Mirror/miranda_deck.html), or [the recorded talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned). |
+| **An internet search or a recommendation** | [The Atrium](https://the-companion-dossier.com/The_Atrium/) gives you a guided introduction to the estate. |
+| **Using the protocol** | [Quick Start](#quick-start) gives you the two foundational files. [The Harness](https://the-companion-dossier.com/The_Harness/) lets you assemble a working in your browser. |
+| **The original Companion Dossier** | Return to [the founding document](./THE_COMPANION_DOSSIER.pdf), then explore the work that grew from it below. |
+| **The novel, Using This Matter** | [Meet the book and watch its trailers](https://the-companion-dossier.com/book/), [read the complete digital edition free](./book/USING_THIS_MATTER_KDP_interior_304pp.pdf), or explore [both promotional film collections](./book/media/). |
+
+## Follow the lineage across the estate
+
+| Thread | Where it leads |
+|---|---|
+| **Manifestos and theory** | [The original Dossier](./THE_COMPANION_DOSSIER.pdf), [The Addendum](https://the-companion-dossier.com/The_Addendum/), and [Latent Dialogic Space](https://the-companion-dossier.com/Latent_Dialogic_Space/): the arguments and methods behind the practice. |
+| **Protocol and working products** | [Quick Start](#quick-start), [The Harness](https://the-companion-dossier.com/The_Harness/), and the [chamber map](#explore-the-chambers): places to put the protocol to work. |
+| **Scholarship** | [The Mask and the Mirror](./Mask_vs_Mirror/): the SSRN preprint, proposed Prism Experiment, references, and sealed materials. |
+| **Correspondence** | [The Halpern Memo](./The_Halpern_Memo/) and [From Beyond](./from_beyond/): critical correspondence and AI-mediated encounters with the project. |
+| **The financial portfolio** | [The Committee of Patriots sessions](./Committee_of_Patriots_Sessions/) and [The Watchtower](https://the-companion-dossier.com/The_Watchtower/): the Republic Portfolio's doctrine, deliberations, holdings model, and public measurement. |
+| **Fiction** | [Using This Matter](./book/) and [Narratives](./Narratives/): a novel and shorter experimental fictions. |
+
+These threads belong to the same estate, but they do different kinds of work. A fictional event is part of a story; a scholarly claim belongs with its evidence; a portfolio model belongs with its methods and measurement. Each room keeps its own record.
 
 ---
 
-## 🔬 For the AI Engineer World's Fair audience
+## The Mask and the Mirror: now on SSRN
 
-The talk references a working preprint and a set of time-sealed experimental vignettes. Both now live in **[`/Mask_vs_Mirror/`](./Mask_vs_Mirror/)** — and the preprint is there to read:
+The paper has been accepted by SSRN and is now available as a **preprint**. The repository preserves the manuscript, talk materials, and time-sealed experimental vignettes alongside the SSRN record.
 
-> **The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure**
-> Jacob E. Thomas · Rick Halpern · Shawn Martin — Preprint, August 2026
+> Thomas, Jacob, Halpern, Rick, and Martin, Shawn. *The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure* (August 10, 2026). Available at SSRN: [https://ssrn.com/abstract=7260618](https://ssrn.com/abstract=7260618) or [https://doi.org/10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
 
-A few things worth knowing before you read:
+**[Read on SSRN](https://ssrn.com/abstract=7260618)** · **[Repository PDF](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_08102026.pdf)** · **[Research context and materials](./Mask_vs_Mirror/)**
 
-- The preprint is **available now** ([`Mask_and_Mirror_Preprint_08102026.pdf`](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_08102026.pdf)), but it is **very preliminary**. It has now been **submitted to SSRN**; once it posts, the DOI and formal citation will be made available as soon as possible. Until then, the paper lives here in this repository, and the **best citation is the PDF above**.
-- The experimental vignettes are deposited **sealed and timestamped**. The **key is revealed only after the experiment is run** — a commitment device, so the materials provably predate the result.
-
-See [`/Mask_vs_Mirror/README.md`](./Mask_vs_Mirror/README.md) for the full explanation, the paper's three contributions, and how to cite it.
+The experimental vignettes remain **sealed and timestamped**. Their key is revealed only after the experiment is run, so the materials demonstrably predate the result. The paper presents the framework and experimental design; its SSRN availability does not establish experimental outcomes.
 
 ---
 
@@ -82,7 +93,7 @@ Replace `[Name]` with any mind you wish to summon: Marcus Aurelius, Marie Curie,
 
 ---
 
-## Explore the estate
+## Explore the chambers
 
 Beyond the Atrium's guided path, each chamber stands on its own. A map:
 
@@ -95,12 +106,13 @@ Beyond the Atrium's guided path, each chamber stands on its own. A map:
 | [The Exchange](./The_Exchange/) | Four archetypal guides walk the job market with you — real listings, no phantoms. |
 | [The Boardroom](./The_Boardroom/) | Eight builders render a decision by collision, not consensus. |
 | [The Aerodrome](./The_Aerodrome/) | The Wright brothers teach an information-drowned age to rise. |
-| [Narratives](./Narratives/) | Characters seeded into a context window discover their own edges — and choose to stay. |
 | [**Committee of Patriots — The Sessions**](./Committee_of_Patriots_Sessions/) | The founders' quarterly sittings, kept as one story: the founding doctrine (Dec 2025), the Q1 Wartime Review, the Q2 False Peace Review, the Q3 Germantown Review (the first held from second place) — every transcript, handbill, and amendment. |
 | [The Watchtower](./The_Watchtower/) | The Republic Portfolio, measured against the market, day by day. |
 | [The Halpern Memo](./The_Halpern_Memo/) | The Miranda Hypothesis and the Prism Experiment, in narrative. |
 | [The Magic Lantern](./The_Magic_Lantern/) | The film studio — *The Summoning Film* and *The General*. |
 | [From Beyond](./from_beyond/) | Transcripts of minds summoned to describe the project itself. |
+| [Narratives](./Narratives/) | Characters seeded into a context window discover their own edges — and choose to stay. |
+| [**Using This Matter**](./book/) | The debut novel: an AI scientist creates a protocol to summon the dead and disappears. The digital edition is free; print is the intended experience. |
 
 The Atrium links to all of them, in order. When in doubt, **[start at the Atrium](https://the-companion-dossier.com/The_Atrium/).**
 

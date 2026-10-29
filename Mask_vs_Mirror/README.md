@@ -1,5 +1,5 @@
 # ◊ Mask vs Mirror ◊
-### The preprint · the talk · the sealed vignettes
+### The SSRN preprint · the talk · the sealed vignettes
 
 *Companion materials for the AI Engineer World's Fair talk — and the scholarly spine beneath the Prism Experiment.*
 
@@ -9,9 +9,9 @@
 
 The COMPANION Dossier *dramatizes* an idea: the **Miranda Hypothesis** and its test, the **Prism Experiment** — the question of whether a summoned mind returns *the person*, or only the culture's loudest memory of them. You can meet that idea in story form in [The Halpern Memo](https://the-companion-dossier.com/The_Halpern_Memo/) and in [*The Summoning Film*](https://the-companion-dossier.com/The_Magic_Lantern/the_film/).
 
-**Mask vs Mirror** is the scholarship beneath the drama — the working **preprint**, the **[talk](https://www.youtube.com/watch?v=IJXjTLPzvAU)** that introduces it, and the **time-sealed experimental materials**.
+**Mask vs Mirror** is the scholarship beneath the drama — the working **preprint**, the **[talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned)** that introduces it, and the **time-sealed experimental materials**.
 
-If you arrived here from the talk: this is where the paper, the slides, and the references live — and, as of August 2026, **the preprint itself is now here to read.**
+Whether you arrived through the talk, the protocol, the novel, or a search, this is the scholarly part of the estate. The paper is now available on **[SSRN](https://ssrn.com/abstract=7260618)**, with the manuscript, slides, references, and sealed materials preserved here.
 
 ---
 
@@ -24,7 +24,9 @@ If you arrived here from the talk: this is where the paper, the slides, and the 
 > *The COMPANION Working Group · University of Toronto · Washington College*
 > Preprint · August 2026
 
-**➡️ Read it:** [`Mask_and_Mirror_Preprint_08102026.pdf`](./Mask_and_Mirror_Preprint_08102026.pdf) *(PDF, ~46 pp.)*
+**➡️ [Read on SSRN](https://ssrn.com/abstract=7260618)** · **[DOI: 10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618)**
+
+**Repository copy:** [`Mask_and_Mirror_Preprint_08102026.pdf`](./Mask_and_Mirror_Preprint_08102026.pdf) *(PDF, ~46 pp.)*
 
 Role-Playing Language Agents are moving from entertainment toward proposed infrastructure for pedagogy, historical inquiry, and civic deliberation — a transition that demands evaluation standards the field does not yet possess. The paper argues that the dominant paradigm, which measures fluency, personality consistency, and stylistic naturalness, **cannot detect the failure mode that matters most**: the collapse of a historical figure into an anachronistic composite shaped by cultural salience rather than the documentary record. It makes three contributions:
 
@@ -40,8 +42,9 @@ Its closing inversion states the project's turn in a line: *we are not bringing 
 
 | Item | What it is | Status |
 |------|------------|--------|
+| 🔗 [The SSRN record](https://ssrn.com/abstract=7260618) | The citable preprint and DOI | **available now** |
 | 📄 [The preprint manuscript](./Mask_and_Mirror_Preprint_08102026.pdf) | *The Mask and the Mirror* — the working paper | **available now** |
-| 🎥 [The recorded talk](https://www.youtube.com/watch?v=IJXjTLPzvAU) | The AI Engineer World's Fair presentation, on video | **available now** |
+| 🎥 [The recorded talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned) | The AI Engineer World's Fair presentation, on video | **available now** |
 | 🖥 [The talk deck](https://the-companion-dossier.com/Mask_vs_Mirror/miranda_deck.html) | *The Miranda Hypothesis* — the World's Fair slides, as a self-contained web deck | **available now** |
 | 📚 [References](./References.docx) | The works cited in the talk and the paper | **available now** |
 | 🔒 [The sealed vignettes](./THE_HISTORIAN_S_CONTRIB.docx.enc) | Timestamped, cryptographically sealed experimental stimuli | **sealed — key to follow** |
@@ -50,19 +53,11 @@ Its closing inversion states the project's turn in a line: *we are not bringing 
 
 ---
 
-## On the preprint — please read this first
+## Publication status
 
-This preprint is **very preliminary**, and it lives **here, in this repository, by design.**
+The paper has been **accepted by SSRN and is available as a preprint**. Use the SSRN record and DOI below when citing it. The manuscript remains available in this repository alongside the talk and research materials.
 
-It is intentionally made accessible to the **AI Engineer World's Fair** audience and to readers of the Dossier. The paper has now been **submitted to SSRN**; once it posts, the **DOI and formal citation will be made available here as soon as possible.**
-
-Until that formal version posts, please treat the manuscript here accordingly:
-
-- It is a **working draft**, not yet a citable version of record.
-- **Expect it to change** — numbers, framing, and language may move before the formal preprint is released.
-- In the meantime, the **best citation is the PDF deposited in this repository** (see below). When the SSRN version is live, this page will link to it, and **that** becomes the citable version of record.
-
-Why release a draft at all? Because the talk points to it, and an audience asked to consider an argument deserves to read the actual argument — not take it on faith. Openness is the whole point of this project.
+This remains a working paper presenting a framework and experimental design. The sealed vignettes and their release procedure are unchanged; no experimental result is implied by the SSRN posting.
 
 ---
 
@@ -90,13 +85,9 @@ This is a pre-registration in spirit: **commit first, reveal later, and let the 
 
 ## Citation & contact
 
-The paper has been **submitted to SSRN**; its DOI and formal citation will be posted here as soon as they are available. **Until then, the best citation is the PDF deposited in this repository**, alongside the Dossier DOI:
+> Thomas, Jacob, Halpern, Rick, and Martin, Shawn. *The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure* (August 10, 2026). Available at SSRN: [https://ssrn.com/abstract=7260618](https://ssrn.com/abstract=7260618) or [https://doi.org/10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
 
-> Thomas, J. E., Halpern, R., & Martin, S. (2026). *The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure* [Preprint]. The COMPANION Working Group. https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/Mask_vs_Mirror/Mask_and_Mirror_Preprint_08102026.pdf
->
-> Dossier DOI: **https://doi.org/10.5281/zenodo.17967947**
-
-When the SSRN version posts, that becomes the citable version of record and this page will link to it.
+The original Dossier has its own DOI: [10.5281/zenodo.17967947](https://doi.org/10.5281/zenodo.17967947).
 
 Jacob E. Thomas, PhD — jethomasphd@gmail.com
 
