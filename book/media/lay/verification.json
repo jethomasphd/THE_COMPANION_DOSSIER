@@ -1,0 +1,319 @@
+{
+  "films": [
+    {
+      "file": "promo-01-the-missing-scientist-20s.mp4",
+      "bytes": 5787434,
+      "sha256": "028ca35ca43c3d55230fbbe602acb6b3a3a9399802de3a70a2b9e1108a525b5e",
+      "duration": "00:00:20.00",
+      "streams": [
+        "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920 [SAR 1:1 DAR 9:16], 2111 kb/s, 24 fps, 24 tbr, 12288 tbn (default)",
+        "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 197 kb/s (default)"
+      ],
+      "frames": 480,
+      "expected_frames": 480,
+      "decode_exit_code": 0,
+      "decode_errors": "",
+      "mean_dbfs": -20.2,
+      "peak_dbfs": -2.9,
+      "fast_start": true,
+      "under_20_MiB": true,
+      "pass": true
+    },
+    {
+      "file": "promo-02-the-archive-is-reading-her-20s.mp4",
+      "bytes": 5810953,
+      "sha256": "04b888eb63d62a00acc354ac18f347347ec75012213d1929d9e4f05713b6503f",
+      "duration": "00:00:20.00",
+      "streams": [
+        "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920 [SAR 1:1 DAR 9:16], 2119 kb/s, 24 fps, 24 tbr, 12288 tbn (default)",
+        "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 198 kb/s (default)"
+      ],
+      "frames": 480,
+      "expected_frames": 480,
+      "decode_exit_code": 0,
+      "decode_errors": "",
+      "mean_dbfs": -20.3,
+      "peak_dbfs": -2.6,
+      "fast_start": true,
+      "under_20_MiB": true,
+      "pass": true
+    },
+    {
+      "file": "using-this-matter-story-trailer-90s.mp4",
+      "bytes": 41954642,
+      "sha256": "8143cdf1de5e32ca5dfaa822c6ad3869b7a2caf5123ee0e76edb9ba5f1f80367",
+      "duration": "00:01:30.00",
+      "streams": [
+        "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 3526 kb/s, 24 fps, 24 tbr, 12288 tbn (default)",
+        "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 197 kb/s (default)"
+      ],
+      "frames": 2160,
+      "expected_frames": 2160,
+      "decode_exit_code": 0,
+      "decode_errors": "",
+      "mean_dbfs": -20.3,
+      "peak_dbfs": -1.8,
+      "fast_start": true,
+      "under_20_MiB": false,
+      "pass": true
+    },
+    {
+      "file": "using-this-matter-story-trailer-web.mp4",
+      "bytes": 13066920,
+      "sha256": "63bd5106fe957c3d2d1c1383ee19870572ddff0258cbf3d701e2e1d86bda4688",
+      "duration": "00:01:30.00",
+      "streams": [
+        "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720 [SAR 1:1 DAR 16:9], 1056 kb/s, 24 fps, 24 tbr, 12288 tbn (default)",
+        "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 98 kb/s (default)"
+      ],
+      "frames": 2160,
+      "expected_frames": 2160,
+      "decode_exit_code": 0,
+      "decode_errors": "",
+      "mean_dbfs": -20.4,
+      "peak_dbfs": -2.5,
+      "fast_start": true,
+      "under_20_MiB": true,
+      "pass": true
+    }
+  ],
+  "preserved_originals": [
+    {
+      "file": "promo-01-the-inventory-20s.mp4",
+      "before": "f4cbee9c062da4743ba054878041738b47b3c641a0d531f155178b221f4ae04d",
+      "after": "f4cbee9c062da4743ba054878041738b47b3c641a0d531f155178b221f4ae04d",
+      "unchanged": true
+    },
+    {
+      "file": "promo-02-the-right-to-leave-20s.mp4",
+      "before": "65a8b1afa13deb1af5895f710d6d96dc7296910556a7eb5ad22f93183ae4f80f",
+      "after": "65a8b1afa13deb1af5895f710d6d96dc7296910556a7eb5ad22f93183ae4f80f",
+      "unchanged": true
+    },
+    {
+      "file": "using-this-matter-trailer-90s.mp4",
+      "before": "d8dd812aea9d6d3d3472800bcbbc164526d8ba6cad1507f3a764e2716c6ef52e",
+      "after": "d8dd812aea9d6d3d3472800bcbbc164526d8ba6cad1507f3a764e2716c6ef52e",
+      "unchanged": true
+    },
+    {
+      "file": "using-this-matter-trailer-web.mp4",
+      "before": "52db8038cff31d6fbd620d91fb53abfeb064254024e26eab3ccea3ec9208261b",
+      "after": "52db8038cff31d6fbd620d91fb53abfeb064254024e26eab3ccea3ec9208261b",
+      "unchanged": true
+    }
+  ],
+  "captions": [
+    {
+      "file": "promo-01-the-missing-scientist-20s.srt",
+      "cues": 6,
+      "valid_times": true,
+      "vtt_present": true
+    },
+    {
+      "file": "promo-02-the-archive-is-reading-her-20s.srt",
+      "cues": 6,
+      "valid_times": true,
+      "vtt_present": true
+    },
+    {
+      "file": "using-this-matter-story-trailer-90s.srt",
+      "cues": 21,
+      "valid_times": true,
+      "vtt_present": true
+    },
+    {
+      "file": "using-this-matter-story-trailer-web.srt",
+      "cues": 21,
+      "valid_times": true,
+      "vtt_present": true
+    }
+  ],
+  "headline_safe_areas": [
+    {
+      "film": "trailer",
+      "scene": 0,
+      "headline_width": 609.0,
+      "label_width": 414.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 1,
+      "headline_width": 786.0,
+      "label_width": 432.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 2,
+      "headline_width": 619.0,
+      "label_width": 432.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 3,
+      "headline_width": 709.0,
+      "label_width": 486.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 4,
+      "headline_width": 506.0,
+      "label_width": 522.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 5,
+      "headline_width": 595.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 6,
+      "headline_width": 767.0,
+      "label_width": 432.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 7,
+      "headline_width": 745.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 8,
+      "headline_width": 800.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 9,
+      "headline_width": 632.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 10,
+      "headline_width": 569.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 11,
+      "headline_width": 799.0,
+      "label_width": 396.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 12,
+      "headline_width": 776.0,
+      "label_width": 378.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 13,
+      "headline_width": 625.0,
+      "label_width": 378.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "trailer",
+      "scene": 14,
+      "headline_width": 706.0,
+      "label_width": 324.0,
+      "maximum_width": 1728,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo1",
+      "scene": 0,
+      "headline_width": 530.0,
+      "label_width": 651.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo1",
+      "scene": 1,
+      "headline_width": 604.0,
+      "label_width": 567.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo1",
+      "scene": 2,
+      "headline_width": 598.0,
+      "label_width": 483.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo1",
+      "scene": 3,
+      "headline_width": 493.0,
+      "label_width": 441.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo2",
+      "scene": 0,
+      "headline_width": 448.0,
+      "label_width": 651.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo2",
+      "scene": 1,
+      "headline_width": 416.0,
+      "label_width": 399.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo2",
+      "scene": 2,
+      "headline_width": 564.0,
+      "label_width": 462.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    },
+    {
+      "film": "promo2",
+      "scene": 3,
+      "headline_width": 470.0,
+      "label_width": 441.0,
+      "maximum_width": 900,
+      "within_safe_width": true
+    }
+  ],
+  "audio_qa_note": "Digital levels and full audio/video decoding checked. No subjective listening or speech-recognition tool was available; narration follows the exact submitted scripts."
+}

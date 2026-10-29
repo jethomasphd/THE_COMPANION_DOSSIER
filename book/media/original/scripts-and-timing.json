@@ -1,0 +1,109 @@
+{
+  "title": "Using This Matter",
+  "subtitle": "A Novel of the Companion Estate",
+  "author": "Jacob E. Thomas",
+  "destination": "https://the-companion-dossier.com/book",
+  "source_book": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf",
+  "spoiler_policy": "Premise and thematic questions only. No late-plot revelations.",
+  "narration": {
+    "trailer-01": "She came to inventory an archive. The archive was expecting her.",
+    "trailer-02": "Miranda Cale is hired to catalogue a missing scientist's estate. He has left behind sealed experiments, transcripts, and a question.",
+    "trailer-03": "Eleven doors on the county plan. Twelve in her inventory. Then a document begins to describe her work before she has done it.",
+    "trailer-04": "Three isolated conversations. The same interruption. Is the archive preserving a life, or assembling something from the people who read it?",
+    "trailer-05": "When a voice is reconstructed from a person's words, what survives? The person, a fiction, or something we have no name for?",
+    "trailer-06": "And if a voice can answer, can it refuse? Who gets to decide when the conversation ends?",
+    "trailer-07": "A novel of archival horror, about keeping, consent, and the right to leave. The narrative is fiction. The estate is not.",
+    "trailer-08": "Built from a real public archive. Intended to be held in print. Available to read digitally for free. Purchasing supports the continuing Companion Dossier.",
+    "trailer-09": "Using This Matter. A Novel of the Companion Estate. By Jacob E. Thomas. Enter the archive.",
+    "promo-01": "Eleven doors on the county plan. Twelve in her inventory. She came to catalogue a missing scientist's estate. The archive was expecting her. Using This Matter. Enter the archive.",
+    "promo-02": "If a voice can answer, can it refuse? A novel of archival horror about keeping, consent, and the right to leave. Using This Matter. A Novel of the Companion Estate."
+  },
+  "trailer": {
+    "duration": 90,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "scene_seconds": [
+      8,
+      11,
+      10,
+      12,
+      10,
+      9,
+      11,
+      12,
+      7
+    ]
+  },
+  "promos": {
+    "duration": 20,
+    "width": 1080,
+    "height": 1920,
+    "fps": 24,
+    "scene_seconds": [
+      4.5,
+      4.5,
+      5,
+      6
+    ]
+  },
+  "promo_caption_phrases": {
+    "1": [
+      [
+        0.5,
+        4.1,
+        "Eleven doors on the county plan. Twelve in her inventory."
+      ],
+      [
+        4.91,
+        8.22,
+        "She came to catalogue a missing scientist's estate."
+      ],
+      [
+        8.82,
+        10.55,
+        "The archive was expecting her."
+      ],
+      [
+        10.89,
+        12.2,
+        "Using This Matter."
+      ],
+      [
+        12.79,
+        14,
+        "Enter the archive."
+      ]
+    ],
+    "2": [
+      [
+        0.5,
+        3.2,
+        "If a voice can answer, can it refuse?"
+      ],
+      [
+        4.12,
+        8.65,
+        "A novel of archival horror about keeping, consent, and the right to leave."
+      ],
+      [
+        9.54,
+        10.75,
+        "Using This Matter."
+      ],
+      [
+        11.0,
+        13.1,
+        "A Novel of the Companion Estate."
+      ]
+    ]
+  },
+  "credits": {
+    "footage": "AI-generated cinematic imagery; Runway",
+    "narration": "Synthetic narrator, preset Serene; not a real person impersonation",
+    "music": "Original generated instrumental score",
+    "cover": "Author-selected Archive Sculpture cover from current repository release",
+    "typefaces": "Cormorant Garamond, Crimson Pro and IBM Plex Mono; SIL Open Font License",
+    "assembly": "Deterministic FFmpeg edit with captions, actual cover and original score"
+  }
+}

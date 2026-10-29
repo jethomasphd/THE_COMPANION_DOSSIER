@@ -1,0 +1,32 @@
+/* The public front door: immediate orientation across the estate. */
+.estate-header{width:min(1200px,calc(100% - 80px));margin:auto;min-height:94px;display:flex;align-items:center;justify-content:space-between;gap:28px;border-bottom:1px solid #c9a22733}
+.estate-brand{font:12px var(--font-terminal);color:var(--ember);letter-spacing:2px;text-decoration:none;white-space:nowrap}
+.estate-header nav{display:flex;gap:28px;font:11px var(--font-terminal)}
+.estate-header nav a{color:var(--bone-dim);text-decoration:none}.estate-header nav a:hover{color:var(--ember)}
+#welcome.estate-welcome{min-height:0;padding:78px 40px 82px;display:block;background:radial-gradient(ellipse at 85% 20%,#c9a22709,transparent 60%)}
+.estate-kicker{font:10px/1.8 var(--font-terminal);letter-spacing:2px;color:var(--ember);margin-bottom:25px}
+.estate-welcome h1{font:500 clamp(68px,8vw,112px)/.92 var(--font-voice);letter-spacing:-2px;margin:0 0 32px}.estate-welcome h1 em{font-weight:400;color:var(--ember)}
+.estate-intro{font:27px/1.4 var(--font-body);max-width:830px;color:var(--bone);margin-bottom:25px}
+.estate-arrival{font:20px/1.6 var(--font-body);max-width:850px;color:var(--bone-dim)}
+.estate-welcome a,.estate-map a,.estate-publication a{color:var(--ember);text-underline-offset:5px}
+.estate-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:32px;font:11px/1.7 var(--font-terminal)}
+.estate-actions .estate-button{display:inline-block;border:1px solid var(--ember-dim);padding:15px 23px;text-decoration:none;background:var(--ember);color:var(--void)}
+.estate-actions .estate-button:hover{background:var(--ember-glow)}
+#estate-map.estate-map{min-height:0;padding:65px 40px 75px;border-block:1px solid #c9a22725;background:#0b0b09;display:block}
+.estate-map h2,.estate-publication h2{font:500 clamp(40px,5vw,64px)/1.05 var(--font-voice);margin-bottom:38px}
+.estate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:45px 38px}
+.estate-grid article{border-top:1px solid #c9a22744;padding-top:22px;display:flex;flex-direction:column;align-items:flex-start}
+.estate-number{font:9px/1.8 var(--font-terminal);color:var(--ember);letter-spacing:1.1px;margin-bottom:17px}
+.estate-grid h3{font:500 34px/1.1 var(--font-voice);margin-bottom:14px}
+.estate-grid p{font-size:19px;line-height:1.6;color:var(--bone-dim);margin-bottom:20px;flex:1}
+.estate-grid a{font:10px/1.8 var(--font-terminal);margin-top:10px;text-decoration:none;border-bottom:1px solid #c9a22733}
+.estate-footnote{font-size:17px;line-height:1.6;color:var(--bone-dim);max-width:850px;margin-top:42px}
+#ssrn.estate-publication{min-height:0;padding:70px 40px;background:#121008;display:block;border-bottom:1px solid #c9a22725}
+.estate-publication h2{margin-bottom:16px}.estate-paper-subtitle{font:28px/1.3 var(--font-voice);max-width:800px;color:var(--bone);margin-bottom:20px}
+.estate-publication p{max-width:900px}.estate-citation{font-size:17px;color:var(--bone-dim);margin-top:25px;overflow-wrap:anywhere}
+.estate-header a:focus-visible,.estate-welcome a:focus-visible,.estate-map a:focus-visible,.estate-publication a:focus-visible{outline:2px solid var(--ember);outline-offset:7px}
+@media(max-width:900px){.estate-grid{grid-template-columns:repeat(2,1fr)}.estate-header nav{gap:17px}.estate-header{width:calc(100% - 48px)}#welcome.estate-welcome{padding:60px 28px 65px}}
+@media(max-width:600px){.estate-header{align-items:flex-start;flex-direction:column;justify-content:center;gap:18px;padding:24px 0}.estate-header nav{gap:18px;flex-wrap:wrap;font-size:10px}#welcome.estate-welcome,#estate-map.estate-map,#ssrn.estate-publication{padding:45px 22px}.estate-welcome h1{font-size:clamp(52px,15.5vw,64px)}.estate-intro{font-size:24px}.estate-arrival{font-size:19px}.estate-grid{grid-template-columns:1fr;gap:32px}.estate-grid p{margin-bottom:12px}.estate-kicker{font-size:9px}.estate-actions{gap:21px}.estate-paper-subtitle{font-size:25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+.estate-evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:40px 0 35px;padding:30px 0;border-block:1px solid #c9a22744}.estate-evidence article{display:flex;flex-direction:column;align-items:flex-start}.estate-evidence span{font:9px/1.8 var(--font-terminal);letter-spacing:1px;color:var(--ember)}.estate-evidence h2{font:500 28px/1.1 var(--font-voice);margin:16px 0 14px;color:var(--bone)}.estate-evidence p{font-size:17px;line-height:1.5;color:var(--bone-dim);margin-bottom:16px;flex:1}.estate-evidence a{font:10px/1.7 var(--font-terminal);margin-top:8px;text-decoration:none;border-bottom:1px solid #c9a22744}.estate-header nav{gap:22px}
+@media(max-width:700px){.estate-evidence{grid-template-columns:1fr;gap:27px}.estate-evidence article+article{border-top:1px solid #c9a22726;padding-top:25px}.estate-evidence h2{font-size:29px}.estate-evidence p{font-size:19px}.estate-header nav{gap:15px}.estate-welcome h1{font-size:clamp(52px,15.5vw,64px)}}

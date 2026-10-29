@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "lay-trailer-01",
+    "text": "An AI scientist builds a protocol to summon the dead. Their voices, reconstructed from the words they left behind.",
+    "duration": "00:00:07.78",
+    "task_id": "6fabe6fc-b9e7-4139-8a8c-e33ba7708a70",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-02",
+    "text": "Then he disappears. Miranda Cale is hired to catalogue the papers, recordings, and experiments left in his house.",
+    "duration": "00:00:07.60",
+    "task_id": "ac94da6e-b8ff-4ce7-9ff0-f3f3625633b6",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-03",
+    "text": "Eleven doors on the county plan. Twelve in her inventory. A document describes her work before she does it.",
+    "duration": "00:00:06.77",
+    "task_id": "8eb16555-6662-4de1-b6cc-2d615baf00a2",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-04",
+    "text": "Three isolated conversations produce the same interruption. The records should explain what happened. Instead, they seem to be waiting for her.",
+    "duration": "00:00:08.59",
+    "task_id": "43a62a96-a4e1-4a2d-99e0-2b55295225b2",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-05",
+    "text": "Did he build a convincing imitation? Did someone tamper with the evidence? Or did something answer that he could no longer control?",
+    "duration": "00:00:08.49",
+    "task_id": "3b33c7ad-c59e-46bd-88ae-a6aa637e2947",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-06",
+    "text": "The deeper Miranda reads, the harder it becomes to tell whether she is investigating the experiment... or becoming part of it.",
+    "duration": "00:00:07.60",
+    "task_id": "0bf9b819-743a-44bd-9465-13516f836673",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-07",
+    "text": "Using This Matter. A Novel of the Companion Estate. A mystery about the voices we preserve, and the right to let go.",
+    "duration": "00:00:07.42",
+    "task_id": "a34bab7d-ac8b-4d24-b99c-7174c9a9efc1",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-trailer-08",
+    "text": "Read digitally for free. Experience it in print. Purchasing supports the continuing Companion Dossier. Discover the book.",
+    "duration": "00:00:07.52",
+    "task_id": "a3ce9a4d-8b41-4004-bc6c-32fe6288ad85",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-promo-01",
+    "text": "An AI scientist builds a protocol to summon the dead. Then he vanishes. His archivist finds a document predicting her next move. What answered him? Using This Matter. Enter the mystery.",
+    "duration": "00:00:12.96",
+    "task_id": "2de85ddf-25b1-449e-95ae-d9ddfc96d4ad",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  },
+  {
+    "slug": "lay-promo-02",
+    "text": "He taught an AI to speak as the dead. Then he disappeared. Now an archivist is reading his experiments. Something seems to be reading her. Using This Matter. Enter the mystery.",
+    "duration": "00:00:12.38",
+    "task_id": "9669059f-360b-48bf-981a-65d30bfaf95a",
+    "voice": "Leslie",
+    "speed": 1.0,
+    "model": "eleven_multilingual_v2"
+  }
+]

@@ -1,6 +1,6 @@
 # Using This Matter — KDP release
 
-*A Novel of the Companion Estate*  
+*A Novel of the Companion Estate*
 **Jacob E. Thomas, MA, PhD**
 
 This directory contains the final release materials for the **304-page premium-color hardcover**.
@@ -10,6 +10,16 @@ This directory contains the final release materials for the **304-page premium-c
 | [USING_THIS_MATTER_KDP_interior_304pp.pdf](USING_THIS_MATTER_KDP_interior_304pp.pdf) | Upload as the manuscript/interior. |
 | [USING_THIS_MATTER_KDP_hardcover_cover.pdf](USING_THIS_MATTER_KDP_hardcover_cover.pdf) | Upload as the complete hardcover cover, including back and spine. |
 | [jacket_and_retailer_copy.txt](jacket_and_retailer_copy.txt) | Final book description, short description, and author line for the listing. |
+
+## Website and film collections
+
+**[Visit the book page](https://the-companion-dossier.com/book/)** · **[Compare all six films](https://the-companion-dossier.com/book/media/)** · **[Publication setup](WEBSITE.txt)**
+
+- **[Story-first / lay versions](media/lay/):** two 20-second promos and a 90-second trailer that explain the missing AI scientist, his protocol to summon the dead, and the archivist who enters his house. These are featured on the website.
+- **[Original atmospheric versions](media/original/):** the first two promos and full trailer, preserved as a separate collection.
+- **[Film library and download table](media/README.md):** clearly labeled files, captions, posters, and scripts for both sets.
+
+The full digital novel remains free. Print is the intended experience, and purchasing contributes to further development of the Companion Dossier's product, scholarship, and moral framework. Set the final Amazon URL in `config.js` when the book is published.
 
 ## KDP settings
 

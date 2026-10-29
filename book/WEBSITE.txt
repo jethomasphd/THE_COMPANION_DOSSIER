@@ -25,13 +25,30 @@ index.html: copy, metadata, book schema, transcript, page structure.
 book.css: responsive layout, self-hosted estate fonts, reduced-motion support.
 book.js: Amazon switch and optional engagement events.
 config.js: the one publication setting.
-assets/: selected cover, real interior pages, 720p trailer, poster, captions,
-         and the existing estate fonts with their license texts.
+assets/: selected cover, real interior pages, and the existing estate fonts
+         with their license texts.
+media/lay/: story-first trailer and two short promos for general audiences.
+media/original/: the original atmospheric trailer and short promos, preserved.
+media/index.html: a clearly labeled comparison library with all six films,
+                  transcripts, captions, and download links.
 
-The website trailer is 90 seconds and approximately 12.5 MiB. It uses H.264/AAC,
+Both website trailers are 90 seconds and under 20 MiB each. They use H.264/AAC,
 fast-start metadata, no autoplay, and preload="none". Captions are composed into
 the film; the VTT track is optional so duplicate captions are not on by default.
 The written transcript is available directly below the player.
+
+The book page features the story-first trailer and both new 20-second promos.
+The original collection is linked directly below them. This is presentation
+order only; the original films remain available in media/original/ and their
+original full-resolution local masters have not been overwritten.
+
+The repo homepage and public root page now orient visitors arriving through
+the World's Fair talk, search, protocol, original Dossier, or novel. The estate
+map follows manifesto/theory, protocol and working products, scholarship,
+correspondence, the Republic Portfolio model, and fiction last. The original
+slow typewriter opening comes first; the official World's Fair talk, public
+product source, and SSRN record anchor the welcome that follows. The supplied SSRN citation is installed in
+the root README, Mask_vs_Mirror README, public root page, and book research link.
 
 OPTIONAL MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement with details:
@@ -52,7 +69,8 @@ without horizontal overflow; print CTA, trailer playback (90 seconds), transcrip
 and interior images checked. Video masters were decoded and frame-counted.
 The narrated audio has technical QA; pronunciation and musical taste should
 receive a listening review before ad spend. No campaign has been posted and
-the page has not been deployed by this change.
+production has not been published by this change. Cloudflare Pages builds a
+review preview automatically for the draft pull request.
 
 SOURCE AUTHORITY
 The current 304-page USING_THIS_MATTER_KDP_interior_304pp.pdf and book/README.md
