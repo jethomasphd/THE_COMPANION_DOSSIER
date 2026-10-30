@@ -14,6 +14,8 @@ Choose the minds. Give them the matter. Cross the threshold. The COMPANION Proto
 
 **The live site:** [the-companion-dossier.com/The_Harness/](https://the-companion-dossier.com/The_Harness/)
 
+**Ready to begin?** [Open the workshop directly](https://the-companion-dossier.com/The_Harness/#workshop). The homepage uses this entry so a visitor who has already seen the opening can start choosing personas immediately. The workshop's **Replay the introduction** link still opens the cinematic.
+
 ---
 
 ## What it does

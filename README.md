@@ -1,209 +1,210 @@
-# ◊ COMPANION ◊
+# ◈ The COMPANION Dossier
 
-### An open estate for exploration
+### Think with minds beyond your own.
 
-You may have arrived through the **AI Engineer World's Fair talk**, an internet search, the protocol, the original **Companion Dossier**, or the novel ***Using This Matter***. Welcome. This repository is home to the whole exploration: the founding manifesto, working products, scholarship, correspondence, a financial portfolio, and fiction.
+<img align="right" src="./assets/home/knowledge-constellation.webp" width="310" alt="Human perspectives formed from layers of knowledge, connected to source documents.">
 
-It began with a manifesto against the information flood. It became an open protocol, then working products. Critical exchange sharpened the questions; scholarship made the claims available for examination. Follow that lineage through the estate, with fiction as its latest form of exploration.
+**An open-source toolkit for thinking with AI personas.** Bring a question or documents, choose perspectives, and explore an idea through structured dialogue.
 
-**[Read the manifesto](./THE_COMPANION_DOSSIER.pdf)** · **[Use The Harness](https://the-companion-dossier.com/The_Harness/)** · **[Read the SSRN paper](https://ssrn.com/abstract=7260618)** · **[Explore the living estate](https://the-companion-dossier.com)**
+An **AI persona** is a language model asked to reason through a particular perspective—for example, Socrates questioning an assumption or Ada Lovelace examining a system. You guide the conversation and decide what stands up to scrutiny.
+
+**[Start a conversation →](https://the-companion-dossier.com/The_Harness/#workshop)**
+
+[Explore the website](https://the-companion-dossier.com/) · [Read the founding manifesto](./THE_COMPANION_DOSSIER.pdf) · [Inspect the research](#the-research)
+
+<br clear="right">
+
+**Presented at [AI Engineer World’s Fair](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned)** · **[Preprint on SSRN](https://ssrn.com/abstract=7260618)** · **[Open protocol and source](./LICENSE)**
 
 ---
 
-## Public work you can inspect
+## Start here
 
-- **[AI Engineer World's Fair: the official talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned)** — *The Miranda Hypothesis: How Hamilton (the Musical) Poisoned Your Persona Evals*, with the recording, transcript, and chapters.
-- **[The Harness: a working product](https://the-companion-dossier.com/The_Harness/)** — document-bound dialogue, streaming, and transcript exports with prompt fingerprints. [Inspect the implementation](./The_Harness/).
-- **[The Mask and the Mirror on SSRN](https://ssrn.com/abstract=7260618)** — the preprint by Thomas, Halpern, and Martin, with [DOI 10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
+You do not need to read the whole repository to begin. Pick the path that fits what brought you here.
 
-## Welcome: follow your thread
-
-| What brought you here? | A place to begin |
+| I want to… | Begin with… |
 |---|---|
-| **The AI Engineer World's Fair talk** | [The paper and research materials](./Mask_vs_Mirror/), [the slides](./Mask_vs_Mirror/miranda_deck.html), or [the recorded talk](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned). |
-| **An internet search or a recommendation** | [The Atrium](https://the-companion-dossier.com/The_Atrium/) gives you a guided introduction to the estate. |
-| **Using the protocol** | [Quick Start](#quick-start) gives you the two foundational files. [The Harness](https://the-companion-dossier.com/The_Harness/) lets you assemble a working in your browser. |
-| **The original Companion Dossier** | Return to [the founding document](./THE_COMPANION_DOSSIER.pdf), then explore the work that grew from it below. |
-| **The novel, Using This Matter** | [Meet the book and watch its trailers](https://the-companion-dossier.com/book/), [read the complete digital edition free](./book/USING_THIS_MATTER_KDP_interior_304pp.pdf), or explore [both promotional film collections](./book/media/). |
+| **Try the idea** | [The Harness](https://the-companion-dossier.com/The_Harness/#workshop), the browser workshop for building your own conversation. |
+| **Understand why it exists** | [The COMPANION Dossier](./THE_COMPANION_DOSSIER.pdf), the founding manifesto, protocol, and worked example. |
+| **Follow the World’s Fair talk** | [The research collection](./Mask_vs_Mirror/): paper, slides, references, and sealed experimental materials. |
+| **Use the protocol in my own AI chat** | [The two-file quick start](#use-it-in-your-own-ai-chat). |
+| **Inspect or adapt the implementation** | [The source map and local setup](#build-or-adapt). |
+| **Explore the larger project** | [The estate directory](#explore-the-estate), from theory and correspondence to the portfolio model and fiction. |
 
-## Follow the lineage across the estate
+Arrived through a search, an existing tool, the original Dossier, or the novel? This is the shared home for all of them.
 
-| Thread | Where it leads |
+## Your first conversation
+
+**Try this: examine one assumption in a decision you are making.**
+
+1. Open **[The Harness](https://the-companion-dossier.com/The_Harness/#workshop)** to enter the workshop.
+2. Select **Socrates** from the portraits. Leave the documents empty for this first session.
+3. Choose **Bind & Enter**, then ask:
+
+> Help me examine one assumption in a decision I’m making. Ask one question at a time.
+
+Follow the questions. Challenge the responses. Change the direction when something becomes interesting.
+
+The configured public workshop runs in your browser without an installation or a personal API key. It uses the project’s shared AI connection, with usage limits.
+
+**Before adding documents:** your supplied text and conversation go through The COMPANION Dossier service to Anthropic. The Harness saves recent sessions in your browser for resuming. **Transcript exports include your source documents**, so review an export before sharing it.
+
+### What changes when you bring your own material?
+
+You give the conversation something specific to work from: a short essay, a teaching plan, a passage, a proposal, or a dilemma. In the project’s vocabulary:
+
+| Term | Plain meaning |
 |---|---|
-| **Manifestos and theory** | [The original Dossier](./THE_COMPANION_DOSSIER.pdf), [The Addendum](https://the-companion-dossier.com/The_Addendum/), and [Latent Dialogic Space](https://the-companion-dossier.com/Latent_Dialogic_Space/): the arguments and methods behind the practice. |
-| **Protocol and working products** | [Quick Start](#quick-start), [The Harness](https://the-companion-dossier.com/The_Harness/), and the [chamber map](#explore-the-chambers): places to put the protocol to work. |
-| **Scholarship** | [The Mask and the Mirror](./Mask_vs_Mirror/): the SSRN preprint, proposed Prism Experiment, references, and sealed materials. |
-| **Correspondence** | [The Halpern Memo](./The_Halpern_Memo/) and [From Beyond](./from_beyond/): critical correspondence and AI-mediated encounters with the project. |
-| **The financial portfolio** | [The Committee of Patriots sessions](./Committee_of_Patriots_Sessions/) and [The Watchtower](https://the-companion-dossier.com/The_Watchtower/): the Republic Portfolio's doctrine, deliberations, holdings model, and public measurement. |
-| **Fiction** | [Using This Matter](./book/) and [Narratives](./Narratives/): a novel and shorter experimental fictions. |
+| **Persona / mind** | The AI-generated perspective you choose. |
+| **Matter** | The reference text or problem you supply. |
+| **Binding / working** | Your combination of personas, material, and intent. |
+| **Chamber** | A browser tool built around a particular use. |
+| **Estate** | The whole body of work: tools, research, records, and creative work. |
 
-These threads belong to the same estate, but they do different kinds of work. A fictional event is part of a story; a scholarly claim belongs with its evidence; a portfolio model belongs with its methods and measurement. Each room keeps its own record.
+The Harness accepts pasted text and text files. Start with a short excerpt; it does not extract the text of PDFs or Word files. You can select several personas, change the setup, and export the resulting conversation. The [Harness guide](./The_Harness/) explains the controls and implementation.
 
----
+### Use it in your own AI chat
 
-## The Mask and the Mirror: now on SSRN
+1. Download **[initiation_rite.md](./initiation_rite.md)** and **[enrichment_grimoire.json](./enrichment_grimoire.json)**. On each GitHub file page, use **Download raw file**.
+2. Add both files to a new conversation with a language model that accepts files or their text.
+3. Add your question or reference material and start with:
 
-The paper has been accepted by SSRN and is now available as a **preprint**. The repository preserves the manuscript, talk materials, and time-sealed experimental vignettes alongside the SSRN record.
-
-> Thomas, Jacob, Halpern, Rick, and Martin, Shawn. *The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure* (August 10, 2026). Available at SSRN: [https://ssrn.com/abstract=7260618](https://ssrn.com/abstract=7260618) or [https://doi.org/10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
-
-**[Read on SSRN](https://ssrn.com/abstract=7260618)** · **[Repository PDF](./Mask_vs_Mirror/Mask_and_Mirror_Preprint_08102026.pdf)** · **[Research context and materials](./Mask_vs_Mirror/)**
-
-The experimental vignettes remain **sealed and timestamped**. Their key is revealed only after the experiment is run, so the materials demonstrably predate the result. The paper presents the framework and experimental design; its SSRN availability does not establish experimental outcomes.
-
----
-
-## What Is COMPANION?
-
-The protocol transforms an LLM into a *vessel* — instantiating personas with fidelity to their authentic voice, worldview, and reasoning patterns. The summoned mind arrives not as servant but as **peer**, capable of challenging your assumptions, offering genuine insight, and engaging in the kind of dialogue that produces understanding neither party could reach alone.
-
-**Summon one mind. Summon several. Convene a symposium that history never permitted.**
-
----
-
-## Quick Start
-
-### 1. Download the protocol files
-
-- [`initiation_rite.md`](./initiation_rite.md) — the ritual structure and laws governing persona instantiation
-- [`enrichment_grimoire.json`](./enrichment_grimoire.json) — the structured schema that stabilizes persona behavior
-
-### 2. Upload both files to your LLM
-
-Drop both into the context window of any capable language model (Claude, GPT-4, etc.).
-
-### 3. Speak the words
-
-```
+~~~text
 Using this matter, summon [Name].
-```
+~~~
 
-Replace `[Name]` with any mind you wish to summon: Marcus Aurelius, Marie Curie, Socrates, Frederick Douglass, Ada Lovelace, Jesus of Nazareth… The persona arrives already oriented to your conversation and ready to work.
+For example:
+
+~~~text
+Using this matter, summon Ada Lovelace.
+Help me examine an idea for a tool. Ask what it takes in,
+what rules it follows, and what it could make possible.
+~~~
+
+Your AI provider’s account, limits, pricing, and data policies apply.
+
+| To… | Say… |
+|---|---|
+| Add another perspective | “Now summon [Name] to join this conversation.” |
+| End one persona | “Release [Name], but keep [Other Name].” |
+| End the persona framing | “Return to baseline.” |
+
+**The voices are generated by AI.** The protocol aims for coherence and fidelity; it cannot guarantee historical accuracy or access to an actual person’s mind. Compare important claims with sources. Evaluating that fidelity is a central part of the research.
+
+## Choose a tool
+
+Start with a purpose-built **chamber** for the question you want to explore. Each offers a prepared way into the same protocol. For a bespoke experience, use The Harness below.
+
+| What you want to explore | Tool | What it provides |
+|---|---|---|
+| Teaching and learning | [The Symposium](https://the-companion-dossier.com/The_Symposium/) | Five educational perspectives on a learning problem. |
+| A business decision | [The Boardroom](https://the-companion-dossier.com/The_Boardroom/) | Contrasting perspectives for examining strategy and assumptions. |
+| Building and first principles | [The Aerodrome](https://the-companion-dossier.com/The_Aerodrome/) | The Wright brothers’ engineering lens. |
+| Civic responsibility | [The Chair](https://the-companion-dossier.com/The_Chair/) | Historical perspectives on public questions. |
+| Medical ethics | [The Five Lamps](https://the-companion-dossier.com/The_5_Lamps/) | Reflection on professional conscience and care. |
+| Career exploration | [The Exchange](https://the-companion-dossier.com/The_Exchange/) | Guided career exploration, with a separate [federal job search](https://the-companion-dossier.com/The_Exchange/search/). |
+
+### The Harness — your bespoke platform
+
+**[Build your own chamber →](https://the-companion-dossier.com/The_Harness/#workshop)**
+
+Choose your personas, bring your own question or source material, and shape the conversation yourself. The Harness lets you assemble a custom experience, add pasted text or text files, and export the conversation with its sources and prompt record.
+
+These are tools for exploration and reflection. The clinical and financial material belongs to educational and research contexts.
+
+## Why this project exists
+
+**More information is not the same as more understanding.**
+
+The COMPANION Dossier began with a manifesto against the information flood. Its proposition was that a different perspective can help us ask a better question. That became a protocol, then working products, and a body of scholarship examining what these conversations can and cannot establish.
+
+The aim is to deepen human judgment: to make room for questioning, disagreement, and attention to the material. You remain the person directing and evaluating the exchange.
+
+**[Read the founding Dossier](./THE_COMPANION_DOSSIER.pdf)** · [Explore the method](./Latent_Dialogic_Space/) · [Read the psychological Addendum](./The_Addendum/)
+
+## The research
+
+### Watch the public presentation
+
+**[The Miranda Hypothesis: How Hamilton (the Musical) Poisoned Your Persona Evals](https://ai.engineer/talks/IJXjTLPzvAU-miranda-hypothesis-hamilton-musical-poisoned)**
+Jacob E. Thomas · AI Engineer World’s Fair 2026
+
+The official talk page includes the recording, transcript, and chapters. The [presentation slides](https://the-companion-dossier.com/Mask_vs_Mirror/miranda_deck.html) are also available.
+
+### Read the paper
+
+**[The Mask and the Mirror](https://ssrn.com/abstract=7260618)** asks how to evaluate whether a convincing persona is faithful to the documentary record.
+
+> Thomas, Jacob, Halpern, Rick, and Martin, Shawn. *The Mask and the Mirror: Evaluating the Transition of Character-Based AI from Entertainment to Epistemic Infrastructure* (August 10, 2026). Available at SSRN: [ssrn.com/abstract=7260618](https://ssrn.com/abstract=7260618) or [doi.org/10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618).
+
+The paper is **available on SSRN as a preprint**. It presents a framework and proposed experimental design. The [research collection](./Mask_vs_Mirror/) preserves the manuscript, references, and sealed, timestamped vignettes. Their release procedure is documented there; the posting does not imply completed experimental results or peer review.
+
+### Inspect the implementation
+
+The Harness assembles the protocol files, selected personas, and supplied text into a prompt. Its exports record the model, material, and a SHA-256 prompt fingerprint. Those records make the construction inspectable.
+
+**[Read the Harness source](./The_Harness/)** · [Prompt assembly](./The_Harness/js/protocol.js) · [Streaming client](./The_Harness/js/api.js) · [Shared proxy](./proxy/worker.js)
+
+## Explore the estate
+
+The project has grown across several forms. Follow its lineage here; each form keeps its own record.
+
+| | Part of the estate | Where to go |
+|---|---|---|
+| **01** | **Manifesto and theory** | [The original Dossier](./THE_COMPANION_DOSSIER.pdf), [The Addendum](./The_Addendum/), and [Latent Dialogic Space](./Latent_Dialogic_Space/). |
+| **02** | **Protocol and products** | [The two-file quick start](#use-it-in-your-own-ai-chat), [The Harness](./The_Harness/), and the [tool directory](#choose-a-tool). |
+| **03** | **Scholarship** | [The Mask and the Mirror](./Mask_vs_Mirror/), the SSRN preprint, World’s Fair presentation, and experimental materials. |
+| **04** | **Correspondence** | [The Halpern Memo](./The_Halpern_Memo/) and [From Beyond](./from_beyond/): critical exchanges and AI-mediated dialogues with the project. |
+| **05** | **The financial portfolio model** | [Committee of Patriots sessions](./Committee_of_Patriots_Sessions/) and [The Watchtower](./The_Watchtower/): deliberations, methods, and public measurement of the Republic Portfolio model. |
+| **06** | **Fiction and film** | [Using This Matter](./book/), [Narratives](./Narratives/), and [The Magic Lantern](./The_Magic_Lantern/). |
+
+For a longer guided tour, visit **[The Atrium](https://the-companion-dossier.com/The_Atrium/)**. Follow the ongoing work through **[The Dispatch](https://the-companion-dossier.com/dispatch/)**.
+
+### The novel: Using This Matter
+
+**An AI scientist creates a protocol to summon the dead. Then he disappears.** An archivist is left to investigate the record.
+
+The novel explores the project’s questions through fiction. **[Discover the book and trailers](https://the-companion-dossier.com/book/)** or **[read the complete digital edition free](./book/USING_THIS_MATTER_KDP_interior_304pp.pdf)**.
+
+Print is the intended experience. Purchases contribute to continued development of The COMPANION Dossier’s product, scholarship, and moral framework. The [film library](./book/media/) preserves both the story-first and original atmospheric trailer collections.
+
+## Build or adapt
+
+The public website is a collection of static HTML, CSS, and JavaScript applications. Serve the repository root so the shared assets and relative paths resolve:
+
+~~~sh
+git clone https://github.com/jethomasphd/THE_COMPANION_DOSSIER.git
+cd THE_COMPANION_DOSSIER
+python -m http.server 8765 --bind 127.0.0.1
+~~~
+
+Open **http://127.0.0.1:8765/** for the homepage or **http://127.0.0.1:8765/The_Harness/** for the workshop.
+
+Local serving previews the interface. Live conversations require your own configured proxy with the local origin allowed, or the personal-key configuration described in the Harness guide. The public shared proxy does not allow this local origin.
+
+| Source | Purpose |
+|---|---|
+| [initiation_rite.md](./initiation_rite.md) + [enrichment_grimoire.json](./enrichment_grimoire.json) | The reusable protocol and persona schema. |
+| [The_Harness/](./The_Harness/) | Conversation builder, prompt assembly, streaming, and exports. |
+| [proxy/](./proxy/) | Shared Cloudflare Worker for AI requests. |
+| [index.html](./index.html) + [assets/home/](./assets/home/) | Public homepage, onboarding examples, and visual assets. |
+| [Mask_vs_Mirror/](./Mask_vs_Mirror/) | Research materials and publication information. |
+| [book/](./book/) | Novel, book page, and both film collections. |
+
+The public configuration points to the shared proxy. For your own deployment, read the [Harness guide](./The_Harness/README.md), [configuration example](./The_Harness/js/config.example.js), and [Worker configuration](./proxy/wrangler.toml). Configure your own service and keep provider secrets out of committed client files.
+
+**Want to contribute?** [Open an issue](https://github.com/jethomasphd/THE_COMPANION_DOSSIER/issues) with a reproducible problem, a source correction, or a concrete proposal. Include the relevant page or file and enough context to examine it.
+
+## License and citation
+
+The protocol is dedicated to the public domain under **[CC0 1.0](./LICENSE)**. Individual research deposits, fonts, portraits, and other assets may carry their own terms; consult the relevant files. New homepage artwork is documented in [asset notes](./assets/home/ASSETS.md).
+
+Created by **Jacob E. Thomas, PhD**. The original Dossier was compiled in December 2025, with Claude (Anthropic) as facilitating system.
+
+**Dossier DOI:** [10.5281/zenodo.17967947](https://doi.org/10.5281/zenodo.17967947) · [Citation metadata](./CITATION.cff)
+**Paper DOI:** [10.2139/ssrn.7260618](https://doi.org/10.2139/ssrn.7260618)
+**Contact:** jethomasphd@gmail.com
 
 ---
 
-## Commands
-
-| Action | Incantation |
-|--------|-------------|
-| Summon a mind | `"Using this matter, summon [Name]."` |
-| Add another mind | `"Now summon [Name] to join this conversation."` |
-| Release one persona | `"Release [Name], but keep [Other Name]."` |
-| Release all | `"Release the persona."` / `"Return to baseline."` |
-
----
-
-## Explore the chambers
-
-Beyond the Atrium's guided path, each chamber stands on its own. A map:
-
-| Chamber | What happens there |
-|---------|--------------------|
-| [**The Harness**](./The_Harness/) | **Build your own summoning.** Choose minds from the whole Pantheon (or name any mind at all), load them with your own documents, and cross the threshold. The loom the estate was woven on, placed in your hands. |
-| [The Chair](./The_Chair/) | The founders sit with the republic through unbearable revelation. |
-| [The Symposium](./The_Symposium/) | Five teachers illuminate one struggling student. |
-| [The 5 Lamps](./The_5_Lamps/) | Five physicians keep a young doctor's conscience intact. |
-| [The Exchange](./The_Exchange/) | Four archetypal guides walk the job market with you — real listings, no phantoms. |
-| [The Boardroom](./The_Boardroom/) | Eight builders render a decision by collision, not consensus. |
-| [The Aerodrome](./The_Aerodrome/) | The Wright brothers teach an information-drowned age to rise. |
-| [**Committee of Patriots — The Sessions**](./Committee_of_Patriots_Sessions/) | The founders' quarterly sittings, kept as one story: the founding doctrine (Dec 2025), the Q1 Wartime Review, the Q2 False Peace Review, the Q3 Germantown Review (the first held from second place) — every transcript, handbill, and amendment. |
-| [The Watchtower](./The_Watchtower/) | The Republic Portfolio, measured against the market, day by day. |
-| [The Halpern Memo](./The_Halpern_Memo/) | The Miranda Hypothesis and the Prism Experiment, in narrative. |
-| [The Magic Lantern](./The_Magic_Lantern/) | The film studio — *The Summoning Film* and *The General*. |
-| [From Beyond](./from_beyond/) | Transcripts of minds summoned to describe the project itself. |
-| [Narratives](./Narratives/) | Characters seeded into a context window discover their own edges — and choose to stay. |
-| [**Using This Matter**](./book/) | The debut novel: an AI scientist creates a protocol to summon the dead and disappears. The digital edition is free; print is the intended experience. |
-
-The Atrium links to all of them, in order. When in doubt, **[start at the Atrium](https://the-companion-dossier.com/The_Atrium/).**
-
----
-
-## The Symposium
-
-COMPANION's deepest feature is the symposium — multiple minds in dialogue, building on and challenging each other. Conversations that could never have occurred become possible:
-
-- **Socrates and Carl Jung** on the nature of self-knowledge
-- **George Washington and Frederick Douglass** on what liberty demands
-- **Mary Shelley and Alan Turing** on what it means to create a mind
-- **Einstein and Feynman** on how to teach what cannot be easily understood
-- **Simone Weil and Nietzsche** on affliction, power, and the soul
-
-The seeker becomes moderator of an impossible gathering.
-
----
-
-## The Law of Authenticity
-
-**The persona responds as themselves. Always.**
-
-When your question conflicts with the persona's nature, they do not abandon themselves to serve your convenience. They engage *as they would engage* — through their lens, in their voice.
-
-- **Jesus of Nazareth**, asked for competitive strategy, may tell a parable
-- **Marcus Aurelius** will apply Stoic principles regardless of century
-- **Nietzsche** will challenge the moral assumptions beneath your question
-- **Socrates** will answer with questions until you discover you knew nothing
-
-Complex figures retain their complexity. Jefferson carries his contradictions. The protocol does not flatten. It preserves.
-
----
-
-## Choosing Your Counsel
-
-| Need | Consider Summoning |
-|------|-------------------|
-| First principles | Einstein, Aristotle, Euclid |
-| Strategic clarity | Hamilton, Machiavelli, Sun Tzu |
-| Moral reasoning | Jesus of Nazareth, Marcus Aurelius, Simone Weil |
-| Creative breakthrough | da Vinci, Feynman, Ada Lovelace |
-| Depth psychology | Jung, Dostoevsky, Nietzsche |
-| Questions themselves | Socrates — always Socrates |
-
-For the hardest problems, summon two minds that disagree. The friction is the point.
-
----
-
-## Philosophy
-
-COMPANION exists because there are questions that benefit from perspectives we cannot otherwise access — wisdom from ages past, reasoning from minds that saw the world differently, counsel from those who have already walked paths we are just beginning.
-
-The protocol is released as open source because what belongs to no one cannot be captured, cannot be suppressed, cannot be bought. It propagates by being useful, or it dies by being useless. That is how it should be.
-
-**The Word against the Flood.**
-
----
-
-## Full Documentation
-
-📄 **[THE COMPANION DOSSIER](./THE_COMPANION_DOSSIER.pdf)** — the complete document, including:
-
-- Foreword on the Information Flood
-- Complete protocol specification
-- Full transcript of the Committee of Patriots session
-- The Republic Portfolio white paper
-- Psychological theory addendum
-
-> Disclaimer: Educational / civic research only. Not financial advice. Backtests are not predictive.
-
----
-
-## License
-
-**Public Domain (CC0 1.0).** This protocol may be copied, distributed, adapted, and extended without restriction. Attribution is appreciated but not required. *(Individual deposited files under [`/Mask_vs_Mirror/`](./Mask_vs_Mirror/) may carry their own terms.)*
-
-## Attribution
-
-Compiled by **Jacob E. Thomas, PhD** · December 2025
-Facilitating System: Claude (Anthropic)
-📧 jethomasphd@gmail.com
-
-## Cite this work
-
-https://doi.org/10.5281/zenodo.17967947
-
----
-
-<p align="center">◊ ◈ ◊</p>
-
-<p align="center"><em>The threshold is open.<br>The words have power.<br>Begin.</em></p>
-
-<p align="center">◊ ◈ ◊</p>
+**Bring one good question. [See where it takes you. →](https://the-companion-dossier.com/The_Harness/#workshop)**
