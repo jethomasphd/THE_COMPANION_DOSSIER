@@ -1,14 +1,15 @@
-<img align="right" src="./assets/home/knowledge-constellation.webp" width="310" alt="Human perspectives formed from layers of knowledge, connected to source documents.">
-
 # ◈ COMPANION
 
 ### Think with minds beyond your own.
+
+<img align="right" src="./assets/home/knowledge-constellation.webp" width="310" alt="Human perspectives formed from layers of knowledge, connected to source documents.">
 
 **An open-source toolkit for thinking with AI personas.** Bring a question or documents, choose perspectives, and explore an idea through structured dialogue.
 
 An **AI persona** is a language model asked to reason through a particular perspective—for example, Socrates questioning an assumption or Ada Lovelace examining a system. You guide the conversation and decide what stands up to scrutiny.
 
 **[Start a conversation →](https://the-companion-dossier.com/The_Harness/#workshop)**
+
 [Explore the website](https://the-companion-dossier.com/) · [Read the founding manifesto](./THE_COMPANION_DOSSIER.pdf) · [Inspect the research](#the-research)
 
 <br clear="right">
