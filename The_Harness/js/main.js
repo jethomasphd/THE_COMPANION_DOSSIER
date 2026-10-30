@@ -39,15 +39,16 @@ COMPANION.App = (function () {
       COMPANION.API.setModel(COMPANION.API.getModel());
       bindEvents();
 
-      // A returning seeker lands in the workshop; a first visit gets
-      // the full cinematic. A saved working offers to resume.
+      // The homepage's explicit start link opens the workshop directly.
+      // Ordinary first visits retain the cinematic; saved work can resume.
       savedSession = COMPANION.API.loadSession();
       var hasResumable = !!(savedSession && savedSession.binding &&
         savedSession.messages && savedSession.messages.length);
       var visited = false;
       try { visited = localStorage.getItem(VISITED_KEY) === '1'; } catch (e) { /* private mode */ }
 
-      if (hasResumable || visited) {
+      var directWorkshop = window.location.hash === '#workshop';
+      if (hasResumable || visited || directWorkshop) {
         COMPANION.UI.showScreen('workshop');
         if (hasResumable) showResumeBanner(savedSession);
       } else {
