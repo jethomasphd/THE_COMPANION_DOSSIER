@@ -166,7 +166,7 @@
                                                                                       z-index:100}
                                                                                       .skip-link:focus{
                                                                                         top:15px}
-                                                                                        /* Original opening words and timing;
+                                                                                        /* Original opening sequence and typing pace, with the full brand name;
                                                                                         new skip and reduced-motion paths. */
                                                                                         #void{
                                                                                           min-height:100svh;
@@ -555,6 +555,7 @@
                                                                                                                                                                                                                                                               padding:65px 0 90px;
                                                                                                                                                                                                                                                               background:#e9ece3}
                                                                                                                                                                                                                                                               .harness-feature{
+  margin-top:40px;
                                                                                                                                                                                                                                                                 background:#171c15;
                                                                                                                                                                                                                                                                 border-radius:10px;
                                                                                                                                                                                                                                                                 display:grid;
@@ -602,7 +603,7 @@
                                                                                                                                                                                                                                                                                     text-align:center;
                                                                                                                                                                                                                                                                                     padding-right:30px}
                                                                                                                                                                                                                                                                                     .tool-list{
-                                                                                                                                                                                                                                                                                      margin-top:30px}
+                                                                                                                                                                                                                                                                                      margin-top:0}
                                                                                                                                                                                                                                                                                       .tool-row{
                                                                                                                                                                                                                                                                                         display:grid;
                                                                                                                                                                                                                                                                                         grid-template-columns:40px 1fr 1.2fr 20px;
@@ -1470,3 +1471,15 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         .button:hover{
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           transform:none}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
+
+/* Full platform identity across navigation, intro, and footer. */
+.wordmark {
+  letter-spacing: .25px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .wordmark { font-size: 11px; gap: 8px; }
+  .intro-top { gap: 18px; flex-wrap: wrap; }
+  .nav-inner { gap: 12px; }
+}

@@ -1,4 +1,4 @@
-# ◈ COMPANION
+# ◈ The COMPANION Dossier
 
 ### Think with minds beyond your own.
 
@@ -25,7 +25,7 @@ You do not need to read the whole repository to begin. Pick the path that fits w
 | I want to… | Begin with… |
 |---|---|
 | **Try the idea** | [The Harness](https://the-companion-dossier.com/The_Harness/#workshop), the browser workshop for building your own conversation. |
-| **Understand why it exists** | [The Companion Dossier](./THE_COMPANION_DOSSIER.pdf), the founding manifesto, protocol, and worked example. |
+| **Understand why it exists** | [The COMPANION Dossier](./THE_COMPANION_DOSSIER.pdf), the founding manifesto, protocol, and worked example. |
 | **Follow the World’s Fair talk** | [The research collection](./Mask_vs_Mirror/): paper, slides, references, and sealed experimental materials. |
 | **Use the protocol in my own AI chat** | [The two-file quick start](#use-it-in-your-own-ai-chat). |
 | **Inspect or adapt the implementation** | [The source map and local setup](#build-or-adapt). |
@@ -47,7 +47,7 @@ Follow the questions. Challenge the responses. Change the direction when somethi
 
 The configured public workshop runs in your browser without an installation or a personal API key. It uses the project’s shared AI connection, with usage limits.
 
-**Before adding documents:** your supplied text and conversation go through the Companion service to Anthropic. The Harness saves recent sessions in your browser for resuming. **Transcript exports include your source documents**, so review an export before sharing it.
+**Before adding documents:** your supplied text and conversation go through The COMPANION Dossier service to Anthropic. The Harness saves recent sessions in your browser for resuming. **Transcript exports include your source documents**, so review an export before sharing it.
 
 ### What changes when you bring your own material?
 
@@ -93,11 +93,10 @@ Your AI provider’s account, limits, pricing, and data policies apply.
 
 ## Choose a tool
 
-The same protocol supports several browser experiences. Start with The Harness when you want to choose everything yourself.
+Start with a purpose-built **chamber** for the question you want to explore. Each offers a prepared way into the same protocol. For a bespoke experience, use The Harness below.
 
 | What you want to explore | Tool | What it provides |
 |---|---|---|
-| **Your own question or documents** | **[The Harness](https://the-companion-dossier.com/The_Harness/#workshop)** | Choose personas, add material, converse, and export a record. |
 | Teaching and learning | [The Symposium](https://the-companion-dossier.com/The_Symposium/) | Five educational perspectives on a learning problem. |
 | A business decision | [The Boardroom](https://the-companion-dossier.com/The_Boardroom/) | Contrasting perspectives for examining strategy and assumptions. |
 | Building and first principles | [The Aerodrome](https://the-companion-dossier.com/The_Aerodrome/) | The Wright brothers’ engineering lens. |
@@ -105,13 +104,19 @@ The same protocol supports several browser experiences. Start with The Harness w
 | Medical ethics | [The Five Lamps](https://the-companion-dossier.com/The_5_Lamps/) | Reflection on professional conscience and care. |
 | Career exploration | [The Exchange](https://the-companion-dossier.com/The_Exchange/) | Guided career exploration, with a separate [federal job search](https://the-companion-dossier.com/The_Exchange/search/). |
 
+### The Harness — your bespoke platform
+
+**[Build your own chamber →](https://the-companion-dossier.com/The_Harness/#workshop)**
+
+Choose your personas, bring your own question or source material, and shape the conversation yourself. The Harness lets you assemble a custom experience, add pasted text or text files, and export the conversation with its sources and prompt record.
+
 These are tools for exploration and reflection. The clinical and financial material belongs to educational and research contexts.
 
 ## Why this project exists
 
 **More information is not the same as more understanding.**
 
-COMPANION began with a manifesto against the information flood. Its proposition was that a different perspective can help us ask a better question. That became a protocol, then working products, and a body of scholarship examining what these conversations can and cannot establish.
+The COMPANION Dossier began with a manifesto against the information flood. Its proposition was that a different perspective can help us ask a better question. That became a protocol, then working products, and a body of scholarship examining what these conversations can and cannot establish.
 
 The aim is to deepen human judgment: to make room for questioning, disagreement, and attention to the material. You remain the person directing and evaluating the exchange.
 
@@ -161,7 +166,7 @@ For a longer guided tour, visit **[The Atrium](https://the-companion-dossier.com
 
 The novel explores the project’s questions through fiction. **[Discover the book and trailers](https://the-companion-dossier.com/book/)** or **[read the complete digital edition free](./book/USING_THIS_MATTER_KDP_interior_304pp.pdf)**.
 
-Print is the intended experience. Purchases contribute to continued development of the Companion Dossier’s product, scholarship, and moral framework. The [film library](./book/media/) preserves both the story-first and original atmospheric trailer collections.
+Print is the intended experience. Purchases contribute to continued development of The COMPANION Dossier’s product, scholarship, and moral framework. The [film library](./book/media/) preserves both the story-first and original atmospheric trailer collections.
 
 ## Build or adapt
 

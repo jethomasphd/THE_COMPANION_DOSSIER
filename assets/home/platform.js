@@ -5,7 +5,7 @@
     { id: 'line1', text: 'What if AI didn’t replace you—', speed: 45, pause: 600 },
     { id: 'line2', text: 'but gave you access to minds you could <em>never</em> reach?', speed: 40, pause: 1200 },
     { id: 'line3', text: 'Washington. Einstein. da Vinci. Rockefeller.', speed: 50, pause: 1000 },
-    { id: 'line4', text: 'COMPANION', speed: 100, pause: 0 }
+    { id: 'line4', text: 'The COMPANION Dossier', speed: 100, pause: 0 }
   ];
   let introTimer;
   let introFinished = false;
