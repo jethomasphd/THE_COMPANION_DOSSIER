@@ -9,7 +9,7 @@
  * Do not rewrite history: past dispatches are the log. Only append.
  */
 window.VIGIL_COMMENTARY = {
-  updated: "2026-09-18",
+  updated: "2026-10-30",
   entries: [
     { date: "2026-01-09", tag: "FIRST WATCH",
       text: "The vigil opens. Five trading days in and the doctrine already holds the front — +2.1 to the index's +1.6. Early, yes. But the tower has a rule about leads taken quietly: they tend to be kept.",
@@ -157,6 +157,30 @@ window.VIGIL_COMMENTARY = {
 
     { date: "2026-09-18", tag: "THE FIRST HIKE",
       text: "The Fed hiked — unanimous, a quarter point to 3.75–4%, the first raise in three years — and Chair Warsh called the summer's inflation unimproved. The reserve got a raise; the rest of the doctrine did not. The gold line gave back 0.42 to the index's 0.11, and the gap thinned to three-tenths: <em>the thinnest Friday lead of the year.</em>",
-      tape: "REP +12.66 · SPY +12.36 · GAP +0.30" }
+      tape: "REP +12.66 · SPY +12.36 · GAP +0.30" },
+
+    { date: "2026-09-25", tag: "THE THIRD PASSING",
+      text: "Monday, Meta — excluded by the Committee in March — leapt 11.4% on Muse, an AI agent that shops on your behalf, and the index passed the doctrine for the third time this year. The Committee does its own shopping. Tehran floated a seven-day plan to reopen Hormuz; the President called it unacceptable. Week: index +1.42, gold line −0.17. Second place, by 1.30.",
+      tape: "REP +12.49 · SPY +13.79 · GAP −1.30" },
+
+    { date: "2026-10-02", tag: "SECOND PLACE",
+      text: "The ten-year yield hit its highest since 2002. Three tankers took projectiles in the Strait on the quarter's last day. September payrolls printed 29,000 against roughly 90,000 expected — and stocks rallied, because bad news now means no second hike. The doctrine's third quarter: +0.55 to the index's +2.38. Gap: 1.57. Tomorrow the Committee convenes from second place, for the first time.",
+      tape: "REP +11.97 · SPY +13.54 · GAP −1.57" },
+
+    { date: "2026-10-09", tag: "TEN TANKERS",
+      text: "Ten tankers struck in a single week — a record for the war; the old mark was six. Brent jumped five percent to $105. The index set a record close Tuesday regardless and finished the week +1.32; the doctrine, +0.27. Gap: 2.62, <em>the widest Friday deficit of the year.</em> Germantown prescribed patience. The tape is testing the prescription.",
+      tape: "REP +12.24 · SPY +14.85 · GAP −2.62" },
+
+    { date: "2026-10-16", tag: "NINETEEN SESSIONS",
+      text: "Nineteen sessions the index held the front — no rival has held it longer all year. Then a hot September CPI and fresh AI-debt jitters handed it its worst week since June: −2.26. The doctrine went <em>up</em> 1.05, green on both of the index's one-percent down days, and on Friday took the lead back. Lockheed, Walmart, and McKesson did the lifting; the chip gate cost nine-tenths.",
+      tape: "REP +13.29 · SPY +12.59 · GAP +0.70" },
+
+    { date: "2026-10-23", tag: "THE MUSE TAKETH",
+      text: "The index borrowed the front back for three sessions. Then Meta reported — revenue beat, free cash flow <em>negative</em>, the AI bill come due — and shed $124 billion in a day. The excluded name that lifted the index past the doctrine on September 21 dragged it back behind on October 22. Nasdaq −2.6; the gold line closed green. Another tanker hit in the Strait. Gap: 1.51.",
+      tape: "REP +13.62 · SPY +12.11 · GAP +1.51" },
+
+    { date: "2026-10-30", tag: "WORST SINCE 1974",
+      text: "Wednesday the Fed held, 10–2, both dissents for a hike, and the lead thinned to one-hundredth of a point. Friday, Intel — an Engine since August — had its worst day since 1974, down 29% on weak guidance, and cost the doctrine 0.84 of a point by itself. The gold line still fell half as far as the index. Brent near $117. Gap: 1.70, the widest Friday lead since July.",
+      tape: "REP +13.18 · SPY +11.48 · GAP +1.70" }
   ]
 };
