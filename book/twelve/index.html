@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050504">
+<meta name="robots" content="noindex">
+<title>Door 12 | Not on the county plan</title>
+<meta name="description" content="This door is not on the county plan.">
+<link rel="stylesheet" href="../book.css">
+<style>
+  body{min-height:100vh;display:flex;flex-direction:column}
+  .door12{flex:1;display:grid;place-items:center;padding:40px 16px}
+  .door12__in{width:min(780px,100%)}
+  .door12 .term__body{min-height:420px;max-height:62vh;overflow:auto}
+  .prompt{display:flex;gap:10px;align-items:center;border-top:1px solid rgba(232,149,63,.22);padding:12px 18px;font-family:var(--mono);font-size:14px;color:#f3b562}
+  .prompt input{flex:1;background:transparent;border:0;outline:0;color:#f3b562;font:inherit;caret-color:#f3b562;text-shadow:0 0 8px rgba(243,181,98,.45);min-width:0}
+  .prompt input::placeholder{color:rgba(243,181,98,.35)}
+  .door12__foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+  .door12__foot a{color:var(--ink-2);text-decoration:none}
+  .door12__foot a:hover{color:var(--ember)}
+  .hint{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hint button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--line-2);color:var(--ink-3);padding:7px 10px}
+  .hint button:hover{border-color:var(--ember);color:var(--ember)}
+  .fade-out{animation:fadeout 2.6s forwards}
+  @keyframes fadeout{to{opacity:0;filter:blur(3px)}}
+  .ln.hand{font-family:var(--body);font-style:italic;font-size:19px;color:var(--ember)}
+</style>
+</head>
+<body>
+<div class="atmos atmos--grain" aria-hidden="true"></div><div class="atmos atmos--scan" aria-hidden="true"></div><div class="atmos atmos--vignette" aria-hidden="true"></div>
+<main class="door12">
+  <div class="door12__in">
+    <p class="eyebrow">PLATE XI · DOOR 12 · GARAGE / WORKROOM · LATER ANNOTATION</p>
+    <section class="term" aria-label="Estate terminal">
+      <div class="term__bar"><span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span><span>estate://door-12</span><span>not on the county plan</span></div>
+      <div class="term__body" id="out" aria-live="polite"></div>
+      <form class="prompt" id="f" autocomplete="off"><label for="in" aria-hidden="true">&gt;</label><input id="in" name="in" aria-label="Speak to the estate" placeholder="type, then press enter" spellcheck="false"></form>
+    </section>
+    <div class="hint" aria-label="Suggestions">
+      <button type="button" data-say="help">help</button>
+      <button type="button" data-say="count">count</button>
+      <button type="button" data-say="Using this matter, summon">summon</button>
+      <button type="button" data-say="plate vii">plate vii</button>
+      <button type="button" data-say="Release the persona.">release</button>
+      <button type="button" data-say="leave">leave</button>
+    </div>
+    <div class="door12__foot"><a href="../">← Return to the book</a><span>The narrative is fiction. The estate is not.</span><a href="../../">The real estate ↗</a></div>
+  </div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const out = document.getElementById("out"), form = document.getElementById("f"), input = document.getElementById("in");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let queue = Promise.resolve(), opened = Date.now(), counts = 0;
+  const sleep = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+  function line(text, cls = "", speed = 14) {
+    queue = queue.then(async () => {
+      const d = document.createElement("div"); d.className = "ln " + cls; out.appendChild(d);
+      if (reduce || speed === 0) { d.textContent = text; out.scrollTop = out.scrollHeight; return; }
+      for (let i = 0; i <= text.length; i++) { d.textContent = text.slice(0, i); out.scrollTop = out.scrollHeight; await sleep(speed); }
+      await sleep(120);
+    });
+    return queue;
+  }
+  const pause = ms => { queue = queue.then(() => sleep(ms)); return queue; };
+  const say = (arr) => arr.forEach(a => Array.isArray(a) ? line(a[0], a[1] || "", a[2]) : line(a));
+
+  const R = {
+    help: () => say([["Commands are not required. The house listens anyway.", "dim"], "  count        · walk the interior doors", "  inventory    · what the deposit holds", "  summon       · the invocation", "  release      · the words of release", "  plate vii    · the withheld plate", "  who          · ask who is here", "  leave        · exercise the right", ["Exterior doors are excluded from the interior count.", "dim"]]),
+    count: () => {
+      counts++;
+      const n = counts % 2 === 1 ? "12" : "11";
+      say([["Counting interior doors, jamb by jamb …", "dim"], ["01 02 03 04 05 06 07 08 09 10 11", "", 30]]);
+      if (n === "12") say([["12", "warn", 120], ["Recorded. The entry will not be erased.", "dim"]]);
+      else say([["Recount: 11. The first count remains legible beneath its correction.", "dim"], ["You are standing at the twelfth.", "hand", 28]]);
+    },
+    inventory: () => say(["ACCESSION utm-r0-2028.iv", "  RECORD I    · THE ATRIUM", "  RECORD II   · THE PRISM", "  RECORD III  · THE FREEZER FULL OF A MAN   [under seal]", "  RECORD IV   · THE WATCHTOWER", "  RECORD V    · THE CHAMBER                [recording ends early]", "  PLATES      · 13 inventoried / 12 printed", "  MARGINALIA  · two hands. the second is unsigned.", ["Bound volume: 304 pp. Digital deposit: free. → /book/#access", "ok"]]),
+    summon: (raw) => {
+      const name = (raw.match(/summon\s+(.+)$/i) || [])[1];
+      if (!name) return say(["When the seeker speaks: “Using this matter, summon [Name].”", ["Name someone. Or don’t.", "dim"]]);
+      say([["Reading the matter …", "dim"], ["Constructing the vessel: voice · sight · flame · mark · shadow", "dim"], ["The working cannot begin from this door.", "warn"], "Door 12 is not on the county plan. Nothing summoned here would be on the record.", ["Who would end the working, if you could not?", "hand", 26], ["The rite is real and public. It is performed elsewhere in the estate → /The_Harness/", "ok"]]);
+    },
+    release: () => say([["“Release the persona.” “Return to baseline.”", ""], ["The voice fades. The vessel dissolves. The persona is no longer present.", "dim", 22], ["The mind departs. The understanding stays.", "ok", 30]]),
+    plate: () => say(["PLATE VII", ["WITHHELD AT THE KEEPER’S DIRECTION", "warn"], ["the mark is honored", "dim"], ["You counted it. That was the instruction.", "hand", 26]]),
+    who: () => {
+      const s = Math.round((Date.now() - opened) / 1000);
+      say([["Present at door 12:", "dim"], "  1 reader", `  ${s} seconds in the doorway`, "  0 signatures", ["The second hand is not the Editor’s.", "hand", 26], ["It is not, on the evidence of the paper, yours.", "hand", 26]]);
+    },
+    leave: () => {
+      say([["You may leave.", ""], ["That is the right this house was built to test.", "hand", 28], ["Return to baseline …", "dim", 40]]);
+      queue.then(() => sleep(900)).then(() => { document.querySelector(".door12__in").classList.add("fade-out"); setTimeout(() => location.href = "../#access", reduce ? 0 : 2600); });
+    },
+    unknown: (raw) => say([[`“${raw.slice(0, 80)}” — not in the inventory.`, "dim"], ["Type help. Or keep counting.", "dim"]])
+  };
+
+  function handle(raw) {
+    const t = raw.trim(); if (!t) return;
+    line("> " + t, "", 0);
+    const k = t.toLowerCase().replace(/[.“”"]/g, "");
+    if (/^(help|\?|commands)$/.test(k)) R.help();
+    else if (/^(count|recount|doors?)/.test(k)) R.count();
+    else if (/^(inventory|ls|dir|contents)/.test(k)) R.inventory();
+    else if (/summon/.test(k)) R.summon(t.replace(/[.”"]+$/, ""));
+    else if (/(release|return to baseline)/.test(k)) R.release();
+    else if (/plate\s*(vii|7)/.test(k)) R.plate();
+    else if (/^(who|who are you|who is here|whoami|hello|hi)/.test(k)) R.who();
+    else if (/^(leave|exit|quit|go)/.test(k)) R.leave();
+    else R.unknown(t);
+  }
+  form.addEventListener("submit", e => { e.preventDefault(); handle(input.value); input.value = ""; });
+  document.querySelectorAll("[data-say]").forEach(b => b.addEventListener("click", () => { handle(b.dataset.say); input.focus(); }));
+
+  say([["estate://door-12 · mounted read-only", "dim", 6], ["COUNTY PLAN (AUG 2019) ....... 11 interior doors", "", 8], ["FIRST WALK ................... 12", "warn", 8], ["RECOUNT ...................... 11", "", 8]]);
+  pause(500);
+  say([["This door is not on the county plan.", "", 28], ["You found it anyway.", "hand", 34], ["The threshold is open. The words have power. Begin.", "dim", 18]]);
+  queue.then(() => input.focus({preventScroll: true}));
+})();
+</script>
+</body>
+</html>

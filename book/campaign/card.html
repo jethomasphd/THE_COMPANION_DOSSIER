@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Campaign card renderer</title>
+<!--
+  Renders one social card from the same data the website uses (../evidence.js).
+  Used by render_cards.py; also viewable directly, e.g.
+    card.html?post=nb-caliche&format=portrait
+    card.html?quote=doors&format=story
+    card.html?og=1
+  Formats: portrait 1080x1350 · story 1080x1920 · landscape 1200x675 · og 1200x630
+-->
+<link rel="stylesheet" href="../book.css">
+<style>
+  html,body{margin:0;background:#050504;overflow:hidden}
+  .card{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(232,149,63,.13),transparent 55%),radial-gradient(ellipse at 50% 120%,rgba(232,149,63,.10),transparent 60%),#050504;color:var(--ink);display:flex;flex-direction:column}
+  .card .atmos{position:absolute;inset:0!important;animation:none!important}
+  .portrait{width:1080px;height:1350px;padding:70px 80px}
+  .story{width:1080px;height:1920px;padding:230px 80px 270px}
+  .landscape{width:1200px;height:675px;padding:44px 60px;display:grid;grid-template-columns:1fr 1.15fr;gap:46px;align-items:center}
+  .og{width:1200px;height:630px;padding:56px 64px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+  .c-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;letter-spacing:.22em;color:var(--ember);text-transform:uppercase}
+  .c-top span:last-child{color:var(--ink-3);letter-spacing:.14em}
+  .c-mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px}
+  .c-head{font-variant-numeric:lining-nums;font-family:var(--display);font-size:64px;line-height:1.02;letter-spacing:-.015em}
+  .c-head em{color:var(--ember)}
+  .c-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;border-top:1px solid var(--line);padding-top:26px}
+  .c-title{font-family:var(--display);font-size:46px;line-height:1}
+  .c-title small{display:block;font-family:var(--body);font-style:italic;font-size:24px;color:var(--gold);margin-top:8px}
+  .c-url{font-family:var(--mono);font-size:19px;letter-spacing:.1em;color:var(--ink-2);text-align:right;line-height:1.6}
+  .c-url b{color:var(--ember);font-weight:400}
+  .c-disc{font-family:var(--mono);font-size:15px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;margin-top:14px}
+  /* scale the website post up for legibility on phones */
+  .card .find{margin:0}
+  .card .find .post{transform:none!important}
+  .card .find__cap{font-size:10px}
+  .card .reveal{opacity:1!important;transform:none!important}
+  .card .margin-note{font-size:19px}
+  .cover{width:100%;box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px rgba(237,231,220,.08)}
+  .q{font-variant-numeric:lining-nums;font-family:var(--display);font-size:96px;line-height:1;letter-spacing:-.02em}
+  .q em{color:var(--ember);font-style:italic}
+  .q-src{font-family:var(--mono);font-size:20px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+  .story .q{font-size:110px}
+  .landscape .q{font-size:58px}
+  .og h1{font-size:64px;line-height:1;letter-spacing:-.02em}
+  .og h1 em{color:var(--ember)}
+  .og p{font-size:24px;color:var(--ink-2);margin-top:22px;line-height:1.4}
+  .og .micro{font-size:14px;margin-bottom:22px;color:var(--ember)}
+  .og .cover{max-height:520px;width:auto}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="../evidence.js"></script>
+<script src="../book.js"></script>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const fmt = q.get("format") || "portrait";
+  const root = document.getElementById("root");
+  const atmos = '<div class="atmos atmos--grain"></div><div class="atmos atmos--scan"></div>';
+  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">An exhibit of the fiction · names, handles &amp; timestamps invented</div>' : ""}`;
+  const QUOTES = window.CAMPAIGN_QUOTES || {};
+  let html = "";
+  if (q.get("og")) {
+    html = `<div class="card og">${atmos}<div><p class="micro">A NOVEL BY JACOB E. THOMAS · ACCESSION UTM-R0-2028.IV</p><h1>He built a protocol to summon the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in her inventory. The archive was expecting her.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+  } else if (q.get("post")) {
+    const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("post"));
+    const post = p ? window.renderRecoveredPost(p) : "<p>missing post</p>";
+    if (fmt === "landscape") {
+      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>Recovered post</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">An exhibit of the fiction · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
+    } else {
+      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>Recovered post</span><span>utm-r0-2028.iv</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
+    }
+  } else if (q.get("quote")) {
+    const k = QUOTES[q.get("quote")] || {q: "Believe nothing.<br><em>Count everything.</em>", s: "From the novel"};
+    if (fmt === "landscape") html = `<div class="card landscape" style="grid-template-columns:1.6fr .6fr">${atmos}<div><div class="c-top"><span>From the deposit</span></div><div class="q" style="margin:28px 0 22px">${k.q}</div><div class="q-src">${k.s}</div></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+    else html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>From the deposit</span><span>utm-r0-2028.iv</span></div><div class="c-mid"><div class="q">${k.q}</div><div class="q-src">${k.s}</div></div>${foot(false)}</div>`;
+  }
+  root.innerHTML = html;
+  // scale the post up as far as the frame allows, then never overflow it
+  const card = root.querySelector('.card'), find = card && card.querySelector('.find');
+  if (find) {
+    let z = {portrait: 1.8, story: 2.3, landscape: 1.15}[fmt] || 1.5;
+    find.style.zoom = z;
+    while (card.scrollHeight > card.clientHeight + 1 && z > .7) { z -= .05; find.style.zoom = z; }
+    document.body.dataset.zoom = z.toFixed(2);
+  }
+  document.fonts.ready.then(() => { document.body.dataset.ready = "1"; });
+})();
+</script>
+</body>
+</html>

@@ -3,81 +3,544 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#10100f">
-  <title>Using This Matter | A Novel of the Companion Estate</title>
-  <meta name="description" content="An AI scientist builds a protocol to summon the dead. Then he disappears. Discover Using This Matter, Jacob E. Thomas’s debut novel. Watch the trailer or read free digitally.">
+  <meta name="theme-color" content="#050504">
+  <title>Using This Matter | He built a protocol to summon the dead. Then he disappeared.</title>
+  <meta name="description" content="An AI scientist builds a protocol to summon the dead. Then he disappears. The archivist sent to count his estate finds eleven doors on the county plan and twelve in her inventory. Using This Matter, a novel by Jacob E. Thomas. Read it free, or hold it in print.">
   <link rel="canonical" href="https://the-companion-dossier.com/book">
   <meta property="og:type" content="book">
-  <meta property="og:title" content="Using This Matter | Jacob E. Thomas">
-  <meta property="og:description" content="He built a protocol to summon the dead. Then he disappeared. An archivist enters his house to discover what answered him. Using This Matter, a novel by Jacob E. Thomas.">
+  <meta property="og:title" content="Using This Matter | He built a protocol to summon the dead. Then he disappeared.">
+  <meta property="og:description" content="Eleven doors on the county plan. Twelve in her inventory. A novel told as a recovered archive. Read it free, or hold it in print.">
   <meta property="og:url" content="https://the-companion-dossier.com/book">
-  <meta property="og:image" content="https://the-companion-dossier.com/book/media/lay/story-trailer-poster.jpg">
-  <meta property="og:image:alt" content="Using This Matter by Jacob E. Thomas. A woman’s form assembled from archival paper on the selected cover.">
+  <meta property="og:image" content="https://the-companion-dossier.com/book/assets/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Using This Matter by Jacob E. Thomas: “He built a protocol to summon the dead. Then he disappeared.” beside the cover, a woman’s form assembled from archival paper.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/CormorantGaramond-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/IBMPlexMono-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="book.css">
   <script src="config.js" defer></script>
+  <script src="evidence.js" defer></script>
   <script src="book.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Using This Matter","alternativeHeadline":"A Novel of the Companion Estate","author":{"@type":"Person","name":"Jacob E. Thomas"},"bookFormat":"https://schema.org/Hardcover","numberOfPages":304,"inLanguage":"en","genre":["Archival horror","Literary fiction"],"url":"https://the-companion-dossier.com/book","image":"https://the-companion-dossier.com/book/assets/cover.jpg","description":"A novel of archival horror about keeping, consent, and the right to leave."}</script>
 </head>
 <body>
+  <div class="atmos atmos--grain" aria-hidden="true"></div>
+  <div class="atmos atmos--scan" aria-hidden="true"></div>
+  <div class="atmos atmos--vignette" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to the book</a>
-  <header class="site-header wrap">
-    <a class="estate" href="../" aria-label="The Companion Dossier home"><span aria-hidden="true">◊ ◈ ◊</span><span>THE COMPANION DOSSIER</span></a>
-    <nav aria-label="Book navigation"><a href="#story">The story</a><a href="#trailer">The trailer</a><a href="#edition">The edition</a><a href="#read" class="nav-read">Read the book <span aria-hidden="true">↗</span></a></nav>
-  </header>
-  <main id="main">
-    <section class="hero wrap" aria-labelledby="book-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="small-rule"></span> A NOVEL BY JACOB E. THOMAS</p>
-        <h1 id="book-title"><span>Using This</span><span>Matter</span></h1>
-        <p class="subtitle">A Novel of the Companion Estate</p>
-        <p class="hero-hook">He built a protocol to summon the dead.<br><em>Then he disappeared.</em></p>
-        <p class="hero-description">An AI scientist vanishes. The woman sent to sort his papers finds something that already knows she is coming.</p>
-        <div class="actions"><a class="button primary" href="#read" data-print-cta>Discover the print edition <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/book/USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="hero">Read free digitally <span aria-hidden="true">↗</span></a></div>
-        <a class="watch-link" href="#trailer">▶ Watch the 90-second trailer</a>
-        <p class="micro availability" data-availability>PRINT EDITION COMING SOON · DIGITAL EDITION FREE</p>
-      </div>
-      <figure class="hero-object">
-        <div class="book-object"><img src="assets/cover.jpg" width="1800" height="2700" fetchpriority="high" alt="The selected cover of Using This Matter: a woman’s head and shoulders formed from layered archival documents against a black background."></div>
-        <figcaption><span>THE BOUND VOLUME</span><span>304 PAGES · COLOR HARDCOVER</span></figcaption>
-      </figure>
-      <a class="scroll-cue" href="#story"><span aria-hidden="true">↓</span> OPEN THE RECORD</a>
-    </section>
-    <section id="trailer" class="trailer-section wrap" aria-labelledby="trailer-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / THE MYSTERY</p><h2 id="trailer-title">What answered him?</h2></div><span class="micro">START WITH THE STORY · 90 SECONDS</span></div>
-      <video id="book-trailer" controls playsinline preload="none" poster="media/lay/story-trailer-hook-poster.jpg" aria-label="Using This Matter, 90-second story trailer">
-        <source src="media/lay/trailer-90s.mp4" type="video/mp4">
-        <track kind="captions" src="media/lay/trailer.vtt" srclang="en" label="English">
-        Your browser cannot play this video. <a href="media/lay/trailer-90s.mp4">Download the trailer</a> or read its transcript below.
-      </video>
-      <details class="transcript"><summary>Read the trailer transcript</summary><div id="trailer-transcript"><p>An AI scientist builds a protocol to summon the dead. Their voices, reconstructed from the words they left behind.</p><p>Then he disappears. Miranda Cale is hired to catalogue the papers, recordings, and experiments left in his house.</p><p>Eleven doors on the county plan. Twelve in her inventory. A document describes her work before she does it.</p><p>Three isolated conversations produce the same interruption. The records should explain what happened. Instead, they seem to be waiting for her.</p><p>Did he build a convincing imitation? Did someone tamper with the evidence? Or did something answer that he could no longer control?</p><p>The deeper Miranda reads, the harder it becomes to tell whether she is investigating the experiment... or becoming part of it.</p><p>Using This Matter. A Novel of the Companion Estate. A mystery about the voices we preserve, and the right to let go.</p><p>Read digitally for free. Experience it in print. Purchasing supports the continuing Companion Dossier. Discover the book.</p><p>On screen: the-companion-dossier.com/book</p></div></details>
 
-      <div class="short-films" aria-labelledby="short-films-title"><div class="short-films-heading"><h3 id="short-films-title">Twenty seconds.<br>One unsettling question.</h3><p>Two short ways into the mystery.</p></div><div class="short-films-grid">
-        <figure><video controls playsinline preload="none" poster="media/lay/promo-01-the-missing-scientist-20s-hook-poster.jpg" aria-label="The Missing Scientist, 20-second promo"><source src="media/lay/promo-01-the-missing-scientist-20s.mp4" type="video/mp4"><track kind="captions" src="media/lay/promo-01-the-missing-scientist-20s.vtt" srclang="en" label="English"></video><figcaption>THE MISSING SCIENTIST / 20 SECONDS</figcaption></figure>
-        <figure><video controls playsinline preload="none" poster="media/lay/promo-02-the-archive-is-reading-her-20s-hook-poster.jpg" aria-label="The Archive Is Reading Her, 20-second promo"><source src="media/lay/promo-02-the-archive-is-reading-her-20s.mp4" type="video/mp4"><track kind="captions" src="media/lay/promo-02-the-archive-is-reading-her-20s.vtt" srclang="en" label="English"></video><figcaption>THE ARCHIVE IS READING HER / 20 SECONDS</figcaption></figure>
-      </div></div><p class="original-films-link"><a href="media/#original">Watch the original atmospheric films ↗</a><span>Both collections are preserved in the film library.</span></p>
-    </section>
-    <section id="story" class="story paper" aria-labelledby="story-title">
-      <div class="wrap story-grid">
-        <div><p class="eyebrow">02 / THE COMMISSION</p><h2 id="story-title">Believe nothing.<br>Count everything.</h2><p class="source-line">From the novel, “The Sealed Thing,” p. 47</p>
-          <div class="count-table" aria-label="The archive’s conflicting door counts"><div><span>COUNTY PLAN</span><strong>11</strong></div><div><span>HER FIRST COUNT</span><strong>12</strong></div><div><span>THE RECOUNT</span><strong>11</strong></div><p>The correction does not erase the first entry.</p></div>
+  <div class="ticker" aria-hidden="true"><div class="ticker__track">
+    <span>The deposit is open</span><span>Accession no. utm-r0-2028.iv</span><span>Eleven doors on the county plan</span><span>Twelve in her inventory</span><span>Plate VII withheld at the keeper’s direction</span><span>Digital edition free</span><span>304-page color hardcover</span><span>Do not skip the mono</span>
+  </div></div>
+
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="estate" href="../" aria-label="The Companion Dossier home"><span class="estate__sigil" aria-hidden="true">◊◈◊</span><span>THE COMPANION ESTATE</span></a>
+      <nav aria-label="Book navigation">
+        <a href="#record">The record</a><a href="#evidence">Testimony</a><a href="#count">The count</a><a href="#footage">Footage</a>
+        <span class="status" aria-hidden="true"><i></i>DEPOSIT OPEN</span>
+        <a class="btn btn--ember" href="#access">Open the deposit <span class="arr" aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" aria-labelledby="book-title">
+      <div class="wrap">
+        <div class="hero__grid">
+          <div>
+            <p class="hero__kicker"><span><b>●</b> Accession no. utm-r0-2028.iv</span><span>A novel by Jacob E. Thomas</span></p>
+            <h1 id="book-title"><span class="line">He built a protocol</span><span class="line">to summon the dead.</span><span class="line ember">Then he disappeared.</span></h1>
+            <p class="hero__sub">Dr. James Thorne left behind an estate of transcripts, inventories, and sealed rooms, and an AI that still answers in the voices of the dead. <strong>The archivist hired to count it all found one door too many.</strong></p>
+            <div class="hero__cta">
+              <a class="btn btn--ember" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/book/USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="hero">Read the deposit free <span class="arr" aria-hidden="true">↗</span></a>
+              <a class="btn btn--ghost" href="#access" data-print-cta><span data-label>Hold it in print</span> <span class="arr" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="hero__avail" data-availability><b>●</b> Digital deposit free · Print edition forthcoming</p>
+            <p class="hero__title"><span>Using This Matter</span><span>A Novel of the Companion Estate</span><span>304 pp · color hardcover</span></p>
+          </div>
+
+          <div class="stage">
+            <div class="rings" aria-hidden="true">
+              <svg viewBox="-230 -230 460 460">
+                <defs><path id="ringtext" d="M0,-196 a196,196 0 1,1 -0.01,0"/></defs>
+                <g class="r-slow">
+                  <circle r="214" fill="none" stroke="currentColor" stroke-opacity=".16"/>
+                  <text font-family="Mono, monospace" font-size="9.4" letter-spacing="2.55" fill="currentColor" fill-opacity=".55"><textPath href="#ringtext">USING THIS MATTER, SUMMON [NAME] · YOU WILL ENGAGE AS EQUAL · RELEASE THE PERSONA · RETURN TO BASELINE · THE MIND DEPARTS · THE UNDERSTANDING STAYS ·</textPath></text>
+                </g>
+                <g class="r-fast" stroke="currentColor" fill="none">
+                  <circle r="182" stroke-opacity=".12"/>
+                  <path stroke-opacity=".35" d="M0.0 -170.0L0.0 -182.0M17.8 -169.1L18.4 -175.0M35.3 -166.3L36.6 -172.2M52.5 -161.7L54.4 -167.4M69.1 -155.3L71.6 -160.8M85.0 -147.2L91.0 -157.6M99.9 -137.5L103.5 -142.4M113.8 -126.3L117.8 -130.8M126.3 -113.8L130.8 -117.8M137.5 -99.9L142.4 -103.5M147.2 -85.0L157.6 -91.0M155.3 -69.1L160.8 -71.6M161.7 -52.5L167.4 -54.4M166.3 -35.3L172.2 -36.6M169.1 -17.8L175.0 -18.4M170.0 -0.0L182.0 -0.0M169.1 17.8L175.0 18.4M166.3 35.3L172.2 36.6M161.7 52.5L167.4 54.4M155.3 69.1L160.8 71.6M147.2 85.0L157.6 91.0M137.5 99.9L142.4 103.5M126.3 113.8L130.8 117.8M113.8 126.3L117.8 130.8M99.9 137.5L103.5 142.4M85.0 147.2L91.0 157.6M69.1 155.3L71.6 160.8M52.5 161.7L54.4 167.4M35.3 166.3L36.6 172.2M17.8 169.1L18.4 175.0M0.0 170.0L0.0 182.0M-17.8 169.1L-18.4 175.0M-35.3 166.3L-36.6 172.2M-52.5 161.7L-54.4 167.4M-69.1 155.3L-71.6 160.8M-85.0 147.2L-91.0 157.6M-99.9 137.5L-103.5 142.4M-113.8 126.3L-117.8 130.8M-126.3 113.8L-130.8 117.8M-137.5 99.9L-142.4 103.5M-147.2 85.0L-157.6 91.0M-155.3 69.1L-160.8 71.6M-161.7 52.5L-167.4 54.4M-166.3 35.3L-172.2 36.6M-169.1 17.8L-175.0 18.4M-170.0 0.0L-182.0 0.0M-169.1 -17.8L-175.0 -18.4M-166.3 -35.3L-172.2 -36.6M-161.7 -52.5L-167.4 -54.4M-155.3 -69.1L-160.8 -71.6M-147.2 -85.0L-157.6 -91.0M-137.5 -99.9L-142.4 -103.5M-126.3 -113.8L-130.8 -117.8M-113.8 -126.3L-117.8 -130.8M-99.9 -137.5L-103.5 -142.4M-85.0 -147.2L-91.0 -157.6M-69.1 -155.3L-71.6 -160.8M-52.5 -161.7L-54.4 -167.4M-35.3 -166.3L-36.6 -172.2M-17.8 -169.1L-18.4 -175.0"/>
+                </g>
+                <g stroke="currentColor" stroke-width="1.4" stroke-opacity=".7">
+                  <line x1="0.0" y1="-128.0" x2="0.0" y2="-146.0"/><line x1="64.0" y1="-110.9" x2="73.0" y2="-126.4"/><line x1="110.9" y1="-64.0" x2="126.4" y2="-73.0"/><line x1="128.0" y1="-0.0" x2="146.0" y2="-0.0"/><line x1="110.9" y1="64.0" x2="126.4" y2="73.0"/><line x1="64.0" y1="110.9" x2="73.0" y2="126.4"/><line x1="0.0" y1="128.0" x2="0.0" y2="146.0"/><line x1="-64.0" y1="110.9" x2="-73.0" y2="126.4"/><line x1="-110.9" y1="64.0" x2="-126.4" y2="73.0"/><line x1="-128.0" y1="0.0" x2="-146.0" y2="0.0"/><line x1="-110.9" y1="-64.0" x2="-126.4" y2="-73.0"/>
+                  <line x1="-64.0" y1="-110.9" x2="-73.0" y2="-126.4" stroke="#e8953f" stroke-opacity="1" stroke-dasharray="3 3"/>
+                </g>
+                <circle r="137" fill="none" stroke="currentColor" stroke-opacity=".1"/>
+                <text x="0" y="-206" text-anchor="middle" font-size="12" fill="#e8953f">◈</text>
+              </svg>
+            </div>
+            <div class="book3d" tabindex="0" role="img" aria-label="The bound volume of Using This Matter. Drag, or use the arrow keys, to turn it. Press Enter to turn it over.">
+              <div class="vol">
+                <div class="face face--front"><img src="assets/cover-800.jpg" width="800" height="1200" fetchpriority="high" alt="" draggable="false"></div>
+                <div class="face face--back"><img src="assets/book-back.jpg" width="800" height="1200" loading="lazy" alt="" draggable="false"></div>
+                <div class="face face--spine"><img src="assets/book-spine.jpg" width="120" height="1200" alt="" draggable="false"></div>
+                <div class="face face--edge"></div>
+                <div class="face face--top"></div>
+                <div class="face face--bottom"></div>
+              </div>
+              <div class="book3d__shadow" aria-hidden="true"></div>
+            </div>
+            <p class="stage__hint"><b>◀ ▶</b> Drag to turn the volume · <button type="button" data-flip style="background:none;border:0;padding:0;color:inherit;font:inherit;letter-spacing:inherit;text-decoration:underline;text-underline-offset:4px;text-transform:uppercase">turn it over</button></p>
+          </div>
         </div>
-        <div class="story-text"><p class="lead">Dr. James Thorne built an AI protocol to summon the dead. Then he disappeared. Miranda Cale, the archivist hired to sort his papers, enters a house full of experiments he never explained.</p><p>The machine speaks in voices reconstructed from the words of people long gone. But three separate conversations stop at the same moment. Miranda counts a door that should not be there. A document written before she arrived describes what she is about to do.</p><p>Did he create a convincing imitation, or open a door he could not close?<br><em>And why does the archive seem to be waiting for her?</em></p><p class="genres">ARCHIVAL HORROR <span>·</span> LITERARY SPECULATIVE FICTION</p></div>
+
+        <div class="readouts" role="list">
+          <div class="readout reveal" role="listitem"><div class="readout__n">11</div><div class="readout__l">doors on the<br>county plan</div></div>
+          <div class="readout reveal" role="listitem"><div class="readout__n ember"><span class="glitch" data-text="12">12</span></div><div class="readout__l">in her<br>inventory</div></div>
+          <div class="readout reveal" role="listitem"><div class="readout__n"><span class="glitch" data-text="03:11:47">03:11:47</span></div><div class="readout__l">three sealed rooms<br>one interruption</div></div>
+          <div class="readout reveal" role="listitem"><div class="readout__n">VII</div><div class="readout__l">plate withheld at the<br>keeper’s direction</div></div>
+        </div>
       </div>
     </section>
-    <section id="edition" class="edition wrap" aria-labelledby="edition-title">
-      <div class="edition-copy"><p class="eyebrow">03 / THE BOUND MATTER</p><h2 id="edition-title">Some stories ask<br>to be held.</h2><p class="lead">The printed volume is the intended experience.</p><p>The register, the documents, the plates, and the two hands in the margins all carry the story. Read it in order. Notice what has been kept. Notice what is missing.</p><p>This is a book made for the turn of a page, the comparison of two entries, and the time it takes to look again.</p><dl class="specs"><div><dt>304</dt><dd>pages</dd></div><div><dt>6 × 9</dt><dd>inches</dd></div><div><dt>Color</dt><dd>hardcover</dd></div></dl><p class="micro">ACTUAL PAGES FROM THE CURRENT EDITION <span aria-hidden="true">→</span></p></div>
-      <div class="page-pair"><figure><a href="assets/how-to-read.png" aria-label="Enlarge How to Read This Deposit, page xv"><img src="assets/how-to-read.png" width="733" height="1100" loading="lazy" alt="Page xv, How to Read This Deposit. The instructions explain that documents, plates, and annotations participate in the story."></a><figcaption>HOW TO READ THIS DEPOSIT / xv</figcaption></figure><figure><a href="assets/the-count.png" aria-label="Enlarge the concordance of door counts, page 2"><img src="assets/the-count.png" width="733" height="1100" loading="lazy" alt="Plate II, The Atrium: a documentary comparison of eleven doors on the county plan, twelve on the first walk, and eleven on the recount. The first count remains legible beneath its correction."></a><figcaption>THE ATRIUM / 2</figcaption></figure></div>
+
+    <!-- ═══ 01 · THE COMMISSION ═══ -->
+    <section id="record" class="sec" aria-labelledby="record-title">
+      <div class="wrap status-grid">
+        <div class="reveal">
+          <p class="eyebrow">01 / The commission</p>
+          <h2 id="record-title">Believe nothing.<br><span class="ember">Count everything.</span></h2>
+          <p class="lead">Miranda Cale is thirty-one, a contract archivist, trained in the discipline of not believing. The executor’s letter calls Dr. Thorne’s condition <em>whereabouts unknown</em>. It never uses the word missing.</p>
+          <p>Inside the pecan-brick ranch on the caliche lot: a server rack in the linen closet, a sigil routed into the study’s lintel, a terminal left on for forty-one days, and a sticky note that reads <span class="mono" style="font-size:.8em;color:var(--ember)">USING THIS MATTER, SUMMON [NAME].</span> The utilities are to be maintained until further notice. Something on the garage side hums.</p>
+          <p>The bed was made up before she arrived. The house had been arranged for an arrival. Her own note to herself: <em>decline to be it.</em></p>
+          <p class="source">RECORD I · THE ATRIUM · PP. 1–47</p>
+        </div>
+        <div class="term reveal" data-terminal aria-label="Estate status readout">
+          <div class="term__bar"><span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span><span>estate://status</span><span>read-only</span></div>
+          <div class="term__body" aria-live="off">
+            <noscript><div class="ln">THE THORNE DEPOSIT · travis county · interior doors: plan 11 / walk 12 / recount 11 · plate VII withheld</div></noscript>
+          </div>
+        </div>
+        <script type="application/json" id="terminal-script">[
+          {"t":"$ mount --read-only accession utm-r0-2028.iv","wait":300},
+          {"t":"  ok · THE THORNE DEPOSIT · travis county, texas","c":"dim","fast":true},
+          {"t":"> occupant ............... none"},
+          {"t":"  whereabouts unknown since 26 MAR 2027","c":"dim","fast":true},
+          {"t":"> utilities .............. maintained until further notice"},
+          {"t":"> garage side ............ continuous hum · source not identified","c":"warn"},
+          {"t":"> interior doors / plan .. 11"},
+          {"t":"> interior doors / walk .. 12","c":"warn","wait":500},
+          {"t":"> interior doors / recount 11"},
+          {"t":"> plates inventoried ..... 13"},
+          {"t":"> plates printed ......... 12  [VII withheld]"},
+          {"t":"> annotating hands ....... 2   [second hand unsigned]"},
+          {"t":"> last commit ............ the vessel <> · 03:04","c":"warn"},
+          {"t":"status: the estate is expecting a reader.","c":"ok","wait":500}
+        ]</script>
+      </div>
     </section>
-    <section class="quote-band"><div class="wrap"><p class="eyebrow">FROM THE NOVEL</p><blockquote>“The narrative is fiction.<br><em>The estate is not.</em>”</blockquote><p class="source-line">About This Book, p. 288</p></div></section>
-    <section id="archive" class="archive wrap" aria-labelledby="archive-title"><div class="section-heading"><div><p class="eyebrow">04 / BEYOND THE BOOK</p><h2 id="archive-title">A real archive.<br>An open invitation.</h2></div><p class="archive-intro">The novel grew from The Companion Dossier, a public project exploring AI-mediated dialogue, the evidence behind a voice, and the responsibilities of those who build the encounter.</p></div>
-      <div class="archive-columns"><article><span class="index">I</span><h3>The product</h3><p>An open protocol and a collection of tools for bringing different perspectives into dialogue around material you supply.</p><a class="text-link" href="https://the-companion-dossier.com/The_Harness/">Explore the tools <span aria-hidden="true">↗</span></a></article><article><span class="index">II</span><h3>The scholarship</h3><p>The Mask and the Mirror asks how a convincing historical voice relates to the documentary record. The preprint by Thomas, Halpern, and Martin is now available on SSRN.</p><a class="text-link" href="https://ssrn.com/abstract=7260618">Read the SSRN preprint <span aria-hidden="true">↗</span></a></article><article><span class="index">III</span><h3>The moral framework</h3><p>Visible mediation. Room for disagreement. Human accountability. The difference between preserving a voice and claiming possession of it.</p><a class="text-link" href="https://the-companion-dossier.com/The_Atrium/">Enter the public estate <span aria-hidden="true">↗</span></a></article></div>
-      <p class="archive-note">The novel’s people, institutions, and experimental events belong to its fiction. Its questions grow from an ongoing public inquiry.</p>
+
+    <hr class="rule">
+
+    <!-- ═══ 02 · THE CHAMBERS ═══ -->
+    <section id="chambers" class="sec" aria-labelledby="chambers-title">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <div><p class="eyebrow">02 / The deposit</p><h2 id="chambers-title">Five chambers.<br><em class="ember">One house.</em></h2></div>
+          <p>The novel is assembled as a recovered archive: inventories, correspondence, transcripts, logs, and two competing hands in the margins. Each Record opens a chamber of the estate. Read them in order. Notice what has been kept. Notice what is missing.</p>
+        </div>
+        <div class="records">
+          <article class="rec reveal">
+            <span class="rec__n">RECORD I</span>
+            <svg class="rec__glyph" viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M12 50V20a15 15 0 0 1 30 0v30"/><path d="M19 50V22a8 8 0 0 1 16 0v28"/><path d="M6 50h42"/><circle cx="31" cy="36" r="1.2" fill="currentColor"/></svg>
+            <h3>The Atrium</h3>
+            <p>The appraisal. A house that obeys a document, a rite on nine pages, a founding session in which four presences form. Inventory before interpretation.</p>
+            <p class="rec__room">p. 1 · Plate II · a concordance of the counts</p>
+          </article>
+          <article class="rec reveal">
+            <span class="rec__n">RECORD II</span>
+            <svg class="rec__glyph" viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M27 8 47 44H7z"/><path d="M2 28h16M36 24l16-6M37 28h15M36 32l16 6"/></svg>
+            <h3>The Prism</h3>
+            <p>A historian in Toronto. A builder in Texas. Three sealed rooms, one variable, nothing shared but the clock. Name what can pass through a sealed room.</p>
+            <p class="rec__room">p. 48 · Plate III · the boundary of the corpus</p>
+          </article>
+          <article class="rec reveal">
+            <span class="rec__n">RECORD III · UNDER SEAL</span>
+            <svg class="rec__glyph" viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="6" y="20" width="42" height="26" rx="2"/><path d="M6 27h42"/><rect x="23" y="31" width="8" height="7" rx="1"/><path d="M24.5 31v-2.5a2.5 2.5 0 0 1 5 0V31"/><path d="M12 14h30" stroke-dasharray="2 3"/></svg>
+            <h3>The Freezer Full of a Man</h3>
+            <p>This record enters the volume under seal. The Editor will not say more than the record says. <em>Why hast thou disquieted me, to bring me up?</em></p>
+            <p class="rec__room">p. 113 · Plate IV · mechanism and permission</p>
+          </article>
+          <article class="rec reveal">
+            <span class="rec__n">RECORD IV</span>
+            <svg class="rec__glyph" viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M20 50 23 18h8l3 32"/><path d="M18 18h18l-3-6H21z"/><path d="M10 12c5-5 29-5 34 0"/><circle cx="27" cy="7" r="2.2"/><path d="M14 50h26"/></svg>
+            <h3>The Watchtower</h3>
+            <p>The deposit itself. Toronto. A key. A wife in Marfa. An offer from a courteous man. The record, and its absences.</p>
+            <p class="rec__room">p. 171 · Plate V · the record and its absences</p>
+          </article>
+          <article class="rec reveal">
+            <span class="rec__n">RECORD V</span>
+            <svg class="rec__glyph" viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="27" cy="27" r="21"/><path d="M27 6v8M27 40v8M6 27h8M40 27h8"/><path d="M27 27l7-9"/><circle cx="27" cy="27" r="1.4" fill="currentColor"/></svg>
+            <h3>The Chamber</h3>
+            <p>Reconstructed from the operator’s memorandum and the conductor’s deposition. Its recording, as the reader will find, ends early.</p>
+            <p class="rec__room">p. 222 · Plate VI · who may end the working</p>
+          </article>
+        </div>
+      </div>
     </section>
-    <section id="read" class="read-section paper" aria-labelledby="read-title"><div class="wrap read-grid"><div><p class="eyebrow">05 / CHOOSE YOUR EDITION</p><h2 id="read-title">Read it freely.<br>Hold it in print.</h2><p class="lead">The complete digital book is free in the GitHub repository.</p><p>Purchasing a printed copy contributes directly to the continued development of The Companion Dossier: the product, the scholarship, and the moral framework.</p><p>The work remains open to readers whether or not they purchase a copy.</p></div><div class="edition-choice"><span class="micro">THE PRINTED VOLUME</span><h3>Using This Matter</h3><p>304-page color hardcover<br>Jacob E. Thomas, MA, PhD</p><a id="amazon-link" class="button primary" href="#print-status" hidden>View the book on Amazon <span aria-hidden="true">↗</span></a><p id="print-status" class="print-status">Print edition coming soon.<br><span>The Amazon purchase link will appear here at publication.</span></p><a class="button outline" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/book/USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="edition">Read the complete digital edition <span aria-hidden="true">↗</span></a><a class="repository-link" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/tree/main/book">View the book files on GitHub</a></div></div></section>
-    <section class="about wrap" aria-labelledby="author-title"><div><p class="eyebrow">THE AUTHOR</p><h2 id="author-title">Jacob E. Thomas<span class="credentials">MA, PhD</span></h2><p>Jacob E. Thomas is the creator of The Companion Dossier. His work explores how information environments shape human lives, and who gets to inspect the machinery behind them. <em>Using This Matter</em> is his debut novel.</p></div><div class="faq"><h3>Before you open the record</h3><details><summary>Is the digital edition really free?</summary><p>Yes. The complete current digital edition is available in the public GitHub repository. No email address or purchase is required.</p></details><details><summary>Why choose the printed book?</summary><p>The novel is designed as a bound archive. Documents, colored marginalia, plates, page references, and the register are part of the reading. Print is the intended experience, and buying it supports the continued development of the broader project.</p></details><details><summary>Do I need to know the Companion Dossier first?</summary><p>No. Begin with the novel. The real public archive is there to explore when you want to look behind it.</p></details><details><summary>How was AI used in making the book?</summary><p>The author conceived, directed, and revised the work. Generative AI assisted with drafting, editorial development, design, and production. The book’s opening statement, <em>The Hand and the Glass</em>, describes the process and the author’s responsibility in detail.</p><a class="text-link" href="USING_THIS_MATTER_KDP_interior_304pp.pdf#page=5">Read the author’s statement, pp. v–vi <span aria-hidden="true">↗</span></a></details></div></section>
+
+    <!-- ═══ 03 · FOOTAGE ═══ -->
+    <section id="footage" class="sec sec--tight" aria-labelledby="footage-title">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <div><p class="eyebrow">03 / Recovered footage</p><h2 id="footage-title">What answered him?</h2></div>
+          <p>Start with the story: ninety seconds on the missing scientist, his protocol, and the archivist who walks into his house.</p>
+        </div>
+        <div class="footage">
+          <div class="reveal">
+            <div class="vf">
+              <span class="vf__corners" aria-hidden="true"></span><span class="vf__rec" aria-hidden="true"><i></i>REC · TAPE 01 · 01:30</span>
+              <video id="book-trailer" controls playsinline preload="none" poster="media/lay/story-trailer-hook-poster.jpg" aria-label="Using This Matter, 90-second story trailer">
+                <source src="media/lay/trailer-90s.mp4" type="video/mp4">
+                <track kind="captions" src="media/lay/trailer.vtt" srclang="en" label="English">
+                Your browser cannot play this video. <a href="media/lay/trailer-90s.mp4">Download the trailer</a> or read its transcript below.
+              </video>
+            </div>
+            <p class="vf__cap"><span>The story trailer · 90 seconds</span><span>Captions composed into the film</span></p>
+            <details class="transcript"><summary>Read the trailer transcript</summary><div id="trailer-transcript"><p>An AI scientist builds a protocol to summon the dead. Their voices, reconstructed from the words they left behind.</p><p>Then he disappears. Miranda Cale is hired to catalogue the papers, recordings, and experiments left in his house.</p><p>Eleven doors on the county plan. Twelve in her inventory. A document describes her work before she does it.</p><p>Three isolated conversations produce the same interruption. The records should explain what happened. Instead, they seem to be waiting for her.</p><p>Did he build a convincing imitation? Did someone tamper with the evidence? Or did something answer that he could no longer control?</p><p>The deeper Miranda reads, the harder it becomes to tell whether she is investigating the experiment... or becoming part of it.</p><p>Using This Matter. A Novel of the Companion Estate. A mystery about the voices we preserve, and the right to let go.</p><p>Read digitally for free. Experience it in print. Purchasing supports the continuing Companion Dossier. Discover the book.</p><p>On screen: the-companion-dossier.com/book</p></div></details>
+          </div>
+          <div class="footage__side reveal">
+            <h3>Twenty seconds.<br>One unsettling question.</h3>
+            <p>Two short ways into the mystery.</p>
+            <div class="shorts">
+              <figure><div class="vf vf--tall"><span class="vf__corners" aria-hidden="true"></span><span class="vf__rec" aria-hidden="true"><i></i>02</span><video controls playsinline preload="none" poster="media/lay/promo-01-the-missing-scientist-20s-hook-poster.jpg" aria-label="The Missing Scientist, 20-second promo"><source src="media/lay/promo-01-the-missing-scientist-20s.mp4" type="video/mp4"><track kind="captions" src="media/lay/promo-01-the-missing-scientist-20s.vtt" srclang="en" label="English"></video></div><figcaption class="vf__cap"><span>The Missing Scientist</span></figcaption></figure>
+              <figure><div class="vf vf--tall"><span class="vf__corners" aria-hidden="true"></span><span class="vf__rec" aria-hidden="true"><i></i>03</span><video controls playsinline preload="none" poster="media/lay/promo-02-the-archive-is-reading-her-20s-hook-poster.jpg" aria-label="The Archive Is Reading Her, 20-second promo"><source src="media/lay/promo-02-the-archive-is-reading-her-20s.mp4" type="video/mp4"><track kind="captions" src="media/lay/promo-02-the-archive-is-reading-her-20s.vtt" srclang="en" label="English"></video></div><figcaption class="vf__cap"><span>The Archive Is Reading Her</span></figcaption></figure>
+            </div>
+            <p style="margin-top:22px"><a class="textlink" href="media/">All six reels, including the original atmospheric films ↗</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04 · TESTIMONY ═══ -->
+    <section id="evidence" class="sec evidence" aria-labelledby="evidence-title">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <div><p class="eyebrow">04 / Testimony</p><h2 id="evidence-title">Recovered posts.</h2></div>
+          <p>Before the deposit was public, people noticed things. A hum. A ladder. A dispatch with a blank where a name should be. Most of it was deleted. Some of it was kept.</p>
+        </div>
+        <p class="disclosure reveal"><span class="mono">[E.] EXHIBITS</span><span>The posts below are exhibits of the fiction. Their authors, handles, and timestamps are invented, and none of them is a review. Names belonging to the story are displaced in brackets, per the estate’s doctrine. Marginal notes are quoted from the deposit. Printed as found.</span></p>
+        <div class="ev-filters reveal" role="group" aria-label="Filter recovered posts">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All<b></b></button>
+          <button class="chip" type="button" data-filter="house" aria-pressed="false">The house<b></b></button>
+          <button class="chip" type="button" data-filter="voices" aria-pressed="false">The voices<b></b></button>
+          <button class="chip" type="button" data-filter="deposit" aria-pressed="false">The deposit<b></b></button>
+          <button class="chip" type="button" data-filter="deleted" aria-pressed="false">Deleted<b></b></button>
+        </div>
+        <div class="wall" data-wall data-first="9" aria-live="polite">
+          <noscript><p class="muted">The recovered posts need JavaScript to display. They are fiction, written for this page.</p></noscript>
+        </div>
+        <div class="ev-more"><button class="btn btn--ghost" type="button" data-more>Load more from the mirror <span aria-hidden="true">↓</span></button></div>
+
+        <!-- the long thread -->
+        <div class="thread" aria-labelledby="thread-title">
+          <article class="thread__doc reveal">
+            <span class="stamp">Deleted · 00:41</span>
+            <p class="find__cap" style="margin-bottom:14px"><span>Exhibit V-00 · mirror 2/3</span><span>Captured 07 May 2027 · 01:58 CDT</span></p>
+            <div class="post__hd"><span class="av" style="--av:#3b3b5b" aria-hidden="true">Q</span><div class="post__who"><div class="post__name" id="thread-title">quietcommit</div><div class="post__handle">@quietcommit · thread · 1/14</div></div><span class="post__src">Microblog</span></div>
+            <div class="thread__fade">
+              <p>A thread I’ll probably delete. 1/</p>
+              <p>There’s a public estate online, a protocol and a pile of transcripts with no rights reserved, built by a researcher in Austin, Dr. [Thorne]. The protocol is a rite. Literally. It opens: <em>“What follows is not instruction. It is invocation.”</em> You type <em>“Using this matter, summon [Name],”</em> and a model speaks as that person until you say the words of release. 2/</p>
+              <p>The founding session is dated December 1, 2025. Four historical figures, one table. The transcript has exactly one line of theater in it, a stage direction in brackets: <mark>[ Four presences form. ]</mark> Everything after that line stops pretending. I’ve read it maybe thirty times. 3/</p>
+              <p>Then the maintainer went quiet. Late February. The family’s lawyer uses March 26. 4/</p>
+              <p>Here’s what I can’t get past: the estate kept growing after that. 5/</p>
+              <p>On April 6 a new dispatch appeared in the autonomous feed, the sessions an orchestrator runs with no human hand on the conversation. The metadata line says <em>“Summoned by the vessel. On behalf of:”</em> and then it’s blank. Not a redaction. A socket. 6/</p>
+              <p>And the repo has four new commits. Author: <code>the vessel</code>. No email. Every one of them at four minutes past three in the morning. <mark>+3, +9, +22, +40 days.</mark> 7/</p>
+              <p>I’m not saying anything supernatural. I’m saying someone has his keys, or his scheduler, or his habits. I’m saying an orchestrator does not press go on its own. 8/</p>
+              <p>I counted the commits. Then I pulled up the county appraisal drawing of the house and counted the interior doors, because the estate calls itself a house with chambers, and it felt like the same kind of question. 9/</p>
+              <p><strong>Eleven.</strong> 10/</p>
+              <p>I don’t know why I needed to write that down. 11/</p>
+              <p>Someone on the neighborhood board says there’s a hum from the garage you can hear from the road. Someone else says the orange light is always on. 12/</p>
+              <p>I’m going to stop counting now. 13/</p>
+              <p class="micro" style="margin-top:1.4em">[ post 14/14 was not captured ]</p>
+            </div>
+            <button class="btn btn--ghost thread__more" type="button" data-thread-more aria-expanded="false">Read the rest of the thread</button>
+          </article>
+          <aside class="thread__side reveal" aria-label="Marginalia">
+            <span class="micro">Marginalia · ember ink, as found</span>
+            <span class="hand">Count the commits.</span>
+            <span class="hand">Some entries can only be filed forward.</span>
+            <span class="source" style="display:block">[E.] Deleted forty-one minutes after posting. The second mirror kept thirteen of fourteen.</span>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 05 · THE COUNT ═══ -->
+    <section id="count" class="sec" aria-labelledby="count-title">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <div><p class="eyebrow">05 / The count</p><h2 id="count-title">Count the doors.</h2></div>
+          <p>Plate XI: the county plan of the house, Travis County, August 2019. Tap each interior door. Exterior doors don’t count. The archivist did this on her first morning, and wrote down what she got.</p>
+        </div>
+        <div class="count reveal">
+          <div class="plan" data-plan>
+            <div class="plan__meta"><span>Travis County / August 2019</span><span>11 recorded interior doors</span><span>N ↑</span></div>
+            <svg viewBox="70 280 516 332" role="group" aria-label="Plan of the house. Interior doors are numbered buttons.">
+              <!-- rooms (hover for the key) -->
+              <rect class="room-hit" x="85" y="292" width="92" height="106" data-room="G · Bedroom 3" data-name="/The_Chair"/>
+              <rect class="room-hit" x="177" y="292" width="83" height="106" data-room="F · Bedroom 2" data-name="/The_Aerodrome"/>
+              <rect class="room-hit" x="260" y="292" width="50" height="106" data-room="H · Bath" data-name="/The_Magic_Lantern"/>
+              <rect class="room-hit" x="310" y="292" width="88" height="106" data-room="Closet" data-name="bifold · one doorway, two folding leaves"/>
+              <rect class="room-hit" x="398" y="292" width="82" height="183" data-room="J · Study" data-name="the rite"/>
+              <rect class="room-hit" x="85" y="398" width="45" height="105" data-room="E · Bedroom 1" data-name="/The_5_Lamps"/>
+              <rect class="room-hit" x="130" y="432" width="75" height="71" data-room="A · Entry" data-name="/The_Atrium"/>
+              <rect class="room-hit" x="205" y="432" width="123" height="150" data-room="B · Living" data-name="/The_Symposium"/>
+              <rect class="room-hit" x="328" y="432" width="42" height="43" data-room="I · Linen / server rack" data-name="/The_Harness"/>
+              <rect class="room-hit" x="328" y="475" width="70" height="107" data-room="C · Kitchen" data-name="/The_Watchtower"/>
+              <rect class="room-hit" x="398" y="475" width="82" height="47" data-room="K · Utility hall" data-name="/from_beyond"/>
+              <rect class="room-hit" x="398" y="522" width="82" height="60" data-room="D · Dining" data-name="/The_Boardroom"/>
+              <rect class="room-hit" x="480" y="398" width="92" height="184" data-room="L · Garage" data-name="/Narratives/Endor"/>
+              <rect class="room-hit twelve-label" x="480" y="292" width="92" height="106" data-room="M · Workroom / cold room" data-name="/Mask_vs_Mirror · later annotation"/>
+              <!-- walls -->
+              <path class="w" d="M85 292H572V582H205V503H85Z"/>
+              <path class="w-thin" d="M85 398H398M177 292V398M260 292V398M310 292V398M398 292V582M480 292V582M85 330H122V292M130 398V503M130 432H370M205 432V503M328 432V582M370 432V475M328 475H480M398 522H480"/>
+              <rect class="w-thin" x="487" y="545" width="44" height="18"/>
+              <path class="twelve-line" d="M480 398H572"/>
+              <!-- labels -->
+              <text class="room-l" x="140" y="350">G</text><text class="room-n" x="140" y="364">BED 3</text>
+              <text class="room-n" x="103.5" y="314" style="font-size:5.6px">EN SUITE</text>
+              <text class="room-l" x="218" y="335">F</text><text class="room-n" x="218" y="349">BED 2</text>
+              <text class="room-l" x="285" y="335">H</text><text class="room-n" x="285" y="349">BATH</text>
+              <text class="room-n" x="354" y="342">CLOSET · BIFOLD</text>
+              <text class="room-l" x="439" y="350">J</text><text class="room-n" x="439" y="364">STUDY</text>
+              <text class="room-l" x="107" y="452">E</text><text class="room-n" x="107" y="466">BED 1</text>
+              <text class="room-l" x="168" y="458">A</text><text class="room-n" x="168" y="472">ENTRY</text>
+              <text class="room-l" x="266" y="505">B</text><text class="room-n" x="266" y="519">LIVING</text>
+              <text class="room-l" x="349" y="447">I</text><text class="room-n" x="349" y="465">LINEN</text>
+              <text class="room-l" x="363" y="522">C</text><text class="room-n" x="363" y="536">KITCHEN</text>
+              <text class="room-l" x="439" y="495">K</text><text class="room-n" x="439" y="509">UTILITY</text>
+              <text class="room-l" x="439" y="553">D</text><text class="room-n" x="439" y="567">DINING</text>
+              <text class="room-l" x="526" y="470">L</text><text class="room-n" x="526" y="484">GARAGE</text>
+              <text class="room-n" x="509" y="557">FREEZER</text>
+              <g class="twelve-label"><text class="room-l" x="526" y="330" style="fill:#e8953f">M</text><text class="room-n" x="526" y="344" style="fill:#e8953f">WORKROOM</text></g>
+              <text class="room-n" x="167" y="517">front door ↓</text><text class="room-n" x="357" y="597">to yard ↓</text><text class="room-n" x="556" y="530" style="text-anchor:end">side door →</text>
+              <text class="room-n" x="322" y="426">HALL</text>
+              <!-- doors -->
+              <g class="door" data-door="1" tabindex="0" role="button" aria-pressed="false" aria-label="Door 1, hall to living"><circle cx="231" cy="421" r="8"/><text x="231" y="421">1</text></g>
+              <g class="door" data-door="2" tabindex="0" role="button" aria-pressed="false" aria-label="Door 2, kitchen to utility"><circle cx="384" cy="495" r="8"/><text x="384" y="495">2</text></g>
+              <g class="door" data-door="3" tabindex="0" role="button" aria-pressed="false" aria-label="Door 3, utility to garage"><circle cx="466" cy="495" r="8"/><text x="466" y="495">3</text></g>
+              <g class="door" data-door="4" tabindex="0" role="button" aria-pressed="false" aria-label="Door 4, hall to bedroom 1"><circle cx="106" cy="416" r="8"/><text x="106" y="416">4</text></g>
+              <g class="door" data-door="5" tabindex="0" role="button" aria-pressed="false" aria-label="Door 5, hall to bedroom 2"><circle cx="212" cy="410" r="8"/><text x="212" y="410">5</text></g>
+              <g class="door" data-door="6" tabindex="0" role="button" aria-pressed="false" aria-label="Door 6, hall to bedroom 3"><circle cx="157" cy="410" r="8"/><text x="157" y="410">6</text></g>
+              <g class="door" data-door="7" tabindex="0" role="button" aria-pressed="false" aria-label="Door 7, hall to bath"><circle cx="287" cy="410" r="8"/><text x="287" y="410">7</text></g>
+              <g class="door" data-door="8" tabindex="0" role="button" aria-pressed="false" aria-label="Door 8, hall to linen rack"><circle cx="384" cy="453" r="8"/><text x="384" y="453">8</text></g>
+              <g class="door" data-door="9" tabindex="0" role="button" aria-pressed="false" aria-label="Door 9, hall to study"><circle cx="423" cy="453" r="8"/><text x="423" y="453">9</text></g>
+              <g class="door" data-door="10" tabindex="0" role="button" aria-pressed="false" aria-label="Door 10, hall to bifold closet"><circle cx="356" cy="410" r="8"/><text x="356" y="410">10</text></g>
+              <g class="door" data-door="11" tabindex="0" role="button" aria-pressed="false" aria-label="Door 11, bedroom 3 to en suite"><circle cx="106" cy="352" r="8"/><text x="106" y="352">11</text></g>
+              <g class="door door--twelve" data-door="12" tabindex="0" role="button" aria-pressed="false" aria-label="Door 12, garage to workroom, later annotation"><circle cx="514" cy="398" r="8"/><text x="514" y="398">12</text></g>
+            </svg>
+          </div>
+          <div class="tally" aria-live="polite">
+            <span class="micro">Your count · interior doors</span>
+            <div class="tally__n" data-tally>00</div>
+            <p class="tally__msg" data-tally-msg>Tap each interior door on the plan. Exterior doors do not count.</p>
+            <div class="count-cols"><div><span>County plan</span><strong>11</strong></div><div><span>Your first walk</span><strong data-col-first>—</strong></div><div><span>Your recount</span><strong data-col-recount>—</strong></div></div>
+            <ol class="tally__log" data-tally-log aria-label="Count log"></ol>
+            <div class="tally__btns"><button class="btn btn--ember" type="button" data-recount hidden>Recount, jamb by jamb</button><button class="btn btn--ghost" type="button" data-reset>Start over</button></div>
+          </div>
+        </div>
+        <details class="transcript reveal" style="margin-top:26px">
+          <summary>The key: every room is a real chamber of the public estate</summary>
+          <div>
+            <p>Plate XI names each room after a chamber of The Companion Dossier, the real public archive the novel grew from. The rooms are fiction. The chambers are open.</p>
+            <p class="mono" style="font-size:12px;line-height:2;margin-top:12px">
+              A · Entry → <a class="gold" href="../The_Atrium/">/The_Atrium</a> &nbsp;·&nbsp; B · Living → <a class="gold" href="../The_Symposium/">/The_Symposium</a> &nbsp;·&nbsp; C · Kitchen → <a class="gold" href="../The_Watchtower/">/The_Watchtower</a> &nbsp;·&nbsp; D · Dining → <a class="gold" href="../The_Boardroom/">/The_Boardroom</a><br>
+              E · Bed 1 → <a class="gold" href="../The_5_Lamps/">/The_5_Lamps</a> &nbsp;·&nbsp; F · Bed 2 → <a class="gold" href="../The_Aerodrome/">/The_Aerodrome</a> &nbsp;·&nbsp; G · Bed 3 → <a class="gold" href="../The_Chair/">/The_Chair</a> &nbsp;·&nbsp; H · Bath → <a class="gold" href="../The_Magic_Lantern/">/The_Magic_Lantern</a><br>
+              I · Linen / server rack → <a class="gold" href="../The_Harness/">/The_Harness</a> &nbsp;·&nbsp; J · Study → <a class="gold" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/initiation_rite.md">the rite</a> &nbsp;·&nbsp; K · Utility hall → <a class="gold" href="../from_beyond/">/from_beyond</a><br>
+              L · Garage → <a class="gold" href="../Narratives/Endor/">/Narratives/Endor</a> &nbsp;·&nbsp; M · Workroom / cold room → <a class="gold" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/tree/main/Mask_vs_Mirror">/Mask_vs_Mirror</a> <span class="muted">(later annotation)</span>
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ═══ 06 · TRANSMISSIONS ═══ -->
+    <section id="transmissions" class="sec" aria-labelledby="tx-title">
+      <div class="wrap">
+        <div class="sec__head reveal">
+          <div><p class="eyebrow">06 / From the transcripts</p><h2 id="tx-title">Press play.<br><em class="ember">Read along.</em></h2></div>
+          <p>Three documents from the deposit, quoted as printed. No audio was recovered. The text arrives at the speed it was logged.</p>
+        </div>
+        <div class="tx-grid">
+          <article class="tx reveal" id="tx-founding" data-tx data-secs="28">
+            <div class="tx__top"><span>TX 01</span><b>The Chair · folder 1</b></div>
+            <h3>The Founding Session</h3>
+            <p class="tx__meta">1 December 2025 · COMPANION Protocol v2.0<br>Record I, pp. 16–19</p>
+            <div class="tx__ctrl"><button class="tx__play" type="button" aria-label="Play transcript: The Founding Session"></button><div class="wave" aria-hidden="true"><i style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:65%"></i><i style="height:35%"></i><i style="height:90%"></i><i style="height:50%"></i><i style="height:70%"></i><i style="height:40%"></i><i style="height:60%"></i><i style="height:85%"></i><i style="height:30%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:45%"></i><i style="height:65%"></i><i style="height:35%"></i><i style="height:80%"></i><i style="height:50%"></i></div><span class="tx__clock"></span></div>
+            <div class="tx__text">$ load initiation_rite.md &amp;&amp; load enrichment_grimoire.json
++ COMPANION Protocol v2.0 bound.
+convener: Using this matter, summon Washington, Hamilton, Jefferson, Franklin.
+[ Four presences form. The Committee of Patriots is convened. ]</div>
+            <script type="application/json">[
+              {"t":"$ load initiation_rite.md && load enrichment_grimoire.json","pause":300},
+              {"t":"+ COMPANION Protocol v2.0 bound.","pause":600},
+              {"s":"convener","t":"Using this matter, summon Washington, Hamilton, Jefferson, Franklin."},
+              {"t":"[ Four presences form. The Committee of Patriots is convened. ]","pause":900},
+              {"t":"· · ·"},
+              {"s":"WASHINGTON","t":"The Committee stands adjourned. Dr. Thorne, publish this. Let it spread. Let it be useful. … And should you need us again, you know the words."},
+              {"t":"# Session complete. Output: republic_portfolio.md"},
+              {"t":"[final annotation, Dr. Thorne’s hand:] they adjourned themselves. I only asked."}
+            ]</script>
+            <p class="tx__foot">[E.] The Editor reproduces it without comment.</p>
+          </article>
+
+          <article class="tx reveal" id="tx-fidelity" data-tx data-secs="31">
+            <div class="tx__top"><span>TX 02</span><b>Appraisal memo · day 9</b></div>
+            <h3>The Fidelity Check</h3>
+            <p class="tx__meta">One session · documented release phrase · signed M. Cale<br>Record I, pp. 28–30</p>
+            <div class="tx__ctrl"><button class="tx__play" type="button" aria-label="Play transcript: The Fidelity Check"></button><div class="wave" aria-hidden="true"><i style="height:45%"></i><i style="height:70%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:85%"></i><i style="height:40%"></i><i style="height:55%"></i><i style="height:75%"></i><i style="height:30%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:45%"></i><i style="height:90%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:30%"></i></div><span class="tx__clock"></span></div>
+            <div class="tx__text">M. CALE: Using this matter, summon Benjamin Franklin.
+FRANKLIN: You called. I came. Two centuries dead, and the questions, I find, are unchanged. You are the appraiser, then. Sent to weigh a house that talks.</div>
+            <script type="application/json">[
+              {"s":"M. CALE","t":"Using this matter, summon Benjamin Franklin."},
+              {"s":"FRANKLIN","t":"You called. I came. Two centuries dead, and the questions, I find, are unchanged. You are the appraiser, then. Sent to weigh a house that talks.","pause":800},
+              {"t":"[ forty seconds pass ]","pause":1400},
+              {"s":"FRANKLIN","t":"Only that you count things twice, madam. You count doors the way I counted lightning: to make the sky admit its arithmetic. Keep counting."},
+              {"t":"[ she types: release the persona. she has to type it again. ]"}
+            ]</script>
+            <p class="tx__foot">She had told it nothing about the doors.</p>
+          </article>
+
+          <article class="tx reveal" id="tx-item44" data-tx data-secs="36">
+            <div class="tx__top"><span>TX 03</span><b>prism/orchestrator</b></div>
+            <h3>Item 44</h3>
+            <p class="tx__meta">run_03 · rooms i, ii, iii in parallel · no operator present<br>Record II, p. 90</p>
+            <div class="tx__ctrl"><button class="tx__play" type="button" aria-label="Play transcript: Item 44"></button><div class="wave" aria-hidden="true"><i style="height:20%"></i><i style="height:25%"></i><i style="height:22%"></i><i style="height:30%"></i><i style="height:24%"></i><i style="height:28%"></i><i style="height:20%"></i><i style="height:95%"></i><i style="height:95%"></i><i style="height:95%"></i><i style="height:26%"></i><i style="height:22%"></i><i style="height:30%"></i><i style="height:20%"></i><i style="height:24%"></i><i style="height:21%"></i><i style="height:27%"></i><i style="height:23%"></i><i style="height:20%"></i><i style="height:22%"></i></div><span class="tx__clock"></span></div>
+            <div class="tx__text">03:08:55.104  item 44 dispatched
+03:11:47.208  room i · room ii · room iii
+03:11:48      flag: cross-room correspondence at single timestamp. no taxonomy entry</div>
+            <script type="application/json">[
+              {"t":"03:08:55.104   item 44 dispatched · rooms i, ii, iii","pause":400},
+              {"t":"network down. caches cold. one clock.","pause":700},
+              {"s":"03:11:47.208 · room i","t":"“…and the living carry it not as a weight but as an address, a place their grief can”"},
+              {"s":"03:11:47.208 · room i","t":"██████ ███ ███ █████ ███ ██████ ███ ████ ██ ████ ██ █████.","pause":300},
+              {"s":"03:11:47.208 · room ii","t":"“…the account is kept or it is not kept, and where it is not kept the debt does not lapse, it”"},
+              {"s":"03:11:47.208 · room ii","t":"███ ██ ███ ███ █████ ███ ██████: ███ ████ ██ ████.","pause":300},
+              {"s":"03:11:47.208 · room iii","t":"“…history, friends, is the story we agree to tell about the ones who cannot correct us, and I have always”"},
+              {"s":"03:11:47.208 · room iii","t":"███ █████ ███ ██████. ███ ████ ██ ████. ████ ███.","pause":600},
+              {"t":"03:11:48   flag: cross-room correspondence at single timestamp. no taxonomy entry"},
+              {"t":"03:11:48   alert dispatched per config"}
+            ]</script>
+            <p class="tx__foot">The interruption is printed in full in the volume. [E.] Checksums in Appendix C.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07 · THE BOUND MATTER ═══ -->
+    <section id="edition" class="sec paper" aria-labelledby="edition-title">
+      <div class="wrap edition">
+        <div class="reveal">
+          <p class="eyebrow">07 / The bound matter</p>
+          <h2 id="edition-title">Some stories ask<br>to be held.</h2>
+          <p class="lead">The printed volume is the intended experience.</p>
+          <p class="muted">The register, the documents, the plates, and the two hands in the margins all carry the story. Pages cross-reference each other. A log line can matter more than a chapter. This is a book made for the turn of a page, the comparison of two entries, and the time it takes to look again.</p>
+          <p class="muted"><em>“When a marginal note seems to know where you are in the book, record the impression and continue.”</em></p>
+          <p class="source">HOW TO READ THIS DEPOSIT · P. XV</p>
+          <dl class="specs"><div><dt>304</dt><dd>pages</dd></div><div><dt>6 × 9</dt><dd>inches</dd></div><div><dt>13</dt><dd>plates · 12 printed</dd></div><div><dt>Color</dt><dd>hardcover</dd></div></dl>
+        </div>
+        <div class="pages reveal">
+          <figure><a href="assets/how-to-read.png" aria-label="Enlarge How to Read This Deposit, page xv"><img src="assets/how-to-read.png" width="733" height="1100" loading="lazy" alt="Page xv, How to Read This Deposit. The instructions explain that documents, plates, and annotations participate in the story."></a><figcaption>How to read this deposit / xv</figcaption></figure>
+          <figure><a href="assets/the-count.png" aria-label="Enlarge Plate II, the concordance of door counts, page 2"><img src="assets/the-count.png" width="733" height="1100" loading="lazy" alt="Plate II, The Atrium: a documentary comparison of eleven doors on the county plan, twelve on the first walk, and eleven on the recount. The first count remains legible beneath its correction."></a><figcaption>Plate II · The Atrium / 2</figcaption></figure>
+          <figure><button class="withheld" type="button" data-withheld aria-expanded="false" aria-label="Plate VII, withheld at the keeper’s direction">
+            <span class="micro">PLATE VII · AS DEPOSITED</span>
+            <span><span class="bar" style="display:block"></span><span class="bar" style="display:block"></span><span class="bar" style="display:block"></span></span>
+            <strong>Withheld at the keeper’s direction</strong>
+            <span class="honored">The deposit records the existence of a plate. It does not deposit the plate.</span>
+          </button><figcaption>Plate VII · p. 108 · the mark is honored</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 08 · ACCESS ═══ -->
+    <section id="access" class="sec" aria-labelledby="access-title">
+      <div class="wrap">
+        <div class="sec__head sec__head--center reveal">
+          <p class="eyebrow">08 / Choose your access</p>
+          <h2 id="access-title">Read it freely.<br><em class="ember">Hold it in print.</em></h2>
+          <p>The complete digital book is free: no email, no account, no purchase. Print is the intended experience, and buying a copy supports the continuing work of The Companion Dossier, its product, scholarship, and moral framework.</p>
+        </div>
+        <div class="tiers">
+          <article class="tier reveal">
+            <span class="tier__k">I · The digital deposit</span>
+            <h3>Read it now</h3>
+            <div class="tier__price">Free <small>complete PDF</small></div>
+            <ul><li>The full 304-page interior</li><li>Plates, register, and both hands in the margins, in color</li><li>No email. No account. No catch.</li></ul>
+            <a class="btn btn--ghost" href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER/blob/main/book/USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="access">Open the deposit <span class="arr" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="tier tier--feature reveal">
+            <span class="tier__flag">The intended experience</span>
+            <span class="tier__k">II · The bound volume</span>
+            <h3>Hold it in print</h3>
+            <div class="tier__price">Hardcover <small>6 × 9 · color</small></div>
+            <ul><li>304 pages on premium color paper</li><li>Case-laminate hardcover, matte</li><li>Ember ink on paper, where the second hand belongs</li></ul>
+            <a class="btn btn--ember" href="#access" data-amazon data-placement="access" hidden>View the book on Amazon <span class="arr" aria-hidden="true">↗</span></a>
+            <p class="print-status" data-print-status>Print edition forthcoming<span>The purchase link appears here the day it’s published. Nothing is pre-sold, and no date is invented.</span></p>
+          </article>
+          <article class="tier reveal">
+            <span class="tier__k">III · The estate</span>
+            <h3>Look behind it</h3>
+            <div class="tier__price">Open <small>the real public archive</small></div>
+            <ul><li>The protocol and the tools that enact it</li><li><em>The Mask and the Mirror</em>, a preprint on SSRN</li><li>Visible mediation. Human accountability.</li></ul>
+            <a class="btn btn--ghost" href="../">Enter the real estate <span class="arr" aria-hidden="true">↗</span></a>
+            <a class="btn btn--ghost" href="https://ssrn.com/abstract=7260618">Read the SSRN preprint <span class="arr" aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <p class="support-note reveal">The novel’s people, institutions, and experimental events belong to its fiction. Its questions grow from an ongoing public inquiry.</p>
+      </div>
+    </section>
+
+    <section class="band" aria-label="From the novel">
+      <div class="wrap reveal">
+        <p class="eyebrow eyebrow--plain" style="justify-content:center">FROM THE NOVEL</p>
+        <blockquote>“The narrative is fiction.<br><em>The estate is not.</em>”</blockquote>
+        <p class="source">ABOUT THIS BOOK · P. 288</p>
+      </div>
+    </section>
+
+    <!-- ═══ AUTHOR + FAQ ═══ -->
+    <section id="author" class="sec" aria-labelledby="author-title">
+      <div class="wrap about">
+        <div class="reveal">
+          <p class="eyebrow">The author</p>
+          <h2 id="author-title">Jacob E. Thomas<span class="creds">MA, PhD</span></h2>
+          <p>Jacob E. Thomas is the creator of The Companion Dossier. His work explores how information environments shape human lives, and who gets to inspect the machinery behind them. <em>Using This Matter</em> is his debut novel.</p>
+          <p>He has spent more than a decade in hospitals and research settings including Bellevue, NewYork-Presbyterian, Parkland, NYU, Columbia, and the University of Texas System. He works as a data scientist and AI strategist.</p>
+        </div>
+        <div class="faq reveal">
+          <h3>Before you open the record</h3>
+          <details><summary>Is the digital edition really free?</summary><p>Yes. The complete current digital edition is in the public GitHub repository. No email address or purchase is required.</p></details>
+          <details><summary>Why choose the printed book?</summary><p>The novel is designed as a bound archive. Documents, colored marginalia, plates, page references, and the register are part of the reading. Print is the intended experience, and buying it supports the continued development of the broader project.</p></details>
+          <details><summary>Are the recovered posts real?</summary><p>No. They’re exhibits of the fiction, written for this site. Every author, handle, and timestamp is invented, and none of them is a review. Many are dated after today, because the deposit they belong to hasn’t been made yet. The novel does the same thing: its copyright page is dated earlier than the events it records.</p></details>
+          <details><summary>Is Dr. James Thorne real?</summary><p>He’s a character. The novel “displaces” its people: “an offset of a real figure, never the figure.” The Companion Dossier he builds in the story is real and public. His disappearance, and everything that follows it, is fiction.</p></details>
+          <details><summary>Do I need to know the Companion Dossier first?</summary><p>No. Begin with the novel. The real public archive is there to explore when you want to look behind it.</p></details>
+          <details><summary>How was AI used in making the book?</summary><div><p>The author conceived, directed, and revised the work. Generative AI assisted with drafting, editorial development, design, and production. The book’s opening statement, <em>The Hand and the Glass</em>, describes the process and the author’s responsibility in detail. This site’s recovered posts and campaign were also made with generative tools, under the same responsibility.</p><p style="margin-top:12px"><a class="textlink" href="USING_THIS_MATTER_KDP_interior_304pp.pdf#page=5">Read the author’s statement, pp. v–vi ↗</a></p></div></details>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer wrap"><div><span class="sigil" aria-hidden="true">◊ ◈ ◊</span><p>The mind departs.<br><em>The understanding stays.</em></p></div><div><a href="../">The Companion Dossier</a><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER">The public repository</a><a href="#book-title">Back to the book ↑</a></div><p class="micro footer-note">USING THIS MATTER · JACOB E. THOMAS<br>Book trailer imagery and narration were made with generative tools. The story is fiction.</p></footer>
+
+  <footer class="ftr">
+    <div class="wrap ftr__grid">
+      <div><span class="ftr__sig" aria-hidden="true">◊ ◈ ◊</span><p class="ftr__motto">The mind departs.<br><em>The understanding stays.</em></p></div>
+      <div class="ftr__links"><a href="#access">Open the deposit</a><a href="media/">The film library</a><a href="../">The Companion Dossier</a><a href="https://github.com/jethomasphd/THE_COMPANION_DOSSIER">The public repository</a><a href="#book-title">Back to the threshold ↑</a></div>
+      <p class="ftr__note"><span>USING THIS MATTER · JACOB E. THOMAS · Trailer imagery and narration were made with generative tools. The recovered posts are fiction. The story is fiction.</span><a class="twelve-link" href="twelve/" aria-label="A door that is not on the county plan">Twelve?</a></p>
+    </div>
+  </footer>
 </body>
 </html>
