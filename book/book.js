@@ -217,7 +217,12 @@
             <button class="memo__btn" type="button" data-memo-btn aria-label="Play the recording">▶</button>
             <div class="memo__main"><div class="memo__bars" aria-hidden="true">${bars}</div><div class="memo__meta"><span data-memo-clock>0:00</span><span>${mm(total)}</span></div></div>
           </div>
-          <div class="memo__tx"><span class="memo__lbl">Transcript</span>${lines.map((l, i) => `<p class="memo__ln${/^\[[^\]]*\]$/.test(l.trim()) ? " memo__cue" : ""}" data-ln="${i}">${l}</p>`).join("")}</div>`;
+          <div class="memo__tx"><span class="memo__lbl">Transcript</span>${p.memo
+            // phrase-timed transcript: every span knows when it is spoken
+            ? p.memo.map(L => L.cue
+                ? `<p class="memo__ln memo__cue"><span class="memo__ph" data-a="${L.a}" data-b="${L.b}">${esc(L.cue)}</span></p>`
+                : `<p class="memo__ln">${L.parts.map(q => `<span class="memo__ph${q.cue ? " memo__inl" : ""}" data-a="${q.a}" data-b="${q.b}">${esc(q.t)}</span>`).join(" ")}</p>`).join("")
+            : lines.map((l, i) => `<p class="memo__ln${/^\[[^\]]*\]$/.test(l.trim()) ? " memo__cue" : ""}" data-ln="${i}">${l}</p>`).join("")}</div>`;
         body = p.caption || "";
       }
       const replies = (p.replies || []).map(r => `<div class="reply">${avatar(r.av || {c: "#3a3530", t: (r.name || "?")[0]})}<div><div class="reply__hd"><b>${esc(r.name)}</b> <span>${r.handle || ""}${r.time ? " · " + esc(r.time) : ""}</span></div><div class="reply__body">${r.body}</div>${r.l ? `<div class="reply__l">♡ ${esc(r.l)}</div>` : ""}</div></div>`).join("");
@@ -272,14 +277,18 @@
         const tl = JSON.parse(memo.dataset.tl), total = Number(memo.dataset.total) || 30;
         const bars = $$(".memo__bars i", memo), lines = $$(".memo__ln", post), clock = $("[data-memo-clock]", memo);
         const mm = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+        const spans = $$(".memo__ph", post);
         const tick = () => {
           const t = a.currentTime, frac = Math.min(1, t / total);
           clock.textContent = mm(t);
           bars.forEach((b, i) => b.classList.toggle("on", i / bars.length < frac));
-          lines.forEach((l, i) => { const r = tl[i] || [0, 0]; l.classList.toggle("now", t >= r[0] && t < r[1]); l.classList.toggle("past", t >= r[1]); });
+          if (spans.length) spans.forEach(sp => { const s0 = +sp.dataset.a, s1 = +sp.dataset.b + (sp.closest(".memo__cue") || sp.classList.contains("memo__inl") ? 0 : 0.15); sp.classList.toggle("now", t >= s0 && t < s1); sp.classList.toggle("past", t >= s1); });
+          else lines.forEach((l, i) => { const r = tl[i] || [0, 0]; l.classList.toggle("now", t >= r[0] && t < r[1]); l.classList.toggle("past", t >= r[1]); });
         };
+        let raf = 0;
+        const loop = () => { tick(); if (!a.paused) raf = requestAnimationFrame(loop); };
         a.addEventListener("timeupdate", tick);
-        a.addEventListener("play", () => { memo.classList.add("playing"); btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Pause the recording"); emit("memo_play"); });
+        a.addEventListener("play", () => { memo.classList.add("playing"); btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Pause the recording"); emit("memo_play"); cancelAnimationFrame(raf); loop(); });
         a.addEventListener("pause", () => { memo.classList.remove("playing"); btn.textContent = "▶"; btn.setAttribute("aria-label", "Play the recording"); });
         a.addEventListener("ended", () => { tick(); lines.forEach(l => l.classList.remove("now")); });
         memo._audio = a;

@@ -170,8 +170,8 @@
   {
     "file": "memo-014.m4a",
     "kind": "audio",
-    "duration": 36.0,
-    "description": "A 36-second phone recording at 2 a.m.: a steady garage hum, night air and crickets, a whisper too faint to make out, a passing car, footsteps on gravel, a screen door.",
-    "source": "synthesized procedurally (numpy); no voice model"
+    "duration": 41.55,
+    "description": "A 42-second phone recording at 2 a.m.: a woman speaking quietly on the road outside the Thorne house while the garage hums; a car passes, the crickets stop, she walks back inside.",
+    "source": "Speech: Piper neural TTS, voice en_US-libritts_r-medium speaker 298 (LibriTTS-R, CC BY 4.0, openslr.org/141); scene and phone processing synthesized procedurally; built by book/campaign/audio/make_memo_014.py"
   }
 ]

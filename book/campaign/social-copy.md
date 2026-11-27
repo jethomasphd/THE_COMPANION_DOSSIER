@@ -36,9 +36,9 @@ Post the **portrait** card to the feed and the **story** card to stories. The **
 >
 > *Using This Matter*. Link in bio.
 
-**Alt text:** An audio post from "Marisol T.", Mar 30, 2027 · 2:04 AM: recorded this from the road at 2am. tell me you hear it Transcript: [continuous hum, low, steady] …okay. you hear that? that’s his garage. the AI guy’s. it’s two in the morning and it’s the exact same note it was at noon. [hum] every window’s blacked out, but there’s a line of orange around that one. like a lamp’s on in there. [a car passes. the hum does not change.] nobody’s seen him since — [exhales] …okay. I’m going back inside. Status: The account that posted this audio no longer exists. Card footer: Using This Matter, the-companion-dossier.com/book.
+**Alt text:** An audio post from "Marisol T.", Mar 30, 2027 · 2:04 AM: recorded this from the road at 2am. tell me you hear it Transcript: [continuous hum, low, steady] …okay. you hear that? that’s his garage. the guy who built the AI. it’s two in the morning and it’s the exact same note it was at noon. [hum] every window’s blacked out, but there’s a line of orange around that one. like there’s a lamp on in there. [a car passes. the hum does not change.] nobody’s seen him since — [exhales] …okay. I’m going back inside. Status: The account that posted this audio no longer exists. Card footer: Using This Matter, the-companion-dossier.com/book.
 
-**Video version:** pair `book/assets/posts/memo-014.m4a` with the story card for a Reel/TikTok (36 s). The audio is synthesized room sound and an unintelligible whisper; no voice model was used.
+**Video version:** post `cards/memo-014-reel.mp4` (1080×1920, ~42 s, captions burned in, sound on). Caption: `2:04 a.m. sound on. tell me you hear it.` + *Using This Matter*. Link in bio.
 
 ### fr-vessel · `post-fr-vessel-*` · Day 3
 **Caption**

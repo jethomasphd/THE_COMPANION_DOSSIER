@@ -20,6 +20,8 @@ A missing AI scientist. An estate of transcripts and sealed rooms. An archivist 
 | `README.md` | This playbook: rules, phases, calendar, measurement. |
 | `social-copy.md` | Captions, threads, short-video scripts, ad variants, and email copy, ready to paste. |
 | `cards/` | 45 rendered social cards (JPEG): 9 in-world posts and 6 quote cards, each in **portrait** 1080×1350 (feed), **story** 1080×1920 (Stories, Reels, TikTok covers; it keeps the top 230 px and bottom 270 px clear for app UI), and **landscape** 1200×675 (X, Bluesky, LinkedIn). `manifest.json` lists them. |
+| `cards/memo-014-reel.mp4` | The voice memo as a finished vertical video (1080×1920, ~42 s): the post, a live waveform, and captions timed to each spoken phrase. Post it as-is to Reels, TikTok, and Shorts. |
+| `audio/` | `make_memo_014.py` builds the voice memo (Piper speech, hushed delivery, night scene, phone chain), verifies every word with Whisper, and builds the reel; `apply_memo_014.js` copies its phrase timings into the site. |
 | `card.html` | The card template. It draws from `../evidence.js`, the same file the website uses. |
 | `render_cards.py` | Re-renders every card, plus the site's link-preview image `../assets/og-card.jpg`. It auto-scales each post to fill the frame without overflowing. |
 
@@ -62,7 +64,7 @@ Times are suggestions. Post the portrait card to the feed, and the story card to
 | Day | Feed (IG / Threads / Bluesky / X) | Short video (Reels / TikTok / Shorts) | Notes |
 |---|---|---|---|
 | 1 | Post card: `nb-house` | — | No explanation. |
-| 2 | Post card: `vm-hum` | The voice memo as a 36 s Reel (`book/assets/posts/memo-014.m4a` over the story card) | "Sound on." |
+| 2 | Post card: `vm-hum` | The voice memo Reel (`cards/memo-014-reel.mp4`) | "Sound on." |
 | 3 | Post card: `fr-vessel` | — | |
 | 4 | Quote card: `doors` | Promo: *The Missing Scientist* (20s) | First full title reveal. |
 | 5 | Post card: `mb-lecture` | — | |

@@ -59,9 +59,18 @@ PAGE STRUCTURE (book/index.html): shock → awe → understanding → action
 THE POSTS
 In-world only. No fictional reader reviews, ratings or testimonials, on the
 site or in the campaign; social proof is the real talk, paper and repository.
-The voice memo (assets/posts/memo-014.m4a) is synthesized room sound: the
-garage hum, night air, a whisper too faint to make out, a passing car,
-footsteps on caliche. No voice model.
+The voice memo (assets/posts/memo-014.m4a) is machine speech placed in a
+recorded-at-night scene. Speech: Piper neural TTS, running locally, voice
+en_US-libritts_r-medium, speaker 298 of 904 (LibriTTS-R audiobook readers,
+CC BY 4.0, openslr.org/141). Each phrase is synthesized separately with its own
+pacing, made hushed (breath blended in, softer top end, a slight tremor) and
+mixed with the garage hum, crickets that stop when the car passes, wind on the
+mic, footsteps and a screen door, through an emulated phone mic and automatic
+gain control. Intelligibility is measured, not assumed: every phrase is
+re-recorded until three Whisper recognizers (base/small/medium) hear exactly the
+scripted words, then the best of several full takes is chosen by scoring a
+decode of the final AAC file. Rebuild: python book/campaign/audio/make_memo_014.py
+--punch --takes 5, then node book/campaign/audio/apply_memo_014.js.
 
 THE FREE BOOK LINK
 Every "Read it free" button opens USING_THIS_MATTER_KDP_interior_304pp.pdf

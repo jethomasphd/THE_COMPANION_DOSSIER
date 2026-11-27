@@ -83,7 +83,7 @@ window.RECOVERED_POSTS = [
     "av": {
       "img": "assets/posts/avatar-06.jpg"
     },
-    "body": "[continuous hum, low, steady]\n…okay. you hear that? that’s his garage. the AI guy’s. it’s two in the morning and it’s the exact same note it was at noon.\n[hum]\nevery window’s blacked out, but there’s a line of orange around that one. like a lamp’s on in there.\n[a car passes. the hum does not change.]\nnobody’s seen him since — [exhales] …okay. I’m going back inside.",
+    "body": "[continuous hum, low, steady]\n…okay. you hear that? that’s his garage. the guy who built the AI. it’s two in the morning and it’s the exact same note it was at noon.\n[hum]\nevery window’s blacked out, but there’s a line of orange around that one. like there’s a lamp on in there.\n[a car passes. the hum does not change.]\nnobody’s seen him since — [exhales] …okay. I’m going back inside.",
     "time": "Mar 30, 2027 · 2:04 AM",
     "state": "The account that posted this audio no longer exists.",
     "caption": "recorded this from the road at 2am. tell me you hear it",
@@ -97,30 +97,131 @@ window.RECOVERED_POSTS = [
     "tl": [
       [
         0,
-        3
+        2.9
       ],
       [
-        3,
-        12.6
+        2.9,
+        16.44
       ],
       [
-        12.6,
-        15.2
+        16.44,
+        18.94
       ],
       [
-        15.2,
-        22.64
+        18.94,
+        26.22
       ],
       [
-        22.64,
-        27.24
+        26.22,
+        31.02
       ],
       [
-        27.24,
-        31.8
+        31.02,
+        37.15
       ]
     ],
-    "total": 36
+    "total": 41.55,
+    "memo": [
+      {
+        "cue": "[continuous hum, low, steady]",
+        "a": 0,
+        "b": 2.9
+      },
+      {
+        "a": 2.9,
+        "b": 16.44,
+        "parts": [
+          {
+            "t": "…okay.",
+            "a": 2.9,
+            "b": 3.71
+          },
+          {
+            "t": "you hear that?",
+            "a": 4.66,
+            "b": 5.6
+          },
+          {
+            "t": "that’s his garage.",
+            "a": 7.05,
+            "b": 8.42
+          },
+          {
+            "t": "the guy who built the AI.",
+            "a": 8.84,
+            "b": 10.69
+          },
+          {
+            "t": "it’s two in the morning",
+            "a": 11.64,
+            "b": 12.94
+          },
+          {
+            "t": "and it’s the exact same note it was at noon.",
+            "a": 13.16,
+            "b": 16.24
+          }
+        ]
+      },
+      {
+        "cue": "[hum]",
+        "a": 16.44,
+        "b": 18.94
+      },
+      {
+        "a": 18.94,
+        "b": 26.22,
+        "parts": [
+          {
+            "t": "every window’s blacked out,",
+            "a": 18.94,
+            "b": 20.71
+          },
+          {
+            "t": "but there’s a line of orange around that one.",
+            "a": 21.01,
+            "b": 23.2
+          },
+          {
+            "t": "like there’s a lamp on in there.",
+            "a": 23.95,
+            "b": 26.02
+          }
+        ]
+      },
+      {
+        "cue": "[a car passes. the hum does not change.]",
+        "a": 26.22,
+        "b": 31.02
+      },
+      {
+        "a": 31.02,
+        "b": 37.15,
+        "parts": [
+          {
+            "t": "nobody’s seen him since —",
+            "a": 31.02,
+            "b": 32.46
+          },
+          {
+            "t": "[exhales]",
+            "cue": true,
+            "a": 32.51,
+            "b": 33.46
+          },
+          {
+            "t": "…okay.",
+            "a": 33.56,
+            "b": 34.2
+          },
+          {
+            "t": "I’m going back inside.",
+            "a": 34.82,
+            "b": 36.4
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "fr-vessel",

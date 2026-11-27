@@ -843,3 +843,10 @@ details.transcript>div{padding:4px 0 22px;color:var(--ink-2);font-size:17px;max-
   .proof__b{flex:1 1 100%}
 }
 .post--vm .post__body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;color:#e9e6e0;line-height:1.45}
+.memo__ph{transition:color .18s,text-shadow .18s;border-radius:2px}
+.memo__ln .memo__ph{color:#8f8a82}
+.memo__ln .memo__ph.past{color:#d6d1c8}
+.memo__ln .memo__ph.now{color:#fff;text-shadow:0 0 14px rgba(232,149,63,.45)}
+.memo__cue .memo__ph,.memo__inl{font-style:italic;color:#6f6b64}
+.memo__cue .memo__ph.now,.memo__inl.now{color:var(--ember)}
+.memo__ln.now,.memo__ln.past{color:inherit}
