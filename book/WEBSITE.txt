@@ -29,41 +29,59 @@ retargets every [data-print-cta], hides the "forthcoming" notice, and updates
 the availability line. Blank or unsupported keeps the honest prepublication
 state: print forthcoming, digital free.
 
-PAGE STRUCTURE (book/index.html)
-  Ticker · sticky header with "deposit open" status
-  Hero        — headline, CTA pair, turnable 3D hardcover (front, spine, back,
-                page edges) on rotating rite-text rings; four readouts
-                (11 · 12 · 03:11:47 · VII)
-  01 Record   — the commission + a typed "estate://status" terminal
-  02 Chambers — the five Records as chamber cards (setup-level copy only)
-  03 Footage  — story trailer + two 20 s promos in viewfinder frames;
-                link to all six reels
-  04 Testimony— recovered posts wall (filters: house / voices / deposit /
-                deleted; "load more from the mirror"), plus a long "deleted"
-                thread with ember marginalia
-  05 Count    — interactive Plate XI: tap the eleven doors, door 12 appears,
-                recount jamb by jamb. The first count stays legible. Room
-                tooltips and a key link each room to its real estate chamber.
-  06 Transcripts — three typed playbacks quoted from the book (Founding
-                Session; the Franklin Fidelity Check; Item 44, interruption
-                redacted)
-  07 Bound matter — real interior pages + Plate VII "withheld" card
-  08 Access   — three tiers: free digital deposit / the bound volume
-                (Amazon switch) / the real estate (Dossier + SSRN)
-  Quote band · author + FAQ · footer with the hidden "Twelve?" link
+PAGE STRUCTURE (book/index.html), built for cold traffic from social ads
+A visitor should know within five seconds that this is a horror novel,
+what it is about, and that the whole book is free to read.
+  Header      — title + "Read free" (on phones: title only, plus a sticky
+                bottom bar with cover, title and "Read free")
+  Hero        — "A horror novel" chip, title, hook ("He built an AI to talk to
+                the dead. Then he disappeared."), one-paragraph premise,
+                format line ("All 304 pages are free to read online"),
+                Read it free + Watch the trailer, key facts, turnable 3D book
+  Comps strip — For readers of House of Leaves, S., Annihilation, Black
+                Mirror, The Blair Witch Project
+  Story       — the story in 30 seconds: the scientist, the house, the
+                archivist (+ case-file terminal on desktop)
+  First page  — the opening page verbatim, page thumbnails, "Turn the page"
+  Trailer     — ONE film only: the 90-second story trailer, custom play
+                button, AI-imagery note, transcript
+  Four things that shouldn't be there — the extra door, the Franklin test
+                (typed transcript), the 3:11:47 interruption (sentences
+                blacked out), the withheld seventh illustration
+  The count   — the book's floor plan; tap the doors (phone: number pad);
+                door 12 appears; recount; "Read what she found"
+  Posts       — "None of these people exist." Fictional reader reviews,
+                reader videos and threads, blended with recovered in-story
+                posts from 2027; filters; visible fiction notice; a
+                "◈ fiction" tag inside every card
+  Read        — one offer: the full novel free (PDF served by this site),
+                hardcover as a one-line "coming soon" that switches to an
+                Amazon link via config.js
+  FAQ + author, footer with the hidden "Twelve?" link
+
+THE FREE BOOK LINK
+Every "Read it free" button opens USING_THIS_MATTER_KDP_interior_304pp.pdf
+from this site (/book/), not GitHub, so ad traffic never lands on a code page.
+
+ONE TRAILER
+Only media/lay/trailer-90s.mp4 is on the site. /book/media/ redirects to
+/book/#trailer. The other films stay in media/ as campaign assets.
 
 FILES
   index.html        page, metadata, Book schema, transcripts
   book.css          design system (also used by media/ and twelve/)
   book.js           Amazon switch, 3D volume, terminal, count, posts,
                     transmissions, reveals, local engagement events
-  evidence.js       THE RECOVERED POSTS: one data file shared by the website
-                    and the campaign card renderer. Edit posts here.
+  evidence.js       THE POSTS: fictional reader reactions + recovered in-story
+                    posts; one data file shared by the website and the
+                    campaign card renderer. Edit posts here.
+  assets/posts/     phone-photo page shots, trailer stills, reader-video
+                    thumbnails and faceless avatars used by the posts
   config.js         the one publication setting
   twelve/           hidden page: "Door 12", an in-world terminal (help, count,
                     inventory, summon, release, plate vii, who, leave)
-  media/index.html  film library, restyled as "recovered footage"
-  campaign/         campaign playbook, paste-ready copy, 48 rendered social
+  media/index.html  redirect to the single trailer on the book page
+  campaign/         campaign playbook, paste-ready copy, 57 rendered social
                     cards, card template, and render_cards.py
   assets/           cover (full + 800 px), book-back.jpg and book-spine.jpg
                     (cut from the hardcover wrap; KDP barcode box masked for
@@ -72,16 +90,17 @@ FILES
 
 SPOILER POLICY
 Copy stays inside the premise: the commission, the house, the count, the
-rite, the founding session, the Prism's design, the existence of the
-interruption (its sentences are redacted on the site), the withheld plate,
-and the existence of the second hand. Record III–V copy uses only the Editor's
-Note and the plate captions. The posts never reference the deposit's contents
-beyond Record II. See campaign/README.md §3 for the rules of the fiction.
+rite, the Franklin test, the Prism's design, the existence of the
+interruption (its sentences are blacked out on the site), the withheld
+illustration, and the existence of the unsigned second annotator. Nothing
+reveals Condition IV, the freezer, the sealed record, who hired Miranda, or the
+ending. Every post and review is fiction and labeled as such; see
+campaign/README.md §3.
 
 MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement, with
 name, placement and incoming utm_* values. Names: free_read, amazon_click,
-trailer_play, volume_turn, count_twelve, count_recount, evidence_filter,
+trailer_play, trailer_jump, volume_turn, count_twelve, count_recount, evidence_filter,
 evidence_more, thread_open, transmission_play. Nothing is transmitted and no
 cookies or storage are used. Connect analytics separately if wanted.
 

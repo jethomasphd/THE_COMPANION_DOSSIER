@@ -130,7 +130,7 @@
         const cur = document.createElement("span"); cur.className = "cursor";
         for (let i = 0; i <= L.t.length; i++) {
           div.textContent = L.t.slice(0, i); div.appendChild(cur);
-          await new Promise(r => setTimeout(r, L.fast ? 6 : 16 + Math.random() * 18));
+          await new Promise(r => setTimeout(r, L.fast ? 4 : 8 + Math.random() * 9));
         }
         cur.remove();
         await new Promise(r => setTimeout(r, L.wait || 140));
@@ -216,7 +216,7 @@
     const capR = isStory ? (p.capTime || "") : "";
     return `<article class="find reveal" data-cat="${esc((p.cat || []).join(" "))}" id="find-${esc(p.id)}">
       <p class="find__cap"><span>${esc(capL)}</span><span class="tagf">${capR ? esc(capR) + " · " : ""}<b>◈</b> fiction</span></p>
-      <div class="${cls}">${stamp}${inner}</div>
+      <div class="${cls}">${stamp}${inner}<span class="post__fic">◈ fiction · Using This Matter</span></div>
       ${p.note ? `<span class="margin-note">${p.note}</span>` : ""}</article>`;
   }
   window.renderRecoveredPost = renderPost;
@@ -224,7 +224,7 @@
   const wall = $("[data-wall]");
   const posts = window.RECOVERED_POSTS || [];
   if (wall && posts.length) {
-    const FIRST = Number(wall.dataset.first || 9);
+    const FIRST = window.matchMedia("(max-width: 640px)").matches ? 4 : Number(wall.dataset.first || 9);
     let showing = FIRST, filter = "all";
     wall.innerHTML = posts.map(renderPost).join("");
     const finds = $$(".find", wall);
@@ -299,7 +299,8 @@
     const say = h => { msg.innerHTML = h; };
     const addLog = (t, hot) => { const li = document.createElement("li"); li.textContent = t; if (hot) li.className = "hot"; log.prepend(li); };
     const setTally = h => { tallyN.innerHTML = h; };
-    const mark = (n, on = true) => { const d = $(`.door[data-door="${n}"]`, plan); if (d) { d.classList.toggle("counted", on); d.setAttribute("aria-pressed", String(on)); } };
+    const mark = (n, on = true) => { const d = $(`.door[data-door="${n}"]`, plan); if (d) { d.classList.toggle("counted", on); d.setAttribute("aria-pressed", String(on)); } const pb = $(`[data-pad="${n}"]`); if (pb) { pb.classList.toggle("on", on); pb.setAttribute("aria-pressed", String(on)); } };
+    const pad12 = $('[data-pad="12"]'), tallyCta = $(".tally__cta");
 
     function count(n) {
       if (busy || phase === "done" || phase === "recount") return;
@@ -311,7 +312,7 @@
         phase = "twelve";
         say("Twelve. <em>Write it down.</em> She did. The entry is still there.");
         colFirst.textContent = "12"; colFirst.classList.add("ember");
-        recountBtn.hidden = false; emit("count_twelve");
+        recountBtn.hidden = false; if (tallyCta) tallyCta.hidden = false; emit("count_twelve");
         return;
       }
       if (counted.size === 11 && phase === "walk") {
@@ -319,7 +320,7 @@
         say("Eleven. The county plan says eleven. You are finished.");
         setTimeout(() => {
           plan.classList.add("flash");
-          twelve.forEach(el => el.classList.add("show"));
+          twelve.forEach(el => el.classList.add("show")); if (pad12) pad12.hidden = false;
           say("Eleven. The county plan says eleven.<br><em>Look at the garage again.</em>");
           busy = false;
           setTimeout(() => plan.classList.remove("flash"), 700);
@@ -342,6 +343,7 @@
       r.addEventListener("pointerleave", hideTip);
     });
 
+    $$("[data-pad]").forEach(b => b.addEventListener("click", () => count(Number(b.dataset.pad))));
     recountBtn.addEventListener("click", async () => {
       if (phase !== "twelve") return;
       phase = "recount"; busy = true; recountBtn.hidden = true;
@@ -363,7 +365,7 @@
       if (busy) return;
       counted.clear(); phase = "walk";
       $$(".door", plan).forEach(d => mark(d.dataset.door, false));
-      twelve.forEach(el => el.classList.remove("show"));
+      twelve.forEach(el => el.classList.remove("show")); if (pad12) pad12.hidden = true; if (tallyCta) tallyCta.hidden = true;
       setTally("00"); log.innerHTML = ""; recountBtn.hidden = true;
       colFirst.textContent = "—"; colFirst.classList.remove("ember"); colRe.textContent = "—";
       say("Tap each interior door on the plan. Exterior doors do not count.");
@@ -416,12 +418,17 @@
     v.addEventListener("pause", () => v.closest(".vf").classList.remove("playing"));
   });
   const playBtn = $("[data-play]");
-  if (playBtn) playBtn.addEventListener("click", () => { const v = $("#book-trailer"); if (v) { v.play().catch(() => {}); v.focus(); } });
+  const tv = $("#book-trailer");
+  if (playBtn && tv) {
+    tv.removeAttribute("controls");
+    playBtn.addEventListener("click", () => { tv.controls = true; tv.play().catch(() => {}); tv.focus(); });
+    tv.addEventListener("play", () => { tv.controls = true; });
+  }
   const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#read");
   if (dock && heroEl && "IntersectionObserver" in window) {
     let pastHero = false, atRead = false;
     const upd = () => {
-      const on = pastHero && !atRead;
+      const on = !atRead;
       dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
       const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
     };
