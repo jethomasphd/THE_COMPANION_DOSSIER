@@ -765,3 +765,14 @@ details.transcript>div{padding:4px 0 22px;color:var(--ink-2);font-size:17px;max-
   .door-pad button[data-pad="12"]{border-style:dashed;color:var(--ember)}
   .hero__label{gap:8px 12px}
 }
+
+/* ═══ the floor plan, as printed (replaces the interactive count) ═══ */
+.plan-still{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,70px);align-items:center;margin-top:clamp(50px,7vw,90px);scroll-margin-top:90px}
+.plan-still__text p{color:var(--ink-2);margin-top:14px;max-width:420px}
+.plan-still__text .btn{margin-top:26px}
+.plan-still__fig{max-width:620px;justify-self:center;width:100%}
+.plan-still__fig img{width:100%;border:1px solid #2a251d;box-shadow:0 30px 70px -20px rgba(0,0,0,.85);background:#f1ecdf}
+.plan-still__fig a{display:block;transition:transform .3s}
+.plan-still__fig a:hover{transform:translateY(-4px)}
+.plan-still__fig figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:12px;text-align:center}
+@media (max-width:900px){.plan-still{grid-template-columns:1fr}.plan-still__fig{max-width:520px}}

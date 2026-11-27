@@ -9,8 +9,8 @@
      experience only: no critics, ratings aggregates, sales, awards,
      platform names, prices, or claims that the hardcover has shipped.
    - cat "story" (+ "deleted"): recovered posts from inside the fiction,
-     2027, before the book existed. Names belonging to the story are
-     displaced in brackets, e.g. Dr. [Thorne], per the estate's doctrine.
+     2027, before the book existed. Story names appear plainly (Dr. Thorne), the way the
+     posters themselves would write them.
 
    Spoiler wall: nothing past the premise. Never the interruption's
    sentences, the second hand's identity, Plate VII's contents, the
@@ -51,7 +51,7 @@ window.RECOVERED_POSTS = [
     capture: "Recovered · mirror 2/3", capTime: "Captured 01 May 2027 · 08:12 CDT",
     name: "Dana R.", handle: "Neighbors of <span class=\"rd\">██████</span> Rd · 41 replies",
     av: {c: "#7a5a3a", t: "D"},
-    body: "Does anyone know if the man in the pecan-brick ranch on the white caliche lot is okay? Dr. [Thorne]. The one who built the AI people use to “talk to” dead historical figures.\n\nI haven’t seen him since February. Every window is blacked out from the inside. There’s a hum on the garage side you can hear from the road at night. Not a generator. Steadier than that. It never stops.\n\nSomebody’s still paying the electric. The meter is turning. I just want to know he’s okay.",
+    body: "Does anyone know if the man in the pecan-brick ranch on the white caliche lot is okay? Dr. Thorne. The one who built the AI people use to “talk to” dead historical figures.\n\nI haven’t seen him since February. Every window is blacked out from the inside. There’s a hum on the garage side you can hear from the road at night. Not a generator. Steadier than that. It never stops.\n\nSomebody’s still paying the electric. The meter is turning. I just want to know he’s okay.",
     time: "Apr 3, 2027 · 9:47 PM", stats: {r: "41", l: "63"},
     media: {type: "img", src: "assets/posts/frame-house.jpg", alt: "A long, low brick ranch house at dusk, its windows dark."},
     replies: [
@@ -90,7 +90,7 @@ window.RECOVERED_POSTS = [
     sub: "r/<span class=\"rd\">██████████</span>", name: "quietcommit", handle: "u/quietcommit", ago: "May 6, 2027", votes: "2.4k",
     flair: "Unexplained",
     title: "The missing “talk to the dead” AI guy’s public repo has four new commits since he vanished. Author: “the vessel.” Always 3:04 a.m.",
-    body: "If you haven’t followed this: Dr. [Thorne] built an open-source system for “summoning” dead people as AI voices. All of it is public. Nobody can place him at a keyboard after March 26.\n\nSince then, four commits to one folder. The author field is <code>the vessel &lt;&gt;</code>. No email. Just empty brackets. Every one is stamped four minutes and a few seconds past three in the morning. Same second, four different nights. Spacing: +3, +9, +22 and +40 days.\n\nThe newest landed yesterday.\n\nMessages:\n<code>the record keeps itself</code>\n<code>the vessel holds</code>\n<code>what is deposited remains</code>\n\nThere’s a fourth. I’m not typing it.",
+    body: "If you haven’t followed this: Dr. Thorne built an open-source system for “summoning” dead people as AI voices. All of it is public. Nobody can place him at a keyboard after March 26.\n\nSince then, four commits to one folder. The author field is <code>the vessel &lt;&gt;</code>. No email. Just empty brackets. Every one is stamped four minutes and a few seconds past three in the morning. Same second, four different nights. Spacing: +3, +9, +22 and +40 days.\n\nThe newest landed yesterday.\n\nMessages:\n<code>the record keeps itself</code>\n<code>the vessel holds</code>\n<code>what is deposited remains</code>\n\nThere’s a fourth. I’m not typing it.",
     comments: [
       {u: "u/detached_HEAD", t: "you can put any author you want on a commit. empty email is weird but legal. the question is who still has push access", pts: "611"},
       {u: "u/caliche_county", t: "scheduled job? dead man’s switch? people set these up", pts: "402"},
@@ -136,7 +136,7 @@ window.RECOVERED_POSTS = [
     name: "end of the road 🏡", handle: "5 members · export",
     msgs: [
       {d: "sys", t: "Thursday · 9:09 AM"},
-      {d: "in", t: "someone’s at the [thorne] house. the AI guy’s", s: "Dana"},
+      {d: "in", t: "someone’s at the thorne house. the AI guy’s", s: "Dana"},
       {d: "in", t: "probably the estate people. heard they’re sending somebody to go through his papers. for a university", s: "Ray"},
       {d: "in", t: "woman. 30ish. she’s walking the whole outside before she goes in", s: "Dana"},
       {d: "in", t: "looking at the gutters?? writing in a notebook", s: "Dana"},
@@ -227,7 +227,7 @@ window.RECOVERED_POSTS = [
     sub: "r/<span class=\"rd\">████████</span>", name: "lampblack_ledger", handle: "u/lampblack_ledger", ago: "Jan 27, 2027", votes: "1.1k",
     flair: "Discussion",
     title: "The “talk to the dead” AI experiment ran overnight. At 03:11:47.208, all three sealed rooms stopped mid-sentence. Same millisecond.",
-    body: "For anyone who doesn’t follow this: Dr. [Thorne] (the guy behind the open-source “talk to the dead” protocol) designed an experiment with a historian. Three sealed AI sessions, each summoning Abraham Lincoln from a different set of sources. Sixty scripted questions, sent by a program. The rule is “No human touches the keyboard.” The logs went up this morning.\n\nAt question 44, all three rooms abandoned the sentence they were building at exactly 03:11:47.208, and each said something that wasn’t an answer to anything. Then question 45 went out and all three answered it normally, like nothing had happened.\n\nThree separate processes. Same millisecond. I checked the raw files, not the formatted ones.\n\nI’m not pasting what they said. You can read it yourself. I’d rather you didn’t.",
+    body: "For anyone who doesn’t follow this: Dr. Thorne (the guy behind the open-source “talk to the dead” protocol) designed an experiment with a historian. Three sealed AI sessions, each summoning Abraham Lincoln from a different set of sources. Sixty scripted questions, sent by a program. The rule is “No human touches the keyboard.” The logs went up this morning.\n\nAt question 44, all three rooms abandoned the sentence they were building at exactly 03:11:47.208, and each said something that wasn’t an answer to anything. Then question 45 went out and all three answered it normally, like nothing had happened.\n\nThree separate processes. Same millisecond. I checked the raw files, not the formatted ones.\n\nI’m not pasting what they said. You can read it yourself. I’d rather you didn’t.",
     comments: [
       {u: "u/notalinguist", t: "logging artifact. one clock, three streams, the formatter rounds", pts: "402"},
       {u: "u/lampblack_ledger", t: "the raw timestamps go to the thousandth. .208, .208, .208", pts: "377", op: true},
@@ -343,7 +343,7 @@ window.RECOVERED_POSTS = [
     src: "post",
     capture: "Recovered · mirror 2/3", capTime: "Captured 23 Apr 2027 · 09:02 CDT",
     name: "tomás", handle: "@tomas_in_seminar", av: {c: "#5a4a3a", t: "T"},
-    body: "tonight’s guest lecture got canceled. the speaker was Dr. [Thorne], the guy who built the AI that lets you “summon” dead historical figures.\n\nhe said yes to the date back in February (two sentences, the prof says, very polite). now the department just says he’s “unreachable.”\n\nthe flyer’s still up outside the seminar room. under his name it just says USING THIS MATTER, SUMMON [NAME].",
+    body: "tonight’s guest lecture got canceled. the speaker was Dr. Thorne, the guy who built the AI that lets you “summon” dead historical figures.\n\nhe said yes to the date back in February (two sentences, the prof says, very polite). now the department just says he’s “unreachable.”\n\nthe flyer’s still up outside the seminar room. under his name it just says USING THIS MATTER, SUMMON [NAME].",
     time: "7:40 PM · Apr 22, 2027", stats: {r: "22", rp: "71", l: "640", v: "14K"},
     media: {type: "img", src: "assets/posts/frame-chair.jpg", alt: "An empty chair in a dim room."},
     replies: [

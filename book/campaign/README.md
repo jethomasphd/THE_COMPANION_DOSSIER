@@ -47,7 +47,7 @@ The novel's opening statement is called *The Hand and the Glass*, and it ends: *
 | Phase | Window | Name | Goal | Primary assets |
 |---|---|---|---|---|
 | 0 | Days 1–10 | **The Mirror** | Curiosity. Reader reactions and recovered in-story posts, one a day. | `cards/post-*` (portrait + story). |
-| 1 | Days 8–14 | **The Count** | Interaction. Get people to count the doors and comment their number. | Screen recording of the count; quote card `doors`; the site's `#count` section. |
+| 1 | Days 8–14 | **The Plan** | Interaction. Post the book's floor plan and ask people to count the doors and comment their number. | The Plate XI page as printed (`book/assets/the-plan.png`); quote card `doors`; the site's `#plan` section. |
 | 2 | Days 12–18 | **The Footage** | Comprehension. Explain the premise in 20 and 90 seconds. | the 90-second story trailer (the only film on the site, `#trailer`); the 20-second promos are social-only. |
 | 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#read`; email. |
 | 4 | Ongoing | **The Twelfth Door** | Retention. Reward the people who dug in. | `/book/twelve/`, the browser-console note, reply-only hints. |
@@ -67,7 +67,7 @@ Times are suggestions. Post the portrait card to the feed, and the story card to
 | 5 | Post card: `fr-vessel` (S, forum thread) | — | |
 | 6 | Post card: `mb-franklin` (R) | — | |
 | 7 | Carousel: 4 post cards | — | Caption: "None of these people exist." |
-| 8 | **Launch The Count** | Screen-record the count, ending on 12 | Ask: "How many did you get?" |
+| 8 | **Post the floor plan** (the Plate XI page, `book/assets/the-plan.png`) | Film a finger counting the doors on the printed page | Ask: "How many did you get?" |
 | 9 | Post card: `rv-margins` (R) + quote card `believe` | Duet/stitch prompt: "Count with me" | Reply "12" commenters with the hint. |
 | 10 | Post card: `mb-dispatch` (S) | — | |
 | 11 | Post card: `tt-free` (R, reader video) | — | |
@@ -91,7 +91,7 @@ When Amazon goes live, change the end of every caption to the print line in `soc
 `https://the-companion-dossier.com/book?utm_source={platform}&utm_medium={organic_social|paid_social|email|referral}&utm_campaign=twelfth_door&utm_content={asset-id}`
 
 - `utm_content` = the card file stem, e.g. `post-nb-house-portrait`, `quote-doors-story`, `lay_trailer_90s`.
-- Use the `#story`, `#trailer`, `#count`, `#readers`, `#first-page` or `#read` anchors when a post is about that section.
+- Use the `#story`, `#trailer`, `#plan`, `#readers`, `#first-page` or `#read` anchors when a post is about that section.
 
 ## 7. Measurement
 
@@ -102,13 +102,11 @@ The page dispatches local `book:engagement` DOM events. It sends nothing over th
 | `free_read` | A free digital edition link is clicked (`placement`: hero, access, faq). |
 | `amazon_click` | The print button is clicked (only once `config.js` has the Amazon URL). |
 | `trailer_play` | The 90-second trailer starts. |
-| `count_twelve` | A visitor reaches twelve in The Count. |
-| `count_recount` | A visitor finishes the recount. |
 | `evidence_filter` / `evidence_more` / `thread_open` | Interaction with the recovered posts. |
 | `transmission_play` | A transmission card is played. |
 | `volume_turn` | The 3D book is dragged. |
 
-**Signals that it's working:** comment counts on count posts, people quoting "11 / 12" back, saves on cards, and the ratio of `count_twelve` to page views.
+**Signals that it's working:** comment counts on floor-plan posts, people quoting "11 / 12" back, saves on cards, and the ratio of `free_read` clicks to page views.
 
 ## 8. Paid amplification (optional, small)
 
@@ -126,4 +124,4 @@ The page dispatches local `book:engagement` DOM events. It sends nothing over th
 
 - Every card has a text equivalent: its caption in `social-copy.md` includes the post text. Paste it as alt text.
 - Videos carry burned-in captions, and SRT/VTT files sit beside them in `media/`.
-- The site respects `prefers-reduced-motion`. The count, transmissions, and 3D book all work by keyboard.
+- The site respects `prefers-reduced-motion`. The transmissions and the 3D book work by keyboard; the floor plan is a still image with full alt text.

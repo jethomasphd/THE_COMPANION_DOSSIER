@@ -40,7 +40,7 @@ Cards marked **R** are fictional reader reactions; **S** are recovered in-story 
 >
 > *Using This Matter*, a horror novel. #fiction
 
-**Alt text:** A recovered in-story post from "Dana R.", Apr 3, 2027 · 9:47 PM: Does anyone know if the man in the pecan-brick ranch on the white caliche lot is okay? Dr. [Thorne]. The one who built the AI people use to “talk to” dead historical figures. I haven’t seen him since February. Every window is blacked out from the inside. There’s a hum on the garage side you can hear from the road at night. Not a generator. Steadier than that. It never stops. Somebody’s still paying the electric. The meter is turning. I just want to know he’s okay. Margin note: [E.] Cf. Record I, p. 6: “continuous hum, garage side, source not identified.” Footer: Using This Matter, a horror novel; fiction, names, handles and timestamps invented.
+**Alt text:** A recovered in-story post from "Dana R.", Apr 3, 2027 · 9:47 PM: Does anyone know if the man in the pecan-brick ranch on the white caliche lot is okay? Dr. Thorne. The one who built the AI people use to “talk to” dead historical figures. I haven’t seen him since February. Every window is blacked out from the inside. There’s a hum on the garage side you can hear from the road at night. Not a generator. Steadier than that. It never stops. Somebody’s still paying the electric. The meter is turning. I just want to know he’s okay. Margin note: [E.] Cf. Record I, p. 6: “continuous hum, garage side, source not identified.” Footer: Using This Matter, a horror novel; fiction, names, handles and timestamps invented.
 
 ### vm-hum · `post-vm-hum-*` · S · Day 3
 **Caption**
@@ -65,7 +65,7 @@ Cards marked **R** are fictional reader reactions; **S** are recovered in-story 
 >
 > *Using This Matter*, a horror novel. #fiction #TheTwelfthDoor
 
-**Alt text:** A recovered in-story forum thread from "quietcommit": The missing “talk to the dead” AI guy’s public repo has four new commits since he vanished. Author: “the vessel.” Always 3:04 a.m..If you haven’t followed this: Dr. [Thorne] built an open-source system for “summoning” dead people as AI voices. All of it is public. Nobody can place him at a keyboard after March 26. Since then, four commits to one folder. The author field is the vessel <>. No email. Just empty brackets. Every one is stamped four minutes and a few seconds past three in the morning. Same second, four different nights. Spacing: +3, +9, +22 and +40 days. The newest landed yesterday. Messages: the record keeps itself the vessel holds what is deposited remains There’s a fourth. I’m not typing it. Margin note: Count the commits. Footer: Using This Matter, a horror novel; fiction, names, handles and timestamps invented.
+**Alt text:** A recovered in-story forum thread from "quietcommit": The missing “talk to the dead” AI guy’s public repo has four new commits since he vanished. Author: “the vessel.” Always 3:04 a.m..If you haven’t followed this: Dr. Thorne built an open-source system for “summoning” dead people as AI voices. All of it is public. Nobody can place him at a keyboard after March 26. Since then, four commits to one folder. The author field is the vessel <>. No email. Just empty brackets. Every one is stamped four minutes and a few seconds past three in the morning. Same second, four different nights. Spacing: +3, +9, +22 and +40 days. The newest landed yesterday. Messages: the record keeps itself the vessel holds what is deposited remains There’s a fourth. I’m not typing it. Margin note: Count the commits. Footer: Using This Matter, a horror novel; fiction, names, handles and timestamps invented.
 
 ### mb-franklin · `post-mb-franklin-*` · R · Day 6
 **Caption**
@@ -148,24 +148,24 @@ Cards marked **R** are fictional reader reactions; **S** are recovered in-story 
 
 ---
 
-## 3. Phase 1: The Count
+## 3. Phase 1: The Plan
 
 **Launch post (feed + Threads + X):**
 > There’s a plan of a house at the front of this novel. Travis County, August 2019. Eleven recorded interior doors.
 >
 > Count them. Tell me what you got.
 >
-> → the-companion-dossier.com/book#count
+> → the-companion-dossier.com/book#plan
 > *Using This Matter*, a novel.
 
-**Short video: "Count with me" (15–20 s, screen recording of the site's count)**
-- 0–2 s: on-screen text `the county plan says 11 doors.` The cursor hovers over the plan.
-- 2–10 s: tap doors 1→11 quickly. The tally climbs. Text: `11.`
-- 10–13 s: the garage flickers. Door 12 fades in. Text: `look at the garage again.`
-- 13–16 s: tap 12. The tally reads 12. Text: `she wrote it down.`
-- 16–20 s: tap "Recount", and the tally shows ~~12~~ 11. Text: `the correction does not erase the first entry.` End card: title + URL.
-- **Caption:** `How many did you get? 👇 *Using This Matter*, a novel. #ElevenDoors #BookTok #fiction`
+**Short video: "Count with me" (15–20 s, filmed on the printed floor-plan page, Plate XI)**
+- 0–2 s: on-screen text `the county plan says 11 doors.` Slow push in on the printed page.
+- 2–11 s: a fingertip touches each numbered door, 1 → 11. Text: `11.`
+- 11–15 s: the finger stops at the dashed line by the garage. Text: `then why is this one dashed.`
+- 15–20 s: hold on the legend ("Later annotation / door 12"). Text: `she counted twelve.` End card: title + URL.
+- **Caption:** `How many did you get? 👇 *Using This Matter*, a horror novel. #ElevenDoors #BookTok #fiction`
 - **Sound:** a low room tone or hum. Not a trending song.
+- No physical copy yet? Use `book/assets/the-plan.png` on a tablet or a printout.
 
 **Reply templates**
 - To "12": `Write it down. Then try the footer.`
@@ -185,7 +185,7 @@ Then post 1/–13/ verbatim (below), attaching the `post-fr-vessel-landscape` ca
 
 > A thread I’ll probably delete. 1/
 >
-> There’s a public estate online, a protocol and a pile of transcripts with no rights reserved, built by a researcher in Austin, Dr. [Thorne]. The protocol is a rite. Literally. It opens: *“What follows is not instruction. It is invocation.”* You type *“Using this matter, summon [Name],”* and a model speaks as that person until you say the words of release. 2/
+> There’s a public estate online, a protocol and a pile of transcripts with no rights reserved, built by a researcher in Austin, Dr. Thorne. The protocol is a rite. Literally. It opens: *“What follows is not instruction. It is invocation.”* You type *“Using this matter, summon [Name],”* and a model speaks as that person until you say the words of release. 2/
 >
 > The founding session is dated December 1, 2025. Four historical figures, one table. The transcript has exactly one line of theater in it, a stage direction in brackets: [ Four presences form. ] Everything after that line stops pretending. I’ve read it maybe thirty times. 3/
 >
@@ -214,7 +214,7 @@ Then post 1/–13/ verbatim (below), attaching the `post-fr-vessel-landscape` ca
 Close with:
 
 > [ post 14/14 was not captured ]
-> The deposit, the count, and the doors → the-companion-dossier.com/book
+> The house, the plan, and the doors → the-companion-dossier.com/book
 
 ---
 

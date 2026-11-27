@@ -10,8 +10,8 @@ was modified.
 THE CONCEPT
 The site is part of the fiction. It presents the novel the way the novel
 presents itself: as a recovered archive. Visitors meet in-world artifacts
-before they meet the pitch: an estate terminal, recovered posts, an interactive
-county plan, transcripts that "play", a withheld plate, and a hidden door.
+before they meet the pitch: an estate terminal, recovered posts, the book's
+own floor plan, transcripts that "play", a withheld plate, and a hidden door.
 Every in-world element is framed honestly. The recovered posts carry an
 Editor's disclosure, the FAQ says plainly what is fiction, and no review, price,
 date, or stock state is invented.
@@ -48,8 +48,8 @@ what it is about, and that the whole book is free to read.
   Four things that shouldn't be there — the extra door, the Franklin test
                 (typed transcript), the 3:11:47 interruption (sentences
                 blacked out), the withheld seventh illustration
-  The count   — the book's floor plan; tap the doors (phone: number pad);
-                door 12 appears; recount; "Read what she found"
+  The plan    — Plate XI, the floor plan, as a still image straight from
+                the book (tap to enlarge)
   Posts       — "None of these people exist." Fictional reader reviews,
                 reader videos and threads, blended with recovered in-story
                 posts from 2027; filters; visible fiction notice; a
@@ -100,13 +100,13 @@ campaign/README.md §3.
 MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement, with
 name, placement and incoming utm_* values. Names: free_read, amazon_click,
-trailer_play, trailer_jump, volume_turn, count_twelve, count_recount, evidence_filter,
+trailer_play, trailer_jump, volume_turn, evidence_filter,
 evidence_more, thread_open, transmission_play. Nothing is transmitted and no
 cookies or storage are used. Connect analytics separately if wanted.
 
 ACCESSIBILITY AND MOTION
 The 3D book is keyboard-turnable (arrows, Enter). Doors are focusable buttons
-with labels, and the count log is a live region. Transcripts fall back to
+and the floor plan has full alt text. Transcripts fall back to
 static text. prefers-reduced-motion disables grain, ticker, rings, glitch,
 typing and reveals. Layout checked at 390 and 1440 px with no horizontal
 overflow. The videos keep preload="none" and their caption tracks.
