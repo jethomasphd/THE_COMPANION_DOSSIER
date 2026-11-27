@@ -13,13 +13,13 @@ This directory contains the final release materials for the **304-page premium-c
 
 ## Website and film collections
 
-**[Visit the book page](https://the-companion-dossier.com/book/)** · **[Compare all six films](https://the-companion-dossier.com/book/media/)** · **[Publication setup](WEBSITE.txt)**
+**[Visit the book page](https://the-companion-dossier.com/book/)** · **[Publication setup](WEBSITE.txt)**
 
 - **[The campaign: *The Twelfth Door*](campaign/):** the in-world launch campaign. It includes a playbook with the rules of the fiction, phases, a 21-day calendar, UTMs and measurement ([campaign/README.md](campaign/README.md)); paste-ready captions, threads, video scripts, email and ad copy ([campaign/social-copy.md](campaign/social-copy.md)); and 48 rendered social cards ([campaign/cards/](campaign/cards/)).
-- **The site** is built as part of the fiction. It has recovered posts ([evidence.js](evidence.js)), an interactive door count on Plate XI, typed transcripts, a turnable 3D hardcover, and a hidden page behind the footer. See [WEBSITE.txt](WEBSITE.txt).
-- **[Story-first / lay versions](media/lay/):** two 20-second promos and a 90-second trailer that explain the missing AI scientist, his protocol to summon the dead, and the archivist who enters his house. These are featured on the website.
-- **[Original atmospheric versions](media/original/):** the first two promos and full trailer, preserved as a separate collection.
-- **[Film library and download table](media/README.md):** clearly labeled files, captions, posters, and scripts for both sets.
+- **The site** is built as part of the fiction. It has recovered posts ([evidence.js](evidence.js)), the book's floor plan (Plate XI) as a still, typed transcripts, a turnable 3D hardcover, and a hidden page behind the footer. See [WEBSITE.txt](WEBSITE.txt).
+- **[Story-first / lay versions](media/lay/):** two 20-second promos and a 90-second trailer that explain the missing AI scientist, his protocol to summon the dead, and the archivist who enters his house. **Only the 90-second story trailer is published on the website.** The promos are social-campaign assets.
+- **[Original atmospheric versions](media/original/):** the first two promos and full trailer, preserved as a separate collection (not on the website).
+- **[Film files and download table](media/README.md):** clearly labeled files, captions, posters, and scripts for both sets, kept in the repository for campaign use.
 
 The full digital novel remains free. Print is the intended experience, and purchasing contributes to further development of the Companion Dossier's product, scholarship, and moral framework. Set the final Amazon URL in `config.js` when the book is published.
 

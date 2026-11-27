@@ -43,6 +43,7 @@
     });
     $$("[data-print-status]").forEach(el => el.hidden = true);
     $$("[data-availability]").forEach(el => el.innerHTML = "<b>●</b> Color hardcover available · Digital deposit free");
+    $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
   }
 
   /* ── reveal on scroll ───────────────────────────────────────────── */
@@ -129,7 +130,7 @@
         const cur = document.createElement("span"); cur.className = "cursor";
         for (let i = 0; i <= L.t.length; i++) {
           div.textContent = L.t.slice(0, i); div.appendChild(cur);
-          await new Promise(r => setTimeout(r, L.fast ? 6 : 16 + Math.random() * 18));
+          await new Promise(r => setTimeout(r, L.fast ? 4 : 8 + Math.random() * 9));
         }
         cur.remove();
         await new Promise(r => setTimeout(r, L.wait || 140));
@@ -148,40 +149,74 @@
     v: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19V11M12 19V5M19 19v-6"/></svg>'
   };
   const wave = n => { let s = '<div class="wave" aria-hidden="true">'; for (let i = 0; i < n; i++) { const h = 15 + Math.abs(Math.sin(i * 1.7) * 60 + Math.cos(i * .6) * 25); s += `<i style="height:${Math.min(100, h).toFixed(0)}%;animation-delay:${(i % 9) * .07}s"></i>`; } return s + "</div>"; };
-  const avatar = p => p.av ? `<span class="av${p.av.blank ? " av--blank" : ""}" style="--av:${esc(p.av.c || "#3a3530")}" aria-hidden="true">${esc(p.av.t || "")}</span>` : "";
+  const avatar = (a) => {
+    if (!a) return "";
+    if (a.img) return `<span class="av av--img" style="background-image:url('${esc(a.img)}')" aria-hidden="true"></span>`;
+    if (a.emoji) return `<span class="av av--emoji" aria-hidden="true">${esc(a.emoji)}</span>`;
+    return `<span class="av${a.blank ? " av--blank" : ""}" style="--av:${esc(a.c || "#3a3530")}" aria-hidden="true">${esc(a.t || "")}</span>`;
+  };
   const stats = s => s ? `<div class="post__stats">${["r", "rp", "l", "v"].filter(k => s[k] != null).map(k => `<span>${ICON[k]}${esc(s[k])}</span>`).join("")}</div>` : "";
+  const stateStrip = p => p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : "";
+  const mediaBlock = m => {
+    if (!m) return "";
+    if (m.type === "img") return `<div class="post__media"><img src="${esc(m.src)}" alt="${esc(m.alt || "")}" loading="lazy">${m.cap ? `<span class="mcap">${esc(m.cap)}</span>` : ""}</div>`;
+    if (m.type === "void") return `<div class="post__media post__media--void"><span>${m.text}</span></div>`;
+    return "";
+  };
+  const head = p => `<div class="post__hd">${avatar(p.av)}<div class="post__who"><div class="post__name">${esc(p.name)}${p.verified ? '<span class="vb" aria-label="verified">✓</span>' : ""}</div><div class="post__handle">${p.handle || ""}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>`;
+  const SIDE = {
+    l: '<svg viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg>',
+    r: '<svg viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></svg>',
+    s: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>'
+  };
 
   function renderPost(p) {
     const kind = p.kind || "micro";
+    const isStory = (p.cat || []).includes("story");
     const cls = ["post", "post--" + kind, p.paper ? "post--paper" : "", p.gone ? "post--gone" : ""].join(" ");
     let inner = "";
     if (kind === "forum") {
+      const cm = (Array.isArray(p.comments) ? p.comments : []).map(c => `<div class="fc"><div class="fc__hd"><b>${esc(c.u)}</b>${c.op ? '<span class="op">OP</span>' : ""}</div><div class="fc__t">${c.t}</div>${c.pts ? `<div class="fc__p">▲ ${esc(c.pts)}</div>` : ""}</div>`).join("");
+      const nComments = p.comments_n || (Array.isArray(p.comments) ? String(p.comments.length) : (p.comments || "0"));
       inner = `<div class="vote" aria-label="${esc(p.votes)} points"><b>▲</b>${esc(p.votes)}</div><div>
-        <div class="post__sub">${p.sub} · posted by ${p.handle} · ${esc(p.ago)}</div>
-        <div class="post__title">${p.title}</div>
-        <div class="post__body">${p.body}</div>
-        <div class="post__stats"><span>${ICON.r}${esc(p.comments)} comments</span><span>share</span><span>save</span></div>
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}</div>`;
+        <div class="post__sub">${p.sub || ""} · posted by ${p.handle || ""} · ${esc(p.ago || "")}</div>
+        <div class="post__title">${p.title}</div>${p.flair ? `<span class="post__flair">${esc(p.flair)}</span>` : ""}
+        <div class="post__body">${p.body || ""}</div>${mediaBlock(p.media)}
+        <div class="post__stats"><span>${ICON.r}${esc(nComments)} comments</span><span>share</span><span>save</span></div>
+        ${cm ? `<div class="fcm">${cm}</div>` : ""}${stateStrip(p)}</div>`;
     } else if (kind === "chat") {
-      inner = `<div class="post__hd"><div class="post__who"><div class="post__name">${esc(p.name)}</div><div class="post__handle">${esc(p.handle)}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>
-        ${(p.msgs || []).map(m => `<div class="bub bub--${m.d}">${m.t}${m.s ? `<small>${esc(m.s)}</small>` : ""}</div>`).join("")}
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}`;
+      inner = `<div class="post__hd"><div class="post__who"><div class="post__name">${esc(p.name)}</div><div class="post__handle">${p.handle || ""}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>
+        ${(p.msgs || []).map(m => `<div class="bub bub--${m.d}">${m.t}${m.s ? `<small>${esc(m.s)}</small>` : ""}</div>`).join("")}${stateStrip(p)}`;
+    } else if (kind === "review") {
+      const st = Math.max(0, Math.min(5, p.stars || 0));
+      inner = `${head(p)}
+        <div class="rv-meta"><span class="stars" aria-label="${st} of 5 stars">${"★".repeat(st)}<s>${"★".repeat(5 - st)}</s></span>${p.shelf ? `<span class="rv-shelf">${esc(p.shelf)}</span>` : ""}${p.time ? `<span>${esc(p.time)}</span>` : ""}</div>
+        ${p.title ? `<div class="rv-title">${p.title}</div>` : ""}${p.spoiler ? '<span class="rv-spoiler">no spoilers</span>' : ""}
+        <div class="post__body">${p.body || ""}</div>${mediaBlock(p.media)}
+        ${p.stats ? `<div class="post__stats" style="justify-content:flex-start;gap:18px;margin-top:10px">${p.stats.l != null ? `<span>${ICON.l}${esc(p.stats.l)} likes</span>` : ""}${p.stats.r != null ? `<span>${ICON.r}${esc(p.stats.r)} comments</span>` : ""}</div>` : ""}${stateStrip(p)}`;
+    } else if (kind === "video") {
+      const s = p.stats || {};
+      const cm = (Array.isArray(p.comments) ? p.comments : []).map(c => `<div class="vcm"><div><b>${esc(c.name)}</b>${c.t}</div><small>${c.l ? esc(c.l) : ""}</small></div>`).join("");
+      inner = `<div class="vid"><img src="${esc(p.poster)}" alt="${esc(p.posterAlt || "A reader's short video about Using This Matter")}" loading="lazy">
+          <div class="vid__play" aria-hidden="true"><span>▶</span></div>
+          <div class="vid__side" aria-hidden="true">${s.l ? `<span>${SIDE.l}${esc(s.l)}</span>` : ""}${s.r ? `<span>${SIDE.r}${esc(s.r)}</span>` : ""}${s.s ? `<span>${SIDE.s}${esc(s.s)}</span>` : ""}</div>
+          <div class="vid__info"><b>${esc(p.handle || p.name)}</b>${p.caption || ""}${p.sound ? `<span class="vid__sound">${esc(p.sound)}</span>` : ""}</div></div>
+        ${cm ? `<div class="vid__cmts"><h4>${esc(s.r || "")} comments</h4>${cm}</div>` : ""}${stateStrip(p)}`;
     } else {
-      const head = `<div class="post__hd">${avatar(p)}<div class="post__who"><div class="post__name">${esc(p.name)}${p.verified ? '<span class="vb" aria-label="verified">✓</span>' : ""}</div><div class="post__handle">${p.handle}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>`;
       const rating = p.stars != null ? `<div class="stars" aria-label="${p.stars} of 5 stars">${"★".repeat(p.stars)}<s>${"★".repeat(5 - p.stars)}</s></div>` : "";
       const vm = kind === "vm" ? `${wave(48)}<button class="vm-play" type="button" data-vm>▶ Play transcript · ${esc(p.dur || "0:31")}</button>` : "";
-      let media = "";
-      if (p.media && p.media.type === "img") media = `<div class="post__media"><img src="${esc(p.media.src)}" alt="${esc(p.media.alt || "")}" loading="lazy">${p.media.cap ? `<span class="mcap">${esc(p.media.cap)}</span>` : ""}</div>`;
-      if (p.media && p.media.type === "void") media = `<div class="post__media post__media--void"><span>${p.media.text}</span></div>`;
-      inner = `${head}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}${vm}
-        <div class="post__body"${kind === "vm" ? " data-vm-text" : ""}>${p.body}</div>${media}
+      const replies = (p.replies || []).map(r => `<div class="reply">${avatar(r.av || {c: "#3a3530", t: (r.name || "?")[0]})}<div><div class="reply__hd"><b>${esc(r.name)}</b> <span>${r.handle || ""}${r.time ? " · " + esc(r.time) : ""}</span></div><div class="reply__body">${r.body}</div>${r.l ? `<div class="reply__l">♡ ${esc(r.l)}</div>` : ""}</div></div>`).join("");
+      inner = `${head(p)}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}${vm}
+        <div class="post__body"${kind === "vm" ? " data-vm-text" : ""}>${p.body || ""}</div>${mediaBlock(p.media)}
         ${p.time ? `<div class="post__time">${esc(p.time)}</div>` : ""}${stats(p.stats)}
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}`;
+        ${replies ? `<div class="replies">${replies}</div>` : ""}${stateStrip(p)}`;
     }
     const stamp = p.stamp ? `<span class="stamp${p.stampGold ? " stamp--gold" : ""}">${esc(p.stamp)}</span>` : "";
+    const capL = isStory ? (p.capture || "Recovered from the story") : (kind === "review" ? "Reader review" : kind === "video" ? "Reader video" : "Reader reaction");
+    const capR = isStory ? (p.capTime || "") : "";
     return `<article class="find reveal" data-cat="${esc((p.cat || []).join(" "))}" id="find-${esc(p.id)}">
-      <p class="find__cap"><span>${esc(p.capture || "")}</span><span>${esc(p.capTime || "")}</span></p>
-      <div class="${cls}">${stamp}${inner}</div>
+      <p class="find__cap"><span>${esc(capL)}</span><span class="tagf">${capR ? esc(capR) + " · " : ""}<b>◈</b> fiction</span></p>
+      <div class="${cls}">${stamp}${inner}<span class="post__fic">◈ fiction · Using This Matter</span></div>
       ${p.note ? `<span class="margin-note">${p.note}</span>` : ""}</article>`;
   }
   window.renderRecoveredPost = renderPost;
@@ -189,7 +224,7 @@
   const wall = $("[data-wall]");
   const posts = window.RECOVERED_POSTS || [];
   if (wall && posts.length) {
-    const FIRST = Number(wall.dataset.first || 9);
+    const FIRST = window.matchMedia("(max-width: 640px)").matches ? 4 : Number(wall.dataset.first || 9);
     let showing = FIRST, filter = "all";
     wall.innerHTML = posts.map(renderPost).join("");
     const finds = $$(".find", wall);
@@ -245,96 +280,6 @@
     if (open) emit("thread_open");
   });
 
-  /* ── tooltip ────────────────────────────────────────────────────── */
-  const tip = document.createElement("div"); tip.className = "tip"; tip.setAttribute("role", "tooltip"); document.body.appendChild(tip);
-  const showTip = (html, x, y) => { tip.innerHTML = html; tip.classList.add("on"); const w = tip.offsetWidth; tip.style.left = Math.min(window.innerWidth - w - 10, x + 14) + "px"; tip.style.top = (y + 16) + "px"; };
-  const hideTip = () => tip.classList.remove("on");
-
-  /* ── the count ──────────────────────────────────────────────────── */
-  const plan = $("[data-plan]");
-  if (plan) {
-    const DOORS = {1:"Hall / living",2:"Kitchen / utility",3:"Utility / garage",4:"Hall / bedroom 1",5:"Hall / bedroom 2",6:"Hall / bedroom 3",7:"Hall / bath",8:"Hall / linen rack",9:"Hall / study",10:"Hall / bifold closet",11:"Bedroom 3 / en suite",12:"Garage / workroom"};
-    const tallyN = $("[data-tally]"), msg = $("[data-tally-msg]"), log = $("[data-tally-log]");
-    const recountBtn = $("[data-recount]"), resetBtn = $("[data-reset]");
-    const colFirst = $("[data-col-first]"), colRe = $("[data-col-recount]");
-    const twelve = $$(".door--twelve, .twelve-line, .twelve-label", plan);
-    const counted = new Set();
-    let phase = "walk", busy = false;
-    const pad = n => String(n).padStart(2, "0");
-    const say = h => { msg.innerHTML = h; };
-    const addLog = (t, hot) => { const li = document.createElement("li"); li.textContent = t; if (hot) li.className = "hot"; log.prepend(li); };
-    const setTally = h => { tallyN.innerHTML = h; };
-    const mark = (n, on = true) => { const d = $(`.door[data-door="${n}"]`, plan); if (d) { d.classList.toggle("counted", on); d.setAttribute("aria-pressed", String(on)); } };
-
-    function count(n) {
-      if (busy || phase === "done" || phase === "recount") return;
-      if (counted.has(n)) return;
-      counted.add(n); mark(n);
-      addLog(`Door ${pad(n)} · ${DOORS[n]}${n === 12 ? " — not on the county plan" : ""}`, n === 12);
-      setTally(pad(counted.size));
-      if (n === 12) {
-        phase = "twelve";
-        say("Twelve. <em>Write it down.</em> She did. The entry is still there.");
-        colFirst.textContent = "12"; colFirst.classList.add("ember");
-        recountBtn.hidden = false; emit("count_twelve");
-        return;
-      }
-      if (counted.size === 11 && phase === "walk") {
-        busy = true;
-        say("Eleven. The county plan says eleven. You are finished.");
-        setTimeout(() => {
-          plan.classList.add("flash");
-          twelve.forEach(el => el.classList.add("show"));
-          say("Eleven. The county plan says eleven.<br><em>Look at the garage again.</em>");
-          busy = false;
-          setTimeout(() => plan.classList.remove("flash"), 700);
-        }, reduce ? 0 : 1500);
-      } else if (phase === "walk") {
-        say(counted.size < 4 ? "Keep walking. Interior doors only." : counted.size < 9 ? "Jamb by jamb. Nothing is assumed." : "Almost there.");
-      }
-    }
-    $$(".door", plan).forEach(d => {
-      const n = Number(d.dataset.door);
-      d.addEventListener("click", () => count(n));
-      d.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); count(n); } });
-      d.addEventListener("pointerenter", e => e.pointerType === "mouse" && showTip(`<b>Door ${pad(n)}</b><br>${DOORS[n]}${n === 10 ? "<br>one doorway, two folding leaves" : ""}${n === 12 ? "<br>later annotation" : ""}`, e.clientX, e.clientY));
-      d.addEventListener("pointermove", e => e.pointerType === "mouse" && showTip(tip.innerHTML, e.clientX, e.clientY));
-      d.addEventListener("pointerleave", hideTip);
-    });
-    $$(".room-hit", plan).forEach(r => {
-      r.addEventListener("pointerenter", e => e.pointerType === "mouse" && showTip(`<b>${esc(r.dataset.room)}</b><br>${esc(r.dataset.name)}`, e.clientX, e.clientY));
-      r.addEventListener("pointermove", e => e.pointerType === "mouse" && showTip(tip.innerHTML, e.clientX, e.clientY));
-      r.addEventListener("pointerleave", hideTip);
-    });
-
-    recountBtn.addEventListener("click", async () => {
-      if (phase !== "twelve") return;
-      phase = "recount"; busy = true; recountBtn.hidden = true;
-      counted.clear(); $$(".door", plan).forEach(d => mark(d.dataset.door, false));
-      addLog("— recount, jamb by jamb —");
-      say("Recounting. Jamb by jamb.");
-      for (let n = 1; n <= 11; n++) {
-        mark(n); setTally(pad(n));
-        addLog(`Door ${pad(n)} · ${DOORS[n]}${n === 10 ? " — one doorway, two folding leaves" : ""}`);
-        await new Promise(r => setTimeout(r, reduce ? 0 : 260));
-      }
-      setTally('<s>12</s> 11');
-      colRe.textContent = "11";
-      say("Eleven. <em>The correction does not erase the first entry.</em><br>The bifold explanation is not an independent verification.");
-      addLog("Recount: 11. First count retained.", true);
-      phase = "done"; busy = false; emit("count_recount");
-    });
-    resetBtn.addEventListener("click", () => {
-      if (busy) return;
-      counted.clear(); phase = "walk";
-      $$(".door", plan).forEach(d => mark(d.dataset.door, false));
-      twelve.forEach(el => el.classList.remove("show"));
-      setTally("00"); log.innerHTML = ""; recountBtn.hidden = true;
-      colFirst.textContent = "—"; colFirst.classList.remove("ember"); colRe.textContent = "—";
-      say("Tap each interior door on the plan. Exterior doors do not count.");
-    });
-  }
-
   /* ── transmissions: typed playback ──────────────────────────────── */
   $$("[data-tx]").forEach(card => {
     const btn = $(".tx__play", card), out = $(".tx__text", card), w = $(".wave", card), clock = $(".tx__clock", card);
@@ -380,6 +325,24 @@
     v.addEventListener("play", () => v.closest(".vf").classList.add("playing"));
     v.addEventListener("pause", () => v.closest(".vf").classList.remove("playing"));
   });
+  const playBtn = $("[data-play]");
+  const tv = $("#book-trailer");
+  if (playBtn && tv) {
+    tv.removeAttribute("controls");
+    playBtn.addEventListener("click", () => { tv.controls = true; tv.play().catch(() => {}); tv.focus(); });
+    tv.addEventListener("play", () => { tv.controls = true; });
+  }
+  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#read");
+  if (dock && heroEl && "IntersectionObserver" in window) {
+    let pastHero = false, atRead = false;
+    const upd = () => {
+      const on = !atRead;
+      dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
+      const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
+    };
+    new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(heroEl);
+    if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .2}).observe(readEl);
+  }
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});
 

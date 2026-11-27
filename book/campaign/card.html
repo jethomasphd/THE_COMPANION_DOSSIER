@@ -38,6 +38,9 @@
   .card .find__cap{font-size:10px}
   .card .reveal{opacity:1!important;transform:none!important}
   .card .margin-note{font-size:19px}
+  /* social cards show the post itself; reply threads stay on the website */
+  .card .replies,.card .fcm,.card .vid__cmts{display:none}
+  .card .post--video .vid{aspect-ratio:9/13}
   .cover{width:100%;box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px rgba(237,231,220,.08)}
   .q{font-variant-numeric:lining-nums;font-family:var(--display);font-size:96px;line-height:1;letter-spacing:-.02em}
   .q em{color:var(--ember);font-style:italic}
@@ -61,34 +64,57 @@
   const fmt = q.get("format") || "portrait";
   const root = document.getElementById("root");
   const atmos = '<div class="atmos atmos--grain"></div><div class="atmos atmos--scan"></div>';
-  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">An exhibit of the fiction · names, handles &amp; timestamps invented</div>' : ""}`;
+  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div>' : ""}`;
   const QUOTES = window.CAMPAIGN_QUOTES || {};
   let html = "";
   if (q.get("og")) {
-    html = `<div class="card og">${atmos}<div><p class="micro">A NOVEL BY JACOB E. THOMAS · ACCESSION UTM-R0-2028.IV</p><h1>He built a protocol to summon the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in her inventory. The archive was expecting her.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+    html = `<div class="card og">${atmos}<div><p class="micro">A HORROR NOVEL BY JACOB E. THOMAS · FREE TO READ</p><h1>He built an AI to talk to the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in the house. A found-document horror novel.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
   } else if (q.get("post")) {
     const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("post"));
-    const post = p ? window.renderRecoveredPost(p) : "<p>missing post</p>";
+    // long posts are cut at a paragraph break with "Show more", as feeds do, so text stays legible on a phone
+    const LIMIT = {portrait: 300, story: 430, landscape: 230}[fmt] || 300;
+    const textLen = h => h.replace(/<[^>]+>/g, "").length;
+    const trunc = body => {
+      if (!body || textLen(body) <= LIMIT) return body;
+      const paras = body.split(/\n\n/); let out = [], n = 0;
+      for (const para of paras) { if (out.length && n + textLen(para) > LIMIT) break; out.push(para); n += textLen(para); }
+      return out.join("\n\n") + ' <span style="color:#8e8a82">… Show more</span>';
+    };
+    const pc = p ? Object.assign({}, p, {body: trunc(p.body)}) : null;
+    // post image paths are relative to /book/; this template lives one level down
+    const post = pc ? window.renderRecoveredPost(pc).replace(/(["'(])assets\//g, "$1../assets/") : "<p>missing post</p>";
+    const label = p && (p.cat || []).includes("story") ? "Recovered from the story" : "Reader reaction";
     if (fmt === "landscape") {
-      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>Recovered post</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">An exhibit of the fiction · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
+      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>${label}</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
     } else {
-      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>Recovered post</span><span>utm-r0-2028.iv</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
+      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>${label}</span><span>A horror novel</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
     }
   } else if (q.get("quote")) {
     const k = QUOTES[q.get("quote")] || {q: "Believe nothing.<br><em>Count everything.</em>", s: "From the novel"};
-    if (fmt === "landscape") html = `<div class="card landscape" style="grid-template-columns:1.6fr .6fr">${atmos}<div><div class="c-top"><span>From the deposit</span></div><div class="q" style="margin:28px 0 22px">${k.q}</div><div class="q-src">${k.s}</div></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
-    else html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>From the deposit</span><span>utm-r0-2028.iv</span></div><div class="c-mid"><div class="q">${k.q}</div><div class="q-src">${k.s}</div></div>${foot(false)}</div>`;
+    if (fmt === "landscape") html = `<div class="card landscape" style="grid-template-columns:1.6fr .6fr">${atmos}<div><div class="c-top"><span>From the novel · a horror novel</span></div><div class="q" style="margin:28px 0 22px">${k.q}</div><div class="q-src">${k.s}</div></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+    else html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>From the novel</span><span>A horror novel</span></div><div class="c-mid"><div class="q">${k.q}</div><div class="q-src">${k.s}</div></div>${foot(false)}</div>`;
   }
   root.innerHTML = html;
-  // scale the post up as far as the frame allows, then never overflow it
-  const card = root.querySelector('.card'), find = card && card.querySelector('.find');
-  if (find) {
-    let z = {portrait: 1.8, story: 2.3, landscape: 1.15}[fmt] || 1.5;
-    find.style.zoom = z;
-    while (card.scrollHeight > card.clientHeight + 1 && z > .7) { z -= .05; find.style.zoom = z; }
-    document.body.dataset.zoom = z.toFixed(2);
-  }
-  document.fonts.ready.then(() => { document.body.dataset.ready = "1"; });
+  // load every image eagerly, then scale the post up as far as the frame allows without overflowing
+  const imgs = [...root.querySelectorAll("img")];
+  imgs.forEach(i => { i.loading = "eager"; });
+  const loaded = Promise.all(imgs.map(i => i.decode ? i.decode().catch(() => {}) : Promise.resolve()));
+  Promise.all([loaded, document.fonts.ready]).then(() => {
+    const card = root.querySelector('.card'), find = card && card.querySelector('.find');
+    if (find && find.querySelector('.post--video')) {
+      // a video post's height follows its width, so size it by width instead of zoom
+      find.style.width = ({portrait: 560, story: 760, landscape: 330}[fmt] || 560) + "px";
+      find.style.margin = "0 auto";
+      find.style.zoom = fmt === "landscape" ? 1 : 1.25;
+      while (card.scrollHeight > card.clientHeight + 1 && parseFloat(find.style.width) > 240) { find.style.width = (parseFloat(find.style.width) - 20) + "px"; }
+    } else if (find) {
+      let z = {portrait: 1.8, story: 2.3, landscape: 1.15}[fmt] || 1.5;
+      find.style.zoom = z;
+      while (card.scrollHeight > card.clientHeight + 1 && z > .7) { z -= .05; find.style.zoom = z; }
+      document.body.dataset.zoom = z.toFixed(2);
+    }
+    document.body.dataset.ready = "1";
+  });
 })();
 </script>
 </body>
