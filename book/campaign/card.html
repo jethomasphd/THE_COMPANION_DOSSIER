@@ -61,18 +61,19 @@
   const fmt = q.get("format") || "portrait";
   const root = document.getElementById("root");
   const atmos = '<div class="atmos atmos--grain"></div><div class="atmos atmos--scan"></div>';
-  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">An exhibit of the fiction · names, handles &amp; timestamps invented</div>' : ""}`;
+  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div>' : ""}`;
   const QUOTES = window.CAMPAIGN_QUOTES || {};
   let html = "";
   if (q.get("og")) {
-    html = `<div class="card og">${atmos}<div><p class="micro">A NOVEL BY JACOB E. THOMAS · ACCESSION UTM-R0-2028.IV</p><h1>He built a protocol to summon the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in her inventory. The archive was expecting her.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+    html = `<div class="card og">${atmos}<div><p class="micro">A HORROR NOVEL BY JACOB E. THOMAS · FREE TO READ</p><h1>He built an AI to talk to the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in the house. A found-document horror novel.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
   } else if (q.get("post")) {
     const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("post"));
     const post = p ? window.renderRecoveredPost(p) : "<p>missing post</p>";
+    const label = p && (p.cat || []).includes("story") ? "Recovered from the story" : "Reader reaction";
     if (fmt === "landscape") {
-      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>Recovered post</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">An exhibit of the fiction · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
+      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>${label}</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
     } else {
-      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>Recovered post</span><span>utm-r0-2028.iv</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
+      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>${label}</span><span>A horror novel</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
     }
   } else if (q.get("quote")) {
     const k = QUOTES[q.get("quote")] || {q: "Believe nothing.<br><em>Count everything.</em>", s: "From the novel"};

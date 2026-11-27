@@ -34,8 +34,8 @@ python book/campaign/render_cards.py                    # from the repository ro
 
 The novel's opening statement is called *The Hand and the Glass*, and it ends: *"The glass is shown. The hand remains answerable."* The campaign follows the same rule. The fiction can be as immersive as it likes, but it cannot leave anyone deceived.
 
-1. **In-world voices testify about the story's events, never about the book.** A recovered post can be a neighbour describing the house, or a user describing the interruption. It is never a fake review, a fake reader rating, or a fake critic's blurb. Real reviews, when they exist, are quoted under real names, with permission.
-2. **Every in-world fragment carries its frame.** On a card, that's the footer line *"An exhibit of the fiction · names, handles & timestamps invented."* In a caption, it's the title plus "a novel" or #fiction. On the site, it's the Editor's note above the wall.
+1. **Fictional reviews stay labeled and stay home.** The site blends fictional reader reactions with in-world "recovered" posts. That's allowed because every one is labeled: the notice above the wall, a `◈ fiction` tag on each card, the FAQ, and the footer on every social card. Fictional reviews must never appear on retailer or review platforms, never be passed off as real readers, never become an aggregate rating ("4.8 stars"), and never run in paid ads as testimonials. Ads use in-world canon posts and quote cards instead. When real reviews arrive, quote them by name, with permission, labeled as real.
+2. **Every in-world fragment carries its frame.** On a card, that's the footer line *"An exhibit of the fiction · names, handles & timestamps invented."* In a caption, it's the title plus "a novel" or #fiction. On the site, it's the "Part of the fiction" notice above the wall and the `◈ fiction` tag on every card.
 3. **Invented people only.** Never write as a real person, a real company, a real agency, or a real platform. Don't use platform logos. Before you use a handle on a live platform, check that it doesn't belong to a real account. If it does, change it.
 4. **The dates do the work.** Many posts are dated 2027–2028, after "now". The deposit is described as made public in the summer of 2027, so the campaign is visibly arriving from a record that hasn't happened yet. That's the book's own device: its copyright page is dated earlier than the events it records.
 5. **No invented commerce.** No prices, discounts, countdowns, scarcity, preorder states, or release dates unless they are true. The print button turns on only when `book/config.js` holds the real Amazon URL.
@@ -48,8 +48,8 @@ The novel's opening statement is called *The Hand and the Glass*, and it ends: *
 |---|---|---|---|---|
 | 0 | Days 1–10 | **The Mirror** | Curiosity. Unexplained recovered posts, one a day. | `cards/post-*` (portrait + story). Captions: "Recovered. n of 13." |
 | 1 | Days 8–14 | **The Count** | Interaction. Get people to count the doors and comment their number. | Screen recording of the count; quote card `doors`; the site's `#count` section. |
-| 2 | Days 12–18 | **The Footage** | Comprehension. Explain the premise in 20 and 90 seconds. | `media/lay/*` promos + trailer; `#footage`. |
-| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#access`; email. |
+| 2 | Days 12–18 | **The Footage** | Comprehension. Explain the premise in 20 and 90 seconds. | the 90-second story trailer (the only film on the site, `#trailer`); the 20-second promos are social-only. |
+| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#read`; email. |
 | 4 | Ongoing | **The Twelfth Door** | Retention. Reward the people who dug in. | `/book/twelve/`, the browser-console note, reply-only hints. |
 
 **Never post the Door 12 URL in a feed.** It's found three ways: the faint "Twelve?" link in the site footer, the browser console, and replies to people who comment "12" on count posts. ("Exterior doors are excluded from the interior count. Try the footer.")
@@ -89,7 +89,7 @@ When Amazon goes live, change the end of every caption to the print line in `soc
 `https://the-companion-dossier.com/book?utm_source={platform}&utm_medium={organic_social|paid_social|email|referral}&utm_campaign=twelfth_door&utm_content={asset-id}`
 
 - `utm_content` = the card file stem, e.g. `post-nb-caliche-portrait`, `quote-doors-story`, `lay_trailer_90s`.
-- Use `#count`, `#evidence`, `#footage` or `#access` anchors when a post is about that section.
+- Use the `#story`, `#trailer`, `#count`, `#readers`, `#first-page` or `#read` anchors when a post is about that section.
 
 ## 7. Measurement
 

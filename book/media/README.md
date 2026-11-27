@@ -2,7 +2,7 @@
 
 Two complete sets, each with **two 20-second portrait promos** and **one 90-second landscape trailer**.
 
-**[Watch and compare all six films](https://the-companion-dossier.com/book/media/)** · **[Book landing page](https://the-companion-dossier.com/book/)**
+**On the website:** only **one** film is published, the 90-second story trailer (`lay/trailer-90s.mp4`), on the [book page](https://the-companion-dossier.com/book/#trailer). The old film-library URL (`/book/media/`) now redirects there. Every other film in this folder is kept as a campaign asset for social posting and is not linked from the site.
 
 ## Start here: the story-first versions
 

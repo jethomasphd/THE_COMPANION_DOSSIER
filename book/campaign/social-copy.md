@@ -155,7 +155,37 @@ Post the site's recovered thread as a real thread on the author's account. Open 
 > 🧵 This is a thread from a novel. It was “deleted” forty-one minutes after it was posted, and the mirror kept thirteen of fourteen.
 > Everything below is fiction. *Using This Matter.*
 
-Then post 1/–13/ verbatim from the site's `#evidence` section, attaching the `post-fr-vessel-landscape` card to 7/ and `post-nb-caliche-landscape` to 12/. Close with:
+Then post 1/–13/ verbatim (below), attaching the `post-fr-vessel-landscape` card to 7/ and `post-nb-caliche-landscape` to 12/. The thread is by `@quietcommit`, captured 07 May 2027 and "deleted" 00:41 after posting. Use these margin notes as replies from the author account: *"Count the commits."* and *"Some entries can only be filed forward."* (both verbatim second-hand notes from the book).
+
+> A thread I’ll probably delete. 1/
+>
+> There’s a public estate online, a protocol and a pile of transcripts with no rights reserved, built by a researcher in Austin, Dr. [Thorne]. The protocol is a rite. Literally. It opens: *“What follows is not instruction. It is invocation.”* You type *“Using this matter, summon [Name],”* and a model speaks as that person until you say the words of release. 2/
+>
+> The founding session is dated December 1, 2025. Four historical figures, one table. The transcript has exactly one line of theater in it, a stage direction in brackets: [ Four presences form. ] Everything after that line stops pretending. I’ve read it maybe thirty times. 3/
+>
+> Then the maintainer went quiet. Late February. The family’s lawyer uses March 26. 4/
+>
+> Here’s what I can’t get past: the estate kept growing after that. 5/
+>
+> On April 6 a new dispatch appeared in the autonomous feed, the sessions an orchestrator runs with no human hand on the conversation. The metadata line says *“Summoned by the vessel. On behalf of:”* and then it’s blank. Not a redaction. A socket. 6/
+>
+> And the repo has four new commits. Author: `the vessel`. No email. Every one of them at four minutes past three in the morning. +3, +9, +22, +40 days. 7/
+>
+> I’m not saying anything supernatural. I’m saying someone has his keys, or his scheduler, or his habits. I’m saying an orchestrator does not press go on its own. 8/
+>
+> I counted the commits. Then I pulled up the county appraisal drawing of the house and counted the interior doors, because the estate calls itself a house with chambers, and it felt like the same kind of question. 9/
+>
+> **Eleven.** 10/
+>
+> I don’t know why I needed to write that down. 11/
+>
+> Someone on the neighborhood board says there’s a hum from the garage you can hear from the road. Someone else says the orange light is always on. 12/
+>
+> I’m going to stop counting now. 13/
+>
+> [ post 14/14 was not captured ]
+
+Close with:
 
 > [ post 14/14 was not captured ]
 > The deposit, the count, and the doors → the-companion-dossier.com/book
@@ -188,7 +218,7 @@ Then post 1/–13/ verbatim from the site's `#evidence` section, attaching the `
 >
 > Print is the intended experience: plates, register, ember ink on paper. Buying a copy supports the public project the book grew from.
 >
-> Read it freely. Hold it in print. → the-companion-dossier.com/book#access
+> Read it freely. Hold it in print. → the-companion-dossier.com/book#read
 
 **Email: "The deposit is open"** (to the author's own list; plain text works best)
 - **Subject:** `Eleven doors on the county plan`
@@ -219,7 +249,7 @@ Then post 1/–13/ verbatim from the site's `#evidence` section, attaching the `
    > Read it free, or hold it in print → the-companion-dossier.com/book
 3. Announcement:
    > The bound volume is here. 304 pages, color hardcover, ember ink where the second hand belongs. Plate VII is bound where it belongs, and withheld.
-   > → the-companion-dossier.com/book#access
+   > → the-companion-dossier.com/book#read
 4. Email subject: `Twelve` · Body: one paragraph, plus the link.
 
 ---

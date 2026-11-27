@@ -43,6 +43,7 @@
     });
     $$("[data-print-status]").forEach(el => el.hidden = true);
     $$("[data-availability]").forEach(el => el.innerHTML = "<b>●</b> Color hardcover available · Digital deposit free");
+    $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
   }
 
   /* ── reveal on scroll ───────────────────────────────────────────── */
@@ -148,39 +149,73 @@
     v: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19V11M12 19V5M19 19v-6"/></svg>'
   };
   const wave = n => { let s = '<div class="wave" aria-hidden="true">'; for (let i = 0; i < n; i++) { const h = 15 + Math.abs(Math.sin(i * 1.7) * 60 + Math.cos(i * .6) * 25); s += `<i style="height:${Math.min(100, h).toFixed(0)}%;animation-delay:${(i % 9) * .07}s"></i>`; } return s + "</div>"; };
-  const avatar = p => p.av ? `<span class="av${p.av.blank ? " av--blank" : ""}" style="--av:${esc(p.av.c || "#3a3530")}" aria-hidden="true">${esc(p.av.t || "")}</span>` : "";
+  const avatar = (a) => {
+    if (!a) return "";
+    if (a.img) return `<span class="av av--img" style="background-image:url('${esc(a.img)}')" aria-hidden="true"></span>`;
+    if (a.emoji) return `<span class="av av--emoji" aria-hidden="true">${esc(a.emoji)}</span>`;
+    return `<span class="av${a.blank ? " av--blank" : ""}" style="--av:${esc(a.c || "#3a3530")}" aria-hidden="true">${esc(a.t || "")}</span>`;
+  };
   const stats = s => s ? `<div class="post__stats">${["r", "rp", "l", "v"].filter(k => s[k] != null).map(k => `<span>${ICON[k]}${esc(s[k])}</span>`).join("")}</div>` : "";
+  const stateStrip = p => p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : "";
+  const mediaBlock = m => {
+    if (!m) return "";
+    if (m.type === "img") return `<div class="post__media"><img src="${esc(m.src)}" alt="${esc(m.alt || "")}" loading="lazy">${m.cap ? `<span class="mcap">${esc(m.cap)}</span>` : ""}</div>`;
+    if (m.type === "void") return `<div class="post__media post__media--void"><span>${m.text}</span></div>`;
+    return "";
+  };
+  const head = p => `<div class="post__hd">${avatar(p.av)}<div class="post__who"><div class="post__name">${esc(p.name)}${p.verified ? '<span class="vb" aria-label="verified">✓</span>' : ""}</div><div class="post__handle">${p.handle || ""}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>`;
+  const SIDE = {
+    l: '<svg viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg>',
+    r: '<svg viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></svg>',
+    s: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>'
+  };
 
   function renderPost(p) {
     const kind = p.kind || "micro";
+    const isStory = (p.cat || []).includes("story");
     const cls = ["post", "post--" + kind, p.paper ? "post--paper" : "", p.gone ? "post--gone" : ""].join(" ");
     let inner = "";
     if (kind === "forum") {
+      const cm = (Array.isArray(p.comments) ? p.comments : []).map(c => `<div class="fc"><div class="fc__hd"><b>${esc(c.u)}</b>${c.op ? '<span class="op">OP</span>' : ""}</div><div class="fc__t">${c.t}</div>${c.pts ? `<div class="fc__p">▲ ${esc(c.pts)}</div>` : ""}</div>`).join("");
+      const nComments = p.comments_n || (Array.isArray(p.comments) ? String(p.comments.length) : (p.comments || "0"));
       inner = `<div class="vote" aria-label="${esc(p.votes)} points"><b>▲</b>${esc(p.votes)}</div><div>
-        <div class="post__sub">${p.sub} · posted by ${p.handle} · ${esc(p.ago)}</div>
-        <div class="post__title">${p.title}</div>
-        <div class="post__body">${p.body}</div>
-        <div class="post__stats"><span>${ICON.r}${esc(p.comments)} comments</span><span>share</span><span>save</span></div>
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}</div>`;
+        <div class="post__sub">${p.sub || ""} · posted by ${p.handle || ""} · ${esc(p.ago || "")}</div>
+        <div class="post__title">${p.title}</div>${p.flair ? `<span class="post__flair">${esc(p.flair)}</span>` : ""}
+        <div class="post__body">${p.body || ""}</div>${mediaBlock(p.media)}
+        <div class="post__stats"><span>${ICON.r}${esc(nComments)} comments</span><span>share</span><span>save</span></div>
+        ${cm ? `<div class="fcm">${cm}</div>` : ""}${stateStrip(p)}</div>`;
     } else if (kind === "chat") {
-      inner = `<div class="post__hd"><div class="post__who"><div class="post__name">${esc(p.name)}</div><div class="post__handle">${esc(p.handle)}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>
-        ${(p.msgs || []).map(m => `<div class="bub bub--${m.d}">${m.t}${m.s ? `<small>${esc(m.s)}</small>` : ""}</div>`).join("")}
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}`;
+      inner = `<div class="post__hd"><div class="post__who"><div class="post__name">${esc(p.name)}</div><div class="post__handle">${p.handle || ""}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>
+        ${(p.msgs || []).map(m => `<div class="bub bub--${m.d}">${m.t}${m.s ? `<small>${esc(m.s)}</small>` : ""}</div>`).join("")}${stateStrip(p)}`;
+    } else if (kind === "review") {
+      const st = Math.max(0, Math.min(5, p.stars || 0));
+      inner = `${head(p)}
+        <div class="rv-meta"><span class="stars" aria-label="${st} of 5 stars">${"★".repeat(st)}<s>${"★".repeat(5 - st)}</s></span>${p.shelf ? `<span class="rv-shelf">${esc(p.shelf)}</span>` : ""}${p.time ? `<span>${esc(p.time)}</span>` : ""}</div>
+        ${p.title ? `<div class="rv-title">${p.title}</div>` : ""}${p.spoiler ? '<span class="rv-spoiler">no spoilers</span>' : ""}
+        <div class="post__body">${p.body || ""}</div>${mediaBlock(p.media)}
+        ${p.stats ? `<div class="post__stats" style="justify-content:flex-start;gap:18px;margin-top:10px">${p.stats.l != null ? `<span>${ICON.l}${esc(p.stats.l)} likes</span>` : ""}${p.stats.r != null ? `<span>${ICON.r}${esc(p.stats.r)} comments</span>` : ""}</div>` : ""}${stateStrip(p)}`;
+    } else if (kind === "video") {
+      const s = p.stats || {};
+      const cm = (Array.isArray(p.comments) ? p.comments : []).map(c => `<div class="vcm"><div><b>${esc(c.name)}</b>${c.t}</div><small>${c.l ? esc(c.l) : ""}</small></div>`).join("");
+      inner = `<div class="vid"><img src="${esc(p.poster)}" alt="${esc(p.posterAlt || "A reader's short video about Using This Matter")}" loading="lazy">
+          <div class="vid__play" aria-hidden="true"><span>▶</span></div>
+          <div class="vid__side" aria-hidden="true">${s.l ? `<span>${SIDE.l}${esc(s.l)}</span>` : ""}${s.r ? `<span>${SIDE.r}${esc(s.r)}</span>` : ""}${s.s ? `<span>${SIDE.s}${esc(s.s)}</span>` : ""}</div>
+          <div class="vid__info"><b>${esc(p.handle || p.name)}</b>${p.caption || ""}${p.sound ? `<span class="vid__sound">${esc(p.sound)}</span>` : ""}</div></div>
+        ${cm ? `<div class="vid__cmts"><h4>${esc(s.r || "")} comments</h4>${cm}</div>` : ""}${stateStrip(p)}`;
     } else {
-      const head = `<div class="post__hd">${avatar(p)}<div class="post__who"><div class="post__name">${esc(p.name)}${p.verified ? '<span class="vb" aria-label="verified">✓</span>' : ""}</div><div class="post__handle">${p.handle}</div></div>${p.src ? `<span class="post__src">${esc(p.src)}</span>` : ""}</div>`;
       const rating = p.stars != null ? `<div class="stars" aria-label="${p.stars} of 5 stars">${"★".repeat(p.stars)}<s>${"★".repeat(5 - p.stars)}</s></div>` : "";
       const vm = kind === "vm" ? `${wave(48)}<button class="vm-play" type="button" data-vm>▶ Play transcript · ${esc(p.dur || "0:31")}</button>` : "";
-      let media = "";
-      if (p.media && p.media.type === "img") media = `<div class="post__media"><img src="${esc(p.media.src)}" alt="${esc(p.media.alt || "")}" loading="lazy">${p.media.cap ? `<span class="mcap">${esc(p.media.cap)}</span>` : ""}</div>`;
-      if (p.media && p.media.type === "void") media = `<div class="post__media post__media--void"><span>${p.media.text}</span></div>`;
-      inner = `${head}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}${vm}
-        <div class="post__body"${kind === "vm" ? " data-vm-text" : ""}>${p.body}</div>${media}
+      const replies = (p.replies || []).map(r => `<div class="reply">${avatar(r.av || {c: "#3a3530", t: (r.name || "?")[0]})}<div><div class="reply__hd"><b>${esc(r.name)}</b> <span>${r.handle || ""}${r.time ? " · " + esc(r.time) : ""}</span></div><div class="reply__body">${r.body}</div>${r.l ? `<div class="reply__l">♡ ${esc(r.l)}</div>` : ""}</div></div>`).join("");
+      inner = `${head(p)}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}${vm}
+        <div class="post__body"${kind === "vm" ? " data-vm-text" : ""}>${p.body || ""}</div>${mediaBlock(p.media)}
         ${p.time ? `<div class="post__time">${esc(p.time)}</div>` : ""}${stats(p.stats)}
-        ${p.state ? `<div class="post__state${p.stateOk ? " post__state--ok" : ""}">${p.state}</div>` : ""}`;
+        ${replies ? `<div class="replies">${replies}</div>` : ""}${stateStrip(p)}`;
     }
     const stamp = p.stamp ? `<span class="stamp${p.stampGold ? " stamp--gold" : ""}">${esc(p.stamp)}</span>` : "";
+    const capL = isStory ? (p.capture || "Recovered from the story") : (kind === "review" ? "Reader review" : kind === "video" ? "Reader video" : "Reader reaction");
+    const capR = isStory ? (p.capTime || "") : "";
     return `<article class="find reveal" data-cat="${esc((p.cat || []).join(" "))}" id="find-${esc(p.id)}">
-      <p class="find__cap"><span>${esc(p.capture || "")}</span><span>${esc(p.capTime || "")}</span></p>
+      <p class="find__cap"><span>${esc(capL)}</span><span class="tagf">${capR ? esc(capR) + " · " : ""}<b>◈</b> fiction</span></p>
       <div class="${cls}">${stamp}${inner}</div>
       ${p.note ? `<span class="margin-note">${p.note}</span>` : ""}</article>`;
   }
@@ -380,6 +415,19 @@
     v.addEventListener("play", () => v.closest(".vf").classList.add("playing"));
     v.addEventListener("pause", () => v.closest(".vf").classList.remove("playing"));
   });
+  const playBtn = $("[data-play]");
+  if (playBtn) playBtn.addEventListener("click", () => { const v = $("#book-trailer"); if (v) { v.play().catch(() => {}); v.focus(); } });
+  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#read");
+  if (dock && heroEl && "IntersectionObserver" in window) {
+    let pastHero = false, atRead = false;
+    const upd = () => {
+      const on = pastHero && !atRead;
+      dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
+      const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
+    };
+    new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(heroEl);
+    if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .2}).observe(readEl);
+  }
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});
 
