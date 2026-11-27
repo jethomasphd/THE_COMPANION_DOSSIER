@@ -204,20 +204,30 @@
         ${cm ? `<div class="vid__cmts"><h4>${esc(s.r || "")} comments</h4>${cm}</div>` : ""}${stateStrip(p)}`;
     } else {
       const rating = p.stars != null ? `<div class="stars" aria-label="${p.stars} of 5 stars">${"★".repeat(p.stars)}<s>${"★".repeat(5 - p.stars)}</s></div>` : "";
-      const vm = kind === "vm" ? `${wave(48)}<button class="vm-play" type="button" data-vm>▶ Play transcript · ${esc(p.dur || "0:31")}</button>` : "";
+      let vm = "", body = p.body || "";
+      if (kind === "vm") {
+        // an audio post: caption, a real recording, and a transcript that follows it
+        const lines = body.split("\n").filter(Boolean);
+        const tl = p.tl || lines.map((_, i) => [i * 5, i * 5 + 5]);
+        const total = p.total || 30;
+        const mm = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}`;
+        let bars = "";
+        for (let i = 0; i < 52; i++) { const h = 18 + Math.abs(Math.sin(i * 1.9) * 55 + Math.cos(i * .7) * 22); bars += `<i style="height:${Math.min(100, h).toFixed(0)}%"></i>`; }
+        vm = `<div class="memo" data-memo data-src="${esc(p.audio || "")}" data-tl="${esc(JSON.stringify(tl))}" data-total="${total}">
+            <button class="memo__btn" type="button" data-memo-btn aria-label="Play the recording">▶</button>
+            <div class="memo__main"><div class="memo__bars" aria-hidden="true">${bars}</div><div class="memo__meta"><span data-memo-clock>0:00</span><span>${mm(total)}</span></div></div>
+          </div>
+          <div class="memo__tx"><span class="memo__lbl">Transcript</span>${lines.map((l, i) => `<p class="memo__ln${/^\[[^\]]*\]$/.test(l.trim()) ? " memo__cue" : ""}" data-ln="${i}">${l}</p>`).join("")}</div>`;
+        body = p.caption || "";
+      }
       const replies = (p.replies || []).map(r => `<div class="reply">${avatar(r.av || {c: "#3a3530", t: (r.name || "?")[0]})}<div><div class="reply__hd"><b>${esc(r.name)}</b> <span>${r.handle || ""}${r.time ? " · " + esc(r.time) : ""}</span></div><div class="reply__body">${r.body}</div>${r.l ? `<div class="reply__l">♡ ${esc(r.l)}</div>` : ""}</div></div>`).join("");
-      inner = `${head(p)}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}${vm}
-        <div class="post__body"${kind === "vm" ? " data-vm-text" : ""}>${p.body || ""}</div>${mediaBlock(p.media)}
+      inner = `${head(p)}${p.replyTo ? `<div class="post__reply">Replying to ${esc(p.replyTo)}</div>` : ""}${rating}
+        <div class="post__body">${body}</div>${vm}${mediaBlock(p.media)}
         ${p.time ? `<div class="post__time">${esc(p.time)}</div>` : ""}${stats(p.stats)}
         ${replies ? `<div class="replies">${replies}</div>` : ""}${stateStrip(p)}`;
     }
-    const stamp = p.stamp ? `<span class="stamp${p.stampGold ? " stamp--gold" : ""}">${esc(p.stamp)}</span>` : "";
-    const capL = isStory ? (p.capture || "Recovered from the story") : (kind === "review" ? "Reader review" : kind === "video" ? "Reader video" : "Reader reaction");
-    const capR = isStory ? (p.capTime || "") : "";
     return `<article class="find reveal" data-cat="${esc((p.cat || []).join(" "))}" id="find-${esc(p.id)}">
-      <p class="find__cap"><span>${esc(capL)}</span><span class="tagf">${capR ? esc(capR) + " · " : ""}<b>◈</b> fiction</span></p>
-      <div class="${cls}">${stamp}${inner}<span class="post__fic">◈ fiction · Using This Matter</span></div>
-      ${p.note ? `<span class="margin-note">${p.note}</span>` : ""}</article>`;
+      <div class="${cls}">${inner}</div></article>`;
   }
   window.renderRecoveredPost = renderPost;
 
@@ -253,21 +263,29 @@
     if (more) more.addEventListener("click", () => { showing += 9; paint(); emit("evidence_more"); });
     paint();
 
-    // voicemail "playback": the transcript surfaces word by word
+    // audio posts: a real recording; bars fill as it plays, the transcript line lights up in time
     wall.addEventListener("click", e => {
-      const btn = e.target.closest("[data-vm]"); if (!btn) return;
-      const post = btn.closest(".post"), text = $("[data-vm-text]", post), w = $(".wave", post);
-      if (btn.dataset.busy) return;
-      btn.dataset.busy = "1";
-      const full = text.dataset.full || text.innerHTML; text.dataset.full = full;
-      const words = full.split(/(\s+)/);
-      w.classList.add("on"); text.innerHTML = "";
-      let i = 0;
-      const step = () => {
-        if (i >= words.length || reduce) { text.innerHTML = full; w.classList.remove("on"); delete btn.dataset.busy; return; }
-        i += 2; text.innerHTML = words.slice(0, i).join(""); setTimeout(step, 90);
-      };
-      step();
+      const btn = e.target.closest("[data-memo-btn]"); if (!btn) return;
+      const memo = btn.closest("[data-memo]"), post = memo.closest(".post");
+      if (!memo._audio) {
+        const a = new Audio(memo.dataset.src); a.preload = "auto";
+        const tl = JSON.parse(memo.dataset.tl), total = Number(memo.dataset.total) || 30;
+        const bars = $$(".memo__bars i", memo), lines = $$(".memo__ln", post), clock = $("[data-memo-clock]", memo);
+        const mm = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+        const tick = () => {
+          const t = a.currentTime, frac = Math.min(1, t / total);
+          clock.textContent = mm(t);
+          bars.forEach((b, i) => b.classList.toggle("on", i / bars.length < frac));
+          lines.forEach((l, i) => { const r = tl[i] || [0, 0]; l.classList.toggle("now", t >= r[0] && t < r[1]); l.classList.toggle("past", t >= r[1]); });
+        };
+        a.addEventListener("timeupdate", tick);
+        a.addEventListener("play", () => { memo.classList.add("playing"); btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Pause the recording"); emit("memo_play"); });
+        a.addEventListener("pause", () => { memo.classList.remove("playing"); btn.textContent = "▶"; btn.setAttribute("aria-label", "Play the recording"); });
+        a.addEventListener("ended", () => { tick(); lines.forEach(l => l.classList.remove("now")); });
+        memo._audio = a;
+      }
+      const a = memo._audio;
+      if (a.paused) { if (a.ended) a.currentTime = 0; a.play().catch(() => {}); } else a.pause();
     });
   }
 
@@ -336,7 +354,7 @@
   if (dock && heroEl && "IntersectionObserver" in window) {
     let pastHero = false, atRead = false;
     const upd = () => {
-      const on = !atRead;
+      const on = pastHero && !atRead;
       dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
       const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
     };

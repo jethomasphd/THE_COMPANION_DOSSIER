@@ -37,7 +37,13 @@ SIZES = {"portrait": (1080, 1350), "story": (1080, 1920), "landscape": (1200, 67
 def campaign_ids() -> tuple[list[str], list[str]]:
     """Read which posts and quotes are flagged for the campaign in evidence.js."""
     src = (BOOK / "evidence.js").read_text(encoding="utf-8")
-    posts = re.findall(r'id:\s*"([\w-]+)"[^{}]*?campaign:\s*true', src, flags=re.S)
+    body = src.split("window.CAMPAIGN_QUOTES")[0]
+    marks = [(m.start(), m.group(1)) for m in re.finditer(r'"?\bid"?\s*:\s*"([\w-]+)"', body)]
+    posts = []
+    for k, (pos, pid) in enumerate(marks):
+        end = marks[k + 1][0] if k + 1 < len(marks) else len(body)
+        if re.search(r'"?campaign"?\s*:\s*true', body[pos:end]):
+            posts.append(pid)
     block = re.search(r"window\.CAMPAIGN_QUOTES\s*=\s*\{(.*?)\n\};", src, flags=re.S)
     quotes = re.findall(r'^\s{2}([\w-]+):\s*\{', block.group(1), flags=re.M) if block else []
     return posts, quotes

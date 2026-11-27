@@ -88,30 +88,6 @@
     "source": "book/media/original/trailer-90s.mp4, frame at 1:10.2, cropped to exclude burned-in titles, phone-style grade and grain"
   },
   {
-    "file": "video-thumb-doors.jpg",
-    "width": 1080,
-    "height": 1920,
-    "kind": "video-thumbnail",
-    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on a cream bedsheet, with the caption 'this book made me count the doors in my apartment'.",
-    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated bedsheet, rendered with Playwright, caption in Inter ExtraBold"
-  },
-  {
-    "file": "video-thumb-margins.jpg",
-    "width": 1080,
-    "height": 1920,
-    "kind": "video-thumbnail",
-    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on a dark wooden table, with the caption 'the notes in the margins are written by TWO people. one of them isn't supposed to exist'.",
-    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated wood surface, rendered with Playwright, caption in Inter ExtraBold"
-  },
-  {
-    "file": "video-thumb-free.jpg",
-    "width": 1080,
-    "height": 1920,
-    "kind": "video-thumbnail",
-    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on grey sheets, with the caption 'a horror novel that's free to read and i'm not okay'.",
-    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated bedsheet, rendered with Playwright, caption in Inter ExtraBold"
-  },
-  {
     "file": "avatar-01.jpg",
     "width": 200,
     "height": 200,
@@ -190,5 +166,12 @@
     "kind": "avatar",
     "description": "A glass prism on a paper-covered desk casting a small rainbow beside a ruler.",
     "source": "book/media/original/trailer-90s.mp4, crop of frame at 0:47"
+  },
+  {
+    "file": "memo-014.m4a",
+    "kind": "audio",
+    "duration": 36.0,
+    "description": "A 36-second phone recording at 2 a.m.: a steady garage hum, night air and crickets, a whisper too faint to make out, a passing car, footsteps on gravel, a screen door.",
+    "source": "synthesized procedurally (numpy); no voice model"
   }
 ]
