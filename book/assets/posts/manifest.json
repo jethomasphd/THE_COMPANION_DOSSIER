@@ -1,0 +1,194 @@
+[
+  {
+    "file": "photo-plate-ii.jpg",
+    "width": 1200,
+    "height": 900,
+    "kind": "page-photo",
+    "description": "Phone photo of the open paperback on a cream bedsheet: Plate II, 'The Atrium', a table of door counts (county plan 11, first walk 12, jamb-by-jamb recount 11), facing the opening page of 'The Caliche Lot'.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 18-19 (printed pp. 2-3) rendered at 200 dpi, composited onto a procedurally generated bedsheet texture"
+  },
+  {
+    "file": "photo-plate-vii.jpg",
+    "width": 1200,
+    "height": 900,
+    "kind": "page-photo",
+    "description": "Phone photo of the open book on a dark wooden desk: Plate VII, 'Withheld', a solid dark panel captioned 'At the keeper's direction', on printed page 108, with page 109 alongside.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 124-125 (printed pp. 108-109) rendered at 200 dpi, composited onto a procedurally generated walnut texture"
+  },
+  {
+    "file": "photo-plate-xi.jpg",
+    "width": 1200,
+    "height": 900,
+    "kind": "page-photo",
+    "description": "Phone photo of the open book on a painted nightstand under lamplight: Plate XI, 'A House with Chambers', a county floor plan of the house with numbered doors, facing 'The Key', a list of rooms and doors.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 12-13 (printed pp. xii-xiii) rendered at 200 dpi, composited onto a procedurally generated painted-wood surface"
+  },
+  {
+    "file": "photo-how-to-read.jpg",
+    "width": 1200,
+    "height": 900,
+    "kind": "page-photo",
+    "description": "Phone photo of the open book on grey bedsheets showing the page 'How to Read This Deposit' (p. xv), facing a page of verse from 1 Samuel 28.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 14-15 (printed pp. xiv-xv) rendered at 200 dpi, composited onto a procedurally generated bedsheet texture"
+  },
+  {
+    "file": "photo-margin-p14.jpg",
+    "width": 1080,
+    "height": 1080,
+    "kind": "page-photo",
+    "description": "Close-up phone photo of printed page 14: body text, then an indented typewriter-style note headed '[second hand, ember ink:]' saying the county plan shows no garage conversion and the cold room was framed in later.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 30-31 (printed pp. 14-15) rendered at 300 dpi, composited onto a procedurally generated walnut texture (the note prints in grey in this interior)"
+  },
+  {
+    "file": "photo-frontispiece.jpg",
+    "width": 1200,
+    "height": 900,
+    "kind": "page-photo",
+    "description": "Phone photo of the open book on a charcoal duvet: the Plate I frontispiece, 'The Threshold', setting out the invocation and the departure, facing the title page of Using This Matter.",
+    "source": "book/USING_THIS_MATTER_KDP_interior_304pp.pdf, PDF pages 2-3 (printed pp. ii-iii) rendered at 200 dpi, composited onto a procedurally generated duvet texture"
+  },
+  {
+    "file": "frame-house.jpg",
+    "width": 1200,
+    "height": 750,
+    "kind": "trailer-still",
+    "description": "Dusk photo of a long single-storey brick ranch house behind a big live oak, a thin line of light showing at the front door.",
+    "source": "book/media/original/trailer-90s.mp4, frame at 0:02.2, cropped to exclude burned-in titles, bottom caption band brightness corrected, phone-style grade and grain"
+  },
+  {
+    "file": "frame-hall.jpg",
+    "width": 1200,
+    "height": 750,
+    "kind": "trailer-still",
+    "description": "A dark interior hallway with a door standing ajar at the far end, warm light along its edge.",
+    "source": "book/media/original/trailer-90s.mp4, frame at 0:19.6, cropped to exclude burned-in titles and captions, phone-style grade and grain"
+  },
+  {
+    "file": "frame-terminal.jpg",
+    "width": 1200,
+    "height": 750,
+    "kind": "trailer-still",
+    "description": "An old beige CRT computer and keyboard on a desk in the dark, a mouse pointer on the blank screen and loose papers beside the keyboard.",
+    "source": "book/media/original/trailer-90s.mp4, frame at 0:59.0, title text over the black background removed by interpolation, cropped, phone-style grade and grain"
+  },
+  {
+    "file": "frame-papers.jpg",
+    "width": 1200,
+    "height": 750,
+    "kind": "trailer-still",
+    "description": "Close view of an open archival file folder of typed pages beside a steel ruler on a wooden desk, in warm lamplight.",
+    "source": "book/media/original/trailer-90s.mp4, frame at 0:18.0, cropped to exclude hands, labels and captions, phone-style grade and grain"
+  },
+  {
+    "file": "frame-chair.jpg",
+    "width": 1200,
+    "height": 750,
+    "kind": "trailer-still",
+    "description": "An empty wooden chair behind a table holding a closed folder, in a bare plaster room lit by a doorway of daylight.",
+    "source": "book/media/original/trailer-90s.mp4, frame at 1:10.2, cropped to exclude burned-in titles, phone-style grade and grain"
+  },
+  {
+    "file": "video-thumb-doors.jpg",
+    "width": 1080,
+    "height": 1920,
+    "kind": "video-thumbnail",
+    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on a cream bedsheet, with the caption 'this book made me count the doors in my apartment'.",
+    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated bedsheet, rendered with Playwright, caption in Inter ExtraBold"
+  },
+  {
+    "file": "video-thumb-margins.jpg",
+    "width": 1080,
+    "height": 1920,
+    "kind": "video-thumbnail",
+    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on a dark wooden table, with the caption 'the notes in the margins are written by TWO people. one of them isn't supposed to exist'.",
+    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated wood surface, rendered with Playwright, caption in Inter ExtraBold"
+  },
+  {
+    "file": "video-thumb-free.jpg",
+    "width": 1080,
+    "height": 1920,
+    "kind": "video-thumbnail",
+    "description": "Vertical video thumbnail: a paperback of Using This Matter lying on grey sheets, with the caption 'a horror novel that's free to read and i'm not okay'.",
+    "source": "book/assets/cover.jpg on a CSS 3D book over a procedurally generated bedsheet, rendered with Playwright, caption in Inter ExtraBold"
+  },
+  {
+    "file": "avatar-01.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Daylight from a doorway falling into a bare plaster room, the top rail of a wooden chair in the foreground.",
+    "source": "book/media/original/trailer-90s.mp4, crop of frame at 1:06"
+  },
+  {
+    "file": "avatar-02.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Close crop of a vintage beige computer keyboard in the dark.",
+    "source": "book/media/original/trailer-90s.mp4, crop of frame at 0:59"
+  },
+  {
+    "file": "avatar-03.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "A dark hallway with a door ajar at the far end, edged with light.",
+    "source": "book/media/original/trailer-90s.mp4, crop of frame at 0:19.6"
+  },
+  {
+    "file": "avatar-04.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Out-of-focus warm string-light bokeh on a dark background.",
+    "source": "Generated procedurally (Python/numpy); no source photo"
+  },
+  {
+    "file": "avatar-05.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Out-of-focus green houseplant leaves backlit by a window.",
+    "source": "Generated procedurally (Python/numpy); no source photo"
+  },
+  {
+    "file": "avatar-06.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "A sunset sky fading from violet to orange over the silhouettes of a rooftop and trees, with a power line across it.",
+    "source": "Generated procedurally (Python/numpy); no source photo"
+  },
+  {
+    "file": "avatar-07.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Close crop of crumpled, stacked archival papers and old photographs.",
+    "source": "book/assets/cover.jpg, crop of the paper stack at the base of the cover art (no face)"
+  },
+  {
+    "file": "avatar-08.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "A night sky of faint stars above a dark tree line.",
+    "source": "Generated procedurally (Python/numpy); no source photo"
+  },
+  {
+    "file": "avatar-09.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "Close-up of a mottled brown coffee-crema texture.",
+    "source": "Generated procedurally (Python/numpy); no source photo"
+  },
+  {
+    "file": "avatar-10.jpg",
+    "width": 200,
+    "height": 200,
+    "kind": "avatar",
+    "description": "A glass prism on a paper-covered desk casting a small rainbow beside a ruler.",
+    "source": "book/media/original/trailer-90s.mp4, crop of frame at 0:47"
+  }
+]
