@@ -1,86 +1,101 @@
-USING THIS MATTER / BOOK LANDING PAGE
+USING THIS MATTER / BOOK SITE: "THE DEPOSIT"
 
 Destination: https://the-companion-dossier.com/book
 
-The page is a static addition to the existing repository and Cloudflare Pages
-site. It does not require a framework, package install, server function, or new
-hosting service. The existing build.sh can continue unchanged.
+The page is a static part of the existing repository and Cloudflare Pages
+site. It needs no framework, package install, server function, or new hosting
+service, and the existing build.sh continues unchanged. Nothing outside book/
+was modified.
 
-ACTIVATE AMAZON AT PUBLICATION
+THE CONCEPT
+The site is part of the fiction. It presents the novel the way the novel
+presents itself: as a recovered archive. Visitors meet in-world artifacts
+before they meet the pitch: an estate terminal, recovered posts, an interactive
+county plan, transcripts that "play", a withheld plate, and a hidden door.
+Every in-world element is framed honestly. The recovered posts carry an
+Editor's disclosure, the FAQ says plainly what is fiction, and no review, price,
+date, or stock state is invented.
+
+ACTIVATE AMAZON AT PUBLICATION (unchanged contract)
 1. Open book/config.js.
 2. Paste the final, published Amazon book-page URL between the quotes in
    amazonUrl: ""
 3. Commit and publish through the site's existing deployment process.
-4. Open /book on a phone and desktop, follow both Amazon buttons, and verify
-   that they reach the correct edition and marketplace.
+4. Open /book on a phone and desktop. Check that the hero's "Hold it in print"
+   button and the access tier's Amazon button both reach the right edition.
 
-Use an HTTPS Amazon marketplace URL or an amzn.to link. A blank or unsupported
-URL keeps the honest prepublication state: print coming soon, free digital
-reading available. A valid URL reveals the edition's Amazon button, updates
-the hero button, and removes the coming-soon message. No price, ISBN, release
-date, preorder, or stock status is invented. The complete digital route remains.
+A valid HTTPS Amazon marketplace or amzn.to URL reveals the Amazon button,
+retargets every [data-print-cta], hides the "forthcoming" notice, and updates
+the availability line. Blank or unsupported keeps the honest prepublication
+state: print forthcoming, digital free.
 
-WHAT IS INCLUDED
-index.html: copy, metadata, book schema, transcript, page structure.
-book.css: responsive layout, self-hosted estate fonts, reduced-motion support.
-book.js: Amazon switch and optional engagement events.
-config.js: the one publication setting.
-assets/: selected cover, real interior pages, and the existing estate fonts
-         with their license texts.
-media/lay/: story-first trailer and two short promos for general audiences.
-media/original/: the original atmospheric trailer and short promos, preserved.
-media/index.html: a clearly labeled comparison library with all six films,
-                  transcripts, captions, and download links.
+PAGE STRUCTURE (book/index.html)
+  Ticker · sticky header with "deposit open" status
+  Hero        — headline, CTA pair, turnable 3D hardcover (front, spine, back,
+                page edges) on rotating rite-text rings; four readouts
+                (11 · 12 · 03:11:47 · VII)
+  01 Record   — the commission + a typed "estate://status" terminal
+  02 Chambers — the five Records as chamber cards (setup-level copy only)
+  03 Footage  — story trailer + two 20 s promos in viewfinder frames;
+                link to all six reels
+  04 Testimony— recovered posts wall (filters: house / voices / deposit /
+                deleted; "load more from the mirror"), plus a long "deleted"
+                thread with ember marginalia
+  05 Count    — interactive Plate XI: tap the eleven doors, door 12 appears,
+                recount jamb by jamb. The first count stays legible. Room
+                tooltips and a key link each room to its real estate chamber.
+  06 Transcripts — three typed playbacks quoted from the book (Founding
+                Session; the Franklin Fidelity Check; Item 44, interruption
+                redacted)
+  07 Bound matter — real interior pages + Plate VII "withheld" card
+  08 Access   — three tiers: free digital deposit / the bound volume
+                (Amazon switch) / the real estate (Dossier + SSRN)
+  Quote band · author + FAQ · footer with the hidden "Twelve?" link
 
-Both website trailers are 90 seconds and under 20 MiB each. They use H.264/AAC,
-fast-start metadata, no autoplay, and preload="none". Captions are composed into
-the film; the VTT track is optional so duplicate captions are not on by default.
-The written transcript is available directly below the player.
+FILES
+  index.html        page, metadata, Book schema, transcripts
+  book.css          design system (also used by media/ and twelve/)
+  book.js           Amazon switch, 3D volume, terminal, count, posts,
+                    transmissions, reveals, local engagement events
+  evidence.js       THE RECOVERED POSTS: one data file shared by the website
+                    and the campaign card renderer. Edit posts here.
+  config.js         the one publication setting
+  twelve/           hidden page: "Door 12", an in-world terminal (help, count,
+                    inventory, summon, release, plate vii, who, leave)
+  media/index.html  film library, restyled as "recovered footage"
+  campaign/         campaign playbook, paste-ready copy, 48 rendered social
+                    cards, card template, and render_cards.py
+  assets/           cover (full + 800 px), book-back.jpg and book-spine.jpg
+                    (cut from the hardcover wrap; KDP barcode box masked for
+                    screen use only), og-card.jpg (link preview), real
+                    interior pages, the estate fonts with licenses
 
-The book page features the story-first trailer and both new 20-second promos.
-The original collection is linked directly below them. This is presentation
-order only; the original films remain available in media/original/ and their
-original full-resolution local masters have not been overwritten.
+SPOILER POLICY
+Copy stays inside the premise: the commission, the house, the count, the
+rite, the founding session, the Prism's design, the existence of the
+interruption (its sentences are redacted on the site), the withheld plate,
+and the existence of the second hand. Record III–V copy uses only the Editor's
+Note and the plate captions. The posts never reference the deposit's contents
+beyond Record II. See campaign/README.md §3 for the rules of the fiction.
 
-The repo homepage and public root page now orient visitors arriving through
-the World's Fair talk, search, protocol, original Dossier, or novel. The estate
-map follows manifesto/theory, protocol and working products, scholarship,
-correspondence, the Republic Portfolio model, and fiction last. The original
-slow typewriter opening comes first; the official World's Fair talk, public
-product source, and SSRN record anchor the welcome that follows. The supplied SSRN citation is installed in
-the root README, Mask_vs_Mirror README, public root page, and book research link.
+MEASUREMENT
+The page dispatches local DOM CustomEvents named book:engagement, with
+name, placement and incoming utm_* values. Names: free_read, amazon_click,
+trailer_play, volume_turn, count_twelve, count_recount, evidence_filter,
+evidence_more, thread_open, transmission_play. Nothing is transmitted and no
+cookies or storage are used. Connect analytics separately if wanted.
 
-OPTIONAL MEASUREMENT
-The page dispatches local DOM CustomEvents named book:engagement with details:
-name (amazon_click, free_read, trailer_play), placement where applicable, and
-the incoming utm_source, utm_medium, utm_campaign, utm_content values.
-This package does not collect or transmit events, set cookies, or use storage.
-Connect an analytics service separately if aggregate campaign measurement is
-wanted. A landing-page Amazon click is an outbound click, not a verified sale.
+ACCESSIBILITY AND MOTION
+The 3D book is keyboard-turnable (arrows, Enter). Doors are focusable buttons
+with labels, and the count log is a live region. Transcripts fall back to
+static text. prefers-reduced-motion disables grain, ticker, rings, glitch,
+typing and reveals. Layout checked at 390 and 1440 px with no horizontal
+overflow. The videos keep preload="none" and their caption tracks.
 
 PREVIEW
 From the repository root: python -m http.server 8765 --bind 127.0.0.1
-Then open http://127.0.0.1:8765/book/ and stop the server when finished.
-
-VALIDATION
-JavaScript syntax and Amazon state-switch checks passed. Local asset links
-and anchors resolve. Browser layout checked at 320, 390, 768 and 1280 pixels
-without horizontal overflow; print CTA, trailer playback (90 seconds), transcript,
-and interior images checked. Video masters were decoded and frame-counted.
-The narrated audio has technical QA; pronunciation and musical taste should
-receive a listening review before ad spend. No campaign has been posted and
-production has not been published by this change. Cloudflare Pages builds a
-review preview automatically for the draft pull request.
-
-SOURCE AUTHORITY
-The current 304-page USING_THIS_MATTER_KDP_interior_304pp.pdf and book/README.md
-control edition facts. Selected cover A, Archive Sculpture, comes from the
-repository's revision_v6 publication archive. Old outline names and superseded
-endings are excluded. The fictional experimental events are not represented as
-real empirical results. The print-support message follows the author's brief.
+Then open http://127.0.0.1:8765/book/ (and /book/twelve/, /book/media/).
 
 Fonts: unchanged copies of the estate's Cormorant Garamond, Crimson Pro, and
-IBM Plex Mono, distributed with their SIL Open Font License texts. Sources:
-https://github.com/google/fonts/tree/main/ofl/cormorantgaramond
-https://github.com/google/fonts/tree/main/ofl/crimsonpro
-https://github.com/google/fonts/tree/main/ofl/ibmplexmono
+IBM Plex Mono, distributed with their SIL Open Font License texts. No external
+font, script, or analytics requests are made.
