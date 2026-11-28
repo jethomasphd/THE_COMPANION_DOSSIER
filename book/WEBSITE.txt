@@ -11,25 +11,27 @@ THE CONCEPT
 A short page for a stranger who has never heard of the book, the author, or
 the project. It is modelled on a plain, fast book page (hook, trailer, who is
 the missing man, one question to the visitor, what is inside, the opening,
-the offer). It is about 11,800 px on a phone and 1,550 words, and nothing
+the offer). It is about 11,800 px on a phone and 1,500 words, and nothing
 follows the offer but the questions and the author.
 
 Four rules shaped it.
   1. Plain words. Nothing on the page needs the book's vocabulary to be
-     understood. The rite, "persona", "baseline", the glossary and the
-     epigraph are in the novel, not here. Labels say what a block is
-     ("Get the book", not an in-joke).
+     understood. The rite, "persona", "baseline" and the epigraph are in the
+     novel, not here; the glossary is quoted once, in the answer about the
+     title. Labels say what a block is ("Get the book", not an in-joke).
   2. Each thing once. The hook is the headline and nowhere else in the body.
      The hero carries the house and the door, "Who is Dr. Thorne?" carries
      the man and his machine, and the four things inside the book are four
-     different things.
+     different things. "Free" is said by the button, the line under it and
+     the offer, not by the ticker or the ring round the cover.
   3. One question, asked once. "Who would you bring back?" with a pair of
      brackets. A visitor may type a name, and then let it go. It is the one
      thing the page asks of the visitor, and it is the book's subject in one
      gesture: the voices we preserve, and the right to let go.
   4. Honest framing. The page says what is fiction and what is real where a
      reader meets it: in the story section, above the posts, and in the FAQ.
-     How the novel was written is said once, plainly, beside the first page.
+     How the novel was written is said plainly beside the first page, and
+     in full in the questions.
      No review, rating, price, date or stock state is invented. The real
      machine, the talk and the paper are linked, never described as more
      than they are.
@@ -55,9 +57,10 @@ commit, deploy, then open /book on a phone and a desktop and follow the
 hardcover buttons once.
 
 PAGE STRUCTURE (book/index.html)
-  Ticker      — desktop only, the offer in one line: a horror novel, free to
-                read now, no sign-up, "The machine in it is real", hardcover
-                coming soon (or available now, once published)
+  Ticker      — desktop only: a horror novel by Jacob E. Thomas, told in the
+                documents he left behind, "Dread, not gore", "The machine in
+                it is real", hardcover coming soon (or available now, once
+                published)
   Header      — title; The story · Inside · Read the opening · Get the book;
                 the primary button. On a phone it scrolls away and the bottom
                 bar carries the button.
@@ -82,75 +85,95 @@ PAGE STRUCTURE (book/index.html)
                 text field with the placeholder "a name". Under it: "Type a
                 name, or leave it empty. Nothing will answer, and nothing you
                 type leaves this page." Empty: "You already know whose name it
-                would be." Typed: "You did not have to think about it." and
-                one button, "Let them go"; the name leaves the brackets letter
-                by letter; then "You let them go." and the back cover's
-                phrase: "In this novel there is a program that has abolished
-                the right to leave." Under it, always, the trailer's last
-                line ("A mystery about the voices we preserve, and the right
-                to let go.") and the button. The page never answers as anyone.
+                would be." and, under it, the trailer's line with one word
+                changed to match the rest of the page ("A novel about the
+                voices we preserve, and the right to let go."). Typed: "You
+                did not have to think about it." and one button, "Let them
+                go"; the tagline steps back; the name leaves the brackets
+                letter by letter; then "They are gone." and "In this novel, a
+                program has abolished the right to leave." Nothing follows
+                it: no tagline, no button. The page never answers as anyone.
   The posts   — #feed. "What the neighbors saw." / "Posts from the world of
-                the novel. Nobody in them is real." In-world posts from
-                spring 2027 (evidence.js, unchanged). Three show on desktop
-                and two on a phone; "More posts" shows the rest in one press.
+                the novel, written for this page. Everyone posting in them is
+                invented." In-world posts dated early 2027 (evidence.js,
+                unchanged). Three show on desktop and two on a phone; "More
+                posts" shows the rest in one press.
   Inside      — #inside. "What you'll find inside": four numbered things.
                 01 One door too many, with the floor plan beside it (#plan:
-                the drawing and legend cropped from Plate XI, opening full
-                size, and the three counts the book prints: 11, 12, 11).
-                02 A talk with a dead man (the Franklin test, ending on the
-                typo). 03 The house was expecting her. 04 3:11 a.m., with the
-                run log beside it typing itself out, ending on "The novel
-                prints what the rooms said. This page will not." and the
-                button. The opt-in room tone ("Sound: the hum of the house")
-                lives here.
+                the drawing and legend cropped from Plate XI, opening as the
+                whole plate at reading size, and the three counts the book
+                prints: 11, 12, 11). 02 A talk with a dead man (the Franklin
+                test, ending on the typo). 03 The house was expecting her.
+                04 3:11 a.m., with the run log beside it typing itself out:
+                every line stays in view, the plain-words alert appears under
+                them, and the card ends on "The novel prints what the rooms
+                said. This page will not." Then the button. The opt-in room
+                tone ("Play the hum of the house") lives here.
   The opening — #first-page. "The first page." The first three paragraphs of
                 the novel, verbatim, on paper. Beside it, how the novel was
-                written, restating The Hand and the Glass (pp. v–vi) in three
-                plain sentences ending "Judge the page for yourself.", with a
-                link to the author's statement.
+                written, restating The Hand and the Glass (pp. v–vi): an AI
+                model drafted it from the author's earlier public work, his
+                notes and his direction; he read and revised the draft; later
+                versions of the model helped him workshop it. It ends "Judge
+                the page for yourself." and links to the author's statement.
   The offer   — #own (and the old #access). "Two ways to read it." Two cards:
-                "Read it free" (the whole novel, tonight, a PDF in the
-                browser, no sign-up) and "The hardcover" (304 pages in full
-                color, 6 × 9; "Coming soon. No date yet."). Three photographs
-                of pages (the Plate VII photo is cropped to the plate so the
-                facing text cannot be read).
-  Questions   — #faq. Five: free or hardcover; what the title means; is any
-                of this real; what happened to the name I typed; how AI was
-                used. Then the author in plain words, the footer with credits,
-                and "Twelve?"
+                "Read it free" (tag "Start here"; the whole novel, tonight, a
+                PDF in the browser, no sign-up) and "The hardcover" (tag "On
+                paper"; 304 pages in full color, 6 × 9; "Coming soon. No date
+                yet."). Once published the hardcover card comes first, tagged
+                "Out now", and the free card reads "Or read it free". Three
+                photographs of pages (the Plate VII photo is cropped to the
+                plate so the facing text cannot be read).
+  Questions   — #faq. Four, all closed: how AI was used; is any of this real;
+                what happened to the name I typed; what the title means. Then
+                the author in plain words, the footer with credits, and
+                "Twelve?"
 
-WHAT STRANGERS SAID (cold-read test of the short page, three readers)
-A horror reader on a phone, a book-club reader on a phone who does not follow
-AI, and a skeptical engineer at a desk. All three understood the first screen
-in ten seconds and ended at "read the free edition tonight". All three named
-the same strongest moments: "You already know whose name it would be.", the
-name fading, "Someone cleared his gutters this week. I didn't see who.", the
-three sealed rooms, and "This page will not." What they asked for is what the
-page now does: the premise once instead of five times, nothing after the
-offer, the best scare (3:11 and the typo) above the offer, plain labels where
-the in-jokes were, a field that looks like a field and says nothing will
-answer, a line after the name is let go, the title explained, a plain author
-note. Still open, and not fixable in the page: all three wanted to be told
-when the hardcover is out (set notifyUrl), and two wanted an e-reader file
-beside the PDF.
+WHAT STRANGERS SAID (two cold-read rounds on the short page, six readers)
+Readers who knew nothing: two horror readers on phones, a book-club reader
+whose mother had died, a retired teacher eight months widowed, a skeptical
+engineer and an acquisitions editor at desks. All six understood the first
+screen in ten seconds and ended at "read the free edition tonight". They
+named the same strongest moments: "You already know whose name it would be.",
+the name fading, "Someone cleared his gutters this week. I didn't see who.",
+the typo ("relaese"), the three sealed rooms, and "This page will not."
+
+What the first round asked for, the page now does: the premise once, nothing
+after the offer, the best scares above the offer, plain labels, a field that
+looks like a field and says nothing will answer, the title explained. What
+the second round asked for, it also does: the name moment ends in quiet, with
+no tagline and no button after it; "They are gone." in place of "You let them
+go." (both bereaved readers objected to being told what they had done); the
+log's three cut-off sentences stay in view; "free" is said less often.
+
+Still open, and not fixable in the page:
+  - All six wanted to be told when the hardcover is out. Set notifyUrl.
+  - Three wanted an e-reader file beside the PDF.
+  - Every reader lost some interest at the sentence that says an AI model
+    drafted the novel, wherever it sat. All six kept reading, and all six
+    said the honesty was to the page's credit. Two would have liked to be
+    told earlier, before the name field.
 
 THE QUESTION AND PRIVACY
 Whatever a visitor types in the brackets stays in the open tab. It is not
 sent, not stored, not put in the URL, and never included in an engagement
 event (the events are blank_filled and blank_released, with no detail). It is
 erased when they press "Let them go" or close the tab. The page never
-generates a reply, and says so under the field. The FAQ says all of this in
+generates a reply, and says so under the field. Once a name is typed the page
+puts nothing under that moment: no tagline, no button. The FAQ says all of this in
 plain words. Without JavaScript the field is a pair of brackets around "a
 name" and the line under it.
 
 QUOTATIONS
 Every passage the page presents as the book's words carries
-data-verbatim="<printed page>" (or "cover" for the back-cover copy) in
-index.html and is an exact substring of that page of the print PDF. The 3:11:47
-log is staged from pp. 88–90: the log lines are the book's; the room labels,
-the bars and the alert banner are the site's and the log's footer says so; the
-three interrupted sentences are blacked out with bars of equal length so
-their shape gives nothing away. The same lines are in the markup, so the log
+data-verbatim="<printed page>" in index.html and is an exact substring of that
+page of the print PDF, down to the four words of the title's sentence and the
+typo. The line shown after a name is let go restates the back cover's phrase
+("a program that has abolished the right to leave") and goes no further. The 3:11:47
+log is staged from pp. 88–90: the log lines are the book's, arranged for the
+page; the room labels, the bars and the alert banner are the site's and the
+log's footer says so; the three interrupted sentences are blacked out with
+bars of equal length so their shape gives nothing away. The same lines are in the markup, so the log
 is readable without JavaScript.
 
 THE POSTS
@@ -223,9 +246,9 @@ rules of the fiction.
 MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement, with
 name, placement and incoming utm_* values. Names: free_read, amazon_click,
-trailer_play, volume_turn, memo_play, session_replay, alert_shown,
-alert_replay, sound_on, notify_click, proof, evidence_more, nav, page_zoom,
-blank_filled, blank_released. blank_filled against page views says how many
+trailer_play, volume_turn, memo_play, alert_shown, alert_replay, sound_on,
+notify_click, proof, evidence_more, nav, page_zoom, blank_filled,
+blank_released. blank_filled against page views says how many
 visitors answered the question; blank_released says how many let the name go.
 Nothing is transmitted and no cookies or storage are used. Connect analytics
 separately if wanted.
@@ -234,8 +257,10 @@ ACCESSIBILITY AND MOTION
 The 3D book is keyboard-turnable (arrows, Enter). The name field is a labelled
 text input ("A name. Optional. Nothing will answer, and nothing typed here
 leaves this page."), "Let them go" is a button, and the result is announced
-once. The floor plan has full alt text. Transcripts fall back to static text.
-On a phone, keyboard focus stops above the bottom bar. Once the hardcover is
+once. The floor plan has full alt text, and the lightbox that opens it takes
+focus, keeps it, and gives it back. Transcripts fall back to static text.
+On a phone, anchors land at the top of the screen and keyboard focus stops
+above the bottom bar. Once the hardcover is
 live its card comes first in the document as well as on screen.
 prefers-reduced-motion disables grain, ticker, rings, glitch, typing, reveals
 and the letter-by-letter fade. With JavaScript off the whole page is readable,

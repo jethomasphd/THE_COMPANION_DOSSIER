@@ -366,55 +366,26 @@
   /* ── lightbox for pages from the book (stay on the page) ── */
   const lb = $("[data-lb]");
   if (lb) {
-    const img = $("img", lb), close = () => { lb.hidden = true; document.body.style.overflow = ""; };
+    const img = $("img", lb), shut = $(".lb__x", lb);
+    let opener = null;
+    const close = () => { lb.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus({preventScroll: true}); opener = null; };
     document.addEventListener("click", e => {
       const a = e.target.closest("a[data-lightbox]");
-      if (a) { e.preventDefault(); img.src = a.getAttribute("href"); img.alt = (a.querySelector("img") || {}).alt || ""; lb.hidden = false; document.body.style.overflow = "hidden"; emit("page_zoom"); return; }
+      if (a) {
+        e.preventDefault(); opener = a;
+        img.src = a.getAttribute("href"); img.alt = (a.querySelector("img") || {}).alt || "";
+        lb.classList.toggle("lb--tall", a.dataset.lightbox === "tall");   // a whole printed page: reading size, scrolls
+        lb.hidden = false; lb.scrollTop = 0; lb.scrollLeft = 0; document.body.style.overflow = "hidden";
+        if (shut) shut.focus({preventScroll: true});
+        emit("page_zoom"); return;
+      }
       if (!lb.hidden && (e.target === lb || e.target.closest(".lb__x"))) close();
     });
-    document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) close(); });
-  }
-
-  /* ── the Franklin session: a chat with a machine, replies assembling at reading speed ── */
-  const session = $("[data-session]");
-  if (session) {
-    const log = $("[data-session-log]", session), script = JSON.parse($("script", session).textContent);
-    let run = 0;
-    const bubble = (who, text) => {
-      const el = document.createElement("div");
-      el.className = "sx sx--" + who;
-      if (who !== "sys") el.innerHTML = `<span class="sx__who">${who === "you" ? "M. CALE" : "FRANKLIN"}</span>`;
-      const body = document.createElement("span"); body.className = "sx__t"; body.textContent = text; el.appendChild(body);
-      log.appendChild(el); log.scrollTop = log.scrollHeight; return body;
-    };
-    const play = async () => {
-      const me = ++run; log.innerHTML = "";
-      for (const m of script) {
-        if (me !== run) return;
-        if (reduce) { bubble(m.who, m.t); continue; }
-        if (m.who === "you") {
-          const typing = bubble("you", ""); typing.parentNode.classList.add("sx--typing");
-          await sleep(300 + m.t.length * 10); if (me !== run) return;
-          typing.parentNode.classList.remove("sx--typing"); typing.textContent = m.t;
-          await sleep(700);
-        } else if (m.who === "them") {
-          await sleep(550);
-          const body = bubble("them", ""); const cur = document.createElement("i"); cur.className = "sx__cur";
-          for (let i = 0; i <= m.t.length; i++) {               // "the cursor laying the words down left to right"
-            if (me !== run) return;
-            body.textContent = m.t.slice(0, i); body.appendChild(cur); log.scrollTop = log.scrollHeight;
-            await sleep(m.t[i - 1] === "." || m.t[i - 1] === "," ? 60 : 8);
-          }
-          cur.remove(); await sleep(650);
-        } else {
-          const el = bubble("sys", m.t).parentNode;
-          if (m.bar) { el.classList.add("sx--bar"); el.style.setProperty("--d", m.bar + "ms"); await sleep(m.bar); }
-          await sleep(600);
-        }
-      }
-    };
-    whenSeen($(".sess", session) || session, play, "0px 0px -20% 0px", reduce ? 0 : 450);
-    $("[data-session-replay]", session).addEventListener("click", () => { play(); emit("session_replay"); });
+    document.addEventListener("keydown", e => {
+      if (lb.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "Tab") { e.preventDefault(); if (shut) shut.focus({preventScroll: true}); }   // its one control
+    });
   }
 
   /* ── the interruption: the run log, then the alert that went off in an empty room ── */

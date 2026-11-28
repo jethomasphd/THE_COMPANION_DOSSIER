@@ -1021,7 +1021,7 @@ details.memo__tx[open]{padding-bottom:6px}
 @media (min-width:641px){.estate{white-space:nowrap}}
 @media (max-width:640px){
   .hdr{position:static}                 /* on a phone the bottom bar carries the button, so the header scrolls away */
-  html{scroll-padding-bottom:92px}      /* keyboard focus stops above the bottom bar */
+  html{scroll-padding-top:12px;scroll-padding-bottom:92px}   /* anchors land at the top; keyboard focus stops above the bottom bar */
 }
 /* controls that only the script can work are not shown without it */
 html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay,html:not(.js) .stage__hint,html:not(.js) .vf__play{display:none}
@@ -1079,9 +1079,9 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .socket{display:inline-flex;align-items:baseline;white-space:nowrap}
 .socket__field{position:relative;display:inline-flex;align-items:baseline}
 .socket__br{color:var(--ember);font-style:normal;text-shadow:0 0 26px var(--ember-glow);transition:color .3s,text-shadow .3s}
-.socket__in{font:inherit;font-style:italic;letter-spacing:inherit;line-height:1.4;color:var(--ember-hot);background:none;border:0;border-radius:0;padding:0 .2em;margin:-.15em 0;text-align:center;caret-color:var(--ember);width:3.3em;min-width:3.3em;max-width:min(8em,calc(100vw - 32px - 1.4em));text-shadow:0 0 28px var(--ember-glow);-webkit-appearance:none;appearance:none;box-shadow:0 .05em 0 -.015em transparent;transition:box-shadow .3s}
-.socket__in::placeholder{color:rgba(232,149,63,.36);opacity:1;text-shadow:none;transition:color .3s}
-.socket__in:focus::placeholder{color:rgba(232,149,63,.16)}
+.socket__in{font:inherit;font-style:italic;letter-spacing:inherit;line-height:1.4;color:var(--ember-hot);background:none;border:0;border-radius:0;padding:0 .2em;margin:-.15em 0;text-align:center;caret-color:var(--ember);width:3.3em;min-width:3.3em;max-width:min(8em,calc(100vw - 32px - 1.4em));text-shadow:0 0 28px var(--ember-glow);-webkit-appearance:none;appearance:none;box-shadow:0 .05em 0 -.02em rgba(232,149,63,.4);cursor:text;transition:box-shadow .3s}
+.socket__in::placeholder{color:rgba(232,149,63,.58);opacity:1;text-shadow:none;transition:color .3s}
+.socket__in:focus::placeholder{color:rgba(232,149,63,.4)}
 .socket__in:focus,.socket__in:focus-visible{outline:2px solid transparent;outline-offset:.04em;box-shadow:0 .06em 0 -.01em var(--ember)}
 .socket__in[readonly]{cursor:default}
 .socket:focus-within .socket__br{color:var(--ember-hot);text-shadow:0 0 34px rgba(255,183,102,.6)}
@@ -1091,7 +1091,7 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .socket__in,.socket__mirror{font-kerning:none;font-variant-ligatures:none}   /* the input and its overlay must set the name identically, letter for letter */
 .socket__field.is-leaving .socket__mirror{visibility:visible;left:0;right:0;text-align:center;overflow-x:clip;overflow-y:visible}
 .socket__field.is-leaving .socket__in{color:transparent;text-shadow:none;caret-color:transparent;box-shadow:none}
-.ask__hint{font-family:var(--mono);font-size:12.5px;line-height:1.7;letter-spacing:.03em;color:var(--ink-2);margin:16px auto 0;max-width:46ch}
+.ask__hint{font-size:clamp(16px,1.4vw,18px);line-height:1.5;color:var(--ink-2);margin:18px auto 0;max-width:40ch}
 .ask__state{margin-top:clamp(18px,2.4vw,30px);min-height:7.4em;transition:opacity .5s}
 .ask__box.is-going .ask__state{opacity:0;pointer-events:none}
 .ask__state p{font-family:var(--display);font-size:clamp(25px,2.8vw,38px);line-height:1.15;color:var(--ink)}
@@ -1100,6 +1100,7 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .ask__btn{margin-top:18px;min-width:220px;border-color:var(--red);color:#ff9b82;background:rgba(207,74,51,.07)}
 .ask__btn:hover{background:var(--red);color:#170805;box-shadow:0 12px 44px -10px rgba(207,74,51,.6)}
 .ask__tag{font-family:var(--display);font-style:italic;font-size:clamp(22px,2.4vw,32px);line-height:1.2;color:var(--ember);text-shadow:0 0 24px var(--ember-glow);max-width:760px;margin:0 auto}
+.ask__box:not([data-state="empty"])~.ask__tag{opacity:0!important;visibility:hidden;transition:opacity .6s,visibility 0s .6s}
 
 /* ── 5 · the neighbors ── */
 .ev-more .btn{min-height:40px;padding:9px 18px;font-size:11px}
@@ -1117,10 +1118,17 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .exh .typo{font-family:var(--mono);font-size:.86em;color:var(--ember-hot);white-space:nowrap}
 .exh p.exh__hold{font-style:italic;color:var(--ink);font-size:19px}
 .exh .anom__count{margin-top:0}
-.exh .anom__count span{font-size:clamp(34px,3vw,44px)}
+.exh .anom__count span{font-size:clamp(34px,3vw,44px);display:flex;flex-direction:column;justify-content:flex-end}
 .exh .alog{margin-top:0}
+.alog__stack{display:grid}
+.alog__stack>*{grid-area:1/1;min-width:0}
+.alog__sizer{visibility:hidden}
+.exh .alog__body{height:auto;min-height:0;overflow:visible;padding-bottom:112px}
+.exh .alog__push{top:auto;bottom:12px}
 .exh .snd{margin-top:14px}
 .exh .snd .snd__lbl{display:inline}
+.snd .when-on,.snd.on .when-off{display:none}
+.snd.on .when-on{display:inline}
 /* the plan: the drawing and its legend, cropped from the printed plate; the whole plate opens full size */
 .plan9 a{display:block;aspect-ratio:900/860;overflow:hidden;border:1px solid #2a251d;background:#f1ecdf;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);transition:transform .3s}
 .plan9 a:hover{transform:translateY(-4px)}
@@ -1170,3 +1178,13 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 @media (forced-colors:active){
   .socket__in:focus-visible{outline:2px solid Highlight}
 }
+
+/* ── the lightbox: a whole printed page opens at reading size and scrolls ── */
+.lb--tall{overflow:auto;place-items:start}
+.lb--tall img{margin-inline:auto;max-height:none;max-width:980px;width:max(100%,760px)}
+.lb--tall .lb__x{position:fixed;background:rgba(5,5,4,.8)}
+/* a focus ring that the clipped video frame does not swallow */
+.memo__vplay:focus-visible{outline-offset:-6px}
+.ftr__src{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:12px}
+/* on a phone the header scrolls away, so these two anchors need no room above them (must follow the rules they adjust) */
+@media (max-width:640px){.exh,.prose8 p.prose8__real{scroll-margin-top:0}}
