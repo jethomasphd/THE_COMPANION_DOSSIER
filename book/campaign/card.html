@@ -19,6 +19,23 @@
   .card .atmos{position:absolute;inset:0!important;animation:none!important}
   .portrait{width:1080px;height:1350px;padding:70px 80px}
   .story{width:1080px;height:1920px;padding:230px 80px 270px}
+  .feedvid{width:1080px;height:1350px;padding:70px 80px 60px;justify-content:flex-start;align-items:stretch;background:radial-gradient(ellipse at 50% 35%,rgba(232,149,63,.10),transparent 60%),#070605}
+  .feedvid > *{width:100%}
+  .fv__top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:26px;letter-spacing:.14em;color:#8e8a82;text-transform:uppercase}
+  .fv__rec{display:inline-flex;align-items:center;gap:12px;color:#e9e6e0}
+  .fv__rec i{width:18px;height:18px;border-radius:50%;background:#cf4a33;box-shadow:0 0 16px rgba(207,74,51,.8)}
+  .fv__title{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:650;font-size:52px;color:#ede7dc;margin-top:56px}
+  .fv__wave{height:300px;margin-top:70px}
+  .fv__caps{flex:1}
+  .fv__bot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:22px;letter-spacing:.14em;color:#5f5b55;text-transform:uppercase;border-top:1px solid #2a2722;padding-top:22px}
+  .reel{justify-content:flex-start;align-items:stretch}
+  .reel > *{width:100%}
+  .reel__post{display:flex;align-items:center;gap:26px;margin-top:70px}
+  .reel__name{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:650;font-size:40px;color:#ede7dc}
+  .reel__handle{font-family:system-ui,-apple-system,sans-serif;font-size:28px;color:#8e8a82;margin-top:4px}
+  .reel__cap{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:46px;line-height:1.3;color:#ede7dc;margin-top:34px}
+  .reel__wave{height:240px;margin-top:70px;border-radius:120px;background:#14120f;border:1px solid #2a2722}
+  .reel__caps{flex:1}
   .landscape{width:1200px;height:675px;padding:44px 60px;display:grid;grid-template-columns:1fr 1.15fr;gap:46px;align-items:center}
   .og{width:1200px;height:630px;padding:56px 64px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
   .c-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:20px;letter-spacing:.22em;color:var(--ember);text-transform:uppercase}
@@ -64,11 +81,29 @@
   const fmt = q.get("format") || "portrait";
   const root = document.getElementById("root");
   const atmos = '<div class="atmos atmos--grain"></div><div class="atmos atmos--scan"></div>';
-  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>${disc ? '<div class="c-disc">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div>' : ""}`;
+  const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>`;
   const QUOTES = window.CAMPAIGN_QUOTES || {};
   let html = "";
-  if (q.get("og")) {
-    html = `<div class="card og">${atmos}<div><p class="micro">A HORROR NOVEL BY JACOB E. THOMAS · FREE TO READ</p><h1>He built an AI to talk to the dead.<br><em>Then he disappeared.</em></h1><p>Eleven doors on the county plan. Twelve in the house. A found-document horror novel.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
+  if (q.get("feedvid")) {
+    // in-world recorder screen for the feed post: no book branding
+    html = `<div class="card feedvid">${atmos}
+      <div class="fv__top"><span class="fv__rec"><i></i>REC</span><span>Mar 30 · 2:04 AM</span></div>
+      <div class="fv__title">New Recording 14</div>
+      <div class="reel__wave fv__wave"></div>
+      <div class="reel__caps fv__caps"></div>
+      <div class="fv__bot"><span>Live transcription</span><span>◉</span></div></div>`;
+  } else if (q.get("reel")) {
+    // background frame for a vertical audio video (waveform + captions are added by ffmpeg)
+    const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("reel"));
+    const av = p && p.av && p.av.img ? `<span class="av av--img" style="background-image:url('../${p.av.img}');width:96px;height:96px;flex-basis:96px"></span>` : "";
+    html = `<div class="card story reel">${atmos}<div class="c-top"><span>Spring 2027</span><span>Using This Matter</span></div>
+      <div class="reel__post">${av}<div><div class="reel__name">${p ? p.name : ""}</div><div class="reel__handle">${p ? p.handle : ""} · ${p ? p.time : ""}</div></div></div>
+      <p class="reel__cap">${p ? (p.caption || "") : ""}</p>
+      <div class="reel__wave"></div>
+      <div class="reel__caps"></div>
+      ${foot(false)}</div>`;
+  } else if (q.get("og")) {
+    html = `<div class="card og">${atmos}<div><p class="micro">A NOVEL BY JACOB E. THOMAS · FREE TO READ</p><h1>He built an AI that talks to the dead.<br><em>Then he disappeared.</em></h1><p>The technology in this novel is real. Presented at AI Engineer World’s Fair. Published on SSRN.</p></div><div><img class="cover" src="../assets/cover-800.jpg" alt=""></div></div>`;
   } else if (q.get("post")) {
     const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("post"));
     // long posts are cut at a paragraph break with "Show more", as feeds do, so text stays legible on a phone
@@ -80,14 +115,14 @@
       for (const para of paras) { if (out.length && n + textLen(para) > LIMIT) break; out.push(para); n += textLen(para); }
       return out.join("\n\n") + ' <span style="color:#8e8a82">… Show more</span>';
     };
-    const pc = p ? Object.assign({}, p, {body: trunc(p.body)}) : null;
+    const pc = p ? Object.assign({}, p, {body: trunc(p.body)}, p.video ? {video: null} : {}) : null;   // static cards show the audio layout; the reel is the video
     // post image paths are relative to /book/; this template lives one level down
     const post = pc ? window.renderRecoveredPost(pc).replace(/(["'(])assets\//g, "$1../assets/") : "<p>missing post</p>";
-    const label = p && (p.cat || []).includes("story") ? "Recovered from the story" : "Reader reaction";
+    const label = "Spring 2027";
     if (fmt === "landscape") {
-      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>${label}</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div><div class="c-disc" style="font-size:12px">Fiction · part of the novel’s world · names, handles &amp; timestamps invented</div></div><div>${post}</div></div>`;
+      html = `<div class="card landscape">${atmos}<div><div class="c-top"><span>${label}</span></div><div class="c-head" style="font-size:50px;margin:26px 0 30px">${p && p.hook ? p.hook : "Before the deposit was public, people talked."}</div><div class="c-title" style="font-size:34px">Using This Matter<small style="font-size:19px">the-companion-dossier.com/book</small></div></div><div>${post}</div></div>`;
     } else {
-      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>${label}</span><span>A horror novel</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
+      html = `<div class="card ${fmt}">${atmos}<div class="c-top"><span>${label}</span><span>Using This Matter</span></div><div class="c-mid">${p && p.hook ? `<div class="c-head">${p.hook}</div>` : ""}${post}</div>${foot()}</div>`;
     }
   } else if (q.get("quote")) {
     const k = QUOTES[q.get("quote")] || {q: "Believe nothing.<br><em>Count everything.</em>", s: "From the novel"};

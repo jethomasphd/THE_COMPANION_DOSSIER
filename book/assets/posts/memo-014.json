@@ -1,0 +1,91 @@
+{
+ "total": 41.55,
+ "lines": [
+  [
+   0.0,
+   2.9
+  ],
+  [
+   2.9,
+   16.44
+  ],
+  [
+   16.44,
+   18.94
+  ],
+  [
+   18.94,
+   26.22
+  ],
+  [
+   26.22,
+   31.02
+  ],
+  [
+   31.02,
+   37.15
+  ]
+ ],
+ "phrases": [
+  {
+   "text": "…okay.",
+   "start": 2.9,
+   "end": 3.71
+  },
+  {
+   "text": "you hear that?",
+   "start": 4.66,
+   "end": 5.6
+  },
+  {
+   "text": "that’s his garage.",
+   "start": 7.05,
+   "end": 8.42
+  },
+  {
+   "text": "the guy who built the AI.",
+   "start": 8.84,
+   "end": 10.69
+  },
+  {
+   "text": "it’s two in the morning",
+   "start": 11.64,
+   "end": 12.94
+  },
+  {
+   "text": "and it’s the exact same note it was at noon.",
+   "start": 13.16,
+   "end": 16.24
+  },
+  {
+   "text": "every window’s blacked out,",
+   "start": 18.94,
+   "end": 20.71
+  },
+  {
+   "text": "but there’s a line of orange around that one.",
+   "start": 21.01,
+   "end": 23.2
+  },
+  {
+   "text": "like there’s a lamp on in there.",
+   "start": 23.95,
+   "end": 26.02
+  },
+  {
+   "text": "nobody’s seen him since —",
+   "start": 31.02,
+   "end": 32.46
+  },
+  {
+   "text": "…okay.",
+   "start": 33.56,
+   "end": 34.2
+  },
+  {
+   "text": "I’m going back inside.",
+   "start": 34.82,
+   "end": 36.4
+  }
+ ]
+}

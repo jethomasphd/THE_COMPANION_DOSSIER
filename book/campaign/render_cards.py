@@ -15,6 +15,7 @@ Outputs (JPEG, quality 90):
     book/campaign/cards/post-<id>-landscape.jpg  1200 x 675   (X / LinkedIn / Bluesky)
     book/campaign/cards/quote-<key>-<format>.jpg
     book/assets/og-card.jpg                      1200 x 630   (link preview for /book)
+    book/campaign/audio/reel-bg.jpg              1080 x 1920  (background for the voice-memo reel)
 """
 from __future__ import annotations
 
@@ -37,7 +38,13 @@ SIZES = {"portrait": (1080, 1350), "story": (1080, 1920), "landscape": (1200, 67
 def campaign_ids() -> tuple[list[str], list[str]]:
     """Read which posts and quotes are flagged for the campaign in evidence.js."""
     src = (BOOK / "evidence.js").read_text(encoding="utf-8")
-    posts = re.findall(r'id:\s*"([\w-]+)"[^{}]*?campaign:\s*true', src, flags=re.S)
+    body = src.split("window.CAMPAIGN_QUOTES")[0]
+    marks = [(m.start(), m.group(1)) for m in re.finditer(r'"?\bid"?\s*:\s*"([\w-]+)"', body)]
+    posts = []
+    for k, (pos, pid) in enumerate(marks):
+        end = marks[k + 1][0] if k + 1 < len(marks) else len(body)
+        if re.search(r'"?campaign"?\s*:\s*true', body[pos:end]):
+            posts.append(pid)
     block = re.search(r"window\.CAMPAIGN_QUOTES\s*=\s*\{(.*?)\n\};", src, flags=re.S)
     quotes = re.findall(r'^\s{2}([\w-]+):\s*\{', block.group(1), flags=re.M) if block else []
     return posts, quotes
@@ -66,6 +73,7 @@ def main() -> None:
         for fmt, size in SIZES.items():
             jobs.append((f"{base}?quote={key}&format={fmt}", OUT / f"quote-{key}-{fmt}.jpg", size))
     jobs.append((f"{base}?og=1", BOOK / "assets" / "og-card.jpg", (1200, 630)))
+    jobs.append((f"{base}?reel=vm-hum", BOOK / "campaign" / "audio" / "reel-bg.jpg", (1080, 1920)))
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
@@ -75,7 +83,8 @@ def main() -> None:
             page.goto(url)
             page.wait_for_selector("body[data-ready='1']", timeout=15000)
             page.wait_for_timeout(250)
-            page.locator(".card").screenshot(path=str(dest), type="jpeg", quality=90)
+            kind = "png" if dest.suffix == ".png" else "jpeg"
+            page.locator(".card").screenshot(path=str(dest), type=kind, **({"quality": 90} if kind == "jpeg" else {}))
             print(f"  -> {dest.relative_to(REPO)}")
         browser.close()
     httpd.shutdown()

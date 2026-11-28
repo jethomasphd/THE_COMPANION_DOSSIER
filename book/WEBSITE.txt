@@ -16,48 +16,71 @@ Every in-world element is framed honestly. The recovered posts carry an
 Editor's disclosure, the FAQ says plainly what is fiction, and no review, price,
 date, or stock state is invented.
 
-ACTIVATE AMAZON AT PUBLICATION (unchanged contract)
-1. Open book/config.js.
-2. Paste the final, published Amazon book-page URL between the quotes in
-   amazonUrl: ""
-3. Commit and publish through the site's existing deployment process.
-4. Open /book on a phone and desktop. Check that the hero's "Hold it in print"
-   button and the access tier's Amazon button both reach the right edition.
+THE CONVERSION: THE HARDCOVER (book/config.js)
+The page is built to end at Door 12, the hardcover. One setting decides what
+every primary button does.
+  amazonUrl blank (now)  — primary buttons read "Read it free" and open the
+                           free PDF; Door 12 says the hardcover is coming soon
+                           and offers the free edition tonight.
+  amazonUrl set          — every primary button (header, hero, author, phone
+                           dock, Door 12) becomes "Get the hardcover" and opens
+                           Amazon; the free PDF stays as a quiet text link; the
+                           availability lines and ticker update.
+  notifyUrl (optional)   — before publication only: Door 12 adds "Tell me when
+                           it ships" (any https link: a mailing-list signup or
+                           a preorder page).
+To publish: paste the Amazon URL (https://www.amazon.… or https://amzn.to/…),
+commit, deploy, then open /book on a phone and a desktop and follow the
+hardcover buttons once.
 
-A valid HTTPS Amazon marketplace or amzn.to URL reveals the Amazon button,
-retargets every [data-print-cta], hides the "forthcoming" notice, and updates
-the availability line. Blank or unsupported keeps the honest prepublication
-state: print forthcoming, digital free.
+PAGE STRUCTURE (book/index.html): shock → awe → understanding → action
+  Header      — title, Sound (opt-in room tone: the house's hum under the whole
+                page, ducked while anything plays), primary button
+  Hero        — "A novel" chip, title, hook ("He built an AI that talks to the
+                dead. Then he disappeared."), premise, primary + trailer, turnable
+                3D book, proof badges ("The technology in this novel is real":
+                World's Fair talk, SSRN paper, open-source repository)
+  The feed    — "The posts started in March." In-world posts from spring 2027,
+                unlabeled. The neighbors' group chat types itself out when it
+                scrolls into view. Marisol's voice memo is a video: a recorder
+                screen with the live waveform and transcription, with a
+                phrase-timed transcript folded underneath.
+  Trailer     — ONE film: the 90-second story trailer
+  Inside      — "Believe nothing. Count everything." The premise; the Franklin
+                test as the chat it is in the book (her typed lines, his replies
+                assembling at reading speed, the forty seconds, "relaese the
+                persona"); the 3:11:47 interruption as the run log ending in the
+                alert banner (and, with Sound on, the "three ascending notes");
+                the withheld seventh plate ("Request the plate →")
+  Vertigo     — "Dr. Thorne is fiction. His machine is not." The real repository
+                boots; three novel-vs-world pairs (dispatch 001, the invocation,
+                the talk + the paper), two more folded under "Two more records"
+  First page  — the opening page verbatim; "Turn the page" leads on
+  The plan    — Plate XI as printed: "Count them." (pages open in a lightbox)
+  Door 12     — "You counted eleven. This is the twelfth." The hardcover offer:
+                "The free edition is the record. The hardcover is the deposit",
+                pages from inside, the buy button (see THE CONVERSION); on
+                phones the headline and button come before the cover image
+  FAQ (4) + author, footer with credits and "Twelve?"
 
-PAGE STRUCTURE (book/index.html), built for cold traffic from social ads
-A visitor should know within five seconds that this is a horror novel,
-what it is about, and that the whole book is free to read.
-  Header      — title + "Read free" (on phones: title only, plus a sticky
-                bottom bar with cover, title and "Read free")
-  Hero        — "A horror novel" chip, title, hook ("He built an AI to talk to
-                the dead. Then he disappeared."), one-paragraph premise,
-                format line ("All 304 pages are free to read online"),
-                Read it free + Watch the trailer, key facts, turnable 3D book
-  Comps strip — For readers of House of Leaves, S., Annihilation, Black
-                Mirror, The Blair Witch Project
-  Story       — the story in 30 seconds: the scientist, the house, the
-                archivist (+ case-file terminal on desktop)
-  First page  — the opening page verbatim, page thumbnails, "Turn the page"
-  Trailer     — ONE film only: the 90-second story trailer, custom play
-                button, AI-imagery note, transcript
-  Four things that shouldn't be there — the extra door, the Franklin test
-                (typed transcript), the 3:11:47 interruption (sentences
-                blacked out), the withheld seventh illustration
-  The plan    — Plate XI, the floor plan, as a still image straight from
-                the book (tap to enlarge)
-  Posts       — "None of these people exist." Fictional reader reviews,
-                reader videos and threads, blended with recovered in-story
-                posts from 2027; filters; visible fiction notice; a
-                "◈ fiction" tag inside every card
-  Read        — one offer: the full novel free (PDF served by this site),
-                hardcover as a one-line "coming soon" that switches to an
-                Amazon link via config.js
-  FAQ + author, footer with the hidden "Twelve?" link
+THE POSTS
+In-world only. No fictional reader reviews, ratings or testimonials, on the
+site or in the campaign; social proof is the real talk, paper and repository.
+The voice memo (assets/posts/memo-014.m4a; in the feed as memo-014.mp4, a
+720x900 recorder-screen video built from the same audio) is machine speech placed in a
+recorded-at-night scene. Speech: Piper neural TTS, running locally, voice
+en_US-libritts_r-medium, speaker 298 of 904 (LibriTTS-R audiobook readers,
+CC BY 4.0, openslr.org/141). Each phrase is synthesized separately with its own
+pacing, made hushed (breath blended in, softer top end, a slight tremor) and
+mixed with the garage hum, crickets that stop when the car passes, wind on the
+mic, footsteps and a screen door, through an emulated phone mic and automatic
+gain control. Intelligibility is measured, not assumed: every phrase is
+re-recorded until three Whisper recognizers (base/small/medium) hear exactly the
+scripted words, then the best of several full takes is chosen by scoring a
+decode of the final AAC file. Rebuild: python book/campaign/audio/make_memo_014.py
+--punch --takes 5, then node book/campaign/audio/apply_memo_014.js, then
+--feed book/campaign/audio/feed-bg.jpg (feed video), --reel
+book/campaign/audio/reel-bg.jpg (social reel) and --ambient (room tone).
 
 THE FREE BOOK LINK
 Every "Read it free" button opens USING_THIS_MATTER_KDP_interior_304pp.pdf
@@ -72,16 +95,17 @@ FILES
   book.css          design system (also used by media/ and twelve/)
   book.js           Amazon switch, 3D volume, terminal, count, posts,
                     transmissions, reveals, local engagement events
-  evidence.js       THE POSTS: fictional reader reactions + recovered in-story
-                    posts; one data file shared by the website and the
-                    campaign card renderer. Edit posts here.
-  assets/posts/     phone-photo page shots, trailer stills, reader-video
-                    thumbnails and faceless avatars used by the posts
+  evidence.js       THE POSTS: in-world posts from spring 2027; one data file
+                    shared by the website feed and the campaign cards.
+  assets/posts/     trailer stills, page photos and faceless avatars used by
+                    the posts; memo-014.m4a/.mp4/-poster.jpg/.json (the voice
+                    memo, its feed video and phrase timings); ambient-hum.m4a
+                    (the Sound toggle's room tone)
   config.js         the one publication setting
   twelve/           hidden page: "Door 12", an in-world terminal (help, count,
                     inventory, summon, release, plate vii, who, leave)
   media/index.html  redirect to the single trailer on the book page
-  campaign/         campaign playbook, paste-ready copy, 57 rendered social
+  campaign/         campaign playbook, paste-ready copy, 45 rendered social
                     cards, card template, and render_cards.py
   assets/           cover (full + 800 px), book-back.jpg and book-spine.jpg
                     (cut from the hardcover wrap; KDP barcode box masked for
@@ -94,13 +118,12 @@ rite, the Franklin test, the Prism's design, the existence of the
 interruption (its sentences are blacked out on the site), the withheld
 illustration, and the existence of the unsigned second annotator. Nothing
 reveals Condition IV, the freezer, the sealed record, who hired Miranda, or the
-ending. Every post and review is fiction and labeled as such; see
-campaign/README.md §3.
+ending. See campaign/README.md §3 for the rules of the fiction.
 
 MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement, with
 name, placement and incoming utm_* values. Names: free_read, amazon_click,
-trailer_play, trailer_jump, volume_turn, evidence_filter,
+trailer_play, trailer_jump, volume_turn, memo_play, session_replay, alert_shown, sound_on, notify_click, proof, evidence_more,
 evidence_more, thread_open, transmission_play. Nothing is transmitted and no
 cookies or storage are used. Connect analytics separately if wanted.
 

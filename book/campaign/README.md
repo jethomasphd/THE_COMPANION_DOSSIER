@@ -19,7 +19,9 @@ A missing AI scientist. An estate of transcripts and sealed rooms. An archivist 
 |---|---|
 | `README.md` | This playbook: rules, phases, calendar, measurement. |
 | `social-copy.md` | Captions, threads, short-video scripts, ad variants, and email copy, ready to paste. |
-| `cards/` | 57 rendered social cards (JPEG): 13 posts (fictional readers and recovered in-story posts) and 6 quote cards, each in **portrait** 1080×1350 (feed), **story** 1080×1920 (Stories, Reels, TikTok covers; it keeps the top 230 px and bottom 270 px clear for app UI), and **landscape** 1200×675 (X, Bluesky, LinkedIn). `manifest.json` lists them. |
+| `cards/` | 45 rendered social cards (JPEG): 9 in-world posts and 6 quote cards, each in **portrait** 1080×1350 (feed), **story** 1080×1920 (Stories, Reels, TikTok covers; it keeps the top 230 px and bottom 270 px clear for app UI), and **landscape** 1200×675 (X, Bluesky, LinkedIn). `manifest.json` lists them. |
+| `cards/memo-014-reel.mp4` | The voice memo as a finished vertical video (1080×1920, ~42 s): the post, a live waveform, and captions timed to each spoken phrase. Post it as-is to Reels, TikTok, and Shorts. |
+| `audio/` | `make_memo_014.py` builds the voice memo (Piper speech, hushed delivery, night scene, phone chain), verifies every word with Whisper, and builds the reel; `apply_memo_014.js` copies its phrase timings into the site. |
 | `card.html` | The card template. It draws from `../evidence.js`, the same file the website uses. |
 | `render_cards.py` | Re-renders every card, plus the site's link-preview image `../assets/og-card.jpg`. It auto-scales each post to fill the frame without overflowing. |
 
@@ -32,24 +34,29 @@ python book/campaign/render_cards.py                    # from the repository ro
 
 ## 3. The rules of the fiction (non-negotiable)
 
-The novel's opening statement is called *The Hand and the Glass*, and it ends: *"The glass is shown. The hand remains answerable."* The campaign follows the same rule. The fiction can be as immersive as it likes, but it cannot leave anyone deceived.
+The story begins on the page. The site and the campaign are immersive: in-world posts appear as posts, with no labels and no fourth-wall breaks. The real project does the rest. The talk, the paper, and the protocol are real, and they're linked openly so the line between the novel and the world blurs on purpose. A few rules keep it clean.
 
-1. **Fictional reviews stay labeled and stay home.** The site blends fictional reader reactions with in-world "recovered" posts. That's allowed because every one is labeled: the notice above the wall, a `◈ fiction` tag on each card, the FAQ, and the footer on every social card. Fictional reviews must never appear on retailer or review platforms, never be passed off as real readers, never become an aggregate rating ("4.8 stars"), and never run in paid ads as testimonials. Ads use in-world canon posts and quote cards instead. When real reviews arrive, quote them by name, with permission, labeled as real.
-2. **Every in-world fragment carries its frame.** On a card, that's the footer line *"An exhibit of the fiction · names, handles & timestamps invented."* In a caption, it's the title plus "a novel" or #fiction. On the site, it's the "Part of the fiction" notice above the wall and the `◈ fiction` tag on every card.
-3. **Invented people only.** Never write as a real person, a real company, a real agency, or a real platform. Don't use platform logos. Before you use a handle on a live platform, check that it doesn't belong to a real account. If it does, change it.
-4. **The dates do the work.** Many posts are dated 2027–2028, after "now". The deposit is described as made public in the summer of 2027, so the campaign is visibly arriving from a record that hasn't happened yet. That's the book's own device: its copyright page is dated earlier than the events it records.
-5. **No invented commerce.** No prices, discounts, countdowns, scarcity, preorder states, or release dates unless they are true. The print button turns on only when `book/config.js` holds the real Amazon URL.
-6. **Spoiler wall.** Campaign material stays inside the premise: the commission, the house, the count, the voices, the interruption *as an event*, the withheld plate, and the existence of the second hand. Never reveal what the interruption says, what the sealed record contains, who the second hand is, or how anything ends.
-7. **Protect the real people.** The book "displaces" its people ("an offset of a real figure, never the figure"). The campaign does too: it never links an in-world character to a real person.
+1. **The world can post; readers can't be invented.** Characters, neighbors and strangers inside the story can post anything the story supports. Never write fictional reviews, ratings, testimonials or "reader reactions" to the book itself, anywhere: not on the site, not in ads, not on retailer or review platforms. Social proof must be real: the World's Fair talk, the SSRN paper, the open repository, and, when they come, real reviews quoted with permission.
+2. **The real is linked, never faked.** Every real-world claim (the talk, the paper, the repository, the dispatches, the sealed file, the Watchtower) links to the actual thing. Don't invent press, awards, sales figures or endorsements.
+3. **Invented people only.** In-world posts never use a real person, company, agency or platform name or logo. Before posting a handle on a live platform, check that it doesn't belong to a real account; if it does, change it.
+4. **The dates do the work.** In-world posts are dated spring 2027, after "now". That's the book's own device: its copyright page is dated earlier than the events it records.
+5. **No invented commerce.** No prices, discounts, countdowns, scarcity, preorder states or release dates unless true. The print button turns on only when `book/config.js` holds the real Amazon URL.
+6. **Spoiler wall.** Stay inside the premise: the house, the count, the voices, the interruption *as an event*, the withheld illustration, and the existence of the second hand. Never reveal what the interruption says, what the sealed record contains, who the second hand is, or how anything ends.
+7. **Protect the real people.** The novel displaces its people ("an offset of a real figure, never the figure"). Never link an in-world character to a real private person. Your own identity as the author is the one real person the campaign leans on.
+8. **The answer is always one click away.** The site's FAQ and the book's front matter say plainly which parts are the novel. Campaign captions name the book. If someone asks directly whether Dr. Thorne is real, answer honestly: he's the novel's; the machine is real.
+
+## 3a. Where it all leads
+
+Every channel points to one place: **/book**, which ends at **Door 12, the hardcover**. Before publication the site's primary action is the free edition, and Door 12 says the hardcover is coming soon. Add `notifyUrl` in `book/config.js` to collect interest. On publication day, put the Amazon URL in `config.js`: every primary button flips to "Get the hardcover", and the captions' last line becomes the print line in `social-copy.md` §7. Link to `/book#own` when a post is about the physical book.
 
 ## 4. Phases
 
 | Phase | Window | Name | Goal | Primary assets |
 |---|---|---|---|---|
-| 0 | Days 1–10 | **The Mirror** | Curiosity. Reader reactions and recovered in-story posts, one a day. | `cards/post-*` (portrait + story). |
+| 0 | Days 1–10 | **The Feed** | Shock. In-world posts from spring 2027, one a day, no explanation. | `cards/post-*` (portrait + story); the voice memo as a Reel. |
 | 1 | Days 8–14 | **The Plan** | Interaction. Post the book's floor plan and ask people to count the doors and comment their number. | The Plate XI page as printed (`book/assets/the-plan.png`); quote card `doors`; the site's `#plan` section. |
 | 2 | Days 12–18 | **The Footage** | Comprehension. Explain the premise in 20 and 90 seconds. | the 90-second story trailer (the only film on the site, `#trailer`); the 20-second promos are social-only. |
-| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#read`; email. |
+| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#own` (Door 12); email. |
 | 4 | Ongoing | **The Twelfth Door** | Retention. Reward the people who dug in. | `/book/twelve/`, the browser-console note, reply-only hints. |
 
 **Never post the Door 12 URL in a feed.** It's found three ways: the faint "Twelve?" link in the site footer, the browser console, and replies to people who comment "12" on count posts. ("Exterior doors are excluded from the interior count. Try the footer.")
@@ -60,29 +67,27 @@ Times are suggestions. Post the portrait card to the feed, and the story card to
 
 | Day | Feed (IG / Threads / Bluesky / X) | Short video (Reels / TikTok / Shorts) | Notes |
 |---|---|---|---|
-| 1 | Post card: `rv-premise` (R, reader review) | — | The premise in a reader's words. Caption only. |
-| 2 | Post card: `nb-house` (S, neighborhood board) | — | |
-| 3 | Post card: `vm-hum` (S, voice memo) | — | Pin comment: link to the site. |
-| 4 | Post card: `tt-doors` (R, reader video) | Promo: *The Missing Scientist* (20s) | Full title reveal in the caption. |
-| 5 | Post card: `fr-vessel` (S, forum thread) | — | |
-| 6 | Post card: `mb-franklin` (R) | — | |
-| 7 | Carousel: 4 post cards | — | Caption: "None of these people exist." |
-| 8 | **Post the floor plan** (the Plate XI page, `book/assets/the-plan.png`) | Film a finger counting the doors on the printed page | Ask: "How many did you get?" |
-| 9 | Post card: `rv-margins` (R) + quote card `believe` | Duet/stitch prompt: "Count with me" | Reply "12" commenters with the hint. |
-| 10 | Post card: `mb-dispatch` (S) | — | |
-| 11 | Post card: `tt-free` (R, reader video) | — | |
+| 1 | Post card: `nb-house` | — | No explanation. |
+| 2 | Post card: `vm-hum` | The voice memo Reel (`cards/memo-014-reel.mp4`) | "Sound on." |
+| 3 | Post card: `fr-vessel` | — | |
+| 4 | Quote card: `doors` | Promo: *The Missing Scientist* (20s) | First full title reveal. |
+| 5 | Post card: `mb-lecture` | — | |
+| 6 | Post card: `mb-dispatch` | — | |
+| 7 | **The turn:** "Dr. Thorne is fiction. His machine is not." Carousel: the World's Fair talk, the SSRN paper, the repo | — | Awe. Link the real things. |
+| 8 | **Post the floor plan** (Plate XI, `book/assets/the-plan.png`) | Fingertip counting doors on the printed page | Ask: "How many did you get?" |
+| 9 | Post card: `fr-prism` | — | |
+| 10 | Post card: `mb-ladder` | — | |
+| 11 | Clip from the World's Fair talk (with permission of the event) | — | "The doubt at the center of the novel is a real research question." |
 | 12 | Trailer (90s) on YouTube + feed cut | Promo: *The Archive Is Reading Her* | The 90s trailer is the only film on the site. |
-| 13 | Post card: `mb-311` (R) | — | |
-| 14 | Quote card: `fiction` | — | Bridge to the real Companion Dossier. |
-| 15 | Long thread (text, §4 of social-copy.md) | — | Post as a thread with card images. |
-| 16 | **Read it free:** full-novel push | Author to camera: "The book is free. Here's why print exists." | Optional; author's choice. |
-| 17 | Post card: `mb-plate-vii` (R) | — | |
-| 18 | Post card: `mb-closet` (R) + quote card `keep` | — | "Count yours." |
+| 13 | Post card: `mb-bigger` | — | |
+| 14 | Quote card: `fiction` | — | "The narrative is fiction. The estate is not." |
+| 15 | Long thread (text, §4 of social-copy.md) | — | |
+| 16 | **Read it free:** full-novel push | Author to camera: "I built the machine in this book. Here's what happened when I wrote about it." | Understanding → action. |
+| 17 | "Run the protocol yourself": link to The Harness | — | The real product. |
+| 18 | Quote card: `keep` | — | |
 | 19 | Behind the glass: how the book was made (*The Hand and the Glass*) | — | Honest process post; links pp. v–vi. |
-| 20 | Post card: `mb-twelve` (S) | — | Reply-only Door 12 hints begin. |
+| 20 | Post card: `mb-twelve` | — | Reply-only Door 12 hints begin. |
 | 21 | Recap carousel + clear CTA | Trailer cut-down | "Read it tonight. It's free." |
-
-R = fictional reader reaction (own organic channels only, never paid). S = recovered in-story post.
 
 When Amazon goes live, change the end of every caption to the print line in `social-copy.md` § 7.
 
@@ -91,7 +96,7 @@ When Amazon goes live, change the end of every caption to the print line in `soc
 `https://the-companion-dossier.com/book?utm_source={platform}&utm_medium={organic_social|paid_social|email|referral}&utm_campaign=twelfth_door&utm_content={asset-id}`
 
 - `utm_content` = the card file stem, e.g. `post-nb-house-portrait`, `quote-doors-story`, `lay_trailer_90s`.
-- Use the `#story`, `#trailer`, `#plan`, `#readers`, `#first-page` or `#read` anchors when a post is about that section.
+- Use the `#feed`, `#trailer`, `#inside`, `#plan`, `#real`, `#first-page` or `#own` (Door 12, the hardcover) anchors when a post is about that section.
 
 ## 7. Measurement
 
@@ -110,9 +115,9 @@ The page dispatches local `book:engagement` DOM events. It sends nothing over th
 
 ## 8. Paid amplification (optional, small)
 
-- **Test:** three in-story portrait cards (`nb-house`, `vm-hum`, `fr-vessel`) against quote card `doors`, with the same audience and $5–10 a day each for 5 days. Keep the winner.
+- **Test:** three in-world portrait cards (`nb-house`, `vm-hum`, `fr-vessel`) against quote card `doors`, with the same audience and $5–10 a day each for 5 days. Keep the winner.
 - **Audiences:** readers of literary horror, archival and found-document fiction, AI ethics, and epistemic thrillers. Lookalikes from site visitors once you have enough.
-- **Platform policies:** fictional, narrative-framed ad creative is allowed, but say it's a novel in the primary text. The card footer already carries the disclosure.
+- **Platform policies:** narrative ad creative is allowed; name the book in the primary text. Never run testimonials or ratings.
 
 ## 9. Community and Reddit
 
