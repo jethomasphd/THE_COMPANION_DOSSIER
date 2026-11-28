@@ -51,12 +51,16 @@ PAGE STRUCTURE (book/index.html): shock → awe → understanding → action
                 assembling at reading speed, the forty seconds, "relaese the
                 persona"); the 3:11:47 interruption as the run log ending in the
                 alert banner (and, with Sound on, the "three ascending notes");
-                the withheld seventh plate; Plate XI as printed
+                the withheld seventh plate ("Request the plate →")
   Vertigo     — "Dr. Thorne is fiction. His machine is not." The real repository
-                boots; six novel-vs-world pairs, each linked to the real thing
-  First page  — the opening page verbatim; "Turn the page" leads to Door 12
-  Door 12     — "You counted eleven. This is the twelfth." The hardcover offer
-                (see THE CONVERSION), the free edition, the real protocol
+                boots; three novel-vs-world pairs (dispatch 001, the invocation,
+                the talk + the paper), two more folded under "Two more records"
+  First page  — the opening page verbatim; "Turn the page" leads on
+  The plan    — Plate XI as printed: "Count them." (pages open in a lightbox)
+  Door 12     — "You counted eleven. This is the twelfth." The hardcover offer:
+                "The free edition is the record. The hardcover is the deposit",
+                pages from inside, the buy button (see THE CONVERSION); on
+                phones the headline and button come before the cover image
   FAQ (4) + author, footer with credits and "Twelve?"
 
 THE POSTS

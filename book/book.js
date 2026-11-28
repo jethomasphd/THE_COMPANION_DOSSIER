@@ -47,7 +47,8 @@
     $$("[data-buy]").forEach(el => { outbound(el, amazon, "amazon_click"); el.hidden = false; });
     $$("[data-print-status], [data-notify], [data-free-cta]").forEach(el => el.hidden = true);
     $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
-    $$("[data-free-fact]").forEach(el => el.innerHTML = "Or read it <b>free</b> online");
+    $$("[data-free-fact]").forEach(el => { el.innerHTML = 'Or <a href="USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="hero_fact">read it <b>free</b> online</a>'; el.parentNode.appendChild(el); });
+    $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
     $$("[data-ticker-status]").forEach(el => el.textContent = "The hardcover is available now");
     $$("[data-dock-sub]").forEach(el => el.textContent = "The hardcover · 304 pages");
   } else if (notify) {
@@ -317,20 +318,19 @@
       if (a.paused) { if (a.ended) a.currentTime = 0; a.play().catch(() => {}); } else a.pause();
     });
 
-    // group chats arrive the way chats do: one message at a time, someone typing
+    // group chats arrive the way chats do: one message at a time, someone typing.
+    // Every bubble keeps its space from the start, so nothing around the chat moves.
     $$(".js-chat", wall).forEach(chat => {
       const bubs = $$(".bub", chat); if (reduce || !bubs.length) return;
       bubs.forEach(b => b.classList.add("bub--wait"));
       whenSeen(chat, async () => {
         for (const b of bubs) {
           if (!b.classList.contains("bub--sys")) {
-            const dots = document.createElement("div");
-            dots.className = "bub bub--typing" + (b.classList.contains("bub--out") ? " bub--typing-out" : " bub--in");
-            dots.innerHTML = "<i></i><i></i><i></i>"; b.before(dots);
+            b.classList.add("bub--pending");
             await sleep(260 + Math.min(800, b.textContent.length * 12));
-            dots.hidden = true; dots.className = "bub-gone";
+            b.classList.toggle("bub--pending", false);
           }
-          b.classList.remove("bub--wait"); await sleep(b.classList.contains("bub--sys") ? 180 : 200);
+          b.classList.toggle("bub--wait", false); await sleep(b.classList.contains("bub--sys") ? 180 : 200);
         }
       }, "0px 0px -25% 0px");
     });
@@ -344,6 +344,18 @@
     tm.setAttribute("aria-expanded", String(open));
     if (open) emit("thread_open");
   });
+
+  /* ── lightbox for pages from the book (stay on the page) ── */
+  const lb = $("[data-lb]");
+  if (lb) {
+    const img = $("img", lb), close = () => { lb.hidden = true; document.body.style.overflow = ""; };
+    document.addEventListener("click", e => {
+      const a = e.target.closest("a[data-lightbox]");
+      if (a) { e.preventDefault(); img.src = a.getAttribute("href"); img.alt = (a.querySelector("img") || {}).alt || ""; lb.hidden = false; document.body.style.overflow = "hidden"; emit("page_zoom"); return; }
+      if (!lb.hidden && (e.target === lb || e.target.closest(".lb__x"))) close();
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) close(); });
+  }
 
   /* ── the Franklin session: a chat with a machine, replies assembling at reading speed ── */
   const session = $("[data-session]");
@@ -364,16 +376,16 @@
         if (reduce) { bubble(m.who, m.t); continue; }
         if (m.who === "you") {
           const typing = bubble("you", ""); typing.parentNode.classList.add("sx--typing");
-          await sleep(380 + m.t.length * 16); if (me !== run) return;
+          await sleep(300 + m.t.length * 10); if (me !== run) return;
           typing.parentNode.classList.remove("sx--typing"); typing.textContent = m.t;
           await sleep(700);
         } else if (m.who === "them") {
-          await sleep(900);
+          await sleep(550);
           const body = bubble("them", ""); const cur = document.createElement("i"); cur.className = "sx__cur";
           for (let i = 0; i <= m.t.length; i++) {               // "the cursor laying the words down left to right"
             if (me !== run) return;
             body.textContent = m.t.slice(0, i); body.appendChild(cur); log.scrollTop = log.scrollHeight;
-            await sleep(m.t[i - 1] === "." || m.t[i - 1] === "," ? 120 : 15);
+            await sleep(m.t[i - 1] === "." || m.t[i - 1] === "," ? 60 : 8);
           }
           cur.remove(); await sleep(650);
         } else {
@@ -402,7 +414,7 @@
           d.textContent = L.t;
         }
         body.scrollTop = body.scrollHeight;
-        if (L.alert) { push.classList.add("on"); chime(); emit("alert_shown"); setTimeout(() => { if (me === run) push.classList.toggle("on", false); }, 5200); await sleep(reduce ? 0 : 900); }
+        if (L.alert) { push.classList.add("on"); chime(); emit("alert_shown"); await sleep(reduce ? 0 : 900); }
         else await sleep(reduce ? 0 : (L.t.includes("room iii  ███") ? 700 : 260));
       }
     };
@@ -495,7 +507,7 @@
     playBtn.addEventListener("click", () => { tv.controls = true; tv.play().catch(() => {}); tv.focus(); });
     tv.addEventListener("play", () => { tv.controls = true; });
   }
-  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#own");
+  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $(".own__cta") || $("#own");
   if (dock && heroEl && "IntersectionObserver" in window) {
     let pastHero = false, atRead = false;
     const upd = () => {
@@ -504,7 +516,7 @@
       const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
     };
     new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(heroEl);
-    if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .2}).observe(readEl);
+    if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .6}).observe(readEl);
   }
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});

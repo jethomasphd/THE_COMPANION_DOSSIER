@@ -69,6 +69,97 @@ window.RECOVERED_POSTS = [
     "state": "Thread locked by moderator · “Please respect the family’s privacy.”"
   },
   {
+    "id": "ch-arrival",
+    "cat": [
+      "story"
+    ],
+    "kind": "chat",
+    "src": "group chat",
+    "name": "end of the road 🏡",
+    "handle": "5 members · export",
+    "msgs": [
+      {
+        "d": "sys",
+        "t": "Thursday · 9:09 AM"
+      },
+      {
+        "d": "in",
+        "t": "someone’s at the thorne house. the AI guy’s",
+        "s": "Dana"
+      },
+      {
+        "d": "in",
+        "t": "probably the estate people. heard they’re sending somebody to go through his papers. for a university",
+        "s": "Ray"
+      },
+      {
+        "d": "in",
+        "t": "woman. 30ish. she’s walking the whole outside before she goes in",
+        "s": "Dana"
+      },
+      {
+        "d": "in",
+        "t": "looking at the gutters?? writing in a notebook",
+        "s": "Dana"
+      },
+      {
+        "d": "out",
+        "t": "is she counting windows"
+      },
+      {
+        "d": "in",
+        "t": "she’s counting something",
+        "s": "Dana"
+      },
+      {
+        "d": "in",
+        "t": "ok she went in. 9:14",
+        "s": "Dana"
+      },
+      {
+        "d": "sys",
+        "t": "Thursday · 5:02 PM"
+      },
+      {
+        "d": "in",
+        "t": "she’s out. sitting in her car with the door open. not driving",
+        "s": "Dana"
+      },
+      {
+        "d": "out",
+        "t": "maybe she’s on the phone"
+      },
+      {
+        "d": "in",
+        "t": "she’s not on the phone",
+        "s": "Dana"
+      },
+      {
+        "d": "sys",
+        "t": "Friday · 8:03 AM"
+      },
+      {
+        "d": "in",
+        "t": "she’s back with a van",
+        "s": "Ray"
+      },
+      {
+        "d": "in",
+        "t": "flat gray boxes. a lot of them. looks like they’re getting ready for a funeral",
+        "s": "Ray"
+      },
+      {
+        "d": "out",
+        "t": "ray"
+      },
+      {
+        "d": "in",
+        "t": "i’m just saying what it looks like",
+        "s": "Ray"
+      }
+    ]
+  },
+  {
     "id": "vm-hum",
     "cat": [
       "story",
@@ -373,97 +464,6 @@ window.RECOVERED_POSTS = [
     ],
     "campaign": true,
     "hook": "Tonight’s speaker is “unreachable.”"
-  },
-  {
-    "id": "ch-arrival",
-    "cat": [
-      "story"
-    ],
-    "kind": "chat",
-    "src": "group chat",
-    "name": "end of the road 🏡",
-    "handle": "5 members · export",
-    "msgs": [
-      {
-        "d": "sys",
-        "t": "Thursday · 9:09 AM"
-      },
-      {
-        "d": "in",
-        "t": "someone’s at the thorne house. the AI guy’s",
-        "s": "Dana"
-      },
-      {
-        "d": "in",
-        "t": "probably the estate people. heard they’re sending somebody to go through his papers. for a university",
-        "s": "Ray"
-      },
-      {
-        "d": "in",
-        "t": "woman. 30ish. she’s walking the whole outside before she goes in",
-        "s": "Dana"
-      },
-      {
-        "d": "in",
-        "t": "looking at the gutters?? writing in a notebook",
-        "s": "Dana"
-      },
-      {
-        "d": "out",
-        "t": "is she counting windows"
-      },
-      {
-        "d": "in",
-        "t": "she’s counting something",
-        "s": "Dana"
-      },
-      {
-        "d": "in",
-        "t": "ok she went in. 9:14",
-        "s": "Dana"
-      },
-      {
-        "d": "sys",
-        "t": "Thursday · 5:02 PM"
-      },
-      {
-        "d": "in",
-        "t": "she’s out. sitting in her car with the door open. not driving",
-        "s": "Dana"
-      },
-      {
-        "d": "out",
-        "t": "maybe she’s on the phone"
-      },
-      {
-        "d": "in",
-        "t": "she’s not on the phone",
-        "s": "Dana"
-      },
-      {
-        "d": "sys",
-        "t": "Friday · 8:03 AM"
-      },
-      {
-        "d": "in",
-        "t": "she’s back with a van",
-        "s": "Ray"
-      },
-      {
-        "d": "in",
-        "t": "flat gray boxes. a lot of them. looks like they’re getting ready for a funeral",
-        "s": "Ray"
-      },
-      {
-        "d": "out",
-        "t": "ray"
-      },
-      {
-        "d": "in",
-        "t": "i’m just saying what it looks like",
-        "s": "Ray"
-      }
-    ]
   },
   {
     "id": "fr-prism",
