@@ -10,31 +10,38 @@ was modified.
 THE CONCEPT
 A short page for a stranger who has never heard of the book, the author, or
 the project. It is modelled on a plain, fast book page (hook, trailer, who is
-the missing man, one question to the visitor, six cards, the opening, the
-offer) and it is a third shorter than the page before it: about 12,400 px
-on a phone and 1,560 words.
+the missing man, one question to the visitor, what is inside, the opening,
+the offer). It is about 11,800 px on a phone and 1,550 words, and nothing
+follows the offer but the questions and the author.
 
-Three rules shaped it.
+Four rules shaped it.
   1. Plain words. Nothing on the page needs the book's vocabulary to be
      understood. The rite, "persona", "baseline", the glossary and the
-     epigraph are in the novel, not here. The sentence a stranger reads first
-     is "He built an AI that talks to the dead. Then he disappeared."
-  2. One question, asked once. "Who would you bring back?" with a pair of
-     empty brackets. A visitor may type a name, and then let it go. It is
-     the one thing the page asks of the visitor, and it is the book's
-     subject in one gesture: the voices we preserve, and the right to let go.
-  3. Honest framing. The page says in the story section and again in the FAQ
-     what is fiction and what is real. No review, rating, price, date or
-     stock state is invented. The real machine, the talk and the paper are
-     linked, never described as more than they are.
+     epigraph are in the novel, not here. Labels say what a block is
+     ("Get the book", not an in-joke).
+  2. Each thing once. The hook is the headline and nowhere else in the body.
+     The hero carries the house and the door, "Who is Dr. Thorne?" carries
+     the man and his machine, and the four things inside the book are four
+     different things.
+  3. One question, asked once. "Who would you bring back?" with a pair of
+     brackets. A visitor may type a name, and then let it go. It is the one
+     thing the page asks of the visitor, and it is the book's subject in one
+     gesture: the voices we preserve, and the right to let go.
+  4. Honest framing. The page says what is fiction and what is real where a
+     reader meets it: in the story section, above the posts, and in the FAQ.
+     How the novel was written is said once, plainly, beside the first page.
+     No review, rating, price, date or stock state is invented. The real
+     machine, the talk and the paper are linked, never described as more
+     than they are.
 
 THE CONVERSION (book/config.js)
 One setting decides what every primary button does.
   amazonUrl blank (now)  — primary buttons read "Read it free" and open the
                            free PDF; the offer leads with the free edition and
                            says the hardcover is coming soon.
-  amazonUrl set          — every primary button (header, hero, cards, author,
-                           phone dock) becomes "Get the hardcover" and opens
+  amazonUrl set          — every primary button (header, hero, under the
+                           question, under the four things inside, phone
+                           dock) becomes "Get the hardcover" and opens
                            Amazon; the offer leads with the hardcover card and
                            its button; the free PDF stays one tap away; the
                            availability lines and ticker update.
@@ -48,78 +55,103 @@ commit, deploy, then open /book on a phone and a desktop and follow the
 hardcover buttons once.
 
 PAGE STRUCTURE (book/index.html)
-  Ticker      — one line: a novel, the hook, "The machine in it is real",
-                "Read it free tonight" (or the hardcover, once published)
+  Ticker      — desktop only, the offer in one line: a horror novel, free to
+                read now, no sign-up, "The machine in it is real", hardcover
+                coming soon (or available now, once published)
   Header      — title; The story · Inside · Read the opening · Get the book;
-                the primary button
-  Hero        — #top. "A novel by Jacob E. Thomas", the hook as the headline,
-                the turnable 3D cover, ONE button, two facts ("Free · the
-                whole novel · no sign-up", "Hardcover coming soon"), the
-                premise in three sentences ending on "one door too many", and
-                one line saying what the book is: a horror novel told through
-                what he left behind. On a phone the order is headline, cover,
-                button, facts, premise.
+                the primary button. On a phone it scrolls away and the bottom
+                bar carries the button.
+  Hero        — #top. "A horror novel by Jacob E. Thomas", the hook as the
+                headline, the turnable 3D cover, ONE button, two facts ("Free
+                · the whole novel · PDF · no sign-up", "Hardcover coming
+                soon"), then the house in three sentences, naming Miranda
+                Cale and ending on "one door too many", and one line saying
+                what the book is: a slow-burn horror novel told through what
+                he left behind. "Dread, not gore." On a phone the order is
+                headline, cover, button, facts, paragraph.
   Trailer     — #trailer. "What answered him?" The 90-second trailer, the
                 only film on the page, with captions and a transcript.
-  The story   — #story. "Who is Dr. Thorne?" Three short paragraphs and the
+  The story   — #story. "Who is Dr. Thorne?" Who he is, what he built, where
+                the title comes from ("It starts with four words, 'Using this
+                matter, summon', and then a name."), how he vanished, and the
                 trailer's three questions. Then, in a ruled box (#real): "Dr.
                 Thorne is a character in a novel. His machine is real." with
-                one link to the real thing.
-  The question— #question. "Who would you bring back?" / "His machine asks
-                for one thing: a name." A pair of ember brackets holding an
-                optional text field. Empty: "You already know whose name it
+                what the real thing is in one clause and one link to it.
+  The question— #question. "Who would you bring back?" / "All his machine
+                needs is a name." A pair of ember brackets holding an optional
+                text field with the placeholder "a name". Under it: "Type a
+                name, or leave it empty. Nothing will answer, and nothing you
+                type leaves this page." Empty: "You already know whose name it
                 would be." Typed: "You did not have to think about it." and
                 one button, "Let them go"; the name leaves the brackets letter
-                by letter; then "You let them go." Under it, the trailer's
-                last line: "A mystery about the voices we preserve, and the
-                right to let go." The page never answers as anyone.
-  Inside      — #inside. "What you'll find inside": six numbered cards, each
-                one plain image from the premise (the house that kept
-                running; one door too many; a talk with a dead man; 3:11
-                a.m.; the house was expecting her; the right to leave). A
-                grid on desktop, a sideways swipe on a phone. Then the
-                button.
-  The posts   — #feed. "The posts started in March." In-world posts from
+                by letter; then "You let them go." and the back cover's
+                phrase: "In this novel there is a program that has abolished
+                the right to leave." Under it, always, the trailer's last
+                line ("A mystery about the voices we preserve, and the right
+                to let go.") and the button. The page never answers as anyone.
+  The posts   — #feed. "What the neighbors saw." / "Posts from the world of
+                the novel. Nobody in them is real." In-world posts from
                 spring 2027 (evidence.js, unchanged). Three show on desktop
-                and two on a phone before "More posts".
-  The opening — #first-page. The first three paragraphs of the novel,
-                verbatim, on paper. Beside it, in plain view, how the novel
-                was written, restating The Hand and the Glass (pp. v–vi),
-                with a link to the author's statement.
-  The offer   — #own (and the old #access). "Choose your way in." Two cards:
-                "Read it free" (the whole novel, tonight, a PDF in the
-                browser, no sign-up) and "Hold it" (the hardcover: 304 pages
-                in full color, 6 × 9). Three photographs of pages (the Plate
-                VII photo is cropped to the plate so the facing text cannot
-                be read).
-  From the
-  house       — #house. "See for yourself." Three pieces of the record for the
-                visitor who wants more before deciding: the floor plan (#plan,
-                with the three counts the book prints: 11, 12, 11), the
-                Franklin test as a chat that types itself, and 3:11:47 as a
-                run log. The opt-in room tone ("Turn on the hum of the house")
+                and two on a phone; "More posts" shows the rest in one press.
+  Inside      — #inside. "What you'll find inside": four numbered things.
+                01 One door too many, with the floor plan beside it (#plan:
+                the drawing and legend cropped from Plate XI, opening full
+                size, and the three counts the book prints: 11, 12, 11).
+                02 A talk with a dead man (the Franklin test, ending on the
+                typo). 03 The house was expecting her. 04 3:11 a.m., with the
+                run log beside it typing itself out, ending on "The novel
+                prints what the rooms said. This page will not." and the
+                button. The opt-in room tone ("Sound: the hum of the house")
                 lives here.
-  Questions   — #faq. Five: what kind of book; free or hardcover; is any of
-                this real; what happened to the name I typed; how AI was used.
-                Then the author, the footer with credits, and "Twelve?"
+  The opening — #first-page. "The first page." The first three paragraphs of
+                the novel, verbatim, on paper. Beside it, how the novel was
+                written, restating The Hand and the Glass (pp. v–vi) in three
+                plain sentences ending "Judge the page for yourself.", with a
+                link to the author's statement.
+  The offer   — #own (and the old #access). "Two ways to read it." Two cards:
+                "Read it free" (the whole novel, tonight, a PDF in the
+                browser, no sign-up) and "The hardcover" (304 pages in full
+                color, 6 × 9; "Coming soon. No date yet."). Three photographs
+                of pages (the Plate VII photo is cropped to the plate so the
+                facing text cannot be read).
+  Questions   — #faq. Five: free or hardcover; what the title means; is any
+                of this real; what happened to the name I typed; how AI was
+                used. Then the author in plain words, the footer with credits,
+                and "Twelve?"
+
+WHAT STRANGERS SAID (cold-read test of the short page, three readers)
+A horror reader on a phone, a book-club reader on a phone who does not follow
+AI, and a skeptical engineer at a desk. All three understood the first screen
+in ten seconds and ended at "read the free edition tonight". All three named
+the same strongest moments: "You already know whose name it would be.", the
+name fading, "Someone cleared his gutters this week. I didn't see who.", the
+three sealed rooms, and "This page will not." What they asked for is what the
+page now does: the premise once instead of five times, nothing after the
+offer, the best scare (3:11 and the typo) above the offer, plain labels where
+the in-jokes were, a field that looks like a field and says nothing will
+answer, a line after the name is let go, the title explained, a plain author
+note. Still open, and not fixable in the page: all three wanted to be told
+when the hardcover is out (set notifyUrl), and two wanted an e-reader file
+beside the PDF.
 
 THE QUESTION AND PRIVACY
 Whatever a visitor types in the brackets stays in the open tab. It is not
 sent, not stored, not put in the URL, and never included in an engagement
 event (the events are blank_filled and blank_released, with no detail). It is
 erased when they press "Let them go" or close the tab. The page never
-generates a reply. The FAQ says all of this in plain words. Without
-JavaScript the field is a pair of empty brackets and the line under it.
+generates a reply, and says so under the field. The FAQ says all of this in
+plain words. Without JavaScript the field is a pair of brackets around "a
+name" and the line under it.
 
 QUOTATIONS
 Every passage the page presents as the book's words carries
 data-verbatim="<printed page>" (or "cover" for the back-cover copy) in
-index.html and is an exact substring of that page of the print PDF. The Franklin
-chat and the 3:11:47 log are staged from pp. 29–30 and 88–90: Franklin's lines
-and the log lines are the book's; her typed lines, the stage directions and
-the alert banner are the site's staging and are labelled so; the three
-interrupted sentences are blacked out with bars of equal length so their shape
-gives nothing away.
+index.html and is an exact substring of that page of the print PDF. The 3:11:47
+log is staged from pp. 88–90: the log lines are the book's; the room labels,
+the bars and the alert banner are the site's and the log's footer says so; the
+three interrupted sentences are blacked out with bars of equal length so
+their shape gives nothing away. The same lines are in the markup, so the log
+is readable without JavaScript.
 
 THE POSTS
 In-world only. No fictional reader reviews, ratings or testimonials, on the
@@ -150,10 +182,12 @@ Only media/lay/trailer-90s.mp4 is on the site. /book/media/ redirects to
 
 FILES
   index.html        page, metadata, Book schema, transcripts
-  book.css          design system (also used by media/ and twelve/)
-  book.js           Amazon switch, 3D volume, posts, the Franklin chat and
-                    the run log, the name field and "Let them go", sound,
-                    reveals, local engagement events
+  book.css          design system (also used by campaign/card.html and
+                    twelve/; the short page's rules are one block at the end
+                    and use no class name those pages use)
+  book.js           Amazon switch, 3D volume, posts, the run log, the name
+                    field and "Let them go", sound, reveals, local engagement
+                    events (also loaded by campaign/card.html)
   evidence.js       THE POSTS: in-world posts from spring 2027; one data file
                     shared by the website feed and the campaign cards.
   assets/posts/     trailer stills, page photos and faceless avatars used by
@@ -171,17 +205,19 @@ FILES
   assets/           cover (full + 800 px), book-back.jpg and book-spine.jpg
                     (cut from the hardcover wrap; KDP barcode box masked for
                     screen use only), og-card.jpg (link preview), real
-                    interior pages, the estate fonts with licenses
+                    interior pages, first-page-thumb.jpg (printed p. 3, for
+                    the free card), the estate fonts with licenses
 
 SPOILER POLICY
 Copy stays inside the premise: the disappearance, the commission, the house,
 the count, the Franklin test, three sealed rooms and the existence of the
-interruption (its sentences are blacked out on the site), the illustration
-that is listed and never shown, and what is already on the back cover ("The
-archive was expecting her."; "a program that has abolished the right to
-leave"; a document written before her arrival that begins to describe her
-work). Nothing reveals Condition IV, the freezer, the sealed record, who hired
-Miranda, whose program it is, or the ending. See campaign/README.md §3 for the
+interruption (its sentences are blacked out on the site), the withheld plate
+(shown only as its blank panel), and what is already on the back cover ("a
+program that has abolished the right to leave"; a document written before her
+arrival that begins to describe her work). Nothing reveals Condition IV, what
+is in the freezer or what the hum is, the sealed record, who hired Miranda,
+whose program it is, or the ending. The floor plan is Plate XI as printed,
+labels included. See campaign/README.md §3 for the
 rules of the fiction.
 
 MEASUREMENT
@@ -196,15 +232,17 @@ separately if wanted.
 
 ACCESSIBILITY AND MOTION
 The 3D book is keyboard-turnable (arrows, Enter). The name field is a labelled
-text input ("A name. Optional. Nothing typed here leaves this page."), "Let
-them go" is a button, and the result is announced once. The six cards are an
-ordered list that scrolls with the keyboard on a phone-width screen. The floor
-plan has full alt text. Transcripts fall back to static text.
+text input ("A name. Optional. Nothing will answer, and nothing typed here
+leaves this page."), "Let them go" is a button, and the result is announced
+once. The floor plan has full alt text. Transcripts fall back to static text.
+On a phone, keyboard focus stops above the bottom bar. Once the hardcover is
+live its card comes first in the document as well as on screen.
 prefers-reduced-motion disables grain, ticker, rings, glitch, typing, reveals
-and the letter-by-letter fade. With JavaScript off the whole page is readable.
+and the letter-by-letter fade. With JavaScript off the whole page is readable,
+the log shows its lines, and controls that need the script are not shown.
 Layout checked at 320, 390, 768, 1024 and 1440 px with no horizontal overflow,
-including with a long name, a right-to-left name or an emoji in the brackets.
-The videos keep preload="none" and their caption tracks.
+including with a forty-letter name, a right-to-left name or an emoji in the
+brackets. The videos keep preload="none" and their caption tracks.
 
 PREVIEW
 From the repository root: python -m http.server 8765 --bind 127.0.0.1

@@ -52,6 +52,8 @@
     $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); el.dataset.event = "nav"; const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
     $$("[data-ticker-status]").forEach(el => el.textContent = "The hardcover is available now");
     $$("[data-dock-sub]").forEach(el => el.textContent = "The hardcover · 304 pages");
+    const bookWay = $(".way--book");                 // the hardcover card leads, on screen and in reading order
+    if (bookWay && bookWay.parentNode) bookWay.parentNode.prepend(bookWay);
   } else if (notify) {
     $$("[data-notify]").forEach(el => { outbound(el, notify, "notify_click"); el.hidden = false; });
     $$("[data-free-cta]").forEach(el => el.classList.replace("btn--ember", "btn--ghost"));
@@ -293,7 +295,12 @@
         paint(); emit("evidence_filter", {filter});
       });
     });
-    if (more) more.addEventListener("click", () => { showing += 9; paint(); emit("evidence_more"); });
+    if (more) more.addEventListener("click", () => {
+      const was = finds.filter(f => !f.classList.contains("hide"));
+      showing = finds.length; paint(); emit("evidence_more");            // everything that is left, in one press
+      const first = finds.find(f => !f.classList.contains("hide") && !was.includes(f));
+      if (first) { first.tabIndex = -1; first.focus({preventScroll: true}); }   // the button is gone; keep the reader's place
+    });
     paint();
 
     // recordings (audio or video): the transcript lights up phrase by phrase, in time
@@ -459,7 +466,7 @@
   }
   if (sndBtn) sndBtn.addEventListener("click", async () => {
     soundOn = !soundOn; sndBtn.setAttribute("aria-pressed", String(soundOn)); sndBtn.classList.toggle("on", soundOn);
-    try { if (soundOn) await startHum(); else ramp(); } catch (_) { soundOn = false; sndBtn.classList.remove("on"); }
+    try { if (soundOn) await startHum(); else ramp(); } catch (_) { soundOn = false; sndBtn.classList.remove("on"); sndBtn.setAttribute("aria-pressed", "false"); }
     emit(soundOn ? "sound_on" : "sound_off");
   });
   window.addEventListener("utm:duck", e => { ducked = !!e.detail; ramp(); });
@@ -544,11 +551,11 @@
     const field = nameIn.closest(".socket__field") || nameIn.parentNode;
     const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); field.appendChild(mirror);
     let name = "", leaving = false, timer = 0;
-    // a name too long for its box is set smaller, down to half size, before it is ever cut off
+    // a name too long for its box is set smaller, down to a third of the size, before it is ever cut off
     const shrink = el => {
       el.style.fontSize = el.style.maxWidth = "";
       const cap = el.clientWidth, natural = el.scrollWidth;
-      if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.5, cap / natural) * 100).toFixed(1) + "%"; }
+      if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.3, cap / natural) * 100).toFixed(1) + "%"; }
       return el.style.fontSize;
     };
     const fit = () => {
