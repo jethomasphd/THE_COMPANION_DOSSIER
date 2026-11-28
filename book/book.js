@@ -48,7 +48,7 @@
     $$("[data-print-status], [data-notify], [data-free-cta]").forEach(el => el.hidden = true);
     $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
     $$("[data-free-fact]").forEach(el => { el.innerHTML = 'Or <a href="USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="hero_fact">read it <b>free</b> online</a>'; el.parentNode.appendChild(el); });
-    $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
+    $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); el.dataset.event = "nav"; const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
     $$("[data-ticker-status]").forEach(el => el.textContent = "The hardcover is available now");
     $$("[data-dock-sub]").forEach(el => el.textContent = "The hardcover · 304 pages");
   } else if (notify) {
@@ -63,10 +63,16 @@
   }, {rootMargin: "0px 0px -8% 0px", threshold: .08}) : null;
   const watchReveal = el => io ? io.observe(el) : el.classList.add("in");
   $$(".reveal").forEach(watchReveal);
-  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px", dwell = 0) => {
     if (!el) return;
     if (!("IntersectionObserver" in window)) return fn();
-    const o = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { o.disconnect(); fn(); } }, {rootMargin: margin});
+    let t = 0;
+    const o = new IntersectionObserver(es => {
+      const seen = es[es.length - 1].isIntersecting;
+      if (!seen) { clearTimeout(t); t = 0; return; }
+      if (!dwell) { o.disconnect(); fn(); return; }
+      if (!t) t = setTimeout(() => { o.disconnect(); fn(); }, dwell);   // only if it is still on screen after a moment
+    }, {rootMargin: margin});
     o.observe(el);
   };
 
@@ -256,9 +262,13 @@
   const wall = $("[data-wall]");
   const posts = window.RECOVERED_POSTS || [];
   if (wall && posts.length) {
-    const FIRST = window.matchMedia("(max-width: 640px)").matches ? 4 : Number(wall.dataset.first || 9);
+    const phone = window.matchMedia("(max-width: 640px)").matches;
+    const FIRST = phone ? 3 : Number(wall.dataset.first || 9);
     let showing = FIRST, filter = "all";
-    wall.innerHTML = posts.map(renderPost).join("");
+    // One column on a phone: the house, then the recording, then the neighbors watching her arrive.
+    const LEAD = ["nb-house", "vm-hum", "ch-arrival"];
+    const ordered = phone ? [...LEAD.map(id => posts.find(p => p.id === id)).filter(Boolean), ...posts.filter(p => !LEAD.includes(p.id))] : posts;
+    wall.innerHTML = ordered.map(renderPost).join("");
     const finds = $$(".find", wall);
     const more = $("[data-more]");
     const paint = () => {
@@ -395,7 +405,7 @@
         }
       }
     };
-    whenSeen(session, play, "0px 0px -20% 0px");
+    whenSeen($(".sess", session) || session, play, "0px 0px -20% 0px", reduce ? 0 : 450);
     $("[data-session-replay]", session).addEventListener("click", () => { play(); emit("session_replay"); });
   }
 
@@ -415,17 +425,17 @@
         }
         body.scrollTop = body.scrollHeight;
         if (L.alert) { push.classList.add("on"); chime(); emit("alert_shown"); await sleep(reduce ? 0 : 900); }
-        else await sleep(reduce ? 0 : (L.t.includes("room iii  ███") ? 700 : 260));
+        else await sleep(reduce ? 0 : (/room iii\s+█/.test(L.t) ? 700 : 260));
       }
     };
-    whenSeen(alertlog, play, "0px 0px -20% 0px");
+    whenSeen($(".alog", alertlog) || alertlog, play, "0px 0px -20% 0px", reduce ? 0 : 450);
     $("[data-alert-replay]", alertlog).addEventListener("click", () => { play(); emit("alert_replay"); });
   }
 
   /* ── Sound: the hum of the house, under the whole page (opt-in) ── */
-  let actx = null, hum = null, humGain = null, soundOn = false, ducked = false;
+  let actx = null, hum = null, humGain = null, soundOn = false, ducked = false, hushed = false;
   const sndBtn = $("[data-sound]");
-  const level = () => (soundOn ? (ducked ? 0.08 : 0.55) : 0);
+  const level = () => (soundOn ? (hushed ? 0 : ducked ? 0.08 : 0.55) : 0);
   const ramp = () => { if (humGain) humGain.gain.setTargetAtTime(level(), actx.currentTime, 0.6); };
   async function startHum() {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
@@ -452,6 +462,8 @@
     emit(soundOn ? "sound_on" : "sound_off");
   });
   window.addEventListener("utm:duck", e => { ducked = !!e.detail; ramp(); });
+  // "The voice fades." When the reader says the words of release, the hum stops for a while.
+  window.addEventListener("utm:hush", () => { hushed = true; ramp(); setTimeout(() => { hushed = false; ramp(); }, 9000); });
   const trailerEl = $("#book-trailer");
   if (trailerEl) { trailerEl.addEventListener("play", () => duck(true)); trailerEl.addEventListener("pause", () => duck(false)); trailerEl.addEventListener("ended", () => duck(false)); }
 
@@ -513,7 +525,7 @@
     const upd = () => {
       const on = pastHero && !atRead;
       dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
-      const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
+      $$("a", dock).forEach(a => { a.tabIndex = on ? 0 : -1; });
     };
     new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(heroEl);
     if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .6}).observe(readEl);
@@ -521,9 +533,116 @@
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});
 
+  /* ── the blank (p. xv) and the words that close it ─────────────────────
+     The reader may write a name in the blank. The page does nothing with it:
+     no reply, no request, no storage, and it is never placed in an event.
+     It stays open, visibly, until the reader says the words of release. */
+  const blankIn = $("[data-blank-in]"), blankCap = $("[data-blank-cap]"), blankStatus = $("[data-blank-status]");
+  const openMark = $("[data-open]"), openT = $("[data-open-t]"), dockSub = $("[data-dock-sub]"), dockOpen = $("[data-dock-open]"), dockOpenT = $("[data-dock-open-t]");
+  const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]"), relStatus = $("[data-release-status]");
+  let name = "", openedAt = 0, releasing = false, released = false, capTimer = 0;
+  const clock = ms => { const n = Math.max(0, Math.floor(ms / 1000)); return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`; };
+  const span = ms => { const m = Math.floor(ms / 60000); return m < 1 ? "It is still open." : `It has been open for ${m} minute${m === 1 ? "" : "s"}.`; };
+
+  // a name too long for its box is set smaller, down to half size, before it is ever cut off
+  const shrink = el => {
+    el.style.fontSize = el.style.maxWidth = "";
+    const cap = el.clientWidth, natural = el.scrollWidth;
+    if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.5, cap / natural) * 100).toFixed(1) + "%"; }
+    return el.style.fontSize;
+  };
+  // once a second, while a name is open: the three clocks and nothing else
+  const tick = () => {
+    const since = performance.now() - openedAt;
+    if (openT) openT.textContent = clock(since);
+    if (dockOpenT) dockOpenT.textContent = clock(since);
+    if (relT) relT.textContent = span(since);
+  };
+  // on every change of state: the marker, the dock, and the panel at the end
+  const sync = () => {
+    const open = !!name && !releasing;
+    if (openMark) openMark.hidden = !open;
+    if (dock) dock.classList.toggle("is-open", open);
+    if (dockSub && dockOpen) { dockSub.hidden = open; dockOpen.hidden = !open; }
+    if (rel && !releasing) {
+      const state = name ? "open" : released ? "done" : "blank";
+      rel.dataset.state = state;
+      $$("[data-when]", rel).forEach(el => { el.hidden = el.dataset.when !== state; });
+      if (relName) { relName.textContent = name; relName.removeAttribute("aria-hidden"); shrink(relName); }
+      if (relK) relK.textContent = state === "open" ? "The blank · still open" : state === "done" ? "The blank · released" : "The blank, as you left it";
+    }
+    if (open) tick();
+  };
+
+  if (blankIn) {
+    blankIn.readOnly = false;   // shipped read-only so that, without this script, it is simply the book's blank
+    const working = blankIn.closest("[data-blank]");
+    const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); blankIn.closest(".socket").appendChild(mirror);
+    const fit = () => {
+      mirror.textContent = blankIn.value;
+      blankIn.style.fontSize = shrink(mirror);
+      blankIn.style.maxWidth = mirror.style.maxWidth;   // the cap is in ems, so it must not shrink with the type
+      blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : "";
+    };
+    // one line under the blank: how to use it while it is empty, what it means once it is not
+    const caption = () => {
+      if (!blankCap) return;
+      blankCap.textContent = name ? blankCap.dataset.capFilled : blankCap.dataset.capEmpty;
+      blankCap.classList.toggle("is-open", !!name);
+      if (blankStatus) blankStatus.textContent = name ? blankCap.dataset.capFilled : "";
+    };
+    caption();
+    blankIn.addEventListener("input", () => {
+      fit();
+      const was = name;
+      name = blankIn.value.replace(/\s+/g, " ").trim();
+      if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); if (relStatus) relStatus.textContent = ""; }
+      if (working) working.classList.toggle("is-filled", !!name);
+      if (!!name !== !!was) { clearTimeout(capTimer); capTimer = setTimeout(caption, name && !reduce ? 1200 : 0); }   // let the name sit a moment before the page remarks on it
+      sync();
+    });
+    blankIn.addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); blankIn.blur(); } });
+    window.addEventListener("resize", () => { fit(); if (name && relName && !releasing) shrink(relName); });
+    if (blankIn.value) blankIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
+    setInterval(() => { if (name && !releasing) tick(); }, 1000);
+  }
+
+  // the words of release: the name leaves the blank, last letter first
+  if (relBtn && rel) relBtn.addEventListener("click", async () => {
+    if (!name || releasing) return;
+    releasing = true; emit("blank_released");
+    window.dispatchEvent(new CustomEvent("utm:hush"));
+    rel.focus({preventScroll: true});            // the button is about to go; keep the reader's place
+    $("[data-when='open']", rel).hidden = true;
+    if (openMark) openMark.hidden = true;
+    if (dock) dock.classList.remove("is-open");
+    if (dockSub && dockOpen) { dockSub.hidden = false; dockOpen.hidden = true; }
+    if (relK) relK.textContent = "Release the persona · return to baseline";
+    // Letter by letter only for scripts that survive being cut into letters; any other name leaves whole.
+    let parts = [name];
+    try {
+      if (/^[\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Nd}\p{P}\p{Zs}]+$/u.test(name.normalize("NFC"))) {
+        parts = (window.Intl && Intl.Segmenter) ? Array.from(new Intl.Segmenter(undefined, {granularity: "grapheme"}).segment(name), g => g.segment) : Array.from(name.normalize("NFC"));
+      }
+    } catch (_) { parts = [name]; }
+    relName.textContent = ""; relName.setAttribute("aria-hidden", "true");
+    parts.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; relName.appendChild(i); });
+    if (!reduce) {
+      await sleep(700);
+      const step = Math.min(230, 2600 / parts.length), els = $$("i", relName);
+      for (let n = els.length - 1; n >= 0; n--) { els[n].classList.add("gone"); await sleep(step); }
+      await sleep(900);
+    }
+    released = true; releasing = false;
+    // emptying the field through its own input event also empties the mirror, the caption and the panel
+    if (blankIn) { blankIn.value = ""; blankIn.dispatchEvent(new Event("input")); } else { name = ""; sync(); }
+    if (relStatus) relStatus.textContent = "The name is released. The blank is empty.";
+  });
+  sync();
+
   /* ── for the ones who open the console ──────────────────────────── */
   try {
     console.log("%c◊ ◈ ◊  THE COMPANION ESTATE", "color:#e8953f;font:600 13px monospace;letter-spacing:3px");
-    console.log("%cDeposit mounted. Eleven doors on the county plan.\nThe Editor has not counted them.\n\nIf you are reading this, you are already counting.\n— try /book/twelve/", "color:#bfb7a9;font:12px monospace;line-height:1.6");
+    console.log("%cDeposit mounted. Eleven doors on the county plan.\nThe Editor has not counted them.\n\nIf you are reading this, you are already counting.\nTry /book/twelve/", "color:#bfb7a9;font:12px monospace;line-height:1.6");
   } catch (_) {}
 })();

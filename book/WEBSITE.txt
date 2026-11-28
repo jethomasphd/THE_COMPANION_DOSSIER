@@ -8,13 +8,15 @@ service, and the existing build.sh continues unchanged. Nothing outside book/
 was modified.
 
 THE CONCEPT
-The site is part of the fiction. It presents the novel the way the novel
-presents itself: as a recovered archive. Visitors meet in-world artifacts
-before they meet the pitch: an estate terminal, recovered posts, the book's
-own floor plan, transcripts that "play", a withheld plate, and a hidden door.
-Every in-world element is framed honestly. The recovered posts carry an
-Editor's disclosure, the FAQ says plainly what is fiction, and no review, price,
-date, or stock state is invented.
+The site is part of the fiction, written for a stranger who has never heard of
+the project. It does to the visitor what the book does to its reader on page
+xv: it hands them the sentence that starts the machine with the name left
+blank ("Notice what you are tempted to write in it."), lets that blank stay
+open through the whole page, and closes it with the rite's last line directly
+above the offer. In between, the visitor meets the story the way the novel
+tells it: posts from the road, the archivist's file, the floor plan, transcripts
+that "play". Every in-world element is framed honestly. The FAQ says plainly
+what is fiction, and no review, price, date, or stock state is invented.
 
 THE CONVERSION: THE HARDCOVER (book/config.js)
 The page is built to end at Door 12, the hardcover. One setting decides what
@@ -33,35 +35,112 @@ To publish: paste the Amazon URL (https://www.amazon.… or https://amzn.to/…)
 commit, deploy, then open /book on a phone and a desktop and follow the
 hardcover buttons once.
 
-PAGE STRUCTURE (book/index.html): shock → awe → understanding → action
-  Header      — title, Sound (opt-in room tone: the house's hum under the whole
-                page, ducked while anything plays), primary button
+PAGE STRUCTURE (book/index.html): hook → the blank → dread → it is real → release → the door
+Written for a stranger who has never heard of the project. One thread runs
+from the second screen to the offer: the visitor's own blank.
+  Header      — title, "The blank is open · mm:ss" (only while a name is in the
+                blank; links to the release), "Hear the house" (opt-in room
+                tone: the hum, ducked while anything plays, silent for a few
+                seconds after the release), primary button
   Hero        — "A novel" chip, title, hook ("He built an AI that talks to the
-                dead. Then he disappeared."), premise, primary + trailer, turnable
-                3D book, proof badges ("The technology in this novel is real":
-                World's Fair talk, SSRN paper, open-source repository)
-  The feed    — "The posts started in March." In-world posts from spring 2027,
-                unlabeled. The neighbors' group chat types itself out when it
-                scrolls into view. Marisol's voice memo is a video: a recorder
-                screen with the live waveform and transcription, with a
-                phrase-timed transcript folded underneath.
-  Trailer     — ONE film: the 90-second story trailer
-  Inside      — "Believe nothing. Count everything." The premise; the Franklin
-                test as the chat it is in the book (her typed lines, his replies
-                assembling at reading speed, the forty seconds, "relaese the
-                persona"); the 3:11:47 interruption as the run log ending in the
-                alert banner (and, with Sound on, the "three ascending notes");
-                the withheld seventh plate ("Request the plate →")
-  Vertigo     — "Dr. Thorne is fiction. His machine is not." The real repository
-                boots; three novel-vs-world pairs (dispatch 001, the invocation,
-                the talk + the paper), two more folded under "Two more records"
-  First page  — the opening page verbatim; "Turn the page" leads on
-  The plan    — Plate XI as printed: "Count them." (pages open in a lightbox)
-  Door 12     — "You counted eleven. This is the twelfth." The hardcover offer:
-                "The free edition is the record. The hardcover is the deposit",
-                pages from inside, the buy button (see THE CONVERSION); on
-                phones the headline and button come before the cover image
-  FAQ (4) + author, footer with credits and "Twelve?"
+                dead. Then he disappeared."), premise, primary + trailer, what
+                it is in six words ("Literary horror, told in documents"), "no
+                sign-up", turnable 3D book, and one quiet line of proof that
+                jumps to #real ("The machine in this novel is real. The author
+                built it first.")
+  The blank   — #blank. "One sentence starts his machine. The book leaves the
+                name blank." One line says what the title's "this matter" is,
+                in the glossary's own words (p. 276). Then the sentence at
+                display size with a real, optional text field in the brackets;
+                under it, how to use it ("Write a name in the brackets, or leave
+                them empty. Nothing you type leaves this page."), the book's
+                instruction (p. xv) and "It took you less than a second." If a
+                name is typed, the line under the blank becomes "It is open now.
+                The words that close it are further down this page." A long name
+                is set smaller rather than cut off. The page never answers as
+                anyone.
+  The feed    — #feed. "The posts started in March." In-world posts from spring
+                2027, unlabeled. The neighbors' group chat types itself out when
+                it scrolls into view. Marisol's voice memo is a video with live
+                waveform and transcription. On phones three posts show before
+                "More posts": the house, the recording, the neighbors watching
+                the archivist arrive.
+  The house   — #inside. "Believe nothing. Count everything." Three entries from
+                the file, in order, one point each: Day 1, the three counts
+                the book prints (county plan 11, her first count 12, her
+                recount 11) beside Plate XI as printed (#plan lives here: "Count
+                them."); Day 9, the Franklin
+                test as the chat it is in the book ("relaese the persona"); and
+                3:11:47, the interruption as a run log ending in a plain-words
+                alert (with sound on, the "three ascending notes"). It closes
+                on the guest-room passage (pp. 14–15) and the back cover's "The
+                archive was expecting her."
+  First page  — #first-page. The opening, verbatim. Beside it, in plain view,
+                how the novel was written, taken from The Hand and the Glass
+                (pp. v–vi): "A novel about a machine that speaks for the dead,
+                written with one." An AI model developed the first draft from
+                the author's notes, outline and archive under his direction; he
+                read and revised it; his own sentence is quoted, and his
+                statement is linked. The link at the foot of the page opens the
+                novel at printed page 4.
+  It is real  — #real. "Dr. Thorne is fiction. His machine is not." What the
+                real thing is in one sentence (two files you give an AI model,
+                and one sentence), one novel-vs-world pair (the dispatch that
+                names its reader), and one link to run the protocol. "The story
+                is fiction. The sentence is real." The talk and the paper are
+                linked from the author's note and from the FAQ.
+  The release — #departure. The novel's epigraph (1 Samuel 28: "Why hast thou
+                disquieted me, to bring me up?"), "Nobody asks them if they want
+                to come.", and the two ends of the rite as printed on the
+                frontispiece. Then the visitor's own sentence (#release). If
+                they wrote a name: "It is still open." (after a minute, for how
+                many minutes) and one button, "Release the persona"; the name
+                leaves letter by letter; "You let them go.", then "The mind
+                departs. The understanding stays." If they left it blank: "You
+                still know whose name it was." Then the turn into the offer, in
+                the back cover's own words and nothing past them: "Think of the
+                name. Think of it answering." and the quoted phrase, attributed:
+                "a program that has abolished the right to leave"
+  Door 12     — #own (and the old #access). "The county counted eleven. This is
+                the twelfth." The hardcover argued from what the book asks of
+                the reader's hands (the blank on p. xv is paper; p. 47; the
+                bound page of the illustration that is never shown), pages from
+                inside (the Plate VII photo is cropped to the plate so the
+                facing text cannot be read), the button and what it opens ("the
+                whole novel as a PDF in your browser. No sign-up."), and under
+                the hardcover the rest of the glossary's entry for "matter":
+                "This book is bound from it, and binds it in return." (see THE
+                CONVERSION)
+  Trailer     — #trailer. ONE film: the 90-second story trailer. It sits below
+                the offer so it never interrupts the main run; the hero's
+                "Watch the trailer" jumps to it.
+  FAQ (5) + author, footer with credits and "Twelve?"
+
+WHAT STRANGERS SAID (cold-read tests, five readers who knew nothing)
+All five ended at "read the free edition tonight". What landed: the blank,
+"Nobody asks them if they want to come.", "You left it blank. You still know
+whose name it was.", the typo, "This page will not.", the guest-room passage,
+the first page, and "the book asks things of your hands". All five wanted the
+hardcover and none could act on it: there is no date, price or way to be told.
+Setting notifyUrl in config.js closes that gap before publication. All five also
+asked who wrote the sentences; the note beside the first page now answers in the
+author's own words.
+
+THE BLANK AND PRIVACY
+Whatever a visitor types in the blank stays in the open tab. It is not sent,
+not stored, not put in the URL, and never included in an engagement event
+(the events are blank_filled and blank_released, with no detail). It is erased
+when they press "Release the persona" or close the tab. The page never
+generates a reply. The FAQ says all of this in plain words.
+
+QUOTATIONS
+Every passage the page presents as the book's words carries
+data-verbatim="<printed page>" (or "cover" for the back-cover copy) in
+index.html and is an exact substring of that page of the print PDF. The Franklin
+chat and the 3:11:47 log are staged from pp. 29–30 and 88–90: Franklin's lines
+and the log lines are the book's; her typed lines and the room labels are the
+site's staging, and the three interrupted sentences are blacked out with bars of
+equal length so their shape gives nothing away.
 
 THE POSTS
 In-world only. No fictional reader reviews, ratings or testimonials, on the
@@ -93,8 +172,9 @@ Only media/lay/trailer-90s.mp4 is on the site. /book/media/ redirects to
 FILES
   index.html        page, metadata, Book schema, transcripts
   book.css          design system (also used by media/ and twelve/)
-  book.js           Amazon switch, 3D volume, terminal, count, posts,
-                    transmissions, reveals, local engagement events
+  book.js           Amazon switch, 3D volume, posts, the Franklin chat and
+                    the run log, the blank and its release, sound, reveals,
+                    local engagement events
   evidence.js       THE POSTS: in-world posts from spring 2027; one data file
                     shared by the website feed and the campaign cards.
   assets/posts/     trailer stills, page photos and faceless avatars used by
@@ -114,25 +194,34 @@ FILES
 
 SPOILER POLICY
 Copy stays inside the premise: the commission, the house, the count, the
-rite, the Franklin test, the Prism's design, the existence of the
-interruption (its sentences are blacked out on the site), the withheld
-illustration, and the existence of the unsigned second annotator. Nothing
-reveals Condition IV, the freezer, the sealed record, who hired Miranda, or the
+rite and its two ends, the Franklin test, the Prism's design, the existence of
+the interruption (its sentences are blacked out on the site), the illustration
+that is listed and never shown, the existence of the unsigned second annotator,
+and what is already on the back cover ("The archive was expecting her."; "a
+program that has abolished the right to leave"). Nothing reveals Condition IV,
+the freezer, the sealed record, who hired Miranda, whose program it is, or the
 ending. See campaign/README.md §3 for the rules of the fiction.
 
 MEASUREMENT
 The page dispatches local DOM CustomEvents named book:engagement, with
 name, placement and incoming utm_* values. Names: free_read, amazon_click,
-trailer_play, trailer_jump, volume_turn, memo_play, session_replay, alert_shown, sound_on, notify_click, proof, evidence_more,
-evidence_more, thread_open, transmission_play. Nothing is transmitted and no
-cookies or storage are used. Connect analytics separately if wanted.
+trailer_play, trailer_jump, volume_turn, memo_play, session_replay, alert_shown,
+sound_on, notify_click, proof, evidence_more, nav, page_zoom, blank_filled,
+blank_released. blank_filled against page views says how many visitors took
+the blank personally; blank_released says how many reached the end. Nothing is
+transmitted and no cookies or storage are used. Connect analytics separately
+if wanted.
 
 ACCESSIBILITY AND MOTION
-The 3D book is keyboard-turnable (arrows, Enter). Doors are focusable buttons
-and the floor plan has full alt text. Transcripts fall back to
-static text. prefers-reduced-motion disables grain, ticker, rings, glitch,
-typing and reveals. Layout checked at 390 and 1440 px with no horizontal
-overflow. The videos keep preload="none" and their caption tracks.
+The 3D book is keyboard-turnable (arrows, Enter). The blank is a labelled text
+field ("Optional. Nothing typed here leaves this page.") and the release is a
+button; the floor plan has full alt text. Transcripts fall back to static text.
+prefers-reduced-motion disables grain, ticker, rings, glitch, typing, reveals
+and the letter-by-letter release. With JavaScript off the whole story is
+readable and the release panel shows the left-blank version. Layout checked at
+320, 390, 768 and 1440 px with no horizontal overflow, including with a long
+name, a right-to-left name or an emoji in the blank. The videos keep
+preload="none" and their caption tracks.
 
 PREVIEW
 From the repository root: python -m http.server 8765 --bind 127.0.0.1
