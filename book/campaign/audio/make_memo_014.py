@@ -334,7 +334,25 @@ def verify(wav: Path, tl, model="base.en"):
     return wer(allr, allh), report
 
 
-def make_reel(m4a: Path, tl, bg: Path, out: Path, wave_box=(130, 861, 820, 170), caps_y=1150):
+def make_ambient(out: Path, period=20.0, extra=1.0):
+    """Seamless room tone for the site's Sound toggle: the garage hum and night air, periodic over `period` seconds.
+    Rendered a little longer than one period; the player loops [0.5, 0.5 + period] so codec padding never shows."""
+    N = int(period * SR); t = np.arange(N) / SR
+    amp = 1 + 0.05 * np.sin(2 * np.pi * 0.2 * t) + 0.02 * np.sin(2 * np.pi * 1.3 * t)     # whole cycles per period
+    hum = sum(a * np.sin(2 * np.pi * f0 * t + ph) for (f0, a), ph in zip([(60, .35), (120, 1.0), (180, .62), (240, .34), (300, .16), (360, .08)], rng.uniform(0, 6.28, 6)))
+    hum = np.tanh(1.4 * (hum + 0.25 * np.sin(2 * np.pi * 119.7 * t)) * amp)
+    air = fshape(rng.standard_normal(N), lambda f: 1 / np.maximum(f, 40) ** 0.5 / (1 + (f / 2200) ** 4))   # circular FFT: periodic
+    x = hum / rms(hum) * 10 ** (-24 / 20) + air / rms(air) * 10 ** (-40 / 20)
+    x = fshape(x, lambda f: np.clip((f - 70) / 60, 0, 1) / (1 + (f / 9000) ** 4))
+    x = np.concatenate([x, x[: int(extra * SR)]])
+    wav = out.with_suffix(".wav")
+    with wave.open(str(wav), "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((x / np.abs(x).max() * 0.5 * 32767).astype("<i2").tobytes())
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-c:a", "aac", "-b:a", "64k", str(out)], check=True)
+    wav.unlink(); print(f"ambient → {out}")
+
+
+def make_reel(m4a: Path, tl, bg: Path, out: Path, wave_box=(130, 861, 820, 170), caps_y=1150, size=58, scale=None):
     """Vertical video: background frame + live waveform + phrase captions timed to the audio."""
     import tempfile, textwrap
     work = Path(tempfile.mkdtemp())
@@ -348,7 +366,7 @@ def make_reel(m4a: Path, tl, bg: Path, out: Path, wave_box=(130, 861, 820, 170),
             if "exhale" in ph:   # between the phrase just spoken and the next one
                 events.append((P[k - 1]["end"] + 0.1, P[k]["start"] - 0.05, "[exhales]", ital, "0xE8953F", 44)); continue
             p = P[k]; k += 1
-            events.append((p["start"], p["end"] + 0.35, p["text"], bold, "0xF4EFE6", 58))
+            events.append((p["start"], p["end"] + 0.35, p["text"], bold, "0xF4EFE6", size))
     x, y, w, h = wave_box
     g = [f"[1:a]aformat=channel_layouts=mono,showwaves=s={w}x{h}:mode=cline:rate=30:colors=0xE8953F:scale=sqrt:draw=full,format=rgba[wv]",
          f"[0:v]format=rgba[bg];[bg][wv]overlay={x}:{y}:shortest=1:format=rgb[v0]"]
@@ -359,6 +377,8 @@ def make_reel(m4a: Path, tl, bg: Path, out: Path, wave_box=(130, 861, 820, 170),
         g.append(f"[{last}]drawtext=fontfile={font}:textfile={tf}:fontsize={size}:fontcolor={color}:line_spacing=16:"
                  f"text_align=C:x=(w-text_w)/2:y={caps_y}:alpha='{alpha}':enable='between(t,{a:.2f},{b:.2f})'[v{k + 1}]")
         last = f"v{k + 1}"
+    if scale:
+        g.append(f"[{last}]scale={scale[0]}:{scale[1]}:flags=lanczos[vs]"); last = "vs"
     script = work / "graph.txt"; script.write_text(";\n".join(g), encoding="utf-8")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-framerate", "30", "-i", str(bg), "-i", str(m4a),
                     "-filter_complex_script", str(script), "-map", f"[{last}]", "-map", "1:a",
@@ -378,8 +398,18 @@ def main():
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--asr", default="base.en,small.en,medium.en")
     ap.add_argument("--punch", action="store_true", help="re-record each phrase until every recognizer hears it exactly")
-    ap.add_argument("--reel", metavar="BG_PNG", help="only build the vertical video from an existing memo + a 1080x1920 background")
+    ap.add_argument("--reel", metavar="BG", help="only build the vertical video from an existing memo + a 1080x1920 background")
+    ap.add_argument("--ambient", action="store_true", help="only build the site's looping room tone (assets/posts/ambient-hum.m4a)")
+    ap.add_argument("--feed", metavar="BG", help="only build the in-feed video (recorder screen, 1080x1350 background → 720x900)")
     a = ap.parse_args()
+    if a.ambient:
+        make_ambient(OUT / "ambient-hum.m4a"); return
+    if a.feed:
+        base = Path(a.out); tl = json.loads(base.with_suffix(".json").read_text(encoding="utf-8"))
+        out = OUT / "memo-014.mp4"
+        make_reel(base.with_suffix(".m4a"), tl, Path(a.feed), out, wave_box=(130, 352, 820, 170), caps_y=650, size=66, scale=(720, 900))
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", "4.9", "-i", str(out), "-frames:v", "1", "-q:v", "3", str(OUT / "memo-014-poster.jpg")], check=True)
+        return
     if a.reel:
         base = Path(a.out)
         make_reel(base.with_suffix(".m4a"), json.loads(base.with_suffix(".json").read_text(encoding="utf-8")), Path(a.reel),

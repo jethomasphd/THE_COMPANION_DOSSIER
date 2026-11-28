@@ -45,6 +45,10 @@ The story begins on the page. The site and the campaign are immersive: in-world 
 7. **Protect the real people.** The novel displaces its people ("an offset of a real figure, never the figure"). Never link an in-world character to a real private person. Your own identity as the author is the one real person the campaign leans on.
 8. **The answer is always one click away.** The site's FAQ and the book's front matter say plainly which parts are the novel. Campaign captions name the book. If someone asks directly whether Dr. Thorne is real, answer honestly: he's the novel's; the machine is real.
 
+## 3a. Where it all leads
+
+Every channel points to one place: **/book**, which ends at **Door 12, the hardcover**. Before publication the site's primary action is the free edition, and Door 12 says the hardcover is coming soon. Add `notifyUrl` in `book/config.js` to collect interest. On publication day, put the Amazon URL in `config.js`: every primary button flips to "Get the hardcover", and the captions' last line becomes the print line in `social-copy.md` §7. Link to `/book#own` when a post is about the physical book.
+
 ## 4. Phases
 
 | Phase | Window | Name | Goal | Primary assets |
@@ -52,7 +56,7 @@ The story begins on the page. The site and the campaign are immersive: in-world 
 | 0 | Days 1–10 | **The Feed** | Shock. In-world posts from spring 2027, one a day, no explanation. | `cards/post-*` (portrait + story); the voice memo as a Reel. |
 | 1 | Days 8–14 | **The Plan** | Interaction. Post the book's floor plan and ask people to count the doors and comment their number. | The Plate XI page as printed (`book/assets/the-plan.png`); quote card `doors`; the site's `#plan` section. |
 | 2 | Days 12–18 | **The Footage** | Comprehension. Explain the premise in 20 and 90 seconds. | the 90-second story trailer (the only film on the site, `#trailer`); the 20-second promos are social-only. |
-| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#read`; email. |
+| 3 | Days 16–24 | **The Deposit Opens** | Conversion. Free digital reading now; print when it's live. | Quote cards; `#own` (Door 12); email. |
 | 4 | Ongoing | **The Twelfth Door** | Retention. Reward the people who dug in. | `/book/twelve/`, the browser-console note, reply-only hints. |
 
 **Never post the Door 12 URL in a feed.** It's found three ways: the faint "Twelve?" link in the site footer, the browser console, and replies to people who comment "12" on count posts. ("Exterior doors are excluded from the interior count. Try the footer.")
@@ -92,7 +96,7 @@ When Amazon goes live, change the end of every caption to the print line in `soc
 `https://the-companion-dossier.com/book?utm_source={platform}&utm_medium={organic_social|paid_social|email|referral}&utm_campaign=twelfth_door&utm_content={asset-id}`
 
 - `utm_content` = the card file stem, e.g. `post-nb-house-portrait`, `quote-doors-story`, `lay_trailer_90s`.
-- Use the `#story`, `#trailer`, `#plan`, `#readers`, `#first-page` or `#read` anchors when a post is about that section.
+- Use the `#feed`, `#trailer`, `#inside`, `#plan`, `#real`, `#first-page` or `#own` (Door 12, the hardcover) anchors when a post is about that section.
 
 ## 7. Measurement
 

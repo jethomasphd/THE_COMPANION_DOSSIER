@@ -19,6 +19,15 @@
   .card .atmos{position:absolute;inset:0!important;animation:none!important}
   .portrait{width:1080px;height:1350px;padding:70px 80px}
   .story{width:1080px;height:1920px;padding:230px 80px 270px}
+  .feedvid{width:1080px;height:1350px;padding:70px 80px 60px;justify-content:flex-start;align-items:stretch;background:radial-gradient(ellipse at 50% 35%,rgba(232,149,63,.10),transparent 60%),#070605}
+  .feedvid > *{width:100%}
+  .fv__top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:26px;letter-spacing:.14em;color:#8e8a82;text-transform:uppercase}
+  .fv__rec{display:inline-flex;align-items:center;gap:12px;color:#e9e6e0}
+  .fv__rec i{width:18px;height:18px;border-radius:50%;background:#cf4a33;box-shadow:0 0 16px rgba(207,74,51,.8)}
+  .fv__title{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:650;font-size:52px;color:#ede7dc;margin-top:56px}
+  .fv__wave{height:300px;margin-top:70px}
+  .fv__caps{flex:1}
+  .fv__bot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:22px;letter-spacing:.14em;color:#5f5b55;text-transform:uppercase;border-top:1px solid #2a2722;padding-top:22px}
   .reel{justify-content:flex-start;align-items:stretch}
   .reel > *{width:100%}
   .reel__post{display:flex;align-items:center;gap:26px;margin-top:70px}
@@ -75,7 +84,15 @@
   const foot = (disc = true) => `<div class="c-foot"><div class="c-title">Using This Matter<small>A Novel of the Companion Estate</small></div><div class="c-url"><b>◊◈◊</b><br>the-companion-dossier.com/book</div></div>`;
   const QUOTES = window.CAMPAIGN_QUOTES || {};
   let html = "";
-  if (q.get("reel")) {
+  if (q.get("feedvid")) {
+    // in-world recorder screen for the feed post: no book branding
+    html = `<div class="card feedvid">${atmos}
+      <div class="fv__top"><span class="fv__rec"><i></i>REC</span><span>Mar 30 · 2:04 AM</span></div>
+      <div class="fv__title">New Recording 14</div>
+      <div class="reel__wave fv__wave"></div>
+      <div class="reel__caps fv__caps"></div>
+      <div class="fv__bot"><span>Live transcription</span><span>◉</span></div></div>`;
+  } else if (q.get("reel")) {
     // background frame for a vertical audio video (waveform + captions are added by ffmpeg)
     const p = (window.RECOVERED_POSTS || []).find(x => x.id === q.get("reel"));
     const av = p && p.av && p.av.img ? `<span class="av av--img" style="background-image:url('../${p.av.img}');width:96px;height:96px;flex-basis:96px"></span>` : "";
@@ -98,7 +115,7 @@
       for (const para of paras) { if (out.length && n + textLen(para) > LIMIT) break; out.push(para); n += textLen(para); }
       return out.join("\n\n") + ' <span style="color:#8e8a82">… Show more</span>';
     };
-    const pc = p ? Object.assign({}, p, {body: trunc(p.body)}) : null;
+    const pc = p ? Object.assign({}, p, {body: trunc(p.body)}, p.video ? {video: null} : {}) : null;   // static cards show the audio layout; the reel is the video
     // post image paths are relative to /book/; this template lives one level down
     const post = pc ? window.renderRecoveredPost(pc).replace(/(["'(])assets\//g, "$1../assets/") : "<p>missing post</p>";
     const label = "Spring 2027";

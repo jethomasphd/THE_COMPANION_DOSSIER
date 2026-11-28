@@ -21,7 +21,7 @@ This directory contains the final release materials for the **304-page premium-c
 - **[Original atmospheric versions](media/original/):** the first two promos and full trailer, preserved as a separate collection (not on the website).
 - **[Film files and download table](media/README.md):** clearly labeled files, captions, posters, and scripts for both sets, kept in the repository for campaign use.
 
-The full digital novel remains free. Print is the intended experience, and purchasing contributes to further development of the Companion Dossier's product, scholarship, and moral framework. Set the final Amazon URL in `config.js` when the book is published.
+The full digital novel remains free. Print is the intended experience, and purchasing contributes to further development of the Companion Dossier's product, scholarship, and moral framework. Set the final Amazon URL in `config.js` when the book is published: every primary button on the site then becomes **Get the hardcover**, and the page culminates at Door 12, the hardcover offer. An optional `notifyUrl` adds "Tell me when it ships" before publication. See [WEBSITE.txt](WEBSITE.txt).
 
 ## KDP settings
 

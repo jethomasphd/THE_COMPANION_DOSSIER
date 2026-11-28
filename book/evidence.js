@@ -221,7 +221,9 @@ window.RECOVERED_POSTS = [
           }
         ]
       }
-    ]
+    ],
+    "video": "assets/posts/memo-014.mp4",
+    "poster": "assets/posts/memo-014-poster.jpg"
   },
   {
     "id": "fr-vessel",

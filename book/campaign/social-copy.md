@@ -209,7 +209,7 @@ Close with:
 >
 > Print is the intended experience: color plates, the register, both hands in the margins. Buying a copy supports the public project the book grew from.
 >
-> Read it freely. Hold it in print. → the-companion-dossier.com/book#read
+> Read it freely. Hold it in print. → the-companion-dossier.com/book#own
 
 **Email: "The deposit is open"** (to the author's own list; plain text works best)
 - **Subject:** `Eleven doors on the county plan`
@@ -240,7 +240,7 @@ Close with:
    > Read it free, or hold it in print → the-companion-dossier.com/book
 3. Announcement:
    > The bound volume is here. 304 pages, color hardcover, both hands in the margins. Plate VII is bound where it belongs, and withheld.
-   > → the-companion-dossier.com/book#read
+   > → the-companion-dossier.com/book#own
 4. Email subject: `Twelve` · Body: one paragraph, plus the link.
 
 ---

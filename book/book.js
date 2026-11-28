@@ -10,6 +10,8 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const duck = on => window.dispatchEvent(new CustomEvent("utm:duck", {detail: on}));
   const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
   /* ── engagement events (local only) ─────────────────────────────── */
@@ -30,20 +32,28 @@
     const ok = /(^|\.)amazon\.(com|co\.uk|ca|com\.au|de|fr|es|it|nl|co\.jp|in|com\.br|com\.mx|se|pl|com\.be|ie|sg|ae|sa|com\.tr)$/i;
     if (u.protocol === "https:" && (ok.test(u.hostname) || u.hostname === "amzn.to")) amazon = u.href;
   } catch (_) { /* blank = honest prepublication state */ }
+  // Optional pre-publication "tell me when it ships" link (any https URL: a mailing-list signup, a preorder page).
+  let notify = null;
+  try { const u = new URL(config.notifyUrl); if (u.protocol === "https:") notify = u.href; } catch (_) {}
+  const outbound = (el, href, ev) => { el.href = href; el.target = "_blank"; el.rel = "noopener"; el.dataset.event = ev; };
+  $$("[data-free-line]").forEach(el => el.hidden = !amazon);
   if (amazon) {
-    $$("[data-amazon]").forEach(el => {
-      el.href = amazon; el.hidden = false; el.target = "_blank"; el.rel = "noopener";
-      el.dataset.event = "amazon_click";
-    });
-    $$("[data-print-cta]").forEach(el => {
-      el.href = amazon; el.target = "_blank"; el.rel = "noopener";
-      el.dataset.event = "amazon_click";
+    // The hardcover is the conversion: every primary button becomes "Get the hardcover"; free reading stays as a quiet link.
+    $$("[data-primary]").forEach(el => {
+      outbound(el, amazon, "amazon_click");
       const label = el.querySelector("[data-label]");
-      if (label) label.textContent = "Hold it in print";
+      if (label) label.textContent = el.hasAttribute("data-short") ? "Get the hardcover" : "Get the hardcover";
     });
-    $$("[data-print-status]").forEach(el => el.hidden = true);
-    $$("[data-availability]").forEach(el => el.innerHTML = "<b>●</b> Color hardcover available · Digital deposit free");
+    $$("[data-buy]").forEach(el => { outbound(el, amazon, "amazon_click"); el.hidden = false; });
+    $$("[data-print-status], [data-notify], [data-free-cta]").forEach(el => el.hidden = true);
     $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
+    $$("[data-free-fact]").forEach(el => el.innerHTML = "Or read it <b>free</b> online");
+    $$("[data-ticker-status]").forEach(el => el.textContent = "The hardcover is available now");
+    $$("[data-dock-sub]").forEach(el => el.textContent = "The hardcover · 304 pages");
+  } else if (notify) {
+    $$("[data-notify]").forEach(el => { outbound(el, notify, "notify_click"); el.hidden = false; });
+    $$("[data-free-cta]").forEach(el => el.classList.replace("btn--ember", "btn--ghost"));
+    $$("[data-print-status]").forEach(el => el.innerHTML = "<b>The hardcover is coming soon.</b> Get a note the day it’s published.");
   }
 
   /* ── reveal on scroll ───────────────────────────────────────────── */
@@ -173,7 +183,7 @@
   function renderPost(p) {
     const kind = p.kind || "micro";
     const isStory = (p.cat || []).includes("story");
-    const cls = ["post", "post--" + kind, p.paper ? "post--paper" : "", p.gone ? "post--gone" : ""].join(" ");
+    const cls = ["post", "post--" + kind, kind === "chat" ? "js-chat" : "", p.paper ? "post--paper" : "", p.gone ? "post--gone" : ""].join(" ");
     let inner = "";
     if (kind === "forum") {
       const cm = (Array.isArray(p.comments) ? p.comments : []).map(c => `<div class="fc"><div class="fc__hd"><b>${esc(c.u)}</b>${c.op ? '<span class="op">OP</span>' : ""}</div><div class="fc__t">${c.t}</div>${c.pts ? `<div class="fc__p">▲ ${esc(c.pts)}</div>` : ""}</div>`).join("");
@@ -213,16 +223,22 @@
         const mm = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}`;
         let bars = "";
         for (let i = 0; i < 52; i++) { const h = 18 + Math.abs(Math.sin(i * 1.9) * 55 + Math.cos(i * .7) * 22); bars += `<i style="height:${Math.min(100, h).toFixed(0)}%"></i>`; }
-        vm = `<div class="memo" data-memo data-src="${esc(p.audio || "")}" data-tl="${esc(JSON.stringify(tl))}" data-total="${total}">
+        const player = p.video
+          ? `<div class="memo memo--video" data-memo data-tl="${esc(JSON.stringify(tl))}" data-total="${total}">
+            <div class="memo__vid"><video playsinline preload="none" poster="${esc(p.poster || "")}" src="${esc(p.video)}" aria-label="Phone recording from the road at 2 a.m., with live transcription"></video>
+              <button class="memo__vplay" type="button" data-memo-btn aria-label="Play the recording"><span aria-hidden="true">▶</span></button><span class="memo__badge" aria-hidden="true">${mm(total)}</span></div>
+          </div>`
+          : `<div class="memo" data-memo data-src="${esc(p.audio || "")}" data-tl="${esc(JSON.stringify(tl))}" data-total="${total}">
             <button class="memo__btn" type="button" data-memo-btn aria-label="Play the recording">▶</button>
             <div class="memo__main"><div class="memo__bars" aria-hidden="true">${bars}</div><div class="memo__meta"><span data-memo-clock>0:00</span><span>${mm(total)}</span></div></div>
-          </div>
-          <div class="memo__tx"><span class="memo__lbl">Transcript</span>${p.memo
+          </div>`;
+        vm = `${player}
+          <${p.video ? "details" : "div"} class="memo__tx">${p.video ? "<summary>Transcript</summary>" : '<span class="memo__lbl">Transcript</span>'}${p.memo
             // phrase-timed transcript: every span knows when it is spoken
             ? p.memo.map(L => L.cue
                 ? `<p class="memo__ln memo__cue"><span class="memo__ph" data-a="${L.a}" data-b="${L.b}">${esc(L.cue)}</span></p>`
                 : `<p class="memo__ln">${L.parts.map(q => `<span class="memo__ph${q.cue ? " memo__inl" : ""}" data-a="${q.a}" data-b="${q.b}">${esc(q.t)}</span>`).join(" ")}</p>`).join("")
-            : lines.map((l, i) => `<p class="memo__ln${/^\[[^\]]*\]$/.test(l.trim()) ? " memo__cue" : ""}" data-ln="${i}">${l}</p>`).join("")}</div>`;
+            : lines.map((l, i) => `<p class="memo__ln${/^\[[^\]]*\]$/.test(l.trim()) ? " memo__cue" : ""}" data-ln="${i}">${l}</p>`).join("")}</${p.video ? "details" : "div"}>`;
         body = p.caption || "";
       }
       const replies = (p.replies || []).map(r => `<div class="reply">${avatar(r.av || {c: "#3a3530", t: (r.name || "?")[0]})}<div><div class="reply__hd"><b>${esc(r.name)}</b> <span>${r.handle || ""}${r.time ? " · " + esc(r.time) : ""}</span></div><div class="reply__body">${r.body}</div>${r.l ? `<div class="reply__l">♡ ${esc(r.l)}</div>` : ""}</div></div>`).join("");
@@ -268,19 +284,20 @@
     if (more) more.addEventListener("click", () => { showing += 9; paint(); emit("evidence_more"); });
     paint();
 
-    // audio posts: a real recording; bars fill as it plays, the transcript line lights up in time
+    // recordings (audio or video): the transcript lights up phrase by phrase, in time
     wall.addEventListener("click", e => {
       const btn = e.target.closest("[data-memo-btn]"); if (!btn) return;
       const memo = btn.closest("[data-memo]"), post = memo.closest(".post");
-      if (!memo._audio) {
-        const a = new Audio(memo.dataset.src); a.preload = "auto";
+      if (!memo._media) {
+        const video = $("video", memo);
+        const a = video || new Audio(memo.dataset.src); if (!video) a.preload = "auto";
         const tl = JSON.parse(memo.dataset.tl), total = Number(memo.dataset.total) || 30;
         const bars = $$(".memo__bars i", memo), lines = $$(".memo__ln", post), clock = $("[data-memo-clock]", memo);
         const mm = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
         const spans = $$(".memo__ph", post);
         const tick = () => {
           const t = a.currentTime, frac = Math.min(1, t / total);
-          clock.textContent = mm(t);
+          if (clock) clock.textContent = mm(t);
           bars.forEach((b, i) => b.classList.toggle("on", i / bars.length < frac));
           if (spans.length) spans.forEach(sp => { const s0 = +sp.dataset.a, s1 = +sp.dataset.b + (sp.closest(".memo__cue") || sp.classList.contains("memo__inl") ? 0 : 0.15); sp.classList.toggle("now", t >= s0 && t < s1); sp.classList.toggle("past", t >= s1); });
           else lines.forEach((l, i) => { const r = tl[i] || [0, 0]; l.classList.toggle("now", t >= r[0] && t < r[1]); l.classList.toggle("past", t >= r[1]); });
@@ -288,13 +305,34 @@
         let raf = 0;
         const loop = () => { tick(); if (!a.paused) raf = requestAnimationFrame(loop); };
         a.addEventListener("timeupdate", tick);
-        a.addEventListener("play", () => { memo.classList.add("playing"); btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Pause the recording"); emit("memo_play"); cancelAnimationFrame(raf); loop(); });
-        a.addEventListener("pause", () => { memo.classList.remove("playing"); btn.textContent = "▶"; btn.setAttribute("aria-label", "Play the recording"); });
-        a.addEventListener("ended", () => { tick(); lines.forEach(l => l.classList.remove("now")); });
-        memo._audio = a;
+        a.addEventListener("play", () => {
+          memo.classList.add("playing"); duck(true); emit("memo_play"); cancelAnimationFrame(raf); loop();
+          if (video) video.controls = true; else { btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Pause the recording"); }
+        });
+        a.addEventListener("pause", () => { memo.classList.remove("playing"); duck(false); if (!video) { btn.textContent = "▶"; btn.setAttribute("aria-label", "Play the recording"); } });
+        a.addEventListener("ended", () => { tick(); duck(false); lines.forEach(l => l.classList.remove("now")); });
+        memo._media = a;
       }
-      const a = memo._audio;
+      const a = memo._media;
       if (a.paused) { if (a.ended) a.currentTime = 0; a.play().catch(() => {}); } else a.pause();
+    });
+
+    // group chats arrive the way chats do: one message at a time, someone typing
+    $$(".js-chat", wall).forEach(chat => {
+      const bubs = $$(".bub", chat); if (reduce || !bubs.length) return;
+      bubs.forEach(b => b.classList.add("bub--wait"));
+      whenSeen(chat, async () => {
+        for (const b of bubs) {
+          if (!b.classList.contains("bub--sys")) {
+            const dots = document.createElement("div");
+            dots.className = "bub bub--typing" + (b.classList.contains("bub--out") ? " bub--typing-out" : " bub--in");
+            dots.innerHTML = "<i></i><i></i><i></i>"; b.before(dots);
+            await sleep(260 + Math.min(800, b.textContent.length * 12));
+            dots.hidden = true; dots.className = "bub-gone";
+          }
+          b.classList.remove("bub--wait"); await sleep(b.classList.contains("bub--sys") ? 180 : 200);
+        }
+      }, "0px 0px -25% 0px");
     });
   }
 
@@ -306,6 +344,104 @@
     tm.setAttribute("aria-expanded", String(open));
     if (open) emit("thread_open");
   });
+
+  /* ── the Franklin session: a chat with a machine, replies assembling at reading speed ── */
+  const session = $("[data-session]");
+  if (session) {
+    const log = $("[data-session-log]", session), script = JSON.parse($("script", session).textContent);
+    let run = 0;
+    const bubble = (who, text) => {
+      const el = document.createElement("div");
+      el.className = "sx sx--" + who;
+      if (who !== "sys") el.innerHTML = `<span class="sx__who">${who === "you" ? "M. CALE" : "FRANKLIN"}</span>`;
+      const body = document.createElement("span"); body.className = "sx__t"; body.textContent = text; el.appendChild(body);
+      log.appendChild(el); log.scrollTop = log.scrollHeight; return body;
+    };
+    const play = async () => {
+      const me = ++run; log.innerHTML = "";
+      for (const m of script) {
+        if (me !== run) return;
+        if (reduce) { bubble(m.who, m.t); continue; }
+        if (m.who === "you") {
+          const typing = bubble("you", ""); typing.parentNode.classList.add("sx--typing");
+          await sleep(380 + m.t.length * 16); if (me !== run) return;
+          typing.parentNode.classList.remove("sx--typing"); typing.textContent = m.t;
+          await sleep(700);
+        } else if (m.who === "them") {
+          await sleep(900);
+          const body = bubble("them", ""); const cur = document.createElement("i"); cur.className = "sx__cur";
+          for (let i = 0; i <= m.t.length; i++) {               // "the cursor laying the words down left to right"
+            if (me !== run) return;
+            body.textContent = m.t.slice(0, i); body.appendChild(cur); log.scrollTop = log.scrollHeight;
+            await sleep(m.t[i - 1] === "." || m.t[i - 1] === "," ? 120 : 15);
+          }
+          cur.remove(); await sleep(650);
+        } else {
+          const el = bubble("sys", m.t).parentNode;
+          if (m.bar) { el.classList.add("sx--bar"); el.style.setProperty("--d", m.bar + "ms"); await sleep(m.bar); }
+          await sleep(600);
+        }
+      }
+    };
+    whenSeen(session, play, "0px 0px -20% 0px");
+    $("[data-session-replay]", session).addEventListener("click", () => { play(); emit("session_replay"); });
+  }
+
+  /* ── the interruption: the run log, then the alert that went off in an empty room ── */
+  const alertlog = $("[data-alertlog]");
+  if (alertlog) {
+    const body = $("[data-alert-body]", alertlog), push = $("[data-push]", alertlog), lines = JSON.parse($("script", alertlog).textContent);
+    let run = 0;
+    const play = async () => {
+      const me = ++run; body.innerHTML = ""; push.classList.remove("on");
+      for (const L of lines) {
+        if (me !== run) return;
+        const d = document.createElement("div"); d.className = "ln " + (L.c || "") + (L.alert ? " alertln" : ""); body.appendChild(d);
+        if (reduce) { d.textContent = L.t; } else {
+          for (let i = 0; i <= L.t.length; i += 2) { if (me !== run) return; d.textContent = L.t.slice(0, i); await sleep(9); }
+          d.textContent = L.t;
+        }
+        body.scrollTop = body.scrollHeight;
+        if (L.alert) { push.classList.add("on"); chime(); emit("alert_shown"); setTimeout(() => { if (me === run) push.classList.toggle("on", false); }, 5200); await sleep(reduce ? 0 : 900); }
+        else await sleep(reduce ? 0 : (L.t.includes("room iii  ███") ? 700 : 260));
+      }
+    };
+    whenSeen(alertlog, play, "0px 0px -20% 0px");
+    $("[data-alert-replay]", alertlog).addEventListener("click", () => { play(); emit("alert_replay"); });
+  }
+
+  /* ── Sound: the hum of the house, under the whole page (opt-in) ── */
+  let actx = null, hum = null, humGain = null, soundOn = false, ducked = false;
+  const sndBtn = $("[data-sound]");
+  const level = () => (soundOn ? (ducked ? 0.08 : 0.55) : 0);
+  const ramp = () => { if (humGain) humGain.gain.setTargetAtTime(level(), actx.currentTime, 0.6); };
+  async function startHum() {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === "suspended") await actx.resume();
+    if (!hum) {
+      const buf = await fetch("assets/posts/ambient-hum.m4a").then(r => r.arrayBuffer()).then(b => actx.decodeAudioData(b));
+      hum = actx.createBufferSource(); hum.buffer = buf; hum.loop = true; hum.loopStart = 0.5; hum.loopEnd = Math.min(buf.duration - 0.05, 20.5);
+      humGain = actx.createGain(); humGain.gain.value = 0;
+      hum.connect(humGain).connect(actx.destination); hum.start(0, 0.5);
+    }
+    ramp();
+  }
+  function chime() {                      // "three ascending notes" — only if the visitor turned sound on
+    if (!actx || !soundOn) return;
+    [660, 880, 1175].forEach((f, i) => {
+      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + 0.35 + i * 0.28;
+      o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.12, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.55);
+    });
+  }
+  if (sndBtn) sndBtn.addEventListener("click", async () => {
+    soundOn = !soundOn; sndBtn.setAttribute("aria-pressed", String(soundOn)); sndBtn.classList.toggle("on", soundOn);
+    try { if (soundOn) await startHum(); else ramp(); } catch (_) { soundOn = false; sndBtn.classList.remove("on"); }
+    emit(soundOn ? "sound_on" : "sound_off");
+  });
+  window.addEventListener("utm:duck", e => { ducked = !!e.detail; ramp(); });
+  const trailerEl = $("#book-trailer");
+  if (trailerEl) { trailerEl.addEventListener("play", () => duck(true)); trailerEl.addEventListener("pause", () => duck(false)); trailerEl.addEventListener("ended", () => duck(false)); }
 
   /* ── transmissions: typed playback ──────────────────────────────── */
   $$("[data-tx]").forEach(card => {
@@ -359,7 +495,7 @@
     playBtn.addEventListener("click", () => { tv.controls = true; tv.play().catch(() => {}); tv.focus(); });
     tv.addEventListener("play", () => { tv.controls = true; });
   }
-  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#read");
+  const dock = $("[data-dock]"), heroEl = $(".hero"), readEl = $("#own");
   if (dock && heroEl && "IntersectionObserver" in window) {
     let pastHero = false, atRead = false;
     const upd = () => {
