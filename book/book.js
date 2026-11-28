@@ -607,6 +607,6 @@
   /* ── for the ones who open the console ──────────────────────────── */
   try {
     console.log("%c◊ ◈ ◊  THE COMPANION ESTATE", "color:#e8953f;font:600 13px monospace;letter-spacing:3px");
-    console.log("%cDeposit mounted. Eleven doors on the county plan.\nThe Editor has not counted them.\n\nIf you are reading this, you are already counting.\n— try /book/twelve/", "color:#bfb7a9;font:12px monospace;line-height:1.6");
+    console.log("%cDeposit mounted. Eleven doors on the county plan.\nThe Editor has not counted them.\n\nIf you are reading this, you are already counting.\nTry /book/twelve/", "color:#bfb7a9;font:12px monospace;line-height:1.6");
   } catch (_) {}
 })();
