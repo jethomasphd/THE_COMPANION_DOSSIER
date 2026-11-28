@@ -58,16 +58,21 @@ hardcover buttons once.
 
 PAGE STRUCTURE (book/index.html)
   Ticker      — desktop only: a horror novel by Jacob E. Thomas, told in the
-                documents he left behind, "Dread, not gore", "The machine in
-                it is real", hardcover coming soon (or available now, once
-                published)
+                documents he left behind, "Dread, not gore", "The technology
+                in it is real", "Presented at AI Engineer World's Fair 2026",
+                "Research paper on SSRN", hardcover coming soon (or available
+                now, once published)
   Header      — title; The story · Inside · Read the opening · Get the book;
                 the primary button. On a phone it scrolls away and the bottom
                 bar carries the button.
   Hero        — #top. "A horror novel by Jacob E. Thomas", the hook as the
                 headline, the turnable 3D cover, ONE button, two facts ("Free
                 · the whole novel · PDF · no sign-up", "Hardcover coming
-                soon"), then the house in three sentences, naming Miranda
+                soon"), then THE BADGES (see SOCIAL PROOF): "The technology in
+                this novel is real" over "Presented at AI Engineer World's
+                Fair 2026" and "Research paper on SSRN", each linked. On a
+                phone they sit side by side on the first screen. Then the
+                house in three sentences, naming Miranda
                 Cale and ending on "one door too many", and one line saying
                 what the book is: a slow-burn horror novel told through what
                 he left behind. "Dread, not gore." On a phone the order is
@@ -79,7 +84,8 @@ PAGE STRUCTURE (book/index.html)
                 matter, summon', and then a name."), how he vanished, and the
                 trailer's three questions. Then, in a ruled box (#real): "Dr.
                 Thorne is a character in a novel. His machine is real." with
-                what the real thing is in one clause and one link to it.
+                what the real thing is in one clause, one link to it, and the
+                two badges again, at the point where the claim is made.
   The question— #question. "Who would you bring back?" / "All his machine
                 needs is a name." A pair of ember brackets holding an optional
                 text field with the placeholder "a name". Under it: "Type a
@@ -153,6 +159,19 @@ Still open, and not fixable in the page:
     drafted the novel, wherever it sat. All six kept reading, and all six
     said the honesty was to the page's credit. Two would have liked to be
     told earlier, before the name field.
+
+SOCIAL PROOF
+The page has no reader reviews to show and invents none. Its proof is the two
+real things behind the novel, shown as badges under the first button and
+again inside the "His machine is real" box, and named in the ticker, the
+author note and the questions:
+  - Presented at AI Engineer World's Fair 2026 (the author's talk)
+  - Research paper on SSRN (co-authored; a preprint)
+The wording is deliberate. "Research paper on SSRN" is true as it stands; the
+repository's own README calls it a preprint and says the posting does not
+imply peer review, so the page does not say "published". The badges sit under
+"The technology in this novel is real": they vouch for the machine and the
+research, not for the novel.
 
 THE QUESTION AND PRIVACY
 Whatever a visitor types in the brackets stays in the open tab. It is not
