@@ -1069,6 +1069,8 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .prose8 p.prose8__q{font-family:var(--display);font-size:clamp(25px,2.7vw,36px);line-height:1.22;color:var(--ink);margin-top:1.1em}
 .prose8 .prose8__real{margin-top:1.5em;padding:18px 22px 20px;border:1px solid rgba(232,149,63,.45);border-radius:12px;background:rgba(232,149,63,.05);scroll-margin-top:110px}
 .prose8 .prose8__real p{color:var(--ink);font-size:18px}
+.prose8__real p a:not(.prose8__go){color:var(--ink);text-decoration-color:var(--ember);text-underline-offset:4px}
+.prose8__real p a:not(.prose8__go):hover{color:var(--ember)}
 .prose8__real b{color:var(--ember);font-weight:400}
 .prose8__go{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ember);text-decoration:none;border-bottom:1px solid var(--line-3);padding-bottom:3px;white-space:nowrap}
 .prose8__go:hover{border-color:var(--ember)}
@@ -1195,15 +1197,16 @@ html:not(.js) [data-more],html:not(.js) [data-sound],html:not(.js) .sess__replay
 .proof--badges .proof__b small{color:var(--ember);font-size:9.5px;letter-spacing:.16em;margin-bottom:3px}
 .proof--badges .proof__b span:last-child{font-family:var(--display);font-size:19px;line-height:1.1;color:var(--ink)}
 .proof--badges .proof__i{width:34px;height:34px;border-color:rgba(232,149,63,.65);font-size:15px}
+.proof__arr{font-style:normal;font-family:var(--mono);font-size:.62em;color:var(--ember);margin-left:2px;white-space:nowrap}
+.proof--badges .proof__b>span:last-child{min-width:0}
 .hero--v8 .proof{margin-top:18px}
-.prose8__real .proof{justify-content:center;margin-top:16px}
 @media (max-width:900px){.hero--v8 .proof{justify-content:center}}
 @media (max-width:640px){
-  .proof--badges .proof__b{flex:1 1 0;padding:9px 10px 9px 8px;gap:8px}   /* two up, side by side */
+  .proof--badges .proof__b{position:relative;flex:1 1 0;padding:10px 22px 10px 12px}   /* two up, side by side; words only */
+  .proof__arr{position:absolute;top:7px;right:8px;margin:0;font-size:11px}   /* in the corner, so it never takes a line of its own */
   .proof--badges .proof__b span:last-child{font-size:16px}
-  .proof--badges .proof__b small{font-size:9px;letter-spacing:.1em;white-space:nowrap}
-  .proof--badges .proof__i{width:28px;height:28px;font-size:13px}
+  .proof--badges .proof__b small{font-size:9px;letter-spacing:.1em}
+  .proof--badges .proof__i{display:none}
 }
-@media (max-width:359px){.proof--badges .proof__i{display:none}.proof--badges .proof__b{padding-left:10px}}
 /* on a phone the header scrolls away, so these two anchors need no room above them (must follow the rules they adjust) */
 @media (max-width:640px){.exh,.prose8 .prose8__real{scroll-margin-top:0}}

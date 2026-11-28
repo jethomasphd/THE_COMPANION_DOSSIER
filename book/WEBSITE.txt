@@ -59,20 +59,22 @@ hardcover buttons once.
 PAGE STRUCTURE (book/index.html)
   Ticker      — desktop only: a horror novel by Jacob E. Thomas, told in the
                 documents he left behind, "Dread, not gore", "The technology
-                in it is real", "Presented at AI Engineer World's Fair 2026",
-                "Research paper on SSRN", hardcover coming soon (or available
-                now, once published)
+                in it is real", "Author's talk at AI Engineer World's Fair
+                2026", "Author's research paper on SSRN", hardcover coming
+                soon (or available now, once published)
   Header      — title; The story · Inside · Read the opening · Get the book;
                 the primary button. On a phone it scrolls away and the bottom
                 bar carries the button.
   Hero        — #top. "A horror novel by Jacob E. Thomas", the hook as the
                 headline, the turnable 3D cover, ONE button, two facts ("Free
                 · the whole novel · PDF · no sign-up", "Hardcover coming
-                soon"), then THE BADGES (see SOCIAL PROOF): "The technology in
-                this novel is real" over "Presented at AI Engineer World's
-                Fair 2026" and "Research paper on SSRN", each linked. On a
-                phone they sit side by side on the first screen. Then the
-                house in three sentences, naming Miranda
+                soon"), then THE BADGES (see SOCIAL PROOF): "The technology is
+                real. The author built it." over "Author's talk at AI Engineer
+                World's Fair 2026" and "Co-authored research paper, SSRN,
+                2026", each linked and marked with an arrow. On a tall phone
+                they sit side by side on the first screen, on a small one
+                just under it. Then the house in three sentences, naming
+                Miranda
                 Cale and ending on "one door too many", and one line saying
                 what the book is: a slow-burn horror novel told through what
                 he left behind. "Dread, not gore." On a phone the order is
@@ -84,8 +86,10 @@ PAGE STRUCTURE (book/index.html)
                 matter, summon', and then a name."), how he vanished, and the
                 trailer's three questions. Then, in a ruled box (#real): "Dr.
                 Thorne is a character in a novel. His machine is real." with
-                what the real thing is in one clause, one link to it, and the
-                two badges again, at the point where the claim is made.
+                the real tool named (the COMPANION Protocol), what it is in
+                one clause, and the talk and the paper once more as a
+                sentence that says what they are, each linked, then one link
+                to the tool itself.
   The question— #question. "Who would you bring back?" / "All his machine
                 needs is a name." A pair of ember brackets holding an optional
                 text field with the placeholder "a name". Under it: "Type a
@@ -97,7 +101,7 @@ PAGE STRUCTURE (book/index.html)
                 did not have to think about it." and one button, "Let them
                 go"; the tagline steps back; the name leaves the brackets
                 letter by letter; then "They are gone." and "In this novel, a
-                program has abolished the right to leave." Nothing follows
+                program has abolished their right to leave." Nothing follows
                 it: no tagline, no button. The page never answers as anyone.
   The posts   — #feed. "What the neighbors saw." / "Posts from the world of
                 the novel, written for this page. Everyone posting in them is
@@ -162,16 +166,28 @@ Still open, and not fixable in the page:
 
 SOCIAL PROOF
 The page has no reader reviews to show and invents none. Its proof is the two
-real things behind the novel, shown as badges under the first button and
-again inside the "His machine is real" box, and named in the ticker, the
-author note and the questions:
-  - Presented at AI Engineer World's Fair 2026 (the author's talk)
-  - Research paper on SSRN (co-authored; a preprint)
-The wording is deliberate. "Research paper on SSRN" is true as it stands; the
-repository's own README calls it a preprint and says the posting does not
-imply peer review, so the page does not say "published". The badges sit under
-"The technology in this novel is real": they vouch for the machine and the
-research, not for the novel.
+real things behind the novel. They appear as badges under the first button,
+as a sentence inside the "His machine is real" box (where the claim is made
+and a stranger asks "says who?"), and by name in the ticker, the author note
+and the questions:
+  - Author's talk at AI Engineer World's Fair 2026
+  - Co-authored research paper on SSRN, 2026 (a preprint)
+Every mention carries its subject (the author's talk, his paper), because on
+a book page "Presented at" alone reads as "the novel was presented". The
+badges sit under "The technology is real. The author built it.": they vouch
+for the machine and the research, not for the novel.
+
+What the wording may and may not become:
+  - The paper: "research paper on SSRN" is true as it stands. The README
+    calls it a preprint and says the posting does not imply peer review, so
+    the page's text does not say "published". The link-preview image
+    (assets/og-card.jpg, rendered from campaign/card.html) still reads
+    "Published on SSRN"; that file is the campaign's and was left as it is.
+  - The talk: the organizer lists it under AI Engineer World's Fair 2026. The
+    author's own dispatch says it was a keynote of the fair's Online Track.
+    If the organizers' designation can be shown, the badge can say so
+    ("Online Track keynote"). It should never become "on stage" or "in San
+    Francisco".
 
 THE QUESTION AND PRIVACY
 Whatever a visitor types in the brackets stays in the open tab. It is not
@@ -188,7 +204,8 @@ Every passage the page presents as the book's words carries
 data-verbatim="<printed page>" in index.html and is an exact substring of that
 page of the print PDF, down to the four words of the title's sentence and the
 typo. The line shown after a name is let go restates the back cover's phrase
-("a program that has abolished the right to leave") and goes no further. The 3:11:47
+("a program that has abolished the right to leave") with one word added to
+say whose right it is ("their"), and goes no further. The 3:11:47
 log is staged from pp. 88–90: the log lines are the book's, arranged for the
 page; the room labels, the bars and the alert banner are the site's and the
 log's footer says so; the three interrupted sentences are blacked out with
