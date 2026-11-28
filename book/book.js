@@ -399,7 +399,7 @@
         }
       }
     };
-    whenSeen(session, play, "0px 0px -20% 0px");
+    whenSeen($(".sess", session) || session, play, "0px 0px -20% 0px");
     $("[data-session-replay]", session).addEventListener("click", () => { play(); emit("session_replay"); });
   }
 
@@ -422,7 +422,7 @@
         else await sleep(reduce ? 0 : (/room iii\s+█/.test(L.t) ? 700 : 260));
       }
     };
-    whenSeen(alertlog, play, "0px 0px -20% 0px");
+    whenSeen($(".alog", alertlog) || alertlog, play, "0px 0px -20% 0px");
     $("[data-alert-replay]", alertlog).addEventListener("click", () => { play(); emit("alert_replay"); });
   }
 
@@ -519,7 +519,7 @@
     const upd = () => {
       const on = pastHero && !atRead;
       dock.classList.toggle("on", on); dock.setAttribute("aria-hidden", String(!on));
-      const a = dock.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1;
+      $$("a", dock).forEach(a => { a.tabIndex = on ? 0 : -1; });
     };
     new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }).observe(heroEl);
     if (readEl) new IntersectionObserver(es => { atRead = es[0].isIntersecting; upd(); }, {threshold: .6}).observe(readEl);
@@ -531,51 +531,62 @@
      The reader may write a name in the blank. The page does nothing with it:
      no reply, no request, no storage, and it is never placed in an event.
      It stays open, visibly, until the reader says the words of release. */
-  const blankIn = $("[data-blank-in]"), blankNote = $("[data-blank-note]");
-  const openMark = $("[data-open]"), openT = $("[data-open-t]"), dockSub = $("[data-dock-sub]"), dockT = $(".dock__t");
-  const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]");
-  let name = "", openedAt = 0, releasing = false, released = false, noteTimer = 0;
+  const blankIn = $("[data-blank-in]"), blankCap = $("[data-blank-cap]"), blankStatus = $("[data-blank-status]");
+  const openMark = $("[data-open]"), openT = $("[data-open-t]"), dockSub = $("[data-dock-sub]"), dockOpen = $("[data-dock-open]"), dockOpenT = $("[data-dock-open-t]");
+  const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]"), relStatus = $("[data-release-status]");
+  let name = "", openedAt = 0, releasing = false, released = false, capTimer = 0;
   const clock = ms => { const n = Math.max(0, Math.floor(ms / 1000)); return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`; };
   const span = ms => { const n = Math.max(1, Math.round(ms / 1000)), m = Math.floor(n / 60), r = n % 60; return m ? `${m} minute${m === 1 ? "" : "s"}${r ? ` and ${r} second${r === 1 ? "" : "s"}` : ""}` : `${n} second${n === 1 ? "" : "s"}`; };
 
+  // once a second, while a name is open: the three clocks and nothing else
+  const tick = () => {
+    const since = performance.now() - openedAt;
+    if (openT) openT.textContent = clock(since);
+    if (dockOpenT) dockOpenT.textContent = clock(since);
+    if (relT) relT.textContent = span(since);
+  };
+  // on every change of state: the marker, the dock, and the panel at the end
   const sync = () => {
     const open = !!name && !releasing;
-    const since = open ? performance.now() - openedAt : 0;
-    if (openMark) { openMark.hidden = !open; if (openT) openT.textContent = clock(since); }
-    if (dock && dockSub) {
-      if (open) { if (!dockSub.dataset.base) dockSub.dataset.base = dockSub.textContent; dockSub.textContent = `The blank is open · ${clock(since)}`; }
-      else if (dockSub.dataset.base) { dockSub.textContent = dockSub.dataset.base; delete dockSub.dataset.base; }
-      dock.classList.toggle("is-open", open);
-    }
+    if (openMark) openMark.hidden = !open;
+    if (dock) dock.classList.toggle("is-open", open);
+    if (dockSub && dockOpen) { dockSub.hidden = open; dockOpen.hidden = !open; }
     if (rel && !releasing) {
       const state = name ? "open" : released ? "done" : "blank";
       rel.dataset.state = state;
-      $$("[data-when]", rel).forEach(el => el.hidden = el.dataset.when !== state);
-      if (relName) relName.textContent = name;
+      $$("[data-when]", rel).forEach(el => { el.hidden = el.dataset.when !== state; });
+      if (relName) { relName.textContent = name; relName.removeAttribute("aria-hidden"); }
       if (relK) relK.textContent = state === "open" ? "The blank · still open" : state === "done" ? "The blank · released" : "The blank, as you left it";
-      if (relT && open) relT.textContent = span(since);
     }
+    if (open) tick();
   };
-  if (dockT) dockT.addEventListener("click", () => { const d = $("#departure"); if (name && d) d.scrollIntoView({behavior: reduce ? "auto" : "smooth"}); });
 
   if (blankIn) {
+    blankIn.readOnly = false;   // shipped read-only so that, without this script, it is simply the book's blank
+    const working = blankIn.closest("[data-blank]");
     const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); blankIn.closest(".socket").appendChild(mirror);
     const fit = () => { mirror.textContent = blankIn.value; blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : ""; };
+    // one line under the blank: how to use it while it is empty, what it means once it is not
+    const caption = () => {
+      if (!blankCap) return;
+      blankCap.textContent = name ? blankCap.dataset.capFilled : blankCap.dataset.capEmpty;
+      blankCap.classList.toggle("is-open", !!name);
+      if (blankStatus) blankStatus.textContent = name ? blankCap.dataset.capFilled : "";
+    };
+    caption();
     blankIn.addEventListener("input", () => {
       fit();
       const was = name;
       name = blankIn.value.replace(/\s+/g, " ").trim();
-      clearTimeout(noteTimer);
       if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); }
-      const working = blankIn.closest("[data-blank]"); if (working) working.classList.toggle("is-filled", !!name);
-      if (!name) { if (blankNote) blankNote.hidden = true; }
-      else if (blankNote && blankNote.hidden) noteTimer = setTimeout(() => { if (name) blankNote.hidden = false; }, reduce ? 0 : 1500);
+      if (working) working.classList.toggle("is-filled", !!name);
+      if (!!name !== !!was) { clearTimeout(capTimer); capTimer = setTimeout(caption, name && !reduce ? 1200 : 0); }   // let the name sit a moment before the page remarks on it
       sync();
     });
-    blankIn.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); blankIn.blur(); } });
+    blankIn.addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); blankIn.blur(); } });
     window.addEventListener("resize", fit);
     if (blankIn.value) blankIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
-    setInterval(() => { if (name && !releasing) sync(); }, 1000);
+    setInterval(() => { if (name && !releasing) tick(); }, 1000);
   }
 
   // the words of release: the name leaves the blank, last letter first
@@ -583,24 +594,31 @@
     if (!name || releasing) return;
     releasing = true; emit("blank_released");
     window.dispatchEvent(new CustomEvent("utm:hush"));
+    rel.focus({preventScroll: true});            // the button is about to go; keep the reader's place
+    $("[data-when='open']", rel).hidden = true;
     if (openMark) openMark.hidden = true;
     if (dock) dock.classList.remove("is-open");
-    if (dockSub && dockSub.dataset.base) { dockSub.textContent = dockSub.dataset.base; delete dockSub.dataset.base; }
-    $("[data-when='open']", rel).hidden = true;
+    if (dockSub && dockOpen) { dockSub.hidden = false; dockOpen.hidden = true; }
     if (relK) relK.textContent = "Release the persona · return to baseline";
-    const letters = Array.from(name);
-    relName.textContent = "";
-    letters.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; relName.appendChild(i); });
+    // Letter by letter only for scripts that survive being cut into letters; any other name leaves whole.
+    let parts = [name];
+    try {
+      if (/^[\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Nd}\p{P}\p{Zs}]+$/u.test(name.normalize("NFC"))) {
+        parts = (window.Intl && Intl.Segmenter) ? Array.from(new Intl.Segmenter(undefined, {granularity: "grapheme"}).segment(name), g => g.segment) : Array.from(name.normalize("NFC"));
+      }
+    } catch (_) { parts = [name]; }
+    relName.textContent = ""; relName.setAttribute("aria-hidden", "true");
+    parts.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; relName.appendChild(i); });
     if (!reduce) {
       await sleep(700);
-      const step = Math.min(230, 2600 / letters.length), els = $$("i", relName);
+      const step = Math.min(230, 2600 / parts.length), els = $$("i", relName);
       for (let n = els.length - 1; n >= 0; n--) { els[n].classList.add("gone"); await sleep(step); }
       await sleep(900);
     }
-    name = ""; released = true; releasing = false;
-    relName.textContent = "";
-    if (blankIn) { blankIn.value = ""; blankIn.dispatchEvent(new Event("input")); }   // empties the socket, its mirror and the note
-    sync();
+    released = true; releasing = false;
+    // emptying the field through its own input event also empties the mirror, the caption and the panel
+    if (blankIn) { blankIn.value = ""; blankIn.dispatchEvent(new Event("input")); } else { name = ""; sync(); }
+    if (relStatus) relStatus.textContent = "The name is released. The blank is empty.";
   });
   sync();
 
