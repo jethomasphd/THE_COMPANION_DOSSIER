@@ -37,6 +37,7 @@
   try { const u = new URL(config.notifyUrl); if (u.protocol === "https:") notify = u.href; } catch (_) {}
   const outbound = (el, href, ev) => { el.href = href; el.target = "_blank"; el.rel = "noopener"; el.dataset.event = ev; };
   $$("[data-free-line]").forEach(el => el.hidden = !amazon);
+  document.documentElement.classList.toggle("is-live", !!amazon);   // the offer leads with the hardcover once it exists
   if (amazon) {
     // The hardcover is the conversion: every primary button becomes "Get the hardcover"; free reading stays as a quiet link.
     $$("[data-primary]").forEach(el => {
@@ -263,7 +264,7 @@
   const posts = window.RECOVERED_POSTS || [];
   if (wall && posts.length) {
     const phone = window.matchMedia("(max-width: 640px)").matches;
-    const FIRST = phone ? 3 : Number(wall.dataset.first || 9);
+    const FIRST = phone ? 2 : Number(wall.dataset.first || 9);
     let showing = FIRST, filter = "all";
     // One column on a phone: the house, then the recording, then the neighbors watching her arrive.
     const LEAD = ["nb-house", "vm-hum", "ch-arrival"];
@@ -533,112 +534,73 @@
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});
 
-  /* ── the blank (p. xv) and the words that close it ─────────────────────
-     The reader may write a name in the blank. The page does nothing with it:
-     no reply, no request, no storage, and it is never placed in an event.
-     It stays open, visibly, until the reader says the words of release. */
-  const blankIn = $("[data-blank-in]"), blankCap = $("[data-blank-cap]"), blankStatus = $("[data-blank-status]");
-  const openMark = $("[data-open]"), openT = $("[data-open-t]"), dockSub = $("[data-dock-sub]"), dockOpen = $("[data-dock-open]"), dockOpenT = $("[data-dock-open-t]");
-  const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]"), relStatus = $("[data-release-status]");
-  let name = "", openedAt = 0, releasing = false, released = false, capTimer = 0;
-  const clock = ms => { const n = Math.max(0, Math.floor(ms / 1000)); return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`; };
-  const span = ms => { const m = Math.floor(ms / 60000); return m < 1 ? "It is still open." : `It has been open for ${m} minute${m === 1 ? "" : "s"}.`; };
-
-  // a name too long for its box is set smaller, down to half size, before it is ever cut off
-  const shrink = el => {
-    el.style.fontSize = el.style.maxWidth = "";
-    const cap = el.clientWidth, natural = el.scrollWidth;
-    if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.5, cap / natural) * 100).toFixed(1) + "%"; }
-    return el.style.fontSize;
-  };
-  // once a second, while a name is open: the three clocks and nothing else
-  const tick = () => {
-    const since = performance.now() - openedAt;
-    if (openT) openT.textContent = clock(since);
-    if (dockOpenT) dockOpenT.textContent = clock(since);
-    if (relT) relT.textContent = span(since);
-  };
-  // on every change of state: the marker, the dock, and the panel at the end
-  const sync = () => {
-    const open = !!name && !releasing;
-    if (openMark) openMark.hidden = !open;
-    if (dock) dock.classList.toggle("is-open", open);
-    if (dockSub && dockOpen) { dockSub.hidden = open; dockOpen.hidden = !open; }
-    if (rel && !releasing) {
-      const state = name ? "open" : released ? "done" : "blank";
-      rel.dataset.state = state;
-      $$("[data-when]", rel).forEach(el => { el.hidden = el.dataset.when !== state; });
-      if (relName) { relName.textContent = name; relName.removeAttribute("aria-hidden"); shrink(relName); }
-      if (relK) relK.textContent = state === "open" ? "The blank · still open" : state === "done" ? "The blank · released" : "The blank, as you left it";
-    }
-    if (open) tick();
-  };
-
-  if (blankIn) {
-    blankIn.readOnly = false;   // shipped read-only so that, without this script, it is simply the book's blank
-    const working = blankIn.closest("[data-blank]");
-    const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); blankIn.closest(".socket").appendChild(mirror);
+  /* ── one question: a name, held on this page only, then let go ──────────
+     The reader may type a name. The page does nothing with it: no reply, no
+     request, no storage, and it is never placed in an event. */
+  const ask = $("[data-ask]"), nameIn = $("[data-blank-in]"), askHint = $("[data-ask-hint]"), askStatus = $("[data-ask-status]"), goBtn = $("[data-release-btn]");
+  if (ask && nameIn) {
+    nameIn.readOnly = false;            // shipped read-only so that, without this script, it is only a pair of brackets
+    if (askHint) askHint.hidden = false;
+    const field = nameIn.closest(".socket__field") || nameIn.parentNode;
+    const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); field.appendChild(mirror);
+    let name = "", leaving = false, timer = 0;
+    // a name too long for its box is set smaller, down to half size, before it is ever cut off
+    const shrink = el => {
+      el.style.fontSize = el.style.maxWidth = "";
+      const cap = el.clientWidth, natural = el.scrollWidth;
+      if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.5, cap / natural) * 100).toFixed(1) + "%"; }
+      return el.style.fontSize;
+    };
     const fit = () => {
-      mirror.textContent = blankIn.value;
-      blankIn.style.fontSize = shrink(mirror);
-      blankIn.style.maxWidth = mirror.style.maxWidth;   // the cap is in ems, so it must not shrink with the type
-      blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : "";
+      mirror.textContent = nameIn.value;
+      nameIn.style.fontSize = shrink(mirror);
+      nameIn.style.maxWidth = mirror.style.maxWidth;   // the cap is in ems, so it must not shrink with the type
+      nameIn.style.width = nameIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : "";
     };
-    // one line under the blank: how to use it while it is empty, what it means once it is not
-    const caption = () => {
-      if (!blankCap) return;
-      blankCap.textContent = name ? blankCap.dataset.capFilled : blankCap.dataset.capEmpty;
-      blankCap.classList.toggle("is-open", !!name);
-      if (blankStatus) blankStatus.textContent = name ? blankCap.dataset.capFilled : "";
-    };
-    caption();
-    blankIn.addEventListener("input", () => {
+    const show = state => { ask.dataset.state = state; $$("[data-when]", ask).forEach(el => { el.hidden = el.dataset.when !== state; }); };
+
+    nameIn.addEventListener("input", () => {
+      if (leaving) return;
       fit();
       const was = name;
-      name = blankIn.value.replace(/\s+/g, " ").trim();
-      if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); if (relStatus) relStatus.textContent = ""; }
-      if (working) working.classList.toggle("is-filled", !!name);
-      if (!!name !== !!was) { clearTimeout(capTimer); capTimer = setTimeout(caption, name && !reduce ? 1200 : 0); }   // let the name sit a moment before the page remarks on it
-      sync();
+      name = nameIn.value.replace(/\s+/g, " ").trim();
+      clearTimeout(timer);
+      if (name && !was) { emit("blank_filled"); if (askStatus) askStatus.textContent = ""; }
+      if (!name) show("empty");
+      else if (ask.dataset.state !== "typed") timer = setTimeout(() => { if (name && !leaving) show("typed"); }, reduce ? 0 : 1100);   // let the name sit a moment
     });
-    blankIn.addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); blankIn.blur(); } });
-    window.addEventListener("resize", () => { fit(); if (name && relName && !releasing) shrink(relName); });
-    if (blankIn.value) blankIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
-    setInterval(() => { if (name && !releasing) tick(); }, 1000);
-  }
+    nameIn.addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); nameIn.blur(); } });
+    window.addEventListener("resize", () => { if (!leaving) fit(); });
+    if (nameIn.value) nameIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
 
-  // the words of release: the name leaves the blank, last letter first
-  if (relBtn && rel) relBtn.addEventListener("click", async () => {
-    if (!name || releasing) return;
-    releasing = true; emit("blank_released");
-    window.dispatchEvent(new CustomEvent("utm:hush"));
-    rel.focus({preventScroll: true});            // the button is about to go; keep the reader's place
-    $("[data-when='open']", rel).hidden = true;
-    if (openMark) openMark.hidden = true;
-    if (dock) dock.classList.remove("is-open");
-    if (dockSub && dockOpen) { dockSub.hidden = false; dockOpen.hidden = true; }
-    if (relK) relK.textContent = "Release the persona · return to baseline";
-    // Letter by letter only for scripts that survive being cut into letters; any other name leaves whole.
-    let parts = [name];
-    try {
-      if (/^[\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Nd}\p{P}\p{Zs}]+$/u.test(name.normalize("NFC"))) {
-        parts = (window.Intl && Intl.Segmenter) ? Array.from(new Intl.Segmenter(undefined, {granularity: "grapheme"}).segment(name), g => g.segment) : Array.from(name.normalize("NFC"));
+    // "Let them go": the name leaves the brackets, last letter first
+    if (goBtn) goBtn.addEventListener("click", async () => {
+      if (!name || leaving) return;
+      leaving = true; clearTimeout(timer); emit("blank_released");
+      window.dispatchEvent(new CustomEvent("utm:hush"));
+      ask.focus({preventScroll: true});            // the button is about to go; keep the reader's place
+      ask.classList.add("is-going");               // the line and the button step back, keeping their space
+      // letter by letter only for scripts that survive being cut into letters; any other name leaves whole
+      let parts = [nameIn.value];
+      try {
+        if (/^[\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Nd}\p{P}\p{Zs}]+$/u.test(nameIn.value.normalize("NFC"))) {
+          parts = (window.Intl && Intl.Segmenter) ? Array.from(new Intl.Segmenter(undefined, {granularity: "grapheme"}).segment(nameIn.value), g => g.segment) : Array.from(nameIn.value.normalize("NFC"));
+        }
+      } catch (_) { parts = [nameIn.value]; }
+      mirror.textContent = "";
+      parts.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; mirror.appendChild(i); });
+      field.classList.add("is-leaving"); nameIn.readOnly = true;
+      if (!reduce) {
+        await sleep(600);
+        const els = $$("i", mirror), step = Math.min(230, 2600 / els.length);
+        for (let n = els.length - 1; n >= 0; n--) { els[n].classList.add("gone"); await sleep(step); }
+        await sleep(800);
       }
-    } catch (_) { parts = [name]; }
-    relName.textContent = ""; relName.setAttribute("aria-hidden", "true");
-    parts.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; relName.appendChild(i); });
-    if (!reduce) {
-      await sleep(700);
-      const step = Math.min(230, 2600 / parts.length), els = $$("i", relName);
-      for (let n = els.length - 1; n >= 0; n--) { els[n].classList.add("gone"); await sleep(step); }
-      await sleep(900);
-    }
-    released = true; releasing = false;
-    // emptying the field through its own input event also empties the mirror, the caption and the panel
-    if (blankIn) { blankIn.value = ""; blankIn.dispatchEvent(new Event("input")); } else { name = ""; sync(); }
-    if (relStatus) relStatus.textContent = "The name is released. The blank is empty.";
-  });
-  sync();
+      nameIn.value = ""; name = ""; mirror.textContent = ""; field.classList.remove("is-leaving"); nameIn.readOnly = false; fit();
+      leaving = false; ask.classList.remove("is-going"); show("released");
+      if (askStatus) askStatus.textContent = "The name is gone. The brackets are empty.";
+    });
+  }
 
   /* ── for the ones who open the console ──────────────────────────── */
   try {
