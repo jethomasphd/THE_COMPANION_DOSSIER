@@ -256,9 +256,13 @@
   const wall = $("[data-wall]");
   const posts = window.RECOVERED_POSTS || [];
   if (wall && posts.length) {
-    const FIRST = window.matchMedia("(max-width: 640px)").matches ? 4 : Number(wall.dataset.first || 9);
+    const phone = window.matchMedia("(max-width: 640px)").matches;
+    const FIRST = phone ? 3 : Number(wall.dataset.first || 9);
     let showing = FIRST, filter = "all";
-    wall.innerHTML = posts.map(renderPost).join("");
+    // One column on a phone: the house, then the recording, then the neighbors watching her arrive.
+    const LEAD = ["nb-house", "vm-hum", "ch-arrival"];
+    const ordered = phone ? [...LEAD.map(id => posts.find(p => p.id === id)).filter(Boolean), ...posts.filter(p => !LEAD.includes(p.id))] : posts;
+    wall.innerHTML = ordered.map(renderPost).join("");
     const finds = $$(".find", wall);
     const more = $("[data-more]");
     const paint = () => {
@@ -415,7 +419,7 @@
         }
         body.scrollTop = body.scrollHeight;
         if (L.alert) { push.classList.add("on"); chime(); emit("alert_shown"); await sleep(reduce ? 0 : 900); }
-        else await sleep(reduce ? 0 : (L.t.includes("room iii  ███") ? 700 : 260));
+        else await sleep(reduce ? 0 : (/room iii\s+█/.test(L.t) ? 700 : 260));
       }
     };
     whenSeen(alertlog, play, "0px 0px -20% 0px");
@@ -423,9 +427,9 @@
   }
 
   /* ── Sound: the hum of the house, under the whole page (opt-in) ── */
-  let actx = null, hum = null, humGain = null, soundOn = false, ducked = false;
+  let actx = null, hum = null, humGain = null, soundOn = false, ducked = false, hushed = false;
   const sndBtn = $("[data-sound]");
-  const level = () => (soundOn ? (ducked ? 0.08 : 0.55) : 0);
+  const level = () => (soundOn ? (hushed ? 0 : ducked ? 0.08 : 0.55) : 0);
   const ramp = () => { if (humGain) humGain.gain.setTargetAtTime(level(), actx.currentTime, 0.6); };
   async function startHum() {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
@@ -452,6 +456,8 @@
     emit(soundOn ? "sound_on" : "sound_off");
   });
   window.addEventListener("utm:duck", e => { ducked = !!e.detail; ramp(); });
+  // "The voice fades." When the reader says the words of release, the hum stops for a while.
+  window.addEventListener("utm:hush", () => { hushed = true; ramp(); setTimeout(() => { hushed = false; ramp(); }, 9000); });
   const trailerEl = $("#book-trailer");
   if (trailerEl) { trailerEl.addEventListener("play", () => duck(true)); trailerEl.addEventListener("pause", () => duck(false)); trailerEl.addEventListener("ended", () => duck(false)); }
 
@@ -520,6 +526,83 @@
   }
   const trailer = $("#book-trailer");
   if (trailer) trailer.addEventListener("play", () => emit("trailer_play"), {once: true});
+
+  /* ── the blank (p. xv) and the words that close it ─────────────────────
+     The reader may write a name in the blank. The page does nothing with it:
+     no reply, no request, no storage, and it is never placed in an event.
+     It stays open, visibly, until the reader says the words of release. */
+  const blankIn = $("[data-blank-in]"), blankNote = $("[data-blank-note]");
+  const openMark = $("[data-open]"), openT = $("[data-open-t]"), dockSub = $("[data-dock-sub]"), dockT = $(".dock__t");
+  const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]");
+  let name = "", openedAt = 0, releasing = false, released = false, noteTimer = 0;
+  const clock = ms => { const n = Math.max(0, Math.floor(ms / 1000)); return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`; };
+  const span = ms => { const n = Math.max(1, Math.round(ms / 1000)), m = Math.floor(n / 60), r = n % 60; return m ? `${m} minute${m === 1 ? "" : "s"}${r ? ` and ${r} second${r === 1 ? "" : "s"}` : ""}` : `${n} second${n === 1 ? "" : "s"}`; };
+
+  const sync = () => {
+    const open = !!name && !releasing;
+    const since = open ? performance.now() - openedAt : 0;
+    if (openMark) { openMark.hidden = !open; if (openT) openT.textContent = clock(since); }
+    if (dock && dockSub) {
+      if (open) { if (!dockSub.dataset.base) dockSub.dataset.base = dockSub.textContent; dockSub.textContent = `The blank is open · ${clock(since)}`; }
+      else if (dockSub.dataset.base) { dockSub.textContent = dockSub.dataset.base; delete dockSub.dataset.base; }
+      dock.classList.toggle("is-open", open);
+    }
+    if (rel && !releasing) {
+      const state = name ? "open" : released ? "done" : "blank";
+      rel.dataset.state = state;
+      $$("[data-when]", rel).forEach(el => el.hidden = el.dataset.when !== state);
+      if (relName) relName.textContent = name;
+      if (relK) relK.textContent = state === "open" ? "The blank · still open" : state === "done" ? "The blank · released" : "The blank, as you left it";
+      if (relT && open) relT.textContent = span(since);
+    }
+  };
+  if (dockT) dockT.addEventListener("click", () => { const d = $("#departure"); if (name && d) d.scrollIntoView({behavior: reduce ? "auto" : "smooth"}); });
+
+  if (blankIn) {
+    const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); blankIn.closest(".socket").appendChild(mirror);
+    const fit = () => { mirror.textContent = blankIn.value; blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : ""; };
+    blankIn.addEventListener("input", () => {
+      fit();
+      const was = name;
+      name = blankIn.value.replace(/\s+/g, " ").trim();
+      clearTimeout(noteTimer);
+      if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); }
+      const working = blankIn.closest("[data-blank]"); if (working) working.classList.toggle("is-filled", !!name);
+      if (!name) { if (blankNote) blankNote.hidden = true; }
+      else if (blankNote && blankNote.hidden) noteTimer = setTimeout(() => { if (name) blankNote.hidden = false; }, reduce ? 0 : 1500);
+      sync();
+    });
+    blankIn.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); blankIn.blur(); } });
+    window.addEventListener("resize", fit);
+    if (blankIn.value) blankIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
+    setInterval(() => { if (name && !releasing) sync(); }, 1000);
+  }
+
+  // the words of release: the name leaves the blank, last letter first
+  if (relBtn && rel) relBtn.addEventListener("click", async () => {
+    if (!name || releasing) return;
+    releasing = true; emit("blank_released");
+    window.dispatchEvent(new CustomEvent("utm:hush"));
+    if (openMark) openMark.hidden = true;
+    if (dock) dock.classList.remove("is-open");
+    if (dockSub && dockSub.dataset.base) { dockSub.textContent = dockSub.dataset.base; delete dockSub.dataset.base; }
+    $("[data-when='open']", rel).hidden = true;
+    if (relK) relK.textContent = "Release the persona · return to baseline";
+    const letters = Array.from(name);
+    relName.textContent = "";
+    letters.forEach(ch => { const i = document.createElement("i"); i.textContent = ch; relName.appendChild(i); });
+    if (!reduce) {
+      await sleep(700);
+      const step = Math.min(230, 2600 / letters.length), els = $$("i", relName);
+      for (let n = els.length - 1; n >= 0; n--) { els[n].classList.add("gone"); await sleep(step); }
+      await sleep(900);
+    }
+    name = ""; released = true; releasing = false;
+    relName.textContent = "";
+    if (blankIn) { blankIn.value = ""; blankIn.dispatchEvent(new Event("input")); }   // empties the socket, its mirror and the note
+    sync();
+  });
+  sync();
 
   /* ── for the ones who open the console ──────────────────────────── */
   try {
