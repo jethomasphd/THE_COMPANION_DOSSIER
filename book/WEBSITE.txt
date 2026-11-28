@@ -49,13 +49,16 @@ from the second screen to the offer: the visitor's own blank.
                 jumps to #real ("The machine in this novel is real. The author
                 built it first.")
   The blank   — #blank. "One sentence starts his machine. The book leaves the
-                name blank." The sentence at display size with a real, optional
-                text field in the brackets; under it, how to use it ("Write a
-                name in the brackets, or leave them empty. Nothing you type
-                leaves this page."), then the book's instruction (p. xv) and "It
-                took you less than a second." If a name is typed, the line under
-                the blank becomes "It is open now. The words that close it are
-                at the bottom of this page." The page never answers as anyone.
+                name blank." One line says what the title's "this matter" is,
+                in the glossary's own words (p. 276). Then the sentence at
+                display size with a real, optional text field in the brackets;
+                under it, how to use it ("Write a name in the brackets, or leave
+                them empty. Nothing you type leaves this page."), the book's
+                instruction (p. xv) and "It took you less than a second." If a
+                name is typed, the line under the blank becomes "It is open now.
+                The words that close it are further down this page." A long name
+                is set smaller rather than cut off. The page never answers as
+                anyone.
   The feed    — #feed. "The posts started in March." In-world posts from spring
                 2027, unlabeled. The neighbors' group chat types itself out when
                 it scrolls into view. Marisol's voice memo is a video with live
@@ -63,35 +66,41 @@ from the second screen to the offer: the visitor's own blank.
                 "More posts": the house, the recording, the neighbors watching
                 the archivist arrive.
   The house   — #inside. "Believe nothing. Count everything." Three entries from
-                the file, in order, one point each: Day 1, the count (eleven on
-                the county plan, twelve on her first walk) beside Plate XI as
-                printed (#plan lives here: "Count them."); Day 9, the Franklin
+                the file, in order, one point each: Day 1, the three counts
+                the book prints (county plan 11, her first count 12, her
+                recount 11) beside Plate XI as printed (#plan lives here: "Count
+                them."); Day 9, the Franklin
                 test as the chat it is in the book ("relaese the persona"); and
                 3:11:47, the interruption as a run log ending in a plain-words
                 alert (with sound on, the "three ascending notes"). It closes
                 on the guest-room passage (pp. 14–15) and the back cover's "The
                 archive was expecting her."
   First page  — #first-page. The opening, verbatim. Beside it, in plain view,
-                how the novel was written (the author conceived, directed and
-                revised it; generative AI assisted with the drafting) with a
-                link to the author's statement. The link at the foot of the page
-                opens the novel at printed page 4.
+                how the novel was written, taken from The Hand and the Glass
+                (pp. v–vi): "A novel about a machine that speaks for the dead,
+                written with one." An AI model developed the first draft from
+                the author's notes, outline and archive under his direction; he
+                read and revised it; his own sentence is quoted, and his
+                statement is linked. The link at the foot of the page opens the
+                novel at printed page 4.
   It is real  — #real. "Dr. Thorne is fiction. His machine is not." What the
                 real thing is in one sentence (two files you give an AI model,
                 and one sentence), one novel-vs-world pair (the dispatch that
-                names its reader), and one line with the talk, the paper and the
-                protocol. "The story is fiction. The sentence is real."
+                names its reader), and one link to run the protocol. "The story
+                is fiction. The sentence is real." The talk and the paper are
+                linked from the author's note and from the FAQ.
   The release — #departure. The novel's epigraph (1 Samuel 28: "Why hast thou
                 disquieted me, to bring me up?"), "Nobody asks them if they want
                 to come.", and the two ends of the rite as printed on the
-                frontispiece. Then the visitor's own sentence. If they wrote a
-                name: how long it has been open and one button, "Release the
-                persona"; the name leaves letter by letter; "You let them go.",
-                then the rite's closing words. If they left it blank: "You still
-                know whose name it was." Then the turn into the offer, in the
-                back cover's own words and nothing past them: "Think of the
-                name. Think of it answering." and, attributed to the back cover,
-                "a program that has abolished the right to leave."
+                frontispiece. Then the visitor's own sentence (#release). If
+                they wrote a name: "It is still open." (after a minute, for how
+                many minutes) and one button, "Release the persona"; the name
+                leaves letter by letter; "You let them go.", then "The mind
+                departs. The understanding stays." If they left it blank: "You
+                still know whose name it was." Then the turn into the offer, in
+                the back cover's own words and nothing past them: "Think of the
+                name. Think of it answering." and the quoted phrase, attributed:
+                "a program that has abolished the right to leave"
   Door 12     — #own (and the old #access). "The county counted eleven. This is
                 the twelfth." The hardcover argued from what the book asks of
                 the reader's hands (the blank on p. xv is paper; p. 47; the
@@ -99,20 +108,23 @@ from the second screen to the offer: the visitor's own blank.
                 inside (the Plate VII photo is cropped to the plate so the
                 facing text cannot be read), the button and what it opens ("the
                 whole novel as a PDF in your browser. No sign-up."), and under
-                the hardcover the glossary's definition of the title's "matter"
-                (see THE CONVERSION)
+                the hardcover the rest of the glossary's entry for "matter":
+                "This book is bound from it, and binds it in return." (see THE
+                CONVERSION)
   Trailer     — #trailer. ONE film: the 90-second story trailer. It sits below
                 the offer so it never interrupts the main run; the hero's
                 "Watch the trailer" jumps to it.
   FAQ (5) + author, footer with credits and "Twelve?"
 
-WHAT STRANGERS SAID (cold-read test, three readers who knew nothing)
-All three ended at "read the free edition tonight". What landed: the blank,
+WHAT STRANGERS SAID (cold-read tests, five readers who knew nothing)
+All five ended at "read the free edition tonight". What landed: the blank,
 "Nobody asks them if they want to come.", "You left it blank. You still know
 whose name it was.", the typo, "This page will not.", the guest-room passage,
-the first page, and "the book asks things of your hands". The one thing none of
-them could do was act on wanting the hardcover: there is no date, price or way
-to be told. Setting notifyUrl in config.js closes that gap before publication.
+the first page, and "the book asks things of your hands". All five wanted the
+hardcover and none could act on it: there is no date, price or way to be told.
+Setting notifyUrl in config.js closes that gap before publication. All five also
+asked who wrote the sentences; the note beside the first page now answers in the
+author's own words.
 
 THE BLANK AND PRIVACY
 Whatever a visitor types in the blank stays in the open tab. It is not sent,

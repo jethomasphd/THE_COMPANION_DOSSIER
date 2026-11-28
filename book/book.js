@@ -48,7 +48,7 @@
     $$("[data-print-status], [data-notify], [data-free-cta]").forEach(el => el.hidden = true);
     $$("[data-availability-short]").forEach(el => el.innerHTML = "Hardcover <b>available now</b>");
     $$("[data-free-fact]").forEach(el => { el.innerHTML = 'Or <a href="USING_THIS_MATTER_KDP_interior_304pp.pdf" data-event="free_read" data-placement="hero_fact">read it <b>free</b> online</a>'; el.parentNode.appendChild(el); });
-    $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
+    $$("[data-live-href]").forEach(el => { el.href = el.dataset.liveHref; el.removeAttribute("target"); el.dataset.event = "nav"; const l = el.querySelector("[data-label]"); if (l) l.textContent = el.dataset.liveLabel; const arr = el.querySelector(".arr"); if (arr) arr.hidden = true; });
     $$("[data-ticker-status]").forEach(el => el.textContent = "The hardcover is available now");
     $$("[data-dock-sub]").forEach(el => el.textContent = "The hardcover · 304 pages");
   } else if (notify) {
@@ -63,10 +63,16 @@
   }, {rootMargin: "0px 0px -8% 0px", threshold: .08}) : null;
   const watchReveal = el => io ? io.observe(el) : el.classList.add("in");
   $$(".reveal").forEach(watchReveal);
-  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px", dwell = 0) => {
     if (!el) return;
     if (!("IntersectionObserver" in window)) return fn();
-    const o = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { o.disconnect(); fn(); } }, {rootMargin: margin});
+    let t = 0;
+    const o = new IntersectionObserver(es => {
+      const seen = es[es.length - 1].isIntersecting;
+      if (!seen) { clearTimeout(t); t = 0; return; }
+      if (!dwell) { o.disconnect(); fn(); return; }
+      if (!t) t = setTimeout(() => { o.disconnect(); fn(); }, dwell);   // only if it is still on screen after a moment
+    }, {rootMargin: margin});
     o.observe(el);
   };
 
@@ -399,7 +405,7 @@
         }
       }
     };
-    whenSeen($(".sess", session) || session, play, "0px 0px -20% 0px");
+    whenSeen($(".sess", session) || session, play, "0px 0px -20% 0px", reduce ? 0 : 450);
     $("[data-session-replay]", session).addEventListener("click", () => { play(); emit("session_replay"); });
   }
 
@@ -422,7 +428,7 @@
         else await sleep(reduce ? 0 : (/room iii\s+█/.test(L.t) ? 700 : 260));
       }
     };
-    whenSeen($(".alog", alertlog) || alertlog, play, "0px 0px -20% 0px");
+    whenSeen($(".alog", alertlog) || alertlog, play, "0px 0px -20% 0px", reduce ? 0 : 450);
     $("[data-alert-replay]", alertlog).addEventListener("click", () => { play(); emit("alert_replay"); });
   }
 
@@ -536,8 +542,15 @@
   const rel = $("[data-release]"), relName = $("[data-release-name]"), relK = $("[data-release-k]"), relT = $("[data-release-t]"), relBtn = $("[data-release-btn]"), relStatus = $("[data-release-status]");
   let name = "", openedAt = 0, releasing = false, released = false, capTimer = 0;
   const clock = ms => { const n = Math.max(0, Math.floor(ms / 1000)); return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`; };
-  const span = ms => { const n = Math.max(1, Math.round(ms / 1000)), m = Math.floor(n / 60), r = n % 60; return m ? `${m} minute${m === 1 ? "" : "s"}${r ? ` and ${r} second${r === 1 ? "" : "s"}` : ""}` : `${n} second${n === 1 ? "" : "s"}`; };
+  const span = ms => { const m = Math.floor(ms / 60000); return m < 1 ? "It is still open." : `It has been open for ${m} minute${m === 1 ? "" : "s"}.`; };
 
+  // a name too long for its box is set smaller, down to half size, before it is ever cut off
+  const shrink = el => {
+    el.style.fontSize = el.style.maxWidth = "";
+    const cap = el.clientWidth, natural = el.scrollWidth;
+    if (natural > cap + 1) { el.style.maxWidth = cap + "px"; el.style.fontSize = (Math.max(0.5, cap / natural) * 100).toFixed(1) + "%"; }
+    return el.style.fontSize;
+  };
   // once a second, while a name is open: the three clocks and nothing else
   const tick = () => {
     const since = performance.now() - openedAt;
@@ -555,7 +568,7 @@
       const state = name ? "open" : released ? "done" : "blank";
       rel.dataset.state = state;
       $$("[data-when]", rel).forEach(el => { el.hidden = el.dataset.when !== state; });
-      if (relName) { relName.textContent = name; relName.removeAttribute("aria-hidden"); }
+      if (relName) { relName.textContent = name; relName.removeAttribute("aria-hidden"); shrink(relName); }
       if (relK) relK.textContent = state === "open" ? "The blank · still open" : state === "done" ? "The blank · released" : "The blank, as you left it";
     }
     if (open) tick();
@@ -565,7 +578,12 @@
     blankIn.readOnly = false;   // shipped read-only so that, without this script, it is simply the book's blank
     const working = blankIn.closest("[data-blank]");
     const mirror = document.createElement("span"); mirror.className = "socket__mirror"; mirror.setAttribute("aria-hidden", "true"); blankIn.closest(".socket").appendChild(mirror);
-    const fit = () => { mirror.textContent = blankIn.value; blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : ""; };
+    const fit = () => {
+      mirror.textContent = blankIn.value;
+      blankIn.style.fontSize = shrink(mirror);
+      blankIn.style.maxWidth = mirror.style.maxWidth;   // the cap is in ems, so it must not shrink with the type
+      blankIn.style.width = blankIn.value ? Math.ceil(mirror.getBoundingClientRect().width) + 2 + "px" : "";
+    };
     // one line under the blank: how to use it while it is empty, what it means once it is not
     const caption = () => {
       if (!blankCap) return;
@@ -578,13 +596,13 @@
       fit();
       const was = name;
       name = blankIn.value.replace(/\s+/g, " ").trim();
-      if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); }
+      if (name && !was) { openedAt = performance.now(); released = false; emit("blank_filled"); if (relStatus) relStatus.textContent = ""; }
       if (working) working.classList.toggle("is-filled", !!name);
       if (!!name !== !!was) { clearTimeout(capTimer); capTimer = setTimeout(caption, name && !reduce ? 1200 : 0); }   // let the name sit a moment before the page remarks on it
       sync();
     });
     blankIn.addEventListener("keydown", e => { if (e.key === "Enter" && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); blankIn.blur(); } });
-    window.addEventListener("resize", fit);
+    window.addEventListener("resize", () => { fit(); if (name && relName && !releasing) shrink(relName); });
     if (blankIn.value) blankIn.dispatchEvent(new Event("input"));   // a browser that restored the field on reload
     setInterval(() => { if (name && !releasing) tick(); }, 1000);
   }
